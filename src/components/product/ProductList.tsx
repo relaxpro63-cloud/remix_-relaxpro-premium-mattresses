@@ -252,7 +252,7 @@ export default function ProductList({
       {/* PRODUCT GRID BLOCKS */}
       <AnimatePresence mode="popLayout">
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
             {filteredProducts.map((p, index) => {
               const activeSize = getProductSize(p.slug);
               const price = getProductStartingPrice(p, activeSize);
@@ -267,17 +267,17 @@ export default function ProductList({
                   )}
 
                   {/* Header metadata display */}
-                  <div className="p-5 bg-neutral-light/50 border-b border-brand-200/40 flex items-center justify-between text-[10px] font-mono text-neutral-dark/60 select-none">
-                    <span className="uppercase tracking-widest font-bold text-accent">{p.tier} collection</span>
-                    <span className="flex items-center gap-1.5 bg-white px-2 py-1 rounded-md border border-brand-200/50 shadow-sm font-accent text-primary">
-                      <Shield className="w-3 h-3 text-accent" /> {p.warranty}Y Warranty
+                  <div className="p-2 sm:p-5 bg-neutral-light/50 border-b border-brand-200/40 flex flex-row items-center justify-between gap-1 sm:gap-0 text-[7px] sm:text-[10px] font-mono text-neutral-dark/60 select-none">
+                    <span className="uppercase tracking-widest font-bold text-accent truncate">{p.tier} collection</span>
+                    <span className="flex items-center gap-1 sm:gap-1.5 bg-white px-1 sm:px-2 py-0.5 sm:py-1 rounded-md border border-brand-200/50 shadow-sm font-accent text-primary shrink-0">
+                      <Shield className="w-2 h-2 sm:w-3 sm:h-3 text-accent" /> {p.warranty}Y
                     </span>
                   </div>
 
                   {/* Product Image block */}
-                  <div className="h-60 relative overflow-hidden bg-neutral-light cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
+                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-neutral-light cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
                     {p.badge && (
-                      <span className="absolute top-4 left-4 bg-primary/95 backdrop-blur-sm text-white font-accent text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
+                      <span className="absolute top-1 sm:top-4 left-1 sm:left-4 bg-primary/95 backdrop-blur-sm text-white font-accent text-[6px] sm:text-[10px] tracking-widest uppercase font-bold px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
                         {p.badge}
                       </span>
                     )}
@@ -297,35 +297,35 @@ export default function ProductList({
                   </div>
 
                   {/* Core Card Info */}
-                  <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div className="p-2 sm:p-5 md:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Name & Comfort rating line */}
-                      <div className="flex justify-between items-start gap-4">
-                        <div>
-                          <h3 className="font-heading font-bold text-xl md:text-2xl text-primary flex flex-wrap items-center gap-2 mb-1">
+                      <div className="flex flex-row justify-between items-start gap-1 sm:gap-4">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-heading font-bold text-xs sm:text-xl md:text-2xl text-primary flex flex-wrap items-center gap-1 sm:gap-2 mb-0.5 sm:mb-1 truncate">
                             {p.name}
                             {isBestSeller && (
-                              <span className="text-[9px] font-accent font-bold uppercase tracking-widest text-accent bg-accent/10 px-2 py-1 rounded-md border border-accent/20 text-center mt-1 sm:mt-0">Best Seller</span>
+                              <span className="text-[6px] sm:text-[9px] font-accent font-bold uppercase tracking-widest text-accent bg-accent/10 px-1 sm:px-2 py-0.5 sm:py-1 rounded-md border border-accent/20 text-center">Best Seller</span>
                             )}
                           </h3>
-                          <span className="text-[11px] text-neutral-dark/50 font-body italic block">{p.tagline}</span>
+                          <span className="hidden sm:block text-[9px] sm:text-[11px] text-neutral-dark/50 font-body italic leading-tight sm:leading-normal truncate">{p.tagline}</span>
                         </div>
                         
                         {/* Comfort label */}
-                        <div className="text-right shrink-0">
+                        <div className="text-right shrink-0 flex flex-col items-end">
                           {(() => {
                             const badge = getFirmnessBadge(p.comfortLevel);
                             return (
-                              <span className={`inline-block text-[10px] font-bold tracking-widest font-mono uppercase px-2.5 py-1 rounded-md border ${badge.color}`}>
+                              <span className={`inline-block text-[6px] sm:text-[10px] font-bold tracking-widest font-mono uppercase px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-md border ${badge.color}`}>
                                 {badge.label}
                               </span>
                             );
                           })()}
-                          <div className="flex items-center justify-end gap-1 mt-2">
+                          <div className="flex items-center justify-end gap-0.5 sm:gap-1 mt-1 sm:mt-2">
                             {Array.from({ length: 5 }).map((_, i) => (
                               <span
                                 key={i}
-                                className={`w-2.5 h-2.5 rounded-full ${
+                                className={`w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full ${
                                   i < p.comfortRating ? 'bg-accent shadow-sm' : 'bg-neutral-light border border-brand-200/50'
                                 }`}
                               ></span>
@@ -335,42 +335,42 @@ export default function ProductList({
                       </div>
 
                       {/* Brief description */}
-                      <p className="text-sm text-neutral-dark/70 mt-5 leading-relaxed line-clamp-2 font-body">
+                      <p className="hidden sm:block text-[10px] sm:text-sm text-neutral-dark/70 mt-3 sm:mt-5 leading-relaxed line-clamp-2 font-body">
                         {p.keyBenefit}
                       </p>
 
                       {/* Details specs bullets checklist */}
-                      <div className="mt-6 pt-5 border-t border-brand-200/40 space-y-2.5 text-xs text-neutral-dark/60 font-body">
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                      <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40 space-y-1 sm:space-y-2.5 text-[7px] sm:text-xs text-neutral-dark/60 font-body">
+                        <div className="flex items-center gap-1 sm:gap-3">
+                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-accent"></span>
                           </div>
-                          <span>Thickness Profile: <strong className="text-primary font-bold">{p.totalThickness} Inches</strong> composite</span>
+                          <span className="truncate">Thick: <strong className="text-primary font-bold">{p.totalThickness}"</strong></span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        <div className="flex items-center gap-1 sm:gap-3">
+                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-accent"></span>
                           </div>
-                          <span>Cover Shell: <strong className="text-primary font-bold">{p.fabricGsm} GSM {p.fabricType.split(' ')[0]}</strong></span>
+                          <span className="truncate">Cover: <strong className="text-primary font-bold">{p.fabricGsm}GSM {p.fabricType.split(' ')[0]}</strong></span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        <div className="flex items-center gap-1 sm:gap-3">
+                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-accent"></span>
                           </div>
-                          <span>Natural Rubber India: <strong className="text-primary font-bold">{isLatex ? 'Yes, Organic' : 'Ortho Foams'}</strong></span>
+                          <span className="truncate">Latex: <strong className="text-primary font-bold">{isLatex ? 'Yes' : 'No'}</strong></span>
                         </div>
                       </div>
                     </div>
 
                     {/* Quick Mattress Size Configurator inside each block */}
-                    <div className="mt-6 pt-5 border-t border-brand-200/40">
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-2.5 py-1 rounded-md">
+                    <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40">
+                      <div className="flex flex-row justify-between items-center mb-1.5 sm:mb-4 gap-1 sm:gap-0">
+                        <span className="text-[6px] sm:text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-sm sm:rounded-md">
                           Select Size
                         </span>
                         
                         {/* Size button triggers */}
-                        <div className="flex gap-1.5 bg-neutral-light/50 p-1 rounded-lg border border-brand-200/30">
+                        <div className="flex gap-0.5 sm:gap-1.5 bg-neutral-light/50 p-0.5 sm:p-1 rounded-sm sm:rounded-lg border border-brand-200/30">
                           {(['king', 'queen', 'double', 'single'] as MattressSize[]).map((sz) => (
                             <button
                               key={sz}
@@ -379,7 +379,7 @@ export default function ProductList({
                                 e.stopPropagation();
                                 setProductSize(p.slug, sz);
                               }}
-                              className={`w-8 h-7 rounded-md font-accent text-[10px] font-bold transition-all uppercase select-none cursor-pointer ${
+                              className={`w-5 h-5 sm:w-8 sm:h-7 rounded-sm sm:rounded-md font-accent text-[7px] sm:text-[10px] font-bold transition-all uppercase select-none cursor-pointer ${
                                 activeSize === sz
                                   ? 'bg-primary text-white shadow-sm'
                                   : 'text-neutral-dark/50 hover:text-primary hover:bg-white'
@@ -392,50 +392,42 @@ export default function ProductList({
                       </div>
 
                       {/* Price indicator */}
-                      <div className="flex justify-between items-end p-4 rounded-xl border border-brand-200/50 bg-white shadow-sm mt-2">
+                      <div className="flex flex-row justify-between items-center p-1.5 sm:p-4 rounded-lg sm:rounded-xl border border-brand-200/50 bg-white shadow-sm mt-1 sm:mt-2">
                         <div className="flex flex-col">
-                          <span className="text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-1">Starting From</span>
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-2xl font-bold font-heading text-primary">
+                          <span className="text-[6px] sm:text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-0.5 sm:mb-1">Starting From</span>
+                          <div className="flex items-baseline gap-1 sm:gap-2">
+                            <span className="text-[10px] sm:text-2xl font-bold font-heading text-primary">
                               <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                             </span>
-                            <span className="text-sm font-body text-neutral-dark/40">
-                              Single
-                            </span>
                           </div>
-                          <span className="text-[10px] text-neutral-dark/50 font-mono mt-0.5">
-                            <PriceText>Up to ₹{getPriceRange(p).max.toLocaleString('en-IN')} (King)</PriceText>
+                          <span className="hidden sm:block text-[8px] sm:text-[10px] text-neutral-dark/50 font-mono mt-0.5">
+                            <PriceText>Up to ₹{getPriceRange(p).max.toLocaleString('en-IN')}</PriceText>
                           </span>
-                        </div>
-                        <div className="text-right text-[9px] text-neutral-dark/40 font-mono max-w-[110px] leading-tight">
-                          {p.pricingModel === 'with_without_accessories' ? 
-                            'Tax incl. No middleman' : 
-                            'Base 300 GSM model.'}
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Actions buttons */}
-                  <div className="p-5 bg-white border-t border-brand-200/40 flex flex-wrap gap-2 text-xs rounded-b-2xl">
+                  <div className="p-1.5 sm:p-5 bg-white border-t border-brand-200/40 grid grid-cols-2 sm:flex sm:flex-row gap-1 sm:gap-2 rounded-b-2xl">
                     <button
                       onClick={(e) => { e.stopPropagation(); onNavigateToPdp(p.slug); }}
-                      className="flex-1 min-w-[80px] py-3 px-3 rounded-xl border-2 border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-1.5 cursor-pointer transition-all focus:outline-none focus:ring-4 focus:ring-accent/10"
+                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl border border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-1 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-accent/10 text-[8px] sm:text-xs"
                     >
-                      <Info className="w-3.5 h-3.5 text-accent" /> Details
-                    </button>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handleAddToCart(p, activeSize); }}
-                      className="flex-1 min-w-[80px] py-3 px-3 rounded-xl bg-primary hover:bg-neutral-dark text-white font-accent font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-4 focus:ring-primary/20"
-                    >
-                      <ShoppingCart className="w-3.5 h-3.5 text-white/80" />
-                      {justAdded.has(p.slug) ? 'Added!' : 'Add to Cart'}
+                      <Info className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-accent" /> <span className="hidden sm:inline">Details</span><span className="sm:hidden">Info</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleBuyNow(p, activeSize); }}
-                      className="flex-1 min-w-[80px] py-3 px-3 rounded-xl bg-accent hover:bg-[#2569A0] text-white font-accent font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-4 focus:ring-accent/20"
+                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-accent hover:bg-[#2569A0] text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-accent/20 text-[8px] sm:text-xs"
                     >
-                      Buy Now
+                      Buy
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleAddToCart(p, activeSize); }}
+                      className="col-span-2 sm:flex-1 py-2 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-primary hover:bg-neutral-dark text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/20 text-[9px] sm:text-xs"
+                    >
+                      <ShoppingCart className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white/80" />
+                      {justAdded.has(p.slug) ? 'Added!' : 'Add to Cart'}
                     </button>
                   </div>
                 </>
@@ -517,7 +509,15 @@ export default function ProductList({
           <Sparkles className="w-5 h-5 text-accent" /> Start 3D Customizer
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
-      </section>
-    </div>
-  );
+  {/* Components Section Image */}
+  <div className="mt-16 md:mt-24 border-t border-brand-200/40 pt-10 fade-up">
+    <img
+      src="/images/components-banner.png"
+      alt="RelaxPro Mattress Components"
+      className="w-full h-auto object-contain rounded-2xl shadow-sm"
+    />
+  </div>
+</section>
+</div>
+);
 }
