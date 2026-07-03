@@ -1,0 +1,131 @@
+import React from 'react';
+import { ArrowRight, ArrowUp } from 'lucide-react';
+import BlurFade from '../ui/BlurFade';
+
+const compareData = [
+  {
+    label: (
+      <>
+        Avg. Price<br />(Double Bed)
+      </>
+    ),
+    latex: "₹ 40,000",
+    foam: "₹ 20,000",
+    foamHigher: false
+  },
+  {
+    label: "Avg. Lifespan",
+    latex: "15 Years",
+    foam: "7 Years",
+    foamHigher: false
+  },
+  {
+    label: "Per Year Cost",
+    latex: (
+      <>
+        40,000 ÷ 15 =<br />₹2,700/- per year
+      </>
+    ),
+    foam: (
+      <>
+        20,000 ÷ 7 =<br />₹2,900/- per year
+      </>
+    ),
+    foamHigher: true
+  },
+  {
+    label: "Per Day Cost",
+    latex: (
+      <>
+        2700 ÷ 365 =<br />₹7/- per day
+      </>
+    ),
+    foam: (
+      <>
+        2900 ÷ 365 =<br />₹8/- per day
+      </>
+    ),
+    foamHigher: true
+  }
+];
+
+export default function CostComparison() {
+  return (
+    <section className="py-16 md:py-24 px-4 md:px-8 bg-white border-y border-brand-200/40 font-body overflow-hidden">
+      <div className="max-w-5xl mx-auto">
+        <BlurFade delay={0.1}>
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-medium text-neutral-800 leading-tight">
+              Is Buying Latex Mattress Really Expensive?
+            </h2>
+          </div>
+        </BlurFade>
+
+        {/* Unified Layout for Mobile & Desktop */}
+        <div className="relative pb-4 overflow-x-hidden max-w-[900px] mx-auto pt-4 md:pt-8">
+          
+          {/* Headers */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-16 mb-8 sm:mb-12 text-center">
+            <h3 className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-emerald-800">Natural<br className="md:hidden" /> Latex</h3>
+            <h3 className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-emerald-800">Ordinary<br className="md:hidden" /> Foam</h3>
+          </div>
+
+          {/* Images Placeholder (can replace with actual images later) */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-16 mb-8 sm:mb-10 text-center relative z-10 px-4">
+            <div className="flex justify-center">
+              <div className="w-24 sm:w-48 h-16 sm:h-24 bg-gradient-to-br from-[#f2e7c9] to-[#e4d1a5] rounded-md sm:rounded-xl shadow-inner border border-[#d9c491] transform -rotate-2"></div>
+            </div>
+            <div className="flex justify-center">
+              <div className="w-24 sm:w-48 h-16 sm:h-24 bg-gradient-to-br from-[#f8f9fa] to-[#e9ecef] rounded-md sm:rounded-xl shadow-inner border border-gray-200 transform rotate-2"></div>
+            </div>
+          </div>
+
+          {/* VS Badge & Vertical Line */}
+          <div className="absolute left-1/2 top-24 bottom-0 w-1 sm:w-1.5 bg-emerald-800/80 -translate-x-1/2 z-0" />
+          <div className="absolute left-1/2 top-[120px] sm:top-[160px] -translate-x-1/2 z-20 flex flex-col items-center justify-center">
+            <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-emerald-800 text-white font-heading font-bold text-lg sm:text-3xl flex items-center justify-center shadow-xl border-[3px] sm:border-4 border-white">
+              VS
+            </div>
+          </div>
+
+          {/* Rows */}
+          <div className="space-y-3 sm:space-y-5 relative z-10 px-1 sm:px-4">
+            {compareData.map((row, idx) => (
+              <BlurFade delay={0.1 + idx * 0.1} key={idx}>
+                <div className="grid grid-cols-2 gap-3 sm:gap-12 lg:gap-16 items-center">
+                  
+                  {/* Left Side: Label + Value */}
+                  <div className="bg-[#c2e2be] rounded-md sm:rounded-xl flex items-center justify-between p-2 sm:p-4 shadow-sm relative">
+                    <div className="flex items-center gap-1 sm:gap-3 shrink-0">
+                      <span className="font-bold text-emerald-950 text-[9px] sm:text-sm lg:text-base leading-tight w-[60px] sm:w-[100px] lg:w-auto break-words">{row.label}</span>
+                      <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 text-emerald-950 hidden min-[380px]:block" strokeWidth={3} />
+                    </div>
+                    <span className="font-bold text-emerald-950 text-[10px] sm:text-base lg:text-lg text-right sm:text-left leading-tight">{row.latex}</span>
+                  </div>
+
+                  {/* Right Side: Value */}
+                  <div className="bg-[#c2e2be] rounded-md sm:rounded-xl flex items-center justify-center p-2 sm:p-4 shadow-sm relative text-center">
+                    <span className="font-bold text-emerald-950 text-[10px] sm:text-base lg:text-lg leading-tight">{row.foam}</span>
+                    {row.foamHigher && (
+                      <ArrowUp className="w-3 h-3 sm:w-5 sm:h-5 text-emerald-950 absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2" strokeWidth={4} />
+                    )}
+                  </div>
+
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+
+        <BlurFade delay={0.6}>
+          <div className="mt-10 md:mt-12 bg-[#c2e2be] p-4 md:p-6 rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
+            <p className="text-emerald-950 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
+              While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress
+            </p>
+          </div>
+        </BlurFade>
+
+      </div>
+    </section>
+  );
+}
