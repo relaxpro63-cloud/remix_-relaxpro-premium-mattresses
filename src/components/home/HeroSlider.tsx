@@ -16,7 +16,7 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
       id="main-content"
       className="relative overflow-hidden min-h-[90vh] md:min-h-[100vh] flex items-center noise-overlay"
       style={{
-        background: 'linear-gradient(135deg, #1A1D1B 0%, #0F1729 50%, #1A1D1B 100%)',
+        background: 'linear-gradient(135deg, #1A3629 0%, #0F2318 50%, #1A3629 100%)',
         backgroundSize: '200% 200%',
         animation: 'gradientShift 10s ease infinite',
       }}
@@ -28,9 +28,9 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
         viewBox="0 0 400 400"
         fill="none"
       >
-        <circle cx="200" cy="200" r="180" stroke="#317FBA" strokeWidth="0.5" />
-        <circle cx="200" cy="200" r="140" stroke="#317FBA" strokeWidth="0.3" />
-        <circle cx="200" cy="200" r="100" stroke="#317FBA" strokeWidth="0.2" />
+        <circle cx="200" cy="200" r="180" stroke="#D4B895" strokeWidth="0.5" />
+        <circle cx="200" cy="200" r="140" stroke="#D4B895" strokeWidth="0.3" />
+        <circle cx="200" cy="200" r="100" stroke="#D4B895" strokeWidth="0.2" />
       </svg>
 
       <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-24 pb-16 md:py-0 relative z-10">

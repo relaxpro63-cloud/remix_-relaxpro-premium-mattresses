@@ -1,46 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 /* ============================================
    RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
+   "Organic Luxury" Color System
    ============================================ */
 @theme {
   /* Typography */
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-accent: 'Poppins', 'DM Sans', sans-serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
   /* Keep backward compatibility aliases */
-  --font-sans: 'DM Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'DM Serif Display', Georgia, serif;
 
-  /* Brand Color Palette — derived from logo */
-  --color-primary: #1A1D1B;
-  --color-secondary: #E1DDD6;
-  --color-accent: #317FBA;
-  --color-accent-dark: #67B3F5;
-  --color-accent-light: #67B3F5;
+  /* Brand Color Palette — Organic Luxury */
+  --color-primary: #1A3629;       /* Forest Night – headings, body, dark bg */
+  --color-secondary: #F2EEE8;     /* Soft Linen – light surfaces */
+  --color-accent: #D4B895;        /* Warm Sand – CTAs, highlights */
+  --color-accent-dark: #C3A682;   /* Warm Sand hover */
+  --color-accent-light: #E2CDB0;  /* Light Sand – subtle accents */
 
-  --color-neutral-dark: #696660;
-  --color-neutral-light: #E1DDD6;
+  --color-neutral-dark: #5C7C68;  /* Sage Green – secondary/subtitle text */
+  --color-neutral-light: #F9F6F0; /* Oatmeal – main background */
   --color-success: #4CAF7D;
 
   /* Backward-compatible brand tokens */
-  --color-brand-50: #F3F2EF;
-  --color-brand-100: #E1DDD6;
-  --color-brand-200: #C9C4BB;
-  --color-brand-500: #317FBA;
-  --color-brand-600: #67B3F5;
-  --color-brand-800: #1A1D1B;
-  --color-brand-950: #1A1D1B;
+  --color-brand-50: #F9F6F0;      /* Oatmeal */
+  --color-brand-100: #F2EEE8;     /* Soft Linen */
+  --color-brand-200: #E7E0D7;     /* Light Sand border */
+  --color-brand-500: #D4B895;     /* Warm Sand */
+  --color-brand-600: #C3A682;     /* Dark Warm Sand */
+  --color-brand-800: #1A3629;     /* Forest Night */
+  --color-brand-950: #1A3629;     /* Forest Night */
 
-  --color-luxury-gold: #317FBA;
-  --color-deep-charcoal: #1A1D1B;
+  --color-luxury-gold: #D4B895;
+  --color-deep-charcoal: #1A3629;
 
   /* Card Tokens */
   --radius-card: 16px;
-  --shadow-card: 0 8px 32px rgba(26, 29, 27, 0.10);
+  --shadow-card: 0 4px 6px rgba(26, 54, 41, 0.05);
 }
 
 /* Price text — auto-applied by <PriceText> wrapper */
@@ -54,18 +55,18 @@
    CSS Custom Properties for Non-Tailwind Usage
    ============================================ */
 :root {
-  --color-primary: #1A1D1B;
-  --color-secondary: #E1DDD6;
-  --color-accent: #317FBA;
-  --color-accent-dark: #67B3F5;
-  --color-neutral-dark: #696660;
-  --color-neutral-light: #E1DDD6;
+  --color-primary: #1A3629;
+  --color-secondary: #F2EEE8;
+  --color-accent: #D4B895;
+  --color-accent-dark: #C3A682;
+  --color-neutral-dark: #5C7C68;
+  --color-neutral-light: #F9F6F0;
   --color-success: #4CAF7D;
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-accent: 'Poppins', sans-serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-accent: 'Plus Jakarta Sans', sans-serif;
   --radius-card: 16px;
-  --shadow-card: 0 8px 32px rgba(26, 29, 27, 0.10);
+  --shadow-card: 0 4px 6px rgba(26, 54, 41, 0.05);
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -233,10 +234,10 @@
 /* Soft glow */
 @keyframes soft-glow {
   0%, 100% {
-    box-shadow: 0 4px 20px -2px rgba(49, 127, 186, 0.1), 0 2px 8px -1px rgba(49, 127, 186, 0.05);
+    box-shadow: 0 4px 20px -2px rgba(212, 184, 149, 0.1), 0 2px 8px -1px rgba(212, 184, 149, 0.05);
   }
   50% {
-    box-shadow: 0 12px 32px -2px rgba(49, 127, 186, 0.28), 0 4px 14px -1px rgba(49, 127, 186, 0.18);
+    box-shadow: 0 12px 32px -2px rgba(212, 184, 149, 0.28), 0 4px 14px -1px rgba(212, 184, 149, 0.18);
   }
 }
 .animate-glow-soft {
@@ -265,8 +266,8 @@
 
 /* Pulse glow for CTA */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(49, 127, 186, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(49, 127, 186, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 184, 149, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(212, 184, 149, 0); }
 }
 .animate-pulse-glow {
   animation: pulse-glow 2.5s ease-in-out infinite;
@@ -389,7 +390,7 @@
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(26, 29, 27, 0.15);
+  box-shadow: 0 12px 40px rgba(26, 54, 41, 0.10);
 }
 
 /* Image zoom on hover */
@@ -411,7 +412,7 @@
 }
 .feature-card-glow:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(49, 127, 186, 0.2), var(--shadow-card);
+  box-shadow: 0 0 0 3px rgba(212, 184, 149, 0.2), var(--shadow-card);
 }
 
 /* ============================================
@@ -526,8 +527,8 @@
 .header-scrolled {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
-  border-bottom-color: #C9C4BB;
-  box-shadow: 0 2px 20px rgba(26, 29, 27, 0.06);
+  border-bottom-color: #E7E0D7;
+  box-shadow: 0 2px 20px rgba(26, 54, 41, 0.06);
 }
 
 /* ============================================

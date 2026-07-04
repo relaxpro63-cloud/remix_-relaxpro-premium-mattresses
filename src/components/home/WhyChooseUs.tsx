@@ -39,25 +39,25 @@ function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number;
 
 const features = [
   {
-    icon: <Shield className="w-7 h-7" />,
+    icon: <Shield className="w-5 h-5 sm:w-7 sm:h-7" />,
     title: '100-Night Sleep Trial',
     desc: 'Try it risk-free. Return for free if not in love with your new mattress.',
     color: 'bg-blue-50 text-blue-600 border-blue-100',
   },
   {
-    icon: <Truck className="w-7 h-7" />,
+    icon: <Truck className="w-5 h-5 sm:w-7 sm:h-7" />,
     title: 'Free White-Glove Delivery',
     desc: 'We deliver and set up in your bedroom. No extra cost, no hassle.',
     color: 'bg-emerald-50 text-emerald-600 border-emerald-100',
   },
   {
-    icon: <Award className="w-7 h-7" />,
+    icon: <Award className="w-5 h-5 sm:w-7 sm:h-7" />,
     title: '10-Year Warranty',
     desc: 'Built to last a decade, guaranteed. Direct factory replacement policy.',
     color: 'bg-sky-50 text-sky-600 border-sky-100',
   },
   {
-    icon: <Leaf className="w-7 h-7" />,
+    icon: <Leaf className="w-5 h-5 sm:w-7 sm:h-7" />,
     title: 'Eco-Friendly Materials',
     desc: 'CertiPUR-US certified foam. GOLS certified natural latex from Kerala.',
     color: 'bg-green-50 text-green-600 border-green-100',
@@ -96,22 +96,22 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Feature Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className={`bg-white p-5 md:p-7 rounded-2xl border border-brand-200/60 shadow-sm feature-card-glow scale-in ${
+                className={`bg-white p-4 sm:p-5 md:p-7 rounded-xl sm:rounded-2xl border border-brand-200/60 shadow-sm feature-card-glow scale-in flex flex-col ${
                   isSectionVisible ? 'animate-in' : ''
                 }`}
                 style={{ transitionDelay: `${0.1 * idx}s` }}
               >
-                <div className={`w-14 h-14 rounded-2xl ${feature.color} border flex items-center justify-center mb-5`}>
+                <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${feature.color} border flex items-center justify-center mb-3 sm:mb-5 shrink-0`}>
                   {feature.icon}
                 </div>
-                <h3 className="font-heading font-bold text-lg text-primary mb-2">
+                <h3 className="font-heading font-bold text-xs sm:text-base md:text-lg text-primary mb-1.5 sm:mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-neutral-dark/50 text-sm font-body leading-relaxed">
+                <p className="text-neutral-dark/50 text-[10px] sm:text-xs md:text-sm font-body leading-relaxed">
                   {feature.desc}
                 </p>
               </div>

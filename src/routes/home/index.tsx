@@ -7,9 +7,8 @@ import PageShell from '../../components/layout/PageShell';
 import HeroSlider from '../../components/home/HeroSlider';
 import Marquee from '../../components/ui/Marquee';
 import ShopByBrands from '../../components/home/ShopByBrands';
-import EngineeredPosture from '../../components/home/EngineeredPosture';
 import CostComparison from '../../components/home/CostComparison';
-import SleepStyleGuide from '../../components/home/SleepStyleGuide';
+
 import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
 import WhyChooseUs from '../../components/home/WhyChooseUs';
@@ -106,9 +105,8 @@ export default function HomePage({
         onSeeAllModels={() => handlePageNavigation('catalog')}
       />
       <Marquee />
-      <SleepStyleGuide />
+
       <ShopByBrands />
-      <EngineeredPosture />
 
       <section className="bg-secondary/50 border-y border-brand-200/30 py-16 md:py-24 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
@@ -299,36 +297,6 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="py-16 md:py-24 px-4 md:px-8 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-[11px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 px-4 py-1.5 rounded-full inline-block mb-4">Find Your Match</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-tight">Which Mattress Is Right for You?</h2>
-            <p className="text-neutral-dark/50 text-sm mt-3 font-body leading-relaxed">Not sure where to start? Pick your sleep style and we'll recommend the perfect model.</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
-            {[
-              { icon: <Sparkles className="w-6 h-6" />, title: 'Side Sleeper', desc: 'Need pressure relief on shoulders & hips. Try our plush organic latex or soft-medium hybrids.', slug: 'nirvana' },
-              { icon: <Check className="w-6 h-6" />, title: 'Back & Orthopedic', desc: 'Require spine alignment & firm support. Our medium-firm orthopedic builds are doctor-recommended.', slug: 'arogya' },
-              { icon: <Leaf className="w-6 h-6" />, title: 'Stomach Sleeper', desc: 'Need firm even surface to prevent hip sinking. Our firm and ultra-firm options keep you aligned.', slug: 'ayushrest' },
-            ].map((option, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleNavigateToPdp(option.slug)}
-                className="group bg-neutral-light hover:bg-accent/5 border border-brand-200/50 hover:border-accent/40 rounded-2xl p-6 md:p-8 text-left transition-all cursor-pointer"
-              >
-                <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  {option.icon}
-                </div>
-                <h3 className="font-heading font-bold text-lg text-primary mb-2">{option.title}</h3>
-                <p className="text-neutral-dark/60 text-sm font-body leading-relaxed">{option.desc}</p>
-                <span className="inline-flex items-center gap-1 text-accent text-xs font-accent font-bold mt-4 group-hover:gap-2 transition-all">View model <ChevronRight className="w-3 h-3" /></span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
         <div className="max-w-6xl mx-auto">

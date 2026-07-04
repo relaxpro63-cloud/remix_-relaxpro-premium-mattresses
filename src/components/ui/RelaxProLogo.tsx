@@ -36,21 +36,21 @@ export default function RelaxProLogo({ variant = 'full', className = '', inverse
 
           {/* Blue Bed frame on the crossbar of A */}
           {/* Head post */}
-          <line x1="211" y1="72" x2="211" y2="92" stroke="#317FBA" strokeWidth="3" strokeLinecap="round" />
+          <line x1="211" y1="72" x2="211" y2="92" stroke="#D4B895" strokeWidth="3" strokeLinecap="round" />
           {/* Tail post */}
-          <line x1="267" y1="72" x2="267" y2="92" stroke="#317FBA" strokeWidth="3" strokeLinecap="round" />
+          <line x1="267" y1="72" x2="267" y2="92" stroke="#D4B895" strokeWidth="3" strokeLinecap="round" />
           {/* Main mattress frame */}
-          <line x1="211" y1="81" x2="267" y2="81" stroke="#317FBA" strokeWidth="3.5" strokeLinecap="round" />
+          <line x1="211" y1="81" x2="267" y2="81" stroke="#D4B895" strokeWidth="3.5" strokeLinecap="round" />
           {/* Legs */}
-          <line x1="218" y1="81" x2="218" y2="92" stroke="#317FBA" strokeWidth="2.2" />
-          <line x1="260" y1="81" x2="260" y2="92" stroke="#317FBA" strokeWidth="2.2" />
+          <line x1="218" y1="81" x2="218" y2="92" stroke="#D4B895" strokeWidth="2.2" />
+          <line x1="260" y1="81" x2="260" y2="92" stroke="#D4B895" strokeWidth="2.2" />
           {/* Pillow */}
-          <rect x="216" y="75" width="13" height="5" rx="1" fill="#317FBA" />
+          <rect x="216" y="75" width="13" height="5" rx="1" fill="#D4B895" />
           {/* Sleep blanket contour waves */}
-          <path d="M 218,75 Q 228,68 238,75 T 258,75" stroke="#317FBA" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.85" />
+          <path d="M 218,75 Q 228,68 238,75 T 258,75" stroke="#D4B895" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.85" />
 
           {/* PRO text badge top right of X */}
-          <text x="348" y="52" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="24" fill="#317FBA" letterSpacing="1">PRO</text>
+          <text x="348" y="52" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="24" fill="#D4B895" letterSpacing="1">PRO</text>
         </svg>
       </div>
     );
@@ -82,21 +82,21 @@ export default function RelaxProLogo({ variant = 'full', className = '', inverse
 
         {/* Blue Bed frame on the crossbar of A */}
         {/* Head post */}
-        <line x1="211" y1="72" x2="211" y2="92" stroke="#317FBA" strokeWidth="3" strokeLinecap="round" />
+        <line x1="211" y1="72" x2="211" y2="92" stroke="#D4B895" strokeWidth="3" strokeLinecap="round" />
         {/* Tail post */}
-        <line x1="267" y1="72" x2="267" y2="92" stroke="#317FBA" strokeWidth="3" strokeLinecap="round" />
+        <line x1="267" y1="72" x2="267" y2="92" stroke="#D4B895" strokeWidth="3" strokeLinecap="round" />
         {/* Main mattress frame */}
-        <line x1="211" y1="81" x2="267" y2="81" stroke="#317FBA" strokeWidth="3.5" strokeLinecap="round" />
+        <line x1="211" y1="81" x2="267" y2="81" stroke="#D4B895" strokeWidth="3.5" strokeLinecap="round" />
         {/* Legs */}
-        <line x1="218" y1="81" x2="218" y2="92" stroke="#317FBA" strokeWidth="2.2" />
-        <line x1="260" y1="81" x2="260" y2="92" stroke="#317FBA" strokeWidth="2.2" />
+        <line x1="218" y1="81" x2="218" y2="92" stroke="#D4B895" strokeWidth="2.2" />
+        <line x1="260" y1="81" x2="260" y2="92" stroke="#D4B895" strokeWidth="2.2" />
         {/* Pillow */}
-        <rect x="216" y="75" width="13" height="5" rx="1" fill="#317FBA" />
+        <rect x="216" y="75" width="13" height="5" rx="1" fill="#D4B895" />
         {/* Sleep blanket contour waves */}
-        <path d="M 218,75 Q 228,68 238,75 T 258,75" stroke="#317FBA" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.85" />
+        <path d="M 218,75 Q 228,68 238,75 T 258,75" stroke="#D4B895" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.85" />
 
         {/* PRO text badge top right of X */}
-        <text x="348" y="52" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="24" fill="#317FBA" letterSpacing="1">PRO</text>
+        <text x="348" y="52" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="24" fill="#D4B895" letterSpacing="1">PRO</text>
 
         {/* Subtitle Pill capsule "Sleep Better Wake Better" */}
         <rect x="110" y="122" width="220" height="23" rx="11.5" fill={inverse ? '#ffffff' : '#18181b'} />
@@ -107,7 +107,7 @@ export default function RelaxProLogo({ variant = 'full', className = '', inverse
           fontStyle="italic"
           fontWeight="bold"
           fontSize="11.5"
-          fill={inverse ? '#18181b' : '#317FBA'}
+          fill={inverse ? '#18181b' : '#D4B895'}
           textAnchor="middle"
         >
           Sleep Better Wake Better

@@ -31,12 +31,12 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
   return (
     <div className="relative rounded-[2rem] overflow-hidden bg-neutral-light border border-brand-200/40 shadow-sm group">
       {badge && (
-        <span className="absolute top-6 left-6 bg-primary/95 backdrop-blur-sm text-white font-accent text-[11px] tracking-widest uppercase font-bold px-4 py-2 rounded-full z-10 border border-white/10 shadow-lg">
+        <span className="absolute top-4 sm:top-6 left-4 sm:left-6 bg-primary/95 backdrop-blur-sm text-white font-accent text-[8px] sm:text-[11px] tracking-widest uppercase font-bold px-2.5 sm:px-4 py-1 sm:py-2 rounded-full z-10 border border-white/10 shadow-lg max-w-[70%] sm:max-w-none truncate sm:whitespace-normal">
           {badge}
         </span>
       )}
 
-      <div className="relative w-full h-[400px] md:h-[550px] overflow-hidden">
+      <div className="relative w-full h-[250px] sm:h-[400px] md:h-[550px] overflow-hidden">
         <AnimatePresence custom={direction} mode="wait">
           <motion.img
             key={current}
@@ -71,16 +71,18 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
             <ChevronRight className="w-5 h-5 text-primary" />
           </button>
 
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1.5 sm:gap-2 z-10">
             {images.map((_, idx) => (
-              <button
+              <div
                 key={idx}
+                role="button"
                 onClick={() => goTo(idx)}
-                className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
+                className={`rounded-full transition-all cursor-pointer h-1.5 sm:h-2 shrink-0 ${
                   idx === current
-                    ? 'bg-primary w-5'
-                    : 'bg-white/60 hover:bg-white/90'
+                    ? 'bg-primary w-4 sm:w-5'
+                    : 'bg-neutral-dark/30 hover:bg-neutral-dark/50 w-1.5 sm:w-2'
                 }`}
+                style={{ minHeight: '6px', minWidth: '6px' }}
                 aria-label={`Go to image ${idx + 1}`}
               />
             ))}
