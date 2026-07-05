@@ -95,12 +95,12 @@ export default function SleepFAQs() {
 
       {/* Interactive Toolbar: Search & Categories */}
       <BlurFade delay={0.15}>
-        <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] border border-brand-200/50 p-5 shadow-lg shadow-brand-500/5 mb-10 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-6 font-body text-sm relative z-10">
-          {/* Categories Tab Group */}
-          <div className="flex flex-wrap gap-2">
+        <div className="bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-[2rem] border border-brand-200/50 p-4 md:p-5 shadow-lg shadow-brand-500/5 mb-8 md:mb-10 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-6 font-body text-sm relative z-10">
+          {/* Categories Tab Group with horizontal scroll on mobile */}
+          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none snap-x snap-mandatory">
             <button
               onClick={() => setActiveCategory('all')}
-              className={`px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm ${
+              className={`px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm shrink-0 snap-start ${
                 activeCategory === 'all'
                   ? 'bg-primary text-white font-bold'
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
@@ -110,7 +110,7 @@ export default function SleepFAQs() {
             </button>
             <button
               onClick={() => setActiveCategory('durability')}
-              className={`px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm ${
+              className={`px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm shrink-0 snap-start ${
                 activeCategory === 'durability'
                   ? 'bg-primary text-white font-bold'
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
@@ -120,7 +120,7 @@ export default function SleepFAQs() {
             </button>
             <button
               onClick={() => setActiveCategory('care')}
-              className={`px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm ${
+              className={`px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm shrink-0 snap-start ${
                 activeCategory === 'care'
                   ? 'bg-primary text-white font-bold'
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
@@ -130,7 +130,7 @@ export default function SleepFAQs() {
             </button>
             <button
               onClick={() => setActiveCategory('customization')}
-              className={`px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm ${
+              className={`px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm shrink-0 snap-start ${
                 activeCategory === 'customization'
                   ? 'bg-primary text-white font-bold'
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
@@ -178,25 +178,25 @@ export default function SleepFAQs() {
                     {/* Header trigger button */}
                     <button
                       onClick={() => toggleFaq(faq.id)}
-                      className="w-full px-4 md:px-6 py-4 md:py-5 text-left flex items-start gap-3 md:gap-5 cursor-pointer focus:outline-none select-none group"
+                      className="w-full px-4 md:px-6 py-4 md:py-5 text-left flex items-start gap-4 md:gap-5 cursor-pointer focus:outline-none select-none group"
                     >
-                      <div className={`p-3 rounded-xl transition-all duration-300 mt-1 shadow-sm ${isOpen ? 'bg-primary text-white' : 'bg-neutral-light border border-brand-200/50 group-hover:bg-brand-100 group-hover:scale-110'}`}>
+                      <div className={`p-3 rounded-xl transition-all duration-300 mt-1 shadow-sm shrink-0 hidden sm:flex items-center justify-center ${isOpen ? 'bg-primary text-white' : 'bg-neutral-light border border-brand-200/50 group-hover:bg-brand-100 group-hover:scale-110'}`}>
                         {faq.icon}
                       </div>
 
-                      <div className="flex-1 pr-4 pt-1">
-                        <span className="font-accent text-[10px] tracking-widest font-bold uppercase text-accent block mb-2 opacity-80">
+                      <div className="flex-1 pr-2 pt-1">
+                        <span className="font-accent text-[10px] tracking-widest font-bold uppercase text-accent block mb-1.5 opacity-80">
                           {faq.category === 'durability' ? 'Durability Guides' : faq.category === 'care' ? 'Care & Lifespan' : 'Custom Tailoring'}
                         </span>
-                        <h3 className="font-heading font-bold text-lg md:text-xl text-primary tracking-tight leading-snug group-hover:text-accent transition-colors">
+                        <h3 className="font-heading font-bold text-base md:text-xl text-primary tracking-tight leading-snug group-hover:text-accent transition-colors">
                           {faq.question}
                         </h3>
                       </div>
 
-                      <div className="shrink-0 mt-3">
+                      <div className="shrink-0 mt-2 md:mt-3">
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-accent/10' : 'bg-neutral-light group-hover:bg-brand-100'}`}>
                           <ChevronDown 
-                            className={`w-5 h-5 transition-transform duration-500 ease-out ${
+                            className={`w-4 h-4 md:w-5 h-5 transition-transform duration-500 ease-out ${
                               isOpen ? 'transform rotate-180 text-accent' : 'text-primary/50'
                             }`} 
                           />
@@ -213,7 +213,7 @@ export default function SleepFAQs() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                          <div className="px-4 md:px-6 pb-5 md:pb-6 pt-2 ml-2 md:ml-[68px] border-t border-brand-200/30">
+                          <div className="px-4 md:px-6 pb-5 md:pb-6 pt-2 md:ml-[68px] border-t border-brand-200/30">
                             <p className="font-body text-sm md:text-base text-neutral-dark/80 leading-relaxed max-w-3xl">
                               {faq.answer}
                             </p>
