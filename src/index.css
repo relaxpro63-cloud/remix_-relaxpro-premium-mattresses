@@ -16,32 +16,39 @@ Cool Premium Palette
 --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
 --font-display: 'DM Serif Display', Georgia, serif;
 
-/* Brand Color Palette — Cool Premium */
---color-primary: #1F2D2A; /* Deep graphite */
---color-secondary: #F6F6F5; /* Silver mist */
---color-accent: #C9A87C; /* Restrained champagne */
---color-accent-dark: #B89568;
---color-accent-light: #E0CFAF;
+/* Brand Color Palette — Organic Luxury */
+--color-primary: #1A3629;         /* Forest Night – headings, body, dark bg */
+--color-secondary: #FAFAF5;       /* Soft Off-White – light surfaces */
+--color-accent: #C9A87C;          /* Restrained Champagne – CTAs, highlights */
+--color-accent-dark: #B89568;     /* Champagne hover */
+--color-accent-light: #E0CFAF;     /* Light Champagne */
 
---color-neutral-dark: #4A5A57; /* Cool sage */
---color-neutral-light: #F6F6F5; /* Silver mist */
---color-success: #5A8F7B; /* Restrained green */
+--color-neutral-dark: #4A5A57;    /* Cool Sage – secondary text */
+--color-neutral-light: #FAFAF5;   /* Soft Off-White – main background */
+--color-success: #5A8F7B;         /* Restrained green */
 
 /* Backward-compatible brand tokens */
---color-brand-50: #F6F6F5;
---color-brand-100: #EBECEA;
---color-brand-200: #D8DAD6;
+--color-brand-50: #FAFAF5;
+--color-brand-100: #FAFAF5;
+--color-brand-200: #EBECEA;
 --color-brand-500: #C9A87C;
 --color-brand-600: #B89568;
---color-brand-800: #1F2D2A;
+--color-brand-800: #1A3629;
 --color-brand-950: #141C1A;
 
 --color-luxury-gold: #C9A87C;
---color-deep-charcoal: #1F2D2A;
+--color-deep-charcoal: #1A3629;
 
 /* Card Tokens */
 --radius-card: 16px;
---shadow-card: 0 4px 6px rgba(31, 45, 42, 0.06);
+--shadow-card: 0 4px 12px rgba(26, 54, 41, 0.05);
+
+/* Spacing Scale Override for Tighter Flow */
+--spacing-12: 2.5rem;   /* 40px instead of 48px */
+--spacing-16: 3.5rem;   /* 56px instead of 64px */
+--spacing-20: 4.25rem;  /* 68px instead of 80px */
+--spacing-24: 5rem;     /* 80px instead of 96px */
+--spacing-32: 6.5rem;   /* 104px instead of 128px */
 }
 
 /* Price text — auto-applied by <PriceText> wrapper */
@@ -95,17 +102,17 @@ max-width: 65ch;
    ============================================ */
 :root {
   --color-primary: #1A3629;
-  --color-secondary: #F2EEE8;
-  --color-accent: #D4B895;
-  --color-accent-dark: #C3A682;
-  --color-neutral-dark: #5C7C68;
-  --color-neutral-light: #F9F6F0;
-  --color-success: #4CAF7D;
+  --color-secondary: #FAFAF5;
+  --color-accent: #C9A87C;
+  --color-accent-dark: #B89568;
+  --color-neutral-dark: #4A5A57;
+  --color-neutral-light: #FAFAF5;
+  --color-success: #5A8F7B;
   --font-heading: 'DM Serif Display', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-accent: 'Plus Jakarta Sans', sans-serif;
   --radius-card: 16px;
-  --shadow-card: 0 4px 6px rgba(26, 54, 41, 0.05);
+  --shadow-card: 0 4px 12px rgba(26, 54, 41, 0.05);
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -683,31 +690,6 @@ max-width: 65ch;
    ============================================ */
 /* Reduce default fluid section paddings */
 .section-padding {
-  padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 80px) !important;
-}
-
-/* Globally scale down default Tailwind vertical padding values */
-.py-16 {
-  padding-top: clamp(2.25rem, 5vw, 3rem) !important;
-  padding-bottom: clamp(2.25rem, 5vw, 3rem) !important;
-}
-.py-20 {
-  padding-top: clamp(2.75rem, 6vw, 3.5rem) !important;
-  padding-bottom: clamp(2.75rem, 6vw, 3.5rem) !important;
-}
-.py-32 {
-  padding-top: clamp(3.5rem, 8vw, 5rem) !important;
-  padding-bottom: clamp(3.5rem, 8vw, 5rem) !important;
-}
-
-@media (min-width: 768px) {
-  .md\:py-24 {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
-  }
-  .md\:py-32 {
-    padding-top: 5rem !important;
-    padding-bottom: 5rem !important;
-  }
+  padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 80px);
 }
 

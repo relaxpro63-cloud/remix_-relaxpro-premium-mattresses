@@ -30,15 +30,7 @@ const comparisonData = [
       title: 'Too firm/ Too soft - sinks',
     }
   },
-  {
-    relaxPro: {
-      title: 'Up to 20 years warranty',
-      icon: <ShieldCheck className="w-6 h-6 text-emerald-600" />,
-    },
-    other: {
-      title: '10 years or less',
-    }
-  },
+
   {
     relaxPro: {
       title: 'Safe for all',
