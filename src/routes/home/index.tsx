@@ -14,6 +14,7 @@ import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
 import WhyChooseUs from '../../components/home/WhyChooseUs';
 import SleepFAQs from '../../components/home/SleepFAQs';
 import ConsultationForm from '../../components/home/ConsultationForm';
+import ShowroomBookingForm from '../../components/home/ShowroomBookingForm';
 import ComparisonTable from '../../components/home/ComparisonTable';
 import {
   Check,
@@ -573,6 +574,10 @@ export default function HomePage({
       </section>
 
       <section className="py-20 bg-linear-to-b from-zinc-150 to-brand-50/50 px-4">
+        <ShowroomBookingForm />
+      </section>
+
+      <section className="py-20 bg-neutral-light border-t border-brand-200/40 px-4">
         <ConsultationForm />
       </section>
     </PageShell>

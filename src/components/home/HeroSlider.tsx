@@ -9,11 +9,11 @@ interface HeroSliderProps {
 
 export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const handleScrollToShowrooms = () => {
-    const el = document.getElementById('locations');
+    const el = document.getElementById('showroom-booking-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      onNavigate('locations');
+      onNavigate('showroom-booking-section');
     }
   };
 
