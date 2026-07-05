@@ -267,12 +267,12 @@ export default function ProductList({
                   )}
 
                   {/* Header metadata display */}
-                  <div className="p-2 sm:p-5 bg-neutral-light/50 border-b border-brand-200/40 flex flex-row items-center justify-between gap-1 sm:gap-0 text-[7px] sm:text-[10px] font-mono text-neutral-dark/60 select-none">
-                    <span className="uppercase tracking-widest font-bold text-accent truncate">{p.tier} collection</span>
-                    <span className="flex items-center gap-1 sm:gap-1.5 bg-white px-1 sm:px-2 py-0.5 sm:py-1 rounded-md border border-brand-200/50 shadow-sm font-accent text-primary shrink-0">
-                      <Shield className="w-2 h-2 sm:w-3 sm:h-3 text-accent" /> {p.warranty}Y
-                    </span>
-                  </div>
+<div className="p-2 sm:p-5 bg-neutral-light/50 border-b border-brand-200/40 flex flex-row items-center justify-between gap-1 sm:gap-0 text-[7px] sm:text-[10px] font-mono text-neutral-dark/60 select-none">
+  <span className="uppercase tracking-widest font-bold text-accent truncate">{p.tier} collection</span>
+  <span className="text-[9px] sm:text-[10px] font-mono text-neutral-dark/50 uppercase tracking-widest">
+    {p.warranty}-Year Warranty
+  </span>
+</div>
 
                   {/* Product Image block */}
                   <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-neutral-light cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
@@ -369,26 +369,49 @@ export default function ProductList({
                           Select Size
                         </span>
                         
-                        {/* Size button triggers */}
-                        <div className="flex gap-0.5 sm:gap-1.5 bg-neutral-light/50 p-0.5 sm:p-1 rounded-sm sm:rounded-lg border border-brand-200/30">
-                          {(['king', 'queen', 'double', 'single'] as MattressSize[]).map((sz) => (
-                            <button
-                              key={sz}
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setProductSize(p.slug, sz);
-                              }}
-                              className={`w-5 h-5 sm:w-8 sm:h-7 rounded-sm sm:rounded-md font-accent text-[7px] sm:text-[10px] font-bold transition-all uppercase select-none cursor-pointer ${
-                                activeSize === sz
-                                  ? 'bg-primary text-white shadow-sm'
-                                  : 'text-neutral-dark/50 hover:text-primary hover:bg-white'
-                              }`}
-                            >
-                              {sz[0]}
-                            </button>
-                          ))}
-                        </div>
+{/* Size button triggers — desktop full-word segmented control */}
+<div className="hidden sm:flex bg-neutral-light/50 p-1 rounded-lg border border-brand-200/40">
+  {(['king', 'queen', 'double', 'single'] as MattressSize[]).map((sz) => (
+    <button
+      key={sz}
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        setProductSize(p.slug, sz);
+      }}
+      className={`flex-1 px-3 py-2 rounded-md text-[11px] font-accent font-bold uppercase tracking-wider transition-all cursor-pointer ${
+        activeSize === sz
+          ? 'bg-primary text-warm-white shadow-sm'
+          : 'text-neutral-dark/60 hover:text-primary hover:bg-white'
+      }`}
+    >
+      {sz === 'king' ? 'King' : sz === 'queen' ? 'Queen' : sz === 'double' ? 'Double' : 'Single'}
+    </button>
+  ))}
+</div>
+
+{/* Mobile size selector */}
+<div className="sm:hidden">
+  <select
+    value={activeSize}
+    onChange={(e) => {
+      e.stopPropagation();
+      setProductSize(p.slug, e.target.value as MattressSize);
+    }}
+    className="w-full bg-white border border-brand-200/60 text-xs font-accent font-bold text-primary px-3 py-2.5 rounded-lg cursor-pointer outline-none appearance-none"
+    style={{
+      backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A3629' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'right 10px center',
+      paddingRight: '32px',
+    }}
+  >
+    <option value="king">King Size (72"×78")</option>
+    <option value="queen">Queen Size (60"×78")</option>
+    <option value="double">Double Size (48"×75")</option>
+    <option value="single">Single Size (36"×75")</option>
+  </select>
+</div>
                       </div>
 
                       {/* Price indicator */}
@@ -400,15 +423,12 @@ export default function ProductList({
                               <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                             </span>
                           </div>
-                          <span className="hidden sm:block text-[8px] sm:text-[10px] text-neutral-dark/50 font-mono mt-0.5">
-                            <PriceText>Up to ₹{getPriceRange(p).max.toLocaleString('en-IN')}</PriceText>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+</div>
+</div>
+</div>
+</div>
 
-                  {/* Actions buttons */}
+{/* Actions buttons */}
                   <div className="p-1.5 sm:p-5 bg-white border-t border-brand-200/40 grid grid-cols-2 sm:flex sm:flex-row gap-1 sm:gap-2 rounded-b-2xl">
                     <button
                       onClick={(e) => { e.stopPropagation(); onNavigateToPdp(p.slug); }}

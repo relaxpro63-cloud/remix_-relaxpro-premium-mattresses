@@ -44,11 +44,27 @@ Cool Premium Palette
 --shadow-card: 0 4px 12px rgba(26, 54, 41, 0.05);
 
 /* Spacing Scale Override for Tighter Flow */
---spacing-12: 2.5rem;   /* 40px instead of 48px */
---spacing-16: 3.5rem;   /* 56px instead of 64px */
---spacing-20: 4.25rem;  /* 68px instead of 80px */
---spacing-24: 5rem;     /* 80px instead of 96px */
---spacing-32: 6.5rem;   /* 104px instead of 128px */
+--spacing-12: 2.5rem; /* 40px instead of 48px */
+--spacing-16: 3.5rem; /* 56px instead of 64px */
+--spacing-20: 4.25rem; /* 68px instead of 80px */
+--spacing-24: 5rem; /* 80px instead of 96px */
+--spacing-32: 6.5rem; /* 104px instead of 128px */
+
+/* Warm Oat — replaces pure #FFFFFF on dark backgrounds */
+--color-warm-white: #F5F2EB;
+
+/* Section vertical rhythm */
+--section-vertical-xs: clamp(40px, 5vw, 64px);
+--section-vertical-sm: clamp(56px, 7vw, 96px);
+--section-vertical-md: clamp(80px, 9vw, 128px);
+--section-vertical-lg: clamp(120px, 12vw, 160px);
+
+/* Motion easing — luxury standard */
+--ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+/* Luxury font tracking */
+--tracking-editorial: 0.18em;
+--tracking-wide: 0.10em;
 }
 
 /* Price text — auto-applied by <PriceText> wrapper */
@@ -683,6 +699,18 @@ max-width: 65ch;
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* Drop cap for editorial sections */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  line-height: 0.8;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  color: var(--color-primary);
+  font-weight: 400;
 }
 
 /* ============================================

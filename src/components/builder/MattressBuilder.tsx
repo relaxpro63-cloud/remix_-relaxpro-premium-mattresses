@@ -121,6 +121,115 @@ const ACCORDION_VARIANTS = {
   closed: { height: 0, opacity: 0 },
 };
 
+type BuilderTotalProps = {
+  priceBreakdown: {
+    base: number;
+    trans: number;
+    top: number;
+    fabric: number;
+    acc: number;
+    total: number;
+  };
+  size: MattressSize;
+  includeAccessories: boolean;
+  onAddToCart: () => void;
+  onBuyNow: () => void;
+  onWhatsAppEnquire: () => void;
+  addedToCart: boolean;
+};
+
+function BuilderTotal({
+  priceBreakdown,
+  size,
+  includeAccessories,
+  onAddToCart,
+  onBuyNow,
+  onWhatsAppEnquire,
+  addedToCart,
+}: BuilderTotalProps) {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100/80 shadow-[0_4px_16px_rgba(0,0,0,0.03)] p-5 md:p-6">
+      <div className="space-y-1.5 mb-5">
+        <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+          <span>Foundation</span>
+          <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.base.toLocaleString('en-IN')}</PriceText></span>
+        </div>
+        {priceBreakdown.trans > 0 && (
+          <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+            <span>Transition</span>
+            <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.trans.toLocaleString('en-IN')}</PriceText></span>
+          </div>
+        )}
+        {priceBreakdown.top > 0 && (
+          <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+            <span>Comfort Topper</span>
+            <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.top.toLocaleString('en-IN')}</PriceText></span>
+          </div>
+        )}
+        <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+          <span>Cover</span>
+          <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.fabric.toLocaleString('en-IN')}</PriceText></span>
+        </div>
+        {includeAccessories && (
+          <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+            <span className="flex items-center gap-1"><Gift className="w-3 h-3" /> Accessories</span>
+            <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.acc.toLocaleString('en-IN')}</PriceText></span>
+          </div>
+        )}
+      </div>
+
+      <div className="pt-5 border-t border-gray-100">
+        <div className="flex items-end justify-between mb-5">
+          <div>
+            <span className="text-[10px] font-semibold text-neutral-dark/60 uppercase tracking-wider">Total</span>
+            <div className="text-3xl font-bold text-primary tracking-tight mt-0.5">
+              <PriceText>₹{priceBreakdown.total.toLocaleString('en-IN')}</PriceText>
+            </div>
+          </div>
+          <div className="text-right">
+            <span className="text-[11px] text-neutral-dark/50 block capitalize">{size}</span>
+            <span className="text-[10px] text-green-600 font-medium flex items-center gap-1 mt-0.5">
+              <Truck className="w-3 h-3" /> Free Delivery
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 mb-4 bg-blue-50/50 rounded-xl px-4 py-2.5 border border-blue-100/50">
+          <Shield className="w-4 h-4 text-accent shrink-0" />
+          <span className="text-[11px] text-blue-900/70 leading-relaxed">10-year warranty • 100-night trial • Certified materials</span>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 gap-2">
+            <motion.button
+              onClick={onAddToCart}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-primary hover:bg-neutral-dark text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
+            </motion.button>
+            <motion.button
+              onClick={onBuyNow}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-accent hover:bg-[#2569A0] text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Buy Now</span>
+            </motion.button>
+          </div>
+          <button
+            onClick={onWhatsAppEnquire}
+            className="w-full py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <MessageSquare className="w-4 h-4" />
+            <span>Enquire on WhatsApp — ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBuilderProps) {
   const [size, setSize] = useState<MattressSize>('king');
   const [selectedBase, setSelectedBase] = useState<LayerOption>(BASE_LAYERS[0]);
@@ -278,10 +387,10 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                         <motion.div
                           key={layer.option.id}
                           layout
-                          initial={{ opacity: 0, scaleY: 0.3, y: 12 }}
-                          animate={{ opacity: 1, scaleY: 1, y: 0 }}
-                          exit={{ opacity: 0, scaleY: 0.3, y: -12 }}
-                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+initial={{ opacity: 0, y: 10 }}
+animate={{ opacity: 1, y: 0 }}
+exit={{ opacity: 0, y: -10 }}
+transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                           style={{ height: h }}
                           className={`relative w-full rounded-xl flex flex-col items-center justify-center overflow-hidden ${layer.option.colorClass || 'bg-gray-700'}`}
                         >
@@ -313,87 +422,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                 </div>
               </div>
 
-              {/* Price Breakdown */}
-              <div className="mt-5 space-y-1.5">
-                <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
-                  <span>Foundation</span>
-                  <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.base.toLocaleString('en-IN')}</PriceText></span>
-                </div>
-                {selectedTransition.thickness > 0 && (
-                  <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
-                    <span>Transition</span>
-                    <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.trans.toLocaleString('en-IN')}</PriceText></span>
-                  </div>
-                )}
-                {selectedTop.thickness > 0 && (
-                  <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
-                    <span>Comfort Topper</span>
-                    <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.top.toLocaleString('en-IN')}</PriceText></span>
-                  </div>
-                )}
-                <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
-                  <span>Cover</span>
-                  <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.fabric.toLocaleString('en-IN')}</PriceText></span>
-                </div>
-                {includeAccessories && (
-                  <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
-+                   <span className="flex items-center gap-1"><Gift className="w-3 h-3" /> Accessories</span>
-                    <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.acc.toLocaleString('en-IN')}</PriceText></span>
-                  </div>
-                )}
-              </div>
-
-              {/* Total + CTA */}
-              <div className="mt-5 pt-5 border-t border-gray-100">
-                <div className="flex items-end justify-between mb-5">
-                  <div>
-                    <span className="text-[10px] font-semibold text-neutral-dark/60 uppercase tracking-wider">Total</span>
-                    <div className="text-3xl font-bold text-primary tracking-tight mt-0.5">
-                      <PriceText>₹{priceBreakdown.total.toLocaleString('en-IN')}</PriceText>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[11px] text-neutral-dark/50 block capitalize">{size}</span>
-                    <span className="text-[10px] text-green-600 font-medium flex items-center gap-1 mt-0.5">
-                      <Truck className="w-3 h-3" /> Free Delivery
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 mb-4 bg-blue-50/50 rounded-xl px-4 py-2.5 border border-blue-100/50">
-                  <Shield className="w-4 h-4 text-accent shrink-0" />
-                  <span className="text-[11px] text-blue-900/70 leading-relaxed">10-year warranty • 100-night trial • Certified materials</span>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    <motion.button
-                      onClick={handleAddToCart}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-primary hover:bg-neutral-dark text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <ShoppingCart className="w-4 h-4" />
-                      <span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
-                    </motion.button>
-                    <motion.button
-                      onClick={handleBuyNow}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-accent hover:bg-[#2569A0] text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <span>Buy Now</span>
-                    </motion.button>
-                  </div>
-                  <button
-                    onClick={handleWhatsAppEnquire}
-                    className="w-full py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>Enquire on WhatsApp — ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -459,7 +487,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                   <motion.button
                                     key={sz}
                                     onClick={() => setSize(sz)}
-                                    whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.97 }}
                                     className={`relative p-4 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
                                       isActive
@@ -497,7 +524,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                   <motion.button
                                     key={base.id}
                                     onClick={() => setSelectedBase(base)}
-                                    whileHover={{ scale: 1.005 }}
                                     whileTap={{ scale: 0.995 }}
                                     className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
                                       isActive
@@ -544,7 +570,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                   <motion.button
                                     key={trans.id}
                                     onClick={() => setSelectedTransition(trans)}
-                                    whileHover={{ scale: 1.005 }}
                                     whileTap={{ scale: 0.995 }}
                                     className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
                                       isActive
@@ -598,7 +623,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                   <motion.button
                                     key={top.id}
                                     onClick={() => setSelectedTop(top)}
-                                    whileHover={{ scale: 1.005 }}
                                     whileTap={{ scale: 0.995 }}
                                     className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
                                       isActive
@@ -652,7 +676,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                   <motion.button
                                     key={fabric.id}
                                     onClick={() => setSelectedFabric(fabric)}
-                                    whileHover={{ scale: 1.01 }}
                                     whileTap={{ scale: 0.98 }}
                                     className={`relative p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
                                       isActive
@@ -696,7 +719,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                             <p className="text-xs text-neutral-dark/60 mb-4">Complete your sleep system.</p>
                             <motion.button
                               onClick={() => setIncludeAccessories(!includeAccessories)}
-                              whileHover={{ scale: 1.005 }}
                               whileTap={{ scale: 0.995 }}
                               className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
                                 includeAccessories
@@ -744,6 +766,16 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
               Made with care in Kerala, India 🇮🇳
             </p>
           </div>
+
+          <BuilderTotal
+            priceBreakdown={priceBreakdown}
+            size={size}
+            includeAccessories={includeAccessories}
+            onAddToCart={handleAddToCart}
+            onBuyNow={handleBuyNow}
+            onWhatsAppEnquire={handleWhatsAppEnquire}
+            addedToCart={addedToCart}
+          />
         </div>
       </div>
     </div>

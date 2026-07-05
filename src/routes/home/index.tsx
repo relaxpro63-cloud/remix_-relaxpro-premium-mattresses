@@ -6,6 +6,7 @@ import { CartItem, Product, MattressSize, OrderReceipt } from '../../types';
 import PageShell from '../../components/layout/PageShell';
 import HeroSlider from '../../components/home/HeroSlider';
 import Marquee from '../../components/ui/Marquee';
+import CertificationMarquee from '../../components/home/CertificationMarquee';
 import ShopByBrands from '../../components/home/ShopByBrands';
 import CostComparison from '../../components/home/CostComparison';
 
@@ -23,7 +24,6 @@ import {
   ChevronRight,
   MessageSquare,
   ArrowRight,
-  Leaf,
 } from 'lucide-react';
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
@@ -131,9 +131,9 @@ export default function HomePage({
         onStartBuilding={() => handlePageNavigation('builder')}
         onSeeAllModels={() => handlePageNavigation('catalog')}
       />
-      <Marquee />
-
-      <ShopByBrands />
+<Marquee />
+<CertificationMarquee />
+<ShopByBrands />
 
       <section id="bestsellers" className="bg-secondary/50 border-y border-brand-200/30 py-16 md:py-24 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
@@ -348,76 +348,7 @@ export default function HomePage({
 
 
 
-      <section
-        className="rp-section"
-        style={{
-          background: '#141C1A',
-          color: '#FFFFFF',
-        }}
-      >
-        <div className="rp-container text-center">
-          <div className="mx-auto mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full border border-white/20 bg-white/10">
-            <Leaf className="h-10 w-10 text-accent" />
-          </div>
-
-          <span
-            style={{
-              display: 'inline-block',
-              padding: '6px 16px',
-              fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: '#C9A87C',
-              backgroundColor: 'rgba(201,168,124,0.18)',
-              border: '1px solid rgba(201,168,124,0.5)',
-              borderRadius: '9999px',
-              marginBottom: '24px',
-            }}
-          >
-            GOLS Certified Organic
-          </span>
-
-          <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white md:text-4xl">
-            Pure Natural Latex — <span style={{ color: '#C9A87C' }}>Zero Compromise</span>
-          </h2>
-
-          <p
-            style={{
-              margin: '16px auto 0',
-              maxWidth: '640px',
-              fontSize: '16px',
-              lineHeight: 1.7,
-              color: '#E6E6E4',
-            }}
-          >
-            GOLS-certified Dunlop rubber from Kerala, with no synthetic latex or chemical fillers.
-          </p>
-
-          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-4">
-            {['GOLS Certified', 'Oeko-Tex', 'FSC Certified', 'Zero VOC'].map((cert) => (
-              <div
-                key={cert}
-                style={{
-                  borderRadius: '1rem',
-                  border: '1px solid rgba(255,255,255,0.18)',
-                  backgroundColor: 'rgba(255,255,255,0.08)',
-                  padding: '20px 16px',
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#C9A87C' }}>✓</div>
-                <div style={{ marginTop: '4px', fontSize: '14px', fontWeight: 600, color: '#FFFFFF' }}>
-                  {cert}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      <section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
+<section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <span className="text-[11px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 px-4 py-1.5 rounded-full inline-block mb-3">Visit Our Factory Showroom</span>
