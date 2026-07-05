@@ -8,11 +8,15 @@ export default function ContactPage() {
       title="Contact Suresh & Get Orthopedic Sleep Advice | RelaxPro"
       description="Request a free diagnostic sleep consultation callback. Suresh will review your orthopedic concerns and customize the perfect mattress configuration."
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-        <div className="max-w-2xl mb-12 text-zinc-950">
-          <span className="text-xs tracking-widest font-mono text-brand-600 uppercase bg-brand-100 px-3 py-1 rounded-full font-bold">GET PROFESSIONAL RECOMMENDATIONS DIRECTLY</span>
-          <h1 className="text-4xl font-display font-medium tracking-tight mt-4">Submit Back Diagnostic Concern</h1>
-          <p className="text-gray-500 text-xs mt-2 leading-relaxed">Suresh is a seasoned mattress engineer. He will analyze your vertebrae pain profiles, sizing needs, and formulate options with zero fees recursively.</p>
+      <div className="rp-container py-16 md:py-24">
+        <div className="mb-12 max-w-2xl text-primary">
+          <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-100 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-accent">
+            Professional guidance
+          </span>
+          <h1 className="rp-display mt-5">Submit your sleep concern</h1>
+          <p className="rp-body mt-4">
+            Share your posture, pain, size, and comfort needs. Suresh will review the details and recommend the right mattress configuration.
+          </p>
         </div>
         <ConsultationForm />
       </div>

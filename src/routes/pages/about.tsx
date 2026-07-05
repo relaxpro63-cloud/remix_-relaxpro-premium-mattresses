@@ -7,19 +7,27 @@ export default function AboutPage() {
       title="About RelaxPro | Pure Natural Latex Mattress Manufacturer"
       description="Pioneering GOLS chemical-free natural organic latex mattresses in Andhra Pradesh, Telangana and Karnataka. Factory direct with zero markups."
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 text-center space-y-6">
-        <span className="text-xs tracking-widest font-mono text-brand-600 uppercase bg-brand-100 px-3 py-1 rounded-full font-bold">ABOUT RELAXPRO</span>
-        <h1 className="text-4xl font-display font-medium text-brand-950 mt-4">Telangana and AP 1st Pure Latex Mattress Company</h1>
-        <p className="text-zinc-600 max-w-3xl mx-auto font-sans leading-relaxed">With our deep roots in natural rubber harvesting, RelaxPro Mattresses pioneers 100% pure natural latex sleep solutions in South India. Our mission is to handcraft restorative, customized, and orthopedic mattresses free from harmful synthetics—delivering straight from our Kerala factory to your doorstep.</p>
-        <div className="pt-8">
-          <h3 className="font-display font-bold text-xl text-brand-900 mb-4">Our Presence</h3>
-          <div className="flex flex-wrap justify-center gap-4 text-sm font-mono text-zinc-500 font-bold">
-            <span className="bg-zinc-100 px-4 py-2 rounded-lg">📍 Hyderabad</span>
-            <span className="bg-zinc-100 px-4 py-2 rounded-lg">📍 Rajahmundry</span>
-            <span className="bg-zinc-100 px-4 py-2 rounded-lg">📍 Bangalore</span>
+      <section className="rp-section">
+        <div className="rp-container text-center">
+          <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-100 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-accent">
+            About RelaxPro
+          </span>
+          <h1 className="rp-display mx-auto mt-5 max-w-4xl text-primary">
+            Telangana and AP's first pure latex mattress company
+          </h1>
+          <p className="rp-body mx-auto mt-5">
+            RelaxPro handcrafts natural latex sleep systems for South India, delivered direct from our Kerala factory with transparent pricing and no synthetic fillers.
+          </p>
+          <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-brand-200 bg-white p-6 shadow-sm md:p-8">
+            <h2 className="font-heading text-2xl font-bold text-primary">Our presence</h2>
+            <div className="mt-5 flex flex-wrap justify-center gap-3 text-sm font-bold text-neutral-dark">
+              <span className="rounded-full bg-brand-100 px-4 py-2">Hyderabad</span>
+              <span className="rounded-full bg-brand-100 px-4 py-2">Rajahmundry</span>
+              <span className="rounded-full bg-brand-100 px-4 py-2">Bangalore</span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </PageShell>
   );
 }

@@ -182,15 +182,7 @@ export default function Footer() {
             <p>© {new Date().getFullYear()} RelaxPro Premium Mattresses Pvt Ltd. All rights reserved.</p>
             <p className="mt-1 text-[10px]">Kerala harvested latex is GOLS Certified • Fabrics hold Oeko-Tex Standard-100</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <Link to="/science" className="hover:text-white/60 transition-colors uppercase tracking-widest font-accent text-[10px] cursor-pointer">
-              Sleep Science
-            </Link>
-            <Link to="/locations" className="hover:text-white/60 transition-colors uppercase tracking-widest font-accent text-[10px] cursor-pointer">
-              Showrooms
-            </Link>
 
-          </div>
         </div>
       </div>
     </footer>

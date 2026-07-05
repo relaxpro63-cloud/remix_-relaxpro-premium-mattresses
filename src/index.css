@@ -2,53 +2,92 @@
 @import "tailwindcss";
 
 /* ============================================
-   RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
-   "Organic Luxury" Color System
-   ============================================ */
+RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
+Cool Premium Palette
+============================================ */
 @theme {
-  /* Typography */
-  --font-heading: 'DM Serif Display', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+/* Typography */
+--font-heading: 'DM Serif Display', Georgia, serif;
+--font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+--font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+--font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-  /* Keep backward compatibility aliases */
-  --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'DM Serif Display', Georgia, serif;
+/* Keep backward compatibility aliases */
+--font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+--font-display: 'DM Serif Display', Georgia, serif;
 
-  /* Brand Color Palette — Organic Luxury */
-  --color-primary: #1A3629;       /* Forest Night – headings, body, dark bg */
-  --color-secondary: #F2EEE8;     /* Soft Linen – light surfaces */
-  --color-accent: #D4B895;        /* Warm Sand – CTAs, highlights */
-  --color-accent-dark: #C3A682;   /* Warm Sand hover */
-  --color-accent-light: #E2CDB0;  /* Light Sand – subtle accents */
+/* Brand Color Palette — Cool Premium */
+--color-primary: #1F2D2A; /* Deep graphite */
+--color-secondary: #F6F6F5; /* Silver mist */
+--color-accent: #C9A87C; /* Restrained champagne */
+--color-accent-dark: #B89568;
+--color-accent-light: #E0CFAF;
 
-  --color-neutral-dark: #5C7C68;  /* Sage Green – secondary/subtitle text */
-  --color-neutral-light: #F9F6F0; /* Oatmeal – main background */
-  --color-success: #4CAF7D;
+--color-neutral-dark: #4A5A57; /* Cool sage */
+--color-neutral-light: #F6F6F5; /* Silver mist */
+--color-success: #5A8F7B; /* Restrained green */
 
-  /* Backward-compatible brand tokens */
-  --color-brand-50: #F9F6F0;      /* Oatmeal */
-  --color-brand-100: #F2EEE8;     /* Soft Linen */
-  --color-brand-200: #E7E0D7;     /* Light Sand border */
-  --color-brand-500: #D4B895;     /* Warm Sand */
-  --color-brand-600: #C3A682;     /* Dark Warm Sand */
-  --color-brand-800: #1A3629;     /* Forest Night */
-  --color-brand-950: #1A3629;     /* Forest Night */
+/* Backward-compatible brand tokens */
+--color-brand-50: #F6F6F5;
+--color-brand-100: #EBECEA;
+--color-brand-200: #D8DAD6;
+--color-brand-500: #C9A87C;
+--color-brand-600: #B89568;
+--color-brand-800: #1F2D2A;
+--color-brand-950: #141C1A;
 
-  --color-luxury-gold: #D4B895;
-  --color-deep-charcoal: #1A3629;
+--color-luxury-gold: #C9A87C;
+--color-deep-charcoal: #1F2D2A;
 
-  /* Card Tokens */
-  --radius-card: 16px;
-  --shadow-card: 0 4px 6px rgba(26, 54, 41, 0.05);
+/* Card Tokens */
+--radius-card: 16px;
+--shadow-card: 0 4px 6px rgba(31, 45, 42, 0.06);
 }
 
 /* Price text — auto-applied by <PriceText> wrapper */
 @utility font-price {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+font-family: var(--font-mono);
+font-weight: 600;
+letter-spacing: 0.02em;
+}
+
+/* ============================================
+RELAXPRO UTILITY PRIMITIVES
+============================================ */
+@utility rp-container {
+width: 100%;
+max-width: 1280px;
+margin-left: auto;
+margin-right: auto;
+padding-left: clamp(16px, 4vw, 40px);
+padding-right: clamp(16px, 4vw, 40px);
+}
+
+@utility rp-section {
+padding-top: clamp(40px, 7vw, 96px);
+padding-bottom: clamp(40px, 7vw, 96px);
+}
+
+@utility rp-display {
+font-family: var(--font-heading);
+font-size: clamp(2.2rem, 5vw, 4.2rem);
+line-height: 1.05;
+letter-spacing: -0.01em;
+}
+
+@utility rp-heading {
+font-family: var(--font-heading);
+font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+line-height: 1.15;
+letter-spacing: -0.01em;
+}
+
+@utility rp-body {
+font-family: var(--font-body);
+font-size: clamp(1rem, 1.6vw, 1.125rem);
+line-height: 1.7;
+color: var(--color-neutral-dark);
+max-width: 65ch;
 }
 
 /* ============================================
@@ -638,3 +677,37 @@
     transform: none !important;
   }
 }
+
+/* ============================================
+   GLOBAL SPACING AUDIT REDUCTIONS
+   ============================================ */
+/* Reduce default fluid section paddings */
+.section-padding {
+  padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 80px) !important;
+}
+
+/* Globally scale down default Tailwind vertical padding values */
+.py-16 {
+  padding-top: clamp(2.25rem, 5vw, 3rem) !important;
+  padding-bottom: clamp(2.25rem, 5vw, 3rem) !important;
+}
+.py-20 {
+  padding-top: clamp(2.75rem, 6vw, 3.5rem) !important;
+  padding-bottom: clamp(2.75rem, 6vw, 3.5rem) !important;
+}
+.py-32 {
+  padding-top: clamp(3.5rem, 8vw, 5rem) !important;
+  padding-bottom: clamp(3.5rem, 8vw, 5rem) !important;
+}
+
+@media (min-width: 768px) {
+  .md\:py-24 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  .md\:py-32 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+}
+

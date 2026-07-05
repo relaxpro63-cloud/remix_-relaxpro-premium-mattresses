@@ -100,6 +100,32 @@ export default function HomePage({
         onNavigate={handlePageNavigation}
         onNavigateToPdp={handleNavigateToPdp}
       />
+
+      {/* Quick Action CTA Buttons Just After Hero */}
+      <section className="bg-neutral-light py-5 md:py-7 border-b border-brand-200/40">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8">
+          <button
+            onClick={() => handlePageNavigation('builder')}
+            className="w-full sm:w-auto btn-primary bg-primary text-white hover:bg-neutral-dark/90 py-4 px-10 rounded-full text-xs font-bold font-accent uppercase tracking-widest cursor-pointer shadow-md transition-all flex items-center justify-center gap-2"
+          >
+            Find Your Own Bed
+          </button>
+          <button
+            onClick={() => {
+              const el = document.getElementById('bestsellers');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                handlePageNavigation('catalog');
+              }
+            }}
+            className="w-full sm:w-auto btn-primary bg-accent hover:bg-accent-dark text-primary py-4 px-10 rounded-full text-xs font-bold font-accent uppercase tracking-widest cursor-pointer shadow-md transition-all flex items-center justify-center gap-2"
+          >
+            Best Selling Models
+          </button>
+        </div>
+      </section>
+
       <TwoWaysToOwn
         onStartBuilding={() => handlePageNavigation('builder')}
         onSeeAllModels={() => handlePageNavigation('catalog')}
@@ -108,7 +134,7 @@ export default function HomePage({
 
       <ShopByBrands />
 
-      <section className="bg-secondary/50 border-y border-brand-200/30 py-16 md:py-24 px-4 md:px-8">
+      <section id="bestsellers" className="bg-secondary/50 border-y border-brand-200/30 py-16 md:py-24 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-4 fade-up">
             <div>
@@ -228,69 +254,70 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16 fade-up">
-          <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">Three Curated Categories</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-4 text-primary leading-tight">Engineered to Match Every Posture Need</h2>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <div className="bg-white p-7 md:p-8 rounded-2xl border border-brand-200/40 shadow-sm space-y-4 feature-card-glow relative scale-in" style={{ transitionDelay: '0s' }}>
-            <div className="absolute top-0 inset-x-0 h-1 bg-accent rounded-t-2xl" />
-            <span className="text-[10px] font-accent font-bold tracking-widest uppercase text-accent-dark bg-accent/15 px-2.5 py-1 rounded inline-block">Luxury Organic Latex</span>
-            <h3 className="text-xl font-heading font-bold text-primary">Pure Organic Latex Blocks</h3>
-            <p className="text-xs text-neutral-dark/50 leading-relaxed font-body">Denser solid GOLS latex sheets harvested in Kerala. Dual monozone and orthopedic 7-Zone configurations.</p>
-            <ul className="space-y-2 text-xs text-neutral-dark/60 pt-2 font-body">
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Nirvana (8" Dual Zone)</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Amrita (10" Reversible Hybrid)</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Ananda (6" Classic Pure core)</li>
-            </ul>
-            <button onClick={() => { onNavigate('catalog'); }} className="text-accent hover:text-accent-dark text-xs font-semibold font-accent flex items-center gap-1 pt-3 cursor-pointer transition-colors">Browse Luxury Series →</button>
+
+      <section
+        className="rp-section"
+        style={{
+          background: '#141C1A',
+          color: '#FFFFFF',
+        }}
+      >
+        <div className="rp-container text-center">
+          <div className="mx-auto mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full border border-white/20 bg-white/10">
+            <Leaf className="h-10 w-10 text-accent" />
           </div>
 
-          <div className="bg-white p-7 md:p-8 rounded-2xl border border-brand-200/40 shadow-sm space-y-4 feature-card-glow relative scale-in" style={{ transitionDelay: '0.15s' }}>
-            <span className="text-[10px] font-accent font-bold tracking-widest uppercase text-primary bg-brand-100 px-2.5 py-1 rounded inline-block">Premium Spine Hybrids</span>
-            <h3 className="text-xl font-heading font-bold text-primary">Orthopedic Support Cores</h3>
-            <p className="text-xs text-neutral-dark/50 leading-relaxed font-body">Balanced structures blending organic latex with high density rebound posture matrices.</p>
-            <ul className="space-y-2 text-xs text-neutral-dark/60 pt-2 font-body">
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Arogya (8" Doctor recommendation)</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Sthira (6" Ultimate firm alignment)</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Somya (10" Extra softy adaptive)</li>
-            </ul>
-            <button onClick={() => { onNavigate('catalog'); }} className="text-accent hover:text-accent-dark text-xs font-semibold font-accent flex items-center gap-1 pt-3 cursor-pointer transition-colors">Browse Premium Series →</button>
-          </div>
+          <span
+            style={{
+              display: 'inline-block',
+              padding: '6px 16px',
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: '#C9A87C',
+              backgroundColor: 'rgba(201,168,124,0.18)',
+              border: '1px solid rgba(201,168,124,0.5)',
+              borderRadius: '9999px',
+              marginBottom: '24px',
+            }}
+          >
+            GOLS Certified Organic
+          </span>
 
-          <div className="bg-white p-7 md:p-8 rounded-2xl border border-brand-200/40 shadow-sm space-y-4 feature-card-glow relative scale-in" style={{ transitionDelay: '0.3s' }}>
-            <span className="text-[10px] font-accent font-bold tracking-widest uppercase text-blue-700 bg-blue-50 px-2.5 py-1 rounded inline-block">Comfort High-Resilience</span>
-            <h3 className="text-xl font-heading font-bold text-primary">Spine Transition Foams</h3>
-            <p className="text-xs text-neutral-dark/50 leading-relaxed font-body">Accessible comfort mattresses with custom density transitions and Oeko-Tex certified wrappers.</p>
-            <ul className="space-y-2 text-xs text-neutral-dark/60 pt-2 font-body">
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Sunidra (8" Universal sleeper)</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> Ojas (6" Standard micro-weave)</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success shrink-0" /> AyushRest (8" Triple ortho firmness)</li>
-            </ul>
-            <button onClick={() => { onNavigate('catalog'); }} className="text-accent hover:text-accent-dark text-xs font-semibold font-accent flex items-center gap-1 pt-3 cursor-pointer transition-colors">Browse Comfort Series →</button>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-primary py-16 md:py-20 px-4 md:px-8 border-y border-white/10">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/20 border-2 border-accent/30 mb-6">
-            <Leaf className="w-10 h-10 text-accent" />
-          </div>
-          <span className="text-[10px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full inline-block mb-4">GOLS Certified Organic</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-4">
-            Pure Natural Latex — <span className="text-accent">Zero Compromise</span>
+          <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white md:text-4xl">
+            Pure Natural Latex — <span style={{ color: '#C9A87C' }}>Zero Compromise</span>
           </h2>
-          <p className="text-white/50 font-body text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8">
-            All RelaxPro latex mattresses use GOLS certified natural rubber from Kerala plantations. No synthetic latex, no chemical fillers — just pure Dunlop sap transformed into your healthiest sleep surface.
+
+          <p
+            style={{
+              margin: '16px auto 0',
+              maxWidth: '640px',
+              fontSize: '16px',
+              lineHeight: 1.7,
+              color: '#E6E6E4',
+            }}
+          >
+            GOLS-certified Dunlop rubber from Kerala, with no synthetic latex or chemical fillers.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-4">
             {['GOLS Certified', 'Oeko-Tex', 'FSC Certified', 'Zero VOC'].map((cert) => (
-              <div key={cert} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
-                <div className="text-accent font-heading font-bold text-lg">✓</div>
-                <div className="text-white font-heading font-bold text-sm mt-1">{cert}</div>
+              <div
+                key={cert}
+                style={{
+                  borderRadius: '1rem',
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  backgroundColor: 'rgba(255,255,255,0.08)',
+                  padding: '20px 16px',
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#C9A87C' }}>✓</div>
+                <div style={{ marginTop: '4px', fontSize: '14px', fontWeight: 600, color: '#FFFFFF' }}>
+                  {cert}
+                </div>
               </div>
             ))}
           </div>

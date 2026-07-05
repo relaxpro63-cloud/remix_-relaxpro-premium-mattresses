@@ -35,7 +35,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const saveCart = (next: CartItem[]) => setCart(next);
+  const saveCart = (next: CartItem[]) => {
+    setCart(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    } catch (e) {
+      console.error('Failed to save cart to local storage:', e);
+    }
+  };
 
   const addToCart = (item: CartItem) => saveCart([...cart, item]);
 

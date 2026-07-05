@@ -14,7 +14,7 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
   return (
     <section
       id="main-content"
-      className="relative overflow-hidden min-h-[90vh] md:min-h-[100vh] flex items-center noise-overlay"
+      className="relative overflow-hidden min-h-[80vh] md:min-h-[85vh] flex items-center noise-overlay"
       style={{
         background: 'linear-gradient(135deg, #1A3629 0%, #0F2318 50%, #1A3629 100%)',
         backgroundSize: '200% 200%',
