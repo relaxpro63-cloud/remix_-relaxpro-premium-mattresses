@@ -149,9 +149,122 @@ export default function HomePage({
             </button>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {PRODUCTS.slice(0, 3).map((item, idx) => {
-              const isBestSeller = item.slug === 'nirvana';
+              const isNirvana = item.slug === 'nirvana';
+
+              if (isNirvana) {
+                return (
+                  <motion.div
+                    key={item.slug}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    whileHover={{ scale: 1.025, y: -6 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="col-span-2 md:col-span-1 rounded-2xl overflow-hidden flex flex-col justify-between group shadow-xl border cursor-pointer h-full relative"
+                    style={{ backgroundColor: '#1A2421', borderColor: 'rgba(201, 168, 124, 0.15)' }}
+                    onClick={() => handleNavigateToPdp(item.slug)}
+                  >
+                    {/* Golden luxury glow effect on card hover */}
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                    <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                      <motion.img
+                        whileHover={{ scale: 1.06 }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                        src={item.image}
+                        alt={`${item.name} natural organic latex mattress`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        width={400}
+                        height={300}
+                        referrerPolicy="no-referrer"
+                      />
+                      <span 
+                        className="absolute top-3 left-3 font-accent text-[8px] md:text-[9px] font-bold px-3 py-1.5 rounded-xl uppercase tracking-widest flex items-center gap-1.5 shadow-lg border"
+                        style={{ backgroundColor: '#C9A87C', color: '#1A2421', borderColor: 'rgba(26, 36, 33, 0.1)' }}
+                      >
+                        <Sparkles className="w-2.5 h-2.5 fill-current" /> Premium Masterpiece
+                      </span>
+                    </div>
+
+                    <div className="p-5 md:p-7 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Rating block */}
+                        <div className="flex items-center gap-1 mb-3">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <Star key={i} className="w-3.5 h-3.5 fill-current" style={{ color: '#C9A87C' }} />
+                          ))}
+                          <span className="text-[10px] ml-1.5 font-accent tracking-widest uppercase font-bold" style={{ color: '#F5F2EB', opacity: 0.6 }}>(4.9)</span>
+                        </div>
+
+                        {/* Title & Badge */}
+                        <h3 className="font-heading font-serif font-normal text-lg md:text-2xl flex flex-wrap items-center gap-2" style={{ color: '#F5F2EB' }}>
+                          {item.name}
+                          <span 
+                            className="text-[8px] font-accent font-bold uppercase tracking-widest border px-2 py-0.5 rounded-lg"
+                            style={{ color: '#C9A87C', borderColor: 'rgba(201, 168, 124, 0.3)', backgroundColor: 'rgba(201, 168, 124, 0.08)' }}
+                          >
+                            100% Organic
+                          </span>
+                        </h3>
+
+                        <p className="text-xs mt-3 leading-relaxed font-body" style={{ color: '#F5F2EB', opacity: 0.85 }}>
+                          {item.keyBenefit}
+                        </p>
+
+                        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                          <div className="flex flex-col">
+                            <span className="text-[9px] font-accent tracking-wider uppercase" style={{ color: '#F5F2EB', opacity: 0.5 }}>Starting Price</span>
+                            <span className="text-lg md:text-2xl font-bold font-body mt-0.5" style={{ color: '#F5F2EB' }}>
+                              <PriceText>
+                                ₹
+                                {item.pricingModel === 'with_without_accessories'
+                                  ? item.pricing.withoutAccessories?.king?.toLocaleString('en-IN')
+                                  : item.pricing.fabric300Gsm?.king?.toLocaleString('en-IN')}
+                              </PriceText>
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-accent tracking-widest uppercase border border-white/10 rounded-lg px-2.5 py-1" style={{ color: '#F5F2EB', opacity: 0.7 }}>King Size</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-4 md:p-6 pt-0 border-t border-white/5 flex flex-col gap-2.5 mt-auto relative z-10">
+                      <motion.button
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleNavigateToPdp(item.slug);
+                        }}
+                        className="w-full py-3 px-4 rounded-xl border font-accent font-bold text-[10px] md:text-xs tracking-widest uppercase text-center cursor-pointer transition-all shadow-md"
+                        style={{ backgroundColor: '#C9A87C', color: '#1A2421', borderColor: '#C9A87C' }}
+                      >
+                        Customize & Purchase
+                      </motion.button>
+                      <motion.a
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        href={`https://wa.me/918686624494?text=${encodeURIComponent(
+                          `Hello Suresh, I am interested in the RelaxPro ${item.name} Mattress (King size). Please share pricing and delivery info.`,
+                        )}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full py-3 px-4 rounded-xl text-[10px] md:text-xs font-accent tracking-widest font-bold uppercase text-center transition-all flex items-center justify-center gap-1.5 border"
+                        style={{ color: '#F5F2EB', borderColor: 'rgba(245, 242, 235, 0.2)', backgroundColor: 'rgba(245, 242, 235, 0.04)' }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <MessageSquare className="w-3.5 h-3.5" style={{ color: '#C9A87C' }} /> Enquire on WhatsApp
+                      </motion.a>
+                    </div>
+                  </motion.div>
+                );
+              }
+
               const cardContent = (
                 <>
                   <div className="relative img-zoom" style={{ aspectRatio: '4/3' }}>
@@ -164,15 +277,9 @@ export default function HomePage({
                       height={300}
                       referrerPolicy="no-referrer"
                     />
-                    {isBestSeller ? (
-                      <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-accent text-primary font-accent text-[7px] md:text-[9px] font-bold px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md z-10">
-                        <Sparkles className="w-2 h-2 md:w-3 md:h-3 fill-current" /> <span className="hidden sm:inline">Best Seller</span><span className="sm:hidden">Top</span>
-                      </span>
-                    ) : (
-                      <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-primary/90 text-white font-accent text-[7px] md:text-[9px] px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase z-10 tracking-wider">
-                        {item.comfortLevel} Feel
-                      </span>
-                    )}
+                    <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-primary/90 text-white font-accent text-[7px] md:text-[9px] px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase z-10 tracking-wider">
+                      {item.comfortLevel} Feel
+                    </span>
                   </div>
                   <div className="p-3 md:p-5 flex-1 flex flex-col justify-between">
                     <div>
@@ -184,9 +291,6 @@ export default function HomePage({
                       </div>
                       <h3 className="font-heading font-bold text-sm md:text-lg text-primary flex flex-wrap items-center gap-1">
                         {item.name}
-                        {isBestSeller && (
-                          <span className="text-[7px] md:text-[9px] font-accent font-bold uppercase tracking-wider text-accent-dark bg-accent/15 px-1 py-0.5 md:px-1.5 md:py-0.5 rounded text-center line-clamp-1">Hand-Crafted</span>
-                        )}
                       </h3>
                       <p className="text-[9px] md:text-xs text-neutral-dark/50 mt-1 leading-relaxed font-body line-clamp-2">{item.keyBenefit}</p>
                       <div className="mt-2 md:mt-4 pt-2 md:pt-3 border-t border-brand-200/40 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3">
@@ -225,19 +329,6 @@ export default function HomePage({
                   </div>
                 </>
               );
-
-              if (isBestSeller) {
-                return (
-                  <ShineBorder
-                    key={item.slug}
-                    className="group flex flex-col justify-between h-full card-hover scale-in cursor-pointer"
-                    style={{ transitionDelay: `${idx * 0.1}s` } as any}
-                    onClick={() => handleNavigateToPdp(item.slug)}
-                  >
-                    {cardContent}
-                  </ShineBorder>
-                );
-              }
 
               return (
                 <div
