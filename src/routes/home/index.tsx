@@ -135,7 +135,7 @@ export default function HomePage({
 <CertificationMarquee />
 <ShopByBrands />
 
-      <section id="bestsellers" className="bg-secondary border-y border-brand-200/30 py-16 md:py-24 px-4 md:px-8">
+      <section id="bestsellers" className="bg-secondary border-y border-brand-200/30 py-12 md:py-16 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-4 fade-up">
             <div>
@@ -281,7 +281,7 @@ export default function HomePage({
 
 
 
-<section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
+      <section className="py-10 md:py-12 px-4 md:px-8 bg-neutral-light">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <span className="text-[11px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 px-4 py-1.5 rounded-full inline-block mb-3">Visit Our Factory Showroom</span>
@@ -309,7 +309,7 @@ export default function HomePage({
 
       <ComparisonTable />
 
-      <section className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16 fade-up">
           <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">Trust & Honest Feedback</span>
           <h2 className="text-3xl md:text-4xl font-heading font-bold mt-4 text-primary leading-tight">What Our Customers Say</h2>
@@ -385,7 +385,7 @@ export default function HomePage({
         </div>
       </section>
 
-      <section id="locations" className="bg-zinc-100 border-t border-zinc-200 py-16 px-4 md:px-8">
+      <section id="locations" className="bg-zinc-100 border-t border-zinc-200 py-12 md:py-16 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-12">
             <span className="text-[10px] tracking-wider font-mono text-brand-600 uppercase font-bold">EXPERIENCE BEFORE BUYING</span>
@@ -415,14 +415,14 @@ export default function HomePage({
                   <div className="text-zinc-900 font-mono"><strong className="text-zinc-500 font-sans font-medium">Contact:</strong> {loc.phones.join(', ')}</div>
                 </div>
                 
-                <div className="mt-3 sm:mt-4 pt-2 border-t border-zinc-100/50">
+                <div className="mt-4 pt-4 border-t border-zinc-100/50">
                   <a
                     href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello, I would like to visit the RelaxPro ${loc.city} Experience Showroom. Can you please guide me on directions?`)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[9px] sm:text-xs text-brand-900 font-semibold font-mono hover:text-brand-950 cursor-pointer text-left leading-tight"
+                    className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 bg-primary hover:bg-neutral-dark text-white text-[9px] sm:text-xs font-accent font-bold uppercase tracking-wider rounded-xl shadow-sm hover:shadow-md cursor-pointer text-center transition-all duration-200"
                   >
-                    Book Showroom Visit + Map Route
+                    Book Visit + Map Route
                   </a>
                 </div>
               </div>
@@ -433,15 +433,15 @@ export default function HomePage({
 
       <QuickConnectBar />
 
-      <section className="py-20 bg-white border-t border-zinc-200/50">
+      <section className="bg-white border-t border-zinc-200/50">
         <SleepFAQs />
       </section>
 
-      <section className="py-20 bg-linear-to-b from-zinc-150 to-brand-50/50 px-4">
+      <section className="py-12 md:py-16 bg-linear-to-b from-zinc-150 to-brand-50/50 px-4">
         <ShowroomBookingForm />
       </section>
 
-      <section className="py-20 bg-neutral-light border-t border-brand-200/40 px-4">
+      <section className="py-12 md:py-16 bg-neutral-light border-t border-brand-200/40 px-4">
         <ConsultationForm />
       </section>
     </PageShell>

@@ -5,7 +5,7 @@ const ABOUT_SECTIONS = [
   {
     label: 'Our Story',
     heading: 'Telangana and AP\'s first pure latex mattress company',
-    image: '/images/components-banner.png',
+    image: '/images/about-story.png',
     imageAlt: 'RelaxPro factory floor in Jeedimetla, Hyderabad',
     paragraphs: [
       'RelaxPro handcrafts natural latex sleep systems for South India, delivered direct from our Kerala factory with transparent pricing and no synthetic fillers. Founded by Suresh, a third-generation rubber goods manufacturer, the brand was built to solve a problem he saw everywhere: families paying luxury prices for mattresses filled with industrial chemicals.',
@@ -16,7 +16,7 @@ const ABOUT_SECTIONS = [
   {
     label: 'The Kerala Process',
     heading: 'From plantation to bedroom in fourteen days',
-    image: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80',
+    image: '/images/about-process.png',
     imageAlt: 'Latex tapping at a Kerala rubber plantation at dawn',
     paragraphs: [
       'At 4 AM each morning, tappers move through the plantation making clean diagonal cuts in the bark. The raw latex flows into collection cups and is transported to our unit within hours — before polymerization begins.',
@@ -50,28 +50,38 @@ export default function AboutPage() {
           return (
             <div
               key={section.label}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start ${idx > 0 ? 'mt-20 md:mt-32' : ''}`}
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start ${
+                isDark 
+                  ? 'bg-primary text-white rounded-[2rem] p-6 sm:p-10 md:p-16 shadow-lg shadow-brand-900/10' 
+                  : ''
+              } ${idx > 0 ? 'mt-20 md:mt-32' : ''}`}
             >
               <div
-                className={`lg:col-span-7 space-y-6 ${hasImage && !section.imageFirst ? 'lg:order-2' : ''}`}
+                className={`space-y-6 ${
+                  isDark 
+                    ? 'lg:col-span-12 w-full max-w-4xl mx-auto' 
+                    : `lg:col-span-7 ${hasImage && !section.imageFirst ? 'lg:order-2' : ''}`
+                }`}
               >
-                <span className="text-[10px] font-accent font-bold uppercase tracking-editorial text-accent bg-accent/10 px-4 py-1.5 rounded-full">
+                <span className={`text-[10px] font-accent font-bold uppercase tracking-editorial px-4 py-1.5 rounded-full ${
+                  isDark ? 'text-accent bg-accent/20' : 'text-accent bg-accent/10'
+                }`}>
                   {section.label}
                 </span>
-                <h2 className="rp-display text-primary">{section.heading}</h2>
+                <h2 className={`rp-display ${isDark ? 'text-white' : 'text-primary'}`}>{section.heading}</h2>
                 {section.paragraphs.map((p, pIdx) => (
                   <p
                     key={pIdx}
-                    className={`rp-body leading-loose ${pIdx === 0 ? 'drop-cap' : ''} ${isDark ? 'text-warm-white/80' : 'text-neutral-dark/70'}`}
+                    className={`rp-body leading-loose ${pIdx === 0 ? 'drop-cap' : ''} ${isDark ? 'text-zinc-100/90' : 'text-neutral-dark/70'}`}
                   >
                     {p}
                   </p>
                 ))}
                 {isDark && (
-                  <div className="pt-6 flex flex-wrap gap-3 text-sm font-bold text-warm-white/90">
-                    <span className="rounded-full border border-warm-white/20 px-4 py-2">Hyderabad</span>
-                    <span className="rounded-full border border-warm-white/20 px-4 py-2">Rajahmundry</span>
-                    <span className="rounded-full border border-warm-white/20 px-4 py-2">Bangalore</span>
+                  <div className="pt-6 flex flex-wrap gap-3 text-sm font-bold text-white/90">
+                    <span className="rounded-full border border-white/20 px-4 py-2">Hyderabad</span>
+                    <span className="rounded-full border border-white/20 px-4 py-2">Rajahmundry</span>
+                    <span className="rounded-full border border-white/20 px-4 py-2">Bangalore</span>
                   </div>
                 )}
                 {!isDark && (

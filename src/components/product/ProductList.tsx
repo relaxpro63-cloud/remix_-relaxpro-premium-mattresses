@@ -529,15 +529,7 @@ export default function ProductList({
           <Sparkles className="w-5 h-5 text-accent" /> Start 3D Customizer
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
-  {/* Components Section Image */}
-  <div className="mt-16 md:mt-24 border-t border-brand-200/40 pt-10 fade-up">
-    <img
-      src="/images/components-banner.png"
-      alt="RelaxPro Mattress Components"
-      className="w-full h-auto object-contain rounded-2xl shadow-sm"
-    />
-  </div>
-</section>
+      </section>
 </div>
 );
 }

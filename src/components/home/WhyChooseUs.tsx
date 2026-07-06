@@ -79,7 +79,7 @@ export default function WhyChooseUs() {
       {/* Why Choose Us Section */}
       <section
         ref={sectionRef}
-        className="py-12 md:py-24 px-4 md:px-8 bg-neutral-light"
+        className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light"
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}

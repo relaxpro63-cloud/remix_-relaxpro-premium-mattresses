@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import PriceText from '../ui/PriceText';
-import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail, ShoppingCart } from 'lucide-react';
+import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail, ShoppingCart, Leaf } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
 import ProductCarousel from './ProductCarousel';
 
@@ -400,15 +400,18 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
 
       {/* Components Section */}
       <div className="mt-20 lg:mt-32 mb-10 border-t border-brand-200/40 pt-16 lg:pt-24">
-        <h2 className="text-3xl md:text-4xl font-heading text-center text-primary mb-12 lg:mb-20">Components</h2>
+        <h2 className="text-3xl md:text-4xl font-heading text-center text-primary mb-12 lg:mb-20">What Inside Counts: Premium Components</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
           {/* Component 1 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
-              <img src="/images/mattress-hand.png" alt="GOTS Organic Cotton Fabric" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img src="/images/gots-cotton.png" alt="GOTS Certified Organic Cotton Fabric" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
             </div>
-            <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-3 sm:mb-4">GOTS Organic Cotton Fabric</h3>
+            <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-2">GOTS Organic Cotton Fabric</h3>
+            <div className="inline-flex items-center gap-1 bg-success/15 border border-success/20 text-success text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+              <Check className="w-3.5 h-3.5" /> GOTS Certified
+            </div>
             <p className="text-sm sm:text-base text-neutral-dark/70 font-body leading-relaxed max-w-sm">
               GOTS Certified Organic Cotton fabric is naturally breathable and anti allergic. It will help in avoiding sweat and moisture trapping next to the skin because of its natural properties.
             </p>
@@ -417,9 +420,12 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           {/* Component 2 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
-              <img src="/images/cotton-field.png" alt="Quilted Organic Cotton" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img src="/images/quilted-cotton.png" alt="Quilted Organic Cotton Layer" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
             </div>
-            <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-3 sm:mb-4">Quilted Organic Cotton</h3>
+            <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-2">Quilted Organic Cotton</h3>
+            <div className="inline-flex items-center gap-1 bg-success/15 border border-success/20 text-success text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+              <Check className="w-3.5 h-3.5" /> 100% Organic
+            </div>
             <p className="text-sm sm:text-base text-neutral-dark/70 font-body leading-relaxed max-w-sm">
               The 100% organic cotton layer used in our mattress has smooth feel . It has a cool surface that perfectly complements natural latex . When designing this mattress, we insisted on using only organic cotton as it is anti-allergic and good for skin. It is flexible and strong which makes it more durable.
             </p>
@@ -428,14 +434,35 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           {/* Component 3 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white bg-neutral-light">
-              <img src="https://images.unsplash.com/photo-1542840410-3092f99611a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="100% Natural Latex" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img src="/images/natural-latex.png" alt="100% Natural Dunlop Latex" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
             </div>
-            <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-3 sm:mb-4">100% Natural Latex</h3>
+            <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-2">100% Natural Latex</h3>
+            <div className="inline-flex items-center gap-1 bg-emerald-700/15 border border-emerald-700/20 text-emerald-700 text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+              <Leaf className="w-3.5 h-3.5" /> 100% Eco-Friendly
+            </div>
             <p className="text-sm sm:text-base text-neutral-dark/70 font-body leading-relaxed max-w-sm">
               The main component of our mattress is 100% natural latex. We bring you the highest-quality latex that does not contain any synthetic material or fillers. It is made through the energy-efficient Dunlop process that provides best sleeping surface available in the market.
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Comfort Meter Section */}
+      <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
+        <img 
+          src="/images/comfort-meter.png" 
+          alt="RelaxPro Mattress Comfort Meter" 
+          className="w-full h-auto object-contain rounded-2xl shadow-sm"
+        />
+      </div>
+
+      {/* Size Chart Section */}
+      <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
+        <img 
+          src="/images/size-chart.png" 
+          alt="RelaxPro Mattress Size Chart" 
+          className="w-full h-auto object-contain rounded-2xl shadow-sm"
+        />
       </div>
     </motion.div>
   );

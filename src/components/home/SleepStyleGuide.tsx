@@ -32,7 +32,7 @@ export default function SleepStyleGuide() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8 bg-neutral-light border-y border-brand-200/40">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light border-y border-brand-200/40">
       <div className="max-w-6xl mx-auto">
         <BlurFade delay={0.1}>
           <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">

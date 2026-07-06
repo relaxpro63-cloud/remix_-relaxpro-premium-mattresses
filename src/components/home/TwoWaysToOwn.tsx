@@ -10,7 +10,7 @@ interface TwoWaysToOwnProps {
 
 export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWaysToOwnProps) {
   return (
-    <section id="two-ways-section" className="py-16 md:py-32 bg-neutral-light border-y border-brand-200/40">
+    <section id="two-ways-section" className="py-12 md:py-16 bg-neutral-light border-y border-brand-200/40">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         
         {/* Centered Heading */}
@@ -36,7 +36,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
             <motion.div 
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-500 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-between h-full relative overflow-hidden group"
+              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-500 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group"
             >
               {/* Subtle background pattern */}
               <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-accent/5 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110 duration-700 ease-out z-0" />
@@ -54,9 +54,24 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                   <p className="font-heading italic text-accent text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
                     &ldquo;Customize your mattress, layer by layer.&rdquo;
                   </p>
-                  <p className="text-neutral-dark/70 text-[11px] sm:text-xs md:text-sm mt-2 md:mt-5 leading-relaxed font-body line-clamp-3 md:line-clamp-none">
-                    Pick the cover fabric, choose each comfort layer, dial in the thickness. We craft it to your spec in 5–7 days.
-                  </p>
+                  <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>Pick Cover Fabric:</strong> Select casing textile</span>
+                    </li>
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>Comfort Layers:</strong> Configure latex zones</span>
+                    </li>
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>Dial in Thickness:</strong> 4″ to 10″ profiles</span>
+                    </li>
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>Custom Built:</strong> Shipped in 5–7 days</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
@@ -78,7 +93,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
             <motion.div 
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-500 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-between h-full relative overflow-hidden group"
+              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-500 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group"
             >
               {/* Subtle background pattern */}
               <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-brand-100/50 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110 duration-700 ease-out z-0" />
@@ -95,9 +110,24 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                   <p className="font-heading italic text-accent text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
                     &ldquo;Our mattresses, ready to ship.&rdquo;
                   </p>
-                  <p className="text-neutral-dark/70 text-[11px] sm:text-xs md:text-sm mt-2 md:mt-5 leading-relaxed font-body line-clamp-3 md:line-clamp-none">
-                    Thirteen hand-crafted models across three collections. Pick the one that fits, and we'll deliver it to your door in 5–7 days.
-                  </p>
+                  <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>13 Organic Models:</strong> Orthopedic alignment</span>
+                    </li>
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>3 Curated Tiers:</strong> Luxury, Premium & Comfort</span>
+                    </li>
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>Instant Fit:</strong> Choose standard dimensions</span>
+                    </li>
+                    <li className="flex items-start gap-1.5">
+                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span><strong>Express Delivery:</strong> Sent direct in 5–7 days</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 

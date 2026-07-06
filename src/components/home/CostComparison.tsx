@@ -51,7 +51,7 @@ const compareData = [
 
 export default function CostComparison() {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8 bg-white border-y border-brand-200/40 font-body overflow-hidden">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-white border-y border-brand-200/40 font-body overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <BlurFade delay={0.1}>
           <div className="text-center mb-12 md:mb-20">
@@ -70,13 +70,21 @@ export default function CostComparison() {
             <h3 className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-emerald-800">Ordinary<br className="md:hidden" /> Foam</h3>
           </div>
 
-          {/* Images Placeholder (can replace with actual images later) */}
+          {/* Images Section */}
           <div className="grid grid-cols-2 gap-4 sm:gap-16 mb-8 sm:mb-10 text-center relative z-10 px-4">
             <div className="flex justify-center">
-              <div className="w-24 sm:w-48 h-16 sm:h-24 bg-gradient-to-br from-[#f2e7c9] to-[#e4d1a5] rounded-md sm:rounded-xl shadow-inner border border-[#d9c491] transform -rotate-2"></div>
+              <img 
+                src="/images/latex-compare.png" 
+                alt="Natural Latex Mattress" 
+                className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-brand-200/50 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300"
+              />
             </div>
             <div className="flex justify-center">
-              <div className="w-24 sm:w-48 h-16 sm:h-24 bg-gradient-to-br from-[#f8f9fa] to-[#e9ecef] rounded-md sm:rounded-xl shadow-inner border border-gray-200 transform rotate-2"></div>
+              <img 
+                src="/images/foam-compare.png" 
+                alt="Ordinary Foam Mattress" 
+                className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-gray-200 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300"
+              />
             </div>
           </div>
 

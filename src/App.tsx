@@ -7,7 +7,7 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartProvider, useCart } from './features/cart/CartContext';
 import { useGlobalScrollAnimations } from './hooks/useIntersectionObserver';
-import { OrderReceipt } from './types';
+import { OrderReceipt, Tier } from './types';
 import HomePage from './routes/home/index';
 import SleepSciencePage from './routes/pages/sleep-science';
 import AboutPage from './routes/pages/about';
@@ -27,6 +27,7 @@ function AppContent() {
   const navigate = useNavigate();
   const cart = useCart();
   const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
+  const [selectedTier, setSelectedTier] = useState<Tier | 'all'>('all');
   useGlobalScrollAnimations();
 
   const page = (name: string) => {
@@ -91,8 +92,8 @@ function AppContent() {
                       onAddToCartDirect={(product, size, includeAcc) => cart.addToCartDirect(product, size, includeAcc)}
                       onNavigateToPdp={pdp}
                       onNavigate={page}
-                      selectedTier="all"
-                      setSelectedTier={() => {}}
+                      selectedTier={selectedTier}
+                      setSelectedTier={setSelectedTier}
                     />
                   </PageShell>
                 }

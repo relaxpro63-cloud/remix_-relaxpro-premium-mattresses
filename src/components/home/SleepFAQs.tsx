@@ -21,42 +21,42 @@ export default function SleepFAQs() {
       id: 'faq-1',
       category: 'durability',
       question: 'How durable is natural organic latex compared to memory foam or spring mattresses?',
-      answer: '100% natural organic latex is exceptionally durable, regularly lasting 15 to 20 years without sagging or developing body impressions. In comparison, synthetic memory foam is made of polyurethane chemicals that chemically fatigue and sag within 5 to 7 years. Pocket springs also suffer from mechanical fatigue and structural weakening over time. Because pure GOLS-certified rubber sap is inherently resilient and rubberized, it maintains its supportive structural shape and elastic resilience for decades.',
+      answer: '100% natural organic latex is exceptionally durable, regularly lasting 15 to 20 years. In contrast, memory foam sags in 5 to 7 years and springs weaken over time. GOLS-certified latex maintains its shape and elasticity for decades.',
       icon: <Shield className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-2',
       category: 'care',
       question: 'How do I clean and care for my RelaxPro 100% natural latex mattress?',
-      answer: 'Caring for your organic mattress is simple: (1) Use a breathable organic cotton mattress protector to guard against liquid spills and perspiration. (2) Keep the mattress core dry. If you need to spot-clean, use a damp cloth with mild soap, and let it dry completely in a well-ventilated shade. (3) Strictly avoid exposing the natural rubber core to direct, harsh UV sunlight, as sunlight breaks down natural rubber polymer chains. (4) No flipping is required! RelaxPro mattresses are built layer-optimized, but we do recommend rotating the mattress 180 degrees once every 6 months to ensure even long-term compression.',
+      answer: '(1) Use a breathable mattress protector. (2) If spot-cleaning, use a damp cloth and mild soap; let it dry in shade. (3) Never expose the latex core to direct UV sunlight. (4) Rotate the mattress 180° once every 6 months to ensure even wear (no flipping required).',
       icon: <RefreshCw className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-3',
       category: 'customization',
       question: 'Can I request custom sizes, custom thickness profiles, or side-by-side customization?',
-      answer: 'Absolutely! Since RelaxPro owns its organic harvesting farms in Kerala and custom formats mattresses factory-direct, we can craft any custom dimensions (length x width) and composite thickness profiles (4″, 6″, 8″, or 10″) you require to fit non-standard cots or imported bed frames. We also offer Split Dual-Comfort customization: we can construct a single mattress where one half is orthopedic medium-firm for back support, and the other half is soft-plush for a luxurious, pressure-relieving feel.',
+      answer: 'Yes! We craft custom sizes (length x width) and thickness profiles (4″ to 10″) factory-direct. We also offer Split Dual-Comfort customization: one half can be orthopedic medium-firm for back support, and the other half soft-plush.',
       icon: <PenTool className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-4',
       category: 'durability',
       question: 'Does natural latex trap body heat or run hot in summer?',
-      answer: 'Unlike synthetic foam mattresses (which lock in heat due to a closed-cell chemical skin), 100% natural latex is highly breathable. It features an open-cell matrix structured natively during the Dunlop milk frothing process. Additionally, all our cores are manufactured with vertical pincore ventilation holes. This open channel network naturally circulates air, pulling heat away from your skin, and is wrapped in heavy 300-600 GSM organic cotton quilting for a cool, sweat-free sleep all year round.',
+      answer: 'No, natural latex is highly breathable due to its open-cell Dunlop structure and vertical pincore ventilation holes. This open network circulates air and disperses body heat, keeping you cool and sweat-free year-round.',
       icon: <Sparkles className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-5',
       category: 'care',
       question: 'What kind of bed base or frame is ideal for a natural latex mattress?',
-      answer: 'Natural latex is heavy and highly flexible, so it requires a strong, stable, and flat foundation. The ideal setup is a solid flat wooden board or a high-quality slatted wooden frame where the slats are no wider than 2.5 to 3 inches apart to prevent the premium latex from bowing. Ensure there is adequate bottom ventilation so moisture does not get trapped. Avoid saggy metal spring bases or rusty iron frames which fail to provide the solid skeletal support necessary for spinal alignment.',
+      answer: 'A flat wooden board or slatted frame (slats max 2.5–3" apart) is ideal to support the flexible latex core. Ensure bottom ventilation and avoid saggy spring bases or iron frames that compromise spinal alignment.',
       icon: <CheckCircle className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-6',
       category: 'customization',
       question: 'What is the structural difference between GOLS-certified rubber and GOTS-certified textiles?',
-      answer: 'They signify the ultimate international organic benchmarks: GOLS (Global Organic Latex Standard) certifies that the core of your mattress contains at least 95% pure, certified organic farm rubber, verifying that no chemical fillers, heavy clay powders, or hazardous polymers have been blended in. GOTS (Global Organic Textile Standard) certifies the external casing layers, confirming that our heavy quilted cover fabrics are made from certified biological organic cotton without chemical pesticides, formaldehyde, or heavy-metal dyes.',
+      answer: 'GOLS certifies that the core contains at least 95% pure organic rubber without chemical fillers or synthetic polymers. GOTS certifies the outer cover, confirming it uses pesticide-free, biological organic cotton textiles.',
       icon: <Info className="w-5 h-5 text-accent shrink-0" />
     }
   ], []);
