@@ -14,6 +14,7 @@ import {
   Leaf,
 } from 'lucide-react';
 import PageShell from '../../components/layout/PageShell';
+import SegmentedControl from '../../components/ui/SegmentedControl';
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
 
@@ -197,14 +198,19 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
 
               <div className="mt-6 sm:mt-10 bg-white p-4 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] border border-brand-200/40 shadow-sm">
                 <h3 className="font-heading font-bold text-primary text-lg sm:text-xl mb-4 sm:mb-6 flex items-center justify-between">Select Size <span className="text-[10px] sm:text-xs font-accent font-normal text-neutral-dark/40 bg-neutral-light px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full">Step 1 of {product.pricingModel === 'with_without_accessories' || product.pricingModel === 'fabric_options' ? '2' : '1'}</span></h3>
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                  {(Object.keys(SIZE_LABELS) as MattressSize[]).map((sz) => (
-                    <button key={sz} onClick={() => setActiveSize(sz)} className={`p-4 rounded-xl border text-left transition-all relative overflow-hidden group ${activeSize === sz ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
-                      <span className="font-accent font-bold text-xs sm:text-sm text-primary capitalize block">{sz} Size</span>
-                      <span className="font-mono text-[9px] sm:text-[10px] text-neutral-dark/50 mt-1 sm:mt-1.5 block">{sz === 'king' ? '72"x78"' : sz === 'queen' ? '60"x78"' : sz === 'double' ? '48"x75"' : '36"x75"'}</span>
-                      {activeSize === sz && <span className="absolute top-3 right-3 text-accent bg-white rounded-full shadow-sm p-0.5"><Check className="w-4 h-4" /></span>}
-                    </button>
-                  ))}
+                <div className="w-full">
+                  <SegmentedControl
+                    options={[
+                      { value: 'king', label: 'King', sublabel: '72" x 78"' },
+                      { value: 'queen', label: 'Queen', sublabel: '60" x 78"' },
+                      { value: 'double', label: 'Double', sublabel: '48" x 75"' },
+                      { value: 'single', label: 'Single', sublabel: '36" x 75"' },
+                    ]}
+                    value={activeSize}
+                    onChange={(sz) => setActiveSize(sz as MattressSize)}
+                    size="lg"
+                    fullWidth
+                  />
                 </div>
 
                 {product.pricingModel === 'with_without_accessories' && (
@@ -264,10 +270,22 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                   <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm text-gray-600 mb-4 sm:mb-6"><Check className="w-3 h-3 sm:w-4 sm:h-4 text-green-500" /><span>Tax Included • Free Shipping</span></div>
                   <div className="flex flex-col gap-3">
                     <div className="grid grid-cols-2 gap-3">
-                      <button onClick={handleAddToCart} className="flex items-center justify-center gap-2 py-3.5 px-4 bg-primary hover:bg-neutral-dark text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer">
-                        <ShoppingCart className="w-5 h-5" /><span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
-                      </button>
-                      <button onClick={handleBuyNow} className="flex items-center justify-center gap-2 py-3.5 px-4 bg-accent hover:bg-[#2569A0] text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"><span>Buy Now</span></button>
+                      <motion.button 
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={handleAddToCart} 
+                        className="flex items-center justify-center gap-2 py-3.5 px-4 bg-primary text-white font-accent font-bold rounded-xl shadow-lg shadow-primary/20 cursor-pointer border border-primary/20"
+                      >
+                        <ShoppingCart className="w-5 h-5 opacity-80" /><span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
+                      </motion.button>
+                      <motion.button 
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={handleBuyNow} 
+                        className="flex items-center justify-center gap-2 py-3.5 px-4 bg-gradient-to-r from-accent to-accent-light hover:from-accent-light hover:to-accent text-white font-accent font-bold rounded-xl shadow-lg shadow-accent/20 cursor-pointer border border-accent/20"
+                      >
+                        <span>Buy Now</span>
+                      </motion.button>
                     </div>
                     <button onClick={handleContactSuresh} className="w-full flex items-center justify-center gap-2 py-3 px-4 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-medium rounded-xl transition-colors duration-200 cursor-pointer"><MessageSquare className="w-4 h-4" /><span className="text-sm">Enquire on WhatsApp</span></button>
                   </div>

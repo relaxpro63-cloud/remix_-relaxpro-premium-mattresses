@@ -9,6 +9,7 @@ import Marquee from '../../components/ui/Marquee';
 import CertificationMarquee from '../../components/home/CertificationMarquee';
 import ShopByBrands from '../../components/home/ShopByBrands';
 import CostComparison from '../../components/home/CostComparison';
+import { FadeUp, StaggerChildren, staggerItem, EASE_LUXURY } from '../../components/motion/motionPrimitives';
 
 import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
@@ -24,6 +25,7 @@ import {
   ChevronRight,
   MessageSquare,
   ArrowRight,
+  ShoppingCart,
 } from 'lucide-react';
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
@@ -137,7 +139,7 @@ export default function HomePage({
 
       <section id="bestsellers" className="bg-secondary border-y border-brand-200/30 py-12 md:py-16 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-4 fade-up">
+          <FadeUp className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-4">
             <div>
               <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">Top Selling Sleep Systems</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-3">Bestselling Products</h2>
@@ -148,22 +150,20 @@ export default function HomePage({
             >
               View All Products
             </button>
-          </div>
+          </FadeUp>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 justify-center">
-            {PRODUCTS.slice(0, 3).map((item, idx) => {
+          <StaggerChildren className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 justify-center" stagger={0.15}>
+            {PRODUCTS.slice(0, 6).map((item, idx) => {
               const isBestSeller = item.slug === 'nirvana';
 
               return (
                 <motion.div
                   key={item.slug}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  whileHover={{ scale: 1.025, y: -6 }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="col-span-2 md:col-span-1 rounded-2xl overflow-hidden flex flex-col justify-between group shadow-xl border cursor-pointer h-full relative"
-                  style={{ backgroundColor: '#1A2421', borderColor: 'rgba(201, 168, 124, 0.15)' }}
+                  variants={staggerItem}
+                  whileHover={{ scale: 1.025, rotateY: 4, rotateX: 2, y: -6 }}
+                  transition={{ duration: 0.6, ease: EASE_LUXURY }}
+                  className="rounded-2xl overflow-hidden flex flex-col justify-between group shadow-xl border cursor-pointer h-full relative"
+                  style={{ backgroundColor: '#0F1F17', borderColor: 'rgba(201, 168, 124, 0.15)' }}
                   onClick={() => handleNavigateToPdp(item.slug)}
                 >
                   {/* Golden luxury glow effect on card hover */}
@@ -183,14 +183,14 @@ export default function HomePage({
                     />
                     {isBestSeller ? (
                       <span 
-                        className="absolute top-3 left-3 font-accent text-[8px] md:text-[9px] font-bold px-3 py-1.5 rounded-xl uppercase tracking-widest flex items-center gap-1.5 shadow-lg border"
+                        className="absolute top-2 left-2 md:top-3 md:left-3 font-accent text-[7px] md:text-[9px] font-bold px-2 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl uppercase tracking-widest flex items-center gap-1 shadow-lg border"
                         style={{ backgroundColor: '#C9A87C', color: '#1A2421', borderColor: 'rgba(26, 36, 33, 0.1)' }}
                       >
-                        <Sparkles className="w-2.5 h-2.5 fill-current" /> Premium Masterpiece
+                        <Sparkles className="w-2 h-2 md:w-2.5 md:h-2.5 fill-current" /> <span className="hidden md:inline">Premium Masterpiece</span><span className="inline md:hidden">Premium</span>
                       </span>
                     ) : (
                       <span 
-                        className="absolute top-3 left-3 font-accent text-[8px] md:text-[9px] font-bold px-3 py-1.5 rounded-xl uppercase tracking-widest shadow-lg border"
+                        className="absolute top-2 left-2 md:top-3 md:left-3 font-accent text-[7px] md:text-[9px] font-bold px-2 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl uppercase tracking-widest shadow-lg border"
                         style={{ backgroundColor: '#5C7C68', color: '#FAFAF5', borderColor: 'rgba(26, 36, 33, 0.1)' }}
                       >
                         {item.comfortLevel} Feel
@@ -198,22 +198,22 @@ export default function HomePage({
                     )}
                   </div>
 
-                  <div className="p-5 md:p-7 flex-1 flex flex-col justify-between">
+                  <div className="p-3 md:p-7 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Rating block */}
-                      <div className="flex items-center gap-1 mb-3">
+                      <div className="flex items-center gap-0.5 md:gap-1 mb-1.5 md:mb-3">
                         {Array.from({ length: 5 }).map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 fill-current" style={{ color: '#C9A87C' }} />
+                          <Star key={i} className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 fill-current" style={{ color: '#C9A87C' }} />
                         ))}
-                        <span className="text-[10px] ml-1.5 font-accent tracking-widest uppercase font-bold" style={{ color: '#F5F2EB', opacity: 0.6 }}>(4.9)</span>
+                        <span className="text-[8px] md:text-[10px] ml-1 font-accent tracking-widest uppercase font-bold" style={{ color: '#F5F2EB', opacity: 0.6 }}>(4.9)</span>
                       </div>
 
                       {/* Title & Badge */}
-                      <h3 className="font-heading font-serif font-normal text-lg md:text-2xl flex flex-wrap items-center gap-2" style={{ color: '#F5F2EB' }}>
-                        {item.name}
+                      <h3 className="font-heading font-serif font-normal text-sm md:text-2xl flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-1 md:gap-2" style={{ color: '#F5F2EB' }}>
+                        <span>{item.name}</span>
                         {isBestSeller && (
                           <span 
-                            className="text-[8px] font-accent font-bold uppercase tracking-widest border px-2 py-0.5 rounded-lg"
+                            className="text-[6px] md:text-[8px] font-accent font-bold uppercase tracking-widest border px-1.5 py-0.5 rounded md:rounded-lg"
                             style={{ color: '#C9A87C', borderColor: 'rgba(201, 168, 124, 0.3)', backgroundColor: 'rgba(201, 168, 124, 0.08)' }}
                           >
                             100% Organic
@@ -221,14 +221,14 @@ export default function HomePage({
                         )}
                       </h3>
 
-                      <p className="text-xs mt-3 leading-relaxed font-body h-[40px] line-clamp-2" style={{ color: '#F5F2EB', opacity: 0.85 }}>
+                      <p className="text-[9px] md:text-xs mt-1.5 md:mt-3 leading-relaxed font-body h-[28px] md:h-[40px] line-clamp-2" style={{ color: '#F5F2EB', opacity: 0.85 }}>
                         {item.keyBenefit}
                       </p>
 
-                      <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                      <div className="mt-3 md:mt-6 pt-2 md:pt-4 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0">
                         <div className="flex flex-col">
-                          <span className="text-[9px] font-accent tracking-wider uppercase" style={{ color: '#F5F2EB', opacity: 0.5 }}>Starting Price</span>
-                          <span className="text-lg md:text-2xl font-bold font-body mt-0.5" style={{ color: '#F5F2EB' }}>
+                          <span className="text-[7px] md:text-[9px] font-accent tracking-wider uppercase" style={{ color: '#F5F2EB', opacity: 0.5 }}>Starting Price</span>
+                          <span className="text-sm md:text-2xl font-bold font-body mt-0 md:mt-0.5" style={{ color: '#F5F2EB' }}>
                             <PriceText>
                               ₹
                               {item.pricingModel === 'with_without_accessories'
@@ -237,12 +237,12 @@ export default function HomePage({
                             </PriceText>
                           </span>
                         </div>
-                        <span className="text-[10px] font-accent tracking-widest uppercase border border-white/10 rounded-lg px-2.5 py-1" style={{ color: '#F5F2EB', opacity: 0.7 }}>King Size</span>
+                        <span className="text-[7px] md:text-[10px] font-accent tracking-widest uppercase border border-white/10 rounded md:rounded-lg px-1.5 py-0.5 md:px-2.5 md:py-1 self-start md:self-auto" style={{ color: '#F5F2EB', opacity: 0.7 }}>King Size</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-4 md:p-6 pt-0 border-t border-white/5 flex flex-col gap-2.5 mt-auto relative z-10">
+                  <div className="p-3 md:p-6 pt-0 border-t border-white/5 flex flex-col gap-2 mt-auto relative z-10">
                     <motion.button
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
@@ -251,31 +251,32 @@ export default function HomePage({
                         e.stopPropagation();
                         handleNavigateToPdp(item.slug);
                       }}
-                      className="w-full py-3 px-4 rounded-xl border font-accent font-bold text-[10px] md:text-xs tracking-widest uppercase text-center cursor-pointer transition-all shadow-md"
+                      className="w-full py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl border font-accent font-bold text-[8px] md:text-[10px] lg:text-xs tracking-widest uppercase text-center cursor-pointer transition-all shadow-md flex items-center justify-center gap-1 md:gap-2"
                       style={{ backgroundColor: '#C9A87C', color: '#1A2421', borderColor: '#C9A87C' }}
                     >
-                      Customize & Purchase
+                      <ShoppingCart className="w-3 h-3 md:w-4 md:h-4 opacity-80" /> <span className="hidden md:inline">Customize &amp; Purchase</span><span className="inline md:hidden">Buy</span>
                     </motion.button>
+                    
                     <motion.a
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                      href={`https://wa.me/918686624494?text=${encodeURIComponent(
-                        `Hello Suresh, I am interested in the RelaxPro ${item.name} Mattress (King size). Please share pricing and delivery info.`,
+                      href={`https://wa.me/918943644026?text=${encodeURIComponent(
+                        `Hi! I am interested in the ${item.name} mattress. Can you help me select the right size and customization?`
                       )}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full py-3 px-4 rounded-xl text-[10px] md:text-xs font-accent tracking-widest font-bold uppercase text-center transition-all flex items-center justify-center gap-1.5 border"
+                      className="w-full py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl text-[8px] md:text-[10px] lg:text-xs font-accent tracking-widest font-bold uppercase text-center transition-all flex items-center justify-center gap-1 md:gap-2 border"
                       style={{ color: '#F5F2EB', borderColor: 'rgba(245, 242, 235, 0.2)', backgroundColor: 'rgba(245, 242, 235, 0.04)' }}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <MessageSquare className="w-3.5 h-3.5" style={{ color: '#C9A87C' }} /> Enquire on WhatsApp
+                      <MessageSquare className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" style={{ color: '#C9A87C' }} /> <span className="hidden md:inline">Enquire on WhatsApp</span><span className="inline md:hidden">WhatsApp</span>
                     </motion.a>
                   </div>
                 </motion.div>
               );
             })}
-          </div>
+          </StaggerChildren>
         </div>
       </section>
 
@@ -309,125 +310,128 @@ export default function HomePage({
 
       <ComparisonTable />
 
-      <section className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16 fade-up">
+      <section className="max-w-[1400px] mx-auto px-4 md:px-8 py-16 md:py-24 overflow-hidden">
+        <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">Trust & Honest Feedback</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-4 text-primary leading-tight">What Our Customers Say</h2>
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mt-4 text-primary leading-tight">What Our Customers Say</h2>
           <div className="flex items-center justify-center gap-2 mt-4">
             <span className="text-2xl font-bold font-heading text-primary">4.9</span>
             <span className="text-accent text-lg">/ 5 ★</span>
             <span className="text-neutral-dark/40 text-sm font-body ml-1">from 2,400+ reviews</span>
           </div>
-        </div>
+        </FadeUp>
 
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { id: 't1', name: 'Srinivas Rao', city: 'Hyderabad', rating: 5, comment: 'Buying the Nirvana mattress was the best decision for my chronic lower back issues.', product: 'Nirvana 8"' },
-            { id: 't2', name: 'Anvitha Reddy', city: 'Bangalore', rating: 5, comment: 'We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly.', product: 'Amrita 10" Hybrid' },
-            { id: 't3', name: 'Rajendra Prasad', city: 'Rajahmundry', rating: 5, comment: 'Sthira is perfect for those who want a firm but very comfortable orthopedic feel.', product: 'Sthira 6"' },
-            { id: 't4', name: 'Deepak Sharma', city: 'Hyderabad', rating: 5, comment: 'I am amazed by the Custom Mattress builder! Delivered within 6 days.', product: 'Custom Build' },
-          ].map((t, idx) => (
-            <div
-              key={t.id}
-              className="bg-white p-6 rounded-2xl border border-brand-200/40 shadow-sm flex flex-col justify-between card-hover fade-up"
-              style={{ transitionDelay: `${idx * 0.08}s` }}
-            >
-              <div>
-                <span className="text-4xl font-heading text-accent/20 leading-none block mb-2">“</span>
-                <div className="flex items-center gap-0.5 text-accent mb-3">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                  ))}
+        <div className="relative">
+          <motion.div 
+            className="flex gap-4 md:gap-8 cursor-grab active:cursor-grabbing pb-8 w-max"
+            drag="x"
+            dragConstraints={{ right: 0, left: -((320 + 32) * 4 - window.innerWidth + 64) }}
+            dragElastic={0.1}
+          >
+            {[
+              { id: 't1', name: 'Srinivas Rao', city: 'Hyderabad', rating: 5, comment: 'Buying the Nirvana mattress was the best decision for my chronic lower back issues. The organic latex feels incredibly supportive yet soft.', product: 'Nirvana 8"' },
+              { id: 't2', name: 'Anvitha Reddy', city: 'Bangalore', rating: 5, comment: 'We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly so I don\'t wake up when my husband moves.', product: 'Amrita 10" Hybrid' },
+              { id: 't3', name: 'Rajendra Prasad', city: 'Rajahmundry', rating: 5, comment: 'Sthira is perfect for those who want a firm but very comfortable orthopedic feel. The quality of the organic cotton cover is exceptional.', product: 'Sthira 6"' },
+              { id: 't4', name: 'Deepak Sharma', city: 'Hyderabad', rating: 5, comment: 'I am amazed by the Custom Mattress builder! Delivered within 6 days exactly to my specifications. Truly a luxury experience from start to finish.', product: 'Custom Build' },
+              { id: 't5', name: 'Kavya S.', city: 'Chennai', rating: 5, comment: 'The natural latex breathes so much better than memory foam. First summer in years where I haven\'t woken up sweating.', product: 'Prakriti 8"' }
+            ].map((t) => (
+              <motion.div
+                key={t.id}
+                whileHover={{ scale: 1.02, y: -4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="w-[300px] md:w-[380px] shrink-0 bg-white p-8 rounded-2xl border border-brand-200/40 shadow-sm flex flex-col justify-between relative overflow-hidden"
+              >
+                {/* Oversized ghost quote mark */}
+                <div className="absolute -top-6 -left-2 text-9xl font-heading text-brand-100 opacity-50 select-none pointer-events-none">“</div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-1 text-accent mb-6">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-sm md:text-base text-neutral-dark/80 leading-relaxed italic font-body min-h-[100px]">"{t.comment}"</p>
                 </div>
-                <p className="text-xs text-neutral-dark/70 leading-relaxed italic font-body">“{t.comment}”</p>
-              </div>
-              <div className="border-t border-brand-200/30 pt-3 mt-4 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-accent/10 border-2 border-accent/20 flex items-center justify-center text-accent font-heading font-bold text-sm shrink-0">
-                  {t.name.charAt(0)}
+                
+                <div className="border-t border-brand-200/40 pt-4 mt-6 flex items-center gap-4 relative z-10">
+                  <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-heading font-bold text-lg shrink-0">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <span className="font-heading font-bold text-sm text-primary block">{t.name}</span>
+                    <span className="text-[10px] text-neutral-dark/40 flex items-center gap-1 font-body mt-0.5">
+                      {t.city} <span className="w-1 h-1 rounded-full bg-neutral-dark/20" /> <span className="text-success font-semibold flex items-center gap-0.5"><Check className="w-3 h-3" /> Verified</span>
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-heading font-bold text-xs text-primary block">{t.name}</span>
-                  <span className="text-[10px] text-neutral-dark/40 block font-body">{t.city} • <span className="text-success font-semibold">✓ Verified</span></span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="md:hidden testimonial-carousel">
-          {[
-            { id: 't1', name: 'Srinivas Rao', city: 'Hyderabad', rating: 5, comment: 'Buying the Nirvana mattress was the best decision for my chronic lower back issues.', product: 'Nirvana 8"' },
-            { id: 't2', name: 'Anvitha Reddy', city: 'Bangalore', rating: 5, comment: 'We got the Amrita mattress 6 months ago. Incredible comfort.', product: 'Amrita 10" Hybrid' },
-            { id: 't3', name: 'Rajendra Prasad', city: 'Rajahmundry', rating: 5, comment: 'Sthira is perfect for those who want a firm but very comfortable orthopedic feel.', product: 'Sthira 6"' },
-            { id: 't4', name: 'Deepak Sharma', city: 'Hyderabad', rating: 5, comment: 'I am amazed by the Custom Mattress builder! Delivered within 6 days.', product: 'Custom Build' },
-          ].map((t) => (
-            <div key={t.id} className="bg-white p-6 rounded-2xl border border-brand-200/40 shadow-sm flex flex-col justify-between">
-              <div>
-                <span className="text-3xl font-heading text-accent/20 leading-none block mb-2">“</span>
-                <div className="flex items-center gap-0.5 text-accent mb-3">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                  ))}
-                </div>
-                <p className="text-xs text-neutral-dark/70 leading-relaxed italic font-body">“{t.comment}”</p>
-              </div>
-              <div className="border-t border-brand-200/30 pt-3 mt-4 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-accent/10 border-2 border-accent/20 flex items-center justify-center text-accent font-heading font-bold text-sm shrink-0">
-                  {t.name.charAt(0)}
-                </div>
-                <div>
-                  <span className="font-heading font-bold text-xs text-primary block">{t.name}</span>
-                  <span className="text-[10px] text-neutral-dark/40 block font-body">{t.city} • <span className="text-success font-semibold">✓ Verified</span></span>
-                </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          {/* Fade edges */}
+          <div className="absolute inset-y-0 left-0 w-8 md:w-24 bg-gradient-to-r from-neutral-light to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-8 md:w-24 bg-gradient-to-l from-neutral-light to-transparent pointer-events-none" />
         </div>
       </section>
 
-      <section id="locations" className="bg-zinc-100 border-t border-zinc-200 py-12 md:py-16 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <span className="text-[10px] tracking-wider font-mono text-brand-600 uppercase font-bold">EXPERIENCE BEFORE BUYING</span>
-            <h2 className="text-2xl md:text-3xl font-display font-medium text-brand-950 mt-1">Our Showrooms and Kerala Factory Outlets</h2>
-            <p className="text-gray-500 text-xs mt-1">Walk in, test firmness profiles, lay down, and speak with Suresh's trained team directly at the locations below.</p>
-          </div>
+      <section id="locations" className="bg-white border-t border-brand-200/40 py-16 md:py-24 px-4 md:px-8 relative overflow-hidden">
+        {/* Wipe reveal background element */}
+        <motion.div 
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 1.5, ease: EASE_LUXURY }}
+          className="absolute top-0 right-0 w-3/4 h-full bg-secondary origin-right z-0"
+        />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <FadeUp className="max-w-2xl mb-12 md:mb-16">
+            <span className="text-[10px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 px-4 py-1.5 rounded-full inline-block mb-4">Experience Before Buying</span>
+            <h2 className="text-3xl md:text-5xl font-heading font-medium text-primary mt-1">Our Showrooms and Kerala Factory Outlets</h2>
+            <p className="text-neutral-dark/60 text-sm md:text-base mt-4 font-body leading-relaxed max-w-lg">Walk in, test firmness profiles, lay down, and speak with Suresh's trained team directly at the locations below.</p>
+          </FadeUp>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" stagger={0.15}>
             {[
               { city: 'Hyderabad', address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', phones: ['+918686624494', '+917207424494'], hours: 'Mon - Sun: 10:00 AM - 9:00 PM' },
               { city: 'Rajahmundry', address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103', phones: ['+918686624494'], hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM' },
               { city: 'Bangalore', address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038', phones: ['+917207424494'], hours: 'Mon - Sun: 10:30 AM - 8:30 PM' },
             ].map((loc, idx) => (
-              <div 
+              <motion.div 
                 key={idx} 
-                className={`bg-white rounded-2xl p-4 sm:p-6 border border-zinc-200/65 shadow-xs flex flex-col ${
-                  idx === 2 ? "col-span-2 lg:col-span-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none mx-auto" : ""
-                }`}
+                variants={staggerItem}
+                whileHover={{ y: -8, boxShadow: '0 20px 40px -15px rgba(201, 168, 124, 0.15)' }}
+                transition={{ duration: 0.4, ease: EASE_LUXURY }}
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-brand-200/50 shadow-sm flex flex-col relative group"
               >
-                <div className="mb-2 sm:mb-4">
-                  <span className="text-[9px] sm:text-xs font-display font-bold uppercase tracking-wider text-brand-800 bg-brand-100 px-2 py-0.5 rounded">{loc.city} Store</span>
-                </div>
-                <p className="text-[10px] sm:text-xs text-stone-700 leading-relaxed font-sans mb-3 sm:mb-4 flex-grow">{loc.address}</p>
+                {/* Gold keyline top border on hover */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-accent scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 rounded-t-3xl" />
                 
-                <div className="text-[9px] sm:text-xs space-y-1 sm:space-y-1.5 pt-2 border-t border-zinc-100">
-                  <div className="text-zinc-500"><strong className="text-zinc-900 font-medium">Outlets hours:</strong> {loc.hours}</div>
-                  <div className="text-zinc-900 font-mono"><strong className="text-zinc-500 font-sans font-medium">Contact:</strong> {loc.phones.join(', ')}</div>
+                <div className="mb-4">
+                  <span className="text-[10px] font-accent font-bold uppercase tracking-widest text-primary bg-brand-100/50 px-3 py-1 rounded-md border border-brand-200">{loc.city} Store</span>
+                </div>
+                <p className="text-xs sm:text-sm text-neutral-dark/80 leading-relaxed font-body mb-6 flex-grow">{loc.address}</p>
+                
+                <div className="text-[10px] sm:text-xs space-y-2 pt-4 border-t border-brand-200/30 font-body">
+                  <div className="text-neutral-dark/60"><strong className="text-primary font-bold">Outlets hours:</strong> {loc.hours}</div>
+                  <div className="text-primary"><strong className="text-neutral-dark/60 font-medium">Contact:</strong> {loc.phones.join(', ')}</div>
                 </div>
                 
-                <div className="mt-4 pt-4 border-t border-zinc-100/50">
-                  <a
+                <div className="mt-6 pt-5 border-t border-brand-200/30">
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello, I would like to visit the RelaxPro ${loc.city} Experience Showroom. Can you please guide me on directions?`)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 bg-primary hover:bg-neutral-dark text-white text-[9px] sm:text-xs font-accent font-bold uppercase tracking-wider rounded-xl shadow-sm hover:shadow-md cursor-pointer text-center transition-all duration-200"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-primary hover:bg-[#0a1510] text-white text-[10px] sm:text-xs font-accent font-bold uppercase tracking-widest rounded-xl shadow-md transition-colors"
                   >
                     Book Visit + Map Route
-                  </a>
+                  </motion.a>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </section>
 

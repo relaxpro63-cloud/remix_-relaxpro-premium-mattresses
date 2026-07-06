@@ -1,54 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 /* ============================================
 RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
-Cool Premium Palette
+Quiet Luxury Palette
 ============================================ */
 @theme {
-/* Typography */
---font-heading: 'DM Serif Display', Georgia, serif;
+/* Typography — Playfair Display for editorial luxury */
+--font-heading: 'Playfair Display', Georgia, serif;
 --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
 --font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
 --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-/* Keep backward compatibility aliases */
+/* Backward compatibility aliases */
 --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
---font-display: 'DM Serif Display', Georgia, serif;
+--font-display: 'Playfair Display', Georgia, serif;
 
-/* Brand Color Palette — Organic Luxury */
---color-primary: #1A3629;         /* Forest Night – headings, body, dark bg */
---color-secondary: #FAFAF5;       /* Soft Off-White – light surfaces */
---color-accent: #C9A87C;          /* Restrained Champagne – CTAs, highlights */
+/* Brand Color Palette — Near-Black Forest + Champagne Gold */
+--color-primary: #0F1F17;         /* Near-black forest — deepest tone for headings, dark bg */
+--color-secondary: #FAF8F3;       /* Ivory — warm light surfaces */
+--color-accent: #C9A87C;          /* Champagne Gold — CTAs, highlights */
 --color-accent-dark: #B89568;     /* Champagne hover */
---color-accent-light: #E0CFAF;     /* Light Champagne */
+--color-accent-light: #E0CFAF;    /* Light Champagne */
 
---color-neutral-dark: #4A5A57;    /* Cool Sage – secondary text */
---color-neutral-light: #FAFAF5;   /* Soft Off-White – main background */
+--color-neutral-dark: #4A5A57;    /* Cool Sage — secondary text */
+--color-neutral-light: #FAF8F3;   /* Ivory — main background */
 --color-success: #5A8F7B;         /* Restrained green */
 
 /* Backward-compatible brand tokens */
---color-brand-50: #FAFAF5;
---color-brand-100: #FAFAF5;
---color-brand-200: #EBECEA;
+--color-brand-50: #FAF8F3;
+--color-brand-100: #F5F0E8;
+--color-brand-200: #E8E2D8;
 --color-brand-500: #C9A87C;
 --color-brand-600: #B89568;
---color-brand-800: #1A3629;
---color-brand-950: #141C1A;
+--color-brand-700: #0F1F17;
+--color-brand-800: #0F1F17;
+--color-brand-950: #0A1510;
 
 --color-luxury-gold: #C9A87C;
---color-deep-charcoal: #1A3629;
+--color-deep-charcoal: #0F1F17;
 
 /* Card Tokens */
 --radius-card: 16px;
---shadow-card: 0 4px 12px rgba(26, 54, 41, 0.05);
+--shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
 
 /* Spacing Scale Override for Tighter Flow */
---spacing-12: 2.5rem; /* 40px instead of 48px */
---spacing-16: 3.5rem; /* 56px instead of 64px */
---spacing-20: 4.25rem; /* 68px instead of 80px */
---spacing-24: 5rem; /* 80px instead of 96px */
---spacing-32: 6.5rem; /* 104px instead of 128px */
+--spacing-12: 2.5rem;
+--spacing-16: 3.5rem;
+--spacing-20: 4.25rem;
+--spacing-24: 5rem;
+--spacing-32: 6.5rem;
 
 /* Warm Oat — replaces pure #FFFFFF on dark backgrounds */
 --color-warm-white: #F5F2EB;
@@ -61,6 +62,11 @@ Cool Premium Palette
 
 /* Motion easing — luxury standard */
 --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+/* Motion tokens */
+--ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+--duration-reveal: 0.8s;
+--stagger-step: 0.08s;
 
 /* Luxury font tracking */
 --tracking-editorial: 0.18em;
@@ -117,19 +123,43 @@ max-width: 65ch;
    CSS Custom Properties for Non-Tailwind Usage
    ============================================ */
 :root {
-  --color-primary: #1A3629;
-  --color-secondary: #FAFAF5;
+  --color-primary: #0F1F17;
+  --color-secondary: #FAF8F3;
   --color-accent: #C9A87C;
   --color-accent-dark: #B89568;
   --color-neutral-dark: #4A5A57;
-  --color-neutral-light: #FAFAF5;
+  --color-neutral-light: #FAF8F3;
   --color-success: #5A8F7B;
-  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-accent: 'Plus Jakarta Sans', sans-serif;
   --radius-card: 16px;
-  --shadow-card: 0 4px 12px rgba(26, 54, 41, 0.05);
+  --shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Lenis smooth scroll body */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Reduced motion — kill all transitions and animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ============================================
@@ -517,7 +547,6 @@ max-width: 65ch;
   bottom: 0;
   width: 85%;
   max-width: 380px;
-  background: #fff;
   z-index: 100;
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -719,5 +748,20 @@ max-width: 65ch;
 /* Reduce default fluid section paddings */
 .section-padding {
   padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 80px);
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+.card-hover {
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 25px 50px -12px rgba(26, 54, 41, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.3); /* Subtle primary shadow & accent border */
+  }
 }
 

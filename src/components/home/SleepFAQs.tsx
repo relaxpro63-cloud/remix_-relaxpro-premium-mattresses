@@ -21,42 +21,42 @@ export default function SleepFAQs() {
       id: 'faq-1',
       category: 'durability',
       question: 'How durable is natural organic latex compared to memory foam or spring mattresses?',
-      answer: '100% natural organic latex is exceptionally durable, regularly lasting 15 to 20 years. In contrast, memory foam sags in 5 to 7 years and springs weaken over time. GOLS-certified latex maintains its shape and elasticity for decades.',
+      answer: 'Natural latex lasts 15-20 years without sagging, unlike synthetic memory foam (5-7 years) or spring mattresses that quickly weaken.',
       icon: <Shield className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-2',
       category: 'care',
       question: 'How do I clean and care for my RelaxPro 100% natural latex mattress?',
-      answer: '(1) Use a breathable mattress protector. (2) If spot-cleaning, use a damp cloth and mild soap; let it dry in shade. (3) Never expose the latex core to direct UV sunlight. (4) Rotate the mattress 180° once every 6 months to ensure even wear (no flipping required).',
+      answer: 'Use a breathable protector. Spot-clean with mild soap, avoid direct sunlight, and rotate 180° every 6 months.',
       icon: <RefreshCw className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-3',
       category: 'customization',
       question: 'Can I request custom sizes, custom thickness profiles, or side-by-side customization?',
-      answer: 'Yes! We craft custom sizes (length x width) and thickness profiles (4″ to 10″) factory-direct. We also offer Split Dual-Comfort customization: one half can be orthopedic medium-firm for back support, and the other half soft-plush.',
+      answer: 'Yes! We craft custom sizes, specific thicknesses (4″-10″), and offer Split Dual-Comfort (e.g., firm on one side, soft on the other).',
       icon: <PenTool className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-4',
       category: 'durability',
       question: 'Does natural latex trap body heat or run hot in summer?',
-      answer: 'No, natural latex is highly breathable due to its open-cell Dunlop structure and vertical pincore ventilation holes. This open network circulates air and disperses body heat, keeping you cool and sweat-free year-round.',
+      answer: 'No. Natural latex has an open-cell structure with pincore holes that circulate air naturally, keeping you cool and sweat-free year-round.',
       icon: <Sparkles className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-5',
       category: 'care',
       question: 'What kind of bed base or frame is ideal for a natural latex mattress?',
-      answer: 'A flat wooden board or slatted frame (slats max 2.5–3" apart) is ideal to support the flexible latex core. Ensure bottom ventilation and avoid saggy spring bases or iron frames that compromise spinal alignment.',
+      answer: 'A flat wooden board or closely slatted frame is ideal. Avoid saggy spring bases or curved frames that compromise alignment.',
       icon: <CheckCircle className="w-5 h-5 text-accent shrink-0" />
     },
     {
       id: 'faq-6',
       category: 'customization',
       question: 'What is the structural difference between GOLS-certified rubber and GOTS-certified textiles?',
-      answer: 'GOLS certifies that the core contains at least 95% pure organic rubber without chemical fillers or synthetic polymers. GOTS certifies the outer cover, confirming it uses pesticide-free, biological organic cotton textiles.',
+      answer: 'GOLS certifies the core is pure organic rubber without synthetic fillers. GOTS certifies the outer cover uses biological organic cotton.',
       icon: <Info className="w-5 h-5 text-accent shrink-0" />
     }
   ], []);

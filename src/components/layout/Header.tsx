@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, MessageSquare, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import RelaxProLogo from '../ui/RelaxProLogo';
@@ -10,10 +10,21 @@ interface HeaderProps {
 export default function Header({ cartCount }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const location = useLocation();
+  const lastScrollY = useRef(0);
 
   const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 40);
+    const currentY = window.scrollY;
+    setScrolled(currentY > 40);
+
+    // Hide on scroll down, reveal on scroll up (only after 200px)
+    if (currentY > 200) {
+      setHidden(currentY > lastScrollY.current && currentY - lastScrollY.current > 5);
+    } else {
+      setHidden(false);
+    }
+    lastScrollY.current = currentY;
   }, []);
 
   useEffect(() => {
@@ -54,10 +65,12 @@ export default function Header({ cartCount }: HeaderProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-40 w-full transition-all duration-500 ${
+          hidden && !mobileMenuOpen ? '-translate-y-full' : 'translate-y-0'
+        } ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-xl border-b border-brand-200 shadow-sm'
-            : 'bg-brand-50/85 backdrop-blur-md border-b border-brand-200/50'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-brand-200/60 shadow-sm'
+            : 'bg-brand-50/80 backdrop-blur-md border-b border-brand-200/30'
         }`}
       >
         {/* Top Banner */}
@@ -122,14 +135,15 @@ export default function Header({ cartCount }: HeaderProps) {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`relative text-xs font-bold uppercase tracking-widest font-accent py-1 transition-colors cursor-pointer ${
+                  className={`relative text-xs font-bold uppercase tracking-widest font-accent py-1 transition-colors cursor-pointer group ${
                     isActive(item.path) ? 'text-primary' : 'text-neutral-dark/75 hover:text-primary'
                   }`}
                 >
                   {item.label}
-                  {isActive(item.path) && (
-                    <span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-accent rounded-full" />
-                  )}
+                  {/* Center-out underline on hover */}
+                  <span className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 h-[2px] bg-accent rounded-full transition-all duration-300 ${
+                    isActive(item.path) ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
                 </Link>
               );
             })}

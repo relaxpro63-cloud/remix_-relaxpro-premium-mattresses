@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, PenTool, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Sparkles, PenTool, ShoppingBag, ArrowRight, Check } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
 
 interface TwoWaysToOwnProps {
@@ -56,19 +56,19 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                   </p>
                   <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
                     <li className="flex items-start gap-1.5">
-                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
                       <span><strong>Pick Cover Fabric:</strong> Select casing textile</span>
                     </li>
                     <li className="flex items-start gap-1.5">
-                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
                       <span><strong>Comfort Layers:</strong> Configure latex zones</span>
                     </li>
                     <li className="flex items-start gap-1.5">
-                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
                       <span><strong>Dial in Thickness:</strong> 4″ to 10″ profiles</span>
                     </li>
                     <li className="flex items-start gap-1.5">
-                      <span className="text-accent mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
                       <span><strong>Custom Built:</strong> Shipped in 5–7 days</span>
                     </li>
                   </ul>
@@ -112,19 +112,19 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                   </p>
                   <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
                     <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
                       <span><strong>13 Organic Models:</strong> Orthopedic alignment</span>
                     </li>
                     <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
                       <span><strong>3 Curated Tiers:</strong> Luxury, Premium & Comfort</span>
                     </li>
                     <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
                       <span><strong>Instant Fit:</strong> Choose standard dimensions</span>
                     </li>
                     <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-700 mt-0.5 font-bold shrink-0">✓</span>
+                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
                       <span><strong>Express Delivery:</strong> Sent direct in 5–7 days</span>
                     </li>
                   </ul>

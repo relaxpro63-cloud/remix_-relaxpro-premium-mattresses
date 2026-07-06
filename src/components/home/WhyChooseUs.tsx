@@ -1,41 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { motion } from 'motion/react';
 import { Shield, Truck, Award, Leaf } from 'lucide-react';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-
-function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
-  const [count, setCount] = useState(0);
-  const [ref, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.3 });
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    if (isVisible && !hasAnimated.current) {
-      hasAnimated.current = true;
-      const duration = 1500;
-      const startTime = performance.now();
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setCount(Math.floor(eased * target));
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setCount(target);
-        }
-      };
-
-      requestAnimationFrame(animate);
-    }
-  }, [isVisible, target]);
-
-  return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold font-heading text-white">
-      {prefix}{count.toLocaleString('en-IN')}{suffix}
-    </div>
-  );
-}
+import { AnimatedCounter, FadeUp, StaggerChildren, staggerItem, EASE_LUXURY } from '../motion/motionPrimitives';
 
 const features = [
   {
@@ -67,23 +33,18 @@ const features = [
 const stats = [
   { value: 10000, suffix: '+', label: 'Happy Customers' },
   { value: 500, suffix: '+', label: 'Products Sold' },
-  { value: 49, suffix: '', prefix: '', label: '4.9★ Avg Rating' },
+  { value: 0, suffix: '', prefix: '', label: '4.9★ Avg Rating', isStatic: true },
   { value: 15, suffix: '+', label: 'Years Experience' },
 ];
 
 export default function WhyChooseUs() {
-  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 });
-
   return (
     <>
       {/* Why Choose Us Section */}
-      <section
-        ref={sectionRef}
-        className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light"
-      >
+      <section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className={`text-center max-w-2xl mx-auto mb-8 md:mb-16 fade-up ${isSectionVisible ? 'animate-in' : ''}`}>
+          <FadeUp className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
             <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">
               Why Choose RelaxPro
             </span>
@@ -93,17 +54,16 @@ export default function WhyChooseUs() {
             <p className="text-neutral-dark/50 text-sm mt-3 font-body leading-relaxed">
               Every mattress we craft combines generations of expertise with the finest natural materials.
             </p>
-          </div>
+          </FadeUp>
 
-          {/* Feature Cards Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          {/* Feature Cards Grid — stagger reveal */}
+          <StaggerChildren className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" stagger={0.1}>
             {features.map((feature, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className={`bg-white p-4 sm:p-5 md:p-7 rounded-xl sm:rounded-2xl border border-brand-200/60 shadow-sm feature-card-glow scale-in flex flex-col ${
-                  isSectionVisible ? 'animate-in' : ''
-                }`}
-                style={{ transitionDelay: `${0.1 * idx}s` }}
+                variants={staggerItem}
+                whileHover={{ y: -6, transition: { duration: 0.3, ease: EASE_LUXURY } }}
+                className="bg-white p-4 sm:p-5 md:p-7 rounded-xl sm:rounded-2xl border border-brand-200/60 shadow-sm flex flex-col cursor-default"
               >
                 <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${feature.color} border flex items-center justify-center mb-3 sm:mb-5 shrink-0`}>
                   {feature.icon}
@@ -114,37 +74,43 @@ export default function WhyChooseUs() {
                 <p className="text-neutral-dark/50 text-[10px] sm:text-xs md:text-sm font-body leading-relaxed">
                   {feature.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </section>
 
-      {/* Stats Counter Bar */}
+      {/* Stats Counter Bar — spring count-up with gold underline */}
       <section className="bg-primary py-12 md:py-16 px-4 md:px-8 border-y border-white/10">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+        <StaggerChildren className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4" stagger={0.15}>
           {stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
+              variants={staggerItem}
               className={`text-center ${
                 idx < stats.length - 1 ? 'md:border-r md:border-white/10' : ''
               }`}
             >
-              {stat.label === '4.9★ Avg Rating' ? (
+              {stat.isStatic ? (
                 <div className="text-3xl md:text-4xl font-bold font-heading text-white">
                   4.9<span className="text-accent">★</span>
                 </div>
               ) : (
-                <div className="text-3xl md:text-4xl font-bold font-heading text-white">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                </div>
+                <AnimatedCounter
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  prefix={stat.prefix}
+                  className="text-3xl md:text-4xl font-bold font-heading text-white"
+                />
               )}
+              {/* Gold underline draw */}
+              <div className="w-8 h-[2px] bg-accent/40 mx-auto mt-2 rounded-full" />
               <p className="text-white/40 text-xs font-accent uppercase tracking-wider mt-2 font-semibold">
                 {stat.label}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </StaggerChildren>
       </section>
     </>
   );

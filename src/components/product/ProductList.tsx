@@ -5,6 +5,7 @@ import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, MessageSquar
 import { Product, MattressSize, Tier } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import ShineBorder from '../ui/ShineBorder';
+import SegmentedControl from '../ui/SegmentedControl';
 
 interface ProductListProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -180,71 +181,67 @@ export default function ProductList({
       </div>
 
       {/* FILTER CONTROLLER DASHBOARD */}
-      <div className="bg-white p-6 md:p-8 rounded-3xl border border-brand-200/40 shadow-sm mb-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-center fade-up" style={{ transitionDelay: '0.1s' }}>
-        {/* Search */}
-        <div className="md:col-span-3 relative group">
-          <Search className="w-4 h-4 text-neutral-dark/40 absolute left-4 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-accent" />
-          <input
-            type="text"
-            placeholder="Search mattresses..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 rounded-xl border border-brand-200/50 focus:border-accent focus:ring-4 focus:ring-accent/10 text-sm font-body placeholder-neutral-dark/40 bg-neutral-light/30 transition-all outline-none"
-          />
-        </div>
-
-        {/* Filters */}
-        <div className="md:col-span-9 flex flex-wrap gap-4 items-center justify-start md:justify-end">
-          {/* Collection tabs */}
-          <div className="flex bg-neutral-light/50 p-1.5 rounded-xl border border-brand-200/40 text-xs font-semibold">
-            {(['all', 'luxury', 'premium', 'comfort'] as const).map((t) => (
-              <button
-                key={t}
-                onClick={() => setSelectedTier(t)}
-                className={`px-4 py-2 rounded-lg font-accent capitalize transition-all cursor-pointer ${
-                  selectedTier === t
-                    ? 'bg-primary text-white shadow-md'
-                    : 'text-neutral-dark/60 hover:text-primary hover:bg-white/60'
-                }`}
-              >
-                {t === 'all' ? 'All Tiers' : t}
-              </button>
-            ))}
+      <div className="bg-white/60 backdrop-blur-md p-4 md:p-6 rounded-3xl border border-brand-200/40 shadow-sm mb-12 flex flex-col xl:flex-row gap-5 items-center justify-between fade-up" style={{ transitionDelay: '0.1s' }}>
+        
+        {/* Search & Tier */}
+        <div className="w-full xl:w-auto flex flex-col md:flex-row gap-4 items-center">
+          <div className="w-full md:w-72 relative group shrink-0">
+            <Search className="w-4 h-4 text-neutral-dark/40 absolute left-4 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-primary" />
+            <input
+              type="text"
+              placeholder="Search by name, feel, layer..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-brand-200/40 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 text-sm font-body placeholder-neutral-dark/40 bg-white transition-all outline-none"
+            />
           </div>
 
-          {/* Comfort levels dropdown */}
+          <div className="w-full md:w-auto overflow-x-auto hide-scrollbar">
+            <SegmentedControl
+              options={[
+                { value: 'all', label: 'All Tiers' },
+                { value: 'luxury', label: 'Luxury' },
+                { value: 'premium', label: 'Premium' },
+                { value: 'comfort', label: 'Comfort' }
+              ]}
+              value={selectedTier}
+              onChange={(t) => setSelectedTier(t as any)}
+            />
+          </div>
+        </div>
+
+        {/* Selects & Toggles */}
+        <div className="w-full xl:w-auto flex flex-wrap gap-3 items-center justify-start xl:justify-end">
           <select
             value={selectedComfort}
             onChange={(e) => setSelectedComfort(e.target.value as any)}
-            className="bg-white border border-brand-200/50 text-xs font-medium font-accent px-4 py-2.5 rounded-xl text-primary focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[180px]"
+            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
           >
-            <option value="all">Any Comfort/Firmness</option>
-            <option value="soft">Soft & Plush Feel</option>
+            <option value="all">Any Comfort</option>
+            <option value="soft">Soft & Plush</option>
             <option value="medium">Medium Support</option>
-            <option value="firm">Firm Orthopedic Feel</option>
+            <option value="firm">Firm Orthopedic</option>
           </select>
 
-          {/* Sort selection */}
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-white border border-brand-200/50 text-xs font-medium font-accent px-4 py-2.5 rounded-xl text-primary focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[200px]"
+            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
           >
-            <option value="popular">Sorted by Recommendation</option>
-            <option value="priceAsc">Price: Low to High</option>
-            <option value="priceDesc">Price: High to Low</option>
-            <option value="thickness">Thickness Profile: Deepest First</option>
+            <option value="popular">Recommended</option>
+            <option value="priceAsc">Price: Low - High</option>
+            <option value="priceDesc">Price: High - Low</option>
+            <option value="thickness">Deepest Profile</option>
           </select>
 
-          {/* Checkbox: natural latex */}
-          <label className="flex items-center gap-2.5 text-xs font-accent font-medium text-primary bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl hover:bg-accent/10 cursor-pointer select-none transition-colors">
+          <label className="flex items-center gap-2 text-[11px] uppercase tracking-wider font-accent font-bold text-accent bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl hover:bg-accent/10 cursor-pointer select-none transition-colors">
             <input
               type="checkbox"
               checked={onlyLatex}
               onChange={(e) => setOnlyLatex(e.target.checked)}
-              className="rounded-md text-accent focus:ring-accent/20 w-4 h-4 border-brand-200/50 cursor-pointer"
+              className="rounded text-accent focus:ring-accent/20 w-3.5 h-3.5 border-brand-200/50 cursor-pointer bg-white"
             />
-            <span>Pure Kerala Latex Only</span>
+            <span>Pure Latex Only</span>
           </label>
         </div>
       </div>
@@ -365,53 +362,24 @@ export default function ProductList({
                     {/* Quick Mattress Size Configurator inside each block */}
                     <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40">
                       <div className="flex flex-row justify-between items-center mb-1.5 sm:mb-4 gap-1 sm:gap-0">
-                        <span className="text-[6px] sm:text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-sm sm:rounded-md">
+                        <span className="text-[6px] sm:text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-sm sm:rounded-md hidden sm:inline-block">
                           Select Size
                         </span>
                         
-{/* Size button triggers — desktop full-word segmented control */}
-<div className="hidden sm:flex bg-neutral-light/50 p-1 rounded-lg border border-brand-200/40">
-  {(['king', 'queen', 'double', 'single'] as MattressSize[]).map((sz) => (
-    <button
-      key={sz}
-      type="button"
-      onClick={(e) => {
-        e.stopPropagation();
-        setProductSize(p.slug, sz);
-      }}
-      className={`flex-1 px-3 py-2 rounded-md text-[11px] font-accent font-bold uppercase tracking-wider transition-all cursor-pointer ${
-        activeSize === sz
-          ? 'bg-primary text-warm-white shadow-sm'
-          : 'text-neutral-dark/60 hover:text-primary hover:bg-white'
-      }`}
-    >
-      {sz === 'king' ? 'King' : sz === 'queen' ? 'Queen' : sz === 'double' ? 'Double' : 'Single'}
-    </button>
-  ))}
-</div>
-
-{/* Mobile size selector */}
-<div className="sm:hidden">
-  <select
-    value={activeSize}
-    onChange={(e) => {
-      e.stopPropagation();
-      setProductSize(p.slug, e.target.value as MattressSize);
-    }}
-    className="w-full bg-white border border-brand-200/60 text-xs font-accent font-bold text-primary px-3 py-2.5 rounded-lg cursor-pointer outline-none appearance-none"
-    style={{
-      backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A3629' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'right 10px center',
-      paddingRight: '32px',
-    }}
-  >
-    <option value="king">King Size (72"×78")</option>
-    <option value="queen">Queen Size (60"×78")</option>
-    <option value="double">Double Size (48"×75")</option>
-    <option value="single">Single Size (36"×75")</option>
-  </select>
-</div>
+                        <div className="w-full sm:w-auto">
+                          <SegmentedControl
+                            options={[
+                              { value: 'king', label: 'King' },
+                              { value: 'queen', label: 'Queen' },
+                              { value: 'double', label: 'Double' },
+                              { value: 'single', label: 'Single' }
+                            ]}
+                            value={activeSize}
+                            onChange={(sz) => setProductSize(p.slug, sz as MattressSize)}
+                            size="sm"
+                            fullWidth
+                          />
+                        </div>
                       </div>
 
                       {/* Price indicator */}

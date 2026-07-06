@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppFAB from './components/layout/WhatsAppFAB';
@@ -54,8 +55,11 @@ function AppContent() {
         <ErrorBoundary>
           <Suspense
             fallback={
-              <div className="min-h-[60vh] flex items-center justify-center">
-                <div className="animate-pulse text-brand-700 text-sm uppercase tracking-[0.3em]">Loading…</div>
+              <div className="min-h-[60vh] flex items-center justify-center bg-neutral-light">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-10 h-10 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+                  <span className="text-neutral-dark/40 text-[10px] font-accent uppercase tracking-[0.3em]">Loading</span>
+                </div>
               </div>
             }
           >
@@ -151,6 +155,7 @@ function AppContent() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
+
         </ErrorBoundary>
       </main>
       <Footer />
