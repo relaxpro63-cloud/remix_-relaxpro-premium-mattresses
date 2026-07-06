@@ -29,18 +29,18 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img
           initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.35 }}
+          animate={{ scale: 1, opacity: 0.75 }}
           transition={{ duration: 2.2, ease: easeCurve }}
           src="/images/hero-bedroom.png"
           alt="Serene organic bedroom featuring a handcrafted RelaxPro natural latex mattress"
           className="w-full h-full object-cover select-none pointer-events-none"
           loading="eager"
         />
-        {/* Soft designer gradient overlay */}
+        {/* Soft designer gradient overlay: rich dark green on the left for text readability, fading to light on the right to let the bedroom shine */}
         <div 
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, rgba(26, 36, 33, 0.95) 0%, rgba(26, 36, 33, 0.75) 50%, rgba(26, 36, 33, 0.98) 100%)'
+            background: 'linear-gradient(105deg, rgba(26, 36, 33, 0.92) 0%, rgba(26, 36, 33, 0.65) 50%, rgba(26, 36, 33, 0.15) 100%)'
           }}
         />
       </div>
