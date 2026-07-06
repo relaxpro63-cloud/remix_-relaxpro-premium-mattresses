@@ -4,7 +4,7 @@ export async function submitLead(data: LeadFormData): Promise<boolean> {
   try {
     const meta = import.meta as { env?: Record<string, string | undefined> };
     const envUrl = meta.env?.VITE_PUBLIC_GOOGLE_SCRIPT_URL || meta.env?.VITE_GOOGLE_SCRIPT_URL || meta.env?.PUBLIC_GOOGLE_SCRIPT_URL;
-    const scriptUrl = envUrl || 'https://script.google.com/macros/s/AKfycbzgXC8FNv61wwPtzetZqEa8n_pR6PmrWe0unhZ20wlVLwkMrp9VMGnEpDX_OSIxzWnH/exec';
+    const scriptUrl = envUrl || 'https://script.google.com/macros/s/AKfycbyXT4mWL-fsD2LWxEwTcT7_v9mDprfZYrloDW3bn9jWPd_L1nPj4hZ20RuZdbsd1DcV/exec';
 
     console.log("Attempting to submit lead data to Google Sheet:", data);
 
