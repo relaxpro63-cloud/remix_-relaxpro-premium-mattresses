@@ -5,7 +5,7 @@ import { PRODUCTS } from '../../data/products';
 import { CartItem, Product, MattressSize, OrderReceipt } from '../../types';
 import PageShell from '../../components/layout/PageShell';
 import HeroSlider from '../../components/home/HeroSlider';
-import Marquee from '../../components/ui/Marquee';
+import ProofBar from '../../components/home/ProofBar';
 import CertificationMarquee from '../../components/home/CertificationMarquee';
 import ShopByBrands from '../../components/home/ShopByBrands';
 import CostComparison from '../../components/home/CostComparison';
@@ -15,9 +15,7 @@ import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
 import WhyChooseUs from '../../components/home/WhyChooseUs';
 import SleepFAQs from '../../components/home/SleepFAQs';
-import ConsultationForm from '../../components/home/ConsultationForm';
 import ShowroomBookingForm from '../../components/home/ShowroomBookingForm';
-import ComparisonTable from '../../components/home/ComparisonTable';
 import {
   Check,
   Sparkles,
@@ -104,36 +102,12 @@ export default function HomePage({
         onNavigateToPdp={handleNavigateToPdp}
       />
 
-      {/* Quick Action CTA Buttons Just After Hero */}
-      <section className="bg-neutral-light py-5 md:py-7 border-b border-brand-200/40">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8">
-          <button
-            onClick={() => handlePageNavigation('builder')}
-            className="w-full sm:w-auto btn-primary bg-primary text-white hover:bg-neutral-dark/90 py-4 px-10 rounded-full text-xs font-bold font-accent uppercase tracking-widest cursor-pointer shadow-md transition-all flex items-center justify-center gap-2"
-          >
-            Find Your Own Bed
-          </button>
-          <button
-            onClick={() => {
-              const el = document.getElementById('bestsellers');
-              if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                handlePageNavigation('catalog');
-              }
-            }}
-            className="w-full sm:w-auto btn-primary bg-accent hover:bg-accent-dark text-primary py-4 px-10 rounded-full text-xs font-bold font-accent uppercase tracking-widest cursor-pointer shadow-md transition-all flex items-center justify-center gap-2"
-          >
-            Best Selling Models
-          </button>
-        </div>
-      </section>
+      <ProofBar />
 
       <TwoWaysToOwn
         onStartBuilding={() => handlePageNavigation('builder')}
         onSeeAllModels={() => handlePageNavigation('catalog')}
       />
-<Marquee />
 <CertificationMarquee />
 <ShopByBrands />
 
@@ -160,7 +134,7 @@ export default function HomePage({
                 <motion.div
                   key={item.slug}
                   variants={staggerItem}
-                  whileHover={{ scale: 1.025, rotateY: 4, rotateX: 2, y: -6 }}
+                  whileHover={{ scale: 1.025, y: -6 }}
                   transition={{ duration: 0.6, ease: EASE_LUXURY }}
                   className="rounded-2xl overflow-hidden flex flex-col justify-between group shadow-xl border cursor-pointer h-full relative"
                   style={{ backgroundColor: '#0F1F17', borderColor: 'rgba(201, 168, 124, 0.15)' }}
@@ -251,7 +225,7 @@ export default function HomePage({
                         e.stopPropagation();
                         handleNavigateToPdp(item.slug);
                       }}
-                      className="w-full py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl border font-accent font-bold text-[8px] md:text-[10px] lg:text-xs tracking-widest uppercase text-center cursor-pointer transition-all shadow-md flex items-center justify-center gap-1 md:gap-2"
+                      className="w-full py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl border font-accent font-bold text-[8px] md:text-[10px] lg:text-xs tracking-widest uppercase text-center cursor-pointer transition-[transform,background-color,box-shadow] duration-200 ease-out active:scale-[0.97] shadow-md flex items-center justify-center gap-1 md:gap-2"
                       style={{ backgroundColor: '#C9A87C', color: '#1A2421', borderColor: '#C9A87C' }}
                     >
                       <ShoppingCart className="w-3 h-3 md:w-4 md:h-4 opacity-80" /> <span className="hidden md:inline">Customize &amp; Purchase</span><span className="inline md:hidden">Buy</span>
@@ -266,7 +240,7 @@ export default function HomePage({
                       )}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl text-[8px] md:text-[10px] lg:text-xs font-accent tracking-widest font-bold uppercase text-center transition-all flex items-center justify-center gap-1 md:gap-2 border"
+                      className="w-full py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl text-[8px] md:text-[10px] lg:text-xs font-accent tracking-widest font-bold uppercase text-center transition-[transform,background-color,border-color] duration-200 ease-out active:scale-[0.97] flex items-center justify-center gap-1 md:gap-2 border"
                       style={{ color: '#F5F2EB', borderColor: 'rgba(245, 242, 235, 0.2)', backgroundColor: 'rgba(245, 242, 235, 0.04)' }}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -308,8 +282,6 @@ export default function HomePage({
 
       <CostComparison />
 
-      <ComparisonTable />
-
       <section className="max-w-[1400px] mx-auto px-4 md:px-8 py-16 md:py-24 overflow-hidden">
         <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">Trust & Honest Feedback</span>
@@ -325,7 +297,7 @@ export default function HomePage({
           <motion.div 
             className="flex gap-4 md:gap-8 cursor-grab active:cursor-grabbing pb-8 w-max"
             drag="x"
-            dragConstraints={{ right: 0, left: -((320 + 32) * 4 - window.innerWidth + 64) }}
+            dragConstraints={{ right: 0, left: -1000 }}
             dragElastic={0.1}
           >
             {[
@@ -350,7 +322,7 @@ export default function HomePage({
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-sm md:text-base text-neutral-dark/80 leading-relaxed italic font-body min-h-[100px]">"{t.comment}"</p>
+                   <p className="text-sm md:text-base text-neutral-dark/80 leading-relaxed italic font-body min-h-[100px] line-clamp-3">"{t.comment}"</p>
                 </div>
                 
                 <div className="border-t border-brand-200/40 pt-4 mt-6 flex items-center gap-4 relative z-10">
@@ -443,10 +415,6 @@ export default function HomePage({
 
       <section className="py-12 md:py-16 bg-linear-to-b from-zinc-150 to-brand-50/50 px-4">
         <ShowroomBookingForm />
-      </section>
-
-      <section className="py-12 md:py-16 bg-neutral-light border-t border-brand-200/40 px-4">
-        <ConsultationForm />
       </section>
     </PageShell>
   );

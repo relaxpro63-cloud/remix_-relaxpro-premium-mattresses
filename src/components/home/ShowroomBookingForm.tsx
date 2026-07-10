@@ -36,7 +36,7 @@ export default function ShowroomBookingForm() {
     setIsSubmitting(true);
     try {
       const detailedNotes = `Preferred Showroom: ${showroom}\nPreferred Date: ${visitDate}\nPreferred Time Slot: ${timeSlot}\nCustomer Notes: ${notes || 'None'}`;
-      
+
       await submitLead({
         orderId: "",
         name,
@@ -52,57 +52,59 @@ export default function ShowroomBookingForm() {
         notes: detailedNotes,
         source: "Showroom Booking Form"
       });
-
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setValidationError('An error occurred. Please try again or reach out on WhatsApp.');
+      setValidationError(
+        'We could not send your booking automatically. Use WhatsApp below or call +91 86866 24494.'
+      );
+      setSubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleLaunchWhatsApp = () => {
-    const text = `Hello Suresh, I would like to book a showroom visit. Name: ${name}. Phone: ${phone}. Showroom: ${showroom}. Date: ${visitDate} @ ${timeSlot}.`;
+    // No customer PII in pre-filled WhatsApp URL
+    const text = `Hello! I would like to book a showroom visit.\nShowroom: ${showroom}\nDate: ${visitDate} @ ${timeSlot}`;
     window.location.href = `https://wa.me/918686624494?text=${encodeURIComponent(text)}`;
   };
 
   return (
-    <div 
-      id="showroom-booking-section" 
-      className="rounded-[2rem] border border-accent/25 shadow-2xl p-6 md:p-12 max-w-3xl mx-auto relative overflow-hidden group py-16 md:py-20"
-      style={{ backgroundColor: '#1A2421', color: '#F5F2EB' }}
+    <div
+      id="showroom-booking-section"
+      className="rounded-[2rem] border border-accent/25 shadow-2xl p-6 md:p-12 max-w-3xl mx-auto relative overflow-hidden group py-16 md:py-20 bg-primary text-warm-white"
     >
       {/* Decorative luxury radial gradient background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-accent/10 via-transparent to-transparent opacity-70 pointer-events-none" />
-      
+
       <AnimatePresence mode="wait">
         {!submitted ? (
-          <motion.form 
+          <motion.form
             key="booking-form"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 1.2, ease: easeCurve }}
-            onSubmit={handleSubmit} 
+            onSubmit={handleSubmit}
             className="space-y-10 relative z-10"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-white/10 pb-8 gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-warm-white/10 pb-8 gap-4">
               <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border border-accent/25 bg-white/5 backdrop-blur-md shrink-0">
-                  <Calendar className="w-7 h-7" style={{ color: '#C9A87C' }} />
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border border-accent/25 bg-warm-white/5 backdrop-blur-md shrink-0">
+                  <Calendar className="w-7 h-7 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-serif font-normal text-3xl tracking-tight" style={{ color: '#F5F2EB' }}>
+                  <h3 className="font-heading font-normal text-3xl tracking-tight text-warm-white">
                     Book Your Showroom Visit
                   </h3>
-                  <p className="text-sm font-body mt-1.5" style={{ color: '#F5F2EB', opacity: 0.7 }}>
+                  <p className="text-sm font-body mt-1.5 text-warm-white/70">
                     Reserve a private styling consultation at our Kerala factory outlets.
                   </p>
                 </div>
               </div>
-              <span className="self-start md:self-center text-[10px] tracking-widest font-accent font-bold uppercase bg-accent/15 border border-accent/30 px-4 py-2 rounded-xl" style={{ color: '#C9A87C' }}>
-                ✨ GOLS Organic Sleep Trial
+              <span className="self-start md:self-center text-[10px] tracking-editorial font-accent font-bold uppercase bg-accent/15 border border-accent/30 px-4 py-2 rounded-xl text-accent">
+                GOLS Organic Sleep Trial
               </span>
             </div>
 
@@ -126,7 +128,7 @@ export default function ShowroomBookingForm() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Srinivas Rao"
-                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-white/5 transition-all font-body placeholder:text-white/20"
+                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-white/5 transition-[border-color,box-shadow,background-color] font-body placeholder:text-white/20"
                   style={{ color: '#F5F2EB' }}
                 />
               </div>
@@ -140,7 +142,7 @@ export default function ShowroomBookingForm() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="e.g. 8686624494"
-                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-white/5 transition-all font-body placeholder:text-white/20"
+                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-white/5 transition-[border-color,box-shadow,background-color] font-body placeholder:text-white/20"
                   style={{ color: '#F5F2EB' }}
                 />
               </div>
@@ -153,7 +155,7 @@ export default function ShowroomBookingForm() {
                   <select
                     value={showroom}
                     onChange={(e) => setShowroom(e.target.value)}
-                    className="w-full pl-11 pr-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent bg-[#1A2421] transition-all font-body appearance-none cursor-pointer"
+                    className="w-full pl-11 pr-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent bg-[#1A2421] transition-[border-color,box-shadow,background-color] font-body appearance-none cursor-pointer"
                     style={{ color: '#F5F2EB' }}
                   >
                     <option value="Hyderabad">Hyderabad Factory Showroom (Jeedimetla)</option>
@@ -172,7 +174,7 @@ export default function ShowroomBookingForm() {
                   value={visitDate}
                   min={new Date().toISOString().split('T')[0]}
                   onChange={(e) => setVisitDate(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent bg-[#1A2421] transition-all font-body cursor-pointer select-none"
+                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent bg-[#1A2421] transition-[border-color,box-shadow,background-color] font-body cursor-pointer select-none"
                   style={{ color: '#F5F2EB' }}
                 />
               </div>
@@ -191,7 +193,7 @@ export default function ShowroomBookingForm() {
                       key={slot}
                       type="button"
                       onClick={() => setTimeSlot(slot)}
-                      className={`py-3 px-2 rounded-xl border font-accent font-bold text-[10px] text-center uppercase tracking-wider cursor-pointer transition-all ${
+                      className={`py-3 px-2 rounded-xl border font-accent font-bold text-[10px] text-center uppercase tracking-wider cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${
                         timeSlot === slot
                           ? 'border-accent bg-accent text-[#1A2421] shadow-lg'
                           : 'border-white/10 bg-white/5 hover:border-accent/50 text-[#F5F2EB]/80'
@@ -211,7 +213,7 @@ export default function ShowroomBookingForm() {
                   onChange={(e) => setNotes(e.target.value)}
                   rows={3}
                   placeholder="e.g., Interested in checking the Nirvana 8-inch and testing custom firmness levels..."
-                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent bg-white/5 resize-none transition-all font-body placeholder:text-white/20"
+                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-accent bg-white/5 resize-none transition-[border-color,box-shadow,background-color] font-body placeholder:text-white/20"
                   style={{ color: '#F5F2EB' }}
                 />
               </div>
@@ -223,7 +225,7 @@ export default function ShowroomBookingForm() {
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               type="submit"
               disabled={isSubmitting}
-              className="w-full font-accent font-bold text-[13px] tracking-widest uppercase py-4.5 rounded-xl transition-all shadow-xl group cursor-pointer flex items-center justify-center gap-3 mt-6"
+              className="w-full font-accent font-bold text-[13px] tracking-widest uppercase py-4.5 rounded-xl transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-xl group cursor-pointer flex items-center justify-center gap-3 mt-6"
               style={{ backgroundColor: '#C9A87C', color: '#1A2421' }}
             >
               {isSubmitting ? (
@@ -264,7 +266,7 @@ export default function ShowroomBookingForm() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 onClick={handleLaunchWhatsApp}
-                className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1DA851] text-white font-accent font-bold text-xs tracking-wider uppercase py-3.5 px-8 rounded-xl cursor-pointer transition-all shadow-lg shadow-[#25D366]/20 w-full"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1DA851] text-white font-accent font-bold text-xs tracking-wider uppercase py-3.5 px-8 rounded-xl cursor-pointer transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-lg shadow-[#25D366]/20 w-full"
               >
                 <MessageSquare className="w-4 h-4" /> Message Suresh on WhatsApp
               </motion.button>

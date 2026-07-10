@@ -31,15 +31,15 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
         {/* 2-Column Responsive Grid */}
         <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-12 max-w-5xl mx-auto">
           
-          {/* Option 1: Build Your Own */}
-          <BlurFade delay={0.1}>
-            <motion.div 
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-500 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group"
-            >
+           {/* Option 1: Build Your Own */}
+           <BlurFade delay={0.1}>
+             <motion.div 
+               whileHover={{ y: -8 }}
+               transition={{ duration: 0.4, ease: 'easeOut' }}
+               className="bg-white rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-xl hover:shadow-accent/5 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group transition-[transform,box-shadow] duration-300 ease-out"
+             >
               {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-accent/5 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110 duration-700 ease-out z-0" />
+              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-accent/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-700 ease-out z-0" />
               
               <div className="relative z-10 space-y-3 md:space-y-6">
                 {/* Icon Circle */}
@@ -78,7 +78,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="mt-4 md:mt-10 pt-4 md:pt-8 border-t border-brand-200/40 relative z-10">
                 <button
                   onClick={onStartBuilding}
-                  className="w-full btn-primary bg-primary hover:bg-neutral-dark text-white font-accent font-bold text-[10px] sm:text-[11px] md:text-[13px] tracking-widest uppercase py-3 md:py-4.5 rounded-xl md:rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-1 md:gap-3 shadow-md"
+                  className="w-full inline-flex items-center justify-center gap-1 md:gap-3 min-h-11 rounded-xl md:rounded-2xl px-4 py-3 md:py-4.5 text-[10px] sm:text-[11px] md:text-[13px] font-bold uppercase tracking-widest transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out active:scale-[0.97] bg-primary hover:bg-neutral-dark text-white font-accent cursor-pointer shadow-md"
                 >
                   <span className="hidden sm:inline">Start building</span>
                   <span className="sm:hidden">Build</span>
@@ -88,15 +88,15 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
             </motion.div>
           </BlurFade>
 
-          {/* Option 2: Shop Pre-built */}
-          <BlurFade delay={0.15}>
-            <motion.div 
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-500 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group"
-            >
+           {/* Option 2: Shop Pre-built */}
+           <BlurFade delay={0.15}>
+             <motion.div 
+               whileHover={{ y: -8 }}
+               transition={{ duration: 0.4, ease: 'easeOut' }}
+               className="bg-white rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-xl hover:shadow-accent/5 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group transition-[transform,box-shadow] duration-300 ease-out"
+             >
               {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-brand-100/50 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110 duration-700 ease-out z-0" />
+              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-brand-100/50 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-700 ease-out z-0" />
 
               <div className="relative z-10 space-y-3 md:space-y-6">
                 <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-neutral-light text-primary flex items-center justify-center shrink-0 shadow-sm border border-brand-200/60 group-hover:scale-110 transition-transform duration-500">
@@ -134,7 +134,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="mt-4 md:mt-10 pt-4 md:pt-8 border-t border-brand-200/40 relative z-10">
                 <button
                   onClick={onSeeAllModels}
-                  className="w-full bg-neutral-light hover:bg-brand-100 text-primary font-accent font-bold text-[10px] sm:text-[11px] md:text-[13px] tracking-widest uppercase py-3 md:py-4.5 rounded-xl md:rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-1 md:gap-3 border border-brand-200/60 shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-1 md:gap-3 min-h-11 rounded-xl md:rounded-2xl px-4 py-3 md:py-4.5 text-[10px] sm:text-[11px] md:text-[13px] font-bold uppercase tracking-widest transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out active:scale-[0.97] bg-surface hover:bg-surface-warm text-primary font-accent cursor-pointer border border-border shadow-sm"
                 >
                   <span className="hidden sm:inline">See all models</span>
                   <span className="sm:hidden">All models</span>

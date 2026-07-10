@@ -129,7 +129,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
           onClick={() => onNavigateBack()}
           className="inline-flex items-center gap-2 text-neutral-dark/60 hover:text-primary text-xs font-accent font-semibold mb-8 lg:mb-12 group cursor-pointer transition-colors"
         >
-          <div className="w-8 h-8 rounded-full bg-neutral-light border border-brand-200/50 flex items-center justify-center group-hover:bg-white group-hover:border-brand-200 transition-all">
+          <div className="w-8 h-8 rounded-full bg-neutral-light border border-brand-200/50 flex items-center justify-center group-hover:bg-white group-hover:border-brand-200 transition-[transform,box-shadow,border-color,background-color,color,opacity]">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform text-primary" />
           </div>
           Back to Collections
@@ -216,7 +216,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                 {product.pricingModel === 'with_without_accessories' && (
                   <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-brand-200/40 space-y-3 sm:space-y-4">
                     <div className="flex flex-wrap justify-between items-center mb-2 gap-2"><h3 className="font-heading font-bold text-primary text-lg sm:text-xl">Accessory Bundle</h3><span className="text-[9px] sm:text-[10px] font-accent text-success bg-success/10 border border-success/20 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md font-bold uppercase tracking-wider">Save ₹3,700</span></div>
-                    <div onClick={() => setIncludeAccessories(true)} className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-all ${includeAccessories ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
+                    <div onClick={() => setIncludeAccessories(true)} className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${includeAccessories ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
                       <div className="flex items-start gap-2 sm:gap-4">
                         <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${includeAccessories ? 'border-accent bg-accent text-white' : 'border-brand-200/80 bg-white'}`}>{includeAccessories && <Check className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />}</div>
                         <div>
@@ -225,7 +225,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                         </div>
                       </div>
                     </div>
-                    <div onClick={() => setIncludeAccessories(false)} className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-all ${!includeAccessories ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
+                    <div onClick={() => setIncludeAccessories(false)} className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${!includeAccessories ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
                       <div className="flex items-start gap-2 sm:gap-4">
                         <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${!includeAccessories ? 'border-accent bg-accent text-white' : 'border-brand-200/80 bg-white'}`}>{!includeAccessories && <Check className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />}</div>
                         <div>
@@ -240,7 +240,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                 {product.pricingModel === 'fabric_options' && (
                   <div className="mt-8 pt-8 border-t border-brand-200/40 space-y-4">
                     <h3 className="font-heading font-bold text-primary text-xl mb-4">Outer Fabric Options</h3>
-                    <div onClick={() => setSelectedFabric('300GSM')} className={`p-5 rounded-2xl border cursor-pointer transition-all ${selectedFabric === '300GSM' ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
+                    <div onClick={() => setSelectedFabric('300GSM')} className={`p-5 rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${selectedFabric === '300GSM' ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
                       <div className="flex items-start gap-4">
                         <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${selectedFabric === '300GSM' ? 'border-accent bg-accent text-white' : 'border-brand-200/80 bg-white'}`}>{selectedFabric === '300GSM' && <Check className="w-3.5 h-3.5" />}</div>
                         <div>
@@ -249,7 +249,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                         </div>
                       </div>
                     </div>
-                    <div onClick={() => setSelectedFabric('450GSM')} className={`p-5 rounded-2xl border cursor-pointer transition-all ${selectedFabric === '450GSM' ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
+                    <div onClick={() => setSelectedFabric('450GSM')} className={`p-5 rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${selectedFabric === '450GSM' ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'}`}>
                       <div className="flex items-start gap-4">
                         <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${selectedFabric === '450GSM' ? 'border-accent bg-accent text-white' : 'border-brand-200/80 bg-white'}`}>{selectedFabric === '450GSM' && <Check className="w-3.5 h-3.5" />}</div>
                         <div>

@@ -51,15 +51,15 @@ export default function AboutPage() {
             <div
               key={section.label}
               className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start ${
-                isDark 
-                  ? 'bg-primary text-white rounded-[2rem] p-6 sm:p-10 md:p-16 shadow-lg shadow-brand-900/10' 
+                isDark
+                  ? 'bg-primary text-warm-white rounded-[2rem] p-6 sm:p-10 md:p-16 shadow-lg shadow-brand-900/10'
                   : ''
               } ${idx > 0 ? 'mt-20 md:mt-32' : ''}`}
             >
               <div
                 className={`space-y-6 ${
-                  isDark 
-                    ? 'lg:col-span-12 w-full max-w-4xl mx-auto' 
+                  isDark
+                    ? 'lg:col-span-12 w-full max-w-4xl mx-auto'
                     : `lg:col-span-7 ${hasImage && !section.imageFirst ? 'lg:order-2' : ''}`
                 }`}
               >
@@ -68,20 +68,20 @@ export default function AboutPage() {
                 }`}>
                   {section.label}
                 </span>
-                <h2 className={`rp-display ${isDark ? 'text-white' : 'text-primary'}`}>{section.heading}</h2>
+                <h2 className={`rp-display ${isDark ? 'text-warm-white' : 'text-primary'}`}>{section.heading}</h2>
                 {section.paragraphs.map((p, pIdx) => (
                   <p
                     key={pIdx}
-                    className={`rp-body leading-loose ${pIdx === 0 ? 'drop-cap' : ''} ${isDark ? 'text-zinc-100/90' : 'text-neutral-dark/70'}`}
+                    className={`rp-body leading-loose ${pIdx === 0 ? 'drop-cap' : ''} ${isDark ? 'text-warm-white/80' : 'text-neutral-dark/70'}`}
                   >
                     {p}
                   </p>
                 ))}
                 {isDark && (
-                  <div className="pt-6 flex flex-wrap gap-3 text-sm font-bold text-white/90">
-                    <span className="rounded-full border border-white/20 px-4 py-2">Hyderabad</span>
-                    <span className="rounded-full border border-white/20 px-4 py-2">Rajahmundry</span>
-                    <span className="rounded-full border border-white/20 px-4 py-2">Bangalore</span>
+                  <div className="pt-6 flex flex-wrap gap-3 text-sm font-bold text-warm-white/90">
+                    <span className="rounded-full border border-warm-white/20 px-4 py-2">Hyderabad</span>
+                    <span className="rounded-full border border-warm-white/20 px-4 py-2">Rajahmundry</span>
+                    <span className="rounded-full border border-warm-white/20 px-4 py-2">Bangalore</span>
                   </div>
                 )}
                 {!isDark && (

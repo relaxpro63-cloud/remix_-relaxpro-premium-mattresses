@@ -40,7 +40,7 @@ export default function QuickConnectBar({
           <button
             key={item.id}
             onClick={item.onClick}
-            className="group flex-1 flex flex-col items-center justify-center py-4 md:py-6 px-1 md:px-2 hover:bg-slate-100/80 transition-all duration-200 cursor-pointer"
+            className="group flex-1 flex flex-col items-center justify-center py-4 md:py-6 px-1 md:px-2 hover:bg-slate-100/80 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out cursor-pointer"
           >
             {item.icon}
             <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-primary font-heading tracking-wide group-hover:text-primary-dark transition-colors text-center leading-tight">

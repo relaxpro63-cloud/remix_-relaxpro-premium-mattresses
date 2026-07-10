@@ -55,20 +55,6 @@ export default function ProductList({
     return { label: 'Firm', color: 'bg-orange-500/15 text-orange-600 border-orange-200' };
   };
 
-  // Price range helper
-  const getPriceRange = (product: Product): { min: number; max: number } => {
-    const sizes: MattressSize[] = ['single', 'double', 'queen', 'king'];
-    let prices: number[] = [];
-    if (product.pricingModel === 'with_without_accessories') {
-      const wo = product.pricing.withoutAccessories || {};
-      prices = sizes.map(s => wo[s] || 0);
-    } else {
-      const f3 = product.pricing.fabric300Gsm || {};
-      prices = sizes.map(s => f3[s] || 0);
-    }
-    return { min: Math.min(...prices), max: Math.max(...prices) };
-  };
-
   // Track which products were just added to cart (for visual feedback)
   const [justAdded, setJustAdded] = useState<Set<string>>(new Set());
 
@@ -192,7 +178,7 @@ export default function ProductList({
               placeholder="Search by name, feel, layer..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-brand-200/40 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 text-sm font-body placeholder-neutral-dark/40 bg-white transition-all outline-none"
+              className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-brand-200/40 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 text-sm font-body placeholder-neutral-dark/40 bg-white transition-[border-color,box-shadow,background-color] outline-none"
             />
           </div>
 
@@ -215,7 +201,7 @@ export default function ProductList({
           <select
             value={selectedComfort}
             onChange={(e) => setSelectedComfort(e.target.value as any)}
-            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
+            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-[border-color,box-shadow,background-color] cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
           >
             <option value="all">Any Comfort</option>
             <option value="soft">Soft & Plush</option>
@@ -226,7 +212,7 @@ export default function ProductList({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
+            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-[border-color,box-shadow,background-color] cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
           >
             <option value="popular">Recommended</option>
             <option value="priceAsc">Price: Low - High</option>
@@ -286,7 +272,7 @@ export default function ProductList({
                     />
                     
                     {/* Glassmorphism hover card overlay */}
-                    <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center p-6">
+                    <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 flex items-center justify-center p-6">
                       <span className="btn-primary bg-white text-primary text-xs font-accent font-bold px-6 py-3 rounded-xl shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         Quick View <ChevronRight className="w-4 h-4 text-accent" />
                       </span>
@@ -360,19 +346,20 @@ export default function ProductList({
                     </div>
 
                     {/* Quick Mattress Size Configurator inside each block */}
-                    <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40">
-                      <div className="flex flex-row justify-between items-center mb-1.5 sm:mb-4 gap-1 sm:gap-0">
-                        <span className="text-[6px] sm:text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-sm sm:rounded-md hidden sm:inline-block">
-                          Select Size
+                    <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex flex-col gap-2 sm:gap-3 mb-1.5 sm:mb-4">
+                        <span className="text-[9px] sm:text-[10px] font-accent text-neutral-dark/40 uppercase tracking-widest">
+                          Select size
                         </span>
-                        
-                        <div className="w-full sm:w-auto">
+
+                        {/* Desktop: full-word segmented control */}
+                        <div className="hidden sm:block">
                           <SegmentedControl
                             options={[
                               { value: 'king', label: 'King' },
                               { value: 'queen', label: 'Queen' },
                               { value: 'double', label: 'Double' },
-                              { value: 'single', label: 'Single' }
+                              { value: 'single', label: 'Single' },
                             ]}
                             value={activeSize}
                             onChange={(sz) => setProductSize(p.slug, sz as MattressSize)}
@@ -380,42 +367,65 @@ export default function ProductList({
                             fullWidth
                           />
                         </div>
+
+                        {/* Mobile: native select with full size labels */}
+                        <div className="sm:hidden">
+                          <select
+                            value={activeSize}
+                            onChange={(e) => setProductSize(p.slug, e.target.value as MattressSize)}
+                            onClick={(e) => e.stopPropagation()}
+                            aria-label={`Select size for ${p.name}`}
+                            className="w-full bg-secondary border border-brand-200/60 text-xs font-accent font-bold text-primary px-3 py-2.5 rounded-lg cursor-pointer outline-none appearance-none pr-8"
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230F1F17' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                              backgroundRepeat: 'no-repeat',
+                              backgroundPosition: 'right 10px center',
+                            }}
+                          >
+                            <option value="king">King Size (72&quot;×78&quot;)</option>
+                            <option value="queen">Queen Size (60&quot;×78&quot;)</option>
+                            <option value="double">Double Size (48&quot;×75&quot;)</option>
+                            <option value="single">Single Size (36&quot;×75&quot;)</option>
+                          </select>
+                        </div>
                       </div>
 
-                      {/* Price indicator */}
-                      <div className="flex flex-row justify-between items-center p-1.5 sm:p-4 rounded-lg sm:rounded-xl border border-brand-200/50 bg-white shadow-sm mt-1 sm:mt-2">
+                      {/* Price indicator — selected size only */}
+                      <div className="flex flex-row justify-between items-center p-1.5 sm:p-4 rounded-lg sm:rounded-xl border border-brand-200/50 bg-secondary shadow-sm mt-1 sm:mt-2">
                         <div className="flex flex-col">
-                          <span className="text-[6px] sm:text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-0.5 sm:mb-1">Starting From</span>
+                          <span className="text-[6px] sm:text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-0.5 sm:mb-1">
+                            {activeSize.charAt(0).toUpperCase() + activeSize.slice(1)} price
+                          </span>
                           <div className="flex items-baseline gap-1 sm:gap-2">
                             <span className="text-[10px] sm:text-2xl font-bold font-heading text-primary">
                               <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                             </span>
                           </div>
-</div>
-</div>
-</div>
-</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
 {/* Actions buttons */}
                   <div className="p-1.5 sm:p-5 bg-white border-t border-brand-200/40 grid grid-cols-2 sm:flex sm:flex-row gap-1 sm:gap-2 rounded-b-2xl">
                     <button
                       onClick={(e) => { e.stopPropagation(); onNavigateToPdp(p.slug); }}
-                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl border border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-1 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-accent/10 text-[8px] sm:text-xs"
+                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl border border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-1 cursor-pointer transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-accent/10 text-[8px] sm:text-xs"
                     >
                       <Info className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-accent" /> <span className="hidden sm:inline">Details</span><span className="sm:hidden">Info</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleBuyNow(p, activeSize); }}
-                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-accent hover:bg-[#2569A0] text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-accent/20 text-[8px] sm:text-xs"
+                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-accent hover:bg-accent-dark text-primary font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-accent/20 text-[8px] sm:text-xs"
                     >
                       Buy
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleAddToCart(p, activeSize); }}
-                      className="col-span-2 sm:flex-1 py-2 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-primary hover:bg-neutral-dark text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/20 text-[9px] sm:text-xs"
+                      className="col-span-2 sm:flex-1 py-2 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-primary hover:bg-neutral-dark text-warm-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-primary/20 text-[9px] sm:text-xs"
                     >
-                      <ShoppingCart className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white/80" />
-                      {justAdded.has(p.slug) ? 'Added!' : 'Add to Cart'}
+                      <ShoppingCart className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-warm-white/80" />
+                      {justAdded.has(p.slug) ? 'Added' : 'Add to Cart'}
                     </button>
                   </div>
                 </>

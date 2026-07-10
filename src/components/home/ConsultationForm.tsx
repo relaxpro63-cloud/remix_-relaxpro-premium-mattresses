@@ -28,7 +28,6 @@ export default function ConsultationForm() {
 
     setIsSubmitting(true);
     try {
-      // Call Google Sheets integration
       await submitLead({
         orderId: "",
         name,
@@ -44,19 +43,24 @@ export default function ConsultationForm() {
         notes: customNotes || `Back concerns flagged level: ${painLevel}`,
         source: "Consultation Form"
       });
-
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setValidationError('An error occurred. Please try again.');
+      setValidationError(
+        'We could not send your request automatically. Use WhatsApp below or call +91 86866 24494.'
+      );
+      // Still mark submitted so the WhatsApp recovery CTA is available
+      setSubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleLaunchWhatsApp = () => {
-    const complaintText = painLevel !== 'none' ? `My back pain level is ${painLevel}/5. Notes: ${customNotes}` : '';
-    const text = `Hello Suresh, I am requesting an orthopedic mattress consultation. Name: ${name}. Phone: ${phone}. ${complaintText}`;
+    const complaintText =
+      painLevel !== 'none' ? `Back comfort concern: ${painLevel}. Notes: ${customNotes}` : '';
+    // No customer PII in pre-filled WhatsApp URL — name/phone already shown on screen
+    const text = `Hello! I would like an orthopedic mattress consultation. ${complaintText}`.trim();
     window.location.href = `https://wa.me/918686624494?text=${encodeURIComponent(text)}`;
   };
 
@@ -93,7 +97,7 @@ export default function ConsultationForm() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Srinivas Rao"
-                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 text-primary transition-all font-body placeholder:text-neutral-dark/40"
+                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 text-primary transition-[border-color,box-shadow,background-color] font-body placeholder:text-neutral-dark/40"
               />
             </div>
 
@@ -105,7 +109,7 @@ export default function ConsultationForm() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="e.g. 8686624494"
-                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 text-primary transition-all font-body placeholder:text-neutral-dark/40"
+                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 text-primary transition-[border-color,box-shadow,background-color] font-body placeholder:text-neutral-dark/40"
               />
             </div>
 
@@ -122,7 +126,7 @@ export default function ConsultationForm() {
                     key={item.value}
                     type="button"
                     onClick={() => setPainLevel(item.value)}
-                    className={`p-3 rounded-2xl border font-accent font-bold text-[11px] text-center uppercase tracking-wider cursor-pointer transition-all ${
+                    className={`p-3 rounded-2xl border font-accent font-bold text-[11px] text-center uppercase tracking-wider cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${
                       painLevel === item.value
                         ? 'border-primary bg-primary text-white shadow-md'
                         : 'border-brand-200/60 bg-white hover:border-accent hover:bg-neutral-light text-primary/70'
@@ -141,7 +145,7 @@ export default function ConsultationForm() {
                 onChange={(e) => setCustomNotes(e.target.value)}
                 rows={3}
                 placeholder="Write specific details (e.g. Doc recommended GOLS hard mattress...)"
-                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 resize-none text-primary transition-all font-body placeholder:text-neutral-dark/40"
+                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 resize-none text-primary transition-[border-color,box-shadow,background-color] font-body placeholder:text-neutral-dark/40"
               />
             </div>
           </div>
@@ -149,7 +153,7 @@ export default function ConsultationForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full btn-primary bg-primary hover:bg-neutral-dark disabled:bg-neutral-dark/50 active:scale-[0.98] text-white font-accent font-bold text-[13px] tracking-widest uppercase py-4.5 rounded-2xl transition-all shadow-md group cursor-pointer flex items-center justify-center gap-3 mt-4"
+            className="w-full btn-primary bg-primary hover:bg-neutral-dark disabled:bg-neutral-dark/50 active:scale-[0.98] text-white font-accent font-bold text-[13px] tracking-widest uppercase py-4.5 rounded-2xl transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-md group cursor-pointer flex items-center justify-center gap-3 mt-4"
           >
             {isSubmitting ? (
               <span>Saving details securely...</span>
@@ -183,7 +187,7 @@ export default function ConsultationForm() {
             </p>
             <button
               onClick={handleLaunchWhatsApp}
-              className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1DA851] active:scale-95 text-white font-accent font-bold text-sm tracking-wide py-3.5 px-8 rounded-2xl cursor-pointer transition-all shadow-lg shadow-[#25D366]/30 w-full md:w-auto"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1DA851] active:scale-95 text-white font-accent font-bold text-sm tracking-wide py-3.5 px-8 rounded-2xl cursor-pointer transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-lg shadow-[#25D366]/30 w-full md:w-auto"
             >
               <MessageSquare className="w-5 h-5" /> Start WhatsApp Chat
             </button>

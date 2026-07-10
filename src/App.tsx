@@ -51,7 +51,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-brand-50 flex flex-col justify-between selection:bg-brand-500 selection:text-brand-950">
       <Header cartCount={cart.totalCount} />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1" tabIndex={-1}>
         <ErrorBoundary>
           <Suspense
             fallback={

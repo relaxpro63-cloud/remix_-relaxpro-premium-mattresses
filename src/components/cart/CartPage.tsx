@@ -59,31 +59,30 @@ export default function CartPage({
     if (!validateForm() || isSubmitting) return;
 
     setIsSubmitting(true);
+    const orderId = `RP-ORD-${Math.floor(100000 + Math.random() * 900000)}`;
+    const summary = {
+      orderId,
+      name,
+      phone,
+      email,
+      address,
+      city,
+      zip,
+      contactTime,
+      notes,
+      subtotal,
+      discountAmount: 0,
+      grandTotal,
+      cart: [...cart],
+    };
+
+    const productNames = cart.map((item) => `${item.name} (Qty: ${item.quantity})`).join(' + ');
+    const productSizes = cart.map((item) => item.size).join(', ');
+    const accessoriesList = cart.map((item) => (item.includeAccessories ? 'Yes' : 'No')).join(', ');
+
     try {
-      const mockOrderId = `RP-ORD-${Math.floor(100000 + Math.random() * 900000)}`;
-      const summary = {
-        orderId: mockOrderId,
-        name,
-        phone,
-        email,
-        address,
-        city,
-        zip,
-        contactTime,
-        notes,
-        subtotal,
-        discountAmount: 0,
-        grandTotal,
-        cart: [...cart]
-      };
-
-      const productNames = cart.map((item) => `${item.name} (Qty: ${item.quantity})`).join(' + ');
-      const productSizes = cart.map((item) => item.size).join(', ');
-      const accessoriesList = cart.map((item) => item.includeAccessories ? 'Yes' : 'No').join(', ');
-
-      // Call Google Sheets integration integration
       await submitLead({
-        orderId: mockOrderId,
+        orderId,
         name,
         phone,
         email,
@@ -95,14 +94,14 @@ export default function CartPage({
         size: productSizes,
         price: `₹${grandTotal.toLocaleString('en-IN')}`,
         notes: `Total: ₹${subtotal.toLocaleString('en-IN')}. Delivery Notes: ${notes || 'None'}. Accessories: ${accessoriesList}`,
-        source: "Website Order Checkout"
+        source: 'Website Order Checkout',
       });
-
-      onCheckoutSuccess(mockOrderId, summary);
     } catch (err) {
+      // Sheet dispatch is best-effort. Always advance — WhatsApp on success page is recovery.
       console.error(err);
     } finally {
       setIsSubmitting(false);
+      onCheckoutSuccess(orderId, summary);
     }
   };
 
@@ -124,7 +123,7 @@ export default function CartPage({
         </p>
         <button
           onClick={() => onNavigate('catalog')}
-          className="mt-8 btn-primary bg-primary hover:bg-neutral-dark text-white font-accent text-[13px] font-bold uppercase tracking-widest px-8 py-4 rounded-xl cursor-pointer shadow-lg transition-all"
+          className="mt-8 btn-primary bg-primary hover:bg-neutral-dark text-white font-accent text-[13px] font-bold uppercase tracking-widest px-8 py-4 rounded-xl cursor-pointer shadow-lg transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
         >
           Explore Collections
         </button>
@@ -170,7 +169,7 @@ export default function CartPage({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Srinivas Rao"
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none"
                 />
                 {errors.name && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.name}</span>}
               </div>
@@ -187,7 +186,7 @@ export default function CartPage({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="e.g. 9876543210"
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none"
                 />
                 {errors.phone && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.phone}</span>}
               </div>
@@ -202,7 +201,7 @@ export default function CartPage({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. srinivas@example.com"
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none"
                 />
               </div>
 
@@ -217,7 +216,7 @@ export default function CartPage({
                   onChange={(e) => setAddress(e.target.value)}
                   rows={2}
                   placeholder="House / flat, street, landmark"
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none resize-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none resize-none"
                 />
                 {errors.address && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.address}</span>}
               </div>
@@ -230,7 +229,7 @@ export default function CartPage({
                 <select
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent cursor-pointer bg-neutral-light/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent cursor-pointer bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none"
                 >
                   <option value="Hyderabad">Hyderabad</option>
                   <option value="Rajahmundry">Rajahmundry</option>
@@ -252,7 +251,7 @@ export default function CartPage({
                   value={zip}
                   onChange={(e) => setZip(e.target.value)}
                   placeholder="6-digit pincode"
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none"
                 />
                 {errors.zip && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.zip}</span>}
               </div>
@@ -267,7 +266,7 @@ export default function CartPage({
                   value={contactTime}
                   onChange={(e) => setContactTime(e.target.value)}
                   placeholder="e.g. Weekdays after 6pm"
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none"
                 />
               </div>
 
@@ -281,7 +280,7 @@ export default function CartPage({
                   onChange={(e) => setNotes(e.target.value)}
                   rows={2}
                   placeholder="Building, floor, lift access, time preference, etc."
-                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none resize-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-[border-color,box-shadow,background-color] outline-none resize-none"
                 />
               </div>
             </div>
@@ -334,19 +333,21 @@ export default function CartPage({
                         <button
                           type="button"
                           onClick={() => onUpdateQty(item.id, item.quantity - 1)}
-                          className="w-5 h-5 rounded flex items-center justify-center text-primary hover:bg-white hover:shadow-sm cursor-pointer transition-all"
+                          className="min-h-11 min-w-11 rounded flex items-center justify-center text-primary hover:bg-white hover:shadow-sm cursor-pointer transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
+                          aria-label="Decrease quantity"
                         >
-                          <Minus className="w-3 h-3" />
+                          <Minus className="w-4 h-4" />
                         </button>
-                        <span className="font-mono text-[11px] font-bold text-primary px-1">
+                        <span className="font-mono text-sm font-bold text-primary px-2 min-w-[2rem] text-center">
                           {item.quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => onUpdateQty(item.id, item.quantity + 1)}
-                          className="w-5 h-5 rounded flex items-center justify-center text-primary hover:bg-white hover:shadow-sm cursor-pointer transition-all"
+                          className="min-h-11 min-w-11 rounded flex items-center justify-center text-primary hover:bg-white hover:shadow-sm cursor-pointer transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
+                          aria-label="Increase quantity"
                         >
-                          <Plus className="w-3 h-3" />
+                          <Plus className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
@@ -383,13 +384,13 @@ export default function CartPage({
                 id="btn-place-order"
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary bg-primary hover:bg-neutral-dark disabled:bg-neutral-light disabled:text-neutral-dark/40 disabled:border-brand-200 text-white font-accent font-bold text-sm tracking-widest uppercase py-4.5 rounded-2xl shadow-lg cursor-pointer flex items-center justify-center gap-2 transition-all relative overflow-hidden group"
+                className="w-full btn-primary bg-primary hover:bg-neutral-dark disabled:bg-neutral-light disabled:text-neutral-dark/40 disabled:border-brand-200 text-white font-accent font-bold text-sm tracking-widest uppercase py-4.5 rounded-2xl shadow-lg cursor-pointer flex items-center justify-center gap-2 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out relative overflow-hidden group"
               >
                 {isSubmitting ? (
                   <span>Processing Request...</span>
                 ) : (
                   <>
-                    <div className="absolute inset-0 bg-white/10 w-0 group-hover:w-full transition-all duration-300 ease-out"></div>
+                    <div className="absolute inset-0 bg-white/10 w-0 group-hover:w-full transition-[width,transform,background-color,border-color,color,box-shadow] duration-300 ease-out"></div>
                     <span className="relative z-10 flex items-center gap-2">Place Order on WhatsApp <ArrowRight className="w-4 h-4" /></span>
                   </>
                 )}

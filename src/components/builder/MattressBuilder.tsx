@@ -178,25 +178,29 @@ function BuilderTotal({
         )}
       </div>
 
-      <div className="pt-5 border-t border-gray-100">
+      <div className="pt-5 border-t border-brand-200/40">
         <div className="flex items-end justify-between mb-5">
           <div>
-            <span className="text-[10px] font-semibold text-neutral-dark/60 uppercase tracking-wider">Total</span>
-            <div className="text-3xl font-bold text-primary tracking-tight mt-0.5">
+            <span className="text-[10px] font-accent font-semibold text-neutral-dark/50 uppercase tracking-editorial">
+              Final Configuration Total
+            </span>
+            <div className="text-4xl font-heading font-bold text-primary tracking-tight mt-1">
               <PriceText>₹{priceBreakdown.total.toLocaleString('en-IN')}</PriceText>
             </div>
           </div>
           <div className="text-right">
             <span className="text-[11px] text-neutral-dark/50 block capitalize">{size}</span>
-            <span className="text-[10px] text-green-600 font-medium flex items-center gap-1 mt-0.5">
+            <span className="text-[10px] text-success font-medium flex items-center gap-1 mt-0.5">
               <Truck className="w-3 h-3" /> Free Delivery
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 mb-4 bg-blue-50/50 rounded-xl px-4 py-2.5 border border-blue-100/50">
+        <div className="flex items-center gap-2 mb-4 bg-brand-100/60 rounded-xl px-4 py-2.5 border border-brand-200/50">
           <Shield className="w-4 h-4 text-accent shrink-0" />
-          <span className="text-[11px] text-blue-900/70 leading-relaxed">10-year warranty • 100-night trial • Certified materials</span>
+          <span className="text-[11px] text-neutral-dark/70 leading-relaxed">
+            10-year warranty · 100-night trial · Certified materials
+          </span>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -204,22 +208,24 @@ function BuilderTotal({
             <motion.button
               onClick={onAddToCart}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-primary hover:bg-neutral-dark text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full bg-primary hover:bg-neutral-dark text-warm-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <ShoppingCart className="w-4 h-4" />
-              <span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
+              <span>{addedToCart ? 'Added' : 'Add to Cart'}</span>
             </motion.button>
             <motion.button
               onClick={onBuyNow}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-accent hover:bg-[#2569A0] text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full bg-accent hover:bg-accent-dark text-primary py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Buy Now</span>
             </motion.button>
           </div>
           <button
             onClick={onWhatsAppEnquire}
-            className="w-full py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs tracking-wide transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4" />
             <span>Enquire on WhatsApp — ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
@@ -314,7 +320,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
       ...(selectedTransition.thickness > 0 ? [selectedTransition.name] : []),
       ...(selectedTop.thickness > 0 ? [selectedTop.name] : [])
     ];
-    const msg = `Hello Suresh, I designed a custom RelaxPro mattress on the website. Configuration: ${layers.join(' + ')}, Size: ${size}, Fabric: ${selectedFabric.name}, Total: \u20B9${priceBreakdown.total.toLocaleString('en-IN')}. Please guide me on this configuration.`;
+    const msg = `Hello! I designed a custom RelaxPro mattress.\nConfiguration: ${layers.join(' + ')}\nSize: ${size}\nFabric: ${selectedFabric.name}\nTotal: ₹${priceBreakdown.total.toLocaleString('en-IN')}\nPlease guide me on this configuration.`;
     window.open(`https://wa.me/918686624494?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -488,7 +494,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     key={sz}
                                     onClick={() => setSize(sz)}
                                     whileTap={{ scale: 0.97 }}
-                                    className={`relative p-4 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
+                                    className={`relative p-4 rounded-xl text-center border-2 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-200 cursor-pointer ${
                                       isActive
                                         ? 'border-accent bg-accent/5 shadow-[0_0_0_1px_rgba(49,127,186,0.15)]'
                                         : 'border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm'
@@ -525,7 +531,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     key={base.id}
                                     onClick={() => setSelectedBase(base)}
                                     whileTap={{ scale: 0.995 }}
-                                    className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
+                                    className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-200 cursor-pointer ${
                                       isActive
                                         ? 'border-accent bg-accent/5 shadow-[0_0_0_1px_rgba(49,127,186,0.12)]'
                                         : 'border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm'
@@ -571,7 +577,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     key={trans.id}
                                     onClick={() => setSelectedTransition(trans)}
                                     whileTap={{ scale: 0.995 }}
-                                    className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
+                                    className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-200 cursor-pointer ${
                                       isActive
                                         ? 'border-accent bg-accent/5 shadow-[0_0_0_1px_rgba(49,127,186,0.12)]'
                                         : 'border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm'
@@ -624,7 +630,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     key={top.id}
                                     onClick={() => setSelectedTop(top)}
                                     whileTap={{ scale: 0.995 }}
-                                    className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
+                                    className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-200 cursor-pointer ${
                                       isActive
                                         ? 'border-accent bg-accent/5 shadow-[0_0_0_1px_rgba(49,127,186,0.12)]'
                                         : 'border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm'
@@ -677,7 +683,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     key={fabric.id}
                                     onClick={() => setSelectedFabric(fabric)}
                                     whileTap={{ scale: 0.98 }}
-                                    className={`relative p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
+                                    className={`relative p-4 md:p-5 rounded-xl border-2 text-left transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-200 cursor-pointer ${
                                       isActive
                                         ? 'border-accent bg-accent/5 shadow-[0_0_0_1px_rgba(49,127,186,0.12)]'
                                         : 'border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm'
@@ -720,7 +726,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                             <motion.button
                               onClick={() => setIncludeAccessories(!includeAccessories)}
                               whileTap={{ scale: 0.995 }}
-                              className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
+                              className={`relative w-full p-4 md:p-5 rounded-xl border-2 text-left transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-200 cursor-pointer ${
                                 includeAccessories
                                   ? 'border-accent bg-accent/5 shadow-[0_0_0_1px_rgba(49,127,186,0.12)]'
                                   : 'border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm'

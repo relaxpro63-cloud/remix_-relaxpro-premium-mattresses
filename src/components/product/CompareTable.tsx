@@ -79,7 +79,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               <button
                 key={sz}
                 onClick={() => setActiveSize(sz)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium font-display capitalize transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium font-display capitalize transition-[transform,box-shadow,border-color,background-color,color,opacity] cursor-pointer ${
                   activeSize === sz
                     ? 'bg-brand-950 text-white shadow-xs'
                     : 'text-zinc-600 hover:text-brand-950 hover:bg-zinc-100'
@@ -119,7 +119,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                     e.target.value = '';
                   }
                 }}
-                className="bg-brand-200 text-brand-950 hover:bg-brand-300 transition-all font-display text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-300 pr-5 appearance-none cursor-pointer"
+                className="bg-brand-200 text-brand-950 hover:bg-brand-300 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out font-display text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-300 pr-5 appearance-none cursor-pointer"
                 defaultValue=""
               >
                 <option value="" disabled>+ Add Mattress to Compare</option>
@@ -167,7 +167,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
           <tbody className="divide-y divide-zinc-200 text-xs md:text-sm">
             {/* Row: Visual thumbnail */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Visual Preview
               </td>
               {comparedProducts.map((p) => (
@@ -184,7 +184,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Price */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Direct Price
               </td>
               {comparedProducts.map((p) => {
@@ -207,7 +207,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Comfort Rating */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Comfort Level
               </td>
               {comparedProducts.map((p) => (
@@ -232,7 +232,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Main Benefit */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Primary Sleep Benefit
               </td>
               {comparedProducts.map((p) => (
@@ -244,7 +244,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Total Thickness */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Total Thickness
               </td>
               {comparedProducts.map((p) => (
@@ -257,7 +257,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Kerala Natural Latex */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Kerala Natural Latex?
               </td>
               {comparedProducts.map((p) => {
@@ -288,7 +288,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Foundation Layers */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Layer Breakdown
               </td>
               {comparedProducts.map((p) => (
@@ -310,7 +310,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Fabric Covering */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Cover Mesh Fabric
               </td>
               {comparedProducts.map((p) => (
@@ -323,7 +323,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Certifications */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Pristine Certifications
               </td>
               {comparedProducts.map((p) => (
@@ -342,7 +342,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Pure Warranty */}
             <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Warranty Coverage
               </td>
               {comparedProducts.map((p) => (
@@ -357,7 +357,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
 
             {/* Row: Actions */}
             <tr className="bg-zinc-50/30">
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
+              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Get Your Mattress
               </td>
               {comparedProducts.map((p) => (
@@ -367,14 +367,14 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                       href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-all"
+                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
                     >
                       <MessageSquare className="w-3.5 h-3.5" />
                       Enquire on WhatsApp
                     </a>
                     <button
                       onClick={() => onNavigateToPdp(p.slug)}
-                      className="w-full border border-zinc-200 hover:border-brand-500 bg-white hover:bg-zinc-50 rounded-lg py-2.5 px-3 text-xs font-semibold text-brand-950 flex items-center justify-center gap-1 cursor-pointer transition-all"
+                      className="w-full border border-zinc-200 hover:border-brand-500 bg-white hover:bg-zinc-50 rounded-lg py-2.5 px-3 text-xs font-semibold text-brand-950 flex items-center justify-center gap-1 cursor-pointer transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
                     >
                       <Info className="w-3.5 h-3.5" />
                       View Details

@@ -1,76 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 /* ============================================
 RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
-Quiet Luxury Palette
+Quiet Luxury Palette · Dials: 7 / 6-7 / 3
 ============================================ */
 @theme {
-/* Typography — Playfair Display for editorial luxury */
---font-heading: 'Playfair Display', Georgia, serif;
---font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
---font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
---font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
 
-/* Backward compatibility aliases */
---font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
---font-display: 'Playfair Display', Georgia, serif;
+  --color-primary: #0F1F17;
+  --color-secondary: #FAF8F3;
+  --color-accent: #C9A87C;
+  --color-accent-dark: #B89568;
+  --color-accent-light: #E0CFAF;
+  --color-neutral-dark: #3D4A46;
+  --color-neutral-light: #F4F5F3;
+  --color-success: #5A8F7B;
+  --color-bg: #F4F5F3;
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #FAF8F3;
+  --color-ink: #0F1F17;
+  --color-muted: #3D4A46;
+  --color-border: rgba(15, 31, 23, 0.08);
+  --color-warm-white: #F5F2EB;
 
-/* Brand Color Palette — Near-Black Forest + Champagne Gold */
---color-primary: #0F1F17;         /* Near-black forest — deepest tone for headings, dark bg */
---color-secondary: #FAF8F3;       /* Ivory — warm light surfaces */
---color-accent: #C9A87C;          /* Champagne Gold — CTAs, highlights */
---color-accent-dark: #B89568;     /* Champagne hover */
---color-accent-light: #E0CFAF;    /* Light Champagne */
+  --color-brand-50: #FAF8F3;
+  --color-brand-100: #F5F0E8;
+  --color-brand-200: #E8E2D8;
+  --color-brand-500: #C9A87C;
+  --color-brand-600: #B89568;
+  --color-brand-700: #0F1F17;
+  --color-brand-800: #0F1F17;
+  --color-brand-950: #0A1510;
+  --color-luxury-gold: #C9A87C;
+  --color-deep-charcoal: #0F1F17;
 
---color-neutral-dark: #4A5A57;    /* Cool Sage — secondary text */
---color-neutral-light: #FAF8F3;   /* Ivory — main background */
---color-success: #5A8F7B;         /* Restrained green */
+  --radius-card: 16px;
+  --shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
+  --shadow-elevated: 0 12px 40px rgba(15, 31, 23, 0.08);
 
-/* Backward-compatible brand tokens */
---color-brand-50: #FAF8F3;
---color-brand-100: #F5F0E8;
---color-brand-200: #E8E2D8;
---color-brand-500: #C9A87C;
---color-brand-600: #B89568;
---color-brand-700: #0F1F17;
---color-brand-800: #0F1F17;
---color-brand-950: #0A1510;
+  --spacing-12: 2.5rem;
+  --spacing-16: 3.5rem;
+  --spacing-20: 4.25rem;
+  --spacing-24: 5rem;
+  --spacing-32: 6.5rem;
 
---color-luxury-gold: #C9A87C;
---color-deep-charcoal: #0F1F17;
+  --section-vertical-xs: clamp(40px, 5vw, 64px);
+  --section-vertical-sm: clamp(56px, 7vw, 96px);
+  --section-vertical-md: clamp(80px, 9vw, 128px);
+  --section-vertical-lg: clamp(120px, 12vw, 160px);
 
-/* Card Tokens */
---radius-card: 16px;
---shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-move: cubic-bezier(0.77, 0, 0.175, 1);
+  --duration-press: 140ms;
+  --duration-ui: 200ms;
+  --duration-reveal: 600ms;
+  --stagger-step: 50ms;
 
-/* Spacing Scale Override for Tighter Flow */
---spacing-12: 2.5rem;
---spacing-16: 3.5rem;
---spacing-20: 4.25rem;
---spacing-24: 5rem;
---spacing-32: 6.5rem;
-
-/* Warm Oat — replaces pure #FFFFFF on dark backgrounds */
---color-warm-white: #F5F2EB;
-
-/* Section vertical rhythm */
---section-vertical-xs: clamp(40px, 5vw, 64px);
---section-vertical-sm: clamp(56px, 7vw, 96px);
---section-vertical-md: clamp(80px, 9vw, 128px);
---section-vertical-lg: clamp(120px, 12vw, 160px);
-
-/* Motion easing — luxury standard */
---ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
-
-/* Motion tokens */
---ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
---duration-reveal: 0.8s;
---stagger-step: 0.08s;
-
-/* Luxury font tracking */
---tracking-editorial: 0.18em;
---tracking-wide: 0.10em;
+  --tracking-editorial: 0.18em;
+  --tracking-wide: 0.10em;
 }
 
 /* Price text — auto-applied by <PriceText> wrapper */
@@ -120,23 +113,10 @@ max-width: 65ch;
 }
 
 /* ============================================
-   CSS Custom Properties for Non-Tailwind Usage
+   Z-INDEX SCALE
+   base: 0 | sticky: 40 | dropdown: 50
+   overlay: 60 | modal: 70 | toast: 80 | fab: 90
    ============================================ */
-:root {
-  --color-primary: #0F1F17;
-  --color-secondary: #FAF8F3;
-  --color-accent: #C9A87C;
-  --color-accent-dark: #B89568;
-  --color-neutral-dark: #4A5A57;
-  --color-neutral-light: #FAF8F3;
-  --color-success: #5A8F7B;
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-  --font-accent: 'Plus Jakarta Sans', sans-serif;
-  --radius-card: 16px;
-  --shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
-  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 /* Lenis smooth scroll body */
 html.lenis, html.lenis body {
@@ -152,15 +132,7 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Reduced motion — kill all transitions and animations */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+
 
 /* ============================================
    BASE STYLES
@@ -171,7 +143,6 @@ html.lenis, html.lenis body {
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -180,19 +151,27 @@ html.lenis, html.lenis body {
   }
 
   body {
-    background-color: var(--color-neutral-light);
-    color: var(--color-primary);
+    background-color: var(--color-bg);
+    color: var(--color-ink);
     font-family: var(--font-body);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Fluid Typography */
-  h1 { font-size: clamp(1.8rem, 5vw, 4rem); font-family: var(--font-heading); }
-  h2 { font-size: clamp(1.4rem, 3.5vw, 2.8rem); font-family: var(--font-heading); }
-  h3 { font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-family: var(--font-heading); }
-  p  { font-size: clamp(0.9rem, 1.8vw, 1.1rem); }
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+  }
+  h1 { font-size: clamp(2rem, 5vw, 4.25rem); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.5rem, 3vw, 2.75rem); letter-spacing: -0.01em; }
+  h3 { font-size: clamp(1.125rem, 2vw, 1.5rem); }
+  p  {
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    text-wrap: pretty;
+    max-width: 65ch;
+  }
 
   /* Responsive Sections */
   .section-padding {
@@ -323,47 +302,20 @@ html.lenis, html.lenis body {
   animation: border-shine 4s linear infinite;
 }
 
-/* Soft glow */
+/* Soft glow (used by ShineBorder) */
 @keyframes soft-glow {
   0%, 100% {
-    box-shadow: 0 4px 20px -2px rgba(212, 184, 149, 0.1), 0 2px 8px -1px rgba(212, 184, 149, 0.05);
+    box-shadow: 0 4px 20px -2px rgba(201, 168, 124, 0.1), 0 2px 8px -1px rgba(201, 168, 124, 0.05);
   }
   50% {
-    box-shadow: 0 12px 32px -2px rgba(212, 184, 149, 0.28), 0 4px 14px -1px rgba(212, 184, 149, 0.18);
+    box-shadow: 0 12px 32px -2px rgba(201, 168, 124, 0.18), 0 4px 14px -1px rgba(201, 168, 124, 0.1);
   }
 }
 .animate-glow-soft {
   animation: soft-glow 4s ease-in-out infinite;
 }
 
-/* Hero floating */
-@keyframes hero-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.animate-float {
-  animation: hero-float 4s ease-in-out infinite;
-}
 
-/* Gradient shift */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradientShift 10s ease infinite;
-}
-
-/* Pulse glow for CTA */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 184, 149, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(212, 184, 149, 0); }
-}
-.animate-pulse-glow {
-  animation: pulse-glow 2.5s ease-in-out infinite;
-}
 
 /* Bounce arrow for scroll indicator */
 @keyframes bounce-arrow {
@@ -478,11 +430,13 @@ html.lenis, html.lenis body {
    CARD HOVER LIFT
    ============================================ */
 .card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s var(--ease-luxury), box-shadow 0.3s var(--ease-luxury);
 }
-.card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(26, 54, 41, 0.10);
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(15, 31, 23, 0.10);
+  }
 }
 
 /* Image zoom on hover */
@@ -715,7 +669,7 @@ html.lenis, html.lenis body {
   }
 }
 
-/* Reduced motion preference */
+/* Reduced motion — single authoritative block */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -723,10 +677,17 @@ html.lenis, html.lenis body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
   .fade-up, .fade-left, .fade-right, .scale-in {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .animate-marquee,
+  .animate-float,
+  .animate-glow-soft,
+  .animate-pulse-glow,
+  .animate-bounce-arrow,
+  .animate-gradient {
+    animation: none !important;
   }
 }
 
@@ -742,26 +703,5 @@ html.lenis, html.lenis body {
   font-weight: 400;
 }
 
-/* ============================================
-   GLOBAL SPACING AUDIT REDUCTIONS
-   ============================================ */
-/* Reduce default fluid section paddings */
-.section-padding {
-  padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 80px);
-}
 
-/* ============================================
-   CARD HOVER EFFECTS
-   ============================================ */
-.card-hover {
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  transform-style: preserve-3d;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .card-hover:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 25px 50px -12px rgba(26, 54, 41, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.3); /* Subtle primary shadow & accent border */
-  }
-}
 

@@ -28,7 +28,7 @@ export default function SleepScience() {
       <div className="flex flex-col md:flex-row bg-neutral-light/50 p-1.5 rounded-2xl md:rounded-full border border-brand-200/50 text-sm font-bold font-accent max-w-2xl mx-auto mb-12 shadow-inner gap-1">
         <button
           onClick={() => setActiveTab('kerala')}
-          className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-all duration-300 cursor-pointer text-center ${
+          className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 cursor-pointer text-center ${
             activeTab === 'kerala' ? 'bg-primary text-white shadow-md scale-[1.02]' : 'text-primary/60 hover:text-primary hover:bg-white'
           }`}
         >
@@ -36,7 +36,7 @@ export default function SleepScience() {
         </button>
         <button
           onClick={() => setActiveTab('postures')}
-          className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-all duration-300 cursor-pointer text-center ${
+          className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 cursor-pointer text-center ${
             activeTab === 'postures' ? 'bg-primary text-white shadow-md scale-[1.02]' : 'text-primary/60 hover:text-primary hover:bg-white'
           }`}
         >
@@ -44,7 +44,7 @@ export default function SleepScience() {
         </button>
         <button
           onClick={() => setActiveTab('certifications')}
-          className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-all duration-300 cursor-pointer text-center ${
+          className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 cursor-pointer text-center ${
             activeTab === 'certifications' ? 'bg-primary text-white shadow-md scale-[1.02]' : 'text-primary/60 hover:text-primary hover:bg-white'
           }`}
         >
@@ -210,7 +210,7 @@ export default function SleepScience() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Cert 1 */}
-              <div className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group">
+              <div className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#FFF4E5] flex items-center justify-center text-orange-600 font-bold mb-6 font-heading text-lg border border-orange-200 group-hover:scale-110 transition-transform">
                   GOLS
                 </div>
@@ -221,7 +221,7 @@ export default function SleepScience() {
               </div>
 
               {/* Cert 2 */}
-              <div className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group">
+              <div className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#E8F0FE] flex items-center justify-center text-blue-600 font-bold mb-6 font-heading text-sm border border-blue-200 group-hover:scale-110 transition-transform text-center leading-tight">
                   Oeko<br/>Tex
                 </div>
@@ -232,7 +232,7 @@ export default function SleepScience() {
               </div>
 
               {/* Cert 3 */}
-              <div className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group">
+              <div className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#E6F4EA] flex items-center justify-center text-emerald-600 font-bold mb-6 font-heading text-lg border border-emerald-200 group-hover:scale-110 transition-transform">
                   ECO
                 </div>
@@ -259,7 +259,7 @@ export default function SleepScience() {
         </div>
         <Link
           to="/compare"
-          className="bg-white hover:bg-neutral-light text-primary px-8 py-4.5 rounded-2xl text-[13px] font-bold font-accent tracking-widest uppercase shrink-0 transition-all cursor-pointer shadow-lg active:scale-95 relative z-10"
+          className="bg-white hover:bg-neutral-light text-primary px-8 py-4.5 rounded-2xl text-[13px] font-bold font-accent tracking-widest uppercase shrink-0 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out cursor-pointer shadow-lg active:scale-95 relative z-10"
         >
           Compare All 13 Models
         </Link>

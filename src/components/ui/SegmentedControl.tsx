@@ -44,15 +44,15 @@ export default function SegmentedControl<T extends string>({
           >
             {isActive && (
               <motion.div
-                layoutId={`segmented-active-${options[0].value}`}
-                className="absolute inset-0 bg-white rounded-lg shadow-sm border border-brand-200/40"
-                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                layoutId={`segmented-active-${options.map((o) => o.value).join('-')}`}
+                className="absolute inset-0 bg-primary rounded-lg shadow-sm"
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               />
             )}
             <span
               className={`relative z-10 font-accent font-bold uppercase tracking-widest ${
                 size === 'sm' ? 'text-[10px]' : size === 'lg' ? 'text-sm' : 'text-xs'
-              }`}
+              } ${isActive ? 'text-warm-white' : ''}`}
             >
               {option.label}
             </span>

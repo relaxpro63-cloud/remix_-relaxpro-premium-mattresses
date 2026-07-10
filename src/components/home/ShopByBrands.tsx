@@ -78,7 +78,7 @@ export default function ShopByBrands() {
                     setActiveCategory(cat.name);
                   }
                 }}
-                className={`snap-start shrink-0 flex items-center gap-2 md:gap-3 px-4 md:px-6 py-3 md:py-4 border rounded-xl transition-all duration-300 cursor-pointer group ${
+                className={`snap-start shrink-0 flex items-center gap-2 md:gap-3 px-4 md:px-6 py-3 md:py-4 border rounded-xl transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 cursor-pointer group ${
                   activeCategory === cat.name 
                     ? 'border-accent bg-accent/5 shadow-sm text-accent' 
                     : 'border-brand-200/80 bg-white hover:border-accent hover:shadow-md hover:bg-neutral-light/50 text-primary'
@@ -163,7 +163,7 @@ export default function ShopByBrands() {
                           e.stopPropagation();
                           handleNavigateToPdp(item.slug);
                         }}
-                        className="btn-primary py-2.5 px-3 rounded-xl border border-brand-200 hover:border-accent bg-white font-accent font-semibold text-xs text-center cursor-pointer text-primary transition-all"
+                        className="btn-primary py-2.5 px-3 rounded-xl border border-brand-200 hover:border-accent bg-white font-accent font-semibold text-xs text-center cursor-pointer text-primary transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
                       >
                         Details
                       </button>
@@ -173,7 +173,7 @@ export default function ShopByBrands() {
                         )}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="btn-primary py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold text-center transition-all flex items-center justify-center gap-1"
+                        className="btn-primary py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold text-center transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out flex items-center justify-center gap-1"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <MessageSquare className="w-3 h-3" /> Chat

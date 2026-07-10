@@ -87,7 +87,7 @@ export default function Footer() {
                   <li key={link.path}>
                     <Link
                       to={link.path}
-                      className="hover:text-white hover:translate-x-1 transition-all inline-block cursor-pointer"
+                      className="hover:text-white hover:translate-x-1 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out inline-block cursor-pointer"
                     >
                       {link.label}
                     </Link>
@@ -106,7 +106,7 @@ export default function Footer() {
                   <li key={link.path}>
                     <Link
                       to={link.path}
-                      className="hover:text-white hover:translate-x-1 transition-all inline-block cursor-pointer"
+                      className="hover:text-white hover:translate-x-1 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out inline-block cursor-pointer"
                     >
                       {link.label}
                     </Link>
@@ -176,13 +176,18 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
+      <div className="border-t border-warm-white/10">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-warm-white/30">
           <div className="text-center md:text-left">
             <p>© {new Date().getFullYear()} RelaxPro Premium Mattresses Pvt Ltd. All rights reserved.</p>
-            <p className="mt-1 text-[10px]">Kerala harvested latex is GOLS Certified • Fabrics hold Oeko-Tex Standard-100</p>
+            <p className="mt-1 text-[10px]">Kerala harvested latex is GOLS Certified · Fabrics hold Oeko-Tex Standard-100</p>
+            <p className="mt-1 text-[10px] text-warm-white/20">Free doorstep delivery · 100-night trial · 10-year warranty</p>
           </div>
-
+          <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest font-accent">
+            <Link to="/contact" className="hover:text-warm-white transition-colors">Contact</Link>
+            <Link to="/about" className="hover:text-warm-white transition-colors">About</Link>
+            <a href="tel:+918686624494" className="hover:text-warm-white transition-colors">Call us</a>
+          </div>
         </div>
       </div>
     </footer>

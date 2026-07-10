@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail, ShoppingCart, Leaf } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
@@ -44,6 +44,19 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
   }, [product, activeSize, includeAccessories, selectedFabric]);
 
   const [addedToCart, setAddedToCart] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterInView(entry.isIntersecting),
+      { rootMargin: '0px 0px -10% 0px', threshold: 0 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   const handleAddToCart = () => {
     onAddToCartDirect(
@@ -77,14 +90,14 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       animate={{ opacity: 1, y: 0 }} 
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.4 }}
-      className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16"
+      className="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-16 pb-28 md:pb-16"
     >
       {/* Navigation & Back Link */}
       <button
         onClick={onNavigateBack}
         className="inline-flex items-center gap-2 text-neutral-dark/60 hover:text-primary text-xs font-accent font-semibold mb-8 lg:mb-12 group cursor-pointer transition-colors"
       >
-        <div className="w-8 h-8 rounded-full bg-neutral-light border border-brand-200/50 flex items-center justify-center group-hover:bg-white group-hover:border-brand-200 transition-all">
+        <div className="w-8 h-8 rounded-full bg-neutral-light border border-brand-200/50 flex items-center justify-center group-hover:bg-white group-hover:border-brand-200 transition-[transform,box-shadow,border-color,background-color,color,opacity]">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform text-primary" />
         </div>
         Back to Collections
@@ -210,7 +223,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                   <button
                     key={sz}
                     onClick={() => setActiveSize(sz)}
-                    className={`p-4 rounded-xl border text-left transition-all relative overflow-hidden group ${
+                    className={`p-4 rounded-xl border text-left transition-[transform,box-shadow,border-color,background-color,color,opacity] relative overflow-hidden group ${
                       activeSize === sz
                         ? 'border-accent bg-accent/5 ring-1 ring-accent'
                         : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'
@@ -241,7 +254,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                   
                   <div
                     onClick={() => setIncludeAccessories(true)}
-                    className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-all ${
+                    className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${
                       includeAccessories
                         ? 'border-accent bg-accent/5 ring-1 ring-accent'
                         : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'
@@ -262,7 +275,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
 
                   <div
                     onClick={() => setIncludeAccessories(false)}
-                    className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-all ${
+                    className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${
                       !includeAccessories
                         ? 'border-accent bg-accent/5 ring-1 ring-accent'
                         : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'
@@ -289,7 +302,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
 
                   <div
                     onClick={() => setSelectedFabric('300GSM')}
-                    className={`p-5 rounded-2xl border cursor-pointer transition-all ${
+                    className={`p-5 rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${
                       selectedFabric === '300GSM'
                         ? 'border-accent bg-accent/5 ring-1 ring-accent'
                         : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'
@@ -310,7 +323,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
 
                   <div
                     onClick={() => setSelectedFabric('450GSM')}
-                    className={`p-5 rounded-2xl border cursor-pointer transition-all ${
+                    className={`p-5 rounded-2xl border cursor-pointer transition-[transform,box-shadow,border-color,background-color,color,opacity] ${
                       selectedFabric === '450GSM'
                         ? 'border-accent bg-accent/5 ring-1 ring-accent'
                         : 'border-brand-200/50 hover:border-accent/40 hover:bg-neutral-light'
@@ -464,6 +477,44 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           className="w-full h-auto object-contain rounded-2xl shadow-sm"
         />
       </div>
+
+      {/* Mobile-only sticky buy bar (hidden on >= md) */}
+      <motion.div
+        initial={reduceMotion ? false : { y: '100%' }}
+        animate={{ y: footerInView ? '100%' : '0%' }}
+        transition={reduceMotion ? { duration: 0 } : { type: 'tween', duration: 0.3, ease: 'easeOut' }}
+        className="md:hidden fixed bottom-0 left-0 right-0 z-[60] bg-white/95 backdrop-blur border-t border-brand-200/60 shadow-[0_-4px_20px_-6px_rgba(0,0,0,0.12)] pb-[env(safe-area-inset-bottom)]"
+        aria-hidden={footerInView}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+          <div className="flex flex-col leading-none min-w-0">
+            <span className="text-[10px] font-accent font-semibold uppercase tracking-wider text-neutral-dark/50">
+              {product.name}
+            </span>
+            <span className="text-lg font-bold text-gray-900 tracking-tight truncate">
+              <PriceText>₹{activePrice.toLocaleString('en-IN')}</PriceText>
+            </span>
+          </div>
+
+          <button
+            onClick={handleAddToCart}
+            className="ml-auto flex-1 min-h-11 min-w-0 inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary hover:bg-neutral-dark text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
+          >
+            <ShoppingCart className="w-5 h-5 shrink-0" />
+            <span className="truncate">{addedToCart ? 'Added!' : 'Add to Cart'}</span>
+          </button>
+
+          <button
+            onClick={handleContactSuresh}
+            aria-label="Enquire on WhatsApp"
+            className="min-h-11 min-w-11 shrink-0 inline-flex items-center justify-center p-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
+          >
+            <svg viewBox="0 0 24 24" className="w-5.5 h-5.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.83.001-2.624-1.023-5.091-2.884-6.957C16.586 1.964 14.111.94 11.488.94c-5.438 0-9.863 4.414-9.866 9.831-.001 1.942.509 3.826 1.481 5.534L2.016 20.2l4.631-1.046zM17.91 14.5c-.34-.17-2.015-.994-2.327-1.107-.31-.114-.537-.17-.762.17-.224.34-.868 1.107-1.064 1.332-.197.225-.394.25-.733.08-.339-.17-1.432-.527-2.73-1.682-1.01-.902-1.693-2.016-1.89-2.356-.198-.34-.021-.523.149-.693.153-.153.34-.397.51-.595.17-.198.226-.34.34-.567.113-.227.056-.425-.028-.595-.085-.17-.763-1.839-1.045-2.522-.275-.66-.554-.57-.762-.58-.198-.011-.424-.013-.65-.013-.226 0-.594.085-.905.424-.311.34-1.187 1.162-1.187 2.831 0 1.67 1.215 3.284 1.385 3.51.17.227 2.39 3.65 5.79 5.12.809.35 1.44.558 1.933.715.813.258 1.554.222 2.14.135.653-.097 2.016-.823 2.3-1.577.283-.755.283-1.401.198-1.537-.085-.136-.312-.222-.653-.392z" />
+            </svg>
+          </button>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

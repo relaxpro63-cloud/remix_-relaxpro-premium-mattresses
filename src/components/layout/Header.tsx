@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { ShoppingCart, MessageSquare, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
@@ -12,25 +13,18 @@ export default function Header({ cartCount }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const location = useLocation();
-  const lastScrollY = useRef(0);
+  const { scrollY } = useScroll();
+  const [lastY, setLastY] = useState(0);
 
-  const handleScroll = useCallback(() => {
-    const currentY = window.scrollY;
-    setScrolled(currentY > 40);
-
-    // Hide on scroll down, reveal on scroll up (only after 200px)
-    if (currentY > 200) {
-      setHidden(currentY > lastScrollY.current && currentY - lastScrollY.current > 5);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setScrolled(latest > 40);
+    if (latest > 200) {
+      setHidden(latest > lastY && latest - lastY > 5);
     } else {
       setHidden(false);
     }
-    lastScrollY.current = currentY;
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    setLastY(latest);
+  });
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -65,22 +59,15 @@ export default function Header({ cartCount }: HeaderProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-500 ${
+        className={`sticky top-0 z-40 w-full transition-[transform,background-color,backdrop-filter,border-color,box-shadow] duration-300 ease-out ${
           hidden && !mobileMenuOpen ? '-translate-y-full' : 'translate-y-0'
         } ${
           scrolled
-            ? 'bg-white/90 backdrop-blur-xl border-b border-brand-200/60 shadow-sm'
-            : 'bg-brand-50/80 backdrop-blur-md border-b border-brand-200/30'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-border shadow-sm'
+            : 'bg-white/80 backdrop-blur-md border-b border-border/50'
         }`}
       >
-        {/* Top Banner */}
-        <div className="bg-primary text-white text-[10px] md:text-[11px] py-2 px-3 md:px-4 text-center font-accent tracking-widest flex items-center justify-center">
-          <span className="font-semibold text-accent-light uppercase">
-            Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing
-          </span>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
@@ -89,7 +76,6 @@ export default function Header({ cartCount }: HeaderProps) {
             <RelaxProLogo variant="compact" className="scale-85 md:scale-100 origin-left" />
           </Link>
 
-          {/* Desktop Navigation with dropdown for Shop */}
           <nav className="hidden lg:flex items-center gap-7" role="navigation" aria-label="Main navigation">
             {navItems.map((item) => {
               if (item.label === 'Shop') {
@@ -97,31 +83,30 @@ export default function Header({ cartCount }: HeaderProps) {
                   <div key={item.path} className="relative group py-2">
                     <Link
                       to={item.path}
-                      className={`text-xs font-bold uppercase tracking-widest font-accent transition-colors cursor-pointer flex items-center gap-1 ${
+                      className={`text-xs font-bold uppercase tracking-widest font-accent transition-colors duration-200 cursor-pointer flex items-center gap-1 ${
                         isActive(item.path) ? 'text-primary' : 'text-neutral-dark/75 hover:text-primary'
                       }`}
                     >
                       {item.label}
                       <ChevronDown className="w-3.5 h-3.5 opacity-60 text-accent" />
                     </Link>
-                    {/* Hover Dropdown */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-52 bg-white border border-brand-200 shadow-xl rounded-xl p-3.5 z-50">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-52 bg-white border border-border shadow-xl rounded-2xl p-3.5 z-50">
                       <div className="flex flex-col gap-2 font-accent tracking-wider text-[10px] font-bold text-left">
                         <Link
                           to="/catalog"
-                          className="hover:text-accent text-primary transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50"
+                          className="hover:text-accent text-primary transition-colors duration-200 block py-2 px-2.5 rounded-lg hover:bg-brand-50"
                         >
                           Explore Collections
                         </Link>
                         <Link
                           to="/builder"
-                          className="hover:text-accent text-primary transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
+                          className="hover:text-accent text-primary transition-colors duration-200 block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-border pt-2"
                         >
                           Design Your Bed
                         </Link>
                         <Link
                           to="/compare"
-                          className="hover:text-accent text-primary transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
+                          className="hover:text-accent text-primary transition-colors duration-200 block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-border pt-2"
                         >
                           Compare Models
                         </Link>
@@ -135,13 +120,12 @@ export default function Header({ cartCount }: HeaderProps) {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`relative text-xs font-bold uppercase tracking-widest font-accent py-1 transition-colors cursor-pointer group ${
+                  className={`relative text-xs font-bold uppercase tracking-widest font-accent py-1 transition-colors duration-200 cursor-pointer group ${
                     isActive(item.path) ? 'text-primary' : 'text-neutral-dark/75 hover:text-primary'
                   }`}
                 >
                   {item.label}
-                  {/* Center-out underline on hover */}
-                  <span className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 h-[2px] bg-accent rounded-full transition-all duration-300 ${
+                  <span className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 h-[2px] bg-accent rounded-full transition-[width] duration-300 ease-out ${
                     isActive(item.path) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`} />
                 </Link>
@@ -152,7 +136,7 @@ export default function Header({ cartCount }: HeaderProps) {
           <div className="hidden lg:flex items-center gap-3">
             <Link
               to="/contact"
-              className="text-neutral-dark/75 hover:text-primary text-xs font-bold flex items-center gap-1.5 cursor-pointer font-accent uppercase tracking-widest transition-colors mr-2"
+              className="text-neutral-dark/75 hover:text-primary text-xs font-bold flex items-center gap-1.5 cursor-pointer font-accent uppercase tracking-widest transition-colors duration-200 mr-2"
             >
               <MessageSquare className="w-4 h-4 text-accent" />
               Contact
@@ -160,20 +144,26 @@ export default function Header({ cartCount }: HeaderProps) {
 
             <Link
               to="/catalog"
-              className="btn-primary bg-accent hover:bg-accent-dark text-primary py-2.5 px-6 rounded-xl text-xs font-bold font-accent uppercase tracking-wider shadow-sm cursor-pointer transition-all"
+              className="inline-flex items-center justify-center min-h-11 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-widest transition-[transform,background-color,box-shadow] duration-200 ease-out active:scale-[0.97] bg-accent hover:bg-accent-dark text-primary shadow-sm cursor-pointer"
             >
               Shop Now
             </Link>
 
             <Link
               to="/cart"
-              className="relative bg-primary hover:bg-neutral-dark text-white p-2.5 rounded-xl transition-all cursor-pointer shadow-sm ml-1"
+              className="relative bg-primary hover:bg-neutral-dark text-white p-2.5 rounded-xl transition-colors duration-200 cursor-pointer shadow-sm ml-1"
             >
               <ShoppingCart className="w-4 h-4" />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white font-mono text-[9px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
+                <motion.span
+                  key={cartCount}
+                  initial={{ scale: 0.5 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+                  className="absolute -top-1.5 -right-1.5 bg-red-500 text-white font-mono text-[9px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white"
+                >
                   {cartCount}
-                </span>
+                </motion.span>
               )}
             </Link>
           </div>
@@ -181,19 +171,25 @@ export default function Header({ cartCount }: HeaderProps) {
           <div className="flex items-center gap-3 lg:hidden">
             <Link
               to="/cart"
-              className="relative bg-secondary hover:bg-brand-200 text-primary p-2.5 rounded-xl transition-all cursor-pointer"
+              className="relative bg-secondary hover:bg-brand-200 text-primary p-2.5 rounded-xl transition-colors duration-200 cursor-pointer"
             >
               <ShoppingCart className="w-4 h-4" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white font-mono text-[8px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center">
+                <motion.span
+                  key={cartCount}
+                  initial={{ scale: 0.5 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+                  className="absolute -top-1 -right-1 bg-red-500 text-white font-mono text-[8px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center"
+                >
                   {cartCount}
-                </span>
+                </motion.span>
               )}
             </Link>
 
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className={`flex flex-col gap-[5px] p-2 rounded-lg cursor-pointer bg-secondary hover:bg-brand-200 transition-colors ${
+              className={`flex flex-col gap-[5px] p-2 rounded-lg cursor-pointer bg-secondary hover:bg-brand-200 transition-colors duration-200 ${
                 mobileMenuOpen ? 'hamburger-open' : ''
               }`}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -214,7 +210,6 @@ export default function Header({ cartCount }: HeaderProps) {
         />
       )}
 
-      {/* Styled Mobile Menu with bg-primary and white text */}
       <nav
         className={`mobile-menu-panel bg-primary ${mobileMenuOpen ? 'open' : ''}`}
         role="navigation"
@@ -225,7 +220,7 @@ export default function Header({ cartCount }: HeaderProps) {
             <span className="font-heading font-bold text-lg text-white">Menu</span>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="text-white p-1 rounded-lg hover:bg-white/10 cursor-pointer"
+              className="text-white p-1 rounded-lg hover:bg-white/10 cursor-pointer transition-colors duration-200"
               aria-label="Close navigation menu"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -235,16 +230,17 @@ export default function Header({ cartCount }: HeaderProps) {
           </div>
 
           <div className="flex-1 px-6 py-6 space-y-1.5">
-            {navItems.map((item) => (
+            {navItems.map((item, i) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`mobile-menu-item block py-3.5 px-4 rounded-xl text-sm font-semibold font-accent uppercase tracking-wider transition-colors ${
+                className={`mobile-menu-item block py-3.5 px-4 rounded-xl text-sm font-semibold font-accent uppercase tracking-wider transition-colors duration-200 ${
                   isActive(item.path)
                     ? 'text-white bg-white/10 border-l-4 border-accent'
                     : 'text-white/70 hover:bg-white/10 hover:text-white'
                 }`}
+                style={{ transitionDelay: mobileMenuOpen ? `${i * 50}ms` : '0ms' }}
               >
                 {item.label}
               </Link>
@@ -260,7 +256,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 href="https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
+                className="text-white/40 hover:text-white transition-colors duration-200"
                 title="Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -269,7 +265,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 href="https://www.instagram.com/relaxpro__mattresses/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
+                className="text-white/40 hover:text-white transition-colors duration-200"
                 title="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -278,7 +274,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 href="https://www.youtube.com/@sureshmattressmanufacturer3784"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
+                className="text-white/40 hover:text-white transition-colors duration-200"
                 title="YouTube"
               >
                 <Youtube className="w-5 h-5" />

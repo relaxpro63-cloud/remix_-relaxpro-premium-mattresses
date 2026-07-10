@@ -1,64 +1,44 @@
 import { LeadFormData } from '../types';
 
-export async function submitLead(data: LeadFormData): Promise<boolean> {
-  try {
-    const meta = import.meta as { env?: Record<string, string | undefined> };
-    const envUrl = meta.env?.VITE_PUBLIC_GOOGLE_SCRIPT_URL || meta.env?.VITE_GOOGLE_SCRIPT_URL || meta.env?.PUBLIC_GOOGLE_SCRIPT_URL;
-    const scriptUrl = envUrl || 'https://script.google.com/macros/s/AKfycbyXT4mWL-fsD2LWxEwTcT7_v9mDprfZYrloDW3bn9jWPd_L1nPj4hZ20RuZdbsd1DcV/exec';
+/**
+ * Best-effort lead dispatch to Google Apps Script.
+ *
+ * Under `mode: "no-cors"` the response is opaque: a successful resolve only means
+ * the request left the browser network stack — not that Apps Script wrote a row.
+ * Callers should treat this as fire-and-forget and offer WhatsApp as recovery.
+ */
+export async function submitLead(data: LeadFormData): Promise<void> {
+  const SCRIPT_URL = import.meta.env.VITE_PUBLIC_GOOGLE_SCRIPT_URL as string | undefined;
 
-    console.log("Attempting to submit lead data to Google Sheet:", data);
-
-    if (!scriptUrl) {
-      console.warn("Google Apps Script URL is not configured. Please add VITE_PUBLIC_GOOGLE_SCRIPT_URL to your environment secrets in settings.");
-      return false;
-    }
-
-    // Google Apps Script doPost(e) parses e.parameter only when sent as:
-    // 1. URL search params (query parameters)
-    // 2. application/x-www-form-urlencoded body
-    // If sent as raw application/json under no-cors, e.parameter remains entirely empty!
-    // To solve this and make it compatible with BOTH parameter-based and JSON-body-based Apps Scripts:
-    
-    // Create urlSearchParams for application/x-www-form-urlencoded
-    const formParams = new URLSearchParams();
-    
-    // Add all keys
-    for (const key in data) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        const val = data[key];
-        formParams.append(key, val !== undefined && val !== null ? String(val) : "");
-      }
-    }
-    
-    // Also include a raw "payload" or "json" parameter representing the full JSON object
-    // just in case the Apps Script expects JSON parsing on a specific parameter
-    formParams.append("payload", JSON.stringify(data));
-    formParams.append("json", JSON.stringify(data));
-
-    // Also support appending essential params to the query URL for maximum script compatibility
-    const urlWithParams = new URL(scriptUrl);
-    // Add name and phone to query params to guarantee they appear in standard parameter-based catchers
-    if (data.name) urlWithParams.searchParams.append("name", String(data.name));
-    if (data.phone) urlWithParams.searchParams.append("phone", String(data.phone));
-    if (data.orderId) urlWithParams.searchParams.append("orderId", String(data.orderId));
-    if (data.product) urlWithParams.searchParams.append("product", String(data.product));
-
-    await fetch(
-      urlWithParams.toString(),
-      {
-        method: "POST",
-        mode: "no-cors", // Required to bypass CORS blocks on Google Apps Script Web Apps
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: formParams.toString()
-      }
-    );
-
-    console.log("Successfully dispatched fetch request to Google Apps Script Web App.");
-    return true;
-  } catch (error) {
-    console.error("Error submitting lead to Google Sheets:", error);
-    return false;
+  if (!SCRIPT_URL || !SCRIPT_URL.trim()) {
+    throw new Error('VITE_PUBLIC_GOOGLE_SCRIPT_URL is not configured');
   }
+
+  const formParams = new URLSearchParams();
+
+  for (const key in data) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      const val = data[key as keyof LeadFormData];
+      formParams.append(key, val !== undefined && val !== null ? String(val) : '');
+    }
+  }
+
+  // Dual payload shape for parameter-based and JSON-body-based Apps Scripts
+  formParams.append('payload', JSON.stringify(data));
+  formParams.append('json', JSON.stringify(data));
+
+  // Query string: non-PII debug fields only (no name/phone)
+  const urlWithParams = new URL(SCRIPT_URL);
+  if (data.orderId) urlWithParams.searchParams.append('orderId', String(data.orderId));
+  if (data.product) urlWithParams.searchParams.append('product', String(data.product));
+  if (data.source) urlWithParams.searchParams.append('source', String(data.source));
+
+  await fetch(urlWithParams.toString(), {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: formParams.toString(),
+  });
 }

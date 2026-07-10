@@ -77,7 +77,7 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
                 key={idx}
                 role="button"
                 onClick={() => goTo(idx)}
-                className={`rounded-full transition-all cursor-pointer h-1.5 sm:h-2 shrink-0 ${
+                className={`rounded-full transition-[width,background-color,transform,border-color,color,box-shadow] cursor-pointer h-1.5 sm:h-2 shrink-0 ${
                   idx === current
                     ? 'bg-primary w-4 sm:w-5'
                     : 'bg-neutral-dark/30 hover:bg-neutral-dark/50 w-1.5 sm:w-2'

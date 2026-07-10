@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, ArrowUp } from 'lucide-react';
+import { ArrowRight, ArrowUp, Leaf, Award, SlidersHorizontal, ShieldCheck } from 'lucide-react';
 import { FadeUp, RevealText, StaggerChildren, staggerItem, AnimatedCounter, EASE_LUXURY } from '../motion/motionPrimitives';
 
 const compareData = [
@@ -79,7 +79,7 @@ export default function CostComparison() {
               <img 
                 src="/images/latex-compare.png" 
                 alt="Natural Latex Mattress" 
-                className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-brand-200/50 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300"
+                className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-brand-200/50 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300"
               />
             </motion.div>
             <motion.div
@@ -92,7 +92,7 @@ export default function CostComparison() {
               <img 
                 src="/images/foam-compare.png" 
                 alt="Ordinary Foam Mattress" 
-                className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-gray-200 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300"
+                className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-gray-200 transform rotate-2 hover:rotate-0 hover:scale-105 transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300"
               />
             </motion.div>
           </div>
@@ -138,15 +138,51 @@ export default function CostComparison() {
           </StaggerChildren>
         </div>
 
-        <FadeUp delay={0.4}>
-          <div className="mt-10 md:mt-12 bg-[#c2e2be] p-4 md:p-6 rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
-            <p className="text-emerald-950 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
-              While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress
-            </p>
-          </div>
-        </FadeUp>
+          <FadeUp delay={0.4}>
+            <div className="mt-10 md:mt-12 bg-[#c2e2be] p-4 md:p-6 rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
+              <p className="text-emerald-950 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
+                While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress
+              </p>
+            </div>
+          </FadeUp>
 
-      </div>
-    </section>
+          {/* Key Differentiators */}
+          <FadeUp delay={0.5} className="mt-12 md:mt-16">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-xl md:text-2xl font-heading font-bold text-center text-primary mb-8">Why Natural Latex Wins</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Leaf className="w-5 h-5 text-accent" />
+                    <span className="font-bold text-primary">Pure Materials</span>
+                  </div>
+                  <p className="text-muted text-sm">GOLS certified organic latex from Kerala plantations, zero synthetic fillers or toxic VOCs.</p>
+                </div>
+                <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Award className="w-5 h-5 text-accent" />
+                    <span className="font-bold text-primary">Certified Quality</span>
+                  </div>
+                  <p className="text-muted text-sm">Rigorous certifications ensure safety, sustainability, and performance you can trust.</p>
+                </div>
+                <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <SlidersHorizontal className="w-5 h-5 text-accent" />
+                    <span className="font-bold text-primary">Custom Comfort</span>
+                  </div>
+                  <p className="text-muted text-sm">Tailored firmness profiles and layer configurations for your perfect sleep experience.</p>
+                </div>
+                <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <ShieldCheck className="w-5 h-5 text-accent" />
+                    <span className="font-bold text-primary">Built to Last</span>
+                  </div>
+                  <p className="text-muted text-sm">15+ year lifespan with proper care, backed by our 10-year replacement warranty.</p>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
   );
 }

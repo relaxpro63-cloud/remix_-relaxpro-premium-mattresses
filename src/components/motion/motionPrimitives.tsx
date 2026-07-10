@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
-import { motion, useInView, useSpring, useMotionValue, useTransform, MotionValue } from 'motion/react';
+import { motion, useScroll, useInView, useSpring, useMotionValue, useTransform, MotionValue } from 'motion/react';
 
 /* =============================================
    SHARED CONSTANTS
@@ -185,23 +185,11 @@ export function ParallaxImage({
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
-  const y = useMotionValue(0);
-
-  useEffect(() => {
-    if (reduced || !ref.current) return;
-
-    const el = ref.current;
-    const handleScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      const progress = (windowH - rect.top) / (windowH + rect.height);
-      y.set((progress - 0.5) * speed);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [reduced, speed, y]);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [speed / 2, -speed / 2]);
 
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>

@@ -13,7 +13,7 @@ export default function WhatsAppFAB() {
       {/* Phone prompt click container */}
       <button
         onClick={handleOpenWhatsApp}
-        className="group relative flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white p-3.5 md:px-5 md:py-3.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 select-none cursor-pointer"
+        className="group relative flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white p-3.5 md:px-5 md:py-3.5 rounded-full shadow-2xl transition-[transform,background-color,border-color,color,box-shadow] duration-300 hover:scale-105 select-none cursor-pointer"
       >
         {/* Animated outer pulsing halo */}
         <span className="absolute inset-0 rounded-full border-4 border-emerald-400 group-hover:animate-ping opacity-25"></span>
@@ -28,7 +28,7 @@ export default function WhatsAppFAB() {
         </svg>
         
         {/* Supporting text reveal on desktop hover */}
-        <span className="font-display font-medium text-xs tracking-wide hidden md:inline-block max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap">
+        <span className="font-display font-medium text-xs tracking-wide hidden md:inline-block max-w-0 overflow-hidden group-hover:max-w-xs transition-[max-width,transform,background-color,border-color,color,box-shadow] duration-500 whitespace-nowrap">
           Expert Consultation On WhatsApp
         </span>
       </button>
