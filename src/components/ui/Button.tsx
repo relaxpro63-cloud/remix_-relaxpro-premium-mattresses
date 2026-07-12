@@ -26,7 +26,7 @@ export default function Button({
   };
 
   return (
-    <button className={`group ${base} ${variants[variant]} ${className}`.trim()} {...rest}>
+    <button className={`${base} ${variants[variant]} ${className}`.trim()} {...rest}>
       <span>{children}</span>
       {icon && (
         <span className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/5 group-hover:translate-x-0.5 group-hover:-translate-y-px transition-transform duration-200">

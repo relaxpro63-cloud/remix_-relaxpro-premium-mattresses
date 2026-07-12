@@ -19,7 +19,7 @@ export default function Section({
     tone === 'muted'
       ? 'bg-brand-100/60'
       : tone === 'dark'
-        ? 'bg-primary text-warm-white'
+        ? 'bg-primary text-white'
         : '';
 
   return (
