@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "fab-organic-cotton", "_type": "builderFabric", "name": "Pure Organic Cotton Cover",
+    "role": "primaryCover", "gsm": "450 GSM", "benefit": "Breathable, skin-friendly high-GSM organic cotton.",
+    "addPrice": 0, "isRecommended": true, "order": 1, "isActive": true
+  },
+  {
+    "_id": "fab-quilted-12", "_type": "builderFabric", "name": "12mm Quilted Top",
+    "role": "quiltingUpgrade", "quiltingMm": "12mm", "benefit": "Adds a plush, hotel-like quilted surface.",
+    "addPrice": 0, "isRecommended": false, "order": 1, "isActive": true
+  }
+]

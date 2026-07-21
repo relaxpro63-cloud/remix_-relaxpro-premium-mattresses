@@ -1,0 +1,28 @@
+export default {
+  name: 'builderMaterial',
+  title: 'Builder material',
+  type: 'document',
+  fields: [
+    { name: 'name', title: 'Name', type: 'string', validation: R => R.required() },
+    { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name' } },
+    { name: 'slot', title: 'Used as', type: 'string',
+      options: { list: [
+        { title: 'Comfort layer (top)', value: 'comfort' },
+        { title: 'Support core (base)', value: 'support' },
+      ]}, validation: R => R.required() },
+    { name: 'brand', title: 'Brand', type: 'string' },
+    { name: 'density', title: 'Density', type: 'string', description: 'e.g. 90 Density' },
+    { name: 'ild', title: 'ILD', type: 'string', description: 'e.g. ILD-38' },
+    { name: 'feelTag', title: 'Plain‑language feel', type: 'string',
+      description: 'Shown on card, e.g. "Soft, hugging feel"' },
+    { name: 'benefit', title: 'One‑line benefit', type: 'text', rows: 2 },
+    { name: 'tooltip', title: 'Technical tooltip', type: 'text', rows: 2 },
+    { name: 'thicknessOptions', title: 'Allowed thicknesses', type: 'array', of: [{ type: 'builderThickness' }] },
+    { name: 'stackColor', title: 'Layer colour', type: 'string', description: 'Hex colour e.g. #BFE3C0' },
+    { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
+    { name: 'isRecommended', title: 'Recommended default', type: 'boolean' },
+    { name: 'order', title: 'Display order', type: 'number' },
+    { name: 'isActive', title: 'Active', type: 'boolean', initialValue: true },
+  ],
+  preview: { select: { title: 'name', subtitle: 'slot', media: 'image' } },
+}

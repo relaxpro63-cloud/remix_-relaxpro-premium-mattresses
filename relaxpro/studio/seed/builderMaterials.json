@@ -1,0 +1,51 @@
+[
+  {
+    "_id": "mat-supersoft", "_type": "builderMaterial", "name": "Supersoft Foam", "slug": {"current": "supersoft-foam"},
+    "slot": "comfort", "brand": "Century", "density": "32 Density", "feelTag": "Soft, hugging feel",
+    "benefit": "Plush cloud-like top that cradles the body.", "tooltip": "32 density supersoft PU foam.",
+    "stackColor": "#E8D5B7", "isRecommended": false, "order": 1, "isActive": true,
+    "thicknessOptions": [
+      {"label": "1 inch", "valueInches": 1, "addPrice": 0},
+      {"label": "2 inches", "valueInches": 2, "addPrice": 0}
+    ]
+  },
+  {
+    "_id": "mat-hr", "_type": "builderMaterial", "name": "High Resilience (HR) Foam", "slug": {"current": "hr-foam"},
+    "slot": "comfort", "brand": "Century", "density": "32 Density", "feelTag": "Bouncy & responsive",
+    "benefit": "Springy support that pushes back gently.", "tooltip": "32 density high-resilience foam.",
+    "stackColor": "#D9C2A0", "isRecommended": false, "order": 2, "isActive": true,
+    "thicknessOptions": [{"label": "2 inches", "valueInches": 2, "addPrice": 0}]
+  },
+  {
+    "_id": "mat-kerala-latex", "_type": "builderMaterial", "name": "Pure Organic Kerala Latex", "slug": {"current": "kerala-latex"},
+    "slot": "comfort", "density": "90 Density", "ild": "ILD-38", "feelTag": "Natural, cooling & premium",
+    "benefit": "GOLS-grade organic latex — breathable, durable, pressure-relieving.", "tooltip": "90 density natural latex, ILD-38 (medium-soft).",
+    "stackColor": "#BFE3C0", "isRecommended": true, "order": 3, "isActive": true,
+    "thicknessOptions": [
+      {"label": "2 inches", "valueInches": 2, "addPrice": 0},
+      {"label": "4 inches", "valueInches": 4, "addPrice": 0},
+      {"label": "6 inches", "valueInches": 6, "addPrice": 0},
+      {"label": "8 inches", "valueInches": 8, "addPrice": 0}
+    ]
+  },
+  {
+    "_id": "mat-pu-rebonded", "_type": "builderMaterial", "name": "PU Rebonded", "slug": {"current": "pu-rebonded"},
+    "slot": "support", "brand": "Century", "density": "100 Density", "feelTag": "Firm orthopaedic base",
+    "benefit": "High-density rebonded core for spine alignment.", "tooltip": "100 density rebonded PU.",
+    "stackColor": "#9DB7D4", "isRecommended": true, "order": 1, "isActive": true,
+    "thicknessOptions": [
+      {"label": "2 inches", "valueInches": 2, "addPrice": 0},
+      {"label": "4 inches", "valueInches": 4, "addPrice": 0}
+    ]
+  },
+  {
+    "_id": "mat-latex-rebonded", "_type": "builderMaterial", "name": "Latex Rebonded", "slug": {"current": "latex-rebonded"},
+    "slot": "support", "density": "120 Density", "feelTag": "Extra-firm natural base",
+    "benefit": "Rebonded latex core — very firm, long-lasting support.", "tooltip": "120 density rebonded latex.",
+    "stackColor": "#7FA98A", "isRecommended": false, "order": 2, "isActive": true,
+    "thicknessOptions": [
+      {"label": "2 inches", "valueInches": 2, "addPrice": 0},
+      {"label": "4 inches", "valueInches": 4, "addPrice": 0}
+    ]
+  }
+]

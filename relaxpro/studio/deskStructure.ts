@@ -12,7 +12,7 @@ export const deskStructure = (S: StructureBuilder) =>
             .items([
               S.documentListItem({ schemaType: 'home', id: 'home', title: 'Homepage' }),
               S.documentListItem({ schemaType: 'productsPage', id: 'productsPage', title: 'Products Page' }),
-              S.documentListItem({ schemaType: 'customBuilder', id: 'customBuilder', title: 'Custom Builder' }),
+              S.documentListItem({ schemaType: 'customBuilder', id: 'customBuilder', title: 'Mattress Builder' }),
               S.documentListItem({ schemaType: 'about', id: 'about', title: 'About Page' }),
               S.documentListItem({ schemaType: 'contact', id: 'contact', title: 'Contact Page' }),
             ])
@@ -23,6 +23,17 @@ export const deskStructure = (S: StructureBuilder) =>
       S.documentTypeListItem('showroom').title('Showrooms'),
       S.documentTypeListItem('testimonial').title('Testimonials'),
       S.documentTypeListItem('faq').title('FAQs'),
+      S.divider(),
+      S.listItem()
+        .title('Builder')
+        .child(
+          S.list()
+            .title('Builder')
+            .items([
+              S.documentTypeListItem('builderMaterial').title('Materials'),
+              S.documentTypeListItem('builderFabric').title('Fabrics'),
+            ])
+        ),
       S.divider(),
       S.documentListItem({ schemaType: 'siteSettings', id: 'siteSettings', title: 'Site Settings' }),
     ])

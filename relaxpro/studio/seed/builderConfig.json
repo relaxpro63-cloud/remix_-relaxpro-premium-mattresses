@@ -1,0 +1,46 @@
+{
+  "_id": "customBuilder", "_type": "customBuilder",
+  "header": {
+    "title": "Build your own mattress",
+    "subtitle": "Pick your size, comfort layer, support core and cover. Watch your mattress — and its price — update live.",
+    "trustChips": ["Free delivery", "100-night trial", "10-year warranty", "GOLS-certified latex"]
+  },
+  "sizes": [
+    {"name": "Single", "lengthInches": 72, "widthInches": 36, "basePrice": 0},
+    {"name": "Double", "lengthInches": 72, "widthInches": 48, "basePrice": 0, "popular": false},
+    {"name": "Queen", "lengthInches": 78, "widthInches": 60, "basePrice": 0, "popular": true},
+    {"name": "King", "lengthInches": 78, "widthInches": 72, "basePrice": 0}
+  ],
+  "customSize": {
+    "enabled": true, "unit": "inches",
+    "minLength": 30, "maxLength": 90, "minWidth": 24, "maxWidth": 84,
+    "pricePerSqInch": 0, "cutCharge": 0,
+    "helper": "Enter exact length × width. A small custom-cut charge applies."
+  },
+  "steps": {
+    "sizeTitle": "1 · Choose your size", "sizeHelper": "Standard sizes or enter a custom size.",
+    "comfortTitle": "2 · How soft should the top feel?", "comfortHelper": "This is the layer your body touches first.",
+    "supportTitle": "3 · How firm should the base be?", "supportHelper": "This keeps your spine aligned.",
+    "coverTitle": "4 · Pick your cover & finish", "coverHelper": "The fabric you see and sleep on."
+  },
+  "summaryPanel": {
+    "heading": "Your Mattress", "emptySlotText": "Tap a step on the right to choose",
+    "emiNote": "or ₹{emi}/mo with EMI",
+    "perks": ["Free white-glove delivery", "100-night sleep trial", "10-year replacement warranty"]
+  },
+  "ctas": {
+    "primaryLabel": "Add to cart", "secondaryLabel": "Book a free consultation",
+    "disabledHint": "Finish all 4 steps to see your price"
+  },
+  "defaults": {
+    "sizeName": "Queen", "comfortMaterialSlug": "kerala-latex", "comfortThickness": 4,
+    "supportMaterialSlug": "pu-rebonded", "supportThickness": 4,
+    "coverFabricSlug": "organic-cotton", "quiltingSlug": "quilted-12"
+  },
+  "seo": {
+    "metaTitle": "Custom Mattress Builder | Design Your Mattress — RelaxPro",
+    "metaDescription": "Build your own custom size and comfort mattress with RelaxPro. Any dimensions from 48\" to 96\" × 24\" to 84\". Pure GOLS-certified Kerala latex. Instant WhatsApp quote.",
+    "ogImage": null,
+    "keywords": ["custom mattress", "custom size mattress", "made to order mattress", "odd size mattress India", "custom latex mattress"]
+  }
+}

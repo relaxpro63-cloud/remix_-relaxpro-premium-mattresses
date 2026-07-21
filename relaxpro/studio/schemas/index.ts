@@ -6,6 +6,7 @@ import socialLink from './objects/socialLink'
 import sizeOption from './objects/sizeOption'
 import formConfig from './objects/formConfig'
 import pageSEO from './objects/pageSEO'
+import builderThickness from './objects/builderThickness'
 
 import home from './documents/home'
 import product from './documents/product'
@@ -18,6 +19,8 @@ import about from './documents/about'
 import contact from './documents/contact'
 import productsPage from './documents/productsPage'
 import customBuilder from './documents/customBuilder'
+import builderMaterial from './documents/builderMaterial'
+import builderFabric from './documents/builderFabric'
 
 export const schemaTypes = [
   ctaButton,
@@ -28,6 +31,7 @@ export const schemaTypes = [
   sizeOption,
   formConfig,
   pageSEO,
+  builderThickness,
   home,
   product,
   showroom,
@@ -39,4 +43,6 @@ export const schemaTypes = [
   contact,
   productsPage,
   customBuilder,
+  builderMaterial,
+  builderFabric,
 ]
