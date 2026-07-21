@@ -30,7 +30,7 @@ import {
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
-import { getTestimonials, getAllShowrooms } from '../../lib/queries';
+import { getHomePage, getTestimonials, getAllShowrooms } from '../../lib/queries';
 import { buildWhatsAppUrl } from '../../lib/site';
 
 interface HomePageProps {
