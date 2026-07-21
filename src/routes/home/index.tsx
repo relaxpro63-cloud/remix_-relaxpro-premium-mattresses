@@ -102,7 +102,12 @@ export default function HomePage({
   useEffect(() => {
     getHomePage().then(data => {
       const prods = data?.bestsellersSection?.products || [];
-      if (prods.length > 0) setBestsellers(prods);
+      if (prods.length > 0) {
+        setBestsellers(prods.map((p: any) => {
+          const hc = PRODUCTS.find((h: any) => h.slug === p.slug);
+          return { ...p, image: p.image || hc?.image || '' };
+        }));
+      }
     }).catch(() => {});
     getTestimonials().then(setTestimonials).catch(() => {});
     getAllShowrooms().then(setShowrooms).catch(() => {});
@@ -171,8 +176,7 @@ export default function HomePage({
           <StaggerChildren className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 justify-center" stagger={0.15}>
             {(bestsellers.length > 0 ? bestsellers : PRODUCTS.slice(0, 6)).map((item: any, idx: number) => {
               const isBestSeller = item.isBestseller || item.slug === 'nirvana';
-              const imageUrl = item.image || (Array.isArray(item.images) && item.images[0] ? 
-                (typeof item.images[0] === 'string' ? item.images[0] : item.images[0]?.asset?.url || '') : '');
+              const imageUrl = item.image || '';
 
               return (
                 <motion.div

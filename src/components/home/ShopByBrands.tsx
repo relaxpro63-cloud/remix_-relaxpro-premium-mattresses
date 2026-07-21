@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BedDouble, Layers, Cloud, ShieldPlus, Sparkles, Star, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getHomePage } from '../../lib/queries';
 import { buildWhatsAppUrl } from '../../lib/site';
+import { PRODUCTS } from '../../data/products';
 import PriceText from '../ui/PriceText';
 import ShineBorder from '../ui/ShineBorder';
 
@@ -33,7 +34,10 @@ export default function ShopByBrands() {
         setActiveCategory(cats[0].name);
       }
       if (prods.length > 0) {
-        setProducts(prods);
+        setProducts(prods.map((p: any) => {
+          const hc = PRODUCTS.find((h: any) => h.slug === p.slug);
+          return { ...p, image: p.image || hc?.image || '' };
+        }));
       }
     }).catch(() => {});
   }, []);
@@ -129,9 +133,7 @@ export default function ShopByBrands() {
             >
               {activeProducts.map((item: any) => {
                 const isBestSeller = item.isBestseller || item.slug === 'nirvana';
-                const imageUrl = Array.isArray(item.images) && item.images[0] ? 
-                  (typeof item.images[0] === 'string' ? item.images[0] : item.images[0]?.asset?.url || '') : 
-                  '';
+                const imageUrl = item.image || '';
 
                 const cardContent = (
                   <>
