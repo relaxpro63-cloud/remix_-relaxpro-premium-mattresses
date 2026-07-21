@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, MessageSquare, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import RelaxProLogo from '../ui/RelaxProLogo';
+import { getSiteSettings } from '../../lib/queries';
 
 interface HeaderProps {
   cartCount: number;
@@ -11,8 +12,17 @@ export default function Header({ cartCount }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [bannerText, setBannerText] = useState('');
   const location = useLocation();
   const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    getSiteSettings().then(s => {
+      if (s?.announcement?.showBanner && s?.announcement?.bannerText) {
+        setBannerText(s.announcement.bannerText);
+      }
+    }).catch(() => {});
+  }, []);
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY;
@@ -73,10 +83,10 @@ export default function Header({ cartCount }: HeaderProps) {
     : 'bg-brand-50/80 backdrop-blur-md border-b border-blue/10'
         }`}
       >
-        {/* Top Banner */}
+{/* Top Banner */}
 <div className="bg-primary text-white text-[10px] md:text-[11px] py-2 px-3 md:px-4 text-center font-accent tracking-widest flex items-center justify-center">
   <span className="font-semibold text-blue uppercase">
-            Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing
+            {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
           </span>
         </div>
 

@@ -135,6 +135,25 @@ export default {
         { name: 'faqs', title: 'FAQ Items', type: 'array', of: [{ type: 'reference', to: [{ type: 'faq' }] }] },
       ],
     },
+    {
+      name: 'comparisonSection', title: 'Comparison Table (RelaxPro vs Others)', type: 'object',
+      fields: [
+        { name: 'sectionTitle', title: 'Section Title', type: 'string' },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2 },
+        {
+          name: 'items', title: 'Comparison Items', type: 'array',
+          of: [{
+            type: 'object',
+            fields: [
+              { name: 'relaxProTitle', title: 'RelaxPro Title', type: 'string' },
+              { name: 'icon', title: 'Icon', type: 'string', options: { list: [{ title: 'Leaf', value: 'leaf' }, { title: 'Award', value: 'award' }, { title: 'Sliders', value: 'sliders' }, { title: 'Check Circle', value: 'check' }, { title: 'Heart Pulse', value: 'heart' }, { title: 'Shield Check', value: 'shield' }] } },
+              { name: 'otherTitle', title: 'Other Brands Title', type: 'string' },
+              { name: 'otherSubtext', title: 'Other Brands Subtext (optional)', type: 'string' },
+            ],
+          }],
+        },
+      ],
+    },
     { name: 'bookingForm', title: 'Book Showroom Visit Form', type: 'formConfig' },
     { name: 'diagnosticForm', title: 'Diagnostic Consultation Form', type: 'formConfig' },
     { name: 'seo', title: 'SEO Settings', type: 'pageSEO' },

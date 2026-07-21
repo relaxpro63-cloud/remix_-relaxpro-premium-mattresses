@@ -32,7 +32,7 @@ export default function LocationsPage() {
               <div className="pt-4 border-t border-brand-200 flex flex-col gap-2">
                 <button
                   onClick={() => {
-                    window.open(`https://wa.me/918686624494?text=${encodeURIComponent(`Hi Suresh, I would like directions, phone triggers and appointment schedule for the RelaxPro ${loc.city} Mattress Outlet.`)}`, '_blank');
+                    window.open(`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(`Hi Suresh, I would like directions, phone triggers and appointment schedule for the RelaxPro ${loc.city} Mattress Outlet.`)}`, '_blank');
                   }}
                   className="w-full bg-primary hover:bg-brand-800 text-white rounded-full py-3 text-xs font-bold uppercase tracking-wider cursor-pointer text-center"
                 >

@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Search, Sparkles, HelpCircle, Shield, RefreshCw, PenTool, CheckCircle, Info } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
+import { getFaqs } from '../../lib/queries';
 
 interface FAQItem {
   id: string;
@@ -11,55 +12,49 @@ interface FAQItem {
   icon: React.ReactNode;
 }
 
+const categoryIcons: Record<string, React.ReactNode> = {
+  'Durability and Cores': <Shield className="w-5 h-5 text-accent shrink-0" />,
+  'Care and Setting Up': <RefreshCw className="w-5 h-5 text-accent shrink-0" />,
+  'Custom Sizing': <PenTool className="w-5 h-5 text-accent shrink-0" />,
+  'Shipping and Delivery': <CheckCircle className="w-5 h-5 text-accent shrink-0" />,
+  'Warranty and Returns': <Shield className="w-5 h-5 text-accent shrink-0" />,
+  'General': <Info className="w-5 h-5 text-accent shrink-0" />,
+};
+
+const categoryMap: Record<string, 'care' | 'durability' | 'customization'> = {
+  'Durability and Cores': 'durability',
+  'Care and Setting Up': 'care',
+  'Custom Sizing': 'customization',
+  'Shipping and Delivery': 'customization',
+  'Warranty and Returns': 'durability',
+  'General': 'care',
+};
+
+function extractText(blocks: any): string {
+  if (typeof blocks === 'string') return blocks;
+  if (!Array.isArray(blocks)) return '';
+  return blocks.map((b: any) => b.children?.map((c: any) => c.text).join('') || '').join('\n');
+}
+
 export default function SleepFAQs() {
-  const [openId, setOpenId] = useState<string | null>('faq-1');
+  const [openId, setOpenId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<'all' | 'care' | 'durability' | 'customization'>('all');
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
 
-  const faqs = useMemo<FAQItem[]>(() => [
-    {
-      id: 'faq-1',
-      category: 'durability',
-      question: 'How durable is natural organic latex compared to memory foam or spring mattresses?',
-      answer: 'Natural latex lasts 15-20 years without sagging, unlike synthetic memory foam (5-7 years) or spring mattresses that quickly weaken.',
-      icon: <Shield className="w-5 h-5 text-accent shrink-0" />
-    },
-    {
-      id: 'faq-2',
-      category: 'care',
-      question: 'How do I clean and care for my RelaxPro 100% natural latex mattress?',
-      answer: 'Use a breathable protector. Spot-clean with mild soap, avoid direct sunlight, and rotate 180° every 6 months.',
-      icon: <RefreshCw className="w-5 h-5 text-accent shrink-0" />
-    },
-    {
-      id: 'faq-3',
-      category: 'customization',
-      question: 'Can I request custom sizes, custom thickness profiles, or side-by-side customization?',
-      answer: 'Yes! We craft custom sizes, specific thicknesses (4″-10″), and offer Split Dual-Comfort (e.g., firm on one side, soft on the other).',
-      icon: <PenTool className="w-5 h-5 text-accent shrink-0" />
-    },
-    {
-      id: 'faq-4',
-      category: 'durability',
-      question: 'Does natural latex trap body heat or run hot in summer?',
-      answer: 'No. Natural latex has an open-cell structure with pincore holes that circulate air naturally, keeping you cool and sweat-free year-round.',
-      icon: <Sparkles className="w-5 h-5 text-accent shrink-0" />
-    },
-    {
-      id: 'faq-5',
-      category: 'care',
-      question: 'What kind of bed base or frame is ideal for a natural latex mattress?',
-      answer: 'A flat wooden board or closely slatted frame is ideal. Avoid saggy spring bases or curved frames that compromise alignment.',
-      icon: <CheckCircle className="w-5 h-5 text-accent shrink-0" />
-    },
-    {
-      id: 'faq-6',
-      category: 'customization',
-      question: 'What is the structural difference between GOLS-certified rubber and GOTS-certified textiles?',
-      answer: 'GOLS certifies the core is pure organic rubber without synthetic fillers. GOTS certifies the outer cover uses biological organic cotton.',
-      icon: <Info className="w-5 h-5 text-accent shrink-0" />
-    }
-  ], []);
+  useEffect(() => {
+    getFaqs().then((data: any[]) => {
+      if (data && data.length > 0) {
+        setFaqs(data.map((f: any, i: number) => ({
+          id: `faq-${i}`,
+          category: categoryMap[f.category] || 'general',
+          question: f.question,
+          answer: extractText(f.answer),
+          icon: categoryIcons[f.category] || <HelpCircle className="w-5 h-5 text-accent shrink-0" />,
+        })));
+      }
+    }).catch(() => {});
+  }, []);
 
   // Filter FAQs based on category filter and search term
   const filteredFaqs = useMemo(() => {
@@ -116,7 +111,7 @@ export default function SleepFAQs() {
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
               }`}
             >
-              Durability & Cores
+              Durability
             </button>
             <button
               onClick={() => setActiveCategory('care')}
@@ -126,7 +121,7 @@ export default function SleepFAQs() {
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
               }`}
             >
-              Care & Setting Up
+              Care & Setup
             </button>
             <button
               onClick={() => setActiveCategory('customization')}
@@ -136,7 +131,7 @@ export default function SleepFAQs() {
                   : 'bg-neutral-light hover:bg-brand-100 text-primary/70 border border-brand-200/40'
               }`}
             >
-              Custom Sizing
+              Customization
             </button>
           </div>
 

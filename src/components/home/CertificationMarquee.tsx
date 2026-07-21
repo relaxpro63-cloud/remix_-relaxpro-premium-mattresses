@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles } from 'lucide-react';
+import { getSiteSettings } from '../../lib/queries';
 
-const ITEMS = [
+const defaultItems = [
   'GOLS Certified Organic',
   'Oeko-Tex Standard 100',
   'FSC Certified Wood',
@@ -12,7 +13,18 @@ const ITEMS = [
 ];
 
 export default function CertificationMarquee() {
-  const list = [...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS]; // Sufficiently duplicate to fill screen
+  const [items, setItems] = useState(defaultItems);
+
+  useEffect(() => {
+    getSiteSettings().then(s => {
+      const certs = s?.footer?.certifications;
+      if (certs?.length > 0) {
+        setItems(certs.map((c: any) => typeof c === 'string' ? c : c.name));
+      }
+    }).catch(() => {});
+  }, []);
+
+  const list = [...items, ...items, ...items, ...items];
 
   return (
     <section className="bg-secondary border-y border-brand-200/30 overflow-hidden py-6 md:py-8">

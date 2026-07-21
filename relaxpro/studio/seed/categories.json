@@ -4,7 +4,7 @@
     "_type": "brandCategory",
     "name": "Luxury Latex",
     "slug": { "current": "luxury-latex" },
-    "description": "Premium 100% pure natural latex mattresses for therapeutic sleep",
+    "description": "Premium 100% pure natural latex mattresses made from solid GOLS-certified Dunlop latex blocks. Densest organic construction for therapeutic deep sleep and pressure relief.",
     "order": 1,
     "isActive": true
   },
@@ -13,7 +13,7 @@
     "_type": "brandCategory",
     "name": "Premium Hybrid",
     "slug": { "current": "premium-hybrid" },
-    "description": "Hybrid mattresses combining latex with high-density support foam",
+    "description": "Balanced hybrid mattresses blending organic latex with high-density rebonded foam and HR softy transition layers for optimal orthopedic support and pressure distribution.",
     "order": 2,
     "isActive": true
   },
@@ -22,7 +22,7 @@
     "_type": "brandCategory",
     "name": "Orthopedic Comfort",
     "slug": { "current": "orthopedic-comfort" },
-    "description": "Value orthopedic mattresses for firm back support",
+    "description": "Value-driven orthopedic mattresses with high-resilience foam cores and custom density transitions. Oeko-Tex certified wrappers and firm spine alignment at accessible prices.",
     "order": 3,
     "isActive": true
   }

@@ -79,7 +79,7 @@ export default function ShowroomBookingForm() {
 
   const handleLaunchWhatsApp = () => {
     const text = `Hello Suresh, I would like to book a showroom visit. Name: ${name}. Phone: ${phone}. Showroom: ${showroom}. Date: ${visitDate} @ ${timeSlot}.`;
-    window.location.href = `https://wa.me/918686624494?text=${encodeURIComponent(text)}`;
+    window.location.href = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(text)}`;
   };
 
   return (

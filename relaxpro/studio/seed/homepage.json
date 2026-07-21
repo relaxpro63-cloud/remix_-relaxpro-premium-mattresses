@@ -2,21 +2,20 @@
   "_id": "home",
   "_type": "home",
   "heroSection": {
-    "title": "Natural Latex Mattresses",
-    "subtitle": "Kerala Organic Latex Labs",
-    "description": "Experience the therapeutic comfort of our GOLS-certified natural latex mattresses. Engineered in Kerala for the perfect balance of support and cloud-like softness.",
+    "title": "Pure Natural Latex, From Kerala to Your Bed",
+    "subtitle": "Handcrafted Dunlop Latex Since 2015",
+    "description": "GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Hand-layered for the deepest, most restorative sleep.",
     "backgroundImage": null,
     "ctaButtons": [
-      { "label": "Build Your Mattress", "href": "/custom-builder", "variant": "primary" },
-      { "label": "Browse Mattresses",   "href": "/products",      "variant": "secondary" }
+      { "label": "Explore the Collection", "href": "/catalog", "variant": "primary" },
+      { "label": "Book a Showroom Visit", "href": "/contact", "variant": "secondary" }
     ]
   },
   "featuresGrid": [
-    { "icon": "leaf", "title": "GOLS Certified Organic",  "description": "100% pure GOLS-certified natural latex from smallholder Kerala rubber farms" },
-    { "icon": "flask-conical", "title": "Dunlop Process",     "description": "Century-old technique preserving natural cellular structure for unmatched resilience" },
-    { "icon": "factory", "title": "Factory-Direct Pricing", "description": "Zero middleman markup — save up to 60% over retail showroom prices" },
-    { "icon": "shield-check", "title": "Oeko-Tex Certified", "description": "All fabric covers tested against 350+ harmful substances. Safe for infants" },
-    { "icon": "award", "title": "10-Year Warranty",        "description": "Industry-leading 10-year full structural warranty, no fine-print strings" }
+    { "icon": "shield", "title": "100-Night Sleep Trial", "description": "Try it risk-free. Return for free if not in love with your new mattress." },
+    { "icon": "truck", "title": "Free White-Glove Delivery", "description": "We deliver and set up in your bedroom. No extra cost, no hassle." },
+    { "icon": "award", "title": "10-Year Warranty", "description": "Built to last a decade, guaranteed. Direct factory replacement policy." },
+    { "icon": "leaf", "title": "Eco-Friendly Materials", "description": "CertiPUR-US certified foam. GOLS certified natural latex from Kerala." }
   ],
   "ownershipWays": {
     "sectionTitle": "Two Ways to Own a RelaxPro",
@@ -35,12 +34,12 @@
     },
     "shopPrebuilt": {
       "title": "Shop Pre-Built Mattresses",
-      "description": "Explore our curated collection of 12 handcrafted latex and hybrid mattresses — from value entry to 10\" luxury pure latex, each backed by a 10-year warranty.",
+      "description": "Explore our curated collection of 13 handcrafted latex and hybrid mattresses — from value entry to 10\" luxury pure latex, each backed by a 10-year warranty.",
       "features": [
-        "12 expertly engineered models",
-        "Starting from ₹9,500 (single size)",
+        "13 expertly engineered models",
+        "Starting from ₹6,500 (single size)",
         "Free shipping across South India",
-        "30-day comfort trial on all models"
+        "100-night comfort trial on all models"
       ],
       "cta": { "label": "Browse Catalog", "href": "/products", "variant": "primary" },
       "image": null
@@ -60,35 +59,35 @@
     "sectionSubtitle": "Our most-loved models, chosen by families across South India",
     "products": [
       { "_type": "reference", "_ref": "product-nirvana" },
+      { "_type": "reference", "_ref": "product-amrita" },
       { "_type": "reference", "_ref": "product-ananda" },
       { "_type": "reference", "_ref": "product-prakriti" },
       { "_type": "reference", "_ref": "product-somya" },
-      { "_type": "reference", "_ref": "product-kshiti" },
-      { "_type": "reference", "_ref": "product-amrita" },
-      { "_type": "reference", "_ref": "product-prayag" },
+      { "_type": "reference", "_ref": "product-arogya" },
+      { "_type": "reference", "_ref": "product-sunidra" },
       { "_type": "reference", "_ref": "product-ojas" }
     ],
     "viewAllCta": { "label": "View All Products", "href": "/products", "variant": "secondary" }
   },
   "costComparison": {
-    "sectionTitle": "The Real Cost of Sleep",
+    "sectionTitle": "Is Buying Latex Mattress Really Expensive?",
     "sectionSubtitle": "Natural latex is an investment — and here is why it pays for itself",
     "naturalLatex": {
-      "label": "RelaxPro Natural Latex",
-      "avgPrice": "₹27,000–54,000",
-      "lifespan": "12–15 years",
-      "perYearCost": "₹1,800–4,500",
-      "perDayCost": "₹5–12/day",
+      "label": "Natural Latex (Double Bed)",
+      "avgPrice": "₹40,000",
+      "lifespan": "15 Years",
+      "perYearCost": "₹2,700/year",
+      "perDayCost": "₹7/day",
       "highlighted": true
     },
     "ordinaryFoam": {
-      "label": "Ordinary Foam Mattress",
-      "avgPrice": "₹6,000–12,000",
-      "lifespan": "3–5 years",
-      "perYearCost": "₹1,200–4,000",
-      "perDayCost": "₹3–11/day"
+      "label": "Ordinary Foam (Double Bed)",
+      "avgPrice": "₹20,000",
+      "lifespan": "7 Years",
+      "perYearCost": "₹2,900/year",
+      "perDayCost": "₹8/day"
     },
-    "footnote": "Over 15 years, a RelaxPro latex mattress costs less per year than replacing cheap foam three times."
+    "footnote": "While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress"
   },
   "showroomCtaBanner": {
     "title": "Visit Our Showroom",
@@ -99,25 +98,25 @@
   },
   "whyChooseUs": {
     "sectionTitle": "Why Choose RelaxPro",
-    "sectionSubtitle": "What makes Kerala-made natural latex the smarter choice for your sleep",
+    "sectionSubtitle": "Every mattress we craft combines generations of expertise with the finest natural materials.",
     "benefits": [
-      { "icon": "leaf", "title": "GOLS-Certified Organic",      "description": "Every latex core carries GOLS seal. No synthetic fillers, no chemical stabilizers — just pure tapped sap from Kerala farms.", "link": null },
-      { "icon": "shield-check", "title": "Built to Last 15 Years", "description": "Natural Dunlop latex has no foam memory. It rebounds fully every time, retaining density and support for 12–15 years.", "link": null },
-      { "icon": "banknote",    "title": "Factory-Direct Pricing",  "description": "Bypass retail markups entirely. Manufactured and sold direct from our Jeedimetla factory at honest prices.", "link": null },
-      { "icon": "heart-pulse", "title": "Orthopedic Tested",       "description": "Recommended by physiotherapists across South India for chronic back pain, sciatica, and posture correction.", "link": null },
-      { "icon": "shield-check","title": "OEKO-TEX Certified Fabric","description": "All quilted covers tested to Standard 100 — safe for infants, elders, and allergy-sensitive sleepers.", "link": null },
-      { "icon": "truck",       "title": "Free Delivery & Setup",   "description": "Free shipping and white-glove delivery across Telangana, AP, and Karnataka. Expands fully within 48 hrs.", "link": null }
+      { "icon": "shield", "title": "100-Night Sleep Trial", "description": "Try it risk-free. Return for free if not in love with your new mattress." },
+      { "icon": "truck", "title": "Free White-Glove Delivery", "description": "We deliver and set up in your bedroom. No extra cost, no hassle." },
+      { "icon": "award", "title": "10-Year Warranty", "description": "Built to last a decade, guaranteed. Direct factory replacement policy." },
+      { "icon": "leaf", "title": "Eco-Friendly Materials", "description": "CertiPUR-US certified foam. GOLS certified natural latex from Kerala." }
     ]
   },
   "testimonialsSection": {
     "sectionTitle": "What Our Customers Say",
-    "overallRating": "4.8",
+    "overallRating": "4.9",
     "totalReviews": "500+",
     "testimonials": [
-      { "_type": "reference", "_ref": "t1" },
-      { "_type": "reference", "_ref": "t2" },
-      { "_type": "reference", "_ref": "t3" },
-      { "_type": "reference", "_ref": "t4" }
+      { "_type": "reference", "_ref": "testimonial-gm-1" },
+      { "_type": "reference", "_ref": "testimonial-gm-2" },
+      { "_type": "reference", "_ref": "testimonial-gm-3" },
+      { "_type": "reference", "_ref": "testimonial-gm-4" },
+      { "_type": "reference", "_ref": "testimonial-gm-5" },
+      { "_type": "reference", "_ref": "testimonial-gm-9" }
     ]
   },
   "allShowroomsSection": {
@@ -142,6 +141,16 @@
       { "_type": "reference", "_ref": "faq-6" },
       { "_type": "reference", "_ref": "faq-7" },
       { "_type": "reference", "_ref": "faq-8" }
+    ]
+  },
+  "comparisonSection": {
+    "sectionTitle": "Why Choose RelaxPro?",
+    "sectionSubtitle": "See how we are compared to other mattress brands",
+    "items": [
+      { "relaxProTitle": "Natural latex", "icon": "leaf", "otherTitle": "Memory foam / Synthetic foam", "otherSubtext": "Latex is often just a thin synthetic layer" },
+      { "relaxProTitle": "GOLS certified", "icon": "award", "otherTitle": "None / false claims" },
+      { "relaxProTitle": "Tailored to your comfort", "icon": "sliders", "otherTitle": "Too firm / Too soft - sinks" },
+      { "relaxProTitle": "Safe for all", "icon": "check", "otherTitle": "Releases cancer causing gas every day" }
     ]
   },
   "bookingForm": {
@@ -173,8 +182,8 @@
   },
   "seo": {
     "metaTitle": "RelaxPro | Premium Natural Latex Mattresses — Factory Direct",
-    "metaDescription": "Shop GOLS-certified natural latex mattresses crafted in Kerala. 12 models from ₹9,500 with free delivery across South India. 10-year warranty.",
+    "metaDescription": "Shop GOLS-certified natural latex mattresses crafted in Kerala. 13 models from ₹6,500 with free delivery across South India. 10-year warranty. Handcrafted Dunlop latex since 2015.",
     "ogImage": null,
-    "keywords": ["natural latex mattress","GOLS certified","organic mattress India","latex mattress Hyderabad","RelaxPro"]
+    "keywords": ["natural latex mattress","GOLS certified","organic mattress India","latex mattress Hyderabad","RelaxPro","Dunlop latex","Kerala latex"]
   }
 }

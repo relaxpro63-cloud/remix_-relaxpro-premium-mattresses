@@ -680,7 +680,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
       '',
       'Please confirm availability and share payment details.',
     ].join('\n');
-    window.open(`https://wa.me/918686624494?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (

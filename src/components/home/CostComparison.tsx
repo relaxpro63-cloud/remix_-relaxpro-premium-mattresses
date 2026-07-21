@@ -1,36 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, ArrowUp } from 'lucide-react';
 import { FadeUp, RevealText, StaggerChildren, staggerItem, AnimatedCounter, EASE_LUXURY } from '../motion/motionPrimitives';
+import { getHomePage } from '../../lib/queries';
 
-const compareData = [
-  {
-    label: <>Avg. Price<br />(Double Bed)</>,
-    latex: "₹ 40,000",
-    foam: "₹ 20,000",
-    foamHigher: false
-  },
-  {
-    label: "Avg. Lifespan",
-    latex: "15 Years",
-    foam: "7 Years",
-    foamHigher: false
-  },
-  {
-    label: "Per Year Cost",
-    latex: <>40,000 ÷ 15 =<br />₹2,700/- per year</>,
-    foam: <>20,000 ÷ 7 =<br />₹2,900/- per year</>,
-    foamHigher: true
-  },
-  {
-    label: "Per Day Cost",
-    latex: <>2700 ÷ 365 =<br />₹7/- per day</>,
-    foam: <>2900 ÷ 365 =<br />₹8/- per day</>,
-    foamHigher: true
-  }
+const defaultData = [
+  { label: 'Avg. Price (Double Bed)', latex: '₹40,000', foam: '₹20,000', foamHigher: false },
+  { label: 'Avg. Lifespan', latex: '15 Years', foam: '7 Years', foamHigher: false },
+  { label: 'Per Year Cost', latex: '₹2,700/yr', foam: '₹2,900/yr', foamHigher: true },
+  { label: 'Per Day Cost', latex: '₹7/day', foam: '₹8/day', foamHigher: true },
 ];
 
 export default function CostComparison() {
+  const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
+    getHomePage().then(p => {
+      const c = p?.costComparison;
+      if (c?.naturalLatex && c?.ordinaryFoam) {
+        setData([
+          { label: 'Avg. Price (Double Bed)', latex: c.naturalLatex.avgPrice, foam: c.ordinaryFoam.avgPrice, foamHigher: false },
+          { label: 'Avg. Lifespan', latex: c.naturalLatex.lifespan, foam: c.ordinaryFoam.lifespan, foamHigher: false },
+          { label: 'Per Year Cost', latex: c.naturalLatex.perYearCost, foam: c.ordinaryFoam.perYearCost, foamHigher: true },
+          { label: 'Per Day Cost', latex: c.naturalLatex.perDayCost, foam: c.ordinaryFoam.perDayCost, foamHigher: true },
+        ]);
+      }
+    }).catch(() => {});
+  }, []);
   return (
     <section className="py-12 md:py-16 px-4 md:px-8 bg-white border-y border-brand-200/40 font-body overflow-hidden">
       <div className="max-w-5xl mx-auto">
@@ -113,13 +109,13 @@ export default function CostComparison() {
 
           {/* Rows — stagger reveal row by row */}
           <StaggerChildren className="space-y-3 sm:space-y-5 relative z-10 px-1 sm:px-4" stagger={0.12} delay={0.2}>
-            {compareData.map((row, idx) => (
+            {data.map((row, idx) => (
               <motion.div key={idx} variants={staggerItem} className="grid grid-cols-2 gap-3 sm:gap-12 lg:gap-16 items-center">
                 
                 {/* Left Side: Label + Value */}
                 <div className="bg-[#c2e2be] rounded-md sm:rounded-xl flex items-center justify-between p-2 sm:p-4 shadow-sm relative">
                   <div className="flex items-center gap-1 sm:gap-3 shrink-0">
-                    <span className="font-bold text-emerald-950 text-[9px] sm:text-sm lg:text-base leading-tight w-[60px] sm:w-[100px] lg:w-auto break-words">{row.label}</span>
+                    <span className="font-bold text-emerald-950 text-[9px] sm:text-sm lg:text-base leading-tight w-[60px] sm:w-[100px] lg:w-auto break-words">{typeof row.label === 'string' ? row.label.split(' (')[0] : row.label}</span>
                     <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 text-emerald-950 hidden min-[380px]:block" strokeWidth={3} />
                   </div>
                   <span className="font-bold text-emerald-950 text-[10px] sm:text-base lg:text-lg text-right sm:text-left leading-tight">{row.latex}</span>

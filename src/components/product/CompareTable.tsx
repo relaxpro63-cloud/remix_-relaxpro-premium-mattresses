@@ -364,7 +364,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
                   <div className="space-y-2">
                     <a
-                      href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
+                      href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
                       target="_blank"
                       rel="noreferrer"
                       className="w-full bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-all"

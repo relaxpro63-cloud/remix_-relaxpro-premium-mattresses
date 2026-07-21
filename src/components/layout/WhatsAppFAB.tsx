@@ -4,7 +4,7 @@ import { PhoneCall } from 'lucide-react';
 export default function WhatsAppFAB() {
   const handleOpenWhatsApp = () => {
     const text = "Hello Suresh, I am visiting the RelaxPro Mattress website and would like a specialized orthopedic mattress advice. Please guide me!";
-    const url = `https://wa.me/918686624494?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 

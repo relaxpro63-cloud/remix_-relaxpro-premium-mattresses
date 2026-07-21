@@ -7,52 +7,61 @@
   },
   "navigation": {
     "mainMenu": [
-      { "label": "Home",       "href": "/",         "external": false },
-      { "label": "Products",   "href": "/products", "external": false },
-      { "label": "About",      "href": "/about",    "external": false },
-      { "label": "Contact",    "href": "/contact",  "external": false }
+      { "label": "Home", "link": "/", "openInNewTab": false },
+      { "label": "Shop", "link": "/catalog", "openInNewTab": false },
+      { "label": "Customize", "link": "/builder", "openInNewTab": false },
+      { "label": "Compare", "link": "/compare", "openInNewTab": false },
+      { "label": "Sleep Science", "link": "/science", "openInNewTab": false },
+      { "label": "About", "link": "/about", "openInNewTab": false },
+      { "label": "Contact", "link": "/contact", "openInNewTab": false }
     ],
     "footerMenu": [
-      { "label": "Products",   "href": "/products",       "external": false },
-      { "label": "Custom Builder", "href": "/custom-builder", "external": false },
-      { "label": "Sleep Science",  "href": "/sleep-science",  "external": false },
-      { "label": "About",       "href": "/about",          "external": false },
-      { "label": "Contact",     "href": "/contact",        "external": false }
+      { "label": "Home", "link": "/", "openInNewTab": false },
+      { "label": "Shop All", "link": "/catalog", "openInNewTab": false },
+      { "label": "Customize", "link": "/builder", "openInNewTab": false },
+      { "label": "Sleep Science", "link": "/science", "openInNewTab": false },
+      { "label": "About Us", "link": "/about", "openInNewTab": false },
+      { "label": "Contact Us", "link": "/contact", "openInNewTab": false },
+      { "label": "Store Locations", "link": "/locations", "openInNewTab": false },
+      { "label": "Sleep Education", "link": "/science", "openInNewTab": false }
     ],
-    "ctaButton": { "label": "Build Your Mattress", "href": "/custom-builder", "variant": "primary" },
+    "ctaButton": { "label": "Shop Now", "link": "/catalog", "variant": "primary" },
     "phoneNumber": "+91 86866 24494"
   },
   "footer": {
-    "description": "RelaxPro is a Kerala-based manufacturer of GOLS-certified natural latex mattresses, sold factory-direct to customers across South India. No middlemen, no synthetic fillers — just pure, honest sleep products.",
+    "description": "Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber — factory direct with zero markups.",
     "socialLinks": [
-      { "platform": "Instagram", "url": "https://instagram.com/relaxpro.mattresses", "handle": "@relaxpro.mattresses" },
-      { "platform": "WhatsApp",  "url": "https://wa.me/918686624494",              "handle": "+91 86866 24494" },
-      { "platform": "YouTube",   "url": "https://youtube.com/@relaxpro",            "handle": "@relaxpro" }
+      { "platform": "Facebook", "url": "https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/" },
+      { "platform": "Instagram", "url": "https://www.instagram.com/relaxpro__mattresses/?hl=en" },
+      { "platform": "YouTube", "url": "https://www.youtube.com/@sureshmattressmanufacturer3784" }
     ],
     "certifications": [
-      { "name": "GOLS Certified",  "image": null },
-      { "name": "Oeko-Tex 100",    "image": null },
-      { "name": "FSC Certified",   "image": null }
+      { "name": "GOLS Certified Organic", "image": null },
+      { "name": "Oeko-Tex Standard 100", "image": null },
+      { "name": "FSC Certified Wood", "image": null },
+      { "name": "Zero VOC Emissions", "image": null },
+      { "name": "Eco-Institut Verified", "image": null },
+      { "name": "ISO 9001 Certified", "image": null }
     ],
     "copyrightText": "© 2026 RelaxPro — Kerala Organic Latex Labs. All rights reserved."
   },
   "contactInfo": {
     "mainPhone": "+91 86866 24494",
     "whatsappNumber": "+91 86866 24494",
-    "email": "relaxpro.latexlabs@gmail.com",
+    "email": "relaxpro2022@gmail.com",
     "factoryAddress": "RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055"
   },
   "announcement": {
     "showBanner": true,
-    "bannerText": "Free mattress protector worth ₹2,500 on all orders this month! 🎉",
-    "bannerLink": "/products",
+    "bannerText": "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing",
+    "bannerLink": "/catalog",
     "bannerColor": "green"
   },
   "seo": {
     "metaTitle": "RelaxPro | Premium Natural Latex Mattresses — Factory Direct",
-    "metaDescription": "Shop GOLS-certified natural latex mattresses crafted in Kerala. 12 models from ₹9,500 with free delivery. Factory showrooms in Hyderabad, Rajahmundry & Bangalore.",
+    "metaDescription": "Shop GOLS-certified natural latex mattresses crafted in Kerala. 13 models from ₹6,500 with free delivery. Factory showrooms in Hyderabad, Rajahmundry & Bangalore.",
     "ogImage": null,
-    "keywords": ["latex mattress India", "natural latex mattress", "GOLS certified", "RelaxPro"]
+    "keywords": ["latex mattress India", "natural latex mattress", "GOLS certified", "RelaxPro", "Kerala latex", "Dunlop latex", "organic mattress Hyderabad"]
   },
   "analytics": {
     "gaTrackingId": "",

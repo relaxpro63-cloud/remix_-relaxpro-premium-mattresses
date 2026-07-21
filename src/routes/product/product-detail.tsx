@@ -227,7 +227,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       ? `Custom ${customL}" × ${customW}"${customH ? ` × ${customH}"` : ''}`
       : selectedLabel;
     const message = `Hello Suresh, I am interested in purchasing the RelaxPro ${product.name} Mattress (${sizeStr}). Could you please guide me on pricing, delivery timelines, and orthopedic support suitability?`;
-    window.open(`https://wa.me/918686624494?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (

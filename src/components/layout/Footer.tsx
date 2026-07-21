@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
-import { PRODUCTS } from '../../data/products';
+import { getSiteSettings } from '../../lib/queries';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
 export default function Footer() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [settings, setSettings] = useState<any>(null);
 
-  const luxuryModels = PRODUCTS.filter(p => p.tier === 'luxury');
-  const premiumModels = PRODUCTS.filter(p => p.tier === 'premium');
-  const comfortModels = PRODUCTS.filter(p => p.tier === 'comfort');
+  useEffect(() => {
+    getSiteSettings().then(setSettings).catch(() => {});
+  }, []);
 
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
   };
 
-  const quickLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/catalog', label: 'Shop All' },
-    { path: '/builder', label: 'Customize' },
-    { path: '/science', label: 'Sleep Science' },
-    { path: '/about', label: 'About Us' },
-  ];
+  const quickLinks = (settings?.navigation?.footerMenu || [
+    { label: 'Home', href: '/' },
+    { label: 'Shop All', href: '/catalog' },
+    { label: 'Customize', href: '/builder' },
+    { label: 'Sleep Science', href: '/science' },
+    { label: 'About Us', href: '/about' },
+  ]).map((item: any) => ({ path: item.href || item.path || '/', label: item.label }));
 
   const customerCare = [
     { path: '/contact', label: 'Contact Us' },
@@ -29,13 +30,14 @@ export default function Footer() {
     { path: '/science', label: 'Sleep Education' },
   ];
 
+  const contactInfo = settings?.contactInfo || {};
+  const defaultDescription = 'Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber — factory direct with zero markups.';
+
   return (
     <footer className="bg-primary text-white/70 border-t-2 border-blue/30">
-      {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-14 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-10">
 
-          {/* Col 1: Brand */}
           <div className="lg:col-span-4 space-y-5">
             <div className="flex flex-col items-start gap-1">
               <RelaxProLogo variant="footer" inverse={true} className="!items-start" />
@@ -44,24 +46,22 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/40 text-xs leading-relaxed max-w-sm font-body">
-              Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber — factory direct with zero markups.
+              {settings?.footer?.description || defaultDescription}
             </p>
 
-            {/* Trust Badges */}
             <div className="space-y-2.5 text-xs">
-              {[
-                { icon: <Shield className="w-4 h-4" />, text: '10-Year Factory Replacement Warranty' },
-                { icon: <RefreshCcw className="w-4 h-4" />, text: 'Direct From Kerala • No Middleman' },
-                { icon: <Truck className="w-4 h-4" />, text: 'Free Doorstep Shipping To Major Cities' },
-              ].map((item, idx) => (
+              {(settings?.footer?.certifications || [
+                { name: '10-Year Factory Replacement Warranty' },
+                { name: 'Direct From Kerala • No Middleman' },
+                { name: 'Free Doorstep Shipping To Major Cities' },
+              ]).map((item: any, idx: number) => (
                 <div key={idx} className="flex items-center gap-2.5 text-white/60">
-                  <span className="text-blue shrink-0">{item.icon}</span>
-                  <span>{item.text}</span>
+                  <span className="text-blue shrink-0">{idx === 0 ? <Shield className="w-4 h-4" /> : idx === 1 ? <RefreshCcw className="w-4 h-4" /> : <Truck className="w-4 h-4" />}</span>
+                  <span>{typeof item === 'string' ? item : item.name}</span>
                 </div>
               ))}
             </div>
 
-            {/* Social Icons */}
             <div className="flex gap-4 pt-2">
               <a href="https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Facebook">
                 <Facebook className="w-5 h-5" />
@@ -75,15 +75,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2 & 3: Quick Links + Customer Care (Desktop only) */}
           <div className="hidden md:grid lg:col-span-4 grid-cols-2 gap-6">
-            {/* Quick Links */}
             <div>
               <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
                 Quick Links
               </h4>
               <ul className="space-y-2.5 text-xs">
-                {quickLinks.map((link) => (
+                {quickLinks.map((link: any) => (
                   <li key={link.path}>
                     <Link
                       to={link.path}
@@ -96,7 +94,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Customer Care */}
             <div>
               <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
                 Customer Care
@@ -114,24 +111,24 @@ export default function Footer() {
                 ))}
               </ul>
 
-              {/* Contact */}
               <div className="mt-6 space-y-3 text-xs">
                 <div className="flex gap-2 items-start">
                   <Phone className="w-3.5 h-3.5 text-blue shrink-0 mt-0.5" />
                   <div>
-                    <a href="tel:+918686624494" className="hover:text-white block font-semibold">+91 86866 24494</a>
-                    <a href="tel:+917207424494" className="hover:text-white block">+91 72074 24494</a>
+                    <a href={`tel:+${contactInfo.mainPhone || '918686624494'}`} className="hover:text-white block font-semibold">+91 {(contactInfo.mainPhone || '8686624494').replace(/^(\d{5})(\d{5})$/, '$1 $2')}</a>
+                    {contactInfo.whatsappNumber && contactInfo.whatsappNumber !== contactInfo.mainPhone && (
+                      <a href={`tel:+${contactInfo.whatsappNumber}`} className="hover:text-white block">+91 {contactInfo.whatsappNumber.replace(/^(\d{5})(\d{5})$/, '$1 $2')}</a>
+                    )}
                   </div>
                 </div>
                 <div className="flex gap-2 items-start">
                   <Mail className="w-3.5 h-3.5 text-blue shrink-0 mt-0.5" />
-                  <a href="mailto:relaxpro2022@gmail.com" className="hover:text-white">relaxpro2022@gmail.com</a>
+                  <a href={`mailto:${contactInfo.email || 'relaxpro2022@gmail.com'}`} className="hover:text-white">{contactInfo.email || 'relaxpro2022@gmail.com'}</a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Mobile Accordion (shown on mobile only) */}
           <div className="md:hidden space-y-0 border-t border-white/10 pt-4">
             {[
               { key: 'links', title: 'Quick Links', items: quickLinks },
@@ -149,7 +146,7 @@ export default function Footer() {
                 </button>
                 <div className={`footer-accordion-content ${openAccordion === section.key ? 'open' : ''}`}>
                   <ul className="space-y-2.5 text-xs pb-4">
-                    {section.items.map((link) => (
+                    {section.items.map((link: any) => (
                       <li key={link.path}>
                         <Link to={link.path} className="hover:text-white transition-colors cursor-pointer block py-1">
                           {link.label}
@@ -162,28 +159,24 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Col 4: Factory Address */}
           <div className="lg:col-span-4 space-y-4">
             <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest">
               Factory Headquarters
             </h4>
             <div className="flex gap-2 items-start text-xs">
               <MapPin className="w-4 h-4 text-blue shrink-0 mt-0.5" />
-              <p className="text-white/50">Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana</p>
+              <p className="text-white/50">{contactInfo.factoryAddress || 'Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana'}</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
           <div className="text-center md:text-left">
           </div>
-
         </div>
       </div>
     </footer>
   );
 }
-

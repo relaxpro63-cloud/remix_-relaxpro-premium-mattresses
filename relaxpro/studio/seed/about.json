@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "About RelaxPro",
-    "subtitle": "Kerala's organic latex, engineered for South Indian backs",
+    "subtitle": "Telangana and AP's first pure latex mattress company",
     "backgroundImage": null
   },
   "ourStory": {
@@ -14,8 +14,8 @@
   "ourProcess": {
     "title": "From plantation to bedroom in fourteen days",
     "steps": [
-      { "stepNumber": 1, "title": "Latex Tapping", "description": "At 4 AM each morning, trained tappers make clean diagonal cuts in the bark of mature rubber trees (Hevea brasiliensis). The raw latex flows into collection cups and is transported to our processing unit within hours — before natural polymerization begins.", "image": null },
-      { "stepNumber": 2, "title": "Dunlop Processing", "description": "Back at the factory, the fresh latex is aerated, filtered, and whipped into a froth before being poured into the Dunlop mold. The mold is steamed — not baked with chemicals — locking in the resilient, open-cell structure.", "image": null },
+      { "stepNumber": 1, "title": "Latex Tapping", "description": "At 4 AM each morning, tappers move through the plantation making clean diagonal cuts in the bark. The raw latex flows into collection cups and is transported to our unit within hours — before polymerization begins.", "image": null },
+      { "stepNumber": 2, "title": "Dunlop Processing", "description": "Back at the factory, the latex is filtered, whiped, and baked in the Dunlop mold. Each core block is then washed, tested for density consistency, and fitted with GOTS-certified organic cotton covers before being compression-rolled and shipped.", "image": null },
       { "stepNumber": 3, "title": "Washing & Testing", "description": "Each core block is washed in purified water, then tested for density consistency across every inch. Only blocks that pass our 95+ density read threshold move forward to the finishing line.", "image": null },
       { "stepNumber": 4, "title": "Covering & Rolling", "description": "The foam core is fitted with a GOTS-certified organic cotton quilted cover, then compression-rolled and packed in a travel-ready carry bag — ready to ship anywhere in India.", "image": null }
     ]
@@ -29,25 +29,25 @@
     ]
   },
   "values": {
-    "missionStatement": "We believe you should not have to choose between a mattress that feels luxurious and one that is honest about what it contains. Every RelaxPro mattress is built with pure GOLS-certified natural latex, handcrafted in Kerala, and sold factory-direct — so that you pay for quality, not branding.",
+    "missionStatement": "Luxury branding in India typically leans on superlatives: \"best,\" \"ultimate,\" \"world-class.\" RelaxPro does not. We describe what the mattress is made of, how it is made, and what price it is sold for. That restraint is the brand. Three certifications back every product: GOLS for organic latex integrity, Oeko-Tex for fabric safety, and FSC for sustainable rubber sourcing. These credentials are stated once, not repeated on every product card.",
     "valueCards": [
-      { "icon": "🤝", "title": "Radical Transparency", "description": "Every material, every layer density, every certification is disclosed openly. We describe what the mattress is — not what we want it to sound like." },
-      { "icon": "🌍", "title": "Sustainable by Default", "description": "100% biodegradable latex, sustainably harvested. No synthetic fillers, no flame retardant chemicals, no throwaway mattresses every five years." },
-      { "icon": "🏭", "title": "Factory-First Customer Service", "description": "Suresh leads a team that treats every customer like a visitor to the factory floor. Video call during manufacturing, tracking at every stage complete delivery within 7 days." },
-      { "icon": "🇮🇳", "title": "Made for Indian Backs", "description": "Designed and tested in South India for Indian body types, Indian climate, and Indian beds — not imported foam rebranded for the Indian market." }
+      { "icon": "leaf", "title": "Radical Transparency", "description": "Every material, every layer density, every certification is disclosed openly. We describe what the mattress is — not what we want it to sound like." },
+      { "icon": "globe", "title": "Sustainable by Default", "description": "100% biodegradable latex, sustainably harvested. No synthetic fillers, no flame retardant chemicals, no throwaway mattresses every five years." },
+      { "icon": "factory", "title": "Factory-First Customer Service", "description": "If you walk into our Jeedimetla showroom, Suresh or a trained team member will spend twenty minutes talking through layer density, sleep posture, and medical considerations — not closing a sale." },
+      { "icon": "map-pin", "title": "Made for Indian Backs", "description": "Designed and tested in South India for Indian body types, Indian climate, and Indian beds — not imported foam rebranded for the Indian market." }
     ]
   },
   "teamSection": {
     "title": "From our factory in Jeedimetla, Hyderabad",
     "content": [
-      { "_type": "block", "children": [{ "_type": "span", "text": "RelaxPro is manufactured at our integrated rubber goods facility in Jeedimetla Industrial Area, Hyderabad — a 15,000 sq ft unit with dedicated latex processing, foam molding, quilting, and quality testing lines. The team of 28 includes tapper families from Kerala, trained rubber technicians, and quality control specialists who inspect every single mattress before it leaves the floor." }] },
-      { "_type": "block", "children": [{ "_type": "span", "text": "Founder Suresh personally reviews every custom build order. If you choose the custom builder, your mattress is not an off-the-shelf SKU — it is built to your exact specifications on the same line that produces our premium models." }] }
+      { "_type": "block", "children": [{ "_type": "span", "text": "If you walk into our Jeedimetla showroom, Suresh or a trained team member will spend twenty minutes talking through layer density, sleep posture, and medical considerations — not closing a sale. If you prefer WhatsApp, the same detail is there." }] },
+      { "_type": "block", "children": [{ "_type": "span", "text": "RelaxPro is manufactured at our integrated rubber goods facility in Jeedimetla Industrial Area, Hyderabad — with dedicated latex processing, foam molding, quilting, and quality testing lines." }] }
     ]
   },
   "seo": {
-    "metaTitle": "About RelaxPro | GOLS-Certified Natural Latex Mattress Manufacturer",
-    "metaDescription": "Founded by Suresh, a third-generation rubber manufacturer in Kerala. RelaxPro is South India's first factory-direct natural latex mattress brand. GOLS + Oeko-Tex certified.",
+    "metaTitle": "About RelaxPro | Pure Natural Latex Mattress Manufacturer",
+    "metaDescription": "Pioneering GOLS chemical-free natural organic latex mattresses in Andhra Pradesh, Telangana and Karnataka. Factory direct with zero markups. Founded by Suresh, third-generation rubber manufacturer.",
     "ogImage": null,
-    "keywords": ["about RelaxPro", "natural latex manufacturer India", "Kerala latex factory", "GOLS certified latex India", "Suresh RelaxPro"]
+    "keywords": ["about RelaxPro", "natural latex manufacturer India", "Kerala latex factory", "GOLS certified latex India", "Suresh RelaxPro", "pure latex mattress Telangana", "organic mattress Hyderabad"]
   }
 }

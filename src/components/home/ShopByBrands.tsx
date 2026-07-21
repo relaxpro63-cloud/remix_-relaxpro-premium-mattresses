@@ -1,35 +1,51 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BedDouble, Layers, Cloud, ShieldPlus, Sparkles, Star, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
-import { PRODUCTS } from '../../data/products';
+import { getHomePage } from '../../lib/queries';
+import { buildWhatsAppUrl } from '../../lib/site';
 import PriceText from '../ui/PriceText';
 import ShineBorder from '../ui/ShineBorder';
 
-const categories = [
-  { name: 'Full Latex Mattress', icon: <BedDouble className="w-5 h-5" /> },
-  { name: 'Hybrid Latex Mattress', icon: <Layers className="w-5 h-5" /> },
-  { name: 'Orthopedic Support', icon: <ShieldPlus className="w-5 h-5" /> },
-  { name: 'Luxury Pillows', icon: <Cloud className="w-5 h-5" /> },
-  { name: 'Custom Builder', icon: <Sparkles className="w-5 h-5" /> },
-];
-
-const getProductsByCategory = (category: string) => {
-  switch (category) {
-    case 'Full Latex Mattress':
-      return PRODUCTS.filter(p => ['nirvana', 'ananda', 'amrita', 'prakriti'].includes(p.slug));
-    case 'Hybrid Latex Mattress':
-      return PRODUCTS.filter(p => ['somya', 'shuddha', 'bhumi', 'sunidra', 'vishram'].includes(p.slug));
-    case 'Orthopedic Support':
-      return PRODUCTS.filter(p => p.slug === 'arogya' || p.slug === 'sthira' || p.slug === 'ojas' || p.slug === 'ayushrest');
-    default:
-      return [];
-  }
+const categoryIcons: Record<string, React.ReactNode> = {
+  'Full Latex Mattress': <BedDouble className="w-5 h-5" />,
+  'Hybrid Latex Mattress': <Layers className="w-5 h-5" />,
+  'Orthopedic Support': <ShieldPlus className="w-5 h-5" />,
+  'Luxury Pillows': <Cloud className="w-5 h-5" />,
+  'Custom Builder': <Sparkles className="w-5 h-5" />,
+  'Luxury Latex': <BedDouble className="w-5 h-5" />,
+  'Premium Hybrid': <Layers className="w-5 h-5" />,
+  'Orthopedic Comfort': <ShieldPlus className="w-5 h-5" />,
 };
 
 export default function ShopByBrands() {
   const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState(categories[0].name);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [products, setProducts] = useState<any[]>([]);
+  const [activeCategory, setActiveCategory] = useState('');
+
+  useEffect(() => {
+    getHomePage().then((data: any) => {
+      const cats = data?.shopByBrands?.categories || [];
+      const prods = data?.bestsellersSection?.products || [];
+      if (cats.length > 0) {
+        setCategories(cats);
+        setActiveCategory(cats[0].name);
+      }
+      if (prods.length > 0) {
+        setProducts(prods);
+      }
+    }).catch(() => {});
+  }, []);
+
+  const getProductsByCategory = (categoryName: string) => {
+    return products.filter((p: any) => {
+      const cat = p.category;
+      if (!cat) return false;
+      const catName = typeof cat === 'string' ? cat : (cat.name || '');
+      return catName === categoryName;
+    });
+  };
 
   const activeProducts = getProductsByCategory(activeCategory);
 
@@ -49,6 +65,8 @@ export default function ShopByBrands() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  if (categories.length === 0) return null;
+
   return (
     <section className="py-12 md:py-16 px-4 md:px-8 bg-white border-b border-brand-200/40">
       <div className="max-w-7xl mx-auto">
@@ -64,7 +82,7 @@ export default function ShopByBrands() {
             }
           `}</style>
           <div className="flex gap-4 md:gap-5 hide-scroll w-full">
-            {categories.map((cat, idx) => (
+            {categories.map((cat: any, idx: number) => (
               <button
                 key={idx}
                 onClick={() => {
@@ -85,7 +103,7 @@ export default function ShopByBrands() {
                 }`}
               >
                 <div className={`group-hover:scale-110 transition-transform duration-300 ${activeCategory === cat.name ? 'text-accent' : 'text-accent'}`}>
-                  {cat.icon}
+                  {categoryIcons[cat.name] || categoryIcons[cat.slug] || <BedDouble className="w-5 h-5" />}
                 </div>
                 <span className={`font-heading font-bold text-sm whitespace-nowrap ${activeCategory === cat.name ? 'text-primary' : 'text-primary'}`}>
                   {cat.name}
@@ -98,7 +116,6 @@ export default function ShopByBrands() {
         {/* Product Cards Carousel */}
         {activeProducts.length > 0 && (
           <div className="relative group">
-            {/* Left Arrow */}
             <button 
               onClick={() => scroll('left')}
               className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-brand-200 rounded-full p-2 shadow-md opacity-100 group-hover:opacity-100 md:opacity-0 transition-opacity hover:bg-neutral-light cursor-pointer"
@@ -106,18 +123,21 @@ export default function ShopByBrands() {
               <ChevronLeft className="w-6 h-6 text-primary" />
             </button>
 
-            {/* Scroll Container */}
             <div 
               ref={scrollContainerRef}
               className="flex gap-6 overflow-x-auto hide-scroll snap-x pb-8 pt-4 px-2"
             >
-              {activeProducts.map((item) => {
-                const isBestSeller = item.slug === 'nirvana';
+              {activeProducts.map((item: any) => {
+                const isBestSeller = item.isBestseller || item.slug === 'nirvana';
+                const imageUrl = Array.isArray(item.images) && item.images[0] ? 
+                  (typeof item.images[0] === 'string' ? item.images[0] : item.images[0]?.asset?.url || '') : 
+                  '';
+
                 const cardContent = (
                   <>
                     <div className="relative img-zoom" style={{ aspectRatio: '4/3' }}>
                       <img
-                        src={item.image}
+                        src={imageUrl}
                         alt={`${item.name} natural latex mattress`}
                         className="w-full h-full object-cover"
                         loading="lazy"
@@ -128,7 +148,7 @@ export default function ShopByBrands() {
                         </span>
                       ) : (
                         <span className="absolute top-3 left-3 bg-primary/90 text-white font-accent text-[9px] px-3 py-1.5 rounded-full uppercase z-10 tracking-wider">
-                          {item.comfortLevel} Feel
+                          {item.comfortLevel || 'Premium'} Feel
                         </span>
                       )}
                     </div>
@@ -143,14 +163,14 @@ export default function ShopByBrands() {
                         <h3 className="font-heading font-bold text-lg text-primary flex flex-wrap items-center gap-1">
                           {item.name}
                         </h3>
-                        <p className="text-xs text-neutral-dark/50 mt-1 leading-relaxed font-body line-clamp-2">{item.keyBenefit}</p>
+                        <p className="text-xs text-neutral-dark/50 mt-1 leading-relaxed font-body line-clamp-2">{item.keyBenefit || item.tagline}</p>
                         <div className="mt-4 pt-3 border-t border-brand-200/40 flex items-center gap-3">
                           <span className="text-lg font-bold text-primary font-body">
                             <PriceText>
                               ₹
-                              {item.pricingModel === 'with_without_accessories'
-                                ? item.pricing.withoutAccessories?.king?.toLocaleString('en-IN')
-                                : item.pricing.fabric300Gsm?.king?.toLocaleString('en-IN')}
+                              {item.pricing?.withoutAccessories?.king?.toLocaleString('en-IN') ||
+                               item.pricing?.fabric300Gsm?.king?.toLocaleString('en-IN') ||
+                               ''}
                             </PriceText>
                           </span>
                           <span className="text-[10px] text-neutral-dark/40 font-accent">King Size</span>
@@ -168,9 +188,7 @@ export default function ShopByBrands() {
                         Details
                       </button>
                       <a
-                        href={`https://wa.me/918686624494?text=${encodeURIComponent(
-                          `Hello Suresh, I am interested in the RelaxPro ${item.name} Mattress.`
-                        )}`}
+                        href={buildWhatsAppUrl(`Hello Suresh, I am interested in the RelaxPro ${item.name} Mattress.`)}
                         target="_blank"
                         rel="noreferrer"
                         className="btn-primary py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold text-center transition-all flex items-center justify-center gap-1"
@@ -206,7 +224,6 @@ export default function ShopByBrands() {
               })}
             </div>
 
-            {/* Right Arrow */}
             <button 
               onClick={() => scroll('right')}
               className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-brand-200 rounded-full p-2 shadow-md opacity-100 group-hover:opacity-100 md:opacity-0 transition-opacity hover:bg-neutral-light cursor-pointer"

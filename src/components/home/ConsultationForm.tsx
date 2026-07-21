@@ -71,7 +71,7 @@ export default function ConsultationForm() {
   const handleLaunchWhatsApp = () => {
     const complaintText = painLevel !== 'none' ? `My back pain level is ${painLevel}/5. Notes: ${customNotes}` : '';
     const text = `Hello Suresh, I am requesting an orthopedic mattress consultation. Name: ${name}. Phone: ${phone}. ${complaintText}`;
-    window.location.href = `https://wa.me/918686624494?text=${encodeURIComponent(text)}`;
+    window.location.href = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(text)}`;
   };
 
   return (

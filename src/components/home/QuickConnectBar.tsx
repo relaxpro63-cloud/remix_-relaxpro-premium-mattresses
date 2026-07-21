@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, MessageSquare, Phone } from 'lucide-react';
+import { WHATSAPP_NUMBER } from '../../lib/site';
 
 interface QuickConnectBarProps {
   onFindStore?: () => void;
@@ -23,13 +24,13 @@ export default function QuickConnectBar({
       id: 'chat',
       label: 'Live Chat',
       icon: <MessageSquare className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-primary group-hover:text-accent transition-colors" />,
-      onClick: onLiveChat || (() => window.open('https://wa.me/918686624494', '_blank')),
+      onClick: onLiveChat || (() => window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank')),
     },
     {
       id: 'connect',
       label: 'Connect Now',
       icon: <Phone className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-primary group-hover:text-accent transition-colors" />,
-      onClick: onConnectNow || (() => window.open('tel:+918686624494', '_self')),
+      onClick: onConnectNow || (() => window.open(`tel:+${WHATSAPP_NUMBER}`, '_self')),
     },
   ];
 

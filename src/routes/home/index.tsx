@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { PRODUCTS } from '../../data/products';
@@ -30,6 +30,8 @@ import {
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
+import { getTestimonials, getAllShowrooms } from '../../lib/queries';
+import { buildWhatsAppUrl } from '../../lib/site';
 
 interface HomePageProps {
   onAddToCartDirect: (
@@ -93,6 +95,19 @@ export default function HomePage({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [showrooms, setShowrooms] = useState<any[]>([]);
+  const [bestsellers, setBestsellers] = useState<any[]>([]);
+
+  useEffect(() => {
+    getHomePage().then(data => {
+      const prods = data?.bestsellersSection?.products || [];
+      if (prods.length > 0) setBestsellers(prods);
+    }).catch(() => {});
+    getTestimonials().then(setTestimonials).catch(() => {});
+    getAllShowrooms().then(setShowrooms).catch(() => {});
+  }, []);
+
   return (
     <PageShell
       title="RelaxPro Premium Mattresses | 100% Natural Organic Latex India"
@@ -154,8 +169,10 @@ export default function HomePage({
           </FadeUp>
 
           <StaggerChildren className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 justify-center" stagger={0.15}>
-            {PRODUCTS.slice(0, 6).map((item, idx) => {
-              const isBestSeller = item.slug === 'nirvana';
+            {(bestsellers.length > 0 ? bestsellers : PRODUCTS.slice(0, 6)).map((item: any, idx: number) => {
+              const isBestSeller = item.isBestseller || item.slug === 'nirvana';
+              const imageUrl = item.image || (Array.isArray(item.images) && item.images[0] ? 
+                (typeof item.images[0] === 'string' ? item.images[0] : item.images[0]?.asset?.url || '') : '');
 
               return (
                 <motion.div
@@ -174,7 +191,7 @@ export default function HomePage({
                     <motion.img
                       whileHover={{ scale: 1.06 }}
                       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                      src={item.image}
+                      src={imageUrl}
                       alt={`${item.name} natural organic latex mattress`}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -232,9 +249,8 @@ export default function HomePage({
                           <span className="text-sm md:text-2xl font-bold font-body mt-0 md:mt-0.5" style={{ color: '#F5F2EB' }}>
                             <PriceText>
                               ₹
-                              {item.pricingModel === 'with_without_accessories'
-                                ? item.pricing.withoutAccessories?.king?.toLocaleString('en-IN')
-                                : item.pricing.fabric300Gsm?.king?.toLocaleString('en-IN')}
+                              {item.pricing?.withoutAccessories?.king?.toLocaleString('en-IN') || 
+                                item.pricing?.fabric300Gsm?.king?.toLocaleString('en-IN') || ''}
                             </PriceText>
                           </span>
                         </div>
@@ -262,7 +278,7 @@ export default function HomePage({
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                      href={`https://wa.me/918943644026?text=${encodeURIComponent(
+                      href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(
                         `Hi! I am interested in the ${item.name} mattress. Can you help me select the right size and customization?`
                       )}`}
                       target="_blank"
@@ -327,20 +343,13 @@ export default function HomePage({
             dragConstraints={{ right: 0, left: -((320 + 32) * 4 - window.innerWidth + 64) }}
             dragElastic={0.1}
           >
-            {[
-              { id: 't1', name: 'Srinivas Rao', city: 'Hyderabad', rating: 5, comment: 'Buying the Nirvana mattress was the best decision for my chronic lower back issues. The organic latex feels incredibly supportive yet soft.', product: 'Nirvana 8"' },
-              { id: 't2', name: 'Anvitha Reddy', city: 'Bangalore', rating: 5, comment: 'We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly so I don\'t wake up when my husband moves.', product: 'Amrita 10" Hybrid' },
-              { id: 't3', name: 'Rajendra Prasad', city: 'Rajahmundry', rating: 5, comment: 'Sthira is perfect for those who want a firm but very comfortable orthopedic feel. The quality of the organic cotton cover is exceptional.', product: 'Sthira 6"' },
-              { id: 't4', name: 'Deepak Sharma', city: 'Hyderabad', rating: 5, comment: 'I am amazed by the Custom Mattress builder! Delivered within 6 days exactly to my specifications. Truly a luxury experience from start to finish.', product: 'Custom Build' },
-              { id: 't5', name: 'Kavya S.', city: 'Chennai', rating: 5, comment: 'The natural latex breathes so much better than memory foam. First summer in years where I haven\'t woken up sweating.', product: 'Prakriti 8"' }
-            ].map((t) => (
+            {(testimonials.length > 0 ? testimonials : []).map((t: any, idx: number) => (
               <motion.div
-                key={t.id}
+                key={idx}
                 whileHover={{ scale: 1.02, y: -4 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 className="w-[300px] md:w-[380px] shrink-0 bg-white p-8 rounded-2xl border border-brand-200/40 shadow-sm flex flex-col justify-between relative overflow-hidden"
               >
-                {/* Oversized ghost quote mark */}
                 <div className="absolute -top-6 -left-2 text-9xl font-heading text-brand-100 opacity-50 select-none pointer-events-none">“</div>
                 
                 <div className="relative z-10">
@@ -349,17 +358,17 @@ export default function HomePage({
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-sm md:text-base text-neutral-dark/80 leading-relaxed italic font-body min-h-[100px]">"{t.comment}"</p>
+                  <p className="text-sm md:text-base text-neutral-dark/80 leading-relaxed italic font-body min-h-[100px]">"{t.quote}"</p>
                 </div>
                 
                 <div className="border-t border-brand-200/40 pt-4 mt-6 flex items-center gap-4 relative z-10">
                   <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-heading font-bold text-lg shrink-0">
-                    {t.name.charAt(0)}
+                    {(t.customerName || '?').charAt(0)}
                   </div>
                   <div>
-                    <span className="font-heading font-bold text-sm text-primary block">{t.name}</span>
+                    <span className="font-heading font-bold text-sm text-primary block">{t.customerName}</span>
                     <span className="text-[10px] text-neutral-dark/40 flex items-center gap-1 font-body mt-0.5">
-                      {t.city} <span className="w-1 h-1 rounded-full bg-neutral-dark/20" /> <span className="text-success font-semibold flex items-center gap-0.5"><Check className="w-3 h-3" /> Verified</span>
+                      {t.location} <span className="w-1 h-1 rounded-full bg-neutral-dark/20" /> {t.isVerified !== false && <span className="text-success font-semibold flex items-center gap-0.5"><Check className="w-3 h-3" /> Verified</span>}
                     </span>
                   </div>
                 </div>
@@ -391,11 +400,7 @@ export default function HomePage({
           </FadeUp>
 
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" stagger={0.15}>
-            {[
-              { city: 'Hyderabad', address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', phones: ['+918686624494', '+917207424494'], hours: 'Mon - Sun: 10:00 AM - 9:00 PM' },
-              { city: 'Rajahmundry', address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103', phones: ['+918686624494'], hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM' },
-              { city: 'Bangalore', address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038', phones: ['+917207424494'], hours: 'Mon - Sun: 10:30 AM - 8:30 PM' },
-            ].map((loc, idx) => (
+            {(showrooms.length > 0 ? showrooms : []).map((loc: any, idx: number) => (
               <motion.div 
                 key={idx} 
                 variants={staggerItem}
@@ -407,20 +412,20 @@ export default function HomePage({
                 <div className="absolute top-0 left-0 right-0 h-1 bg-accent scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 rounded-t-3xl" />
                 
                 <div className="mb-4">
-                  <span className="text-[10px] font-accent font-bold uppercase tracking-widest text-primary bg-brand-100/50 px-3 py-1 rounded-md border border-brand-200">{loc.city} Store</span>
+                  <span className="text-[10px] font-accent font-bold uppercase tracking-widest text-primary bg-brand-100/50 px-3 py-1 rounded-md border border-brand-200">{loc.address?.city || loc.name} Store</span>
                 </div>
-                <p className="text-xs sm:text-sm text-neutral-dark/80 leading-relaxed font-body mb-6 flex-grow">{loc.address}</p>
+                <p className="text-xs sm:text-sm text-neutral-dark/80 leading-relaxed font-body mb-6 flex-grow">{loc.address?.fullAddress || loc.address?.street || ''}</p>
                 
                 <div className="text-[10px] sm:text-xs space-y-2 pt-4 border-t border-brand-200/30 font-body">
-                  <div className="text-neutral-dark/60"><strong className="text-primary font-bold">Outlets hours:</strong> {loc.hours}</div>
-                  <div className="text-primary"><strong className="text-neutral-dark/60 font-medium">Contact:</strong> {loc.phones.join(', ')}</div>
+                  <div className="text-neutral-dark/60"><strong className="text-primary font-bold">Outlets hours:</strong> {loc.hours?.note || `${loc.hours?.monday || '10:00 AM - 9:00 PM'} Daily`}</div>
+                  <div className="text-primary"><strong className="text-neutral-dark/60 font-medium">Contact:</strong> {(loc.contact?.phoneNumbers || []).join(', ')}</div>
                 </div>
                 
                 <div className="mt-6 pt-5 border-t border-brand-200/30">
                   <motion.a
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello, I would like to visit the RelaxPro ${loc.city} Experience Showroom. Can you please guide me on directions?`)}`}
+                    href={buildWhatsAppUrl(`Hello, I would like to visit the RelaxPro ${loc.address?.city || loc.name} Experience Showroom. Can you please guide me on directions?`)}
                     target="_blank"
                     rel="noreferrer"
                     className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-primary hover:bg-[#0a1510] text-white text-[10px] sm:text-xs font-accent font-bold uppercase tracking-widest rounded-xl shadow-md transition-colors"
