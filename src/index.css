@@ -1,0 +1,772 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
+Quiet Luxury Palette
+============================================ */
+@theme {
+/* Typography — Playfair Display for editorial luxury */
+--font-heading: 'Playfair Display', Georgia, serif;
+--font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+--font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+--font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+/* Backward compatibility aliases */
+--font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+--font-display: 'Playfair Display', Georgia, serif;
+
+/* Brand Color Palette — Near-Black Forest + Champagne Gold */
+--color-primary: #0F1F17;         /* Near-black forest — deepest tone for headings, dark bg */
+--color-secondary: #FAF8F3;       /* Ivory — warm light surfaces */
+--color-accent: #C9A87C;          /* Champagne Gold — CTAs, highlights */
+--color-accent-dark: #B89568;     /* Champagne hover */
+--color-accent-light: #E0CFAF;    /* Light Champagne */
+
+--color-neutral-dark: #4A5A57;    /* Cool Sage — secondary text */
+--color-neutral-light: #FAF8F3;   /* Ivory — main background */
+--color-success: #5A8F7B;         /* Restrained green */
+
+/* Backward-compatible brand tokens */
+--color-brand-50: #FAF8F3;
+--color-brand-100: #F5F0E8;
+--color-brand-200: #E8E2D8;
+--color-brand-500: #C9A87C;
+--color-brand-600: #B89568;
+--color-brand-700: #0F1F17;
+--color-brand-800: #0F1F17;
+  --color-brand-950: #0A1510;
+
+  --color-luxury-gold: #C9A87C;
+
+  --color-charcoal: #1E1E1E;
+  --color-blue: #2D8CFF;
+  --color-blue-bright: #3FA2FF;
+  --color-blue-dark: #1B6FD4;
+--color-deep-charcoal: #0F1F17;
+
+/* Card Tokens */
+--radius-card: 16px;
+--shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
+
+/* Spacing Scale Override for Tighter Flow */
+--spacing-12: 2.5rem;
+--spacing-16: 3.5rem;
+--spacing-20: 4.25rem;
+--spacing-24: 5rem;
+--spacing-32: 6.5rem;
+
+/* Warm Oat — replaces pure #FFFFFF on dark backgrounds */
+--color-warm-white: #F5F2EB;
+
+/* Section vertical rhythm */
+--section-vertical-xs: clamp(40px, 5vw, 64px);
+--section-vertical-sm: clamp(56px, 7vw, 96px);
+--section-vertical-md: clamp(80px, 9vw, 128px);
+--section-vertical-lg: clamp(120px, 12vw, 160px);
+
+/* Motion easing — luxury standard */
+--ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+/* Motion tokens */
+--ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+--duration-reveal: 0.8s;
+--stagger-step: 0.08s;
+
+/* Luxury font tracking */
+--tracking-editorial: 0.18em;
+--tracking-wide: 0.10em;
+}
+
+/* Price text — auto-applied by <PriceText> wrapper */
+@utility font-price {
+font-family: var(--font-mono);
+font-weight: 600;
+letter-spacing: 0.02em;
+}
+
+/* ============================================
+RELAXPRO UTILITY PRIMITIVES
+============================================ */
+@utility rp-container {
+width: 100%;
+max-width: 1280px;
+margin-left: auto;
+margin-right: auto;
+padding-left: clamp(16px, 4vw, 40px);
+padding-right: clamp(16px, 4vw, 40px);
+}
+
+@utility rp-section {
+padding-top: clamp(40px, 7vw, 96px);
+padding-bottom: clamp(40px, 7vw, 96px);
+}
+
+@utility rp-display {
+font-family: var(--font-heading);
+font-size: clamp(2.2rem, 5vw, 4.2rem);
+line-height: 1.05;
+letter-spacing: -0.01em;
+}
+
+@utility rp-heading {
+font-family: var(--font-heading);
+font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+line-height: 1.15;
+letter-spacing: -0.01em;
+}
+
+@utility rp-body {
+font-family: var(--font-body);
+font-size: clamp(1rem, 1.6vw, 1.125rem);
+line-height: 1.7;
+color: var(--color-neutral-dark);
+max-width: 65ch;
+}
+
+/* ============================================
+   CSS Custom Properties for Non-Tailwind Usage
+   ============================================ */
+:root {
+  --color-primary: #0F1F17;
+  --color-secondary: #FAF8F3;
+  --color-accent: #C9A87C;
+  --color-accent-dark: #B89568;
+  --color-neutral-dark: #4A5A57;
+  --color-neutral-light: #FAF8F3;
+  --color-success: #5A8F7B;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-accent: 'Plus Jakarta Sans', sans-serif;
+  --radius-card: 16px;
+  --shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
+  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Lenis smooth scroll body */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Reduced motion — kill all transitions and animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-neutral-light);
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Fluid Typography */
+  h1 { font-size: clamp(1.8rem, 5vw, 4rem); font-family: var(--font-heading); }
+  h2 { font-size: clamp(1.4rem, 3.5vw, 2.8rem); font-family: var(--font-heading); }
+  h3 { font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-family: var(--font-heading); }
+  p  { font-size: clamp(0.9rem, 1.8vw, 1.1rem); }
+
+  /* Responsive Sections */
+  .section-padding {
+    padding: clamp(40px, 8vw, 100px) clamp(16px, 4vw, 80px);
+  }
+
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ============================================
+   SKIP NAVIGATION (Accessibility)
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 0 0 8px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================
+   FOCUS STYLES (Accessibility)
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-200);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ============================================
+   SCROLL ANIMATION UTILITIES
+   ============================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.animate-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Legacy reveal */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Shine border */
+@keyframes border-shine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-shine {
+  background-size: 200% auto;
+  animation: border-shine 4s linear infinite;
+}
+
+/* Soft glow */
+@keyframes soft-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px -2px rgba(212, 184, 149, 0.1), 0 2px 8px -1px rgba(212, 184, 149, 0.05);
+  }
+  50% {
+    box-shadow: 0 12px 32px -2px rgba(212, 184, 149, 0.28), 0 4px 14px -1px rgba(212, 184, 149, 0.18);
+  }
+}
+.animate-glow-soft {
+  animation: soft-glow 4s ease-in-out infinite;
+}
+
+/* Hero floating */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: hero-float 4s ease-in-out infinite;
+}
+
+/* Gradient shift */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
+/* Pulse glow for CTA */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 184, 149, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(212, 184, 149, 0); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* Bounce arrow for scroll indicator */
+@keyframes bounce-arrow {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+.animate-bounce-arrow {
+  animation: bounce-arrow 2s ease infinite;
+}
+
+/* Ripple effect for buttons */
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Skeleton shimmer loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* SVG stroke draw */
+@keyframes strokeDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Star sweep fill */
+@keyframes starSweep {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Counter */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Word slide up for hero */
+@keyframes wordSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   BUTTON MICRO-INTERACTIONS
+   ============================================ */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.btn-primary:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.btn-primary:active::after {
+  width: 200px;
+  height: 200px;
+  animation: ripple 0.6s linear;
+}
+
+/* ============================================
+   NAV LINK UNDERLINE
+   ============================================ */
+.nav-link-animated {
+  position: relative;
+}
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link-animated:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   CARD HOVER LIFT
+   ============================================ */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(26, 54, 41, 0.10);
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.5s ease;
+}
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   FEATURE CARD GLOW ON HOVER
+   ============================================ */
+.feature-card-glow {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card-glow:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(212, 184, 149, 0.2), var(--shadow-card);
+}
+
+/* ============================================
+   SOCIAL ICON BOUNCE
+   ============================================ */
+.social-bounce {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.social-bounce:hover {
+  transform: translateY(-4px);
+  color: #fff;
+}
+
+/* ============================================
+   SCROLL TO TOP BUTTON
+   ============================================ */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 380px;
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  padding-top: env(safe-area-inset-top);
+}
+.mobile-menu-panel.open {
+  transform: translateX(0);
+}
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Menu item stagger */
+.mobile-menu-item {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-menu-panel.open .mobile-menu-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-menu-panel.open .mobile-menu-item:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu-panel.open .mobile-menu-item:nth-child(2) { transition-delay: 0.10s; }
+.mobile-menu-panel.open .mobile-menu-item:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu-panel.open .mobile-menu-item:nth-child(4) { transition-delay: 0.20s; }
+.mobile-menu-panel.open .mobile-menu-item:nth-child(5) { transition-delay: 0.25s; }
+.mobile-menu-panel.open .mobile-menu-item:nth-child(6) { transition-delay: 0.30s; }
+.mobile-menu-panel.open .mobile-menu-item:nth-child(7) { transition-delay: 0.35s; }
+
+/* Hamburger animation */
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-primary);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 2px;
+}
+.hamburger-open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ============================================
+   HEADER SCROLL TRANSITION
+   ============================================ */
+.header-transparent {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom-color: #E7E0D7;
+  box-shadow: 0 2px 20px rgba(26, 54, 41, 0.06);
+}
+
+/* ============================================
+   TESTIMONIAL CAROUSEL (Mobile)
+   ============================================ */
+.testimonial-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 16px;
+  padding: 4px;
+}
+.testimonial-carousel::-webkit-scrollbar {
+  display: none;
+}
+.testimonial-carousel > * {
+  scroll-snap-align: center;
+  flex: 0 0 85%;
+  min-width: 280px;
+}
+
+/* Dot indicators */
+.dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--color-brand-200);
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.dot-indicator.active {
+  width: 24px;
+  background: var(--color-accent);
+}
+
+/* ============================================
+   NEWSLETTER SUCCESS
+   ============================================ */
+.newsletter-success {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+/* ============================================
+   FOOTER ACCORDION (Mobile)
+   ============================================ */
+.footer-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.footer-accordion-content.open {
+  max-height: 300px;
+}
+
+/* ============================================
+   NOISE TEXTURE OVERLAY
+   ============================================ */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   MOBILE-SPECIFIC OVERRIDES
+   ============================================ */
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+  .card-hover:hover {
+    transform: none;
+    box-shadow: var(--shadow-card);
+  }
+  .img-zoom:hover img {
+    transform: none;
+  }
+}
+
+/* Touch targets */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-up, .fade-left, .fade-right, .scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Drop cap for editorial sections */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  line-height: 0.8;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  color: var(--color-primary);
+  font-weight: 400;
+}
+
+/* ============================================
+   GLOBAL SPACING AUDIT REDUCTIONS
+   ============================================ */
+/* Reduce default fluid section paddings */
+.section-padding {
+  padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 80px);
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+.card-hover {
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 25px 50px -12px rgba(26, 54, 41, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.3); /* Subtle primary shadow & accent border */
+  }
+}
+

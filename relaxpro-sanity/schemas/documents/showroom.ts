@@ -1,0 +1,41 @@
+export default {
+  name: 'showroom',
+  title: 'Showroom',
+  type: 'document',
+  fields: [
+    { name: 'name', title: 'Showroom Name', type: 'string', validation: (R: any) => R.required() },
+    { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name' } },
+    { name: 'type', title: 'Showroom Type', type: 'string', options: { list: [{ title: 'Factory Showroom', value: 'factory' }, { title: 'Experience Center', value: 'experience' }, { title: 'Partner Store', value: 'partner' }, { title: 'Kerala Factory Outlet', value: 'outlet' }] } },
+    {
+      name: 'address', title: 'Address', type: 'object',
+      fields: [
+        { name: 'street', title: 'Street / Area', type: 'string' },
+        { name: 'landmark', title: 'Landmark', type: 'string' },
+        { name: 'city', title: 'City', type: 'string' },
+        { name: 'state', title: 'State', type: 'string' },
+        { name: 'pincode', title: 'Pincode', type: 'string' },
+        { name: 'fullAddress', title: 'Full Address (for display)', type: 'text', rows: 3 },
+      ],
+    },
+    { name: 'coordinates', title: 'Map Coordinates', type: 'object', fields: [{ name: 'lat', title: 'Latitude', type: 'number' }, { name: 'lng', title: 'Longitude', type: 'number' }] },
+    {
+      name: 'hours', title: 'Operating Hours', type: 'object',
+      fields: [
+        { name: 'monday', title: 'Monday', type: 'string' },
+        { name: 'tuesday', title: 'Tuesday', type: 'string' },
+        { name: 'wednesday', title: 'Wednesday', type: 'string' },
+        { name: 'thursday', title: 'Thursday', type: 'string' },
+        { name: 'friday', title: 'Friday', type: 'string' },
+        { name: 'saturday', title: 'Saturday', type: 'string' },
+        { name: 'sunday', title: 'Sunday', type: 'string' },
+        { name: 'note', title: 'Hours Note', type: 'string' },
+      ],
+    },
+    { name: 'contact', title: 'Contact Info', type: 'object', fields: [{ name: 'phoneNumbers', title: 'Phone Numbers', type: 'array', of: [{ type: 'string' }] }, { name: 'whatsapp', title: 'WhatsApp Number', type: 'string' }, { name: 'email', title: 'Email', type: 'string' }] },
+    { name: 'ctaButtons', title: 'CTA Buttons', type: 'array', of: [{ type: 'ctaButton' }] },
+    { name: 'image', title: 'Showroom Image', type: 'imageWithAlt' },
+    { name: 'isActive', title: 'Active / Visible', type: 'boolean', initialValue: true },
+    { name: 'order', title: 'Display Order', type: 'number' },
+  ],
+  preview: { select: { title: 'name', subtitle: 'type', media: 'image' } },
+}

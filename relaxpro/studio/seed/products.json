@@ -1,0 +1,446 @@
+[
+  {
+    "_id": "product-nirvana",
+    "_type": "product",
+    "name": "Nirvana",
+    "slug": { "current": "nirvana" },
+    "tagline": "Experience ultimate relaxation",
+    "shortDescription": "6 inch Kerala Latex 90 density pure 96.6% Purity GOLS certified plush feel",
+    "pricing": { "startingPrice": 54000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 54000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 45000, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 33000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 27000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "6 inches",
+      "density": "90 density",
+      "purity": "96.6% Purity",
+      "certification": "GOLS certified",
+      "feel": "Plush",
+      "material": "100% Pure Kerala Latex"
+    },
+    "benefits": ["Therapeutic deep sleep", "Pressure relief", "Hypoallergenic", "Zero VOC emissions"],
+    "rating": 4.9,
+    "reviewCount": 1200,
+    "isBestseller": true,
+    "isFeatured": true,
+    "tier": "luxury",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-amrita",
+    "_type": "product",
+    "name": "Amrita",
+    "slug": { "current": "amrita" },
+    "tagline": "Sleep that rejuvenates you",
+    "shortDescription": "10 inch hybrid with 4 rebonded base and 6 premium GOLS certified organic latex",
+    "pricing": { "startingPrice": 48000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 48000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 40000, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 32000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 24000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "10 inches",
+      "density": "90-95 density",
+      "purity": "96.6% Purity",
+      "certification": "GOLS certified",
+      "feel": "Medium-Soft",
+      "material": "Rebonded Foam + Latex"
+    },
+    "benefits": ["Spine contouring support", "Muscle recovery", "Zero sagging", "Premium durability"],
+    "rating": 4.8,
+    "reviewCount": 890,
+    "isBestseller": true,
+    "isFeatured": true,
+    "tier": "luxury",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-ananda",
+    "_type": "product",
+    "name": "Ananda",
+    "slug": { "current": "ananda" },
+    "tagline": "Blissful comfort every night",
+    "shortDescription": "6 inch GOLS certified 100 pure organic latex mattress for blissful sleep",
+    "pricing": { "startingPrice": 42000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 42000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 35000, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 28000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 21000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "6 inches",
+      "density": "90 density",
+      "purity": "100% Pure",
+      "certification": "GOLS, Oeko-Tex",
+      "feel": "Soft-Medium",
+      "material": "Pure Organic Latex"
+    },
+    "benefits": ["Body contouring", "Motion isolation", "Eco-friendly materials", "Hypoallergenic"],
+    "rating": 4.8,
+    "reviewCount": 650,
+    "isBestseller": false,
+    "isFeatured": true,
+    "tier": "luxury",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-prakriti",
+    "_type": "product",
+    "name": "Prakriti",
+    "slug": { "current": "prakriti" },
+    "tagline": "Comfort inspired by nature",
+    "shortDescription": "8 inch eco-friendly twin latex with rebonded core and organic latex topper",
+    "pricing": { "startingPrice": 44000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 44000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 36500, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 29000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 22000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "8 inches",
+      "density": "85-90 density",
+      "purity": "Eco certified",
+      "certification": "GOLS, ECO-Institut",
+      "feel": "Medium-Soft",
+      "material": "Latex Rebonded + Pure Latex"
+    },
+    "benefits": ["Eco-conscious design", "Cloud-like support", "Bouncy core", "Natural materials"],
+    "rating": 4.7,
+    "reviewCount": 430,
+    "isBestseller": false,
+    "isFeatured": true,
+    "tier": "premium",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-somya",
+    "_type": "product",
+    "name": "Somya",
+    "slug": { "current": "somya" },
+    "tagline": "Soft gentle comfort that your body will love",
+    "shortDescription": "10 inch premium hybrid with latex comfort and high resilience support",
+    "pricing": { "startingPrice": 41000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 41000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 34000, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 27000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 20500, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "10 inches",
+      "density": "75-90 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Medium-Soft",
+      "material": "HR Foam + Latex"
+    },
+    "benefits": ["Pressure relief", "Motion isolation", "Durable support", "Breathable comfort"],
+    "rating": 4.6,
+    "reviewCount": 380,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "premium",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-kshiti",
+    "_type": "product",
+    "name": "Kshiti",
+    "slug": { "current": "kshiti" },
+    "tagline": "Ground your sleep in nature",
+    "shortDescription": "10 inch premium hybrid with dual latex layers and HR foam support",
+    "pricing": { "startingPrice": 38000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 38000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 31500, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 26000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 19000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "10 inches",
+      "density": "75-90 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Medium-Soft",
+      "material": "HR Foam + Dual Latex"
+    },
+    "benefits": ["Value luxury", "Dual latex comfort", "Orthopedic base", "Long-lasting"],
+    "rating": 4.5,
+    "reviewCount": 310,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "premium",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-prayag",
+    "_type": "product",
+    "name": "Prayag",
+    "slug": { "current": "prayag" },
+    "tagline": "Sacred sleep every night",
+    "shortDescription": "8 inch orthopedic mattress with high resilience foam and natural latex topper",
+    "pricing": { "startingPrice": 33000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 33000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 27500, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 22000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 16500, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "8 inches",
+      "density": "75 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Medium-Firm",
+      "material": "HR Foam + Latex"
+    },
+    "benefits": ["Orthopedic alignment", "Medium-firm support", "Pressure distribution", "Eco-core"],
+    "rating": 4.5,
+    "reviewCount": 280,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "premium",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-octavius",
+    "_type": "product",
+    "name": "Octavius",
+    "slug": { "current": "octavius" },
+    "tagline": "Eight layers of pure comfort",
+    "shortDescription": "10 inch multi-layer orthopedic mattress with latex and high resilience foams",
+    "pricing": { "startingPrice": 33000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 33000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 27500, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 22000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 16500, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "10 inches",
+      "density": "75-90 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Medium",
+      "material": "Multi-layer Foam + Latex"
+    },
+    "benefits": ["8-layer construction", "Zoned support", "Temperature regulation", "Edge support"],
+    "rating": 4.4,
+    "reviewCount": 210,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "premium",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-sukoon",
+    "_type": "product",
+    "name": "Sukoon",
+    "slug": { "current": "sukoon" },
+    "tagline": "Peaceful sleep for everyone",
+    "shortDescription": "10 inch orthopedic mattress with latex topper and high resilience support foam",
+    "pricing": { "startingPrice": 30000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 30000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 25000, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 20000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 15000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "10 inches",
+      "density": "75 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Medium-Firm",
+      "material": "HR Foam + Latex Topper"
+    },
+    "benefits": ["Orthopedic support", "Value pricing", "Cool sleep", "Durable build"],
+    "rating": 4.3,
+    "reviewCount": 190,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "comfort",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-smrithi",
+    "_type": "product",
+    "name": "Smrithi",
+    "slug": { "current": "smrithi" },
+    "tagline": "Memory that cares for you",
+    "shortDescription": "8 inch orthopedic mattress with latex topper and high resilience foam base",
+    "pricing": { "startingPrice": 27000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 27000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 22500, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 18000, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 13500, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "8 inches",
+      "density": "75 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Medium-Firm",
+      "material": "HR Foam + Latex"
+    },
+    "benefits": ["Memory recovery", "Pressure relief", "Budget-friendly", "Orthopedic certified"],
+    "rating": 4.2,
+    "reviewCount": 150,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "comfort",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-ojas",
+    "_type": "product",
+    "name": "Ojas",
+    "slug": { "current": "ojas" },
+    "tagline": "Energy that restores",
+    "shortDescription": "6 inch orthopedic value mattress with high density resilience core for back safety",
+    "pricing": { "startingPrice": 13000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 13000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 11000, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 8500, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 6500, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "6 inches",
+      "density": "75-90 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Firm",
+      "material": "Rebonded Foam + HR Softy"
+    },
+    "benefits": ["Back safety", "Deep recovery", "Affordable pricing", "Spine stabilization"],
+    "rating": 4.1,
+    "reviewCount": 330,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "comfort",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  },
+  {
+    "_id": "product-ayushrest",
+    "_type": "product",
+    "name": "AyushRest",
+    "slug": { "current": "ayushrest" },
+    "tagline": "Sleep built to last",
+    "shortDescription": "8 inch triple density orthopedic foam mattress with customized comfort zones",
+    "pricing": { "startingPrice": 16000, "currency": "₹" },
+    "sizes": [
+      { "name": "King", "dimensions": "78x72 inches", "price": 16000, "inStock": true },
+      { "name": "Queen", "dimensions": "78x60 inches", "price": 13500, "inStock": true },
+      { "name": "Double", "dimensions": "78x48 inches", "price": 10500, "inStock": true },
+      { "name": "Single", "dimensions": "78x36 inches", "price": 8000, "inStock": true }
+    ],
+    "specifications": {
+      "thickness": "8 inches",
+      "density": "75-90 density",
+      "purity": "Standard",
+      "certification": "Oeko-Tex",
+      "feel": "Firm",
+      "material": "Triple Density Ortho Foam"
+    },
+    "benefits": ["Triple density support", "Skeletal weight distribution", "Pressure spot prevention", "Long-life durability"],
+    "rating": 4.0,
+    "reviewCount": 260,
+    "isBestseller": false,
+    "isFeatured": false,
+    "tier": "comfort",
+    "inStock": true,
+    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "shippingWarranty": {
+      "deliveryTime": "5-7 business days",
+      "freeDelivery": true,
+      "warrantyPeriod": "10 years",
+      "trialPeriod": "100 nights"
+    }
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "_id": "faq-1",
+    "_type": "faq",
+    "question": "What is the lifespan of a natural latex mattress?",
+    "category": "Durability and Cores",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "A high-quality natural latex mattress from RelaxPro typically lasts 10-15 years with proper care. Unlike memory foam or spring mattresses that degrade faster, natural latex is naturally resilient and resistant to dust mites and mold. Our 10-year warranty covers manufacturing defects, and many customers report their RelaxPro mattress still feels great well beyond the warranty period." }] }
+    ],
+    "order": 1,
+    "published": true
+  },
+  {
+    "_id": "faq-2",
+    "_type": "faq",
+    "question": "How do I care for my RelaxPro mattress?",
+    "category": "Care and Setting Up",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Rotate your mattress every 3-6 months to ensure even wear. Use a mattress protector to shield against spills and dust. Vacuum the surface occasionally with a soft brush attachment. Avoid folding or bending the mattress. For spot cleaning, use mild soap and damp cloth — never soak the mattress." }] }
+    ],
+    "order": 2,
+    "published": true
+  },
+  {
+    "_id": "faq-3",
+    "_type": "faq",
+    "question": "Can I get a custom size mattress?",
+    "category": "Custom Sizing",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes! We manufacture custom-size mattresses for antique beds, RVs, boats, and unique bed frames. Contact us through the website or visit our factory showroom with your measurements. Custom sizes typically take 5-7 extra business days for production." }] }
+    ],
+    "order": 3,
+    "published": true
+  },
+  {
+    "_id": "faq-4",
+    "_type": "faq",
+    "question": "How long does delivery take?",
+    "category": "Shipping and Delivery",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Standard delivery takes 5-7 business days after order confirmation. We offer free delivery across India. For bulk orders or custom sizes, please allow up to 10-12 business days. We ship through reliable courier partners and provide tracking information once dispatched." }] }
+    ],
+    "order": 4,
+    "published": true
+  },
+  {
+    "_id": "faq-5",
+    "_type": "faq",
+    "question": "What is your warranty and return policy?",
+    "category": "Warranty and Returns",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "All RelaxPro mattresses come with a 10-year warranty against manufacturing defects including sagging over 1 inch, material defects, and workmanship issues. We also offer a 100-night trial period — if you're not satisfied, we'll work with you to find the right solution." }] }
+    ],
+    "order": 5,
+    "published": true
+  },
+  {
+    "_id": "faq-6",
+    "_type": "faq",
+    "question": "Are RelaxPro mattresses good for back pain?",
+    "category": "General",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes! Our latex and hybrid mattresses are designed with orthopedic principles. Natural latex provides zoned support that conforms to your body's natural curves while keeping your spine properly aligned. Many customers with chronic back issues report significant improvement after switching to RelaxPro." }] }
+    ],
+    "order": 6,
+    "published": true
+  },
+  {
+    "_id": "faq-7",
+    "_type": "faq",
+    "question": "What certifications do your mattresses have?",
+    "category": "General",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Our natural latex mattresses are GOLS (Global Organic Latex Standard) certified and Oeko-Tex Standard 100 certified. These certifications guarantee that our materials are free from harmful chemicals, heavy metals, and formaldehyde, making them safe for infants and elders." }] }
+    ],
+    "order": 7,
+    "published": true
+  },
+  {
+    "_id": "faq-8",
+    "_type": "faq",
+    "question": "Do you offer custom firmness levels?",
+    "category": "Custom Sizing",
+    "answer": [
+      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes, we offer multiple firmness options: Plush, Medium-Soft, Medium, Medium-Firm, and Firm. You can customize the feel by adjusting the latex density and layer configuration. Visit our custom builder page or contact us for personalized recommendations." }] }
+    ],
+    "order": 8,
+    "published": true
+  }
+]

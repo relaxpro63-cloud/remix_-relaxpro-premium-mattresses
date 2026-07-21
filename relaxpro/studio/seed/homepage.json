@@ -1,0 +1,64 @@
+{
+  "_id": "home",
+  "_type": "home",
+  "heroSection": {
+    "title": "Sleep Like Royalty on Pure Kerala Latex",
+    "subtitle": "Handcrafted with 100% Natural Latex",
+    "description": "Experience the therapeutic comfort of our GOLS-certified natural latex mattresses. Engineered in Kerala for the perfect balance of support and cloud-like softness.",
+    "ctaButtons": [
+      { "_type": "ctaButton", "label": "Find Your Perfect Bed", "link": "/products", "variant": "primary" },
+      { "_type": "ctaButton", "label": "Shop Best Sellers", "link": "/catalog", "variant": "secondary" }
+    ]
+  },
+  "ownershipWays": {
+    "sectionTitle": "Best Selling Models",
+    "sectionSubtitle": "Choose the mattress that fits your life — pre-built perfection or your own custom creation.",
+    "customBuilder": {
+      "title": "Customize Your Comfort",
+      "description": "Design your perfect mattress from scratch. Choose the size, thickness, firmness, and materials to match your unique sleep needs.",
+      "features": ["Choose your exact size, from 48\" to 96\" long", "Pick your preferred firmness level", "Select natural latex, hybrid, or orthopedic foam", "Get a video call while we make it"],
+      "cta": { "_type": "ctaButton", "label": "Build Your Mattress", "link": "/custom-builder", "variant": "primary" }
+    },
+    "shopPrebuilt": {
+      "title": "Shop Our Models",
+      "description": "Browse our curated collection of pre-built mattresses. Already tested and loved by thousands of happy customers across India.",
+      "features": ["Ready to ship in 3-5 business days", "Award-winning designs", "Starting from just ₹6,500", "Free delivery with 10-year warranty"],
+      "cta": { "_type": "ctaButton", "label": "View All Models", "link": "/catalog", "variant": "primary" }
+    }
+  },
+  "bestsellersSection": {
+    "sectionTitle": "Our Bestsellers",
+    "sectionSubtitle": "The most loved mattresses by our customers",
+    "products": [
+      { "_type": "reference", "_ref": "product-nirvana" },
+      { "_type": "reference", "_ref": "product-amrita" },
+      { "_type": "reference", "_ref": "product-ananda" },
+      { "_type": "reference", "_ref": "product-prakriti" }
+    ],
+    "viewAllCta": { "_type": "ctaButton", "label": "View All Models", "link": "/catalog", "variant": "primary" }
+  },
+  "testimonialsSection": {
+    "sectionTitle": "What Our Customers Say",
+    "overallRating": "4.6",
+    "totalReviews": "500+",
+    "testimonials": [
+      { "_type": "reference", "_ref": "testimonial-1" },
+      { "_type": "reference", "_ref": "testimonial-2" },
+      { "_type": "reference", "_ref": "testimonial-3" },
+      { "_type": "reference", "_ref": "testimonial-4" }
+    ]
+  },
+  "faqSection": {
+    "sectionTitle": "Frequently Asked Questions",
+    "sectionDescription": "Everything you need to know about our mattresses",
+    "categories": ["Durability and Cores", "Care and Setting Up", "Custom Sizing", "Shipping and Delivery", "Warranty and Returns", "General"],
+    "faqs": [
+      { "_type": "reference", "_ref": "faq-1" },
+      { "_type": "reference", "_ref": "faq-2" },
+      { "_type": "reference", "_ref": "faq-3" },
+      { "_type": "reference", "_ref": "faq-4" },
+      { "_type": "reference", "_ref": "faq-5" },
+      { "_type": "reference", "_ref": "faq-6" }
+    ]
+  }
+}
