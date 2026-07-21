@@ -87,8 +87,8 @@ interface BuilderConfig {
 
 interface BuildState {
   size: { kind: 'preset' | 'custom'; name?: string; length: number; width: number };
-  comfort: { materialSlug: string; thickness: number } | null;
-  support: { materialSlug: string; thickness: number } | null;
+  comfort: { materialSlug: string; thickness: number }[];
+  support: { materialSlug: string; thickness: number }[];
   cover: { fabricSlug: string; quiltingSlug?: string };
 }
 
@@ -99,12 +99,12 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
   const sizeObj = config.sizes.find(s => s.name === build.size.name);
   const sizePrice = build.size.kind === 'preset' && sizeObj ? sizeObj.basePrice : 0;
 
-  const layerPrice = (sel: { materialSlug: string; thickness: number } | null) => {
-    if (!sel) return 0;
-    const m = config.materials.find(x => x.slug === sel.materialSlug);
-    const t = m?.thicknessOptions?.find(o => o.valueInches === sel.thickness);
-    return t?.addPrice ?? 0;
-  };
+  const layerPrice = (sels: { materialSlug: string; thickness: number }[]) =>
+    sels.reduce((sum, sel) => {
+      const m = config.materials.find(x => x.slug === sel.materialSlug);
+      const t = m?.thicknessOptions?.find(o => o.valueInches === sel.thickness);
+      return sum + (t?.addPrice ?? 0);
+    }, 0);
 
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
@@ -118,8 +118,8 @@ function initBuild(config: BuilderConfig): BuildState {
   const defaultSize = config.sizes.find(s => s.name === def.sizeName) || config.sizes[0];
   return {
     size: { kind: 'preset', name: defaultSize.name, length: defaultSize.lengthInches, width: defaultSize.widthInches },
-    comfort: def.comfortMaterialSlug ? { materialSlug: def.comfortMaterialSlug, thickness: def.comfortThickness } : null,
-    support: def.supportMaterialSlug ? { materialSlug: def.supportMaterialSlug, thickness: def.supportThickness } : null,
+    comfort: def.comfortMaterialSlug ? [{ materialSlug: def.comfortMaterialSlug, thickness: def.comfortThickness }] : [],
+    support: def.supportMaterialSlug ? [{ materialSlug: def.supportMaterialSlug, thickness: def.supportThickness }] : [],
     cover: { fabricSlug: def.coverFabricSlug, quiltingSlug: def.quiltingSlug || undefined },
   };
 }
@@ -129,17 +129,17 @@ function sizeLabel(s: BuilderSize) {
 }
 
 function LayerStack({ build, config }: { build: BuildState; config: BuilderConfig }) {
-  const comfortMat = build.comfort ? config.materials.find(m => m.slug === build.comfort!.materialSlug) : null;
-  const supportMat = build.support ? config.materials.find(m => m.slug === build.support!.materialSlug) : null;
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug);
+  const comfortMats = build.comfort.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
+  const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
 
   const layers = [
-    { label: 'Quilted top', mat: quiltFab?.name || null, color: quiltFab ? '#D4C5A9' : null, thickness: quiltFab ? '12mm' : null, active: !!quiltFab },
-    { label: 'Cover fabric', mat: coverFab?.name || null, color: '#C9B99A', thickness: coverFab?.gsm || null, active: true },
-    { label: 'Comfort layer', mat: comfortMat?.name || null, color: comfortMat?.stackColor || null, thickness: build.comfort ? `${build.comfort.thickness}"` : null, active: !!build.comfort },
-    { label: 'Support core', mat: supportMat?.name || null, color: supportMat?.stackColor || null, thickness: build.support ? `${build.support.thickness}"` : null, active: !!build.support },
-    { label: 'Base fabric', mat: 'Canvas base', color: '#8B7D6B', thickness: null, active: true },
+    ...(quiltFab ? [{ label: 'Quilted top', mat: quiltFab.name, color: '#D4C5A9', thickness: '12mm', active: true as const }] : []),
+    { label: 'Cover fabric', mat: coverFab?.name || null, color: '#C9B99A', thickness: coverFab?.gsm || null, active: true as const },
+    ...comfortMats.map(s => ({ label: 'Comfort layer' as const, mat: s.mat?.name || null, color: s.mat?.stackColor || null, thickness: `${s.thickness}"`, active: true as const })),
+    ...supportMats.map(s => ({ label: 'Support core' as const, mat: s.mat?.name || null, color: s.mat?.stackColor || null, thickness: `${s.thickness}"`, active: true as const })),
+    { label: 'Base fabric', mat: 'Canvas base', color: '#8B7D6B', thickness: null, active: true as const },
   ];
 
   return (
@@ -273,28 +273,51 @@ function StepMaterial({ slotLabel, slot, materials, build, onSelect }: {
   const filtered = materials.filter(m => m.slot === slot);
   const current = slot === 'comfort' ? build.comfort : build.support;
 
+  const toggleMaterial = (slug: string) => {
+    const exists = current.some(s => s.materialSlug === slug);
+    if (exists) {
+      const updated = current.filter(s => s.materialSlug !== slug);
+      if (slot === 'comfort') onSelect({ ...build, comfort: updated });
+      else onSelect({ ...build, support: updated });
+    } else {
+      const mat = materials.find(m => m.slug === slug);
+      const thickness = mat?.thicknessOptions[0]?.valueInches || 0;
+      const updated = [...current, { materialSlug: slug, thickness }];
+      if (slot === 'comfort') onSelect({ ...build, comfort: updated });
+      else onSelect({ ...build, support: updated });
+    }
+  };
+
+  const setThickness = (slug: string, thickness: number) => {
+    const updated = current.map(s =>
+      s.materialSlug === slug ? { ...s, thickness } : s
+    );
+    if (slot === 'comfort') onSelect({ ...build, comfort: updated });
+    else onSelect({ ...build, support: updated });
+  };
+
   return (
     <div>
+      <p className="text-[11px] text-gray-400 mb-3">Tap to add, tap again to remove. You can select multiple layers.</p>
       <div className="space-y-2.5">
         {filtered.map(mat => {
-          const active = current?.materialSlug === mat.slug;
+          const entry = current.find(s => s.materialSlug === mat.slug);
+          const selected = !!entry;
           return (
             <div key={mat.slug}>
               <motion.button
-                onClick={() => {
-                  const sel = { materialSlug: mat.slug, thickness: mat.thicknessOptions[0]?.valueInches || 0 };
-                  if (slot === 'comfort') onSelect({ ...build, comfort: sel });
-                  else onSelect({ ...build, support: sel });
-                }}
+                onClick={() => toggleMaterial(mat.slug)}
                 whileTap={{ scale: 0.995 }}
                 className={`relative w-full p-4 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer ${
-                  active ? 'border-accent bg-accent/5 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-200'
+                  selected ? 'border-accent bg-accent/5 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-200'
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-3 min-w-0">
-                    <span className="w-3.5 h-3.5 rounded-full mt-0.5 shrink-0 ring-1 ring-white/30"
-                      style={{ backgroundColor: mat.stackColor || '#CBD5E1' }} />
+                    <span className="w-4 h-4 rounded-full mt-0.5 shrink-0 ring-1 ring-white/30 flex items-center justify-center"
+                      style={{ backgroundColor: selected ? (mat.stackColor || '#CBD5E1') : '#E5E7EB' }}>
+                      {selected && <Check className="w-2.5 h-2.5 text-white" />}
+                    </span>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <h4 className="font-bold text-sm text-primary">{mat.name}</h4>
@@ -311,25 +334,23 @@ function StepMaterial({ slotLabel, slot, materials, build, onSelect }: {
                     </span>
                   )}
                 </div>
-                {active && <div className="absolute top-3 right-3"><Check className="w-4 h-4 text-accent" /></div>}
+                {selected && (
+                  <span className="text-[10px] text-accent font-semibold mt-2 block">Tap to remove</span>
+                )}
               </motion.button>
               <AnimatePresence>
-                {active && mat.thicknessOptions.length > 1 && (
+                {selected && mat.thicknessOptions.length > 1 && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }} className="overflow-hidden"
                   >
                     <div className="flex gap-2 mt-2 mb-1 ml-6">
                       {mat.thicknessOptions.map(t => {
-                        const isActive = current?.thickness === t.valueInches;
+                        const isActive = entry.thickness === t.valueInches;
                         return (
                           <button
                             key={t.valueInches}
-                            onClick={() => {
-                              const sel = { materialSlug: mat.slug, thickness: t.valueInches };
-                              if (slot === 'comfort') onSelect({ ...build, comfort: sel });
-                              else onSelect({ ...build, support: sel });
-                            }}
+                            onClick={() => setThickness(mat.slug, t.valueInches)}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                               isActive ? 'border-accent bg-accent/10 text-accent' : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                             }`}
@@ -416,20 +437,19 @@ function BuilderSummary({ build, config, price, addedToCart, onAddToCart, onWhat
   build: BuildState; config: BuilderConfig; price: number;
   addedToCart: boolean; onAddToCart: () => void; onWhatsApp: () => void;
 }) {
-  const parts: string[] = [];
-  const comfortMat = build.comfort ? config.materials.find(m => m.slug === build.comfort!.materialSlug) : null;
-  const supportMat = build.support ? config.materials.find(m => m.slug === build.support!.materialSlug) : null;
-  if (comfortMat?.feelTag) parts.push(comfortMat.feelTag);
-  if (supportMat?.feelTag) parts.push(supportMat.feelTag);
+  const comfortMats = build.comfort.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
+  const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
+  const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
+  const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug);
+
+  const feelTags = [...comfortMats, ...supportMats].filter(s => s.mat?.feelTag).map(s => s.mat!.feelTag);
 
   const chips: string[] = [];
-  if (comfortMat?.density) chips.push(comfortMat.density);
-  if (comfortMat?.ild) chips.push(comfortMat.ild);
-  const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
+  comfortMats.forEach(s => { if (s.mat?.density && !chips.includes(s.mat.density)) chips.push(s.mat.density); if (s.mat?.ild && !chips.includes(s.mat.ild)) chips.push(s.mat.ild); });
   if (coverFab?.gsm) chips.push(coverFab.gsm);
-  if (supportMat?.density && !chips.includes(supportMat.density)) chips.push(supportMat.density);
+  supportMats.forEach(s => { if (s.mat?.density && !chips.includes(s.mat.density)) chips.push(s.mat.density); });
 
-  const isComplete = build.comfort && build.support;
+  const isComplete = build.comfort.length > 0 && build.support.length > 0;
 
   return (
     <div>
@@ -445,10 +465,39 @@ function BuilderSummary({ build, config, price, addedToCart, onAddToCart, onWhat
       {/* Layer stack */}
       <LayerStack build={build} config={config} />
 
+      {/* Text receipt */}
+      {isComplete && (
+        <div className="mt-5 pt-4 border-t border-gray-200/60">
+          <h4 className="text-[11px] font-bold text-primary uppercase tracking-wider mb-3">Your Build Specs</h4>
+          <div className="space-y-2 text-xs text-gray-600">
+            <p className="flex items-start gap-2">
+              <span className="font-semibold text-gray-700 shrink-0 w-16">Size:</span>
+              <span>{build.size.name || 'Custom'} ({build.size.width}×{build.size.length} in)</span>
+            </p>
+            {comfortMats.length > 0 && (
+              <p className="flex items-start gap-2">
+                <span className="font-semibold text-gray-700 shrink-0 w-16">Comfort:</span>
+                <span>{comfortMats.map(s => `${s.mat?.name || s.materialSlug} (${s.thickness}")`).join(', ')}</span>
+              </p>
+            )}
+            {supportMats.length > 0 && (
+              <p className="flex items-start gap-2">
+                <span className="font-semibold text-gray-700 shrink-0 w-16">Support:</span>
+                <span>{supportMats.map(s => `${s.mat?.name || s.materialSlug} (${s.thickness}")`).join(', ')}</span>
+              </p>
+            )}
+            <p className="flex items-start gap-2">
+              <span className="font-semibold text-gray-700 shrink-0 w-16">Cover:</span>
+              <span>{coverFab?.name}{quiltFab ? ` + ${quiltFab.name}` : ''}</span>
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Feel summary */}
-      {parts.length > 0 && (
+      {feelTags.length > 0 && (
         <p className="text-xs text-gray-500 mt-4 leading-relaxed">
-          {parts.join(' · ')}
+          {feelTags.join(' · ')}
         </p>
       )}
 
@@ -553,12 +602,18 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
     switch (key) {
       case 'size': return build.size.kind === 'preset' ? `${build.size.name} · ${build.size.width}×${build.size.length}` : 'Custom';
       case 'comfort': {
-        const m = config.materials.find(x => x.slug === build.comfort?.materialSlug);
-        return m ? `${m.name} · ${build.comfort?.thickness}"` : 'Not set';
+        if (build.comfort.length === 0) return 'Not set';
+        return build.comfort.map(s => {
+          const m = config.materials.find(x => x.slug === s.materialSlug);
+          return `${m?.name || s.materialSlug} (${s.thickness}")`;
+        }).join(', ');
       }
       case 'support': {
-        const m = config.materials.find(x => x.slug === build.support?.materialSlug);
-        return m ? `${m.name} · ${build.support?.thickness}"` : 'Not set';
+        if (build.support.length === 0) return 'Not set';
+        return build.support.map(s => {
+          const m = config.materials.find(x => x.slug === s.materialSlug);
+          return `${m?.name || s.materialSlug} (${s.thickness}")`;
+        }).join(', ');
       }
       case 'cover': {
         const f = config.fabrics.find(x => x.slug === build.cover.fabricSlug);
@@ -569,15 +624,16 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
   };
 
   const handleAddToCart = () => {
-    if (!build.comfort || !build.support) return;
-    const comfortMat = config.materials.find(m => m.slug === build.comfort!.materialSlug);
-    const supportMat = config.materials.find(m => m.slug === build.support!.materialSlug);
+    if (build.comfort.length === 0 || build.support.length === 0) return;
+    const comfortMats = build.comfort.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
+    const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
     const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
+    const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
     const layers = [
-      ...(build.cover.quiltingSlug ? [{ material: '12mm Quilted Top', thickness: 0 }] : []),
+      ...(quiltFab ? [{ material: '12mm Quilted Top', thickness: 0 }] : []),
       { material: coverFab?.name || 'Cotton Cover', thickness: 0 },
-      { material: comfortMat?.name || '', thickness: build.comfort.thickness },
-      { material: supportMat?.name || '', thickness: build.support.thickness },
+      ...comfortMats.map(s => ({ material: s.mat?.name || s.materialSlug, thickness: s.thickness })),
+      ...supportMats.map(s => ({ material: s.mat?.name || s.materialSlug, thickness: s.thickness })),
     ];
     const item: CartItem = {
       id: `custom-${Date.now()}`,
@@ -598,12 +654,33 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
   };
 
   const handleWhatsApp = () => {
-    const parts: string[] = [];
-    const comfortMat = config.materials.find(m => m.slug === build.comfort?.materialSlug);
-    const supportMat = config.materials.find(m => m.slug === build.support?.materialSlug);
-    if (comfortMat) parts.push(`${comfortMat.name} (${build.comfort?.thickness}")`);
-    if (supportMat) parts.push(`${supportMat.name} (${build.support?.thickness}")`);
-    const msg = `Hi RelaxPro, I designed a mattress: ${parts.join(' + ')}, Size: ${build.size.name || 'Custom'} (${build.size.width}×${build.size.length}). Price: ₹${price.toLocaleString('en-IN')}. Please share more details.`;
+    const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
+    const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
+    const comfortDescs = build.comfort.map(s => {
+      const m = config.materials.find(x => x.slug === s.materialSlug);
+      return `  • ${m?.name || s.materialSlug} — ${s.thickness}"`;
+    }).join('\n');
+    const supportDescs = build.support.map(s => {
+      const m = config.materials.find(x => x.slug === s.materialSlug);
+      return `  • ${m?.name || s.materialSlug} — ${s.thickness}"`;
+    }).join('\n');
+    const msg = [
+      'Hi, I would like to order a custom RelaxPro mattress:',
+      '',
+      `Size: ${build.size.name || 'Custom'} (${build.size.width}×${build.size.length} in)`,
+      '',
+      'Comfort Layer(s):',
+      comfortDescs || '  (none)',
+      '',
+      'Support Core:',
+      supportDescs || '  (none)',
+      '',
+      `Cover: ${coverFab?.name || 'Not selected'}${quiltFab ? ` + ${quiltFab.name}` : ''}`,
+      '',
+      `Total: ₹${price.toLocaleString('en-IN')}`,
+      '',
+      'Please confirm availability and share payment details.',
+    ].join('\n');
     window.open(`https://wa.me/918686624494?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -707,9 +784,9 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
             <div className="flex gap-2">
               <button
                 onClick={handleAddToCart}
-                disabled={!build.comfort || !build.support}
+                disabled={build.comfort.length === 0 || build.support.length === 0}
                 className={`flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${
-                  build.comfort && build.support ? 'bg-primary text-white shadow-md cursor-pointer' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  build.comfort.length > 0 && build.support.length > 0 ? 'bg-primary text-white shadow-md cursor-pointer' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >
                 <ShoppingCart className="w-4 h-4" />

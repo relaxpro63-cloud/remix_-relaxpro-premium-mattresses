@@ -6,7 +6,7 @@
     "stackColor": "#E8D5B7", "isRecommended": false, "order": 1, "isActive": true,
     "thicknessOptions": [
       {"label": "1 inch", "valueInches": 1, "addPrice": 0},
-      {"label": "2 inches", "valueInches": 2, "addPrice": 0}
+      {"label": "2 inches", "valueInches": 2, "addPrice": 1000}
     ]
   },
   {
@@ -22,10 +22,10 @@
     "benefit": "GOLS-grade organic latex — breathable, durable, pressure-relieving.", "tooltip": "90 density natural latex, ILD-38 (medium-soft).",
     "stackColor": "#BFE3C0", "isRecommended": true, "order": 3, "isActive": true,
     "thicknessOptions": [
-      {"label": "2 inches", "valueInches": 2, "addPrice": 0},
-      {"label": "4 inches", "valueInches": 4, "addPrice": 0},
-      {"label": "6 inches", "valueInches": 6, "addPrice": 0},
-      {"label": "8 inches", "valueInches": 8, "addPrice": 0}
+      {"label": "2 inches", "valueInches": 2, "addPrice": 2000},
+      {"label": "4 inches", "valueInches": 4, "addPrice": 6000},
+      {"label": "6 inches", "valueInches": 6, "addPrice": 10000},
+      {"label": "8 inches", "valueInches": 8, "addPrice": 15000}
     ]
   },
   {
@@ -35,7 +35,7 @@
     "stackColor": "#9DB7D4", "isRecommended": true, "order": 1, "isActive": true,
     "thicknessOptions": [
       {"label": "2 inches", "valueInches": 2, "addPrice": 0},
-      {"label": "4 inches", "valueInches": 4, "addPrice": 0}
+      {"label": "4 inches", "valueInches": 4, "addPrice": 3000}
     ]
   },
   {
@@ -44,8 +44,8 @@
     "benefit": "Rebonded latex core — very firm, long-lasting support.", "tooltip": "120 density rebonded latex.",
     "stackColor": "#7FA98A", "isRecommended": false, "order": 2, "isActive": true,
     "thicknessOptions": [
-      {"label": "2 inches", "valueInches": 2, "addPrice": 0},
-      {"label": "4 inches", "valueInches": 4, "addPrice": 0}
+      {"label": "2 inches", "valueInches": 2, "addPrice": 1000},
+      {"label": "4 inches", "valueInches": 4, "addPrice": 5000}
     ]
   }
 ]

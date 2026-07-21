@@ -24,7 +24,7 @@ async function retry (fn, label, max = 3) {
 async function batch (type, items) {
   for (const item of items) {
     const label = item.name ?? item.customerName ?? item.question?.slice(0, 36) ?? item._id
-    await retry(() => client.createIfNotExists({ _type: type, ...item }), label)
+    await retry(() => client.createOrReplace({ _id: item._id, _type: type, ...item }), label)
     console.log(`  ✓ ${type.padEnd(14)} ${label}`)
   }
 }

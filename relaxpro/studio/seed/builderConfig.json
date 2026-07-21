@@ -6,15 +6,15 @@
     "trustChips": ["Free delivery", "100-night trial", "10-year warranty", "GOLS-certified latex"]
   },
   "sizes": [
-    {"name": "Single", "lengthInches": 72, "widthInches": 36, "basePrice": 0},
-    {"name": "Double", "lengthInches": 72, "widthInches": 48, "basePrice": 0, "popular": false},
-    {"name": "Queen", "lengthInches": 78, "widthInches": 60, "basePrice": 0, "popular": true},
-    {"name": "King", "lengthInches": 78, "widthInches": 72, "basePrice": 0}
+    {"name": "Single", "lengthInches": 72, "widthInches": 36, "basePrice": 8000, "popular": false},
+    {"name": "Double", "lengthInches": 72, "widthInches": 48, "basePrice": 12000, "popular": false},
+    {"name": "Queen", "lengthInches": 78, "widthInches": 60, "basePrice": 15000, "popular": true},
+    {"name": "King", "lengthInches": 78, "widthInches": 72, "basePrice": 18000}
   ],
   "customSize": {
     "enabled": true, "unit": "inches",
     "minLength": 30, "maxLength": 90, "minWidth": 24, "maxWidth": 84,
-    "pricePerSqInch": 0, "cutCharge": 0,
+    "pricePerSqInch": 3.5, "cutCharge": 500,
     "helper": "Enter exact length × width. A small custom-cut charge applies."
   },
   "steps": {
