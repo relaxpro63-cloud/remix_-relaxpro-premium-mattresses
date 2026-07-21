@@ -37,7 +37,10 @@ async function singleton (id, type, data) {
 async function seed () {
   console.log('Seeding RelaxPro CMS...\n')
   await batch('brandCategory', read('./seed/categories.json'))
-  await batch('product',       read('./seed/products.json'))
+  for (const item of read('./seed/products.json')) {
+    await retry(() => client.createOrReplace({ _type: 'product', ...item }), item.name)
+    console.log(`  ✓ ${'product'.padEnd(14)} ${item.name}`)
+  }
   await batch('showroom',      read('./seed/showrooms.json'))
   await batch('testimonial',   read('./seed/testimonials.json'))
   await batch('faq',           read('./seed/faqs.json'))
