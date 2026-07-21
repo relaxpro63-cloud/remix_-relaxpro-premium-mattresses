@@ -67,14 +67,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Nirvana mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-amrita",
@@ -144,14 +137,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Amrita mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-ananda",
@@ -221,14 +207,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Ananda mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-prakriti",
@@ -298,14 +277,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Prakriti mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-somya",
@@ -375,14 +347,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Somya mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-kshiti",
@@ -452,14 +417,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Kshiti mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-prayag",
@@ -529,14 +487,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Prayag mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-octavius",
@@ -606,14 +557,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Octavius mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-sukoon",
@@ -683,14 +627,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Sukoon mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-smrithi",
@@ -760,14 +697,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Smrithi mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-ojas",
@@ -837,14 +767,7 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro Ojas mattress",
-        "image": null
-      }
-    ]
+    }
   },
   {
     "_id": "product-ayushrest",
@@ -914,13 +837,6 @@
       "freeDelivery": true,
       "warrantyPeriod": "10 years",
       "trialPeriod": "100 nights"
-    },
-    "images": [
-      {
-        "_type": "imageWithAlt",
-        "alt": "RelaxPro AyushRest mattress",
-        "image": null
-      }
-    ]
+    }
   }
 ]

@@ -48,7 +48,7 @@ export default {
         { name: 'returnPolicy', title: 'Return Policy Text', type: 'text', rows: 3 },
       ],
     },
-    { name: 'images', title: 'Product Images', type: 'array', of: [{ type: 'imageWithAlt' }], validation: (R: any) => R.min(1) },
+    { name: 'images', title: 'Product Images', type: 'array', of: [{ type: 'imageWithAlt' }] },
     { name: 'video', title: 'Product Video URL', type: 'url' },
     { name: 'category', title: 'Category', type: 'reference', to: [{ type: 'brandCategory' }] },
     { name: 'tier', title: 'Product Tier', type: 'string', options: { list: [{ title: 'Comfort', value: 'comfort' }, { title: 'Premium', value: 'premium' }, { title: 'Luxury', value: 'luxury' }] } },
