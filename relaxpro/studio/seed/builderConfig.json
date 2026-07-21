@@ -29,7 +29,7 @@
     "perks": ["Free white-glove delivery", "100-night sleep trial", "10-year replacement warranty"]
   },
   "ctas": {
-    "primaryLabel": "Add to cart", "secondaryLabel": "Book a free consultation",
+    "primaryLabel": "Add to cart", "secondaryLabel": "Enquire on WhatsApp",
     "disabledHint": "Finish all 4 steps to see your price"
   },
   "defaults": {

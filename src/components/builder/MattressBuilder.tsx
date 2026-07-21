@@ -793,8 +793,9 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
                 {addedToCart ? 'Added!' : config.ctas.primaryLabel}
               </button>
               <button onClick={handleWhatsApp}
-                className="py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 font-semibold text-xs cursor-pointer">
+                className="py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs cursor-pointer flex items-center gap-1.5 transition-colors">
                 <MessageSquare className="w-4 h-4" />
+                <span className="hidden sm:inline">Enquire</span>
               </button>
             </div>
           </div>
