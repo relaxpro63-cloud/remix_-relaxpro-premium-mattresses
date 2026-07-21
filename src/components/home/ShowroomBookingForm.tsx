@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Calendar, Send, Sparkles, MapPin, UserCheck, AlertCircle, Clock } from 'lucide-react';
 import { submitLead } from '../../utils/googleSheets';
+import { buildWhatsAppUrl } from '../../lib/site';
 
 export default function ShowroomBookingForm() {
   const [name, setName] = useState('');
@@ -52,6 +53,20 @@ export default function ShowroomBookingForm() {
         notes: detailedNotes,
         source: "Showroom Booking Form"
       });
+
+      const waMsg = [
+        '🏪 New Showroom Booking',
+        '',
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Showroom: ${showroom}`,
+        `Date: ${visitDate}`,
+        `Time: ${timeSlot}`,
+        `Notes: ${notes || 'None'}`,
+        '',
+        'Customer needs confirmation and live support.',
+      ].join('\n');
+      window.open(buildWhatsAppUrl(waMsg), '_blank');
 
       setSubmitted(true);
     } catch (err) {

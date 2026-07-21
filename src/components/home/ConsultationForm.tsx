@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { MessageSquare, Check, Phone, Clipboard, Send, UserCheck, AlertCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
 import { submitLead } from '../../utils/googleSheets';
+import { buildWhatsAppUrl } from '../../lib/site';
 
 export default function ConsultationForm() {
   const [name, setName] = useState('');
@@ -44,6 +45,19 @@ export default function ConsultationForm() {
         notes: customNotes || `Back concerns flagged level: ${painLevel}`,
         source: "Consultation Form"
       });
+
+      const painLabels: Record<string, string> = { none: 'Healthy/None', mild: 'Mild Neck pain', lumbar: 'Lower Back Soreness', spine: 'Spine/Cervical Spine' };
+      const waMsg = [
+        '🩺 New Diagnostic Consultation Request',
+        '',
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Back Concern: ${painLabels[painLevel] || painLevel}`,
+        `Notes: ${customNotes || 'None'}`,
+        '',
+        'Customer needs immediate callback for live support.',
+      ].join('\n');
+      window.open(buildWhatsAppUrl(waMsg), '_blank');
 
       setSubmitted(true);
     } catch (err) {

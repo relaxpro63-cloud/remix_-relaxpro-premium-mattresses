@@ -4,6 +4,7 @@ import PriceText from '../ui/PriceText';
 import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CartItem, OrderReceipt } from '../../types';
 import { submitLead } from '../../utils/googleSheets';
+import { buildWhatsAppUrl } from '../../lib/site';
 
 interface CartPageProps {
   cart: CartItem[];
@@ -97,6 +98,27 @@ export default function CartPage({
         notes: `Total: ₹${subtotal.toLocaleString('en-IN')}. Delivery Notes: ${notes || 'None'}. Accessories: ${accessoriesList}`,
         source: "Website Order Checkout"
       });
+
+      const itemLines = cart.map(i => `  • ${i.name} — ${i.size} × ${i.quantity} = ₹${(i.price * i.quantity).toLocaleString('en-IN')}`).join('\n');
+      const waMsg = [
+        '🛒 New Order Received',
+        '',
+        `Order: ${mockOrderId}`,
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Email: ${email || '—'}`,
+        `Address: ${address}, ${city} — ${zip}`,
+        `Contact Time: ${contactTime || 'Anytime'}`,
+        '',
+        'Items:',
+        itemLines,
+        '',
+        `Total: ₹${grandTotal.toLocaleString('en-IN')}`,
+        `Notes: ${notes || 'None'}`,
+        '',
+        'Please confirm availability and arrange delivery. Customer needs live support.',
+      ].join('\n');
+      window.open(buildWhatsAppUrl(waMsg), '_blank');
 
       onCheckoutSuccess(mockOrderId, summary);
     } catch (err) {
