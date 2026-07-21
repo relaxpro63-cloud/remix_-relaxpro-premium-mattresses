@@ -61,5 +61,10 @@ export default {
     { name: 'relatedProducts', title: 'Related Products', type: 'array', of: [{ type: 'reference', to: [{ type: 'product' }] }], validation: (R: any) => R.max(4) },
     { name: 'seo', title: 'SEO Settings', type: 'pageSEO' },
   ],
-  preview: { select: { title: 'name', subtitle: 'tagline', media: 'images[0]' } },
+  preview: {
+    select: { title: 'name', subtitle: 'tagline', media: 'images' },
+    prepare({ title, subtitle, media }: any) {
+      return { title, subtitle, media: media?.[0] }
+    },
+  },
 }
