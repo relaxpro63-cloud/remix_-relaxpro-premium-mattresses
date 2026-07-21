@@ -25,8 +25,8 @@
   },
   "summaryPanel": {
     "heading": "Your Mattress", "emptySlotText": "Tap a step on the right to choose",
-    "emiNote": "or ₹{emi}/mo with EMI",
-    "perks": ["Free white-glove delivery", "100-night sleep trial", "10-year replacement warranty"]
+    "emiNote": "",
+    "perks": []
   },
   "ctas": {
     "primaryLabel": "Add to cart", "secondaryLabel": "Enquire on WhatsApp",

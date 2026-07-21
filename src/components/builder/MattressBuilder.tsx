@@ -68,7 +68,7 @@ interface BuilderConfig {
   };
   summaryPanel: {
     heading: string; emptySlotText: string;
-    emiNote: string; perks: string[];
+    perks: string[];
   };
   ctas: {
     primaryLabel: string; secondaryLabel: string;
@@ -516,7 +516,6 @@ function BuilderSummary({ build, config, price, addedToCart, onAddToCart, onWhat
           ₹{price.toLocaleString('en-IN')}
         </div>
         <p className="text-[11px] text-gray-400 mt-1">
-          {config.summaryPanel.emiNote.replace('{emi}', Math.round(price / 24).toLocaleString('en-IN'))}
         </p>
         <div className="flex flex-wrap gap-2 mt-3">
           {config.summaryPanel.perks.map(p => (
@@ -779,7 +778,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: { onAddToCa
           <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
             <div className="flex items-center justify-between mb-3">
               <span className="text-2xl font-bold text-primary">₹{price.toLocaleString('en-IN')}</span>
-              <span className="text-[10px] text-gray-400">{/* config.summaryPanel.emiNote */}</span>
+
             </div>
             <div className="flex gap-2">
               <button
