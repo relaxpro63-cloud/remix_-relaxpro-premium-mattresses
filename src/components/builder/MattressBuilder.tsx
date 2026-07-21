@@ -469,27 +469,27 @@ function BuilderSummary({ build, config, price, addedToCart, onAddToCart, onWhat
       {isComplete && (
         <div className="mt-5 pt-4 border-t border-gray-200/60">
           <h4 className="text-[11px] font-bold text-primary uppercase tracking-wider mb-3">Your Build Specs</h4>
-          <div className="space-y-2 text-xs text-gray-600">
-            <p className="flex items-start gap-2">
-              <span className="font-semibold text-gray-700 shrink-0 w-16">Size:</span>
+          <div className="space-y-3 text-xs text-gray-600">
+            <div className="flex items-start gap-2">
+              <span className="font-semibold text-gray-700 shrink-0 w-20">Size:</span>
               <span>{build.size.name || 'Custom'} ({build.size.width}×{build.size.length} in)</span>
-            </p>
+            </div>
             {comfortMats.length > 0 && (
-              <p className="flex items-start gap-2">
-                <span className="font-semibold text-gray-700 shrink-0 w-16">Comfort:</span>
+              <div className="flex items-start gap-2">
+                <span className="font-semibold text-gray-700 shrink-0 w-20">Comfort:</span>
                 <span>{comfortMats.map(s => `${s.mat?.name || s.materialSlug} (${s.thickness}")`).join(', ')}</span>
-              </p>
+              </div>
             )}
             {supportMats.length > 0 && (
-              <p className="flex items-start gap-2">
-                <span className="font-semibold text-gray-700 shrink-0 w-16">Support:</span>
+              <div className="flex items-start gap-2">
+                <span className="font-semibold text-gray-700 shrink-0 w-20">Support:</span>
                 <span>{supportMats.map(s => `${s.mat?.name || s.materialSlug} (${s.thickness}")`).join(', ')}</span>
-              </p>
+              </div>
             )}
-            <p className="flex items-start gap-2">
-              <span className="font-semibold text-gray-700 shrink-0 w-16">Cover:</span>
-              <span>{coverFab?.name}{quiltFab ? ` + ${quiltFab.name}` : ''}</span>
-            </p>
+            <div className="flex items-start gap-2">
+              <span className="font-semibold text-gray-700 shrink-0 w-20">Cover:</span>
+              <span>{coverFab?.name || 'Not selected'}{quiltFab ? ` + ${quiltFab.name}` : ''}</span>
+            </div>
           </div>
         </div>
       )}
