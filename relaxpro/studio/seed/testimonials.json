@@ -1,74 +1,8 @@
 [
-  {
-    "_id": "testimonial-1",
-    "_type": "testimonial",
-    "customerName": "Srinivas Rao",
-    "location": "Hyderabad",
-    "rating": 5,
-    "quote": "Buying the Nirvana mattress was the best decision for my chronic lower back issues. The 7-Zone support works like a charm. Absolutely highly recommended!",
-    "isVerified": true,
-    "productPurchased": { "_type": "reference", "_ref": "product-nirvana" },
-    "featured": true,
-    "order": 1
-  },
-  {
-    "_id": "testimonial-2",
-    "_type": "testimonial",
-    "customerName": "Anvitha Reddy",
-    "location": "Bangalore",
-    "rating": 5,
-    "quote": "We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly. The direct factory price represents fantastic value.",
-    "isVerified": true,
-    "productPurchased": { "_type": "reference", "_ref": "product-amrita" },
-    "featured": true,
-    "order": 2
-  },
-  {
-    "_id": "testimonial-3",
-    "_type": "testimonial",
-    "customerName": "Arjun Nair",
-    "location": "Kochi",
-    "rating": 5,
-    "quote": "The Ananda mattress is pure bliss. I wake up refreshed with zero back pain. The GOLS certified latex makes all the difference.",
-    "isVerified": true,
-    "productPurchased": { "_type": "reference", "_ref": "product-ananda" },
-    "featured": true,
-    "order": 3
-  },
-  {
-    "_id": "testimonial-4",
-    "_type": "testimonial",
-    "customerName": "Priya Sharma",
-    "location": "Mumbai",
-    "rating": 4,
-    "quote": "Excellent quality mattress with great support. The custom sizing option was really helpful for my antique bed frame.",
-    "isVerified": true,
-    "productPurchased": { "_type": "reference", "_ref": "product-prakriti" },
-    "featured": true,
-    "order": 4
-  },
-  {
-    "_id": "testimonial-5",
-    "_type": "testimonial",
-    "customerName": "Vikram Patel",
-    "location": "Ahmedabad",
-    "rating": 5,
-    "quote": "Ordered the Ojas mattress for my parents. They absolutely love it. Firm support exactly as promised and the price was unbeatable.",
-    "isVerified": true,
-    "productPurchased": { "_type": "reference", "_ref": "product-ojas" },
-    "featured": false,
-    "order": 5
-  },
-  {
-    "_id": "testimonial-6",
-    "_type": "testimonial",
-    "customerName": "Lakshmi Menon",
-    "location": "Trivandrum",
-    "rating": 5,
-    "quote": "Went to their factory showroom and experienced the difference. The craftsmanship is remarkable. Highly recommend visiting before buying.",
-    "isVerified": true,
-    "productPurchased": { "_type": "reference", "_ref": "product-somya" },
-    "featured": false,
-    "order": 6
-  }
+  { "_id": "t1", "_type": "testimonial", "customerName": "Srinivas Rao",       "location": "Hyderabad",   "rating": 5, "quote": "Buying the Nirvana mattress was the best decision for my chronic lower back issues. The 7-Zone support works like a charm. Absolutely highly recommended!", "productPurchased": { "_type": "reference", "_ref": "product-nirvana" }, "isVerified": true, "featured": true, "order": 1 },
+  { "_id": "t2", "_type": "testimonial", "customerName": "Anvitha Reddy",      "location": "Bangalore",   "rating": 5, "quote": "We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly; I do not feel my husband tossing and turning at all. The direct factory price represents fantastic value.", "productPurchased": { "_type": "reference", "_ref": "product-amrita" }, "isVerified": true, "featured": true, "order": 2 },
+  { "_id": "t3", "_type": "testimonial", "customerName": "Rajendra Prasad",    "location": "Rajahmundry", "rating": 5, "quote": "Sthira is perfect for those who want a firm but very comfortable orthopedic feel. Suresh the manufacturer explained the layers clearly. Excellent customer service!",     "productPurchased": { "_type": "reference", "_ref": "product-smrithi" }, "isVerified": true, "featured": true, "order": 3 },
+  { "_id": "t4", "_type": "testimonial", "customerName": "Deepak Sharma",      "location": "Hyderabad",   "rating": 5, "quote": "I am amazed by the Custom Mattress builder! I configured a custom 10-inch mattress with 5 inches of raw Kerala latex and it was delivered within 6 days. Best sleep ever.", "productPurchased": { "_type": "reference", "_ref": "product-prakriti" }, "isVerified": true, "featured": true, "order": 4 },
+  { "_id": "t5", "_type": "testimonial", "customerName": "Lakshmi Devi",       "location": "Bangalore",   "rating": 5, "quote": "After years of back pain, the Arogya mattress changed everything. My physiotherapist actually noticed the improvement in my posture within 3 weeks. Worth every rupee.",     "productPurchased": { "_type": "reference", "_ref": "product-ojas" }, "isVerified": true, "featured": true, "order": 5 },
+  { "_id": "t6", "_type": "testimonial", "customerName": "Venkat Subramaniam", "location": "Hyderabad",   "rating": 4, "quote": "The build-your-own experience was brilliant. We sized it for our custom diwan and got a WhatsApp quote in 15 minutes. Delivery was 5 days. The mattress is perfect.",     "productPurchased": { "_type": "reference", "_ref": "product-ayushrest" }, "isVerified": true, "featured": false, "order": 6 }
 ]

@@ -1,0 +1,26 @@
+{
+  "header": {
+    "title": "Our Mattresses",
+    "subtitle": "12 handcrafted models — from value entry to premium 10\" pure latex — backed by a 10-year warranty."
+  },
+  "filterOptions": {
+    "categories": [
+      { "_type": "reference", "_ref": "cat-luxury" },
+      { "_type": "reference", "_ref": "cat-premium" },
+      { "_type": "reference", "_ref": "cat-comfort" }
+    ],
+    "sortOptions": ["price-asc", "price-desc", "name-asc", "recommended"]
+  },
+  "promoBanner": {
+    "show": true,
+    "text": "Free mattress protector worth ₹2,500 on all orders this month!",
+    "image": null,
+    "cta": { "label": "Shop Now", "href": "/products", "variant": "primary" }
+  },
+  "seo": {
+    "metaTitle": "All Mattresses | RelaxPro Natural Latex Mattress Catalog",
+    "metaDescription": "Browse all 12 RelaxPro mattress models: Nirvana, Ananda, Amrita, Prakriti, Somya, Arogya, Bhumi, Shuddha, Sthira, Sunidra, Vishram, AyushRest. Factory-direct pricing, free delivery.",
+    "ogImage": null,
+    "keywords": ["latex mattress models", "mattress prices India", "best latex mattress", "RelaxPro catalog", "orthopedic mattress price"]
+  }
+}

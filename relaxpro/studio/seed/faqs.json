@@ -1,90 +1,10 @@
 [
-  {
-    "_id": "faq-1",
-    "_type": "faq",
-    "question": "What is the lifespan of a natural latex mattress?",
-    "category": "Durability and Cores",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "A high-quality natural latex mattress from RelaxPro typically lasts 10-15 years with proper care. Unlike memory foam or spring mattresses that degrade faster, natural latex is naturally resilient and resistant to dust mites and mold. Our 10-year warranty covers manufacturing defects, and many customers report their RelaxPro mattress still feels great well beyond the warranty period." }] }
-    ],
-    "order": 1,
-    "published": true
-  },
-  {
-    "_id": "faq-2",
-    "_type": "faq",
-    "question": "How do I care for my RelaxPro mattress?",
-    "category": "Care and Setting Up",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Rotate your mattress every 3-6 months to ensure even wear. Use a mattress protector to shield against spills and dust. Vacuum the surface occasionally with a soft brush attachment. Avoid folding or bending the mattress. For spot cleaning, use mild soap and damp cloth — never soak the mattress." }] }
-    ],
-    "order": 2,
-    "published": true
-  },
-  {
-    "_id": "faq-3",
-    "_type": "faq",
-    "question": "Can I get a custom size mattress?",
-    "category": "Custom Sizing",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes! We manufacture custom-size mattresses for antique beds, RVs, boats, and unique bed frames. Contact us through the website or visit our factory showroom with your measurements. Custom sizes typically take 5-7 extra business days for production." }] }
-    ],
-    "order": 3,
-    "published": true
-  },
-  {
-    "_id": "faq-4",
-    "_type": "faq",
-    "question": "How long does delivery take?",
-    "category": "Shipping and Delivery",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Standard delivery takes 5-7 business days after order confirmation. We offer free delivery across India. For bulk orders or custom sizes, please allow up to 10-12 business days. We ship through reliable courier partners and provide tracking information once dispatched." }] }
-    ],
-    "order": 4,
-    "published": true
-  },
-  {
-    "_id": "faq-5",
-    "_type": "faq",
-    "question": "What is your warranty and return policy?",
-    "category": "Warranty and Returns",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "All RelaxPro mattresses come with a 10-year warranty against manufacturing defects including sagging over 1 inch, material defects, and workmanship issues. We also offer a 100-night trial period — if you're not satisfied, we'll work with you to find the right solution." }] }
-    ],
-    "order": 5,
-    "published": true
-  },
-  {
-    "_id": "faq-6",
-    "_type": "faq",
-    "question": "Are RelaxPro mattresses good for back pain?",
-    "category": "General",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes! Our latex and hybrid mattresses are designed with orthopedic principles. Natural latex provides zoned support that conforms to your body's natural curves while keeping your spine properly aligned. Many customers with chronic back issues report significant improvement after switching to RelaxPro." }] }
-    ],
-    "order": 6,
-    "published": true
-  },
-  {
-    "_id": "faq-7",
-    "_type": "faq",
-    "question": "What certifications do your mattresses have?",
-    "category": "General",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Our natural latex mattresses are GOLS (Global Organic Latex Standard) certified and Oeko-Tex Standard 100 certified. These certifications guarantee that our materials are free from harmful chemicals, heavy metals, and formaldehyde, making them safe for infants and elders." }] }
-    ],
-    "order": 7,
-    "published": true
-  },
-  {
-    "_id": "faq-8",
-    "_type": "faq",
-    "question": "Do you offer custom firmness levels?",
-    "category": "Custom Sizing",
-    "answer": [
-      { "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes, we offer multiple firmness options: Plush, Medium-Soft, Medium, Medium-Firm, and Firm. You can customize the feel by adjusting the latex density and layer configuration. Visit our custom builder page or contact us for personalized recommendations." }] }
-    ],
-    "order": 8,
-    "published": true
-  }
+  { "_id": "faq-1", "_type": "faq", "question": "Why is natural latex better than memory foam?", "slug": { "current": "latex-vs-memory-foam" }, "category": "Sleep Science", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "Natural latex is highly elastic, bounces back instantly, breathes cool, is hypoallergenic, and has zero VOCs — none of which is true of memory foam. Open-cell Dunlop-processed latex has natural ventilation channels that dissipate body heat 2–3°C cooler than foam." }] }], "order": 1, "published": true },
+  { "_id": "faq-2", "_type": "faq", "question": "Is a latex mattress good for back pain?", "slug": { "current": "latex-for-back-pain" }, "category": "Health & Posture", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "Yes. A quality latex mattress provides balanced firm support with pressure relief, maintaining the natural S-curve of the spine — widely recommended by physiotherapists across South India. Medium-firm models like Arogya are specifically designed for orthopedic support." }] }], "order": 2, "published": true },
+  { "_id": "faq-3", "_type": "faq", "question": "How much does a natural latex mattress cost in India?", "slug": { "current": "latex-mattress-price-india" }, "category": "Pricing & Sizes", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "At RelaxPro, entry-level models start from ₹9,500 (single size) and go up to ₹54,000 (king, premium pure latex). Most customers find their ideal model between ₹25,000–₹45,000. Custom sizes are quoted via WhatsApp." }] }], "order": 3, "published": true },
+  { "_id": "faq-4", "_type": "faq", "question": "What does GOLS certified really mean?", "slug": { "current": "what-is-gols-certified" }, "category": "Materials & Care", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "GOLS (Global Organic Latex Standard) requires at least 95% organic raw material from sustainably managed rubber plantations, with strict waste management and chemical usage standards. Every RelaxPro core carries this certification." }] }], "order": 4, "published": true },
+  { "_id": "faq-5", "_type": "faq", "question": "Does latex sleep hot?", "slug": { "current": "does-latex-sleep-hot" }, "category": "Sleep Science", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "No — natural latex sleeps significantly cooler than memory foam. The Dunlop-processed open-cell structure allows air circulation that dissipates body heat. Quilted organic cotton covers further enhance breathability." }] }], "order": 5, "published": true },
+  { "_id": "faq-6", "_type": "faq", "question": "What size options are available?", "slug": { "current": "mattress-sizes-available" }, "category": "Pricing & Sizes", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "5 standard sizes: Single (48×75), Diwan (48×75), Double (60×75), Queen (60×78), King (72×78). Custom sizes available in any dimension from 48\"–96\" L × 24\"–84\" W. Custom pricing on request via WhatsApp." }] }], "order": 6, "published": true },
+  { "_id": "faq-7", "_type": "faq", "question": "Is the mattress too firm? Can I get a softer feel?", "slug": { "current": "can-i-get-softer-latex-mattress" }, "category": "Comfort & Feel", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "Natural latex comes across a range of comfort levels. Plush lovers should look at Nirvana or Ananda. Medium-soft models (Amrita, Prakriti, Somya) add HR softy or rebonded foam transition layers for extra contouring." }] }], "order": 7, "published": true },
+  { "_id": "faq-8", "_type": "faq", "question": "How do I care for and maintain my latex mattress?", "slug": { "current": "latex-mattress-care-maintenance" }, "category": "Materials & Care", "answer": [{ "_type": "block", "children": [{ "_type": "span", "text": "Flip head-to-foot every 3 months (first year), then every 6 months. Spot-clean the organic cotton cover with mild soap — no machine wash. Vacuum monthly with upholstery attachment. With proper care, expect 12–15 years of use." }] }], "order": 8, "published": true }
 ]

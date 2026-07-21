@@ -10,11 +10,11 @@ export const deskStructure = (S: StructureBuilder) =>
           S.list()
             .title('Pages')
             .items([
-              S.document().schemaType('home').documentId('home').title('Homepage'),
-              S.document().schemaType('productsPage').documentId('productsPage').title('Products Page'),
-              S.document().schemaType('customBuilder').documentId('customBuilder').title('Custom Builder'),
-              S.document().schemaType('about').documentId('about').title('About Page'),
-              S.document().schemaType('contact').documentId('contact').title('Contact Page'),
+              S.documentListItem({ schemaType: 'home', id: 'home', title: 'Homepage' }),
+              S.documentListItem({ schemaType: 'productsPage', id: 'productsPage', title: 'Products Page' }),
+              S.documentListItem({ schemaType: 'customBuilder', id: 'customBuilder', title: 'Custom Builder' }),
+              S.documentListItem({ schemaType: 'about', id: 'about', title: 'About Page' }),
+              S.documentListItem({ schemaType: 'contact', id: 'contact', title: 'Contact Page' }),
             ])
         ),
       S.divider(),
@@ -24,5 +24,5 @@ export const deskStructure = (S: StructureBuilder) =>
       S.documentTypeListItem('testimonial').title('Testimonials'),
       S.documentTypeListItem('faq').title('FAQs'),
       S.divider(),
-      S.document().schemaType('siteSettings').documentId('siteSettings').title('Site Settings'),
+      S.documentListItem({ schemaType: 'siteSettings', id: 'siteSettings', title: 'Site Settings' }),
     ])

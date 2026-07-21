@@ -2,63 +2,179 @@
   "_id": "home",
   "_type": "home",
   "heroSection": {
-    "title": "Sleep Like Royalty on Pure Kerala Latex",
-    "subtitle": "Handcrafted with 100% Natural Latex",
+    "title": "Natural Latex Mattresses",
+    "subtitle": "Kerala Organic Latex Labs",
     "description": "Experience the therapeutic comfort of our GOLS-certified natural latex mattresses. Engineered in Kerala for the perfect balance of support and cloud-like softness.",
+    "backgroundImage": null,
     "ctaButtons": [
-      { "_type": "ctaButton", "label": "Find Your Perfect Bed", "link": "/products", "variant": "primary" },
-      { "_type": "ctaButton", "label": "Shop Best Sellers", "link": "/catalog", "variant": "secondary" }
+      { "label": "Build Your Mattress", "href": "/custom-builder", "variant": "primary" },
+      { "label": "Browse Mattresses",   "href": "/products",      "variant": "secondary" }
     ]
   },
+  "featuresGrid": [
+    { "icon": "leaf", "title": "GOLS Certified Organic",  "description": "100% pure GOLS-certified natural latex from smallholder Kerala rubber farms" },
+    { "icon": "flask-conical", "title": "Dunlop Process",     "description": "Century-old technique preserving natural cellular structure for unmatched resilience" },
+    { "icon": "factory", "title": "Factory-Direct Pricing", "description": "Zero middleman markup — save up to 60% over retail showroom prices" },
+    { "icon": "shield-check", "title": "Oeko-Tex Certified", "description": "All fabric covers tested against 350+ harmful substances. Safe for infants" },
+    { "icon": "award", "title": "10-Year Warranty",        "description": "Industry-leading 10-year full structural warranty, no fine-print strings" }
+  ],
   "ownershipWays": {
-    "sectionTitle": "Best Selling Models",
-    "sectionSubtitle": "Choose the mattress that fits your life — pre-built perfection or your own custom creation.",
+    "sectionTitle": "Two Ways to Own a RelaxPro",
+    "sectionSubtitle": "Direct from our factory or custom-built to your exact specifications",
     "customBuilder": {
-      "title": "Customize Your Comfort",
-      "description": "Design your perfect mattress from scratch. Choose the size, thickness, firmness, and materials to match your unique sleep needs.",
-      "features": ["Choose your exact size, from 48\" to 96\" long", "Pick your preferred firmness level", "Select natural latex, hybrid, or orthopedic foam", "Get a video call while we make it"],
-      "cta": { "_type": "ctaButton", "label": "Build Your Mattress", "link": "/custom-builder", "variant": "primary" }
+      "title": "Build Your Own Mattress",
+      "description": "Choose your exact size, thickness, and layer configuration — we manufacture it to order. Get a WhatsApp quote in minutes with our guided 2-step builder.",
+      "features": [
+        "Any custom length: 48\" to 96\"",
+        "Any custom width: 24\" to 84\"",
+        "Choose your comfort layer thickness",
+        "Instant WhatsApp price estimate"
+      ],
+      "cta": { "label": "Start Building", "href": "/custom-builder", "variant": "primary" },
+      "image": null
     },
     "shopPrebuilt": {
-      "title": "Shop Our Models",
-      "description": "Browse our curated collection of pre-built mattresses. Already tested and loved by thousands of happy customers across India.",
-      "features": ["Ready to ship in 3-5 business days", "Award-winning designs", "Starting from just ₹6,500", "Free delivery with 10-year warranty"],
-      "cta": { "_type": "ctaButton", "label": "View All Models", "link": "/catalog", "variant": "primary" }
+      "title": "Shop Pre-Built Mattresses",
+      "description": "Explore our curated collection of 12 handcrafted latex and hybrid mattresses — from value entry to 10\" luxury pure latex, each backed by a 10-year warranty.",
+      "features": [
+        "12 expertly engineered models",
+        "Starting from ₹9,500 (single size)",
+        "Free shipping across South India",
+        "30-day comfort trial on all models"
+      ],
+      "cta": { "label": "Browse Catalog", "href": "/products", "variant": "primary" },
+      "image": null
     }
   },
+  "shopByBrands": {
+    "sectionTitle": "Shop by Category",
+    "sectionSubtitle": "Find your perfect comfort from three expertly crafted collections",
+    "categories": [
+      { "_type": "reference", "_ref": "cat-luxury" },
+      { "_type": "reference", "_ref": "cat-premium" },
+      { "_type": "reference", "_ref": "cat-comfort" }
+    ]
+  },
   "bestsellersSection": {
-    "sectionTitle": "Our Bestsellers",
-    "sectionSubtitle": "The most loved mattresses by our customers",
+    "sectionTitle": "Bestsellers",
+    "sectionSubtitle": "Our most-loved models, chosen by families across South India",
     "products": [
       { "_type": "reference", "_ref": "product-nirvana" },
-      { "_type": "reference", "_ref": "product-amrita" },
       { "_type": "reference", "_ref": "product-ananda" },
-      { "_type": "reference", "_ref": "product-prakriti" }
+      { "_type": "reference", "_ref": "product-prakriti" },
+      { "_type": "reference", "_ref": "product-somya" },
+      { "_type": "reference", "_ref": "product-kshiti" },
+      { "_type": "reference", "_ref": "product-amrita" },
+      { "_type": "reference", "_ref": "product-prayag" },
+      { "_type": "reference", "_ref": "product-ojas" }
     ],
-    "viewAllCta": { "_type": "ctaButton", "label": "View All Models", "link": "/catalog", "variant": "primary" }
+    "viewAllCta": { "label": "View All Products", "href": "/products", "variant": "secondary" }
+  },
+  "costComparison": {
+    "sectionTitle": "The Real Cost of Sleep",
+    "sectionSubtitle": "Natural latex is an investment — and here is why it pays for itself",
+    "naturalLatex": {
+      "label": "RelaxPro Natural Latex",
+      "avgPrice": "₹27,000–54,000",
+      "lifespan": "12–15 years",
+      "perYearCost": "₹1,800–4,500",
+      "perDayCost": "₹5–12/day",
+      "highlighted": true
+    },
+    "ordinaryFoam": {
+      "label": "Ordinary Foam Mattress",
+      "avgPrice": "₹6,000–12,000",
+      "lifespan": "3–5 years",
+      "perYearCost": "₹1,200–4,000",
+      "perDayCost": "₹3–11/day"
+    },
+    "footnote": "Over 15 years, a RelaxPro latex mattress costs less per year than replacing cheap foam three times."
+  },
+  "showroomCtaBanner": {
+    "title": "Visit Our Showroom",
+    "locationName": "RelaxPro Factory Showroom, Hyderabad",
+    "address": "Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055",
+    "backgroundImage": null,
+    "cta": { "label": "Book a Visit", "href": "/contact", "variant": "primary" }
+  },
+  "whyChooseUs": {
+    "sectionTitle": "Why Choose RelaxPro",
+    "sectionSubtitle": "What makes Kerala-made natural latex the smarter choice for your sleep",
+    "benefits": [
+      { "icon": "leaf", "title": "GOLS-Certified Organic",      "description": "Every latex core carries GOLS seal. No synthetic fillers, no chemical stabilizers — just pure tapped sap from Kerala farms.", "link": null },
+      { "icon": "shield-check", "title": "Built to Last 15 Years", "description": "Natural Dunlop latex has no foam memory. It rebounds fully every time, retaining density and support for 12–15 years.", "link": null },
+      { "icon": "banknote",    "title": "Factory-Direct Pricing",  "description": "Bypass retail markups entirely. Manufactured and sold direct from our Jeedimetla factory at honest prices.", "link": null },
+      { "icon": "heart-pulse", "title": "Orthopedic Tested",       "description": "Recommended by physiotherapists across South India for chronic back pain, sciatica, and posture correction.", "link": null },
+      { "icon": "shield-check","title": "OEKO-TEX Certified Fabric","description": "All quilted covers tested to Standard 100 — safe for infants, elders, and allergy-sensitive sleepers.", "link": null },
+      { "icon": "truck",       "title": "Free Delivery & Setup",   "description": "Free shipping and white-glove delivery across Telangana, AP, and Karnataka. Expands fully within 48 hrs.", "link": null }
+    ]
   },
   "testimonialsSection": {
     "sectionTitle": "What Our Customers Say",
-    "overallRating": "4.6",
+    "overallRating": "4.8",
     "totalReviews": "500+",
     "testimonials": [
-      { "_type": "reference", "_ref": "testimonial-1" },
-      { "_type": "reference", "_ref": "testimonial-2" },
-      { "_type": "reference", "_ref": "testimonial-3" },
-      { "_type": "reference", "_ref": "testimonial-4" }
+      { "_type": "reference", "_ref": "t1" },
+      { "_type": "reference", "_ref": "t2" },
+      { "_type": "reference", "_ref": "t3" },
+      { "_type": "reference", "_ref": "t4" }
+    ]
+  },
+  "allShowroomsSection": {
+    "sectionTitle": "Visit Our Showrooms",
+    "sectionDescription": "Experience the RelaxPro difference in person. Our sleep consultants are ready to help you find your perfect mattress.",
+    "showrooms": [
+      { "_type": "reference", "_ref": "showroom-hyderabad" },
+      { "_type": "reference", "_ref": "showroom-rajahmundry" },
+      { "_type": "reference", "_ref": "showroom-bangalore" }
     ]
   },
   "faqSection": {
     "sectionTitle": "Frequently Asked Questions",
-    "sectionDescription": "Everything you need to know about our mattresses",
-    "categories": ["Durability and Cores", "Care and Setting Up", "Custom Sizing", "Shipping and Delivery", "Warranty and Returns", "General"],
+    "sectionDescription": "Everything you need to know about natural latex and our mattresses.",
+    "categories": ["Sleep Science", "Comfort & Feel", "Pricing & Sizes", "Materials & Care", "Health & Posture"],
     "faqs": [
       { "_type": "reference", "_ref": "faq-1" },
       { "_type": "reference", "_ref": "faq-2" },
       { "_type": "reference", "_ref": "faq-3" },
       { "_type": "reference", "_ref": "faq-4" },
       { "_type": "reference", "_ref": "faq-5" },
-      { "_type": "reference", "_ref": "faq-6" }
+      { "_type": "reference", "_ref": "faq-6" },
+      { "_type": "reference", "_ref": "faq-7" },
+      { "_type": "reference", "_ref": "faq-8" }
     ]
+  },
+  "bookingForm": {
+    "title": "Book a Showroom Visit",
+    "submitLabel": "Request Callback",
+    "fields": [
+      { "name": "fullName",    "label": "Full Name",              "type": "text",     "required": true },
+      { "name": "phone",       "label": "Phone Number",           "type": "tel",      "required": true },
+      { "name": "preferredDate","label": "Preferred Visit Date",  "type": "date",     "required": true },
+      { "name": "showroom",    "label": "Preferred Showroom",     "type": "select",   "options": ["Hyderabad", "Rajahmundry", "Bangalore"], "required": true },
+      { "name": "message",     "label": "Any specific concerns?", "type": "textarea", "required": false }
+    ],
+    "submitLabel": "Book My Visit",
+    "successMessage": "Thanks! We will confirm your appointment within 30 minutes."
+  },
+  "diagnosticForm": {
+    "title": "Free Sleep Diagnostic Consultation",
+    "submitLabel": "Submit Concern",
+    "fields": [
+      { "name": "fullName",   "label": "Full Name",         "type": "text",      "required": true },
+      { "name": "phone",      "label": "Phone Number",      "type": "tel",       "required": true },
+      { "name": "sleepStyle", "label": "Sleep Position",    "type": "select",    "options": ["Side Sleeper","Back Sleeper","Stomach Sleeper","Combination"], "required": true },
+      { "name": "painAreas",  "label": "Pain / Concerns",   "type": "textarea",  "required": true },
+      { "name": "bodyWeight", "label": "Body Weight (approx.)", "type": "text",  "required": false },
+      { "name": "budget",     "label": "Budget (INR)",      "type": "select",    "options": ["Under ₹20,000","₹20k–₹35k","₹35k–₹50k","₹50k+"], "required": false }
+    ],
+    "submitLabel": "Submit & Get Free Callback",
+    "successMessage": "Suresh will personally review your concern and call you back within 2 hours."
+  },
+  "seo": {
+    "metaTitle": "RelaxPro | Premium Natural Latex Mattresses — Factory Direct",
+    "metaDescription": "Shop GOLS-certified natural latex mattresses crafted in Kerala. 12 models from ₹9,500 with free delivery across South India. 10-year warranty.",
+    "ogImage": null,
+    "keywords": ["natural latex mattress","GOLS certified","organic mattress India","latex mattress Hyderabad","RelaxPro"]
   }
 }

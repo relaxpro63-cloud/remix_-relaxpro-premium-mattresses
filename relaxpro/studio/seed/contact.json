@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "title": "Contact Us",
+    "subtitle": "Sleep advice, showroom visits, or a WhatsApp quote — we are here for you"
+  },
+  "contactCards": [
+    { "icon": "📞", "label": "Call Us", "value": "+91 86866 24494", "link": "tel:+918686624494" },
+    { "icon": "💬", "label": "WhatsApp", "value": "+91 86866 24494", "link": "https://wa.me/918686624494" },
+    { "icon": "📧", "label": "Email", "value": "relaxpro.latexlabs@gmail.com", "link": "mailto:relaxpro.latexlabs@gmail.com" },
+    { "icon": "🕐", "label": "Support Hours", "value": "Mon–Sun: 10 AM – 9 PM", "link": null }
+  ],
+  "showrooms": [
+    { "_type": "reference", "_ref": "showroom-hyderabad" },
+    { "_type": "reference", "_ref": "showroom-rajahmundry" },
+    { "_type": "reference", "_ref": "showroom-bangalore" }
+  ],
+  "bookingForm": {
+    "title": "Book a Showroom Visit",
+    "submitLabel": "Request Callback",
+    "fields": [
+      { "name": "fullName",    "label": "Full Name",                "type": "text",     "required": true },
+      { "name": "phone",       "label": "Phone Number",             "type": "tel",      "required": true },
+      { "name": "preferredDate","label": "Preferred Visit Date",    "type": "date",     "required": true },
+      { "name": "showroom",    "label": "Preferred Showroom",       "type": "select",   "options": ["Hyderabad", "Rajahmundry", "Bangalore"], "required": true },
+      { "name": "message",     "label": "Sleep needs (optional)",   "type": "textarea", "required": false }
+    ],
+    "submitLabel": "Book My Visit",
+    "successMessage": "Thanks! We will confirm your appointment within 30 minutes."
+  },
+  "mapEmbed": {
+    "embedUrl": "https://maps.google.com/maps?q=Jeedimetla+Industrial+Area+Phase+3+Hyderabad&output=embed",
+    "title": "RelaxPro Factory Showroom Hyderabad"
+  },
+  "helpSection": {
+    "title": "We are here to help you sleep better",
+    "content": "Our team of sleep consultants are trained in orthopedic mattress technology and can guide you through posture, materials, sizing, and budget — no pressure, no sales scripts. Reach us on WhatsApp for the fastest response.",
+    "supportHours": "Mon–Sun, 10:00 AM – 9:00 PM"
+  },
+  "seo": {
+    "metaTitle": "Contact RelaxPro | Mattress Experts Hyderabad, Rajahmundry, Bangalore",
+    "metaDescription": "Get free sleep advice from Suresh & team. Book a showroom visit in Hyderabad, Rajahmundry, or Bangalore. Call +91 86866 24494 or WhatsApp us.",
+    "ogImage": null,
+    "keywords": ["contact RelaxPro", "mattress showroom Hyderabad", "latex mattress Bangalore", "sleep consultation India"]
+  }
+}

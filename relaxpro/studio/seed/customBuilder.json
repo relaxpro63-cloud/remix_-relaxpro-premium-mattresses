@@ -1,0 +1,55 @@
+{
+  "header": {
+    "title": "Build Your Custom Mattress",
+    "description": "Design a mattress that fits your exact body, sleep style, and budget. Choose any size, any thickness, and configure your layers — we build and ship it in 7 days or less."
+  },
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Pick Your Size",
+      "description": "Choose from our 5 standard sizes or enter exact custom dimensions. We support any length from 48\" to 96\" and any width from 24\" to 84\".",
+      "options": [
+        { "label": "Single (75×48)", "description": "Ideal for single beds, children's rooms", "priceModifier": 0, "image": null },
+        { "label": "Diwan (75×48)", "description": "Indian single standard", "priceModifier": 2000, "image": null },
+        { "label": "Double (75×60)", "description": "Standard double bed", "priceModifier": 4000, "image": null },
+        { "label": "Queen (78×60)", "description": "Most popular — fits most couples", "priceModifier": 6000, "image": null },
+        { "label": "Queen XL (80×60)", "description": "Extra length for taller sleepers", "priceModifier": 8000, "image": null },
+        { "label": "King (78×72)", "description": "Maximum space for couples", "priceModifier": 12000, "image": null },
+        { "label": "Custom Size", "description": "Enter exact L × W for your bed frame", "priceModifier": 0, "image": null }
+      ]
+    },
+    {
+      "stepNumber": 2,
+      "title": "Choose Your Comfort Level",
+      "description": "Pick the comfort profile that matches your sleeping style. Need help? Our sleep consultants are on WhatsApp.",
+      "options": [
+        { "label": "Plush (Nirvana-style)", "description": "Maximum cloud-like softness. Best for side sleepers and those who love sinking in.", "priceModifier": 0, "image": null },
+        { "label": "Medium-Soft (Ananda-style)", "description": "Balanced soft contour with support beneath. Great all-rounder for couples.", "priceModifier": 2000, "image": null },
+        { "label": "Medium (Prakriti-style)", "description": "Firm enough for back support with a soft comfort feel. Ideal for back sleepers.", "priceModifier": 3000, "image": null },
+        { "label": "Medium-Firm (Arogya-style)", "description": "Posture-supportive with a gentle cushion. Recommended by physiotherapists.", "priceModifier": 4000, "image": null },
+        { "label": "Firm (Sthira-style)", "description": "Maximum orthopedic firmness. Best for chronic back issues and stomach sleepers.", "priceModifier": 5000, "image": null }
+      ]
+    },
+    {
+      "stepNumber": 3,
+      "title": "Pick Your Layer Thickness",
+      "description": "Select total mattress thickness. More latex = better pressure relief and longevity.",
+      "options": [
+        { "label": "6 inch", "description": "Compact premium — 6\" pure latex. Great for platform beds.", "priceModifier": 0, "image": null },
+        { "label": "8 inch", "description": "Standard recommended — 4\" rebond + 4\" latex. Best value.", "priceModifier": 4000, "image": null },
+        { "label": "10 inch", "description": "Luxury build — 4\" rebond + 2\" HR softy + 4\" latex. Ultimate comfort.", "priceModifier": 8000, "image": null }
+      ]
+    }
+  ],
+  "basePrice": 27000,
+  "ctaSection": {
+    "buttonText": "Get My Custom Quote on WhatsApp",
+    "note": "Price on request for custom sizes. Our team responds within 30 minutes during business hours."
+  },
+  "seo": {
+    "metaTitle": "Custom Mattress Builder | Design Your Mattress — RelaxPro",
+    "metaDescription": "Build your own custom size and comfort mattress with RelaxPro. Any dimensions from 48\" to 96\" × 24\" to 84\". Pure GOLS-certified Kerala latex. Instant WhatsApp quote.",
+    "ogImage": null,
+    "keywords": ["custom mattress", "custom size mattress", "made to order mattress", "odd size mattress India", "custom latex mattress"]
+  }
+}
