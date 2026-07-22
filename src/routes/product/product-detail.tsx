@@ -58,8 +58,13 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
 
   const product: Product | undefined = useMemo(() => {
     if (!hc) return undefined;
-    if (!sanityProduct) return hc;
-    return {
+    const normalize = (p: any) => ({
+      ...p,
+      image: imageUrl(p.image) || (typeof p.image === 'string' ? p.image : ''),
+      images: Array.isArray(p.images) ? p.images.map((img: any) => imageUrl(img) || (typeof img === 'string' ? img : '')) : [],
+    });
+    if (!sanityProduct) return normalize(hc);
+    return normalize({
       ...hc,
       name: sanityProduct.name || hc.name,
       tagline: sanityProduct.tagline || hc.tagline,
@@ -79,16 +84,16 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       pricingModel: sanityProduct.pricingModel || hc.pricingModel,
       pricing: sanityProduct.pricing || hc.pricing,
       features: sanityProduct.features || hc.features,
-      image: imageUrl(sanityProduct.image) || hc.image,
+      image: imageUrl(sanityProduct.image) || imageUrl(hc.image) || (typeof hc.image === 'string' ? hc.image : ''),
       images: sanityProduct.images?.length
-        ? sanityProduct.images.map((img: any) => imageUrl(img) || img)
-        : hc.images,
+        ? sanityProduct.images.map((img: any) => imageUrl(img) || '')
+        : Array.isArray(hc.images) ? hc.images.map((img: any) => imageUrl(img) || (typeof img === 'string' ? img : '')) : [],
       tier: sanityProduct.tier || hc.tier,
       rating: sanityProduct.rating ?? (hc as any).rating,
       reviewCount: sanityProduct.reviewCount ?? (hc as any).reviewCount,
       metaTitle: sanityProduct.metaTitle || hc.metaTitle,
       metaDescription: sanityProduct.metaDescription || hc.metaDescription,
-    };
+    });
   }, [hc, sanityProduct]);
 
   // ─── Size selection state ───────────────────────────────────────────────────
