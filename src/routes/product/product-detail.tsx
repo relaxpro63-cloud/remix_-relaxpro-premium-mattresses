@@ -64,6 +64,14 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       images: Array.isArray(p.images) ? p.images.map((img: any) => imageUrl(img) || (typeof img === 'string' ? img : '')) : [],
     });
     if (!sanityProduct) return normalize(hc);
+
+    // When Sanity data exists but images are not uploaded to Sanity,
+    // fall back to the hardcoded product data for string image paths.
+    const fallbackImage = imageUrl(hcRaw?.image) || '/images/products/' + (slug || '') + '.webp';
+    const fallbackImages = Array.isArray(hcRaw?.images)
+      ? hcRaw.images.map((img: any) => imageUrl(img) || '')
+      : [];
+
     return normalize({
       ...hc,
       name: sanityProduct.name || hc.name,
@@ -84,17 +92,19 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       pricingModel: sanityProduct.pricingModel || hc.pricingModel,
       pricing: sanityProduct.pricing || hc.pricing,
       features: sanityProduct.features || hc.features,
-      image: imageUrl(sanityProduct.image) || imageUrl(hc.image) || (typeof hc.image === 'string' ? hc.image : ''),
+      image: imageUrl(sanityProduct.image) || imageUrl(hc.image) || fallbackImage,
       images: sanityProduct.images?.length
         ? sanityProduct.images.map((img: any) => imageUrl(img) || '')
-        : Array.isArray(hc.images) ? hc.images.map((img: any) => imageUrl(img) || (typeof img === 'string' ? img : '')) : [],
+        : Array.isArray(hc.images) && hc.images.length > 0
+          ? hc.images.map((img: any) => imageUrl(img) || (typeof img === 'string' ? img : ''))
+          : fallbackImages,
       tier: sanityProduct.tier || hc.tier,
       rating: sanityProduct.rating ?? (hc as any).rating,
       reviewCount: sanityProduct.reviewCount ?? (hc as any).reviewCount,
       metaTitle: sanityProduct.metaTitle || hc.metaTitle,
       metaDescription: sanityProduct.metaDescription || hc.metaDescription,
     });
-  }, [hc, sanityProduct]);
+  }, [hc, sanityProduct, hcRaw, slug]);
 
   // ─── Size selection state ───────────────────────────────────────────────────
   const [sizeCategory, setSizeCategory] = useState<SizeCategory | null>(null);
