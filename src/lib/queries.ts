@@ -4,15 +4,26 @@ import { urlFor } from './sanity'
 export function imageUrl(source: any) {
   if (!source) return ''
   if (typeof source === 'string') return source
-  if (source?.asset?.url && typeof source.asset.url === 'string') return source.asset.url
-  try { return urlFor(source).url() } catch { return '' }
+  if (typeof source === 'object') {
+    const assetRef = source.asset?._ref || source.asset?._id || source._ref
+    if (assetRef) {
+      return urlFor({ ...source, asset: { ...(source.asset || {}), _ref: assetRef } }).url()
+    }
+  }
+  return ''
 }
 
 export function imageUrlFor(source: any, width?: number) {
   if (!source) return ''
   if (typeof source === 'string') return source
-  if (source?.asset?.url && typeof source.asset.url === 'string') return source.asset.url
-  try { let b = urlFor(source); if (width) b = b.width(width); return b.url() } catch { return '' }
+  if (typeof source === 'object') {
+    const assetRef = source.asset?._ref || source.asset?._id || source._ref
+    if (assetRef) {
+      const b = urlFor({ ...source, asset: { ...(source.asset || {}), _ref: assetRef } })
+      return width ? b.width(width).url() : b.url()
+    }
+  }
+  return ''
 }
 
 export async function getSiteSettings() {
