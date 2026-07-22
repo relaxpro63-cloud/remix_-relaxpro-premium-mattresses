@@ -31,7 +31,7 @@ import {
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
-import { getHomePage, getTestimonials, getAllShowrooms } from '../../lib/queries';
+import { getHomePage, getAllProducts, getTestimonials, getAllShowrooms, imageUrl } from '../../lib/queries';
 import { buildWhatsAppUrl } from '../../lib/site';
 
 interface HomePageProps {
@@ -114,13 +114,24 @@ export default function HomePage({
   };
 
   useEffect(() => {
+    getAllProducts().then(allProds => {
+      const best = allProds.filter((p: any) => p.isBestseller).slice(0, 6);
+      if (best.length > 0) {
+        setBestsellers(best.map((p: any) => ({
+          ...p,
+          image: imageUrl(p.image) || '/images/products/' + p.slug + '.webp'
+        })));
+      }
+    }).catch(() => {});
     getHomePage().then(data => {
-      const prods = data?.bestsellersSection?.products || [];
-      if (prods.length > 0) {
-        setBestsellers(prods.map((p: any) => {
-          const hc = PRODUCTS.find((h: any) => h.slug === p.slug);
-          return { ...p, image: p.image || hc?.image || '' };
-        }));
+      if (bestsellers.length === 0) {
+        const prods = data?.bestsellersSection?.products || [];
+        if (prods.length > 0) {
+          setBestsellers(prods.map((p: any) => {
+            const hc = PRODUCTS.find((h: any) => h.slug === p.slug);
+            return { ...p, image: typeof p.image === 'string' ? p.image : imageUrl(p.image) || hc?.image || '/images/products/' + p.slug + '.webp' };
+          }));
+        }
       }
     }).catch(() => {});
     getTestimonials().then(setTestimonials).catch(() => {});
@@ -267,8 +278,10 @@ export default function HomePage({
                           <span className="text-sm md:text-2xl font-bold font-body mt-0 md:mt-0.5" style={{ color: '#F5F2EB' }}>
                             <PriceText>
                               ₹
-                              {item.pricing?.withoutAccessories?.king?.toLocaleString('en-IN') || 
-                                item.pricing?.fabric300Gsm?.king?.toLocaleString('en-IN') || ''}
+                              {(() => {
+                                const price = item.pricing?.withoutAccessories?.king ?? item.pricing?.fabric300Gsm?.king ?? item.pricing?.withAccessories?.king ?? 0;
+                                return price ? price.toLocaleString('en-IN') : '';
+                              })()}
                             </PriceText>
                           </span>
                         </div>
