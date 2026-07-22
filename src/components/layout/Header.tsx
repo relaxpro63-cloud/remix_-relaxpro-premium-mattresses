@@ -13,12 +13,14 @@ export default function Header({ cartCount }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [bannerText, setBannerText] = useState('');
+  const [settings, setSettings] = useState<any>(null);
   const [nav, setNav] = useState<any>(null);
   const location = useLocation();
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     getSiteSettings().then(s => {
+      setSettings(s);
       if (s?.announcement?.showBanner && s?.announcement?.bannerText) {
         setBannerText(s.announcement.bannerText);
       }
