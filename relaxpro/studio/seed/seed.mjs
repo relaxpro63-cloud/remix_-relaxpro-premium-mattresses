@@ -413,6 +413,7 @@ const NAVIGATION = {
     { label: 'Home', path: '/' },
     { label: 'Shop', path: '/catalog', children: [{ label: 'Explore Collections', path: '/catalog', description: 'Browse all mattress models' }, { label: 'Compare Models', path: '/compare', description: 'Side-by-side comparison' }] },
     { label: 'Customize', path: '/builder', isCta: false },
+    { label: 'Compare', path: '/compare' },
     { label: 'Sleep Science', path: '/science' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },

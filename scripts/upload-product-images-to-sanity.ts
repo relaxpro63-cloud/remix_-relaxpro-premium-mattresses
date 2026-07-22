@@ -109,22 +109,34 @@ async function fetchSanityProducts(): Promise<Map<string, SanityProduct>> {
   return map
 }
 
-// ─── Upload a single image to Sanity ──────────────────────────────────────
-async function uploadImage(filePath: string, label: string): Promise<string | null> {
-  try {
-    const buffer = fs.readFileSync(filePath)
-    const fileName = path.basename(filePath)
-    const asset = await client.assets.upload('image', buffer, {
-      filename: fileName,
-      contentType: fileName.endsWith('.svg') ? 'image/svg+xml' : 'image/webp',
-      label: `${label} — ${fileName}`,
-    })
-    console.log(`  ✓ Uploaded: ${fileName} → ${asset._id}`)
-    return asset._id
-  } catch (err: any) {
-    console.error(`  ✗ Failed to upload ${path.basename(filePath)}: ${err.message}`)
-    return null
+// ─── Upload a single image to Sanity (with retry on transient errors) ─────
+async function uploadImage(filePath: string, label: string, retries = 3): Promise<string | null> {
+  const fileName = path.basename(filePath)
+  const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const buffer = fs.readFileSync(filePath)
+      const asset = await client.assets.upload('image', buffer, {
+        filename: fileName,
+        contentType: fileName.endsWith('.svg') ? 'image/svg+xml' : 'image/webp',
+        label: `${label} — ${fileName}`,
+      })
+      console.log(`  ✓ Uploaded: ${fileName} → ${asset._id}`)
+      return asset._id
+    } catch (err: any) {
+      const isRetryable = err.message?.includes('ECONNRESET') || err.message?.includes('ETIMEDOUT') || err.message?.includes('socket hang up')
+      if (attempt < retries && isRetryable) {
+        const delay = attempt * 2000
+        console.log(`  ⏳ Retry ${attempt}/${retries - 1} for ${fileName} in ${delay}ms...`)
+        await sleep(delay)
+      } else {
+        console.error(`  ✗ Failed to upload ${fileName}${attempt > 1 ? ` after ${attempt} attempts` : ''}: ${err.message}`)
+        return null
+      }
+    }
   }
+  return null
 }
 
 // ─── Build image reference for Sanity patch ──────────────────────────────
