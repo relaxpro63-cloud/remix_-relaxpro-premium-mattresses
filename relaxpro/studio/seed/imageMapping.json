@@ -7,6 +7,22 @@
     },
     "alt": "About Process"
   },
+  "images/about-story.png": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-98fb5f2ac0cf4c62c163fe6f7be450c80d375a23-1024x1024-jpg"
+    },
+    "alt": "About Story"
+  },
+  "images/comfort-meter.png": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-f7ad33b4c31ee1950bc85e9815043b17e37df28c-1024x559-png"
+    },
+    "alt": "Comfort Meter"
+  },
   "images/cotton-field.png": {
     "_type": "image",
     "asset": {
@@ -102,22 +118,6 @@
       "_ref": "image-0255c6977acffeaac0103837f36c9753c5f19b0a-900x1600-webp"
     },
     "alt": "Amrita Gallery 5"
-  },
-  "images/products/amrita-gallery-6.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-dee3124b3c2d924332e9cb28a0d5c1d7689653ad-1600x1200-webp"
-    },
-    "alt": "Amrita Gallery 6"
-  },
-  "images/products/amrita-gallery-7.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-eca9446974ff7e9ad259182d79abcdcc9f12a336-1600x1200-webp"
-    },
-    "alt": "Amrita Gallery 7"
   },
   "images/products/amrita-gallery-8.webp": {
     "_type": "image",
@@ -319,6 +319,22 @@
     },
     "alt": "Ayushrest Gallery 5"
   },
+  "images/products/ayushrest-gallery-6.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-25420cccc91095646b3b24fff139c1b13092a203-1600x1200-webp"
+    },
+    "alt": "Ayushrest Gallery 6"
+  },
+  "images/products/ayushrest-gallery-7.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-02dad76eec760646fb2d25ced02336109ca501d4-720x1280-webp"
+    },
+    "alt": "Ayushrest Gallery 7"
+  },
   "images/products/ayushrest-gallery-8.webp": {
     "_type": "image",
     "asset": {
@@ -398,22 +414,6 @@
       "_ref": "image-25420cccc91095646b3b24fff139c1b13092a203-1600x1200-webp"
     },
     "alt": "Bhumi Gallery 6"
-  },
-  "images/products/bhumi-gallery-7.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-02dad76eec760646fb2d25ced02336109ca501d4-720x1280-webp"
-    },
-    "alt": "Bhumi Gallery 7"
-  },
-  "images/products/bhumi-gallery-8.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-dee3124b3c2d924332e9cb28a0d5c1d7689653ad-1600x1200-webp"
-    },
-    "alt": "Bhumi Gallery 8"
   },
   "images/products/bhumi-gallery-9.webp": {
     "_type": "image",
@@ -623,6 +623,22 @@
     },
     "alt": "Prakriti Gallery 10"
   },
+  "images/products/prakriti-gallery-2.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-4b6c4bf3e0c19f6b734a3ff2e034e06c4c830d9d-1080x1440-webp"
+    },
+    "alt": "Prakriti Gallery 2"
+  },
+  "images/products/prakriti-gallery-3.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-a93564f72794d5fcbe54e229f35ac2108d8ac423-1200x1600-webp"
+    },
+    "alt": "Prakriti Gallery 3"
+  },
   "images/products/prakriti-gallery-4.webp": {
     "_type": "image",
     "asset": {
@@ -702,14 +718,6 @@
       "_ref": "image-e03ae92d7808786e90c79206c80251f12c52e251-1200x1600-webp"
     },
     "alt": "Shuddha Gallery 3"
-  },
-  "images/products/shuddha-gallery-4.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-8b0c6a8356e93c0d3140ce80a30c88fb736385e1-720x1280-webp"
-    },
-    "alt": "Shuddha Gallery 4"
   },
   "images/products/shuddha-gallery-5.webp": {
     "_type": "image",
@@ -935,6 +943,22 @@
     },
     "alt": "Sunidra Gallery 3"
   },
+  "images/products/sunidra-gallery-4.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-dee3124b3c2d924332e9cb28a0d5c1d7689653ad-1600x1200-webp"
+    },
+    "alt": "Sunidra Gallery 4"
+  },
+  "images/products/sunidra-gallery-5.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-eca9446974ff7e9ad259182d79abcdcc9f12a336-1600x1200-webp"
+    },
+    "alt": "Sunidra Gallery 5"
+  },
   "images/products/sunidra-gallery-6.webp": {
     "_type": "image",
     "asset": {
@@ -966,22 +990,6 @@
       "_ref": "image-2310e3fa47b7d23d75f8e720de7a7c6d767fcff6-1600x1066-webp"
     },
     "alt": "Sunidra"
-  },
-  "images/products/vishram-gallery-1.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-93dfc275325698e84080673ce9f0b5b9865bbdab-1600x1066-webp"
-    },
-    "alt": "Vishram Gallery 1"
-  },
-  "images/products/vishram-gallery-10.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-9d867ca0e3050cfffcc609c9ca29c8b3a57e56df-1600x1200-webp"
-    },
-    "alt": "Vishram Gallery 10"
   },
   "images/products/vishram-gallery-2.webp": {
     "_type": "image",
@@ -1071,68 +1079,60 @@
     },
     "alt": "Size Chart"
   },
-  "images/about-story.png": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-98fb5f2ac0cf4c62c163fe6f7be450c80d375a23-1024x1024-jpg"
-    },
-    "alt": "About Story"
-  },
-  "images/comfort-meter.png": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-f7ad33b4c31ee1950bc85e9815043b17e37df28c-1024x559-png"
-    },
-    "alt": "Comfort Meter"
-  },
-  "images/products/ayushrest-gallery-6.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-25420cccc91095646b3b24fff139c1b13092a203-1600x1200-webp"
-    },
-    "alt": "Ayushrest Gallery 6"
-  },
-  "images/products/ayushrest-gallery-7.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-02dad76eec760646fb2d25ced02336109ca501d4-720x1280-webp"
-    },
-    "alt": "Ayushrest Gallery 7"
-  },
-  "images/products/prakriti-gallery-2.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-4b6c4bf3e0c19f6b734a3ff2e034e06c4c830d9d-1080x1440-webp"
-    },
-    "alt": "Prakriti Gallery 2"
-  },
-  "images/products/prakriti-gallery-3.webp": {
-    "_type": "image",
-    "asset": {
-      "_type": "reference",
-      "_ref": "image-a93564f72794d5fcbe54e229f35ac2108d8ac423-1200x1600-webp"
-    },
-    "alt": "Prakriti Gallery 3"
-  },
-  "images/products/sunidra-gallery-4.webp": {
+  "images/products/amrita-gallery-6.webp": {
     "_type": "image",
     "asset": {
       "_type": "reference",
       "_ref": "image-dee3124b3c2d924332e9cb28a0d5c1d7689653ad-1600x1200-webp"
     },
-    "alt": "Sunidra Gallery 4"
+    "alt": "Amrita Gallery 6"
   },
-  "images/products/sunidra-gallery-5.webp": {
+  "images/products/amrita-gallery-7.webp": {
     "_type": "image",
     "asset": {
       "_type": "reference",
       "_ref": "image-eca9446974ff7e9ad259182d79abcdcc9f12a336-1600x1200-webp"
     },
-    "alt": "Sunidra Gallery 5"
+    "alt": "Amrita Gallery 7"
+  },
+  "images/products/bhumi-gallery-7.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-02dad76eec760646fb2d25ced02336109ca501d4-720x1280-webp"
+    },
+    "alt": "Bhumi Gallery 7"
+  },
+  "images/products/bhumi-gallery-8.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-dee3124b3c2d924332e9cb28a0d5c1d7689653ad-1600x1200-webp"
+    },
+    "alt": "Bhumi Gallery 8"
+  },
+  "images/products/shuddha-gallery-4.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-8b0c6a8356e93c0d3140ce80a30c88fb736385e1-720x1280-webp"
+    },
+    "alt": "Shuddha Gallery 4"
+  },
+  "images/products/vishram-gallery-1.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-93dfc275325698e84080673ce9f0b5b9865bbdab-1600x1066-webp"
+    },
+    "alt": "Vishram Gallery 1"
+  },
+  "images/products/vishram-gallery-10.webp": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-9d867ca0e3050cfffcc609c9ca29c8b3a57e56df-1600x1200-webp"
+    },
+    "alt": "Vishram Gallery 10"
   }
 }
