@@ -375,7 +375,11 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                   <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue" />
                   About This Product
                 </h3>
-                <p className="text-neutral-dark/70 text-sm leading-relaxed font-body">{product.description}</p>
+                <ul className="text-neutral-dark/70 text-sm leading-relaxed font-body space-y-2 list-disc list-inside">
+                  {product.description?.split(/\.\s+/).filter(Boolean).map((s: string, i: number) => (
+                    <li key={i}>{s}{s.endsWith('.') ? '' : '.'}</li>
+                  ))}
+                </ul>
               </div>
 
               {/* ─── SIZE SELECTION BLOCK ─────────────────────────────────── */}
