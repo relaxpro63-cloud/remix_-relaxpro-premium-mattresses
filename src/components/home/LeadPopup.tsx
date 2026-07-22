@@ -179,6 +179,7 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
             <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
             <button
+              type="button"
               onClick={handleClose}
               disabled={isSubmitting}
               className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-xl border border-brand-200/60 bg-white/80 hover:bg-white hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
