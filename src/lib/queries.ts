@@ -3,14 +3,16 @@ import { urlFor } from './sanity'
 
 export function imageUrl(source: any) {
   if (!source) return ''
-  return urlFor(source).url()
+  if (typeof source === 'string') return source
+  if (source?.asset?.url && typeof source.asset.url === 'string') return source.asset.url
+  try { return urlFor(source).url() } catch { return '' }
 }
 
 export function imageUrlFor(source: any, width?: number) {
   if (!source) return ''
-  let b = urlFor(source)
-  if (width) b = b.width(width)
-  return b.url()
+  if (typeof source === 'string') return source
+  if (source?.asset?.url && typeof source.asset.url === 'string') return source.asset.url
+  try { let b = urlFor(source); if (width) b = b.width(width); return b.url() } catch { return '' }
 }
 
 export async function getSiteSettings() {
