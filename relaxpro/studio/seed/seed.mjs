@@ -444,7 +444,7 @@ const HERO_SLIDES = {
     highlight: 'From Kerala',
     subheading: 'to Your Bed',
     description: 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Handcrafted in Hyderabad and shipped directly to your doorstep.',
-    trustBadges: [{ text: 'Free Delivery' }, { text: '100-Night Sleep Trial' }, { text: '10-Year Replacement Warranty' }],
+    trustBadges: [{ text: 'Free Delivery' }, { text: '10-Year Replacement Warranty' }],
   }],
 }
 

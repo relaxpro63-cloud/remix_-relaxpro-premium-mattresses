@@ -168,7 +168,6 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           >
             {(hero?.slides?.[0]?.trustBadges || [
               { icon: 'truck', text: 'Free Delivery' },
-              { icon: 'shield', text: '100-Night Sleep Trial' },
               { icon: 'award', text: '10-Year Replacement Warranty' },
             ]).map((item: any, idx: number) => {
               const IconComp = trustIconMap[item.icon] || Shield;

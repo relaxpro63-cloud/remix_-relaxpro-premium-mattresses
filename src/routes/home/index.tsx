@@ -363,7 +363,7 @@ export default function HomePage({
           <div className="flex items-center justify-center gap-2 mt-4">
             <span className="text-2xl font-bold font-heading text-primary">4.9</span>
             <span className="text-accent text-lg">/ 5 ★</span>
-            <span className="text-neutral-dark/40 text-sm font-body ml-1">from 2,400+ reviews</span>
+            <span className="text-neutral-dark/40 text-sm font-body ml-1">from 220+ reviews</span>
           </div>
         </FadeUp>
 
