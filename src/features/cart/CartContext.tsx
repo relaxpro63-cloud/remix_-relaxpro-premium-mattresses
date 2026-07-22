@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { CartItem, Product, MattressSize, SizeCategory } from '../../types';
+import { getProductPricing } from '../../lib/queries';
+import { PRODUCTS } from '../../data/products';
 
 interface CartState {
   cart: CartItem[];
@@ -11,7 +13,7 @@ interface CartState {
     fabricOption?: '300GSM' | '450GSM',
     customSizeData?: { length: number; width: number; thickness?: number },
     sizeCategory?: SizeCategory,
-  ) => void;
+  ) => Promise<void>;
   updateQty: (id: string, qty: number) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
@@ -45,7 +47,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addToCart = (item: CartItem) => saveCart([...cart, item]);
 
-  const addToCartDirect = (
+  const addToCartDirect = async (
     product: Product,
     size: MattressSize,
     includeAcc: boolean,
@@ -57,14 +59,44 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const isCustom = size === 'custom';
 
     if (!isCustom) {
-      if (product.pricingModel === 'with_without_accessories') {
-        basePrice = includeAcc
-          ? product.pricing.withAccessories?.[size] || 0
-          : product.pricing.withoutAccessories?.[size] || 0;
-      } else {
-        basePrice = fabricOption === '450GSM'
-          ? product.pricing.fabric450Gsm?.[size] || 0
-          : product.pricing.fabric300Gsm?.[size] || 0;
+      try {
+        const pricingData = await getProductPricing(product.slug);
+        if (pricingData?.pricing) {
+          if (pricingData.pricingModel === 'with_without_accessories') {
+            basePrice = includeAcc
+              ? pricingData.pricing.withAccessories?.[size] || 0
+              : pricingData.pricing.withoutAccessories?.[size] || 0;
+          } else {
+            basePrice = fabricOption === '450GSM'
+              ? pricingData.pricing.fabric450Gsm?.[size] || 0
+              : pricingData.pricing.fabric300Gsm?.[size] || 0;
+          }
+        }
+      } catch {}
+
+      if (basePrice === 0) {
+        const fallback = PRODUCTS.find(p => p.slug === product.slug);
+        if (fallback?.pricing) {
+          if (fallback.pricingModel === 'with_without_accessories') {
+            basePrice = includeAcc
+              ? fallback.pricing.withAccessories?.[size] || 0
+              : fallback.pricing.withoutAccessories?.[size] || 0;
+          } else {
+            basePrice = fabricOption === '450GSM'
+              ? fallback.pricing.fabric450Gsm?.[size] || 0
+              : fallback.pricing.fabric300Gsm?.[size] || 0;
+          }
+        } else if (product.pricing) {
+          if (product.pricingModel === 'with_without_accessories') {
+            basePrice = includeAcc
+              ? product.pricing.withAccessories?.[size] || 0
+              : product.pricing.withoutAccessories?.[size] || 0;
+          } else {
+            basePrice = fabricOption === '450GSM'
+              ? product.pricing.fabric450Gsm?.[size] || 0
+              : product.pricing.fabric300Gsm?.[size] || 0;
+          }
+        }
       }
     }
 

@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CartItem, OrderReceipt } from '../../types';
 import { submitLead } from '../../utils/googleSheets';
 import { buildWhatsAppUrl } from '../../lib/site';
+import { getSiteSettings } from '../../lib/queries';
 
 interface CartPageProps {
   cart: CartItem[];
@@ -23,6 +24,12 @@ export default function CartPage({
   onCheckoutSuccess,
   onNavigate
 }: CartPageProps) {
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    getSiteSettings().then(s => setSettings(s)).catch(() => {});
+  }, []);
+
   // Booking Form State
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -46,10 +53,10 @@ export default function CartPage({
 
   const validateForm = () => {
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = 'Full name is required.';
-    if (!phone.trim() || phone.length < 10) errs.phone = 'Valid primary contact number is required.';
-    if (!address.trim()) errs.address = 'Delivery address is required.';
-    if (!zip.trim() || zip.length !== 6) errs.zip = '6-digit postal pincode is required.';
+    if (!name.trim()) errs.name = settings?.checkout?.nameRequiredError || 'Full name is required.';
+    if (!phone.trim() || phone.length < 10) errs.phone = settings?.checkout?.phoneRequiredError || 'Valid primary contact number is required.';
+    if (!address.trim()) errs.address = settings?.checkout?.addressRequiredError || 'Delivery address is required.';
+    if (!zip.trim() || zip.length !== 6) errs.zip = settings?.checkout?.zipRequiredError || '6-digit postal pincode is required.';
     
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -140,15 +147,15 @@ export default function CartPage({
           <div className="absolute inset-0 bg-accent/5 rounded-full animate-pulse"></div>
           <ShoppingBag className="w-8 h-8 text-accent relative z-10" />
         </div>
-        <h2 className="font-heading font-bold text-4xl text-primary mb-4">Your Cart is Empty</h2>
+        <h2 className="font-heading font-bold text-4xl text-primary mb-4">{settings?.checkout?.emptyCartTitle || 'Your Cart is Empty'}</h2>
         <p className="text-neutral-dark/60 mt-2 max-w-md mx-auto leading-relaxed text-sm font-body">
-          Before initiating your custom order, explore our collection of premium natural latex mattresses tailored for perfect sleep.
+          {settings?.checkout?.emptyCartDescription || 'Before initiating your custom order, explore our collection of premium natural latex mattresses tailored for perfect sleep.'}
         </p>
         <button
           onClick={() => onNavigate('catalog')}
           className="mt-8 btn-primary bg-primary hover:bg-neutral-dark text-white font-accent text-[13px] font-bold uppercase tracking-widest px-8 py-4 rounded-xl cursor-pointer shadow-lg transition-all"
         >
-          Explore Collections
+          {settings?.checkout?.exploreCollectionsLabel || 'Explore Collections'}
         </button>
       </motion.div>
     );
@@ -165,10 +172,10 @@ export default function CartPage({
       {/* Dynamic Header */}
       <div className="max-w-3xl mb-12">
         <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-tight text-primary">
-          Complete Your Order
+          {settings?.checkout?.completeOrderTitle || 'Complete Your Order'}
         </h1>
         <p className="text-accent mt-3 text-sm font-accent font-medium flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-accent animate-pulse" /> We'll confirm your order on WhatsApp within 1 hour.
+          <Sparkles className="w-4 h-4 text-accent animate-pulse" /> {settings?.checkout?.whatsappConfirmText || "We'll confirm your order on WhatsApp within 1 hour."}
         </p>
       </div>
 
@@ -177,21 +184,21 @@ export default function CartPage({
         <div className="lg:col-span-7 space-y-8">
           <div className="bg-white p-6 md:p-10 rounded-[2rem] border border-brand-200/40 shadow-sm space-y-8">
             <h3 className="font-heading font-bold text-2xl text-primary tracking-tight pb-4 border-b border-brand-200/30">
-              Delivery Details
+              {settings?.checkout?.deliveryDetailsTitle || 'Delivery Details'}
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name */}
               <div className="md:col-span-2">
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Full name <span className="text-accent">*</span>
+                  {settings?.checkout?.fullNameLabel || 'Full name'} <span className="text-accent">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Srinivas Rao"
+                  placeholder={settings?.checkout?.fullNamePlaceholder || 'e.g. Srinivas Rao'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
                 {errors.name && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.name}</span>}
@@ -200,7 +207,7 @@ export default function CartPage({
               {/* Phone */}
               <div>
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Phone <span className="text-accent">*</span>
+                  {settings?.checkout?.phoneLabel || 'Phone'} <span className="text-accent">*</span>
                 </label>
                 <input
                   type="tel"
@@ -208,7 +215,7 @@ export default function CartPage({
                   maxLength={10}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="e.g. 9876543210"
+                  placeholder={settings?.checkout?.phonePlaceholder || 'e.g. 9876543210'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
                 {errors.phone && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.phone}</span>}
@@ -217,13 +224,13 @@ export default function CartPage({
               {/* Email */}
               <div>
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Email
+                  {settings?.checkout?.emailLabel || 'Email'}
                 </label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. srinivas@example.com"
+                  placeholder={settings?.checkout?.emailPlaceholder || 'e.g. srinivas@example.com'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
               </div>
@@ -231,14 +238,14 @@ export default function CartPage({
               {/* Detailed Address */}
               <div className="md:col-span-2">
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Delivery address <span className="text-accent">*</span>
+                  {settings?.checkout?.deliveryAddressLabel || 'Delivery address'} <span className="text-accent">*</span>
                 </label>
                 <textarea
                   required
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   rows={2}
-                  placeholder="House / flat, street, landmark"
+                  placeholder={settings?.checkout?.addressPlaceholder || 'House / flat, street, landmark'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none resize-none"
                 />
                 {errors.address && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.address}</span>}
@@ -247,25 +254,23 @@ export default function CartPage({
               {/* City */}
               <div>
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  City <span className="text-accent">*</span>
+                  {settings?.checkout?.cityLabel || 'City'} <span className="text-accent">*</span>
                 </label>
                 <select
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent cursor-pointer bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 >
-                  <option value="Hyderabad">Hyderabad</option>
-                  <option value="Rajahmundry">Rajahmundry</option>
-                  <option value="Bangalore">Bangalore</option>
-                  <option value="Chennai">Chennai</option>
-                  <option value="Others">Others</option>
+                  {(settings?.checkout?.availableCities || ['Hyderabad', 'Rajahmundry', 'Bangalore', 'Chennai', 'Others']).map((c: string) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
                 </select>
               </div>
 
               {/* Pincode (Zip) */}
               <div>
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Pincode <span className="text-accent">*</span>
+                  {settings?.checkout?.pincodeLabel || 'Pincode'} <span className="text-accent">*</span>
                 </label>
                 <input
                   type="text"
@@ -273,7 +278,7 @@ export default function CartPage({
                   maxLength={6}
                   value={zip}
                   onChange={(e) => setZip(e.target.value)}
-                  placeholder="6-digit pincode"
+                  placeholder={settings?.checkout?.pincodePlaceholder || '6-digit pincode'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
                 {errors.zip && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.zip}</span>}
@@ -282,13 +287,13 @@ export default function CartPage({
               {/* Preferred contact time */}
               <div className="md:col-span-2">
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Preferred contact time
+                  {settings?.checkout?.contactTimeLabel || 'Preferred contact time'}
                 </label>
                 <input
                   type="text"
                   value={contactTime}
                   onChange={(e) => setContactTime(e.target.value)}
-                  placeholder="e.g. Weekdays after 6pm"
+                  placeholder={settings?.checkout?.contactTimePlaceholder || 'e.g. Weekdays after 6pm'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
               </div>
@@ -296,13 +301,13 @@ export default function CartPage({
               {/* Delivery notes */}
               <div className="md:col-span-2">
                 <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                  Delivery notes (optional)
+                  {settings?.checkout?.deliveryNotesLabel || 'Delivery notes (optional)'}
                 </label>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={2}
-                  placeholder="Building, floor, lift access, time preference, etc."
+                  placeholder={settings?.checkout?.deliveryNotesPlaceholder || 'Building, floor, lift access, time preference, etc.'}
                   className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none resize-none"
                 />
               </div>
@@ -315,14 +320,14 @@ export default function CartPage({
           <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-brand-200/40 shadow-sm space-y-8 sticky top-32">
             <div className="flex items-center justify-between pb-4 border-b border-brand-200/30">
               <h3 className="font-heading font-bold text-2xl text-primary tracking-tight">
-                Order Summary
+                {settings?.checkout?.orderSummaryTitle || 'Order Summary'}
               </h3>
               <button
                 type="button"
                 onClick={onClearCart}
                 className="text-xs text-neutral-dark/40 hover:text-red-500 font-accent font-bold uppercase tracking-wider transition-colors underline cursor-pointer"
               >
-                Clear items
+                {settings?.checkout?.clearItemsLabel || 'Clear items'}
               </button>
             </div>
 
@@ -344,7 +349,7 @@ export default function CartPage({
                       
                       {item.includeAccessories && (
                         <p className="text-[10px] text-success font-bold font-accent uppercase tracking-wider bg-success/10 border border-success/20 px-2 py-1 rounded inline-block mt-1">
-                          + Accessory Pack
+                          {settings?.checkout?.accessoryPackLabel || '+ Accessory Pack'}
                         </p>
                       )}
                     </div>
@@ -383,20 +388,20 @@ export default function CartPage({
             {/* Subtotal & Free Delivery */}
             <div className="pt-6 border-t border-brand-200/30 space-y-3.5 text-sm font-body text-neutral-dark/70">
               <div className="flex justify-between items-center">
-                <span>Subtotal</span>
+                <span>{settings?.checkout?.subtotalLabel || 'Subtotal'}</span>
                 <span className="font-mono font-bold text-primary"><PriceText>₹{subtotal.toLocaleString('en-IN')}</PriceText></span>
               </div>
               <div className="flex justify-between items-center">
-                <span>Delivery (Kerala to your door)</span>
+                <span>{settings?.checkout?.deliveryLabel || 'Delivery (Kerala to your door)'}</span>
                 <span className="font-accent font-bold text-[11px] text-success bg-success/10 border border-success/20 px-2.5 py-1 rounded-full uppercase tracking-widest">
-                  Free
+                  {settings?.checkout?.deliveryFreeLabel || 'Free'}
                 </span>
               </div>
             </div>
 
             {/* Total Balance */}
             <div className="pt-6 border-t border-brand-200/30 flex justify-between items-end">
-              <span className="text-primary font-heading font-bold text-lg">Total</span>
+              <span className="text-primary font-heading font-bold text-lg">{settings?.checkout?.totalLabel || 'Total'}</span>
               <span className="text-3xl font-bold font-heading text-primary">
                 <PriceText>₹{grandTotal.toLocaleString('en-IN')}</PriceText>
               </span>
@@ -411,11 +416,11 @@ export default function CartPage({
                 className="w-full btn-primary bg-primary hover:bg-neutral-dark disabled:bg-neutral-light disabled:text-neutral-dark/40 disabled:border-brand-200 text-white font-accent font-bold text-sm tracking-widest uppercase py-4.5 rounded-2xl shadow-lg cursor-pointer flex items-center justify-center gap-2 transition-all relative overflow-hidden group"
               >
                 {isSubmitting ? (
-                  <span>Processing Request...</span>
+                  <span>{settings?.checkout?.processingLabel || 'Processing Request...'}</span>
                 ) : (
                   <>
                     <div className="absolute inset-0 bg-white/10 w-0 group-hover:w-full transition-all duration-300 ease-out"></div>
-                    <span className="relative z-10 flex items-center gap-2">Place Order on WhatsApp <ArrowRight className="w-4 h-4" /></span>
+                    <span className="relative z-10 flex items-center gap-2">{settings?.checkout?.placeOrderLabel || 'Place Order on WhatsApp'} <ArrowRight className="w-4 h-4" /></span>
                   </>
                 )}
               </button>
@@ -423,7 +428,7 @@ export default function CartPage({
               <div className="flex items-start gap-3 mt-5 bg-neutral-light p-4 rounded-xl border border-brand-200/50">
                 <CheckCircle2 className="w-5 h-5 text-success shrink-0" />
                 <p className="text-[11px] text-neutral-dark/70 leading-relaxed font-body">
-                  <strong>No upfront payment required.</strong> After placing the order, Suresh will contact you to verify dimensions and arrange secure payment options.
+                  <strong>{settings?.checkout?.noPaymentRequiredText || 'No upfront payment required.'}</strong> {settings?.checkout?.paymentNote || 'After placing the order, Suresh will contact you to verify dimensions and arrange secure payment options.'}
                 </p>
               </div>
             </div>

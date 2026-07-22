@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import Header from './components/layout/Header';
@@ -8,6 +8,7 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartProvider, useCart } from './features/cart/CartContext';
 import { useGlobalScrollAnimations } from './hooks/useIntersectionObserver';
+import { getSiteSettings } from './lib/queries';
 import { OrderReceipt, Tier } from './types';
 import HomePage from './routes/home/index';
 import SleepSciencePage from './routes/pages/sleep-science';
@@ -29,7 +30,12 @@ function AppContent() {
   const cart = useCart();
   const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
   const [selectedTier, setSelectedTier] = useState<Tier | 'all'>('all');
+  const [defaultSeo, setDefaultSeo] = useState<any>(null);
   useGlobalScrollAnimations();
+
+  useEffect(() => {
+    getSiteSettings().then(s => setDefaultSeo(s?.seo)).catch(() => {});
+  }, []);
 
   const page = (name: string) => {
     if (name === 'home') navigate('/');
@@ -78,8 +84,8 @@ function AppContent() {
                 path="/builder"
                 element={
                   <PageShell
-                    title="Custom Mattress Builder - Design Your Perfect Sleep | RelaxPro"
-                    description="Personalize your GOLS natural latex mattress layer-by-layer. Choose GOTS bamboo cover, composite layers, custom size."
+                    title={defaultSeo?.metaTitle || "Custom Mattress Builder - Design Your Perfect Sleep | RelaxPro"}
+                    description={defaultSeo?.metaDescription || "Personalize your GOLS natural latex mattress layer-by-layer. Choose GOTS bamboo cover, composite layers, custom size."}
                   >
                     <MattressBuilder onAddToCart={(item) => cart.addToCart(item)} onNavigate={page} />
                   </PageShell>
@@ -89,8 +95,8 @@ function AppContent() {
                 path="/catalog"
                 element={
                   <PageShell
-                    title="Our Natural Latex & Orthopedic Mattresses | RelaxPro"
-                    description="Browse India's finest chemical-free mattresses. Premium 7-zone latex, heavy rebonded ortho systems, and ventilated sleep tech."
+                    title={defaultSeo?.metaTitle || "Our Natural Latex & Orthopedic Mattresses | RelaxPro"}
+                    description={defaultSeo?.metaDescription || "Browse India's finest chemical-free mattresses. Premium 7-zone latex, heavy rebonded ortho systems, and ventilated sleep tech."}
                   >
                     <ProductList
                       onAddToCartDirect={(product, size, includeAcc) => cart.addToCartDirect(product, size, includeAcc)}
@@ -107,8 +113,8 @@ function AppContent() {
                 path="/compare"
                 element={
                   <PageShell
-                    title="Compare Mattresses | RelaxPro Premium Mattresses"
-                    description="Compare dimensions, layers, comfort levels, and prices of RelaxPro natural latex mattresses."
+                    title={defaultSeo?.metaTitle || "Compare Mattresses | RelaxPro Premium Mattresses"}
+                    description={defaultSeo?.metaDescription || "Compare dimensions, layers, comfort levels, and prices of RelaxPro natural latex mattresses."}
                   >
                     <CompareTable
                       onAddToCartDirect={(product, size, includeAcc) => cart.addToCartDirect(product, size, includeAcc)}
@@ -122,8 +128,8 @@ function AppContent() {
                 path="/cart"
                 element={
                   <PageShell
-                    title="Your Cart | RelaxPro Premium Mattresses"
-                    description="Review your selected natural latex mattress and accessories before checkout."
+                    title={defaultSeo?.metaTitle || "Your Cart | RelaxPro Premium Mattresses"}
+                    description={defaultSeo?.metaDescription || "Review your selected natural latex mattress and accessories before checkout."}
                   >
                     <CartPage
                       cart={cart.cart}

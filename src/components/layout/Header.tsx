@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, MessageSquare, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import RelaxProLogo from '../ui/RelaxProLogo';
-import { getSiteSettings } from '../../lib/queries';
+import { getSiteSettings, getNavigation } from '../../lib/queries';
 
 interface HeaderProps {
   cartCount: number;
@@ -13,6 +13,7 @@ export default function Header({ cartCount }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [bannerText, setBannerText] = useState('');
+  const [nav, setNav] = useState<any>(null);
   const location = useLocation();
   const lastScrollY = useRef(0);
 
@@ -22,6 +23,10 @@ export default function Header({ cartCount }: HeaderProps) {
         setBannerText(s.announcement.bannerText);
       }
     }).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    getNavigation().then(setNav).catch(() => {});
   }, []);
 
   const handleScroll = useCallback(() => {
@@ -57,7 +62,7 @@ export default function Header({ cartCount }: HeaderProps) {
     };
   }, [mobileMenuOpen]);
 
-  const navItems = [
+  const navItems = (nav?.desktopMenu || [
     { path: '/', label: 'Home' },
     { path: '/catalog', label: 'Shop' },
     { path: '/builder', label: 'Customize' },
@@ -65,7 +70,7 @@ export default function Header({ cartCount }: HeaderProps) {
     { path: '/science', label: 'Sleep Science' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
-  ];
+  ]).map((item: any) => ({ path: item.path, label: item.label }));
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -263,11 +268,11 @@ export default function Header({ cartCount }: HeaderProps) {
 
           <div className="px-6 py-6 border-t border-white/10 space-y-4">
             <p className="text-[11px] text-white/50 font-body leading-relaxed">
-              Need help choosing? Chat with us on WhatsApp or call 8686624494.
+              Need help choosing? Chat with us on WhatsApp or call {settings?.contactInfo?.whatsappNumber || '918686624494'}.
             </p>
             <div className="flex items-center justify-center gap-6 pt-1">
               <a
-                href="https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/"
+              href={settings?.contactInfo?.facebookUrl || 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-white transition-colors"
@@ -276,7 +281,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://www.instagram.com/relaxpro__mattresses/?hl=en"
+                href={settings?.contactInfo?.instagramUrl || 'https://www.instagram.com/relaxpro__mattresses/?hl=en'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-white transition-colors"
@@ -285,7 +290,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://www.youtube.com/@sureshmattressmanufacturer3784"
+                href={settings?.contactInfo?.youtubeUrl || 'https://www.youtube.com/@sureshmattressmanufacturer3784'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-white transition-colors"

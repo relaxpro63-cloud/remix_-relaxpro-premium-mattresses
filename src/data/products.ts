@@ -18,6 +18,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: '6" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep & pressure relief',
+    description: 'Nirvana is our flagship pure latex mattress, crafted entirely from a single 6-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations. With an exceptional 96.6% purity and GOLS certification, every inch delivers therapeutic pressure relief that cradles your body while maintaining perfect spinal alignment. The open-cell latex structure naturally dissipates heat, keeping you cool through the night, while the inherent elasticity of latex absorbs motion completely — so you sleep undisturbed even with a restless partner. Zero synthetic chemicals, fillers, or VOC emissions make it completely safe for infants, elders, and anyone with chemical sensitivities. Backed by a 10-year direct replacement warranty, Nirvana is the pinnacle of natural sleep engineering.',
     badge: 'Premium Pure Latex Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -55,6 +56,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Heavy hybrid foundation topped with a ultra-thick premium organic latex comfort layer for deep body contouring and muscle recovery',
+    description: 'Amrita is a 10-inch hybrid masterpiece that pairs a 4-inch high-density rebonded Century foam base with a luxurious 6-inch slab of GOLS-certified pure organic Kerala latex. This combination delivers the best of both worlds: the rock-solid foundation that never sags, topped with a thick cloud of natural latex that contours to every curve of your body. The result is a mattress that supports deep muscle recovery while providing a floating-in-air sensation. The rebonded base — crafted from 90-95 density Century foam — guarantees zero structural deflection even after a decade of use, while the latex comfort layer actively reduces pressure points across shoulders, hips, and lower back. Ideal for combination sleepers who want orthopedic support without sacrificing plush comfort.',
     badge: 'Premium 10" Reversible Rebonded + Latex Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -91,6 +93,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Pure seamless solid organic latex master block yielding a buoyant response that cradle curves while securing independent motion isolation',
+    description: 'Ananda is a pure 6-inch solid natural latex mattress that strips away all foam and fillers to deliver the purest sleep experience possible. Made entirely from a single seamless block of Dunlop-processed organic latex, Ananda offers a buoyant, responsive feel that gently pushes back against your body — providing natural spinal alignment without the sinking sensation of memory foam. The dense latex structure provides exceptional motion isolation, meaning partner movements generate zero seismic disturbance across the bed. Each slab is GOLS and Oeko-Tex certified, ensuring zero off-gassing and a hypoallergenic sleep environment. The open-cell construction naturally wicks away moisture and heat, making it an excellent choice for hot sleepers and those with allergies.',
     badge: '100% Pure Classic Latex Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -128,6 +131,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Eco-conscious design utilizing organic latex shredded elements bound in high-density core topped with pure organic latex comfort layer',
+    description: 'Prakriti is our most eco-conscious design, featuring a dual-latex construction that upcycles shredded organic latex into a 4-inch high-density rebonded core, topped with 4 inches of pure GOLS-certified organic Kerala latex. The lower layer uses advanced ECO-Institut certified latex rebond technology — transforming natural latex remnants into a dense, supportive foundation that would otherwise go to waste. Above it, a thick slab of pure virgin latex delivers instant luxurious contouring and pressure relief. This twin-latex approach delivers uniform cloud-like support with exceptional core endurance, while reducing environmental impact. At 8 inches thick, Prakriti offers substantial orthopedic depth suitable for all body types.',
     badge: 'Eco-Friendly Twin Latex Engineering',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -166,6 +170,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Triple-layer design featuring ultra-plush resilient softy foam nested under premium pure latex to cradle heavy pressure points with heavy-duty rebonded support below',
+    description: 'Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees. This layered construction is ideal for side sleepers and those with sensitive joints who need deep cushioning without sinking into poor spinal alignment. The HR softy middle layer is the secret ingredient — it prevents the "bottoming out" feeling common in softer mattresses.',
     badge: 'Soft Contouring Orthopedic Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -204,6 +209,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Perfect equal split of supportive heavy rebond base foam and cushioning latex, optimized for posture relief and corrective orthopedic support',
+    description: 'Arogya is a perfectly balanced 8-inch mattress that splits evenly between support and comfort — 4 inches of Century high-firm rebonded foam paired with 4 inches of GOLS-certified organic Kerala latex. This 50/50 ratio is specifically engineered for chronic lower back sufferers and those recovering from spinal issues. The dense rebonded base provides the unyielding foundation needed for corrective orthopedic alignment, while the thick latex top layer delivers necessary cushioning that prevents pressure points on hips and shoulders. Unlike purely firm orthopedic mattresses that can cause discomfort, Arogya\'s latex layer adapts to your body\'s curves while the base maintains strict spinal neutrality. Frequently recommended by physiotherapists for patients transitioning from ultra-firm surfaces.',
     badge: 'Doctor Recommended Ortho Core',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -241,6 +247,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Slick low-profile layout combining an eco-dense rebonded latex base with a highly responsive pure latex sleep zone',
+    description: 'Shuddha is a smart 6-inch low-profile mattress that proves big comfort comes in compact packages. It pairs a 4-inch layer of 120-density latex rebonded foam — made from upcycled GOLS-certified latex shreds — with a 2-inch top layer of pure certified organic Kerala latex. The eco-dense base provides exceptional load distribution and prevents that sunken, trapped feeling common in thinner mattresses, while the responsive latex top layer delivers the signature RelaxPro bounce and pressure relief. At just 6 inches, Shuddha is perfect for platform beds, guest rooms, kids\' rooms, and loft beds where height is a constraint. Don\'t let the slim profile fool you — the 120-density core outperforms many 8-inch mattresses in durability and support.',
     badge: 'Optimal Height Natural Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -278,6 +285,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Highly requested firm orthopedic model packing a dense base with a high-tensile latex layer, designed specifically to address chronic posture issues',
+    description: 'Sthira is our firmest orthopedic mattress, designed for those who need maximum structural support to correct chronic posture issues. It combines a dense 4-inch Century 95-density rebonded base with a 2-inch layer of pure GOLS-certified organic Kerala latex. The ultra-high-density foam block prevents any structural deflection, keeping your spine in perfect neutral alignment throughout the night. The thin latex top layer adds just enough gentle cushioning to prevent aching on hips and shoulders — a common complaint with ultra-firm mattresses. This configuration is ideal for stomach sleepers, heavier individuals, and anyone with lower back pain who needs a surface that won\'t yield under pressure. Sthira is our most frequently recommended model by orthopedic specialists.',
     badge: 'Perfect Firm Extra-Support Ortho',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -316,6 +324,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Triple-firm hybrid stacking rebonded base, latex-rebonded core, and luxurious latex cover for layered structural support inspired by organic earth strata',
+    description: 'Bhumi takes inspiration from the earth\'s geological layers, stacking three distinct support zones for a progressively firm feel that adapts to your body weight. The 4-inch PU rebonded Century base provides the bedrock — unyielding and durable. Above it, a 2-inch transition layer of 120-density latex rebonded foam adds a cushioning buffer while maintaining structural integrity. The top 2 inches of pure GOLS-certified organic Kerala latex deliver surface-level comfort with that signature buoyant feel. As you apply more pressure, the mattress gets progressively firmer — meaning lighter sleepers enjoy a softer feel while heavier individuals get the support they need. This layered progressive firmness makes Bhumi ideal for couples with different body types.',
     badge: 'Multi-Adaptive Posture Layering',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -354,6 +363,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Three-layer premium hybrid with cooling soft transition elements, delivering reliable medium comfort suitable for all types of sleepers',
+    description: 'Sunidra is our universal medium-comfort mattress, engineered to please side, back, and stomach sleepers alike. Its 8-inch profile layers a 4-inch Century high-firm rebonded base, a 2-inch premium HR softy transition foam, and a 2-inch pure GOLS-certified organic Kerala latex top. The clever addition of the highly resilient softy middle layer is what sets Sunidra apart — it provides a gentle cushioning buffer that cradles sensitive areas like collarbones and tailbones, preventing the pressure spikes that can occur when soft latex meets hard base foam. The result is a balanced medium feel that is soft enough for side sleeping yet supportive enough for back and stomach positions. The open-cell latex top and breathable softy foam work together to promote airflow, keeping you cool throughout the night.',
     badge: 'Universal Medium All-Rounder',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -392,6 +402,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Sleek entry-level latex hybrid focusing on value, blending standard cushioning transition foam with a genuine touch of natural latex comfort',
+    description: 'Vishram is our most accessible latex hybrid, designed as the perfect introduction to natural latex sleep without the premium price tag. At 7 inches, it stacks a 4-inch Century high-density rebonded support base, a 2-inch highly responsive HR softy foam transition layer, topped with a 1-inch pure GOLS-certified organic Kerala latex sheet. Even this modest layer of natural latex makes a substantial difference — it actively blocks thermal heat pockets from the base foams, provides a subtle buoyant response, and creates a cleaner, more breathable sleep surface. The HR softy cushioning layer smoothly transitions your body lines onto the firm base, preventing the hard-on-hard feeling of sleeping directly on rebonded foam. Ideal for guest rooms, budget-conscious buyers, and anyone wanting to experience natural latex comfort.',
     badge: 'Great Value Sleep Solution',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -429,6 +440,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['Oeko-Tex'],
     accessories: ['2 Shredded Pillows', '1 Protector'],
     keyBenefit: 'Value orthopedic mattress without natural latex, utilizing high density resilience softy core for back safety and deep recovery at an accessible price',
+    description: 'Ojas proves that exceptional orthopedic support does not require natural latex. This 6-inch mattress pairs a 4-inch ultra-firm Century Ortho rebonded base with a 2-inch highly resilient HR softy foam top layer, creating a dual-density profile that delivers reliable spine stabilization at an accessible price point. The ultra-dense rebonded base provides the rigid foundation necessary for corrective sleep posture, while the responsive softy topper prevents the hardness that can cause discomfort on all-foam orthopedic beds. Aero-ventilation channels throughout the foam structure promote passive heat dissipation, keeping the sleep surface cooler than traditional orthopedic mattresses. Ojas is available with your choice of 300 GSM standard or 450 GSM deluxe quilted fabric cover, giving you flexibility in comfort preference.',
     badge: 'Best Ortho Value Mattress',
     pricingModel: 'fabric_options',
     pricing: {
@@ -467,6 +479,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['Oeko-Tex'],
     accessories: ['2 Shredded Pillows', '1 Protector'],
     keyBenefit: 'Heavy-duty 8" triple density orthopedic foam mattress featuring customized comfort zones to safely distribute skeletal weight and prevent pressure spots',
+    description: 'AyushRest is our most robust all-foam orthopedic mattress, featuring a heavy-duty 8-inch triple-density construction designed for long-term durability and pressure-free sleep. Three distinct layers work together: a 4-inch Century heavy orthopedic rebonded base that provides the unyielding foundation needed for proper spinal alignment, a 2-inch high-resilience firm orthopedic support foam that adds structured transition without collapsing, and a 2-inch super soft cushioning HR softy top layer that cradles your body and prevents skin and bone pressure sores. This graduated density approach — moving from extremely firm at the base to plush at the surface — creates customized comfort zones that safely distribute skeletal weight. The 8-inch profile gives it a substantial, premium feel, and with Oeko-Tex certified fabrics and dual fabric options, it offers orthopedic excellence without the natural latex premium.',
     badge: 'Tough Long-Life Ortho Choice',
     pricingModel: 'fabric_options',
     pricing: {

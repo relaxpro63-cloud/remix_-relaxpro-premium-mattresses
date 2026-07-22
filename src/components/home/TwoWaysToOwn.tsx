@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, PenTool, ShoppingBag, ArrowRight, Check } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
+import { getHomePage, imageUrl } from '../../lib/queries';
 
 interface TwoWaysToOwnProps {
   onStartBuilding: () => void;
@@ -9,6 +10,11 @@ interface TwoWaysToOwnProps {
 }
 
 export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWaysToOwnProps) {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    getHomePage().then(p => setData(p?.ownershipWays)).catch(() => {});
+  }, []);
   return (
     <section id="two-ways-section" className="py-12 md:py-16 bg-neutral-light border-y border-blue/15 relative overflow-hidden">
       {/* Subtle blue radial glow background */}
@@ -20,9 +26,9 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
         <BlurFade delay={0.05}>
           <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
             <span className="text-[11px] tracking-widest font-accent font-bold text-blue uppercase bg-blue/10 border border-blue/20 px-4 py-1.5 rounded-full inline-flex items-center gap-2 shadow-sm mb-6">
-              <Sparkles className="w-3.5 h-3.5" /> Find Your Own Bed
+              <Sparkles className="w-3.5 h-3.5" /> {data?.sectionSubtitle || 'Find Your Own Bed'}
             </span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mt-4 text-primary leading-tight">Best Selling Models</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mt-4 text-primary leading-tight">{data?.sectionTitle || 'Best Selling Models'}</h2>
             <p className="text-neutral-dark/70 text-sm md:text-base mt-4 leading-relaxed font-body max-w-lg mx-auto">
               Whether you want to orchestrate your custom orthopedic configuration layer by layer or choose from our plantation-tested pre-built formulations.
             </p>
@@ -51,27 +57,22 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                 </div>
 
                 <div className="pt-1 md:pt-2">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">Customize Your Comfort</h3>
+                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">{data?.customBuilder?.title || 'Customize Your Comfort'}</h3>
                   <p className="font-heading italic text-blue text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
-                    &ldquo;Customize your mattress, layer by layer.&rdquo;
+                    {data?.customBuilder?.description || '&ldquo;Customize your mattress, layer by layer.&rdquo;'}
                   </p>
                   <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>Pick Cover Fabric:</strong> Select casing textile</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>Comfort Layers:</strong> Configure latex zones</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>Dial in Thickness:</strong> 4″ to 10″ profiles</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>Custom Built:</strong> Delivered in 5–7 days</span>
-                    </li>
+                    {(data?.customBuilder?.features || [
+                      'Pick Cover Fabric: Select casing textile',
+                      'Comfort Layers: Configure latex zones',
+                      'Dial in Thickness: 4″ to 10″ profiles',
+                      'Custom Built: Delivered in 5–7 days',
+                    ]).map((f: string, i: number) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
+                        <span>{f.includes(':') ? <><strong>{f.split(':')[0]}:</strong>{f.split(':')[1]}</> : f}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -96,27 +97,22 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                 </div>
 
                 <div className="pt-1 md:pt-2">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">Shop Our Models</h3>
+                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">{data?.shopPrebuilt?.title || 'Shop Our Models'}</h3>
                   <p className="font-heading italic text-blue text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
-                    &ldquo;Shop pre-built — our mattresses, ready to ship.&rdquo;
+                    {data?.shopPrebuilt?.description || '&ldquo;Shop pre-built — our mattresses, ready to ship.&rdquo;'}
                   </p>
                   <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>13 Organic Models:</strong> Orthopedic alignment</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>3 Curated Tiers:</strong> Luxury, Premium & Comfort</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>Pick Your Size:</strong> Standard or Custom</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                      <span><strong>Express Shipping:</strong> Delivered in 5–7 Days</span>
-                    </li>
+                    {(data?.shopPrebuilt?.features || [
+                      '13 Organic Models: Orthopedic alignment',
+                      '3 Curated Tiers: Luxury, Premium & Comfort',
+                      'Pick Your Size: Standard or Custom',
+                      'Express Shipping: Delivered in 5–7 Days',
+                    ]).map((f: string, i: number) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
+                        <span>{f.includes(':') ? <><strong>{f.split(':')[0]}:</strong>{f.split(':')[1]}</> : f}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -131,16 +127,16 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
             onClick={onStartBuilding}
             className="flex-1 btn-primary bg-blue hover:bg-blue-dark text-white font-accent font-bold text-[10px] sm:text-[11px] md:text-[13px] tracking-widest uppercase py-3 md:py-4.5 rounded-xl md:rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-1 md:gap-3 shadow-md"
           >
-            <span className="hidden sm:inline">Start building</span>
-            <span className="sm:hidden">Build</span>
+            <span className="hidden sm:inline">{data?.customBuilder?.cta?.label || 'Start building'}</span>
+            <span className="sm:hidden">{data?.customBuilder?.cta?.label?.split(' ')[0] || 'Build'}</span>
             <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-white" />
           </button>
           <button
             onClick={onSeeAllModels}
             className="flex-1 bg-neutral-light hover:bg-brand-100 text-primary font-accent font-bold text-[10px] sm:text-[11px] md:text-[13px] tracking-widest uppercase py-3 md:py-4.5 rounded-xl md:rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-1 md:gap-3 border border-brand-200/60 shadow-sm"
           >
-            <span className="hidden sm:inline">See all models</span>
-            <span className="sm:hidden">All models</span>
+            <span className="hidden sm:inline">{data?.shopPrebuilt?.cta?.label || 'See all models'}</span>
+            <span className="sm:hidden">{data?.shopPrebuilt?.cta?.label?.split(' ')[0] || 'All models'}</span>
             <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-primary" />
           </button>
         </div>

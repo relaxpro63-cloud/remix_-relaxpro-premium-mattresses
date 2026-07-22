@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PhoneCall } from 'lucide-react';
+import { getSiteSettings } from '../../lib/queries';
 
 export default function WhatsAppFAB() {
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    getSiteSettings().then(setSettings).catch(() => {});
+  }, []);
+
   const handleOpenWhatsApp = () => {
-    const text = "Hello Suresh, I am visiting the RelaxPro Mattress website and would like a specialized orthopedic mattress advice. Please guide me!";
-    const url = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(text)}`;
+    const text = settings?.contactInfo?.whatsappDefaultMessage || "Hello Suresh, I am visiting the RelaxPro Mattress website and would like a specialized orthopedic mattress advice. Please guide me!";
+    const url = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || settings?.contactInfo?.whatsappNumber || '918686624494'}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
@@ -29,7 +36,7 @@ export default function WhatsAppFAB() {
         
         {/* Supporting text reveal on desktop hover */}
         <span className="font-display font-medium text-xs tracking-wide hidden md:inline-block max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap">
-          Expert Consultation On WhatsApp
+          {settings?.contactInfo?.whatsappHoverText || 'Expert Consultation On WhatsApp'}
         </span>
       </button>
     </div>

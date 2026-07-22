@@ -7,6 +7,7 @@ import sizeOption from './objects/sizeOption'
 import formConfig from './objects/formConfig'
 import pageSEO from './objects/pageSEO'
 import builderThickness from './objects/builderThickness'
+import richText from './objects/richText'
 
 import home from './documents/home'
 import product from './documents/product'
@@ -21,6 +22,13 @@ import productsPage from './documents/productsPage'
 import customBuilder from './documents/customBuilder'
 import builderMaterial from './documents/builderMaterial'
 import builderFabric from './documents/builderFabric'
+import navigation from './documents/navigation'
+import hero from './documents/hero'
+import sleepScience from './documents/sleepScience'
+import policyPage from './documents/policyPage'
+import location from './documents/location'
+import gallery from './documents/gallery'
+import sleepStyle from './documents/sleepStyle'
 
 export const schemaTypes = [
   ctaButton,
@@ -32,6 +40,7 @@ export const schemaTypes = [
   formConfig,
   pageSEO,
   builderThickness,
+  richText,
   home,
   product,
   showroom,
@@ -45,4 +54,11 @@ export const schemaTypes = [
   customBuilder,
   builderMaterial,
   builderFabric,
+  navigation,
+  hero,
+  sleepScience,
+  policyPage,
+  location,
+  gallery,
+  sleepStyle,
 ]

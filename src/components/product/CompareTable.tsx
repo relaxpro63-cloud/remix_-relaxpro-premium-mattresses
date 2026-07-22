@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Check, X, Shield, Plus, Minus, FileText, MessageSquare, Info, Award } from 'lucide-react';
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
+import { getAllProducts, imageUrl } from '../../lib/queries';
 
 interface CompareTableProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -14,11 +15,18 @@ interface CompareTableProps {
 export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNavigate }: CompareTableProps) {
   const [selectedSlugs, setSelectedSlugs] = useState<string[]>(['nirvana', 'arogya', 'sthira']);
   const [activeSize, setActiveSize] = useState<MattressSize>('king');
+  const [allProducts, setAllProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    getAllProducts().then(setAllProducts).catch(() => {});
+  }, []);
+
+  const productSource = allProducts.length > 0 ? allProducts : PRODUCTS;
 
   // Find products based on slugs
-  const comparedProducts = PRODUCTS.filter((p) => selectedSlugs.includes(p.slug));
+  const comparedProducts = productSource.filter((p: any) => selectedSlugs.includes(p.slug));
 
-  const availableProducts = PRODUCTS.filter((p) => !selectedSlugs.includes(p.slug));
+  const availableProducts = productSource.filter((p: any) => !selectedSlugs.includes(p.slug));
 
   const handleAddProduct = (slug: string) => {
     if (selectedSlugs.length >= 4) {
@@ -171,9 +179,9 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                 Visual Preview
               </td>
               {comparedProducts.map((p) => (
-                <td key={p.slug} className="p-4 border-l border-zinc-200">
+                  <td key={p.slug} className="p-4 border-l border-zinc-200">
                   <img
-                    src={p.image}
+                    src={imageUrl(p.image) || '/images/products/' + p.slug + '.webp'}
                     alt={p.name}
                     className="w-full h-28 object-cover rounded-xl border border-zinc-100 shadow-xs"
                     referrerPolicy="no-referrer"

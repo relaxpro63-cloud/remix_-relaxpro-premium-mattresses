@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, useMotionValue, animate } from 'motion/react';
 import { PRODUCTS } from '../../data/products';
 import { CartItem, Product, MattressSize, OrderReceipt } from '../../types';
 import PageShell from '../../components/layout/PageShell';
@@ -22,6 +22,7 @@ import {
   Check,
   Sparkles,
   Star,
+  ChevronLeft,
   ChevronRight,
   MessageSquare,
   ArrowRight,
@@ -98,6 +99,19 @@ export default function HomePage({
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [showrooms, setShowrooms] = useState<any[]>([]);
   const [bestsellers, setBestsellers] = useState<any[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+
+  const slideCarousel = (dir: 'prev' | 'next') => {
+    const container = carouselRef.current;
+    if (!container || testimonials.length === 0) return;
+    const cardWidth = 380 + 32;
+    const visible = Math.floor((container.parentElement?.clientWidth || 1200) / cardWidth);
+    const maxIdx = Math.max(0, testimonials.length - visible);
+    const currentIdx = Math.round(-x.get() / cardWidth);
+    const targetIdx = dir === 'next' ? Math.min(maxIdx, currentIdx + 1) : Math.max(0, currentIdx - 1);
+    animate(x, -targetIdx * cardWidth, { type: 'spring', stiffness: 300, damping: 30 });
+  };
 
   useEffect(() => {
     getHomePage().then(data => {
@@ -341,10 +355,20 @@ export default function HomePage({
         </FadeUp>
 
         <div className="relative">
-          <motion.div 
+          {/* Prev arrow */}
+          <button
+            onClick={() => slideCarousel('prev')}
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/40 shadow-md flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-200"
+            aria-label="Previous testimonials"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <motion.div
+            ref={carouselRef}
             className="flex gap-4 md:gap-8 cursor-grab active:cursor-grabbing pb-8 w-max"
             drag="x"
-            dragConstraints={{ right: 0, left: -((320 + 32) * 4 - window.innerWidth + 64) }}
+            style={{ x }}
             dragElastic={0.1}
           >
             {(testimonials.length > 0 ? testimonials : []).map((t: any, idx: number) => (
@@ -379,7 +403,16 @@ export default function HomePage({
               </motion.div>
             ))}
           </motion.div>
-          
+
+          {/* Next arrow */}
+          <button
+            onClick={() => slideCarousel('next')}
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/40 shadow-md flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-200"
+            aria-label="Next testimonials"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
           {/* Fade edges */}
           <div className="absolute inset-y-0 left-0 w-8 md:w-24 bg-gradient-to-r from-neutral-light to-transparent pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-8 md:w-24 bg-gradient-to-l from-neutral-light to-transparent pointer-events-none" />

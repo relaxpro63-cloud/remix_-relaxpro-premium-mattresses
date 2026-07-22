@@ -3,16 +3,51 @@
     "_id": "product-nirvana",
     "_type": "product",
     "name": "Nirvana",
-    "slug": { "current": "nirvana" },
+    "slug": {
+      "current": "nirvana"
+    },
     "tagline": "Experience ultimate relaxation",
     "shortDescription": "6 inch 100% pure Kerala Latex 90 density 96.6% purity GOLS certified plush therapeutic mattress for deep sleep and pressure relief",
-    "pricing": { "startingPrice": 54000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 54000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz0", "name": "King", "dimensions": "78x72 inches", "price": 54000, "inStock": true },
-      { "_key": "sz1", "name": "Queen", "dimensions": "78x60 inches", "price": 45000, "inStock": true },
-      { "_key": "sz2", "name": "Double", "dimensions": "78x48 inches", "price": 32000, "inStock": true },
-      { "_key": "sz3", "name": "Single", "dimensions": "78x36 inches", "price": 27000, "inStock": true },
-      { "_key": "sz4", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz0",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 54000,
+        "inStock": true
+      },
+      {
+        "_key": "sz1",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 45000,
+        "inStock": true
+      },
+      {
+        "_key": "sz2",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 32000,
+        "inStock": true
+      },
+      {
+        "_key": "sz3",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 27000,
+        "inStock": true
+      },
+      {
+        "_key": "sz4",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "6 inches",
@@ -35,7 +70,10 @@
     "isFeatured": true,
     "tier": "luxury",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-luxury"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -45,22 +83,62 @@
     "seo": {
       "metaTitle": "Nirvana 6\" Pure Natural Latex Mattress | RelaxPro",
       "metaDescription": "Buy RelaxPro Nirvana 6-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. 10-year warranty, free shipping."
-    }
+    },
+    "subtitle": "Luxury sleep begins with Nirvana latex mattress",
+    "keyBenefit": "6 inch Kerala Latex 90 density pure 96.6 percent GOLS certified for therapeutic deep sleep and pressure relief",
+    "description": "Nirvana is our flagship pure latex mattress, crafted entirely from a single 6-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations.",
+    "badge": "Premium Pure Latex Comfort",
+    "warranty": 10
   },
   {
     "_id": "product-amrita",
     "_type": "product",
     "name": "Amrita",
-    "slug": { "current": "amrita" },
+    "slug": {
+      "current": "amrita"
+    },
     "tagline": "Sleep that rejuvenates you",
     "shortDescription": "10 inch luxury hybrid with 4 inch Century rebonded base and 6 inch GOLS certified premium organic latex for body contouring and muscle recovery",
-    "pricing": { "startingPrice": 48000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 48000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz5", "name": "King", "dimensions": "78x72 inches", "price": 48000, "inStock": true },
-      { "_key": "sz6", "name": "Queen", "dimensions": "78x60 inches", "price": 40000, "inStock": true },
-      { "_key": "sz7", "name": "Double", "dimensions": "78x48 inches", "price": 32000, "inStock": true },
-      { "_key": "sz8", "name": "Single", "dimensions": "78x36 inches", "price": 24000, "inStock": true },
-      { "_key": "sz9", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz5",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 48000,
+        "inStock": true
+      },
+      {
+        "_key": "sz6",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 40000,
+        "inStock": true
+      },
+      {
+        "_key": "sz7",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 32000,
+        "inStock": true
+      },
+      {
+        "_key": "sz8",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 24000,
+        "inStock": true
+      },
+      {
+        "_key": "sz9",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "10 inches",
@@ -83,7 +161,10 @@
     "isFeatured": true,
     "tier": "luxury",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-luxury"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -93,22 +174,62 @@
     "seo": {
       "metaTitle": "Amrita 10\" Rebonded & Latex Luxury Mattress | RelaxPro",
       "metaDescription": "Shop the Amrita 10-inch luxurious mattress with 4\" rebonded support and 6\" certified natural rubber latex. Optimal orthopedic relaxation."
-    }
+    },
+    "subtitle": "Feel long-lasting luxury with Amrita latex mattress",
+    "keyBenefit": "Heavy hybrid foundation topped with a ultra-thick premium organic latex comfort layer for deep body contouring and muscle recovery",
+    "description": "Amrita is a 10-inch hybrid masterpiece that pairs a 4-inch high-density rebonded Century foam base with a luxurious 6-inch slab of GOLS-certified pure organic Kerala latex.",
+    "badge": "Premium 10 inch Reversible Rebonded + Latex Hybrid",
+    "warranty": 10
   },
   {
     "_id": "product-ananda",
     "_type": "product",
     "name": "Ananda",
-    "slug": { "current": "ananda" },
+    "slug": {
+      "current": "ananda"
+    },
     "tagline": "Blissful comfort every night",
     "shortDescription": "6 inch 100% pure GOLS certified organic latex mattress with buoyant response that cradles curves while securing independent motion isolation",
-    "pricing": { "startingPrice": 42000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 42000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz10", "name": "King", "dimensions": "78x72 inches", "price": 42000, "inStock": true },
-      { "_key": "sz11", "name": "Queen", "dimensions": "78x60 inches", "price": 35000, "inStock": true },
-      { "_key": "sz12", "name": "Double", "dimensions": "78x48 inches", "price": 28000, "inStock": true },
-      { "_key": "sz13", "name": "Single", "dimensions": "78x36 inches", "price": 21000, "inStock": true },
-      { "_key": "sz14", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz10",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 42000,
+        "inStock": true
+      },
+      {
+        "_key": "sz11",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 35000,
+        "inStock": true
+      },
+      {
+        "_key": "sz12",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 28000,
+        "inStock": true
+      },
+      {
+        "_key": "sz13",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 21000,
+        "inStock": true
+      },
+      {
+        "_key": "sz14",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "6 inches",
@@ -131,7 +252,10 @@
     "isFeatured": true,
     "tier": "luxury",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-luxury"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -141,22 +265,62 @@
     "seo": {
       "metaTitle": "Ananda 6\" Pure Natural Latex Mattress | RelaxPro",
       "metaDescription": "Order the Ananda 6-inch solid natural latex mattress by RelaxPro. Dynamic orthopedic elasticity, eco-conscious materials, and durable build."
-    }
+    },
+    "subtitle": "Turn bedtime into joy with Ananda latex mattress",
+    "keyBenefit": "Pure seamless solid organic latex master block yielding a buoyant response that cradle curves while securing independent motion isolation",
+    "description": "Ananda is a pure 6-inch solid natural latex mattress that strips away all foam and fillers to deliver the purest sleep experience possible.",
+    "badge": "100% Pure Classic Latex Comfort",
+    "warranty": 10
   },
   {
     "_id": "product-prakriti",
     "_type": "product",
     "name": "Prakriti",
-    "slug": { "current": "prakriti" },
+    "slug": {
+      "current": "prakriti"
+    },
     "tagline": "Comfort inspired by nature",
     "shortDescription": "8 inch eco-friendly twin latex mattress with 4 inch eco-dense latex rebonded core and 4 inch pure certified organic Kerala latex comfort topper",
-    "pricing": { "startingPrice": 44000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 44000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz15", "name": "King", "dimensions": "78x72 inches", "price": 44000, "inStock": true },
-      { "_key": "sz16", "name": "Queen", "dimensions": "78x60 inches", "price": 36500, "inStock": true },
-      { "_key": "sz17", "name": "Double", "dimensions": "78x48 inches", "price": 29000, "inStock": true },
-      { "_key": "sz18", "name": "Single", "dimensions": "78x36 inches", "price": 22000, "inStock": true },
-      { "_key": "sz19", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz15",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 44000,
+        "inStock": true
+      },
+      {
+        "_key": "sz16",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 36500,
+        "inStock": true
+      },
+      {
+        "_key": "sz17",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 29000,
+        "inStock": true
+      },
+      {
+        "_key": "sz18",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 22000,
+        "inStock": true
+      },
+      {
+        "_key": "sz19",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "8 inches",
@@ -179,7 +343,10 @@
     "isFeatured": true,
     "tier": "luxury",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-luxury" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-luxury"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -189,22 +356,62 @@
     "seo": {
       "metaTitle": "Prakriti 8\" Natural & Eco-Rebonded Latex Mattress | RelaxPro",
       "metaDescription": "Discover the Prakriti 8-inch natural latex mattress. Engineered with natural eco-rebonded core and 100% natural latex topper."
-    }
+    },
+    "subtitle": "Breathe easy, sleep better with Prakriti latex mattress",
+    "keyBenefit": "Eco-conscious design utilizing organic latex shredded elements bound in high-density core topped with pure organic latex comfort layer",
+    "description": "Prakriti is our most eco-conscious design, featuring a dual-latex construction that upcycles shredded organic latex into a 4-inch high-density rebonded core.",
+    "badge": "Eco-Friendly Twin Latex Engineering",
+    "warranty": 10
   },
   {
     "_id": "product-somya",
     "_type": "product",
     "name": "Somya",
-    "slug": { "current": "somya" },
+    "slug": {
+      "current": "somya"
+    },
     "tagline": "Soft gentle comfort that your body will love",
     "shortDescription": "10 inch triple-layer premium hybrid with 4 inch Century rebonded base, 2 inch HR softy cushioning, and 4 inch GOLS certified pure organic latex",
-    "pricing": { "startingPrice": 41000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 41000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz20", "name": "King", "dimensions": "78x72 inches", "price": 41000, "inStock": true },
-      { "_key": "sz21", "name": "Queen", "dimensions": "78x60 inches", "price": 34000, "inStock": true },
-      { "_key": "sz22", "name": "Double", "dimensions": "78x48 inches", "price": 27000, "inStock": true },
-      { "_key": "sz23", "name": "Single", "dimensions": "78x36 inches", "price": 20500, "inStock": true },
-      { "_key": "sz24", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz20",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 41000,
+        "inStock": true
+      },
+      {
+        "_key": "sz21",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 34000,
+        "inStock": true
+      },
+      {
+        "_key": "sz22",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 27000,
+        "inStock": true
+      },
+      {
+        "_key": "sz23",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 20500,
+        "inStock": true
+      },
+      {
+        "_key": "sz24",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "10 inches",
@@ -227,7 +434,10 @@
     "isFeatured": false,
     "tier": "premium",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-premium"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -237,22 +447,62 @@
     "seo": {
       "metaTitle": "Somya 10\" Natural Latex Comfort Mattress | RelaxPro",
       "metaDescription": "Shop Somya 10-inch mattress combining natural Kerala organic latex, plush HR soft foam, and sturdy rebonded base. Pure comfort and pain-free joints."
-    }
+    },
+    "subtitle": "Sleep peacefully with Somya Natural latex mattress",
+    "keyBenefit": "Triple-layer design featuring ultra-plush resilient softy foam nested under premium pure latex to cradle heavy pressure points with heavy-duty rebonded support below",
+    "description": "Somya is a 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support.",
+    "badge": "Soft Contouring Orthopedic Hybrid",
+    "warranty": 10
   },
   {
     "_id": "product-arogya",
     "_type": "product",
     "name": "Arogya",
-    "slug": { "current": "arogya" },
+    "slug": {
+      "current": "arogya"
+    },
     "tagline": "Health starts with good sleep",
     "shortDescription": "8 inch doctor-recommended orthopedic mattress with 4 inch Century rebonded support and 4 inch GOLS certified organic latex core for posture relief",
-    "pricing": { "startingPrice": 38000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 38000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz25", "name": "King", "dimensions": "78x72 inches", "price": 38000, "inStock": true },
-      { "_key": "sz26", "name": "Queen", "dimensions": "78x60 inches", "price": 31500, "inStock": true },
-      { "_key": "sz27", "name": "Double", "dimensions": "78x48 inches", "price": 26000, "inStock": true },
-      { "_key": "sz28", "name": "Single", "dimensions": "78x36 inches", "price": 19000, "inStock": true },
-      { "_key": "sz29", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz25",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 38000,
+        "inStock": true
+      },
+      {
+        "_key": "sz26",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 31500,
+        "inStock": true
+      },
+      {
+        "_key": "sz27",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 26000,
+        "inStock": true
+      },
+      {
+        "_key": "sz28",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 19000,
+        "inStock": true
+      },
+      {
+        "_key": "sz29",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "8 inches",
@@ -275,7 +525,10 @@
     "isFeatured": true,
     "tier": "premium",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-premium"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -285,22 +538,62 @@
     "seo": {
       "metaTitle": "Arogya 8\" Orthopedic Latex Mattress | RelaxPro",
       "metaDescription": "Configure Arogya 8-inch thick premium mattress with 4\" GOLS latex and 4\" high-density orthopedic rebond foam base. Eradicate back soreness."
-    }
+    },
+    "subtitle": "Support your body naturally with Arogya latex mattress",
+    "keyBenefit": "Perfect equal split of supportive heavy rebond base foam and cushioning latex, optimized for posture relief and corrective orthopedic support",
+    "description": "Arogya is a perfectly balanced 8-inch mattress with 4 inches of Century high-firm rebonded foam paired with 4 inches of GOLS-certified organic Kerala latex.",
+    "badge": "Doctor Recommended Ortho Core",
+    "warranty": 10
   },
   {
     "_id": "product-shuddha",
     "_type": "product",
     "name": "Shuddha",
-    "slug": { "current": "shuddha" },
+    "slug": {
+      "current": "shuddha"
+    },
     "tagline": "Pure sleep begins here",
     "shortDescription": "6 inch premium hybrid mattress with 4 inch latex rebonded eco core and 2 inch GOLS certified pure organic Kerala latex for natural comfort",
-    "pricing": { "startingPrice": 33000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 33000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz30", "name": "King", "dimensions": "78x72 inches", "price": 33000, "inStock": true },
-      { "_key": "sz31", "name": "Queen", "dimensions": "78x60 inches", "price": 27500, "inStock": true },
-      { "_key": "sz32", "name": "Double", "dimensions": "78x48 inches", "price": 22000, "inStock": true },
-      { "_key": "sz33", "name": "Single", "dimensions": "78x36 inches", "price": 16500, "inStock": true },
-      { "_key": "sz34", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz30",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 33000,
+        "inStock": true
+      },
+      {
+        "_key": "sz31",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 27500,
+        "inStock": true
+      },
+      {
+        "_key": "sz32",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 22000,
+        "inStock": true
+      },
+      {
+        "_key": "sz33",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 16500,
+        "inStock": true
+      },
+      {
+        "_key": "sz34",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "6 inches",
@@ -323,7 +616,10 @@
     "isFeatured": false,
     "tier": "premium",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-premium"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -333,22 +629,62 @@
     "seo": {
       "metaTitle": "Shuddha 6\" Premium Pure Latex Hybrid Mattress | RelaxPro",
       "metaDescription": "Buy Shuddha 6-inch premium mattress with natural latex and eco-dense rebond latex block. Organic comfort, medium support."
-    }
+    },
+    "subtitle": "Shuddha is made for those who choose natural comfort",
+    "keyBenefit": "Slick low-profile layout combining an eco-dense rebonded latex base with a highly responsive pure latex sleep zone",
+    "description": "Shuddha is a smart 6-inch low-profile mattress that proves big comfort comes in compact packages.",
+    "badge": "Optimal Height Natural Comfort",
+    "warranty": 10
   },
   {
     "_id": "product-sthira",
     "_type": "product",
     "name": "Sthira",
-    "slug": { "current": "sthira" },
+    "slug": {
+      "current": "sthira"
+    },
     "tagline": "Strong support for deep sleep",
     "shortDescription": "6 inch firm orthopedic mattress with 4 inch Century rebonded support and 2 inch GOLS certified pure organic Kerala latex — perfect firm extra-support ortho",
-    "pricing": { "startingPrice": 27000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 27000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz35", "name": "King", "dimensions": "78x72 inches", "price": 27000, "inStock": true },
-      { "_key": "sz36", "name": "Queen", "dimensions": "78x60 inches", "price": 22500, "inStock": true },
-      { "_key": "sz37", "name": "Double", "dimensions": "78x48 inches", "price": 18000, "inStock": true },
-      { "_key": "sz38", "name": "Single", "dimensions": "78x36 inches", "price": 13500, "inStock": true },
-      { "_key": "sz39", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz35",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 27000,
+        "inStock": true
+      },
+      {
+        "_key": "sz36",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 22500,
+        "inStock": true
+      },
+      {
+        "_key": "sz37",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 18000,
+        "inStock": true
+      },
+      {
+        "_key": "sz38",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 13500,
+        "inStock": true
+      },
+      {
+        "_key": "sz39",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "6 inches",
@@ -371,7 +707,10 @@
     "isFeatured": false,
     "tier": "premium",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-premium"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -381,22 +720,62 @@
     "seo": {
       "metaTitle": "Sthira 6\" Firm Orthopedic Latex Mattress | RelaxPro",
       "metaDescription": "Shop Sthira 6-inch extra supportive firm mattress. Features 4\" heavy rebonded base and 2\" organic latex luxury topper. Highly durable."
-    }
+    },
+    "subtitle": "Firm, Stable comfort with Sthira latex mattress",
+    "keyBenefit": "Highly requested firm orthopedic model packing a dense base with a high-tensile latex layer for chronic posture issues",
+    "description": "Sthira is our firmest orthopedic mattress, designed for those who need maximum structural support to correct chronic posture issues.",
+    "badge": "Perfect Firm Extra-Support Ortho",
+    "warranty": 10
   },
   {
     "_id": "product-bhumi",
     "_type": "product",
     "name": "Bhumi",
-    "slug": { "current": "bhumi" },
+    "slug": {
+      "current": "bhumi"
+    },
     "tagline": "Strong stable support inspired by the earth",
     "shortDescription": "8 inch triple-core hybrid mattress with 4 inch PU rebonded base, 2 inch latex rebonded cushioning, and 2 inch GOLS certified pure organic latex",
-    "pricing": { "startingPrice": 33000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 33000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz40", "name": "King", "dimensions": "78x72 inches", "price": 33000, "inStock": true },
-      { "_key": "sz41", "name": "Queen", "dimensions": "78x60 inches", "price": 27500, "inStock": true },
-      { "_key": "sz42", "name": "Double", "dimensions": "78x48 inches", "price": 22000, "inStock": true },
-      { "_key": "sz43", "name": "Single", "dimensions": "78x36 inches", "price": 16500, "inStock": true },
-      { "_key": "sz44", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz40",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 33000,
+        "inStock": true
+      },
+      {
+        "_key": "sz41",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 27500,
+        "inStock": true
+      },
+      {
+        "_key": "sz42",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 22000,
+        "inStock": true
+      },
+      {
+        "_key": "sz43",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 16500,
+        "inStock": true
+      },
+      {
+        "_key": "sz44",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "8 inches",
@@ -419,7 +798,10 @@
     "isFeatured": false,
     "tier": "premium",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-premium" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-premium"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -429,22 +811,62 @@
     "seo": {
       "metaTitle": "Bhumi 8\" Triple-Core Hybrid Latex Mattress | RelaxPro",
       "metaDescription": "Unlock restorative sleep with Bhumi 8-inch mattress. Advanced triple core combining GOLS organic latex, latex-rebonded and PU-rebond base."
-    }
+    },
+    "subtitle": "Experience balanced sleep with Bhumi latex mattress",
+    "keyBenefit": "Triple-firm hybrid stacking rebonded base, latex-rebonded core, and luxurious latex cover for layered structural support",
+    "description": "Bhumi stacks three distinct support zones for a progressively firm feel that adapts to your body weight.",
+    "badge": "Multi-Adaptive Posture Layering",
+    "warranty": 10
   },
   {
     "_id": "product-sunidra",
     "_type": "product",
     "name": "Sunidra",
-    "slug": { "current": "sunidra" },
+    "slug": {
+      "current": "sunidra"
+    },
     "tagline": "Sleep deeper, wake refreshed",
     "shortDescription": "8 inch universal medium comfort mattress with 4 inch Century rebonded base, 2 inch HR softy transition foam, and 2 inch GOLS certified organic latex",
-    "pricing": { "startingPrice": 30000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 30000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz45", "name": "King", "dimensions": "78x72 inches", "price": 30000, "inStock": true },
-      { "_key": "sz46", "name": "Queen", "dimensions": "78x60 inches", "price": 25000, "inStock": true },
-      { "_key": "sz47", "name": "Double", "dimensions": "78x48 inches", "price": 20000, "inStock": true },
-      { "_key": "sz48", "name": "Single", "dimensions": "78x36 inches", "price": 15000, "inStock": true },
-      { "_key": "sz49", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz45",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 30000,
+        "inStock": true
+      },
+      {
+        "_key": "sz46",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 25000,
+        "inStock": true
+      },
+      {
+        "_key": "sz47",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 20000,
+        "inStock": true
+      },
+      {
+        "_key": "sz48",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 15000,
+        "inStock": true
+      },
+      {
+        "_key": "sz49",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "8 inches",
@@ -467,7 +889,10 @@
     "isFeatured": false,
     "tier": "comfort",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-comfort"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -477,22 +902,62 @@
     "seo": {
       "metaTitle": "Sunidra 8\" Universal Latex Comfort Mattress | RelaxPro",
       "metaDescription": "Buy Sunidra 8-inch medium comfort mattress by RelaxPro. Sturdy rebonded core, breathable HR softy layer, and 2\" pure natural latex sheet."
-    }
+    },
+    "subtitle": "Experience peaceful nights with Sunidra latex mattress",
+    "keyBenefit": "Three-layer premium hybrid with cooling soft transition elements, delivering reliable medium comfort suitable for all types of sleepers",
+    "description": "Sunidra is our universal medium-comfort mattress, engineered to please side, back, and stomach sleepers alike.",
+    "badge": "Universal Medium All-Rounder",
+    "warranty": 10
   },
   {
     "_id": "product-vishram",
     "_type": "product",
     "name": "Vishram",
-    "slug": { "current": "vishram" },
+    "slug": {
+      "current": "vishram"
+    },
     "tagline": "Rest, relaxation, complete ease",
     "shortDescription": "7 inch great value hybrid mattress with 4 inch Century rebonded base, 2 inch HR softy cushioning, and 1 inch GOLS certified pure organic Kerala latex",
-    "pricing": { "startingPrice": 24000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 24000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz50", "name": "King", "dimensions": "78x72 inches", "price": 24000, "inStock": true },
-      { "_key": "sz51", "name": "Queen", "dimensions": "78x60 inches", "price": 20000, "inStock": true },
-      { "_key": "sz52", "name": "Double", "dimensions": "78x48 inches", "price": 18000, "inStock": true },
-      { "_key": "sz53", "name": "Single", "dimensions": "78x36 inches", "price": 12000, "inStock": true },
-      { "_key": "sz54", "name": "Diwan", "dimensions": "75x48 inches", "price": 34000, "inStock": true }
+      {
+        "_key": "sz50",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 24000,
+        "inStock": true
+      },
+      {
+        "_key": "sz51",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 20000,
+        "inStock": true
+      },
+      {
+        "_key": "sz52",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 18000,
+        "inStock": true
+      },
+      {
+        "_key": "sz53",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 12000,
+        "inStock": true
+      },
+      {
+        "_key": "sz54",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 34000,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "7 inches",
@@ -515,7 +980,10 @@
     "isFeatured": false,
     "tier": "comfort",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-comfort"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -525,22 +993,62 @@
     "seo": {
       "metaTitle": "Vishram 7\" Hybrid Value Latex Mattress | RelaxPro",
       "metaDescription": "Experience Vishram 7\" mattress: 4\" Century rebond, 2\" softy cushioning, and 1\" raw natural latex. Comfort and savings combined."
-    }
+    },
+    "subtitle": "Vishram designed for true rest and deep relaxation",
+    "keyBenefit": "Entry-level latex hybrid focusing on value, blending standard cushioning transition foam with a genuine touch of natural latex comfort",
+    "description": "Vishram is our most accessible latex hybrid, designed as the perfect introduction to natural latex sleep without the premium price tag.",
+    "badge": "Great Value Sleep Solution",
+    "warranty": 10
   },
   {
     "_id": "product-ojas",
     "_type": "product",
     "name": "Ojas",
-    "slug": { "current": "ojas" },
+    "slug": {
+      "current": "ojas"
+    },
     "tagline": "Wake up refreshed and energised every morning",
     "shortDescription": "6 inch best ortho value mattress with 4 inch ultra-firm rebonded base and 2 inch highly resilient HR softy foam — no latex, Oeko-Tex certified",
-    "pricing": { "startingPrice": 13000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 13000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz55", "name": "King", "dimensions": "78x72 inches", "price": 13000, "inStock": true },
-      { "_key": "sz56", "name": "Queen", "dimensions": "78x60 inches", "price": 11000, "inStock": true },
-      { "_key": "sz57", "name": "Double", "dimensions": "78x48 inches", "price": 8500, "inStock": true },
-      { "_key": "sz58", "name": "Single", "dimensions": "78x36 inches", "price": 6500, "inStock": true },
-      { "_key": "sz59", "name": "Diwan", "dimensions": "75x48 inches", "price": 9500, "inStock": true }
+      {
+        "_key": "sz55",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 13000,
+        "inStock": true
+      },
+      {
+        "_key": "sz56",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 11000,
+        "inStock": true
+      },
+      {
+        "_key": "sz57",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 8500,
+        "inStock": true
+      },
+      {
+        "_key": "sz58",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 6500,
+        "inStock": true
+      },
+      {
+        "_key": "sz59",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 9500,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "6 inches",
@@ -563,7 +1071,10 @@
     "isFeatured": false,
     "tier": "comfort",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-comfort"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -573,22 +1084,62 @@
     "seo": {
       "metaTitle": "Ojas Ortho Value Mattress - Standard & Quilted Covers | RelaxPro",
       "metaDescription": "Buy Ojas 6\" Orthopedic mattress. Tailored with density transitions for spine safety. Choose 300 GSM standard or upgrade to 450 GSM deluxe quilting."
-    }
+    },
+    "subtitle": "Feel the power of natural sleep with Ojas ortho mattress",
+    "keyBenefit": "Value orthopedic mattress without natural latex, utilizing high density resilience softy core for back safety and deep recovery",
+    "description": "Ojas proves that exceptional orthopedic support does not require natural latex, featuring a dual-density profile.",
+    "badge": "Best Ortho Value Mattress",
+    "warranty": 10
   },
   {
     "_id": "product-ayushrest",
     "_type": "product",
     "name": "AyushRest",
-    "slug": { "current": "ayushrest" },
+    "slug": {
+      "current": "ayushrest"
+    },
     "tagline": "Sleep built to last",
     "shortDescription": "8 inch tough long-life triple density orthopedic foam mattress with customized comfort zones for skeletal weight distribution and pressure spot prevention",
-    "pricing": { "startingPrice": 16000, "currency": "₹" },
+    "pricing": {
+      "startingPrice": 16000,
+      "currency": "₹"
+    },
     "sizes": [
-      { "_key": "sz60", "name": "King", "dimensions": "78x72 inches", "price": 16000, "inStock": true },
-      { "_key": "sz61", "name": "Queen", "dimensions": "78x60 inches", "price": 13500, "inStock": true },
-      { "_key": "sz62", "name": "Double", "dimensions": "78x48 inches", "price": 10500, "inStock": true },
-      { "_key": "sz63", "name": "Single", "dimensions": "78x36 inches", "price": 8000, "inStock": true },
-      { "_key": "sz64", "name": "Diwan", "dimensions": "75x48 inches", "price": 9500, "inStock": true }
+      {
+        "_key": "sz60",
+        "name": "King",
+        "dimensions": "78x72 inches",
+        "price": 16000,
+        "inStock": true
+      },
+      {
+        "_key": "sz61",
+        "name": "Queen",
+        "dimensions": "78x60 inches",
+        "price": 13500,
+        "inStock": true
+      },
+      {
+        "_key": "sz62",
+        "name": "Double",
+        "dimensions": "78x48 inches",
+        "price": 10500,
+        "inStock": true
+      },
+      {
+        "_key": "sz63",
+        "name": "Single",
+        "dimensions": "78x36 inches",
+        "price": 8000,
+        "inStock": true
+      },
+      {
+        "_key": "sz64",
+        "name": "Diwan",
+        "dimensions": "75x48 inches",
+        "price": 9500,
+        "inStock": true
+      }
     ],
     "specifications": {
       "thickness": "8 inches",
@@ -611,7 +1162,10 @@
     "isFeatured": false,
     "tier": "comfort",
     "inStock": true,
-    "category": { "_type": "reference", "_ref": "cat-comfort" },
+    "category": {
+      "_type": "reference",
+      "_ref": "cat-comfort"
+    },
     "shippingWarranty": {
       "deliveryTime": "5-7 business days",
       "freeDelivery": true,
@@ -621,6 +1175,11 @@
     "seo": {
       "metaTitle": "AyushRest 8\" Orthopedic Foam Mattress | RelaxPro",
       "metaDescription": "Explore the AyushRest 8\" orthopedic mattress by RelaxPro. Three high-performance foam layers protect orthopedic alignment perfectly with custom fabric."
-    }
+    },
+    "subtitle": "Long-term comfort with AyushRest ortho mattress",
+    "keyBenefit": "Heavy-duty 8 inch triple density orthopedic foam mattress with customized comfort zones for skeletal weight distribution",
+    "description": "AyushRest is our most robust all-foam orthopedic mattress with a heavy-duty 8-inch triple-density construction.",
+    "badge": "Tough Long-Life Ortho Choice",
+    "warranty": 10
   }
 ]

@@ -1,56 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Leaf, ShieldCheck, HeartPulse } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
 import { useNavigate } from 'react-router-dom';
+import { getHomePage, imageUrl } from '../../lib/queries';
 
-const postureData = [
-  {
-    title: 'Luxury Organic Latex',
-    subtitle: 'Pure Organic Latex Blocks',
-    desc: 'Denser solid GOLS latex sheets harvested in Kerala. Dual monozone and orthopedic 7-Zone configurations.',
-    items: [
-      'Nirvana (8" Dual Zone)',
-      'Amrita (10" Reversible Hybrid)',
-      'Ananda (6" Classic Pure core)',
-    ],
-    linkText: 'Browse Luxury Series',
-    slug: 'luxury',
-    icon: <Leaf className="w-5 h-5 md:w-7 md:h-7 text-emerald-700" />,
-    iconBg: 'bg-emerald-50 border-emerald-100'
-  },
-  {
-    title: 'Premium Spine Hybrids',
-    subtitle: 'Orthopedic Support Cores',
-    desc: 'Balanced structures blending organic latex with high density rebound posture matrices.',
-    items: [
-      'Arogya (8" Doctor recommendation)',
-      'Sthira (6" Ultimate firm alignment)',
-      'Somya (10" Extra softy adaptive)',
-    ],
-    linkText: 'Browse Premium Series',
-    slug: 'premium',
-    icon: <ShieldCheck className="w-5 h-5 md:w-7 md:h-7 text-blue-700" />,
-    iconBg: 'bg-blue-50 border-blue-100'
-  },
-  {
-    title: 'Comfort High-Resilience',
-    subtitle: 'Spine Transition Foams',
-    desc: 'Accessible comfort mattresses with custom density transitions and Oeko-Tex certified wrappers.',
-    items: [
-      'Sunidra (8" Universal sleeper)',
-      'Ojas (6" Standard micro-weave)',
-      'AyushRest (8" Triple ortho firmness)',
-    ],
-    linkText: 'Browse Comfort Series',
-    slug: 'comfort',
-    icon: <HeartPulse className="w-5 h-5 md:w-7 md:h-7 text-rose-700" />,
-    iconBg: 'bg-rose-50 border-rose-100'
-  },
+const defaultCategories = [
+  { title: 'Luxury Organic Latex', subtitle: 'Pure Organic Latex Blocks', desc: 'Denser solid GOLS latex sheets harvested in Kerala. Dual monozone and orthopedic 7-Zone configurations.', items: ['Nirvana (8" Dual Zone)', 'Amrita (10" Reversible Hybrid)', 'Ananda (6" Classic Pure core)'], linkText: 'Browse Luxury Series', slug: 'luxury' },
+  { title: 'Premium Spine Hybrids', subtitle: 'Orthopedic Support Cores', desc: 'Balanced structures blending organic latex with high density rebound posture matrices.', items: ['Arogya (8" Doctor recommendation)', 'Sthira (6" Ultimate firm alignment)', 'Somya (10" Extra softy adaptive)'], linkText: 'Browse Premium Series', slug: 'premium' },
+  { title: 'Comfort High-Resilience', subtitle: 'Spine Transition Foams', desc: 'Accessible comfort mattresses with custom density transitions and Oeko-Tex certified wrappers.', items: ['Sunidra (8" Universal sleeper)', 'Ojas (6" Standard micro-weave)', 'AyushRest (8" Triple ortho firmness)'], linkText: 'Browse Comfort Series', slug: 'comfort' },
 ];
+
+const iconMap: Record<string, React.ReactNode> = {
+  luxury: <Leaf className="w-5 h-5 md:w-7 md:h-7 text-emerald-700" />,
+  premium: <ShieldCheck className="w-5 h-5 md:w-7 md:h-7 text-blue-700" />,
+  comfort: <HeartPulse className="w-5 h-5 md:w-7 md:h-7 text-rose-700" />,
+};
+
+const bgMap: Record<string, string> = {
+  luxury: 'bg-emerald-50 border-emerald-100',
+  premium: 'bg-blue-50 border-blue-100',
+  comfort: 'bg-rose-50 border-rose-100',
+};
 
 export default function EngineeredPosture() {
   const navigate = useNavigate();
+  const [postureData, setPostureData] = useState(defaultCategories);
+  const [sectionTitle, setSectionTitle] = useState('Engineered to Match Every Posture Need');
+
+  useEffect(() => {
+    getHomePage().then(p => {
+      const ep = p?.engineeredPosture;
+      if (ep?.categories?.length > 0) {
+        setPostureData(ep.categories);
+        if (ep.sectionTitle) setSectionTitle(ep.sectionTitle);
+      }
+    }).catch(() => {});
+  }, []);
 
   return (
     <section className="py-16 md:py-24 px-4 md:px-8 bg-white border-y border-brand-200/40">
@@ -58,7 +44,7 @@ export default function EngineeredPosture() {
         <BlurFade delay={0.1}>
           <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral-800 leading-tight">
-              Engineered to Match Every Posture Need
+              {sectionTitle}
             </h2>
           </div>
         </BlurFade>
@@ -76,8 +62,8 @@ export default function EngineeredPosture() {
                   className="bg-neutral-light rounded-2xl md:rounded-[2rem] p-4 sm:p-6 md:p-8 border border-brand-200/50 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col group cursor-pointer"
                   onClick={() => navigate(`/collections/${data.slug}`)}
                 >
-                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 shadow-sm border mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 ${data.iconBg}`}>
-                    {data.icon}
+                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 shadow-sm border mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 ${bgMap[(data as any).slug] || 'bg-emerald-50 border-emerald-100'}`}>
+                    {iconMap[(data as any).slug] || <Leaf className="w-5 h-5 md:w-7 md:h-7 text-emerald-700" />}
                   </div>
                   
                   <h3 className="font-heading font-bold text-sm sm:text-base md:text-2xl text-neutral-800 mb-1 leading-tight">
@@ -88,7 +74,7 @@ export default function EngineeredPosture() {
                   </div>
                   
                   <p className="text-neutral-600 text-[10px] sm:text-xs md:text-sm leading-relaxed font-body mb-4 md:mb-6">
-                    {data.desc}
+                    {(data as any).description || data.desc}
                   </p>
 
                   <div className="mb-6 md:mb-8 flex-grow">

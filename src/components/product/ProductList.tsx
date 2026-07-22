@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, MessageSquare, Info, ChevronRight, Sparkles, AlertCircle, ShoppingCart } from 'lucide-react';
@@ -6,6 +6,7 @@ import { Product, MattressSize, Tier } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import ShineBorder from '../ui/ShineBorder';
 import SegmentedControl from '../ui/SegmentedControl';
+import { getAllProducts, imageUrl } from '../../lib/queries';
 
 interface ProductListProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -22,6 +23,12 @@ export default function ProductList({
   selectedTier,
   setSelectedTier
 }: ProductListProps) {
+  const [products, setProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    getAllProducts().then(setProducts).catch(() => {});
+  }, []);
+
   // Filters state
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedComfort, setSelectedComfort] = useState<'all' | 'soft' | 'medium' | 'firm'>('all');
@@ -106,7 +113,7 @@ export default function ProductList({
 
   // Filtered and sorted products
   const filteredProducts = useMemo(() => {
-    let result = [...PRODUCTS];
+    let result = products.length > 0 ? [...products] : [...PRODUCTS];
 
     // Search filter
     if (searchTerm.trim()) {
@@ -279,7 +286,7 @@ export default function ProductList({
                       </span>
                     )}
                     <img
-                      src={p.image}
+                      src={imageUrl(p.image) || '/images/products/' + p.slug + '.webp'}
                       alt={p.name}
                       className="w-full h-full object-cover transition-transform duration-700"
                       referrerPolicy="no-referrer"

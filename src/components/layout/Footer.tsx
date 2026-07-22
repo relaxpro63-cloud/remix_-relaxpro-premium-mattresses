@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
-import { getSiteSettings } from '../../lib/queries';
+import { getSiteSettings, getNavigation } from '../../lib/queries';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
 export default function Footer() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [settings, setSettings] = useState<any>(null);
+  const [nav, setNav] = useState<any>(null);
 
   useEffect(() => {
     getSiteSettings().then(setSettings).catch(() => {});
+    getNavigation().then(setNav).catch(() => {});
   }, []);
 
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
   };
 
-  const quickLinks = (settings?.navigation?.footerMenu || [
-    { label: 'Home', href: '/' },
-    { label: 'Shop All', href: '/catalog' },
-    { label: 'Customize', href: '/builder' },
-    { label: 'Sleep Science', href: '/science' },
-    { label: 'About Us', href: '/about' },
-  ]).map((item: any) => ({ path: item.href || item.path || '/', label: item.label }));
+  const quickLinks = (nav?.footerMenu?.[0]?.links || [
+    { label: 'Home', path: '/' },
+    { label: 'Shop All', path: '/catalog' },
+    { label: 'Customize', path: '/builder' },
+    { label: 'Sleep Science', path: '/science' },
+    { label: 'About Us', path: '/about' },
+  ]).map((item: any) => ({ path: item.path || item.href || '/', label: item.label }));
 
-  const customerCare = [
-    { path: '/contact', label: 'Contact Us' },
-    { path: '/locations', label: 'Store Locations' },
-    { path: '/science', label: 'Sleep Education' },
-  ];
+  const customerCare = (nav?.footerMenu?.[1]?.links || [
+    { label: 'Contact Us', path: '/contact' },
+    { label: 'Store Locations', path: '/locations' },
+    { label: 'Sleep Education', path: '/science' },
+  ]).map((item: any) => ({ path: item.path || item.href || '/', label: item.label }));
 
   const contactInfo = settings?.contactInfo || {};
   const defaultDescription = 'Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber — factory direct with zero markups.';
@@ -63,13 +65,13 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-4 pt-2">
-              <a href="https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Facebook">
+              <a href={settings?.contactInfo?.facebookUrl || 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/'} target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/relaxpro__mattresses/?hl=en" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Instagram">
+              <a href={settings?.contactInfo?.instagramUrl || 'https://www.instagram.com/relaxpro__mattresses/?hl=en'} target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Instagram">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://www.youtube.com/@sureshmattressmanufacturer3784" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="YouTube">
+              <a href={settings?.contactInfo?.youtubeUrl || 'https://www.youtube.com/@sureshmattressmanufacturer3784'} target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="YouTube">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>

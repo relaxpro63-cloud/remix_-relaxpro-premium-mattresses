@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronRight, Calendar, Award, Shield, Truck, Sparkles, ChevronDown } from 'lucide-react';
 import { RevealText, FadeUp, GoldShimmer, ScrollIndicator, EASE_LUXURY } from '../motion/motionPrimitives';
+import { getHero, imageUrl } from '../../lib/queries';
 
 interface HeroSliderProps {
   onNavigate: (page: string) => void;
@@ -9,6 +10,13 @@ interface HeroSliderProps {
 }
 
 export default function HeroSlider({ onNavigate }: HeroSliderProps) {
+  const [hero, setHero] = useState<any>(null);
+  const trustIconMap: Record<string, any> = { truck: Truck, shield: Shield, award: Award };
+
+  useEffect(() => {
+    getHero().then(d => setHero(d)).catch(() => {});
+  }, []);
+
   const sectionRef = useRef<HTMLElement>(null);
 
   // Parallax: image slowly scales down and shifts as user scrolls past hero
@@ -43,7 +51,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           animate={{ scale: 1.08, opacity: 0.7 }}
           transition={{ duration: 2.5, ease: EASE_LUXURY }}
           style={{ scale: imageScale, y: imageY }}
-          src="/images/hero-bedroom.png"
+          src={imageUrl(hero?.slides?.[0]?.image) || '/images/hero-bedroom.png'}
           alt="Serene organic bedroom featuring a handcrafted RelaxPro natural latex mattress"
           className="w-full h-full object-cover select-none pointer-events-none will-change-transform"
           loading="eager"
@@ -69,7 +77,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               style={{ color: '#C9A87C' }}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              Handcrafted Dunlop Latex Since 2015
+              {hero?.slides?.[0]?.badge || 'Handcrafted Dunlop Latex Since 2015'}
             </span>
           </FadeUp>
 
@@ -81,7 +89,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               delay={0.3}
               stagger={0.1}
             >
-              Pure Natural Latex,
+              {hero?.slides?.[0]?.heading || 'Pure Natural Latex,'}
             </RevealText>
             <div className="overflow-hidden">
               <motion.div
@@ -94,14 +102,14 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading italic font-normal tracking-[-0.02em] leading-[1.08]"
                     style={{ color: '#C9A87C' }}
                   >
-                    From Kerala
+                    {hero?.slides?.[0]?.highlight || 'From Kerala'}
                   </span>
                 </GoldShimmer>
                 <span
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading font-normal tracking-[-0.02em] leading-[1.08]"
                   style={{ color: '#F5F2EB' }}
                 >
-                  {' '}to Your Bed
+                  {' '}{hero?.slides?.[0]?.subheading || 'to Your Bed'}
                 </span>
               </motion.div>
             </div>
@@ -113,7 +121,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               className="font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-8"
               style={{ color: '#F5F2EB', opacity: 0.85 }}
             >
-              GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Hand-layered for the deepest, most restorative sleep.
+              {hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Hand-layered for the deepest, most restorative sleep.'}
             </p>
           </FadeUp>
 
@@ -128,7 +136,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 className="w-full sm:w-auto text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl transition-all shadow-lg"
                 style={{ backgroundColor: '#C9A87C', color: '#0F1F17' }}
               >
-                Explore the Collection
+                {hero?.slides?.[0]?.primaryCta?.label || 'Explore the Collection'}
                 <ChevronRight className="w-4 h-4 shrink-0" />
               </motion.button>
 
@@ -141,7 +149,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 style={{ color: '#F5F2EB' }}
               >
                 <Calendar className="w-4 h-4" style={{ color: '#C9A87C' }} />
-                Book a Showroom Visit
+                {hero?.slides?.[0]?.secondaryCta?.label || 'Book a Showroom Visit'}
               </motion.button>
             </div>
           </FadeUp>
@@ -158,24 +166,27 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             }}
             className="flex flex-wrap items-center gap-8 md:gap-12 pt-10 mt-14 border-t border-white/10"
           >
-            {[
-              { icon: <Truck className="w-5 h-5 shrink-0" style={{ color: '#C9A87C' }} />, text: 'Free Delivery' },
-              { icon: <Shield className="w-5 h-5 shrink-0" style={{ color: '#C9A87C' }} />, text: '100-Night Sleep Trial' },
-              { icon: <Award className="w-5 h-5 shrink-0" style={{ color: '#C9A87C' }} />, text: '10-Year Replacement Warranty' },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 0.9, y: 0, transition: { duration: 0.6, ease: EASE_LUXURY } },
-                }}
-                className="flex items-center gap-3 text-xs font-accent tracking-wider font-semibold whitespace-nowrap"
-                style={{ color: '#F5F2EB' }}
-              >
-                {item.icon}
-                {item.text}
-              </motion.div>
-            ))}
+            {(hero?.slides?.[0]?.trustBadges || [
+              { icon: 'truck', text: 'Free Delivery' },
+              { icon: 'shield', text: '100-Night Sleep Trial' },
+              { icon: 'award', text: '10-Year Replacement Warranty' },
+            ]).map((item: any, idx: number) => {
+              const IconComp = trustIconMap[item.icon] || Shield;
+              return (
+                <motion.div
+                  key={idx}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 0.9, y: 0, transition: { duration: 0.6, ease: EASE_LUXURY } },
+                  }}
+                  className="flex items-center gap-3 text-xs font-accent tracking-wider font-semibold whitespace-nowrap"
+                  style={{ color: '#F5F2EB' }}
+                >
+                  <IconComp className="w-5 h-5 shrink-0" style={{ color: '#C9A87C' }} />
+                  {item.text}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
 

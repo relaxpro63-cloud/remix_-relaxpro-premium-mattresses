@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PriceText from '../../components/ui/PriceText';
@@ -18,6 +18,7 @@ import PageShell from '../../components/layout/PageShell';
 import { Product, MattressSize, SizeCategory } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import { STANDARD_SIZES, SIZE_CATEGORIES } from '../../types/sizes';
+import { getProductBySlug, getAllProducts, getSiteSettings, imageUrl } from '../../lib/queries';
 
 interface ProductDetailRouteProps {
   onAddToCartDirect: (
@@ -41,7 +42,54 @@ const SIZE_LABELS: Record<string, string> = {
 export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }: ProductDetailRouteProps) {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const product = PRODUCTS.find((p) => p.slug === slug);
+  const [sanityProduct, setSanityProduct] = useState<any>(null);
+  const [allProducts, setAllProducts] = useState<any[]>([]);
+  const [staticImages, setStaticImages] = useState<any>(null);
+
+  const hcRaw = PRODUCTS.find((p) => p.slug === slug);
+  const hc = allProducts.find((p: any) => p.slug === slug) || hcRaw;
+
+  useEffect(() => {
+    if (!slug) return;
+    getProductBySlug(slug).then(setSanityProduct);
+    getAllProducts().then(setAllProducts);
+    getSiteSettings().then((s) => setStaticImages(s?.staticImages || null)).catch(() => {});
+  }, [slug]);
+
+  const product: Product | undefined = useMemo(() => {
+    if (!hc) return undefined;
+    if (!sanityProduct) return hc;
+    return {
+      ...hc,
+      name: sanityProduct.name || hc.name,
+      tagline: sanityProduct.tagline || hc.tagline,
+      subtitle: sanityProduct.subtitle || hc.subtitle,
+      keyBenefit: sanityProduct.keyBenefit || sanityProduct.shortDescription || hc.keyBenefit,
+      description: sanityProduct.description || sanityProduct.longDescription || hc.description,
+      badge: sanityProduct.badge || sanityProduct.badges?.[0] || hc.badge,
+      comfortLevel: sanityProduct.comfortLevel || hc.comfortLevel,
+      comfortRating: sanityProduct.comfortRating ?? hc.comfortRating,
+      totalThickness: sanityProduct.totalThickness ?? hc.totalThickness,
+      warranty: sanityProduct.warranty || sanityProduct.specifications?.warrantyPeriod || hc.warranty,
+      layers: sanityProduct.layers || hc.layers,
+      fabricGsm: sanityProduct.fabricGsm ?? hc.fabricGsm,
+      fabricType: sanityProduct.fabricType || hc.fabricType,
+      certifications: sanityProduct.certifications || hc.certifications,
+      accessories: sanityProduct.accessories || hc.accessories,
+      pricingModel: sanityProduct.pricingModel || hc.pricingModel,
+      pricing: sanityProduct.pricing || hc.pricing,
+      features: sanityProduct.features || hc.features,
+      image: imageUrl(sanityProduct.image) || hc.image,
+      images: sanityProduct.images?.length
+        ? sanityProduct.images.map((img: any) => imageUrl(img) || img)
+        : hc.images,
+      tier: sanityProduct.tier || hc.tier,
+      rating: sanityProduct.rating ?? (hc as any).rating,
+      reviewCount: sanityProduct.reviewCount ?? (hc as any).reviewCount,
+      metaTitle: sanityProduct.metaTitle || hc.metaTitle,
+      metaDescription: sanityProduct.metaDescription || hc.metaDescription,
+    };
+  }, [hc, sanityProduct]);
 
   // ─── Size selection state ───────────────────────────────────────────────────
   const [sizeCategory, setSizeCategory] = useState<SizeCategory | null>(null);
@@ -109,7 +157,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       '@type': 'WebPage',
       name: 'Product Not Found | RelaxPro Premium Mattresses',
       description: 'The requested mattress model could not be found.',
-      url: `https://remix-relaxpro-matress.vercel.app/mattresses/${slug}`,
+      url: `${window.location.origin}/mattresses/${slug}`,
     };
     return (
       <PageShell title="Product Not Found | RelaxPro Premium Mattresses" description="The requested mattress model could not be found." schema={productSchema}>
@@ -137,7 +185,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
         : product.pricing.fabric300Gsm?.[legacyKey] || 0,
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
-      url: `https://remix-relaxpro-matress.vercel.app/mattresses/${product.slug}`,
+      url: `${window.location.origin}/mattresses/${product.slug}`,
     },
   };
 
@@ -319,6 +367,15 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
               <div className="mt-6 p-5 rounded-2xl bg-neutral-light border border-blue/20 relative overflow-hidden">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue rounded-l-2xl" />
                 <p className="text-neutral-dark/80 text-sm leading-relaxed font-body">{product.keyBenefit}</p>
+              </div>
+
+              {/* About This Product */}
+              <div className="bg-white p-5 sm:p-6 rounded-2xl border border-brand-200/40 shadow-sm">
+                <h3 className="font-heading font-bold text-primary text-base sm:text-lg mb-3 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue" />
+                  About This Product
+                </h3>
+                <p className="text-neutral-dark/70 text-sm leading-relaxed font-body">{product.description}</p>
               </div>
 
               {/* ─── SIZE SELECTION BLOCK ─────────────────────────────────── */}
@@ -548,7 +605,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
             <div className="flex flex-col items-center text-center">
               <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
-                <img src="/images/gots-cotton.png" alt="GOTS Certified Organic Cotton Fabric" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                <img src={imageUrl(staticImages?.gotsCotton) || '/images/gots-cotton.png'} alt="GOTS Certified Organic Cotton Fabric" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-2">GOTS Organic Cotton Fabric</h3>
               <div className="inline-flex items-center gap-1 bg-success/15 border border-success/20 text-success text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4"><Check className="w-3.5 h-3.5" /> GOTS Certified</div>
@@ -557,7 +614,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
 
             <div className="flex flex-col items-center text-center">
               <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
-                <img src="/images/quilted-cotton.png" alt="Quilted Organic Cotton Layer" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                <img src={imageUrl(staticImages?.quiltedCotton) || '/images/quilted-cotton.png'} alt="Quilted Organic Cotton Layer" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-2">Quilted Organic Cotton</h3>
               <div className="inline-flex items-center gap-1 bg-success/15 border border-success/20 text-success text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4"><Check className="w-3.5 h-3.5" /> 100% Organic</div>
@@ -566,7 +623,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
 
             <div className="flex flex-col items-center text-center">
               <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white bg-neutral-light">
-                <img src="/images/natural-latex.png" alt="100% Natural Dunlop Latex" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                <img src={imageUrl(staticImages?.naturalLatex) || '/images/natural-latex.png'} alt="100% Natural Dunlop Latex" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="font-heading font-bold text-lg sm:text-xl text-primary mb-2">100% Natural Latex</h3>
               <div className="inline-flex items-center gap-1 bg-emerald-700/15 border border-emerald-700/20 text-emerald-700 text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4"><Leaf className="w-3.5 h-3.5" /> 100% Eco-Friendly</div>
@@ -577,12 +634,12 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
 
         {/* Comfort Meter */}
         <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
-          <img src="/images/comfort-meter.png" alt="RelaxPro Mattress Comfort Meter" className="w-full h-auto object-contain rounded-2xl shadow-sm" />
+          <img src={imageUrl(staticImages?.comfortMeter) || '/images/comfort-meter.png'} alt="RelaxPro Mattress Comfort Meter" className="w-full h-auto object-contain rounded-2xl shadow-sm" />
         </div>
 
         {/* Size Chart */}
         <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
-          <img src="/images/size-chart.png" alt="RelaxPro Mattress Size Chart" className="w-full h-auto object-contain rounded-2xl shadow-sm" />
+          <img src={imageUrl(staticImages?.sizeChart) || '/images/size-chart.png'} alt="RelaxPro Mattress Size Chart" className="w-full h-auto object-contain rounded-2xl shadow-sm" />
         </div>
       </motion.div>
     </PageShell>

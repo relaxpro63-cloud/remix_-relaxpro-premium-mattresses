@@ -51,6 +51,7 @@ export interface Product {
   certifications: string[];
   accessories: string[];
   keyBenefit: string;
+  description: string;
   badge?: string;
   pricingModel: PricingModel;
   pricing: {

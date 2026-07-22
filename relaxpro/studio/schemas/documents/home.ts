@@ -154,6 +154,66 @@ export default {
         },
       ],
     },
+    {
+      name: 'sleepStyleGuide', title: 'Sleep Style Guide Section', type: 'object',
+      fields: [
+        { name: 'sectionTitle', title: 'Section Title', type: 'string' },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2 },
+        { name: 'styles', title: 'Sleep Styles', type: 'array', of: [{ type: 'reference', to: [{ type: 'sleepStyle' }] }] },
+      ],
+    },
+    {
+      name: 'engineeredPosture', title: 'Engineered Posture Section', type: 'object',
+      fields: [
+        { name: 'sectionTitle', title: 'Section Title', type: 'string' },
+        {
+          name: 'categories', title: 'Posture Categories', type: 'array', of: [{
+            type: 'object',
+            fields: [
+              { name: 'title', title: 'Title', type: 'string' },
+              { name: 'subtitle', title: 'Subtitle', type: 'string' },
+              { name: 'description', title: 'Description', type: 'text', rows: 3 },
+              { name: 'items', title: 'Product Names', type: 'array', of: [{ type: 'string' }] },
+              { name: 'linkText', title: 'Link Button Text', type: 'string' },
+              { name: 'slug', title: 'Link Slug', type: 'string' },
+              { name: 'image', title: 'Background Image', type: 'imageWithAlt' },
+            ],
+          }],
+        },
+      ],
+    },
+    {
+      name: 'quickConnect', title: 'Quick Connect Bar', type: 'object',
+      fields: [
+        {
+          name: 'items', title: 'Quick Connect Items', type: 'array', of: [{
+            type: 'object',
+            fields: [
+              { name: 'label', title: 'Label', type: 'string' },
+              { name: 'icon', title: 'Icon Name (lucide)', type: 'string' },
+              { name: 'link', title: 'Link URL', type: 'string' },
+            ],
+          }],
+        },
+      ],
+    },
+    {
+      name: 'featuredComponents', title: 'Featured Brand Components', type: 'object',
+      fields: [
+        { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'What Inside Counts: Premium Components' },
+        {
+          name: 'components', title: 'Brand Components', type: 'array', of: [{
+            type: 'object',
+            fields: [
+              { name: 'title', title: 'Component Title', type: 'string' },
+              { name: 'description', title: 'Description', type: 'text', rows: 4 },
+              { name: 'badge', title: 'Certification Badge', type: 'string' },
+              { name: 'image', title: 'Component Image', type: 'imageWithAlt' },
+            ],
+          }],
+        },
+      ],
+    },
     { name: 'bookingForm', title: 'Book Showroom Visit Form', type: 'formConfig' },
     { name: 'diagnosticForm', title: 'Diagnostic Consultation Form', type: 'formConfig' },
     { name: 'seo', title: 'SEO Settings', type: 'pageSEO' },
