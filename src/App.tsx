@@ -22,7 +22,9 @@ import CompareTable from './components/product/CompareTable';
 import CartPage from './components/cart/CartPage';
 import PageShell from './components/layout/PageShell';
 import ProductDetailRoute from './routes/product/product-detail';
-
+import { ToastProvider } from './components/ui/Toast';
+import LeadPopup from './components/home/LeadPopup';
+import { usePopup } from './hooks/usePopup';
 const MattressBuilder = lazy(() => import('./components/builder/MattressBuilder'));
 
 function AppContent() {
@@ -31,6 +33,7 @@ function AppContent() {
   const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
   const [selectedTier, setSelectedTier] = useState<Tier | 'all'>('all');
   const [defaultSeo, setDefaultSeo] = useState<any>(null);
+  const popup = usePopup();
   useGlobalScrollAnimations();
 
   useEffect(() => {
@@ -167,6 +170,7 @@ function AppContent() {
       <Footer />
       <ScrollToTop />
       <WhatsAppFAB />
+      <LeadPopup isOpen={popup.isOpen} onClose={popup.close} />
     </div>
   );
 }
@@ -175,7 +179,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <AppContent />
+        <ToastProvider>
+          <AppContent />
+        </ToastProvider>
       </CartProvider>
     </BrowserRouter>
   );

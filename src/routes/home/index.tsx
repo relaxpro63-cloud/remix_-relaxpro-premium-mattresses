@@ -114,6 +114,8 @@ export default function HomePage({
   };
 
   useEffect(() => {
+    let bestsellersLoaded = false;
+
     getAllProducts().then(allProds => {
       const best = allProds.filter((p: any) => p.isBestseller).slice(0, 6);
       if (best.length > 0) {
@@ -121,10 +123,13 @@ export default function HomePage({
           ...p,
           image: imageUrl(p.image) || '/images/products/' + p.slug + '.webp'
         })));
+        bestsellersLoaded = true;
       }
     }).catch(() => {});
+
     getHomePage().then(data => {
-      if (bestsellers.length === 0) {
+      // Only use homepage bestsellers if getAllProducts didn't return any
+      if (!bestsellersLoaded) {
         const prods = data?.bestsellersSection?.products || [];
         if (prods.length > 0) {
           setBestsellers(prods.map((p: any) => {
@@ -134,6 +139,7 @@ export default function HomePage({
         }
       }
     }).catch(() => {});
+
     getTestimonials().then(setTestimonials).catch(() => {});
     getAllShowrooms().then(setShowrooms).catch(() => {});
   }, []);

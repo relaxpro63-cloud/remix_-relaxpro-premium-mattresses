@@ -93,19 +93,30 @@ function scanLocalImages(): ProductImageGroup[] {
   return groups
 }
 
-// ─── Fetch existing products from Sanity ──────────────────────────────────
-async function fetchSanityProducts(): Promise<Map<string, SanityProduct>> {
+// ─── Fetch existing products from Sanity (with image state) ──────────────
+interface ProductWithImageState extends SanityProduct {
+  hasMainImage: boolean
+  galleryCount: number
+}
+
+async function fetchSanityProducts(): Promise<Map<string, ProductWithImageState>> {
   console.log('[SANITY] Fetching existing products...')
-  const products: SanityProduct[] = await client.fetch(
-    `*[_type == "product"]{ _id, _type, slug, name }`
+  const products: ProductWithImageState[] = await client.fetch(
+    `*[_type == "product"]{
+      _id, _type, slug, name,
+      "hasMainImage": image != null,
+      "galleryCount": count(images)
+    }`
   )
-  const map = new Map<string, SanityProduct>()
+  const map = new Map<string, ProductWithImageState>()
+  let withImages = 0
   for (const p of products) {
     if (p.slug?.current) {
       map.set(p.slug.current, p)
+      if (p.hasMainImage) withImages++
     }
   }
-  console.log(`[SANITY] Found ${map.size} products in dataset\n`)
+  console.log(`[SANITY] Found ${map.size} products (${withImages} with images, ${map.size - withImages} without)\n`)
   return map
 }
 
@@ -207,6 +218,7 @@ async function main() {
   }
 
   console.log(`[PROCESS] Will process ${slugsToProcess.size} products\n`)
+  let patched = 0, skipped = 0
 
   // 4. Process each product
   for (const slug of slugsToProcess) {
@@ -218,21 +230,36 @@ async function main() {
     console.log(`  Product: ${productLabel} (${slug})`)
     console.log(`──────────────────────────────────────────────`)
 
-    // Upload main image
+    // ⚠️ IMPORTANT: Check if product already has images from a previous run.
+    // Sanity's patch.set() REPLACES the entire field, so re-running would
+    // overwrite previously uploaded images with only partial results.
+    const needsMain = !sanityProduct?.hasMainImage
+    const needsGallery = !sanityProduct?.galleryCount || sanityProduct.galleryCount === 0
+
+    if (!needsMain && !needsGallery) {
+      console.log(`  ℹ Already has images — skipping\n`)
+      skipped++
+      continue
+    }
+
+    console.log(`  ℹ Needs: ${needsMain ? 'main image ' : ''}${needsGallery ? 'gallery images' : ''}\n`)
+
+    // Upload main image (only if missing)
     let mainAssetId: string | null = null
-    if (group.mainImage) {
+    if (needsMain && group.mainImage) {
       mainAssetId = await uploadImage(group.mainImage, productLabel)
-    } else if (group.galleryImages.length > 0) {
-      // Fall back to first gallery image as main
-      console.log(`  ℹ No main image found, using first gallery image as main`)
+    } else if (needsMain && group.galleryImages.length > 0) {
+      console.log(`  ℹ No main image file found, using first gallery image as main`)
       mainAssetId = await uploadImage(group.galleryImages[0], productLabel)
     }
 
-    // Upload gallery images
+    // Upload gallery images (only if missing)
     const galleryAssetIds: (string | null)[] = []
-    for (const imgPath of group.galleryImages) {
-      const id = await uploadImage(imgPath, `${productLabel} gallery`)
-      galleryAssetIds.push(id)
+    if (needsGallery) {
+      for (const imgPath of group.galleryImages) {
+        const id = await uploadImage(imgPath, `${productLabel} gallery`)
+        galleryAssetIds.push(id)
+      }
     }
 
     // Build patch document
@@ -251,16 +278,20 @@ async function main() {
         try {
           await client.patch(sanityProduct._id).set(patch).commit()
           console.log(`  ✓ Patched ${sanityProduct._id} with image references\n`)
+          patched++
         } catch (err: any) {
           console.error(`  ✗ Failed to patch ${sanityProduct._id}: ${err.message}\n`)
         }
       } else {
         console.log(`  — No images to patch\n`)
+        skipped++
       }
     } else {
       console.log(`  ℹ Product "${slug}" not found in Sanity. Images uploaded but not linked to a document.\n`)
     }
   }
+
+  console.log(`[SUMMARY] ${patched} patched, ${skipped} already had images\n`)
 
   // 5. Summary
   console.log('══════════════════════════════════════════════════')
