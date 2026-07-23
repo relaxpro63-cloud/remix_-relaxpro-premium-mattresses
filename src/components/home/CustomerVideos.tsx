@@ -42,19 +42,13 @@ const VIDEOS: VideoData[] = [
   },
 ];
 
-function getPrimaryIndex(currentIndex: number, visibleCount: number, totalVideos: number): number {
-  // The center-ish slide in the visible set
-  const centerOffset = Math.floor((visibleCount - 1) / 2);
-  const rawCenter = currentIndex + centerOffset;
-  // If the center exceeds the last video, pin to the last video
-  return Math.min(rawCenter, totalVideos - 1);
-}
-
 export default function CustomerVideos() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Determine visible count based on viewport width
   const [visibleCount, setVisibleCount] = useState(3);
@@ -73,9 +67,6 @@ export default function CustomerVideos() {
 
   const totalVideos = VIDEOS.length;
   const maxIndex = Math.max(0, totalVideos - visibleCount);
-
-  // Determine which video is the "primary" (center-ish) — the one that should autoplay
-  const primaryIdx = getPrimaryIndex(currentIndex, visibleCount, totalVideos);
 
   const goTo = useCallback((index: number) => {
     const clamped = Math.max(0, Math.min(index, maxIndex));
@@ -103,6 +94,20 @@ export default function CustomerVideos() {
     }
   };
 
+  // Auto-advance timer — advances every 6 seconds, pauses on hover
+  useEffect(() => {
+    if (isPaused) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      goTo(currentIndex + 1);
+    }, 6000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [currentIndex, isPaused, goTo]);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -125,10 +130,10 @@ export default function CustomerVideos() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">
-            <Sparkles className="w-3.5 h-3.5" /> See RelaxPro in Action
+            <Sparkles className="w-3.5 h-3.5" /> Watch Our Craftsmanship
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-4 text-primary leading-tight">
-            Customer Videos
+            See Our Craftsmanship
           </h2>
           <p className="text-neutral-dark/60 text-sm md:text-base mt-4 font-body leading-relaxed max-w-lg mx-auto">
             Watch real customers experience the craftsmanship of our GOLS-certified natural latex mattresses,
@@ -137,7 +142,11 @@ export default function CustomerVideos() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative group">
+        <div
+          className="relative group"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {/* Navigation Arrows */}
           <button
             onClick={goPrev}
@@ -161,67 +170,46 @@ export default function CustomerVideos() {
               animate={{ x: `-${currentIndex * slideWidth}%` }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
-              {VIDEOS.map((video, idx) => {
-                const isActive = primaryIdx === idx;
-
-                return (
+              {VIDEOS.map((video) => (
+                <div
+                  key={video.id}
+                  className="shrink-0 px-2 md:px-3"
+                  style={{ width: `${slideWidth}%` }}
+                >
                   <div
-                    key={video.id}
-                    className="shrink-0 px-2 md:px-3"
-                    style={{ width: `${slideWidth}%` }}
+                    className="relative w-full rounded-xl md:rounded-2xl overflow-hidden bg-neutral-light border border-brand-200/40 shadow-sm group/card"
+                    style={{ aspectRatio: '9 / 16' }}
                   >
-                    <div
-                      className="relative w-full rounded-xl md:rounded-2xl overflow-hidden bg-neutral-light border border-brand-200/40 shadow-sm group/card"
-                      style={{ aspectRatio: '9 / 16' }}
-                    >
-                      {/* Lazy-loaded iframe — only render when this video is the primary */}
-                      {isActive ? (
-                        <iframe
-                          src={`${video.embedUrl}?autoplay=1&mute=1&rel=0&modestbranding=1`}
-                          title={video.title}
-                          className="absolute inset-0 w-full h-full"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                          allowFullScreen
-                          loading="lazy"
-                        />
-                      ) : (
-                        /* Placeholder when not active — shows a play overlay */
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-primary/5">
-                          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent/90 flex items-center justify-center shadow-lg shadow-accent/30">
-                            <svg className="w-6 h-6 md:w-7 md:h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
-                          <span className="mt-3 text-[10px] font-accent font-bold uppercase tracking-widest text-neutral-dark/50">
-                            Tap to play
-                          </span>
-                        </div>
-                      )}
+                    <iframe
+                      src={`${video.embedUrl}?autoplay=1&mute=1&rel=0&modestbranding=1`}
+                      title={video.title}
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      loading="lazy"
+                    />
 
-                      {/* Bottom gradient overlay for text readability */}
-                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                    {/* Bottom gradient overlay for text readability */}
+                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
 
-                      {/* Video title */}
-                      <div className="absolute bottom-3 left-3 right-3 z-10">
-                        <p className="text-[10px] md:text-xs font-accent font-semibold text-white leading-tight line-clamp-2 drop-shadow-sm">
-                          {video.title}
-                        </p>
-                      </div>
+                    {/* Video title */}
+                    <div className="absolute bottom-3 left-3 right-3 z-10">
+                      <p className="text-[10px] md:text-xs font-accent font-semibold text-white leading-tight line-clamp-2 drop-shadow-sm">
+                        {video.title}
+                      </p>
+                    </div>
 
-                      {/* Active badge */}
-                      {isActive && (
-                        <div className="absolute top-3 left-3 z-10">
-                          <span className="inline-flex items-center gap-1 text-[8px] md:text-[9px] font-accent font-bold uppercase tracking-widest bg-accent/90 text-primary px-2 py-1 rounded-full shadow-md">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                            Playing
-                          </span>
-                        </div>
-                      )}
+                    {/* Playing badge */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="inline-flex items-center gap-1 text-[8px] md:text-[9px] font-accent font-bold uppercase tracking-widest bg-accent/90 text-primary px-2 py-1 rounded-full shadow-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                        Playing
+                      </span>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </motion.div>
           </div>
 
@@ -239,8 +227,15 @@ export default function CustomerVideos() {
           <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
         </div>
 
+        {/* Auto-advance indicator */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          <span className={`text-[10px] font-accent font-bold uppercase tracking-widest transition-colors duration-300 ${isPaused ? 'text-accent' : 'text-neutral-dark/30'}`}>
+            {isPaused ? 'Paused' : 'Auto-playing'}
+          </span>
+        </div>
+
         {/* Pagination Dots */}
-        <div className="flex items-center justify-center gap-2 mt-8 md:mt-10">
+        <div className="flex items-center justify-center gap-2 mt-3 md:mt-4">
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
             <button
               key={idx}
