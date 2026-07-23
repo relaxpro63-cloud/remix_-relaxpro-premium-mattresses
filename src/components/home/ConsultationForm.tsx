@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MessageSquare, Check, Phone, Clipboard, Send, UserCheck, AlertCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
-import { submitLead } from '../../utils/googleSheets';
+import { submitLead } from '../../services/leadService';
 import { buildWhatsAppUrl } from '../../lib/site';
 
 export default function ConsultationForm() {
@@ -31,19 +31,13 @@ export default function ConsultationForm() {
     try {
       // Call Google Sheets integration
       await submitLead({
-        orderId: "",
-        name,
-        phone,
-        email: "",
-        city: "Hyderabad / Online",
-        address: "",
-        pincode: "",
-        contactTime: "Immediate Callback Request",
+        name: name.trim(),
+        phone: phone.replace(/\D/g, ''),
+        city: 'Hyderabad / Online',
+        contactTime: 'Immediate Callback Request',
         product: `Orthopedic Consultation (${painLevel})`,
-        size: "",
-        price: "0",
         notes: customNotes || `Back concerns flagged level: ${painLevel}`,
-        source: "Consultation Form"
+        source: 'Consultation Form',
       });
 
       const painLabels: Record<string, string> = { none: 'Healthy/None', mild: 'Mild Neck pain', lumbar: 'Lower Back Soreness', spine: 'Spine/Cervical Spine' };

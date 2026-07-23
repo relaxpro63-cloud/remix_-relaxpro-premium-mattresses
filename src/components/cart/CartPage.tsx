@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CartItem, OrderReceipt } from '../../types';
-import { submitLead } from '../../utils/googleSheets';
+import { submitLead } from '../../services/leadService';
 import { buildWhatsAppUrl } from '../../lib/site';
 import { getSiteSettings } from '../../lib/queries';
 
@@ -89,21 +89,21 @@ export default function CartPage({
       const productSizes = cart.map((item) => item.size).join(', ');
       const accessoriesList = cart.map((item) => item.includeAccessories ? 'Yes' : 'No').join(', ');
 
-      // Call Google Sheets integration integration
+      // Submit to Google Sheets via lead service
       await submitLead({
         orderId: mockOrderId,
-        name,
-        phone,
+        name: name.trim(),
+        phone: phone.replace(/\D/g, ''),
         email,
         city,
-        address,
+        address: address.trim(),
         pincode: zip,
         contactTime: contactTime || 'Not specified',
         product: productNames,
         size: productSizes,
         price: `₹${grandTotal.toLocaleString('en-IN')}`,
         notes: `Total: ₹${subtotal.toLocaleString('en-IN')}. Delivery Notes: ${notes || 'None'}. Accessories: ${accessoriesList}`,
-        source: "Website Order Checkout"
+        source: 'Website Order Checkout',
       });
 
       const itemLines = cart.map(i => `  • ${i.name} — ${i.size} × ${i.quantity} = ₹${(i.price * i.quantity).toLocaleString('en-IN')}`).join('\n');

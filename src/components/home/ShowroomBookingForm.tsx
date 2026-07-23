@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Calendar, Send, Sparkles, MapPin, UserCheck, AlertCircle, Clock } from 'lucide-react';
-import { submitLead } from '../../utils/googleSheets';
+import { submitLead } from '../../services/leadService';
 import { buildWhatsAppUrl } from '../../lib/site';
 
 export default function ShowroomBookingForm() {
@@ -39,19 +39,13 @@ export default function ShowroomBookingForm() {
       const detailedNotes = `Preferred Showroom: ${showroom}\nPreferred Date: ${visitDate}\nPreferred Time Slot: ${timeSlot}\nCustomer Notes: ${notes || 'None'}`;
       
       await submitLead({
-        orderId: "",
-        name,
-        phone,
-        email: "",
+        name: name.trim(),
+        phone: phone.replace(/\D/g, ''),
         city: showroom,
-        address: "",
-        pincode: "",
         contactTime: `${visitDate} @ ${timeSlot}`,
-        product: "Showroom Visit Booking",
-        size: "",
-        price: "0",
+        product: 'Showroom Visit Booking',
         notes: detailedNotes,
-        source: "Showroom Booking Form"
+        source: 'Showroom Booking Form',
       });
 
       const waMsg = [
