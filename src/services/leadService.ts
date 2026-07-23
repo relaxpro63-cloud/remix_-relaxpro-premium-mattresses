@@ -2,7 +2,7 @@ import { LeadFormData } from '../types';
 import { buildWhatsAppUrl } from '../lib/site';
 
 const GOOGLE_SCRIPT_URL = import.meta.env.VITE_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbyXT4mWL-fsD2LWxEwTcT7_v9mDprfZYrloDW3bn9jWPd_L1nPj4hZ20RuZdbsd1DcV/exec';
+  'https://script.google.com/macros/s/AKfycby-bBPsiqH8NjHZYWrY5ViieNtSfOqLhKXJNfxXEVwMNwuQCsJi-wQSZ8UIy4vIR7Ya/exec';
 
 interface LeadSubmissionData {
   name: string;
