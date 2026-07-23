@@ -18,6 +18,7 @@ import SleepFAQs from '../../components/home/SleepFAQs';
 import ConsultationForm from '../../components/home/ConsultationForm';
 import ShowroomBookingForm from '../../components/home/ShowroomBookingForm';
 import ComparisonTable from '../../components/home/ComparisonTable';
+import CustomerVideos from '../../components/home/CustomerVideos';
 import {
   Check,
   Sparkles,
@@ -437,6 +438,8 @@ export default function HomePage({
           <div className="absolute inset-y-0 right-0 w-8 md:w-24 bg-gradient-to-l from-neutral-light to-transparent pointer-events-none" />
         </div>
       </section>
+
+      <CustomerVideos />
 
       <section id="locations" className="bg-white border-t border-brand-200/40 py-16 md:py-24 px-4 md:px-8 relative overflow-hidden">
         {/* Wipe reveal background element */}
