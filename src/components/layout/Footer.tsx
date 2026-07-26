@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, ArrowRight, Sparkles, Heart, Award, MessageSquare, Store } from 'lucide-react';
+import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, ArrowRight, Heart, Award, MessageSquare, Store } from 'lucide-react';
 import { getSiteSettings, getNavigation } from '../../lib/queries';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
@@ -9,8 +9,7 @@ export default function Footer() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [settings, setSettings] = useState<any>(null);
   const [nav, setNav] = useState<any>(null);
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+  
 
   useEffect(() => {
     getSiteSettings().then(setSettings).catch(() => {});
@@ -46,14 +45,6 @@ export default function Footer() {
     { icon: Heart, text: 'Handmade in India' },
   ];
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
-    }
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -198,44 +189,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Newsletter */}
-            <div className="footer-glass-card p-6 space-y-4">
-              <h4 className="font-heading font-bold text-white/90 text-xs uppercase tracking-[0.18em] flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-brand-400" />
-                Stay Connected
-              </h4>
-              <p className="text-sm text-white/40 font-body leading-relaxed">
-                Receive exclusive offers, sleep tips, and product launches.
-              </p>
-              {!subscribed ? (
-                <form onSubmit={handleSubscribe} className="flex gap-3">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="footer-newsletter-input flex-1"
-                    aria-label="Email for newsletter"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="shrink-0 px-5 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-accent font-bold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-brand-600/25 active:scale-95"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-3 text-sm text-eco-500 font-accent font-semibold bg-white/5 rounded-xl px-4 py-3 border border-eco-500/20"
-                >
-                  <MessageSquare className="w-4 h-4 shrink-0" />
-                  Thanks! We'll keep you posted.
-                </motion.div>
-              )}
-            </div>
+
           </motion.div>
         </motion.div>
 

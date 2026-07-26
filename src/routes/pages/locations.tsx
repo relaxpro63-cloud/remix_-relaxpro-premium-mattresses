@@ -11,7 +11,16 @@ export default function LocationsPage() {
 
   useEffect(() => {
     getLocations().then(data => {
-      if (data && data.length > 0) setLocations(data);
+      if (data && data.length > 0) {
+        // Normalize Sanity data to match fallback structure
+        const normalized = data.map((loc: any) => ({
+          city: loc.address?.city || loc.city || 'Showroom',
+          address: typeof loc.address === 'object' ? loc.address?.fullAddress || loc.address?.street || '' : (loc.address || ''),
+          hours: typeof loc.hours === 'object' ? [loc.hours.monday, loc.hours.tuesday, loc.hours.wednesday, loc.hours.thursday, loc.hours.friday, loc.hours.saturday, loc.hours.sunday].filter(Boolean).join(', ') : (loc.hours || ''),
+          phones: loc.contact?.phoneNumbers || loc.phones || [],
+        }));
+        setLocations(normalized);
+      }
     }).catch(() => {});
   }, []);
 
