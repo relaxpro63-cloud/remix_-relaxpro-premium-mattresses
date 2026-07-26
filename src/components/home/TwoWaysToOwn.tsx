@@ -82,7 +82,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                     'Pick Cover Fabric: Select casing textile',
                     'Comfort Layers: Configure latex zones',
                     'Dial in Thickness: 4″ to 10″ profiles',
-                    'Custom Built: Delivered in 5–7 days',
+                    'Custom Built: Delivered in 10–14 days',
                   ]).map((feature: any, i: number) => {
                     // Handle both new Sanity object format and old string format
                     const text = typeof feature === 'string' ? feature : `${feature.title}${feature.description ? `: ${feature.description}` : ''}`;
@@ -149,7 +149,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                     '13 Organic Models: Orthopedic alignment',
                     '3 Curated Tiers: Luxury, Premium & Comfort',
                     'Pick Your Size: Standard or Custom',
-                    'Express Shipping: Delivered in 5–7 Days',
+                    'Express Shipping: Delivered in 10–14 Days',
                   ]).map((feature: any, i: number) => {
                     const text = typeof feature === 'string' ? feature : `${feature.title}${feature.description ? `: ${feature.description}` : ''}`;
                     const hasColon = text.includes(':');

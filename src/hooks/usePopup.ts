@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 const POPUP_DISMISSED_KEY = 'relaxpro_popup_last_dismissed';
 const POPUP_SUBMITTED_KEY = 'relaxpro_popup_submitted';
-const HIDE_HOURS = 24;
+const HIDE_HOURS = 0.5; // 30 min — popup reappears until user submits the form
 const TRIGGER_SECONDS = 10;
 const SCROLL_PERCENT = 0.4;
 

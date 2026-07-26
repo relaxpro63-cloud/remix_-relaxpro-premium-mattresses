@@ -372,9 +372,20 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                   <span className="text-sm">Enquire on WhatsApp</span>
                 </button>
               </div>
-            </div>
+</div>
+<div className="mt-8 space-y-6">
+<div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+<img src="/images/organic-cotton-quilting-fabric-latex-mattress-desktop-new.jpeg" alt="Organic Cotton Quilting" className="w-full h-auto object-cover" />
+</div>
+<div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+<img src="/images/technical-specification-dreamzee-desktop.png" alt="Technical Specifications" className="w-full h-auto object-cover" />
+</div>
+<div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+<img src="/images/Vilasa-Benfits-fabric-desktop.jpeg" alt="Vilasa Benefits" className="w-full h-auto object-cover" />
+</div>
+</div>
 
-            {/* Ask Suresh / Personal Consultation CTA */}
+{/* Ask Suresh / Personal Consultation CTA */}
             <div className="mt-6 bg-sky-100/80 p-6 md:p-8 rounded-[2rem] border border-brand-200/40 flex items-start gap-5 shadow-sm">
               <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shrink-0 border border-brand-200/50 shadow-sm relative">
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-white animate-pulse"></div>
