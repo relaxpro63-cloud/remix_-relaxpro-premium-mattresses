@@ -24,10 +24,10 @@
       "title": "Build Your Own Mattress",
       "description": "Choose your exact size, thickness, and layer configuration — we manufacture it to order. Get a WhatsApp quote in minutes with our guided 2-step builder.",
       "features": [
-        "Any custom length: 48\" to 96\"",
-        "Any custom width: 24\" to 84\"",
-        "Choose your comfort layer thickness",
-        "Instant WhatsApp price estimate"
+        "Pick Cover Fabric: Select casing textile",
+        "Comfort Layers: Configure latex zones",
+        "Dial in Thickness: 4″ to 10″ profiles",
+        "Custom Built: Delivered in 10–14 days"
       ],
       "cta": { "label": "Start Building", "href": "/custom-builder", "variant": "primary" },
       "image": null
@@ -36,10 +36,10 @@
       "title": "Shop Pre-Built Mattresses",
       "description": "Explore our curated collection of 13 handcrafted latex and hybrid mattresses — from value entry to 10\" luxury pure latex, each backed by a 10-year warranty.",
       "features": [
-        "13 expertly engineered models",
-        "Starting from ₹6,500 (single size)",
-        "Free shipping across South India",
-        "100-night comfort trial on all models"
+        "13 Organic Models: Orthopedic alignment",
+        "3 Curated Tiers: Luxury, Premium & Comfort",
+        "Pick Your Size: Standard or Custom",
+        "Express Shipping: Delivered in 10–14 Days"
       ],
       "cta": { "label": "Browse Catalog", "href": "/products", "variant": "primary" },
       "image": null

@@ -9,9 +9,10 @@ interface LeadPopupProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmitted: () => void;
+  onDontShowAgain: () => void;
 }
 
-export default function LeadPopup({ isOpen, onClose, onSubmitted }: LeadPopupProps) {
+export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgain }: LeadPopupProps) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
@@ -281,6 +282,17 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted }: LeadPopupPro
                     <p className="text-center text-[9px] sm:text-[10px] font-body text-graphite-400 leading-relaxed">
                       By submitting this form you agree to be contacted via call, WhatsApp or email.
                     </p>
+
+                    {/* Don't show again */}
+                    <div className="text-center pt-1">
+                      <button
+                        type="button"
+                        onClick={onDontShowAgain}
+                        className="text-[11px] font-accent text-graphite-400 hover:text-brand-600 transition-colors cursor-pointer underline underline-offset-2 decoration-dotted hover:decoration-solid"
+                      >
+                        Don't show this again
+                      </button>
+                    </div>
                   </form>
                 </>
               ) : (

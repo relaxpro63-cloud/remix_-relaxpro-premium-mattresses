@@ -372,18 +372,6 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                   <span className="text-sm">Enquire on WhatsApp</span>
                 </button>
               </div>
-</div>
-<div className="mt-8 space-y-6">
-<div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-<img src="/images/organic-cotton-quilting-fabric-latex-mattress-desktop-new.jpeg" alt="Organic Cotton Quilting" className="w-full h-auto object-cover" />
-</div>
-<div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-<img src="/images/technical-specification-dreamzee-desktop.png" alt="Technical Specifications" className="w-full h-auto object-cover" />
-</div>
-<div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-<img src="/images/Vilasa-Benfits-fabric-desktop.jpeg" alt="Vilasa Benefits" className="w-full h-auto object-cover" />
-</div>
-</div>
 
 {/* Ask Suresh / Personal Consultation CTA */}
             <div className="mt-6 bg-sky-100/80 p-6 md:p-8 rounded-[2rem] border border-brand-200/40 flex items-start gap-5 shadow-sm">
@@ -455,6 +443,19 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
               The main component of our mattress is 100% natural latex. We bring you the highest-quality latex that does not contain any synthetic material or fillers. It is made through the energy-efficient Dunlop process that provides best sleeping surface available in the market.
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Certification Feature Images */}
+      <div className="mt-8 space-y-6">
+        <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+          <img src="/images/organic-cotton-quilting-fabric-latex-mattress-desktop-new.jpeg" alt="Organic Cotton Quilting" className="w-full h-auto object-cover" />
+        </div>
+        <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+          <img src="/images/technical-specification-dreamzee-desktop.png" alt="Technical Specifications" className="w-full h-auto object-cover" />
+        </div>
+        <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+          <img src="/images/Vilasa-Benfits-fabric-desktop.jpeg" alt="Vilasa Benefits" className="w-full h-auto object-cover" />
         </div>
       </div>
 

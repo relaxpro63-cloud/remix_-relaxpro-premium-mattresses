@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const POPUP_DISMISSED_KEY = 'relaxpro_popup_last_dismissed';
 const POPUP_SUBMITTED_KEY = 'relaxpro_popup_submitted';
-const HIDE_HOURS = 0.5; // 30 min — popup reappears until user submits the form
-const TRIGGER_SECONDS = 10;
+const POPUP_DISMISSED_KEY = 'relaxpro_popup_dismissed';
+const INTERVAL_SECONDS = 15;
 const SCROLL_PERCENT = 0.4;
 
 interface UsePopupReturn {
@@ -11,86 +10,72 @@ interface UsePopupReturn {
   open: () => void;
   close: () => void;
   onSubmitted: () => void;
+  onDontShowAgain: () => void;
 }
 
 export function usePopup(): UsePopupReturn {
   const [isOpen, setIsOpen] = useState(false);
-  const hasTriggered = useRef(false);
-  const scrollListenerRef = useRef<(() => void) | null>(null);
+  const [dismissed, setDismissed] = useState(() => {
+    try { return localStorage.getItem(POPUP_DISMISSED_KEY) === 'true'; }
+    catch { return false; }
+  });
+  const [submitted, setSubmitted] = useState(() => {
+    try { return localStorage.getItem(POPUP_SUBMITTED_KEY) === 'true'; }
+    catch { return false; }
+  });
 
-  const wasSubmitted = useCallback(() => {
-    try {
-      return localStorage.getItem(POPUP_SUBMITTED_KEY) === 'true';
-    } catch {
-      return false;
-    }
-  }, []);
+  const permanentlySuppressed = dismissed || submitted;
 
-  const canShow = useCallback(() => {
-    if (wasSubmitted()) return false;
-    try {
-      const lastDismissed = localStorage.getItem(POPUP_DISMISSED_KEY);
-      if (!lastDismissed) return true;
-      const diffMs = Date.now() - new Date(lastDismissed).getTime();
-      const diffHours = diffMs / (1000 * 60 * 60);
-      return diffHours >= HIDE_HOURS;
-    } catch {
-      return true;
-    }
-  }, [wasSubmitted]);
-
-  const triggerShow = useCallback(() => {
-    if (hasTriggered.current || !canShow()) return;
-    hasTriggered.current = true;
-    setIsOpen(true);
-    // Clean up scroll listener
-    if (scrollListenerRef.current) {
-      window.removeEventListener('scroll', scrollListenerRef.current);
-      scrollListenerRef.current = null;
-    }
-  }, [canShow]);
-
-  // Timer trigger (10 seconds)
+  // Initial trigger: show popup 2 seconds after page load
   useEffect(() => {
-    if (!canShow()) return;
-    const timer = setTimeout(triggerShow, TRIGGER_SECONDS * 1000);
+    if (permanentlySuppressed) return;
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 2000);
     return () => clearTimeout(timer);
-  }, [canShow, triggerShow]);
+  }, [permanentlySuppressed]);
 
-  // Scroll trigger (40%)
+  // Repeating interval: every 15 seconds, try to show the popup
   useEffect(() => {
-    if (!canShow() || hasTriggered.current) return;
+    if (permanentlySuppressed) return;
+    const interval = setInterval(() => {
+      setIsOpen(true);
+    }, INTERVAL_SECONDS * 1000);
+    return () => clearInterval(interval);
+  }, [permanentlySuppressed]);
 
+  // Scroll trigger: show popup when user scrolls past 40%
+  useEffect(() => {
+    if (permanentlySuppressed) return;
     const onScroll = () => {
       const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
       if (scrollPercent >= SCROLL_PERCENT) {
-        triggerShow();
+        setIsOpen(true);
       }
     };
-
-    scrollListenerRef.current = onScroll;
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      scrollListenerRef.current = null;
-    };
-  }, [canShow, triggerShow]);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [permanentlySuppressed]);
 
   const close = useCallback(() => {
     setIsOpen(false);
-    try {
-      localStorage.setItem(POPUP_DISMISSED_KEY, new Date().toISOString());
-    } catch { /* noop */ }
   }, []);
 
   const onSubmitted = useCallback(() => {
     setIsOpen(false);
-    try {
-      localStorage.setItem(POPUP_SUBMITTED_KEY, 'true');
-    } catch { /* noop */ }
+    try { localStorage.setItem(POPUP_SUBMITTED_KEY, 'true'); }
+    catch { /* noop */ }
+    setSubmitted(true);
+  }, []);
+
+  const onDontShowAgain = useCallback(() => {
+    setIsOpen(false);
+    try { localStorage.setItem(POPUP_DISMISSED_KEY, 'true'); }
+    catch { /* noop */ }
+    setDismissed(true);
   }, []);
 
   const open = useCallback(() => setIsOpen(true), []);
 
-  return { isOpen, open, close, onSubmitted };
+  return { isOpen, open, close, onSubmitted, onDontShowAgain };
 }

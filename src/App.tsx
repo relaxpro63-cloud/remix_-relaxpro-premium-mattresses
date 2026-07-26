@@ -182,7 +182,7 @@ function AppContent() {
       <Footer />
       <ScrollToTop />
       <WhatsAppFAB />
-      <LeadPopup isOpen={popup.isOpen} onClose={popup.close} onSubmitted={popup.onSubmitted} />
+      <LeadPopup isOpen={popup.isOpen} onClose={popup.close} onSubmitted={popup.onSubmitted} onDontShowAgain={popup.onDontShowAgain} />
     </div>
   );
 }
