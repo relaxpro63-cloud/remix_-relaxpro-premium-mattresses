@@ -1,94 +1,70 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Sparkles, Send, Loader2, CheckCircle, Phone, User, MapPin } from 'lucide-react';
+import { X, Gift, Send, Loader2, CheckCircle, Phone, User, MapPin, Mail, Shield, Headphones, Tag } from 'lucide-react';
 import { submitLead } from '../../services/leadService';
 import { validateName, validatePhone, validateCity } from '../../utils/validation';
-import { useToast } from '../ui/Toast';
 import { buildWhatsAppUrl } from '../../lib/site';
 
 interface LeadPopupProps {
   isOpen: boolean;
   onClose: () => void;
+  onSubmitted: () => void;
 }
 
-export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
+export default function LeadPopup({ isOpen, onClose, onSubmitted }: LeadPopupProps) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+  const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
-  const toast = useToast();
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
   const handleClose = useCallback(() => {
-    if (!isSubmitting) {
-      setName('');
-      setPhone('');
-      setCity('');
-      setErrors({});
-      setSubmitted(false);
-      onClose();
-    }
-  }, [isSubmitting, onClose]);
+    setName(''); setPhone(''); setCity(''); setEmail('');
+    setErrors({}); setSubmitted(false); setIsSubmitting(false);
+    onClose();
+  }, [onClose]);
 
+  // Prevent background scrolling
   useEffect(() => {
     if (isOpen) {
       previousActiveElement.current = document.activeElement as HTMLElement;
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
-      if (previousActiveElement.current) {
-        previousActiveElement.current.focus();
-      }
+      previousActiveElement.current?.focus();
     }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
   // Focus trap
   useEffect(() => {
     if (!isOpen || !popupRef.current) return;
-
-    const focusableElements = popupRef.current.querySelectorAll<HTMLElement>(
+    const focusable = popupRef.current.querySelectorAll<HTMLElement>(
       'button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
     );
-    const firstFocusable = focusableElements[0];
-    const lastFocusable = focusableElements[focusableElements.length - 1];
-
-    firstFocusable?.focus();
-
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first?.focus();
     function handleTab(e: KeyboardEvent) {
-      if (e.key === 'Tab') {
-        if (e.shiftKey) {
-          if (document.activeElement === firstFocusable) {
-            e.preventDefault();
-            lastFocusable?.focus();
-          }
-        } else {
-          if (document.activeElement === lastFocusable) {
-            e.preventDefault();
-            firstFocusable?.focus();
-          }
-        }
-      }
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
     }
-
     document.addEventListener('keydown', handleTab);
     return () => document.removeEventListener('keydown', handleTab);
   }, [isOpen]);
 
+  // ESC to close
   useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') handleClose();
-    }
-    
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') handleClose(); };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleClose]);
+  }, [isOpen, handleClose]);
 
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) handleClose();
@@ -96,49 +72,31 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     const errs: Record<string, string> = {};
     const nameErr = validateName(name);
     if (nameErr) errs.name = nameErr;
     const phoneErr = validatePhone(phone);
-    if (phoneErr) errs.phone = phoneErr;
-    const cityErr = city ? validateCity(city) : null;
+    if (phoneErr) errs.phone = phoneErr;    const cityErr = city.trim() ? validateCity(city) : 'City is required';
     if (cityErr) errs.city = cityErr;
-
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
-    }
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
     setErrors({});
     setIsSubmitting(true);
-
     try {
       await submitLead({
         name: name.trim(),
         phone: phone.replace(/\D/g, ''),
         city: city.trim(),
-        source: 'Popup',
+        email: email.trim(),
+        source: 'Popup Leads',
+        notes: `Page: ${window.location.href} | Device: ${navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop'}`,
       });
-
       setSubmitted(true);
-      toast.showSuccess('Thank you!', 'Our sleep expert will contact you shortly.');
-
       setTimeout(() => {
-        const whatsappMessage = [
-          `Hi RelaxPro,`,
-          ``,
-          `My name is ${name.trim()}.`,
-          `I would like a free mattress consultation.`,
-          city.trim() ? `City: ${city.trim()}` : '',
-          `Please contact me.`,
-        ].filter(Boolean).join('\n');
-
-        window.open(buildWhatsAppUrl(whatsappMessage), '_blank');
-        handleClose();
-      }, 2000);
+        onSubmitted();
+      }, 3000);
     } catch {
-      toast.showError('Something went wrong', 'Please try again or reach out on WhatsApp.');
+      setErrors({ submit: 'Something went wrong. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -152,190 +110,203 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(8px)' }}
+          transition={{ duration: 0.35 }}
+          className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-4"
+          style={{ backgroundColor: 'rgba(7, 11, 18, 0.6)', backdropFilter: 'blur(12px)' }}
           onClick={handleOverlayClick}
           role="dialog"
           aria-modal="true"
-          aria-label="Free Mattress Consultation"
+          aria-label="Exclusive Offers"
         >
           <motion.div
             ref={popupRef}
             key="popup-card"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full max-w-[520px] max-h-[90vh] overflow-y-auto rounded-3xl border border-white/20 relative"
+            className="w-[92%] sm:w-[520px] max-h-[90vh] sm:max-h-[88vh] overflow-y-auto rounded-[20px] relative bg-white"
             style={{
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(250,248,245,0.95))',
-              backdropFilter: 'blur(20px)',
-              boxShadow: '0 32px 64px -16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.5)',
+              boxShadow: '0 0 0 1px rgba(21,104,163,0.08), 0 8px 40px -8px rgba(7,11,18,0.18), 0 32px 80px -20px rgba(21,104,163,0.12)',
             }}
           >
-            {/* Decorative gradient orbs */}
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-
+            {/* Close button */}
             <button
               type="button"
               onClick={handleClose}
-              disabled={isSubmitting}
-              className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-xl border border-brand-200/60 bg-white/80 hover:bg-white hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
+              className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-sky-100 hover:bg-brand-50 border border-brand-200/60 hover:border-brand-300 transition-all cursor-pointer hover:shadow-md active:scale-95"
               aria-label="Close popup"
             >
-              <X className="w-4 h-4 text-neutral-dark/60" />
+              <X className="w-5 h-5 text-graphite-500" />
             </button>
 
-            <div className="p-8 md:p-10 relative z-10">
+            {/* Decorative gradient orbs */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-brand-50/80 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="p-6 sm:p-8 md:p-10 relative z-10">
               {!submitted ? (
                 <>
-                  <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-accent/20">
-                      <Sparkles className="w-7 h-7 text-accent" />
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary tracking-tight leading-tight">
-                      Find Your Perfect Mattress
+                  {/* Header with gift icon */}
+                  <div className="text-center mb-7 sm:mb-8">
+                    <motion.div
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                      className="flex items-center justify-center gap-3 mb-5"
+                    >
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-xl flex items-center justify-center shadow-md border border-brand-200/40">
+                        <span className="font-heading font-bold text-lg sm:text-xl text-ink-900 tracking-tight">RELAX<span className="text-brand-600">PRO</span></span>
+                      </div>
+                      <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-brand-600" />
+                    </motion.div>
+                    <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-accent font-bold text-brand-600 uppercase tracking-[0.15em] bg-brand-50 border border-brand-600/15 px-3 py-1 rounded-full mb-4">
+                      🎁 Limited-Time Offer
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl md:text-[2rem] font-heading font-bold text-ink-900 tracking-tight leading-tight">
+                      Get Exclusive Offers
                     </h2>
-                    <p className="font-body text-neutral-dark/70 text-sm mt-3 max-w-sm mx-auto leading-relaxed">
-                      Get a FREE consultation with our sleep experts and receive the best mattress recommendation for your needs.
+                    <p className="font-body text-graphite-500 text-xs sm:text-sm mt-2.5 max-w-sm mx-auto leading-relaxed">
+                      Get personalized mattress recommendations and exclusive pricing directly from our sleep experts.
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-3.5 sm:space-y-4">
+                    {/* Full Name */}
                     <div>
-                      <label htmlFor="popup-name" className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                        Full Name <span className="text-accent">*</span>
+                      <label htmlFor="popup-name" className="block text-[10px] sm:text-[11px] font-accent font-bold text-ink-900 uppercase tracking-wider mb-1.5">
+                        Full Name <span className="text-brand-600">*</span>
                       </label>
                       <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-dark/40 pointer-events-none" />
+                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-graphite-400 pointer-events-none" />
                         <input
                           id="popup-name"
                           type="text"
                           value={name}
-                          onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(prev => ({ ...prev, name: '' })); }}
+                          onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: '' })); }}
                           placeholder="e.g. Srinivas Rao"
-                          className={`w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body bg-white focus:outline-hidden focus:ring-4 transition-all placeholder:text-neutral-dark/30 ${
-                            errors.name ? 'border-red-300 focus:ring-red-100 text-red-700' : 'border-brand-200/60 focus:border-accent focus:ring-accent/10 text-primary'
-                          }`}
-                          aria-invalid={!!errors.name}
-                          aria-describedby={errors.name ? 'popup-name-error' : undefined}
+                          className={`w-full pl-10 pr-4 py-3 sm:py-3.5 rounded-xl border text-sm font-body bg-sky-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/15 focus:border-brand-600 transition-all placeholder:text-graphite-400 ${errors.name ? 'border-red-300 focus:ring-red-100' : 'border-brand-200/60 text-ink-900'}`}
                         />
                       </div>
-                      {errors.name && (
-                        <p id="popup-name-error" className="text-[10px] text-red-500 font-accent font-bold uppercase tracking-wider mt-1.5" role="alert">
-                          {errors.name}
-                        </p>
-                      )}
+                      {errors.name && <p className="text-[10px] text-red-500 font-accent font-bold mt-1" role="alert">{errors.name}</p>}
                     </div>
 
+                    {/* Phone */}
                     <div>
-                      <label htmlFor="popup-phone" className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                        Phone Number <span className="text-accent">*</span>
+                      <label htmlFor="popup-phone" className="block text-[10px] sm:text-[11px] font-accent font-bold text-ink-900 uppercase tracking-wider mb-1.5">
+                        Phone Number <span className="text-brand-600">*</span>
                       </label>
                       <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-dark/40 pointer-events-none" />
+                        <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-graphite-400 pointer-events-none" />
                         <input
                           id="popup-phone"
                           type="tel"
                           maxLength={10}
                           value={phone}
-                          onChange={(e) => {
-                            const val = e.target.value.replace(/\D/g, '');
-                            setPhone(val);
-                            if (errors.phone) setErrors(prev => ({ ...prev, phone: '' }));
-                          }}
+                          onChange={(e) => { const v = e.target.value.replace(/\D/g, ''); setPhone(v); if (errors.phone) setErrors(p => ({ ...p, phone: '' })); }}
                           placeholder="e.g. 9876543210"
-                          className={`w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-mono bg-white focus:outline-hidden focus:ring-4 transition-all placeholder:text-neutral-dark/30 ${
-                            errors.phone ? 'border-red-300 focus:ring-red-100 text-red-700' : 'border-brand-200/60 focus:border-accent focus:ring-accent/10 text-primary'
-                          }`}
-                          aria-invalid={!!errors.phone}
-                          aria-describedby={errors.phone ? 'popup-phone-error' : undefined}
+                          className={`w-full pl-10 pr-4 py-3 sm:py-3.5 rounded-xl border text-sm font-mono bg-sky-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/15 focus:border-brand-600 transition-all placeholder:text-graphite-400 ${errors.phone ? 'border-red-300 focus:ring-red-100' : 'border-brand-200/60 text-ink-900'}`}
                         />
                       </div>
-                      {errors.phone && (
-                        <p id="popup-phone-error" className="text-[10px] text-red-500 font-accent font-bold uppercase tracking-wider mt-1.5" role="alert">
-                          {errors.phone}
-                        </p>
-                      )}
+                      {errors.phone && <p className="text-[10px] text-red-500 font-accent font-bold mt-1" role="alert">{errors.phone}</p>}
                     </div>
 
+                    {/* City */}
                     <div>
-                      <label htmlFor="popup-city" className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
-                        City
+                      <label htmlFor="popup-city" className="block text-[10px] sm:text-[11px] font-accent font-bold text-ink-900 uppercase tracking-wider mb-1.5">
+                        City <span className="text-brand-600">*</span>
                       </label>
                       <div className="relative">
-                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-dark/40 pointer-events-none" />
+                        <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-graphite-400 pointer-events-none" />
                         <input
                           id="popup-city"
                           type="text"
                           value={city}
-                          onChange={(e) => { setCity(e.target.value); if (errors.city) setErrors(prev => ({ ...prev, city: '' })); }}
+                          onChange={(e) => { setCity(e.target.value); if (errors.city) setErrors(p => ({ ...p, city: '' })); }}
                           placeholder="e.g. Hyderabad"
-                          className={`w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body bg-white focus:outline-hidden focus:ring-4 transition-all placeholder:text-neutral-dark/30 ${
-                            errors.city ? 'border-red-300 focus:ring-red-100 text-red-700' : 'border-brand-200/60 focus:border-accent focus:ring-accent/10 text-primary'
-                          }`}
-                          aria-invalid={!!errors.city}
-                          aria-describedby={errors.city ? 'popup-city-error' : undefined}
+                          className={`w-full pl-10 pr-4 py-3 sm:py-3.5 rounded-xl border text-sm font-body bg-sky-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/15 focus:border-brand-600 transition-all placeholder:text-graphite-400 ${errors.city ? 'border-red-300 focus:ring-red-100' : 'border-brand-200/60 text-ink-900'}`}
                         />
                       </div>
-                      {errors.city && (
-                        <p id="popup-city-error" className="text-[10px] text-red-500 font-accent font-bold uppercase tracking-wider mt-1.5" role="alert">
-                          {errors.city}
-                        </p>
-                      )}
+                      {errors.city && <p className="text-[10px] text-red-500 font-accent font-bold mt-1" role="alert">{errors.city}</p>}
                     </div>
 
+                    {/* Email (Optional) */}
+                    <div>
+                      <label htmlFor="popup-email" className="block text-[10px] sm:text-[11px] font-accent font-bold text-ink-900 uppercase tracking-wider mb-1.5">
+                        Email <span className="text-graphite-400 font-normal">(Optional)</span>
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-graphite-400 pointer-events-none" />
+                        <input
+                          id="popup-email"
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="e.g. you@example.com"
+                          className="w-full pl-10 pr-4 py-3 sm:py-3.5 rounded-xl border border-brand-200/60 text-sm font-body bg-sky-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/15 focus:border-brand-600 text-ink-900 transition-all placeholder:text-graphite-400"
+                        />
+                      </div>
+                    </div>
+
+                    {errors.submit && (
+                      <p className="text-[10px] text-red-500 font-accent font-bold text-center" role="alert">{errors.submit}</p>
+                    )}
+
+                    {/* CTA Button */}
                     <motion.button
-                      whileHover={!isSubmitting ? { scale: 1.02, y: -1 } : {}}
-                      whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                      whileHover={!isSubmitting ? { scale: 1.015, y: -2, boxShadow: '0 12px 32px -6px rgba(21,104,163,0.4)' } : {}}
+                      whileTap={!isSubmitting ? { scale: 0.985 } : {}}
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 rounded-2xl font-accent font-bold text-sm tracking-widest uppercase transition-all cursor-pointer flex items-center justify-center gap-2 relative overflow-hidden group"
-                      style={{ 
-                        backgroundColor: isSubmitting ? '#8B7355' : '#C9A87C', 
-                        color: '#1A2421',
-                        boxShadow: '0 8px 24px -8px rgba(201, 168, 124, 0.4)'
-                      }}
+                      className="w-full py-4 sm:py-[18px] rounded-xl font-accent font-bold text-[13px] sm:text-sm tracking-[0.12em] uppercase transition-all cursor-pointer flex items-center justify-center gap-2.5 bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 text-white shadow-lg shadow-brand-600/25 hover:from-brand-500 hover:via-brand-600 hover:to-brand-700 disabled:opacity-60 disabled:cursor-not-allowed mt-1"
                     >
                       {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Sending...</span>
-                        </>
+                        <><Loader2 className="w-4 h-4 animate-spin" /><span>Submitting...</span></>
                       ) : (
-                        <>
-                          <span>Get Free Consultation</span>
-                          <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        </>
+                        <><span>Get My Offer</span><Send className="w-4 h-4" /></>
                       )}
                     </motion.button>
 
-                    <p className="text-center text-[11px] font-body text-neutral-dark/50 mt-4">
-                      No spam. We will contact you shortly.
+                    {/* Trust badges */}
+                    <div className="flex items-center justify-center gap-4 sm:gap-6 pt-1">
+                      <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
+                        <Shield className="w-3 h-3 text-brand-600" /> No Spam
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
+                        <Headphones className="w-3 h-3 text-brand-600" /> Expert Assistance
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
+                        <Tag className="w-3 h-3 text-brand-600" /> Exclusive Deals
+                      </span>
+                    </div>
+                    <p className="text-center text-[9px] sm:text-[10px] font-body text-graphite-400 leading-relaxed">
+                      By submitting this form you agree to be contacted via call, WhatsApp or email.
                     </p>
                   </form>
                 </>
               ) : (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-center py-6"
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-center py-8 sm:py-10"
                 >
-                  <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-emerald-200 shadow-lg shadow-emerald-500/10">
-                    <CheckCircle className="w-10 h-10 text-emerald-500" />
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary tracking-tight">
-                    Thank You, {name.split(' ')[0]}!
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 15 }}
+                    className="w-18 h-18 sm:w-22 sm:h-22 bg-eco-50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-eco-500/20 shadow-lg shadow-eco-500/10"
+                  >
+                    <CheckCircle className="w-9 h-9 sm:w-11 sm:h-11 text-eco-500" />
+                  </motion.div>
+                  <h3 className="text-2xl sm:text-3xl font-heading font-bold text-ink-900 tracking-tight">
+                    ✅ Thank You!
                   </h3>
-                  <p className="font-body text-neutral-dark/70 text-sm mt-3 leading-relaxed">
+                  <p className="font-body text-graphite-500 text-sm mt-3 leading-relaxed max-w-xs mx-auto">
                     Our sleep expert will contact you shortly.
                   </p>
-                  <div className="mt-6 flex items-center justify-center gap-2 text-accent text-xs font-accent font-bold">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Redirecting to WhatsApp...</span>
+                  <div className="mt-5 flex items-center justify-center gap-2 text-graphite-400 text-xs font-body">
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <span>Closing automatically...</span>
                   </div>
                 </motion.div>
               )}

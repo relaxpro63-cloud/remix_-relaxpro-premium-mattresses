@@ -1,145 +1,207 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /* ============================================
-RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
-Quiet Luxury Palette
-============================================ */
+   RELAXPRO DESIGN SYSTEM — Tailwind v4 Theme
+   "Midnight Sapphire x Warm Linen"
+   Built to match the Ink + Azure logo.
+   ============================================ */
 @theme {
-/* Typography — Playfair Display for editorial luxury */
---font-heading: 'Playfair Display', Georgia, serif;
---font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
---font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
---font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  /* ---------- Typography ---------- */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-accent: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --font-tagline: 'Playfair Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-/* Backward compatibility aliases */
---font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
---font-display: 'Playfair Display', Georgia, serif;
+  /* ---------- INK  (cool near-black, blue undertone) ---------- */
+  --color-ink-950: #070B12;
+  --color-ink-900: #0B1220;
+  --color-ink-800: #111A2B;
+  --color-ink-700: #1A2740;
 
-/* Brand Color Palette — Near-Black Forest + Champagne Gold */
---color-primary: #0F1F17;         /* Near-black forest — deepest tone for headings, dark bg */
---color-secondary: #FAF8F3;       /* Ivory — warm light surfaces */
---color-accent: #C9A87C;          /* Champagne Gold — CTAs, highlights */
---color-accent-dark: #B89568;     /* Champagne hover */
---color-accent-light: #E0CFAF;    /* Light Champagne */
+  /* ---------- GRAPHITE  (neutral text + borders on light) ---------- */
+  --color-graphite-900: #131A24;
+  --color-graphite-700: #2C3744;
+  --color-graphite-600: #44505F;
+  --color-graphite-500: #5B6675;
+  --color-graphite-400: #8A93A1;
+  --color-graphite-300: #C2C9D2;
+  --color-graphite-200: #DDE2E9;
+  --color-graphite-100: #EEF1F5;
 
---color-neutral-dark: #4A5A57;    /* Cool Sage — secondary text */
---color-neutral-light: #FAF8F3;   /* Ivory — main background */
---color-success: #5A8F7B;         /* Restrained green */
+  /* ---------- SAPPHIRE / BRAND  (logo blue, refined scale) ---------- */
+  --color-brand-50:  #EAF3FB;
+  --color-brand-100: #D3E6F6;
+  --color-brand-200: #A6CDEC;
+  --color-brand-300: #6FAEE0;
+  --color-brand-400: #3A8FD2;
+  --color-brand-500: #1A7CBE;
+  --color-brand-600: #1568A3;
+  --color-brand-700: #115484;
+  --color-brand-800: #0E4268;
+  --color-brand-900: #0B3352;
+  --color-brand-950: #072038;
 
-/* Backward-compatible brand tokens */
---color-brand-50: #FAF8F3;
---color-brand-100: #F5F0E8;
---color-brand-200: #E8E2D8;
---color-brand-500: #C9A87C;
---color-brand-600: #B89568;
---color-brand-700: #0F1F17;
---color-brand-800: #0F1F17;
-  --color-brand-950: #0A1510;
+  /* ---------- SKY  (soft blue luxury background, replaces linen) ---------- */
+  --color-sky-50:  #F3F9FD;
+  --color-sky-100: #EAF4FA;
+  --color-sky-200: #D7EBF5;
+  --color-sky-300: #BEDFF0;
 
-  --color-luxury-gold: #C9A87C;
+  /* ---------- LINEN  (kept for card interiors, inputs) ---------- */
+  --color-linen-50:  #FBF8F3;
+  --color-linen-100: #F5F0E7;
+  --color-linen-200: #ECE3D5;
+  --color-linen-300: #DCCDB6;
 
-  --color-charcoal: #1E1E1E;
-  --color-blue: #2D8CFF;
-  --color-blue-bright: #3FA2FF;
-  --color-blue-dark: #1B6FD4;
---color-deep-charcoal: #0F1F17;
+  /* ---------- SAND  (matte warm accent -- replaces metallic gold) ---------- */
+  --color-sand-300: #D8C4A4;
+  --color-sand-400: #C7B291;
+  --color-sand-500: #B49A73;
+  --color-sand-600: #9A8159;
 
-/* Card Tokens */
---radius-card: 16px;
---shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
+  /* ---------- ECO  (semantic green for certifications) ---------- */
+  --color-eco-50:  #EAF2EE;
+  --color-eco-500: #4F7E6A;
+  --color-eco-600: #3F6857;
 
-/* Spacing Scale Override for Tighter Flow */
---spacing-12: 2.5rem;
---spacing-16: 3.5rem;
---spacing-20: 4.25rem;
---spacing-24: 5rem;
---spacing-32: 6.5rem;
+  /* ---------- MICRO ---------- */
+  --color-rating: #E2A93B;
 
-/* Warm Oat — replaces pure #FFFFFF on dark backgrounds */
---color-warm-white: #F5F2EB;
+  /* ---------- SURFACES / LINES / RING ---------- */
+  --color-surface:     #FFFFFF;
+  --color-surface-2:   #FBF8F3;
+  --color-surface-ink: #0B1220;
+  --color-line:        #E3E7EE;
+  --color-line-warm:   #ECE3D5;
+  --color-ring:        #6FAEE0;
 
-/* Section vertical rhythm */
---section-vertical-xs: clamp(40px, 5vw, 64px);
---section-vertical-sm: clamp(56px, 7vw, 96px);
---section-vertical-md: clamp(80px, 9vw, 128px);
---section-vertical-lg: clamp(120px, 12vw, 160px);
+  /* ---------- Legacy token names -- REPOINTED to soft blue theme ---------- */
+  --color-primary:        #0B1220;
+  --color-secondary:      #F3F9FD;
+  --color-accent:         #1568A3;
+  --color-accent-dark:    #115484;
+  --color-accent-light:   #6FAEE0;
+  --color-neutral-dark:   #44505F;
+  --color-neutral-light:  #F3F9FD;
+  --color-success:        #4F7E6A;
+  --color-warm-white:     #EAF4FA;
+  --color-charcoal:       #111A2B;
+  --color-deep-charcoal:  #070B12;
+  --color-blue:           #1A7CBE;
+  --color-blue-bright:    #3A8FD2;
+  --color-blue-dark:      #115484;
+  --color-luxury-gold:    #B49A73;
 
-/* Motion easing — luxury standard */
---ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ---------- Radii ---------- */
+  --radius-sm: 10px;
+  --radius-card: 16px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
 
-/* Motion tokens */
---ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
---duration-reveal: 0.8s;
---stagger-step: 0.08s;
+  /* ---------- Premium layered shadows (cool-tinted) ---------- */
+  --shadow-card:  0 1px 2px rgba(11,18,32,.04), 0 8px 24px -12px rgba(11,18,32,.12);
+  --shadow-lift:  0 2px 6px rgba(11,18,32,.06), 0 24px 48px -20px rgba(11,18,32,.22);
+  --shadow-glow:  0 10px 30px -8px rgba(21,104,163,.45);
+  --shadow-float: 0 30px 60px -25px rgba(7,11,18,.35);
 
-/* Luxury font tracking */
---tracking-editorial: 0.18em;
---tracking-wide: 0.10em;
+  /* ---------- Spacing rhythm ---------- */
+  --spacing-12: 2.5rem;
+  --spacing-16: 3.5rem;
+  --spacing-20: 4.25rem;
+  --spacing-24: 5rem;
+  --spacing-32: 6.5rem;
+  --section-vertical-xs: clamp(40px, 5vw, 64px);
+  --section-vertical-sm: clamp(56px, 7vw, 96px);
+  --section-vertical-md: clamp(80px, 9vw, 128px);
+  --section-vertical-lg: clamp(120px, 12vw, 160px);
+
+  /* ---------- Motion ---------- */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-luxury:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft:     cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-reveal: 0.8s;
+  --stagger-step: 0.08s;
+
+  /* ---------- Editorial tracking ---------- */
+  --tracking-editorial: 0.18em;
+  --tracking-wide: 0.10em;
 }
 
 /* Price text — auto-applied by <PriceText> wrapper */
 @utility font-price {
-font-family: var(--font-mono);
-font-weight: 600;
-letter-spacing: 0.02em;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================
-RELAXPRO UTILITY PRIMITIVES
-============================================ */
+   RELAXPRO UTILITY PRIMITIVES
+   ============================================ */
 @utility rp-container {
-width: 100%;
-max-width: 1280px;
-margin-left: auto;
-margin-right: auto;
-padding-left: clamp(16px, 4vw, 40px);
-padding-right: clamp(16px, 4vw, 40px);
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
 }
 
 @utility rp-section {
-padding-top: clamp(40px, 7vw, 96px);
-padding-bottom: clamp(40px, 7vw, 96px);
+  padding-top: clamp(40px, 7vw, 96px);
+  padding-bottom: clamp(40px, 7vw, 96px);
 }
 
 @utility rp-display {
-font-family: var(--font-heading);
-font-size: clamp(2.2rem, 5vw, 4.2rem);
-line-height: 1.05;
-letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
 }
 
 @utility rp-heading {
-font-family: var(--font-heading);
-font-size: clamp(1.6rem, 3.2vw, 2.6rem);
-line-height: 1.15;
-letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 @utility rp-body {
-font-family: var(--font-body);
-font-size: clamp(1rem, 1.6vw, 1.125rem);
-line-height: 1.7;
-color: var(--color-neutral-dark);
-max-width: 65ch;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--color-neutral-dark);
+  max-width: 65ch;
 }
 
 /* ============================================
    CSS Custom Properties for Non-Tailwind Usage
    ============================================ */
 :root {
-  --color-primary: #0F1F17;
-  --color-secondary: #FAF8F3;
-  --color-accent: #C9A87C;
-  --color-accent-dark: #B89568;
-  --color-neutral-dark: #4A5A57;
-  --color-neutral-light: #FAF8F3;
-  --color-success: #5A8F7B;
+  --color-primary: #0B1220;
+  --color-secondary: #F3F9FD;
+  --color-accent: #1568A3;
+  --color-accent-dark: #115484;
+  --color-neutral-dark: #44505F;
+  --color-neutral-light: #F3F9FD;
+  --color-success: #4F7E6A;
+  --color-accent-light: #6FAEE0;
+  --color-warm-white: #EAF4FA;
+  --color-charcoal: #111A2B;
+  --color-blue: #1A7CBE;
+  --color-blue-dark: #115484;
+  --color-luxury-gold: #B49A73;
+  --color-line: #D7EBF5;
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-accent: 'Plus Jakarta Sans', sans-serif;
   --radius-card: 16px;
-  --shadow-card: 0 4px 12px rgba(15, 31, 23, 0.05);
+  --shadow-card: 0 1px 2px rgba(11,18,32,.04), 0 8px 24px -12px rgba(11,18,32,.12);
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -185,7 +247,7 @@ html.lenis, html.lenis body {
   }
 
   body {
-    background-color: var(--color-neutral-light);
+    background-color: #F3F9FD;
     color: var(--color-primary);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -328,13 +390,13 @@ html.lenis, html.lenis body {
   animation: border-shine 4s linear infinite;
 }
 
-/* Soft glow */
+/* Soft glow — updated to sapphire */
 @keyframes soft-glow {
   0%, 100% {
-    box-shadow: 0 4px 20px -2px rgba(212, 184, 149, 0.1), 0 2px 8px -1px rgba(212, 184, 149, 0.05);
+    box-shadow: 0 4px 20px -2px rgba(21, 104, 163, 0.1), 0 2px 8px -1px rgba(21, 104, 163, 0.05);
   }
   50% {
-    box-shadow: 0 12px 32px -2px rgba(212, 184, 149, 0.28), 0 4px 14px -1px rgba(212, 184, 149, 0.18);
+    box-shadow: 0 12px 32px -2px rgba(21, 104, 163, 0.28), 0 4px 14px -1px rgba(21, 104, 163, 0.18);
   }
 }
 .animate-glow-soft {
@@ -361,10 +423,10 @@ html.lenis, html.lenis body {
   animation: gradientShift 10s ease infinite;
 }
 
-/* Pulse glow for CTA */
+/* Pulse glow for CTA — updated to sapphire */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 184, 149, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(212, 184, 149, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(21, 104, 163, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(21, 104, 163, 0); }
 }
 .animate-pulse-glow {
   animation: pulse-glow 2.5s ease-in-out infinite;
@@ -434,10 +496,6 @@ html.lenis, html.lenis body {
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
-.btn-primary:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05);
-}
 .btn-primary:active {
   transform: scale(0.98);
 }
@@ -487,7 +545,7 @@ html.lenis, html.lenis body {
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(26, 54, 41, 0.10);
+  box-shadow: var(--shadow-lift);
 }
 
 /* Image zoom on hover */
@@ -509,7 +567,7 @@ html.lenis, html.lenis body {
 }
 .feature-card-glow:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(212, 184, 149, 0.2), var(--shadow-card);
+  box-shadow: 0 0 0 3px rgba(21, 104, 163, 0.15), var(--shadow-card);
 }
 
 /* ============================================
@@ -621,10 +679,10 @@ html.lenis, html.lenis body {
   box-shadow: none;
 }
 .header-scrolled {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(251, 248, 243, 0.97);
   backdrop-filter: blur(12px);
-  border-bottom-color: #E7E0D7;
-  box-shadow: 0 2px 20px rgba(26, 54, 41, 0.06);
+  border-bottom-color: var(--color-line);
+  box-shadow: 0 2px 20px rgba(11, 18, 32, 0.06);
 }
 
 /* ============================================
@@ -669,7 +727,7 @@ html.lenis, html.lenis body {
 }
 
 /* ============================================
-   FOOTER ACCORDION (Mobile)
+   FOOTER STYLES (Luxury Deep Navy)
    ============================================ */
 .footer-accordion-content {
   max-height: 0;
@@ -678,6 +736,137 @@ html.lenis, html.lenis body {
 }
 .footer-accordion-content.open {
   max-height: 300px;
+}
+
+/* Footer luxury gradient background - Premium deep navy */
+.footer-luxury {
+  background:
+    radial-gradient(120% 50% at 50% 0%, rgba(21,104,163,0.18) 0%, transparent 55%),
+    radial-gradient(80% 40% at 80% 100%, rgba(59,130,246,0.08) 0%, transparent 50%),
+    radial-gradient(60% 50% at 20% 60%, rgba(21,104,163,0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #0B1424 0%, #0F1A2E 30%, #0A1628 60%, #060F1E 100%);
+  position: relative;
+}
+
+/* Subtle noise texture overlay for premium feel */
+.footer-luxury::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Footer glass card - Premium translucent card */
+.footer-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(111, 174, 224, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+.footer-glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+  border-color: rgba(111, 174, 224, 0.25);
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer link animation */
+.footer-link {
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #6FAEE0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.footer-link:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Footer social icon - Premium glass spheres */
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(111, 174, 224, 0.15);
+  color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer-social:hover {
+  background: linear-gradient(135deg, rgba(21, 104, 163, 0.35), rgba(21, 104, 163, 0.15));
+  border-color: rgba(21, 104, 163, 0.5);
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px -6px rgba(21, 104, 163, 0.35);
+}
+
+/* Footer trust badge - Premium pill */
+.footer-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(111, 174, 224, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer-trust-badge:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+  border-color: rgba(111, 174, 224, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Newsletter input - Premium dark input */
+.footer-newsletter-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(111, 174, 224, 0.15);
+  color: #fff;
+  font-size: 14px;
+  font-family: var(--font-body);
+  transition: all 0.35s ease;
+  outline: none;
+}
+.footer-newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+.footer-newsletter-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(111, 174, 224, 0.4);
+  box-shadow: 0 0 0 3px rgba(21, 104, 163, 0.15), 0 0 20px -8px rgba(21, 104, 163, 0.3);
+}
+
+/* Footer divider - Premium gradient line */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(111, 174, 224, 0.2), rgba(111, 174, 224, 0.3), rgba(111, 174, 224, 0.2), transparent);
+  border: none;
 }
 
 /* ============================================
@@ -750,7 +939,6 @@ html.lenis, html.lenis body {
 /* ============================================
    GLOBAL SPACING AUDIT REDUCTIONS
    ============================================ */
-/* Reduce default fluid section paddings */
 .section-padding {
   padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 80px);
 }
@@ -766,7 +954,156 @@ html.lenis, html.lenis body {
 @media (hover: hover) and (pointer: fine) {
   .card-hover:hover {
     transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 25px 50px -12px rgba(26, 54, 41, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.3); /* Subtle primary shadow & accent border */
+    box-shadow: var(--shadow-lift), 0 0 0 1px var(--color-brand-200);
   }
 }
 
+/* ============================================
+   PREMIUM COMPONENT LAYER
+   "Midnight Sapphire x Warm Linen"
+   ============================================ */
+@layer components {
+  /* ---- Buttons ---- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    letter-spacing: .01em;
+    padding: .85rem 1.6rem;
+    transition: var(--transition-smooth);
+    will-change: transform;
+  }
+  .btn:active {
+    transform: translateY(1px) scale(.99);
+  }
+
+  .btn-primary {
+    color: #fff;
+    background: linear-gradient(180deg, var(--color-brand-500), var(--color-brand-700));
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(180deg, var(--color-brand-400), var(--color-brand-600));
+    box-shadow: 0 14px 36px -8px rgba(21, 104, 163, .6);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    color: var(--color-ink-900);
+    background: var(--color-surface);
+    border: 1px solid var(--color-sand-400);
+    box-shadow: var(--shadow-card);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-sand-600);
+    background: var(--color-linen-100);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost-dark {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .22);
+    background: rgba(255, 255, 255, .04);
+    backdrop-filter: blur(6px);
+  }
+  .btn-ghost-dark:hover {
+    background: rgba(255, 255, 255, .10);
+    border-color: rgba(255, 255, 255, .4);
+  }
+
+  .btn-whatsapp {
+    color: #fff;
+    background: linear-gradient(180deg, var(--color-eco-500), var(--color-eco-600));
+    box-shadow: 0 10px 30px -10px rgba(63, 104, 87, .6);
+  }
+
+  /* ---- Cards ---- */
+  .card-luxury {
+    background: #FFFFFF;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 2px rgba(11,18,32,.04), 0 8px 24px -12px rgba(11,18,32,.12);
+    transition: var(--transition-smooth);
+  }
+  .card-luxury:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-6px);
+    border-color: var(--color-brand-200);
+  }
+
+  .card-ink {
+    background: linear-gradient(160deg, var(--color-ink-800), var(--color-ink-950));
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-float);
+  }
+
+  /* ---- Badges / tags ---- */
+  .badge-luxury {
+    font: 600 .7rem/1 var(--font-accent);
+    letter-spacing: var(--tracking-editorial);
+    text-transform: uppercase;
+    color: var(--color-sand-600);
+    background: color-mix(in srgb, var(--color-sand-300) 28%, transparent);
+    border: 1px solid var(--color-sand-400);
+    padding: .45rem .7rem;
+    border-radius: var(--radius-full);
+  }
+  .badge-eco {
+    color: var(--color-eco-600);
+    background: var(--color-eco-50);
+    border: 1px solid color-mix(in srgb, var(--color-eco-500) 30%, transparent);
+    padding: .4rem .65rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: .72rem;
+  }
+  .badge-blue {
+    color: #fff;
+    background: var(--color-brand-600);
+    padding: .4rem .65rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: .72rem;
+    letter-spacing: .04em;
+  }
+
+  /* ---- Eyebrow / section kicker ---- */
+  .eyebrow {
+    font: 600 .72rem/1 var(--font-accent);
+    letter-spacing: var(--tracking-editorial);
+    text-transform: uppercase;
+    color: var(--color-brand-600);
+  }
+
+  /* ---- Hairline "luxury" divider ---- */
+  .divider-lux {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--color-sand-400), transparent);
+  }
+
+  /* ---- Glass top-nav ---- */
+  .nav-glass {
+    background: color-mix(in srgb, #F3F9FD 78%, transparent);
+    backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* ---- Star rating ---- */
+  .stars {
+    color: var(--color-rating);
+    letter-spacing: .08em;
+  }
+}
+
+/* ---- Hero / dark section backdrop (ink -> sapphire glow) ---- */
+.hero-ink {
+  background:
+    radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--color-brand-700) 55%, transparent), transparent 60%),
+    radial-gradient(90% 70% at 0% 110%, color-mix(in srgb, var(--color-brand-900) 60%, transparent), transparent 55%),
+    linear-gradient(180deg, var(--color-ink-900), var(--color-ink-950));
+}

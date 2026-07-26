@@ -64,7 +64,7 @@ export default function Header({ cartCount }: HeaderProps) {
     };
   }, [mobileMenuOpen]);
 
-  const navItems = (nav?.desktopMenu || [
+  const rawItems: { path: string; label: string }[] = (nav?.desktopMenu || [
     { path: '/', label: 'Home' },
     { path: '/catalog', label: 'Shop' },
     { path: '/builder', label: 'Customize' },
@@ -73,6 +73,11 @@ export default function Header({ cartCount }: HeaderProps) {
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
   ]).map((item: any) => ({ path: item.path, label: item.label }));
+
+  // Deduplicate by path to prevent duplicate key warnings (Sanity may return duplicates)
+  const navItems = rawItems.filter(
+    (item, idx, self) => idx === self.findIndex((t) => t.path === item.path)
+  );
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -85,14 +90,12 @@ export default function Header({ cartCount }: HeaderProps) {
         className={`sticky top-0 z-40 w-full transition-all duration-500 ${
           hidden && !mobileMenuOpen ? '-translate-y-full' : 'translate-y-0'
         } ${
-          scrolled
-    ? 'bg-white/90 backdrop-blur-xl border-b border-blue/20 shadow-sm'
-    : 'bg-brand-50/80 backdrop-blur-md border-b border-blue/10'
+          scrolled ? 'nav-glass shadow-sm' : 'bg-sky-50/80 backdrop-blur-md border-b border-brand-200/30'
         }`}
       >
 {/* Top Banner */}
-<div className="bg-primary text-white text-[10px] md:text-[11px] py-2 px-3 md:px-4 text-center font-accent tracking-widest flex items-center justify-center">
-  <span className="font-semibold text-blue uppercase">
+<div className="bg-ink-900 text-white text-[10px] md:text-[11px] py-2 px-3 md:px-4 text-center font-accent tracking-widest flex items-center justify-center">
+  <span className="font-semibold text-brand-300 uppercase">
             {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
           </span>
         </div>
@@ -115,32 +118,38 @@ export default function Header({ cartCount }: HeaderProps) {
                     <Link
                       to={item.path}
                       className={`text-xs font-bold uppercase tracking-widest font-accent transition-colors cursor-pointer flex items-center gap-1 ${
-                        isActive(item.path) ? 'text-blue' : 'text-neutral-dark/75 hover:text-blue'
+                        isActive(item.path) ? 'text-brand-600' : 'text-graphite-600 hover:text-brand-600'
                       }`}
                     >
                       {item.label}
-                      <ChevronDown className="w-3.5 h-3.5 opacity-60 text-blue" />
+                      <ChevronDown className="w-3.5 h-3.5 opacity-60 text-brand-500" />
                     </Link>
                     {/* Hover Dropdown */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-52 bg-white border border-brand-200 shadow-xl rounded-xl p-3.5 z-50">
                       <div className="flex flex-col gap-2 font-accent tracking-wider text-[10px] font-bold text-left">
                         <Link
                           to="/catalog"
-                          className="hover:text-blue text-primary transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50"
+                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50"
                         >
                           Explore Collections
                         </Link>
                         <Link
                           to="/builder"
-                          className="hover:text-blue text-primary transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
+                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
                         >
                           Design Your Bed
                         </Link>
                         <Link
                           to="/compare"
-                          className="hover:text-blue text-primary transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
+                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
                         >
                           Compare Models
+                        </Link>
+                        <Link
+                          to="/accessories"
+                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
+                        >
+                          Accessories
                         </Link>
                       </div>
                     </div>
@@ -153,12 +162,12 @@ export default function Header({ cartCount }: HeaderProps) {
                   key={item.path}
                   to={item.path}
                   className={`relative text-xs font-bold uppercase tracking-widest font-accent py-1 transition-colors cursor-pointer group ${
-                    isActive(item.path) ? 'text-blue' : 'text-neutral-dark/75 hover:text-blue'
+                    isActive(item.path) ? 'text-brand-600' : 'text-graphite-600 hover:text-brand-600'
                   }`}
                 >
                   {item.label}
                   {/* Center-out underline on hover */}
-                  <span className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 h-[2px] bg-blue rounded-full transition-all duration-300 ${
+                  <span className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 h-[2px] bg-brand-600 rounded-full transition-all duration-300 ${
                     isActive(item.path) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`} />
                 </Link>
@@ -169,22 +178,22 @@ export default function Header({ cartCount }: HeaderProps) {
           <div className="hidden lg:flex items-center gap-3">
             <Link
     to="/contact"
-    className="text-neutral-dark/75 hover:text-blue text-xs font-bold flex items-center gap-1.5 cursor-pointer font-accent uppercase tracking-widest transition-colors mr-2"
+    className="text-graphite-600 hover:text-brand-600 text-xs font-bold flex items-center gap-1.5 cursor-pointer font-accent uppercase tracking-widest transition-colors mr-2"
   >
-    <MessageSquare className="w-4 h-4 text-blue" />
+    <MessageSquare className="w-4 h-4 text-brand-500" />
               Contact
             </Link>
 
       <Link
         to="/catalog"
-        className="btn-primary bg-blue hover:bg-blue-dark text-white py-2.5 px-6 rounded-xl text-xs font-bold font-accent uppercase tracking-wider shadow-sm cursor-pointer transition-all"
+        className="btn btn-primary py-2.5 px-6 rounded-xl text-xs font-bold font-accent uppercase tracking-wider shadow-sm cursor-pointer"
       >
               Shop Now
             </Link>
 
             <Link
               to="/cart"
-              className="relative bg-primary hover:bg-neutral-dark text-white p-2.5 rounded-xl transition-all cursor-pointer shadow-sm ml-1"
+              className="relative bg-ink-900 hover:bg-ink-800 text-white p-2.5 rounded-xl transition-all cursor-pointer shadow-sm ml-1"
             >
               <ShoppingCart className="w-4 h-4" />
               {cartCount > 0 && (
@@ -198,7 +207,7 @@ export default function Header({ cartCount }: HeaderProps) {
           <div className="flex items-center gap-3 lg:hidden">
             <Link
               to="/cart"
-              className="relative bg-secondary hover:bg-brand-200 text-primary p-2.5 rounded-xl transition-all cursor-pointer"
+              className="relative bg-sky-50 hover:bg-brand-100 text-ink-900 p-2.5 rounded-xl transition-all cursor-pointer"
             >
               <ShoppingCart className="w-4 h-4" />
               {cartCount > 0 && (
@@ -210,7 +219,7 @@ export default function Header({ cartCount }: HeaderProps) {
 
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className={`flex flex-col gap-[5px] p-2 rounded-lg cursor-pointer bg-secondary hover:bg-brand-200 transition-colors ${
+              className={`flex flex-col gap-[5px] p-2 rounded-lg cursor-pointer bg-sky-50 hover:bg-brand-100 transition-colors ${
                 mobileMenuOpen ? 'hamburger-open' : ''
               }`}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -231,9 +240,9 @@ export default function Header({ cartCount }: HeaderProps) {
         />
       )}
 
-      {/* Styled Mobile Menu with bg-primary and white text */}
+      {/* Styled Mobile Menu with bg-ink-900 and white text */}
       <nav
-        className={`mobile-menu-panel bg-primary ${mobileMenuOpen ? 'open' : ''}`}
+        className={`mobile-menu-panel bg-ink-900 ${mobileMenuOpen ? 'open' : ''}`}
         role="navigation"
         aria-label="Mobile navigation"
       >
@@ -259,7 +268,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`mobile-menu-item block py-3.5 px-4 rounded-xl text-sm font-semibold font-accent uppercase tracking-wider transition-colors ${
                   isActive(item.path)
-        ? 'text-white bg-white/10 border-l-4 border-blue'
+        ? 'text-white bg-white/10 border-l-4 border-brand-500'
         : 'text-white/70 hover:bg-white/10 hover:text-white'
                 }`}
               >

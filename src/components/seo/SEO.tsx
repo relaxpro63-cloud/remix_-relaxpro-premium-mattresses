@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { getSiteSettings } from '../../lib/queries';
 
 interface SEOProps {
   title: string;
@@ -16,19 +17,37 @@ export default function SEO({
   description,
   canonical,
   ogType = 'website',
-  ogImage = '/images/products/prakriti.webp',
+  ogImage,
   schema
 }: SEOProps) {
-  const siteUrl = 'https://remix-relaxpro-matress.vercel.app';
+  const [siteName, setSiteName] = useState('RelaxPro Premium Mattresses');
+  const [siteUrl, setSiteUrl] = useState('https://relaxpro.in');
+  const [defaultOgImage, setDefaultOgImage] = useState(ogImage || '');
   const location = useLocation();
+
+  useEffect(() => {
+    getSiteSettings().then(s => {
+      if (s?.branding?.siteName) setSiteName(s.branding.siteName);
+      if (s?.seo?.ogImage) {
+        // Reuse the imageUrl helper for proper Sanity CDN URLs
+        import('../../lib/queries').then(({ imageUrl }) => {
+          const url = imageUrl(s.seo.ogImage);
+          if (url) setDefaultOgImage(url);
+        });
+      }
+      if (s?.seo?.metaTitle) setSiteName(s.branding?.siteName || siteName);
+    }).catch(() => {});
+  }, []);
+
   const computedPath = canonical ?? `${location.pathname}${location.search}`;
   const fullCanonical = computedPath.startsWith('http')
     ? computedPath
     : `${siteUrl}${computedPath.startsWith('/') ? computedPath : `/${computedPath}`}`;
 
+  const resolvedOgImage = ogImage || defaultOgImage || '/favicon.svg';
+
   return (
     <Helmet>
-      {/* Title & Meta tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
 
@@ -37,14 +56,14 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={fullCanonical} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content="RelaxPro Premium Mattresses" />
+      <meta property="og:image" content={resolvedOgImage} />
+      <meta property="og:site_name" content={siteName} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={resolvedOgImage} />
 
       {/* Canonical */}
       <link rel="canonical" href={fullCanonical} />

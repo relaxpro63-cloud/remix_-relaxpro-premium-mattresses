@@ -329,7 +329,7 @@ export function ScrollIndicator({ className = '' }: { className?: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        className="text-accent"
+        className="text-brand-600"
         animate={reduced ? {} : { y: [0, 6, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >

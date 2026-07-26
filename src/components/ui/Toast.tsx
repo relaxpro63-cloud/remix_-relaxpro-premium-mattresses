@@ -121,27 +121,27 @@ function Toast({ toast, onClose }: { toast: Toast; onClose: (id: string) => void
   };
 
   const iconColors = {
-    success: 'text-emerald-500',
+    success: 'text-eco-500',
     error: 'text-red-500',
     warning: 'text-amber-500',
-    info: 'text-blue-500',
-    loading: 'text-accent animate-spin',
+    info: 'text-brand-600-500',
+    loading: 'text-brand-600 animate-spin',
   };
 
   const bgColors = {
-    success: 'bg-emerald-50 border-emerald-200',
+    success: 'bg-eco-50 border-eco-500/20',
     error: 'bg-red-50 border-red-200',
     warning: 'bg-amber-50 border-amber-200',
-    info: 'bg-blue-50 border-blue-200',
-    loading: 'bg-accent/10 border-accent/30',
+    info: 'bg-brand-50 border-brand-600-200',
+    loading: 'bg-brand-50 border-brand-600/30',
   };
 
   const textColors = {
-    success: 'text-emerald-800',
+    success: 'text-ink-900',
     error: 'text-red-800',
     warning: 'text-amber-800',
-    info: 'text-blue-800',
-    loading: 'text-primary',
+    info: 'text-brand-800',
+    loading: 'text-ink-900',
   };
 
   const Icon = iconComponents[toast.type];

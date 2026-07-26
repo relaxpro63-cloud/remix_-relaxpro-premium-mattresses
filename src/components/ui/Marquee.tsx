@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Leaf, ShieldAlert, BadgeCheck, FlameKindling, Sparkles, HeartPulse } from 'lucide-react';
+import { Award, Leaf, ShieldAlert, BadgeCheck, FlameKindling, Sparkles } from 'lucide-react';
 
 const LOGO_ITEMS = [
   { text: "100% GOLS Certified Organic Latex", icon: Leaf },
@@ -7,7 +7,6 @@ const LOGO_ITEMS = [
   { text: "German ECO-Institut Chemical Emission Safe", icon: BadgeCheck },
   { text: "Zero Hazardous VOC Off-Gassing Guarantee", icon: ShieldAlert },
   { text: "Direct Western Ghats Plantation Sourcing", icon: Sparkles },
-  { text: "101-Night No-Risk Spine Comfort Trial", icon: HeartPulse },
   { text: "Direct Jeedimetla Factory dispatch", icon: FlameKindling }
 ];
 

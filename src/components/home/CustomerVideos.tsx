@@ -121,21 +121,21 @@ export default function CustomerVideos() {
   const slideWidth = 100 / visibleCount;
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 px-4 md:px-8 bg-secondary relative overflow-hidden">
       {/* Subtle background ornament */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-50 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">
+          <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-brand-600 uppercase bg-brand-50 px-4 py-1.5 rounded-full font-bold">
             <Sparkles className="w-3.5 h-3.5" /> Watch Our Craftsmanship
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-4 text-primary leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-4 text-ink-900 leading-tight">
             See Our Craftsmanship
           </h2>
-          <p className="text-neutral-dark/60 text-sm md:text-base mt-4 font-body leading-relaxed max-w-lg mx-auto">
+          <p className="text-graphite-500 text-sm md:text-base mt-4 font-body leading-relaxed max-w-lg mx-auto">
             Watch real customers experience the craftsmanship of our GOLS-certified natural latex mattresses,
             straight from our Kerala factory.
           </p>
@@ -151,7 +151,7 @@ export default function CustomerVideos() {
           <button
             onClick={goPrev}
             disabled={currentIndex === 0}
-            className="absolute left-2 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/40 shadow-md flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer select-none"
+            className="absolute left-2 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/40 shadow-md flex items-center justify-center text-ink-900 hover:bg-brand-600 hover:text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer select-none"
             aria-label="Previous videos"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -177,7 +177,7 @@ export default function CustomerVideos() {
                   style={{ width: `${slideWidth}%` }}
                 >
                   <div
-                    className="relative w-full rounded-xl md:rounded-2xl overflow-hidden bg-neutral-light border border-brand-200/40 shadow-sm group/card"
+                    className="relative w-full rounded-xl md:rounded-2xl overflow-hidden bg-sky-100/40 border border-brand-200/40 shadow-sm group/card"
                     style={{ aspectRatio: '9 / 16' }}
                   >
                     <iframe
@@ -202,8 +202,8 @@ export default function CustomerVideos() {
 
                     {/* Playing badge */}
                     <div className="absolute top-3 left-3 z-10">
-                      <span className="inline-flex items-center gap-1 text-[8px] md:text-[9px] font-accent font-bold uppercase tracking-widest bg-accent/90 text-primary px-2 py-1 rounded-full shadow-md">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      <span className="inline-flex items-center gap-1 text-[8px] md:text-[9px] font-accent font-bold uppercase tracking-widest bg-brand-600/90 text-ink-900 px-2 py-1 rounded-full shadow-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-ink-900 animate-pulse" />
                         Playing
                       </span>
                     </div>
@@ -216,20 +216,20 @@ export default function CustomerVideos() {
           <button
             onClick={goNext}
             disabled={currentIndex >= maxIndex}
-            className="absolute right-2 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/40 shadow-md flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer select-none"
+            className="absolute right-2 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/40 shadow-md flex items-center justify-center text-ink-900 hover:bg-brand-600 hover:text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer select-none"
             aria-label="Next videos"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Fade edges for visual depth */}
-          <div className="absolute inset-y-0 left-0 w-8 md:w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-8 md:w-16 bg-gradient-to-r from-sky-50 to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-sky-50 to-transparent pointer-events-none" />
         </div>
 
         {/* Auto-advance indicator */}
         <div className="flex items-center justify-center gap-2 mt-6">
-          <span className={`text-[10px] font-accent font-bold uppercase tracking-widest transition-colors duration-300 ${isPaused ? 'text-accent' : 'text-neutral-dark/30'}`}>
+          <span className={`text-[10px] font-accent font-bold uppercase tracking-widest transition-colors duration-300 ${isPaused ? 'text-brand-600' : 'text-graphite-400'}`}>
             {isPaused ? 'Paused' : 'Auto-playing'}
           </span>
         </div>
@@ -242,8 +242,8 @@ export default function CustomerVideos() {
               onClick={() => goTo(idx)}
               className={`rounded-full transition-all duration-300 cursor-pointer select-none ${
                 idx === currentIndex
-                  ? 'w-8 h-2.5 bg-accent shadow-sm shadow-accent/30'
-                  : 'w-2.5 h-2.5 bg-brand-200 hover:bg-accent/50'
+                  ? 'w-8 h-2.5 bg-brand-600 shadow-sm shadow-brand-600/30'
+                  : 'w-2.5 h-2.5 bg-brand-200 hover:bg-brand-500'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
@@ -252,7 +252,7 @@ export default function CustomerVideos() {
 
         {/* Slide counter */}
         <div className="text-center mt-3">
-          <span className="text-[11px] font-accent font-bold tracking-widest text-neutral-dark/40">
+          <span className="text-[11px] font-accent font-bold tracking-widest text-graphite-400">
             {currentIndex + 1} / {maxIndex + 1}
           </span>
         </div>

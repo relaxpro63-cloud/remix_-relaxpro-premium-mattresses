@@ -20,10 +20,10 @@ export default function WhatsAppFAB() {
       {/* Phone prompt click container */}
       <button
         onClick={handleOpenWhatsApp}
-    className="group relative flex items-center gap-2 bg-blue hover:bg-blue-dark active:bg-blue-dark text-white p-3.5 md:px-5 md:py-3.5 rounded-full shadow-2xl shadow-blue/20 transition-all duration-300 hover:scale-105 select-none cursor-pointer"
+    className="group relative flex items-center gap-2 bg-eco-500 hover:bg-eco-600 active:bg-eco-600 text-white p-3.5 md:px-5 md:py-3.5 rounded-full shadow-2xl shadow-eco-500/20 transition-all duration-300 hover:scale-105 select-none cursor-pointer"
   >
     {/* Animated outer pulsing halo */}
-    <span className="absolute inset-0 rounded-full border-4 border-blue group-hover:animate-ping opacity-25"></span>
+    <span className="absolute inset-0 rounded-full border-4 border-eco-500 group-hover:animate-ping opacity-25"></span>
 
         {/* Original WhatsApp SVG Logo */}
         <svg

@@ -17,7 +17,7 @@ export async function getContactPhone() {
   return settings?.contactInfo?.mainPhone || '8686624494';
 }
 
-export const SITE_URL = env.VITE_SITE_URL?.replace(/\/+$/, '') || 'https://remix-relaxpro-matress.vercel.app';
+export const SITE_URL = env.VITE_SITE_URL?.replace(/\/+$/, '') || 'https://relaxpro.in';
 export const WHATSAPP_NUMBER = env.VITE_WHATSAPP_NUMBER || '918686624494';
 export const CONTACT_PHONE = '8686624494';
 export const CONTACT_PHONE_SECONDARY = '9642024494';

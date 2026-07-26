@@ -16,6 +16,7 @@ import AboutPage from './routes/pages/about';
 import LocationsPage from './routes/pages/locations';
 import ContactPage from './routes/pages/contact';
 import NotFoundPage from './routes/pages/not-found';
+import AccessoriesPage from './routes/pages/accessories';
 import SuccessPage from './features/cart/success-page';
 import ProductList from './components/product/ProductList';
 import CompareTable from './components/product/CompareTable';
@@ -58,16 +59,16 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-50 flex flex-col justify-between selection:bg-brand-500 selection:text-brand-950">
+    <div className="min-h-screen bg-secondary flex flex-col justify-between selection:bg-brand-500 selection:text-brand-950">
       <Header cartCount={cart.totalCount} />
       <main className="flex-1">
         <ErrorBoundary>
           <Suspense
             fallback={
-              <div className="min-h-[60vh] flex items-center justify-center bg-neutral-light">
+              <div className="min-h-[60vh] flex items-center justify-center bg-secondary">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="w-10 h-10 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-                  <span className="text-neutral-dark/40 text-[10px] font-accent uppercase tracking-[0.3em]">Loading</span>
+                  <div className="w-10 h-10 border-2 border-brand-600/30 border-t-accent rounded-full animate-spin" />
+                  <span className="text-graphite-400 text-[10px] font-accent uppercase tracking-[0.3em]">Loading</span>
                 </div>
               </div>
             }
@@ -148,6 +149,17 @@ function AppContent() {
               <Route path="/science" element={<SleepSciencePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/locations" element={<LocationsPage />} />
+              <Route
+                path="/accessories"
+                element={
+                  <PageShell
+                    title="Mattress Accessories — Pillows & Protectors | RelaxPro"
+                    description="Complete your sleep setup with latex pillows, shredded pillows, fiber pillows, and mattress protectors. Direct factory pricing."
+                  >
+                    <AccessoriesPage />
+                  </PageShell>
+                }
+              />
               <Route path="/contact" element={<ContactPage />} />
               <Route
                 path="/success"
@@ -170,7 +182,7 @@ function AppContent() {
       <Footer />
       <ScrollToTop />
       <WhatsAppFAB />
-      <LeadPopup isOpen={popup.isOpen} onClose={popup.close} />
+      <LeadPopup isOpen={popup.isOpen} onClose={popup.close} onSubmitted={popup.onSubmitted} />
     </div>
   );
 }

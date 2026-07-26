@@ -29,6 +29,7 @@ import policyPage from './documents/policyPage'
 import location from './documents/location'
 import gallery from './documents/gallery'
 import sleepStyle from './documents/sleepStyle'
+import accessory from './documents/accessory'
 
 export const schemaTypes = [
   ctaButton,
@@ -61,4 +62,5 @@ export const schemaTypes = [
   location,
   gallery,
   sleepStyle,
+  accessory,
 ]

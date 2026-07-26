@@ -57,8 +57,8 @@ export default function ProductList({
   const getFirmnessBadge = (level: string): { label: string; color: string } => {
     const softLevels = ['plush', 'soft', 'soft-medium', 'medium-soft'];
     const mediumLevels = ['medium', 'medium-firm', 'medium-plush'];
-    if (softLevels.includes(level)) return { label: 'Soft', color: 'bg-emerald-500/15 text-emerald-600 border-emerald-200' };
-    if (mediumLevels.includes(level)) return { label: 'Medium', color: 'bg-blue-500/15 text-blue-600 border-blue-200' };
+    if (softLevels.includes(level)) return { label: 'Soft', color: 'bg-eco-500/15 text-eco-500 border-eco-500/20' };
+    if (mediumLevels.includes(level)) return { label: 'Medium', color: 'bg-brand-500/15 text-brand-600 border-brand-600-200' };
     return { label: 'Firm', color: 'bg-orange-500/15 text-orange-600 border-orange-200' };
   };
 
@@ -169,21 +169,21 @@ export default function ProductList({
       {/* Title block */}
       <div className="mb-12 border-b border-brand-200/40 pb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 fade-up">
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">
+          <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-brand-600 uppercase bg-brand-50 px-4 py-1.5 rounded-full font-bold">
             Real Natural Latex & Ortho Health Modules
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-6 text-primary leading-[1.1]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-6 text-ink-900 leading-[1.1]">
             Explore Mattress Collections
           </h1>
-          <p className="text-neutral-dark/70 text-base md:text-lg mt-6 font-body leading-relaxed max-w-xl">
+          <p className="text-graphite-600 text-base md:text-lg mt-6 font-body leading-relaxed max-w-xl">
             Direct-from-factory pricing with absolute transparency. Tap any product image for comprehensive layered specifications and custom warranties.
           </p>
         </div>
         
         {/* Dynamic counter */}
-        <div className="font-mono text-[11px] uppercase tracking-widest text-neutral-dark/50 bg-white/50 backdrop-blur-sm px-5 py-3 rounded-full border border-brand-200/40 shrink-0 select-none shadow-sm flex items-center gap-2">
+        <div className="font-mono text-[11px] uppercase tracking-widest text-graphite-500 bg-white/50 backdrop-blur-sm px-5 py-3 rounded-full border border-brand-200/40 shrink-0 select-none shadow-sm flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-success animate-pulse"></div>
-          Showing <span className="font-bold text-primary">{filteredProducts.length}</span> of 13 Models
+          Showing <span className="font-bold text-ink-900">{filteredProducts.length}</span> of 13 Models
         </div>
       </div>
 
@@ -193,13 +193,13 @@ export default function ProductList({
         {/* Search & Tier */}
         <div className="w-full xl:w-auto flex flex-col md:flex-row gap-4 items-center">
           <div className="w-full md:w-72 relative group shrink-0">
-            <Search className="w-4 h-4 text-neutral-dark/40 absolute left-4 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-primary" />
+            <Search className="w-4 h-4 text-graphite-400 absolute left-4 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-ink-900" />
             <input
               type="text"
               placeholder="Search by name, feel, layer..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-brand-200/40 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 text-sm font-body placeholder-neutral-dark/40 bg-white transition-all outline-none"
+              className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-brand-200/40 focus:border-ink-900/40 focus:ring-4 focus:ring-primary/5 text-sm font-body placeholder-neutral-dark/40 bg-white transition-all outline-none"
             />
           </div>
 
@@ -222,7 +222,7 @@ export default function ProductList({
           <select
             value={selectedComfort}
             onChange={(e) => setSelectedComfort(e.target.value as any)}
-            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
+            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-ink-900 focus:border-ink-900/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
           >
             <option value="all">Any Comfort</option>
             <option value="soft">Soft & Plush</option>
@@ -233,7 +233,7 @@ export default function ProductList({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-primary focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
+            className="bg-white border border-brand-200/40 text-[11px] uppercase tracking-wider font-bold font-accent px-4 py-2.5 rounded-xl text-ink-900 focus:border-ink-900/40 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[170px]"
           >
             <option value="popular">Recommended</option>
             <option value="priceAsc">Price: Low - High</option>
@@ -241,12 +241,12 @@ export default function ProductList({
             <option value="thickness">Deepest Profile</option>
           </select>
 
-          <label className="flex items-center gap-2 text-[11px] uppercase tracking-wider font-accent font-bold text-accent bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl hover:bg-accent/10 cursor-pointer select-none transition-colors">
+          <label className="flex items-center gap-2 text-[11px] uppercase tracking-wider font-accent font-bold text-brand-600 bg-brand-50 border border-brand-600/20 px-4 py-2.5 rounded-xl hover:bg-brand-50 cursor-pointer select-none transition-colors">
             <input
               type="checkbox"
               checked={onlyLatex}
               onChange={(e) => setOnlyLatex(e.target.checked)}
-              className="rounded text-accent focus:ring-accent/20 w-3.5 h-3.5 border-brand-200/50 cursor-pointer bg-white"
+              className="rounded text-brand-600 focus:ring-brand-600/20 w-3.5 h-3.5 border-brand-200/50 cursor-pointer bg-white"
             />
             <span>Pure Latex Only</span>
           </label>
@@ -271,17 +271,17 @@ export default function ProductList({
                   )}
 
                   {/* Header metadata display */}
-<div className="p-2 sm:p-5 bg-neutral-light/50 border-b border-brand-200/40 flex flex-row items-center justify-between gap-1 sm:gap-0 text-[7px] sm:text-[10px] font-mono text-neutral-dark/60 select-none">
-  <span className="uppercase tracking-widest font-bold text-accent truncate">{p.tier} collection</span>
-  <span className="text-[9px] sm:text-[10px] font-mono text-neutral-dark/50 uppercase tracking-widest">
+<div className="p-2 sm:p-5 bg-sky-100/50 border-b border-brand-200/40 flex flex-row items-center justify-between gap-1 sm:gap-0 text-[7px] sm:text-[10px] font-mono text-graphite-500 select-none">
+  <span className="uppercase tracking-widest font-bold text-brand-600 truncate">{p.tier} collection</span>
+  <span className="text-[9px] sm:text-[10px] font-mono text-graphite-500 uppercase tracking-widest">
     {p.warranty}-Year Warranty
   </span>
 </div>
 
                   {/* Product Image block */}
-                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-neutral-light cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
+                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-sky-100 cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
                     {p.badge && (
-                      <span className="absolute top-1 sm:top-4 left-1 sm:left-4 bg-primary/95 backdrop-blur-sm text-white font-accent text-[6px] sm:text-[10px] tracking-widest uppercase font-bold px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
+                      <span className="absolute top-1 sm:top-4 left-1 sm:left-4 bg-ink-900/95 backdrop-blur-sm text-white font-accent text-[6px] sm:text-[10px] tracking-widest uppercase font-bold px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
                         {p.badge}
                       </span>
                     )}
@@ -293,9 +293,9 @@ export default function ProductList({
                     />
                     
                     {/* Glassmorphism hover card overlay */}
-                    <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center p-6">
-                      <span className="btn-primary bg-white text-primary text-xs font-accent font-bold px-6 py-3 rounded-xl shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        Quick View <ChevronRight className="w-4 h-4 text-accent" />
+                    <div className="absolute inset-0 bg-ink-900/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center p-6">
+                      <span className="btn-primary bg-white text-ink-900 text-xs font-accent font-bold px-6 py-3 rounded-xl shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        Quick View <ChevronRight className="w-4 h-4 text-brand-600" />
                       </span>
                     </div>
                   </div>
@@ -306,13 +306,13 @@ export default function ProductList({
                       {/* Name & Comfort rating line */}
                       <div className="flex flex-row justify-between items-start gap-1 sm:gap-4">
                         <div className="min-w-0 flex-1">
-                          <h3 className="font-heading font-bold text-xs sm:text-xl md:text-2xl text-primary flex flex-wrap items-center gap-1 sm:gap-2 mb-0.5 sm:mb-1 truncate">
+                          <h3 className="font-heading font-bold text-xs sm:text-xl md:text-2xl text-ink-900 flex flex-wrap items-center gap-1 sm:gap-2 mb-0.5 sm:mb-1 truncate">
                             {p.name}
                             {isBestSeller && (
-                              <span className="text-[6px] sm:text-[9px] font-accent font-bold uppercase tracking-widest text-accent bg-accent/10 px-1 sm:px-2 py-0.5 sm:py-1 rounded-md border border-accent/20 text-center">Best Seller</span>
+                              <span className="text-[6px] sm:text-[9px] font-accent font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-1 sm:px-2 py-0.5 sm:py-1 rounded-md border border-brand-600/20 text-center">Best Seller</span>
                             )}
                           </h3>
-                          <span className="hidden sm:block text-[9px] sm:text-[11px] text-neutral-dark/50 font-body italic leading-tight sm:leading-normal truncate">{p.tagline}</span>
+                          <span className="hidden sm:block text-[9px] sm:text-[11px] text-graphite-500 font-body italic leading-tight sm:leading-normal truncate">{p.tagline}</span>
                         </div>
                         
                         {/* Comfort label */}
@@ -330,7 +330,7 @@ export default function ProductList({
                               <span
                                 key={i}
                                 className={`w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full ${
-                                  i < p.comfortRating ? 'bg-accent shadow-sm' : 'bg-neutral-light border border-brand-200/50'
+                                  i < p.comfortRating ? 'bg-brand-600 shadow-sm' : 'bg-sky-100 border border-brand-200/50'
                                 }`}
                               ></span>
                             ))}
@@ -339,29 +339,29 @@ export default function ProductList({
                       </div>
 
                       {/* Brief description */}
-                      <p className="hidden sm:block text-[10px] sm:text-sm text-neutral-dark/70 mt-3 sm:mt-5 leading-relaxed line-clamp-2 font-body">
+                      <p className="hidden sm:block text-[10px] sm:text-sm text-graphite-600 mt-3 sm:mt-5 leading-relaxed line-clamp-2 font-body">
                         {p.keyBenefit}
                       </p>
 
                       {/* Details specs bullets checklist */}
-                      <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40 space-y-1 sm:space-y-2.5 text-[7px] sm:text-xs text-neutral-dark/60 font-body">
+                      <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40 space-y-1 sm:space-y-2.5 text-[7px] sm:text-xs text-graphite-500 font-body">
                         <div className="flex items-center gap-1 sm:gap-3">
-                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-accent"></span>
+                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-brand-50 flex items-center justify-center shrink-0">
+                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-brand-600"></span>
                           </div>
-                          <span className="truncate">Thick: <strong className="text-primary font-bold">{p.totalThickness}"</strong></span>
+                          <span className="truncate">Thick: <strong className="text-ink-900 font-bold">{p.totalThickness}"</strong></span>
                         </div>
                         <div className="flex items-center gap-1 sm:gap-3">
-                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-accent"></span>
+                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-brand-50 flex items-center justify-center shrink-0">
+                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-brand-600"></span>
                           </div>
-                          <span className="truncate">Cover: <strong className="text-primary font-bold">{p.fabricGsm}GSM {p.fabricType.split(' ')[0]}</strong></span>
+                          <span className="truncate">Cover: <strong className="text-ink-900 font-bold">{p.fabricGsm}GSM {p.fabricType.split(' ')[0]}</strong></span>
                         </div>
                         <div className="flex items-center gap-1 sm:gap-3">
-                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-accent"></span>
+                          <div className="w-2 h-2 sm:w-5 sm:h-5 rounded-full bg-brand-50 flex items-center justify-center shrink-0">
+                            <span className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-brand-600"></span>
                           </div>
-                          <span className="truncate">Latex: <strong className="text-primary font-bold">{isLatex ? 'Yes' : 'No'}</strong></span>
+                          <span className="truncate">Latex: <strong className="text-ink-900 font-bold">{isLatex ? 'Yes' : 'No'}</strong></span>
                         </div>
                       </div>
                     </div>
@@ -369,7 +369,7 @@ export default function ProductList({
                     {/* Quick Mattress Size Configurator inside each block */}
                     <div className="mt-2 sm:mt-6 pt-2 sm:pt-5 border-t border-brand-200/40">
                       <div className="flex flex-row justify-between items-center mb-1.5 sm:mb-4 gap-1 sm:gap-0">
-                        <span className="text-[6px] sm:text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-sm sm:rounded-md hidden sm:inline-block">
+                        <span className="text-[6px] sm:text-[10px] font-mono text-graphite-400 uppercase tracking-widest bg-sky-100 px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-sm sm:rounded-md hidden sm:inline-block">
                           Select Size
                         </span>
                         
@@ -392,9 +392,9 @@ export default function ProductList({
                       {/* Price indicator */}
                       <div className="flex flex-row justify-between items-center p-1.5 sm:p-4 rounded-lg sm:rounded-xl border border-brand-200/50 bg-white shadow-sm mt-1 sm:mt-2">
                         <div className="flex flex-col">
-                          <span className="text-[6px] sm:text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-0.5 sm:mb-1">Starting From</span>
+                          <span className="text-[6px] sm:text-[9px] font-accent text-graphite-500 tracking-widest uppercase mb-0.5 sm:mb-1">Starting From</span>
                           <div className="flex items-baseline gap-1 sm:gap-2">
-                            <span className="text-[10px] sm:text-2xl font-bold font-heading text-primary">
+                            <span className="text-[10px] sm:text-2xl font-bold font-heading text-ink-900">
                               <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                             </span>
                           </div>
@@ -407,19 +407,19 @@ export default function ProductList({
                   <div className="p-1.5 sm:p-5 bg-white border-t border-brand-200/40 grid grid-cols-2 sm:flex sm:flex-row gap-1 sm:gap-2 rounded-b-2xl">
                     <button
                       onClick={(e) => { e.stopPropagation(); onNavigateToPdp(p.slug); }}
-                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl border border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-1 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-accent/10 text-[8px] sm:text-xs"
+                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl border border-neutral-light hover:border-brand-600 bg-white hover:bg-brand-50 font-accent font-bold text-ink-900 flex items-center justify-center gap-1 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-brand-600/10 text-[8px] sm:text-xs"
                     >
-                      <Info className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-accent" /> <span className="hidden sm:inline">Details</span><span className="sm:hidden">Info</span>
+                      <Info className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-brand-600" /> <span className="hidden sm:inline">Details</span><span className="sm:hidden">Info</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleBuyNow(p, activeSize); }}
-                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-accent hover:bg-[#2569A0] text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-accent/20 text-[8px] sm:text-xs"
+                      className="col-span-1 sm:flex-1 py-1.5 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-600/20 text-[8px] sm:text-xs"
                     >
                       Buy
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleAddToCart(p, activeSize); }}
-                      className="col-span-2 sm:flex-1 py-2 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-primary hover:bg-neutral-dark text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/20 text-[9px] sm:text-xs"
+                      className="col-span-2 sm:flex-1 py-2 sm:py-3 px-1 sm:px-3 rounded-md sm:rounded-xl bg-ink-900 hover:bg-ink-800 text-white font-accent font-bold flex items-center justify-center gap-1 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/20 text-[9px] sm:text-xs"
                     >
                       <ShoppingCart className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white/80" />
                       {justAdded.has(p.slug) ? 'Added!' : 'Add to Cart'}
@@ -456,13 +456,13 @@ export default function ProductList({
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-24 bg-neutral-light p-8 rounded-3xl border border-brand-200/40 max-w-2xl mx-auto"
+            className="text-center py-24 bg-sky-100 p-8 rounded-3xl border border-brand-200/40 max-w-2xl mx-auto"
           >
             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-brand-200/40">
-              <AlertCircle className="w-10 h-10 text-accent" />
+              <AlertCircle className="w-10 h-10 text-brand-600" />
             </div>
-            <h3 className="font-heading font-bold text-2xl text-primary mb-3">No Mattresses Match Filters</h3>
-            <p className="text-neutral-dark/60 text-base leading-relaxed mb-8 font-body">
+            <h3 className="font-heading font-bold text-2xl text-ink-900 mb-3">No Mattresses Match Filters</h3>
+            <p className="text-graphite-500 text-base leading-relaxed mb-8 font-body">
               Try updating your search queries, clearing the "Pure Kerala Latex" parameter, or choosing another collection tier to discover our premium models.
             </p>
             <button
@@ -472,7 +472,7 @@ export default function ProductList({
                 setSelectedComfort('all');
                 setOnlyLatex(false);
               }}
-              className="btn-primary inline-flex items-center gap-2 bg-primary text-white font-accent text-sm font-bold px-6 py-3.5 rounded-xl cursor-pointer shadow-md"
+              className="btn-primary inline-flex items-center gap-2 bg-ink-900 text-white font-accent text-sm font-bold px-6 py-3.5 rounded-xl cursor-pointer shadow-md"
             >
               <RefreshCw className="w-4 h-4 text-white/80" /> Reset Filter Matrix
             </button>
@@ -481,27 +481,27 @@ export default function ProductList({
       </AnimatePresence>
 
       {/* Trust Callout */}
-      <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-24 p-8 md:p-12 rounded-[2rem] border border-primary/20 flex flex-col md:flex-row gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">
+      <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-24 p-8 md:p-12 rounded-[2rem] border border-ink-900/20 flex flex-col md:flex-row gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">
         {/* Abstract background shapes */}
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-200 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-200/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="max-w-2xl relative z-10">
-          <span className="inline-flex items-center gap-2 text-[10px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-3 py-1 rounded-full font-bold border border-accent/20">
+          <span className="inline-flex items-center gap-2 text-[10px] tracking-widest font-accent text-brand-600 uppercase bg-brand-50 px-3 py-1 rounded-full font-bold border border-brand-600/20">
             <Shield className="w-3 h-3" /> Orthopedic Confidence
           </span>
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mt-4 leading-tight">
             Can't decide on structural layers?
           </h3>
-          <p className="text-neutral-light/80 text-sm md:text-base mt-4 leading-relaxed font-body">
+          <p className="text-linen-200/80 text-sm md:text-base mt-4 leading-relaxed font-body">
             Every spinal structure has unique density requirements. RelaxPro allows you to custom engineer density blends, accessories, and outer quilted weaves. Open our 3D interactive builder.
           </p>
         </div>
         <button
           onClick={() => onNavigate('builder')}
-          className="btn-primary bg-white text-primary text-sm font-bold font-accent tracking-wide uppercase py-4 px-8 rounded-xl flex items-center gap-2 shrink-0 group shadow-xl hover:shadow-2xl hover:bg-neutral-light cursor-pointer relative z-10"
+          className="btn-primary bg-white text-ink-900 text-sm font-bold font-accent tracking-wide uppercase py-4 px-8 rounded-xl flex items-center gap-2 shrink-0 group shadow-xl hover:shadow-2xl hover:bg-sky-100 cursor-pointer relative z-10"
         >
-          <Sparkles className="w-5 h-5 text-accent" /> Start 3D Customizer
+          <Sparkles className="w-5 h-5 text-brand-600" /> Start 3D Customizer
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </section>

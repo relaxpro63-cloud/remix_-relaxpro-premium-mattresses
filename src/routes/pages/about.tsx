@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PageShell from '../../components/layout/PageShell';
+import { FadeUp } from '../../components/motion/motionPrimitives';
+import CertificationsSection from '../../components/home/CertificationsSection';
 import { getAboutPage } from '../../lib/queries';
 
 const defaultSections = [
@@ -92,19 +94,21 @@ export default function AboutPage() {
       title={seo?.metaTitle || 'About RelaxPro | Pure Natural Latex Mattress Manufacturer'}
       description={seo?.metaDescription || 'Pioneering GOLS chemical-free natural organic latex mattresses in Andhra Pradesh, Telangana and Karnataka. Factory direct with zero markups.'}
     >
-      <div className="rp-container py-16 md:py-24">
-        {sections.map((section, idx) => {
-          const hasImage = section.image !== null;
-          const isDark = idx === 2;
+      {sections.map((section, idx) => {
+        const hasImage = section.image !== null;
+        const isDark = idx === 2;
+        const bgClass = isDark ? '' : (idx % 2 === 0 ? 'bg-secondary' : 'bg-sky-100/20');
 
-          return (
+        return (
+          <section key={section.label} className={`py-16 md:py-24 ${bgClass}`}>
+            <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <FadeUp>
             <div
-              key={section.label}
               className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start ${
                 isDark 
-                  ? 'bg-primary text-white rounded-[2rem] p-6 sm:p-10 md:p-16 shadow-lg shadow-brand-900/10' 
+                  ? 'bg-ink-900 text-white rounded-[2rem] p-6 sm:p-10 md:p-16 shadow-lg shadow-brand-900/10' 
                   : ''
-              } ${idx > 0 ? 'mt-20 md:mt-32' : ''}`}
+              }`}
             >
               <div
                 className={`space-y-6 ${
@@ -114,21 +118,21 @@ export default function AboutPage() {
                 }`}
               >
                 <span className={`text-[10px] font-accent font-bold uppercase tracking-editorial px-4 py-1.5 rounded-full ${
-                  isDark ? 'text-accent bg-accent/20' : 'text-accent bg-accent/10'
+                  isDark ? 'text-brand-600 bg-brand-200' : 'text-brand-600 bg-brand-50'
                 }`}>
                   {section.label}
                 </span>
-                <h2 className={`rp-display ${isDark ? 'text-white' : 'text-primary'}`}>{section.heading}</h2>
+                <h2 className={`rp-display ${isDark ? 'text-white' : 'text-ink-900'}`}>{section.heading}</h2>
                 {section.paragraphs.map((p: string, pIdx: number) => (
                   <p
                     key={pIdx}
-                    className={`rp-body leading-loose ${pIdx === 0 ? 'drop-cap' : ''} ${isDark ? 'text-zinc-100/90' : 'text-neutral-dark/70'}`}
+                    className={`rp-body leading-loose ${pIdx === 0 ? 'drop-cap' : ''} ${isDark ? 'text-zinc-100/90' : 'text-graphite-600'}`}
                   >
                     {p}
                   </p>
                 ))}
                 {idx === sections.length - 1 && (
-                  <div className={`pt-6 flex flex-wrap gap-3 text-sm font-bold ${isDark ? 'text-white/90' : 'text-neutral-dark'}`}>
+                  <div className={`pt-6 flex flex-wrap gap-3 text-sm font-bold ${isDark ? 'text-white/90' : 'text-graphite-700'}`}>
                     {cities.map(c => (
                       <span key={c} className={`rounded-full px-4 py-2 ${isDark ? 'border border-white/20' : 'bg-brand-100'}`}>{c}</span>
                     ))}
@@ -149,9 +153,15 @@ export default function AboutPage() {
                 </div>
               )}
             </div>
-          );
-        })}
-      </div>
+            </FadeUp>
+            </div>
+          </section>
+        );
+      })}
+
+      <section className="bg-secondary py-16 md:py-24">
+        <FadeUp><CertificationsSection /></FadeUp>
+      </section>
     </PageShell>
   );
 }

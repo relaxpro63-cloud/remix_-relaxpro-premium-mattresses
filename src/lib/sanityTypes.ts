@@ -154,6 +154,15 @@ export interface SanitySiteSettings {
     metaPixelId?: string
     gtmId?: string
   }
+  certificates?: {
+    id: string
+    title: string
+    subtitle?: string
+    description?: string
+    pdfUrl?: string
+    pdfEmbedUrl?: string
+    validity?: string
+  }[]
 }
 
 export interface SanityHeroSlide {
@@ -214,6 +223,32 @@ export interface SanitySleepScience {
   ctaDescription?: string
   ctaLabel?: string
   ctaLink?: string
+  seo?: SanitySeo
+}
+
+/* ---- Accessory Types ---- */
+export type AccessoryType = 'latex_pillow' | 'shredded_pillow' | 'fiber_pillow' | 'mattress_protector' | 'other'
+
+export interface SanityAccessory {
+  _id: string
+  name: string
+  slug: { current: string }
+  tagline?: string
+  description?: string
+  type: AccessoryType
+  pricing: {
+    price: number
+    mrp: number
+    currency: string
+  }
+  sizes?: string[]
+  features?: string[]
+  thumbnail?: SanityImage
+  images?: SanityImage[]
+  inStock?: boolean
+  isNew?: boolean
+  isBestseller?: boolean
+  sortOrder?: number
   seo?: SanitySeo
 }
 

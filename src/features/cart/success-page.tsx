@@ -36,7 +36,7 @@ export default function SuccessPage({ orderReceipt, onReset }: SuccessPageProps)
       <PageShell title={pageTitle} description={pageDesc}>
         <div className="max-w-xl mx-auto px-4 md:px-6 py-20 text-center space-y-6 text-zinc-950">
           <h1 className="text-3xl font-display font-medium text-brand-950">No order found</h1>
-          <button onClick={() => navigate('/catalog')} className="btn-primary bg-primary hover:bg-neutral-dark text-white font-accent text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-xl cursor-pointer shadow-md transition-all">{continueShopping}</button>
+          <button onClick={() => navigate('/catalog')} className="btn-primary bg-ink-900 hover:bg-ink-800 text-white font-accent text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-xl cursor-pointer shadow-md transition-all">{continueShopping}</button>
         </div>
       </PageShell>
     );
@@ -59,12 +59,12 @@ export default function SuccessPage({ orderReceipt, onReset }: SuccessPageProps)
       >
         <SEO title={pageTitle} description={pageDesc} />
         <Confetti />
-        <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto border-2 border-emerald-400">
+        <div className="w-16 h-16 bg-eco-50 text-eco-600 rounded-full flex items-center justify-center mx-auto border-2 border-eco-500">
           <Check className="w-8 h-8" />
         </div>
 
         <div>
-          <span className="text-xs tracking-widest font-mono text-emerald-800 bg-emerald-50 px-3 py-1 rounded font-bold uppercase">{orderThankYou}</span>
+          <span className="text-xs tracking-widest font-mono text-ink-900 bg-eco-50 px-3 py-1 rounded font-bold uppercase">{orderThankYou}</span>
           <h1 className="text-3xl font-display font-medium mt-4 text-brand-950">{orderReceived}</h1>
           <p className="text-sm text-stone-600 mt-2 font-sans">{orderConfirmMsg}</p>
         </div>
@@ -97,7 +97,7 @@ export default function SuccessPage({ orderReceipt, onReset }: SuccessPageProps)
             href={buildWhatsAppUrl(message)}
             target="_blank"
             rel="noreferrer"
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl py-3 text-xs font-semibold uppercase tracking-wider font-display flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/15 cursor-pointer"
+            className="w-full bg-eco-500 hover:bg-eco-600 text-white rounded-xl py-3 text-xs font-semibold uppercase tracking-wider font-display flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/15 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4" /> {settings?.contactInfo?.whatsappSubmitLabel || 'Instantly Submit Order to Suresh on WhatsApp'}
           </a>

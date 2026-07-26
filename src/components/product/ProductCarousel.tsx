@@ -29,9 +29,9 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
   };
 
   return (
-    <div className="relative rounded-[2rem] overflow-hidden bg-neutral-light border border-brand-200/40 shadow-sm group">
+    <div className="relative rounded-[2rem] overflow-hidden bg-sky-100 border border-brand-200/40 shadow-sm group">
       {badge && (
-        <span className="absolute top-4 sm:top-6 left-4 sm:left-6 bg-primary/95 backdrop-blur-sm text-white font-accent text-[8px] sm:text-[11px] tracking-widest uppercase font-bold px-2.5 sm:px-4 py-1 sm:py-2 rounded-full z-10 border border-white/10 shadow-lg max-w-[70%] sm:max-w-none truncate sm:whitespace-normal">
+        <span className="absolute top-4 sm:top-6 left-4 sm:left-6 bg-ink-900/95 backdrop-blur-sm text-white font-accent text-[8px] sm:text-[11px] tracking-widest uppercase font-bold px-2.5 sm:px-4 py-1 sm:py-2 rounded-full z-10 border border-white/10 shadow-lg max-w-[70%] sm:max-w-none truncate sm:whitespace-normal">
           {badge}
         </span>
       )}
@@ -61,14 +61,14 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
             className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10 hover:bg-white cursor-pointer"
             aria-label="Previous image"
           >
-            <ChevronLeft className="w-5 h-5 text-primary" />
+            <ChevronLeft className="w-5 h-5 text-ink-900" />
           </button>
           <button
             onClick={goNext}
             className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10 hover:bg-white cursor-pointer"
             aria-label="Next image"
           >
-            <ChevronRight className="w-5 h-5 text-primary" />
+            <ChevronRight className="w-5 h-5 text-ink-900" />
           </button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1.5 sm:gap-2 z-10">
@@ -79,8 +79,8 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
                 onClick={() => goTo(idx)}
                 className={`rounded-full transition-all cursor-pointer h-1.5 sm:h-2 shrink-0 ${
                   idx === current
-                    ? 'bg-primary w-4 sm:w-5'
-                    : 'bg-neutral-dark/30 hover:bg-neutral-dark/50 w-1.5 sm:w-2'
+                    ? 'bg-ink-900 w-4 sm:w-5'
+                    : 'bg-graphite-400/30 hover:bg-ink-800/50 w-1.5 sm:w-2'
                 }`}
                 style={{ minHeight: '6px', minWidth: '6px' }}
                 aria-label={`Go to image ${idx + 1}`}

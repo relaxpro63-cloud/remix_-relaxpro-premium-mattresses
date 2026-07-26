@@ -10,9 +10,9 @@ interface QuickConnectBarProps {
 }
 
 const iconMap: Record<string, React.ReactNode> = {
-  'map-pin': <MapPin className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-primary group-hover:text-accent transition-colors" />,
-  'message-square': <MessageSquare className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-primary group-hover:text-accent transition-colors" />,
-  phone: <Phone className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-primary group-hover:text-accent transition-colors" />,
+  'map-pin': <MapPin className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-ink-900 group-hover:text-brand-600 transition-colors" />,
+  'message-square': <MessageSquare className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-ink-900 group-hover:text-brand-600 transition-colors" />,
+  phone: <Phone className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-ink-900 group-hover:text-brand-600 transition-colors" />,
 };
 
 const defaultItems = [
@@ -43,15 +43,15 @@ export default function QuickConnectBar({
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 my-8">
-      <div className="bg-slate-50/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl flex flex-row divide-x divide-slate-200/60 overflow-hidden shadow-sm">
+      <div className="bg-white backdrop-blur-sm border border-brand-200/30 rounded-2xl flex flex-row divide-x divide-brand-200/30 overflow-hidden shadow-sm">
         {items.map((item: any) => (
           <button
             key={item.id}
             onClick={getHandler(item)}
-            className="group flex-1 flex flex-col items-center justify-center py-4 md:py-6 px-1 md:px-2 hover:bg-slate-100/80 transition-all duration-200 cursor-pointer"
+            className="group flex-1 flex flex-col items-center justify-center py-4 md:py-6 px-1 md:px-2 hover:bg-sky-100/60 transition-all duration-200 cursor-pointer"
           >
-            {iconMap[item.icon] || iconMap[item.id] || <MapPin className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-primary group-hover:text-accent transition-colors" />}
-            <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-primary font-heading tracking-wide group-hover:text-primary-dark transition-colors text-center leading-tight">
+            {iconMap[item.icon] || iconMap[item.id] || <MapPin className="w-5 h-5 md:w-6 md:h-6 mb-1.5 md:mb-2 text-ink-900 group-hover:text-brand-600 transition-colors" />}
+            <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-ink-900 font-heading tracking-wide group-hover:text-ink-900-dark transition-colors text-center leading-tight">
               {item.label}
             </span>
           </button>

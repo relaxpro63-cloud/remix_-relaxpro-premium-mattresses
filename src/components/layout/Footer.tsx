@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
+import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, ArrowRight, Sparkles, Heart, Award, MessageSquare, Store } from 'lucide-react';
 import { getSiteSettings, getNavigation } from '../../lib/queries';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
@@ -8,174 +9,275 @@ export default function Footer() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [settings, setSettings] = useState<any>(null);
   const [nav, setNav] = useState<any>(null);
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
     getSiteSettings().then(setSettings).catch(() => {});
     getNavigation().then(setNav).catch(() => {});
   }, []);
 
-  const toggleAccordion = (section: string) => {
+  const toggleAccordion = (section: string) =>
     setOpenAccordion(openAccordion === section ? null : section);
-  };
 
-  const quickLinks = (nav?.footerMenu?.[0]?.links || [
+  const shopLinks = (nav?.footerMenu?.[0]?.links || [
     { label: 'Home', path: '/' },
     { label: 'Shop All', path: '/catalog' },
-    { label: 'Customize', path: '/builder' },
-    { label: 'Sleep Science', path: '/science' },
-    { label: 'About Us', path: '/about' },
+    { label: 'Custom Build', path: '/builder' },
+    { label: 'Compare', path: '/compare' },
+    { label: 'Accessories', path: '/accessories' },
   ]).map((item: any) => ({ path: item.path || item.href || '/', label: item.label }));
 
-  const customerCare = (nav?.footerMenu?.[1]?.links || [
+  const supportLinks = (nav?.footerMenu?.[1]?.links || [
     { label: 'Contact Us', path: '/contact' },
-    { label: 'Store Locations', path: '/locations' },
-    { label: 'Sleep Education', path: '/science' },
+    { label: 'FAQs', path: '/#faq' },
+    { label: 'Warranty', path: '/contact' },
+    { label: 'Shipping & Returns', path: '/contact' },
+    { label: 'Sleep Guide', path: '/science' },
   ]).map((item: any) => ({ path: item.path || item.href || '/', label: item.label }));
 
   const contactInfo = settings?.contactInfo || {};
-  const defaultDescription = 'Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber — factory direct with zero markups.';
+
+  const trustBadges = [
+    { icon: Shield, text: '100% Natural Latex' },
+    { icon: Award, text: '10-Year Warranty' },
+    { icon: Truck, text: 'Free Delivery Pan India' },
+    { icon: RefreshCcw, text: 'Direct Factory Pricing' },
+    { icon: Heart, text: 'Handmade in India' },
+  ];
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubscribed(true);
+      setEmail('');
+      setTimeout(() => setSubscribed(false), 5000);
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+    },
+  };
+
+  const colVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  };
 
   return (
-    <footer className="bg-primary text-white/70 border-t-2 border-blue/30">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-14 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-10">
+    <footer className="footer-luxury text-white/70 relative overflow-hidden">
+      {/* Soft glow behind logo */}
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brand-600/6 rounded-full blur-[150px] pointer-events-none" />
+      {/* Bottom-right glow */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-700/5 rounded-full blur-[120px] pointer-events-none" />
 
-          <div className="lg:col-span-4 space-y-5">
-            <div className="flex flex-col items-start gap-1">
-              <RelaxProLogo variant="footer" inverse={true} className="!items-start" />
-              <span className="text-[8px] font-accent tracking-[0.22em] text-blue block uppercase font-bold mt-2">
-                Kerala Organic Latex Labs
-              </span>
-            </div>
-            <p className="text-white/40 text-xs leading-relaxed max-w-sm font-body">
-              {settings?.footer?.description || defaultDescription}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-20 md:pt-28 pb-8 relative z-10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-10 lg:gap-14"
+        >
+          {/* ── Column 1: Brand + Trust ── */}
+          <motion.div variants={colVariants} className="lg:col-span-4 space-y-7">
+            <RelaxProLogo variant="footer" inverse={true} className="!items-start" />
+            <p className="text-white/40 text-sm leading-relaxed max-w-sm font-body">
+              {settings?.footer?.description ||
+                "Crafting India's finest natural latex mattresses designed for healthier sleep and lifelong comfort."}
             </p>
 
-            <div className="space-y-2.5 text-xs">
-              {(settings?.footer?.certifications || [
-                { name: '10-Year Factory Replacement Warranty' },
-                { name: 'Direct From Kerala • No Middleman' },
-                { name: 'Free Doorstep Shipping To Major Cities' },
-              ]).map((item: any, idx: number) => (
-                <div key={idx} className="flex items-center gap-2.5 text-white/60">
-                  <span className="text-blue shrink-0">{idx === 0 ? <Shield className="w-4 h-4" /> : idx === 1 ? <RefreshCcw className="w-4 h-4" /> : <Truck className="w-4 h-4" />}</span>
-                  <span>{typeof item === 'string' ? item : item.name}</span>
+            {/* Trust badges */}
+            <div className="grid grid-cols-2 gap-3">
+              {trustBadges.map((badge, idx) => (
+                <div key={idx} className="footer-trust-badge">
+                  <badge.icon className="w-3.5 h-3.5 text-brand-400 shrink-0" />
+                  <span className="text-[11px] font-accent font-medium tracking-wide">{badge.text}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex gap-4 pt-2">
-              <a href={settings?.contactInfo?.facebookUrl || 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/'} target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Facebook">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href={settings?.contactInfo?.instagramUrl || 'https://www.instagram.com/relaxpro__mattresses/?hl=en'} target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Instagram">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href={settings?.contactInfo?.youtubeUrl || 'https://www.youtube.com/@sureshmattressmanufacturer3784'} target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="YouTube">
-                <Youtube className="w-5 h-5" />
-              </a>
+            {/* Social icons */}
+            <div className="flex items-center gap-3 pt-1">
+              {[
+                { icon: Facebook, href: settings?.contactInfo?.facebookUrl || 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/', title: 'Facebook' },
+                { icon: Instagram, href: settings?.contactInfo?.instagramUrl || 'https://www.instagram.com/relaxpro__mattresses/?hl=en', title: 'Instagram' },
+                { icon: Youtube, href: settings?.contactInfo?.youtubeUrl || 'https://www.youtube.com/@sureshmattressmanufacturer3784', title: 'YouTube' },
+              ].map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="footer-social" title={s.title}>
+                  <s.icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="hidden md:grid lg:col-span-4 grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
-                Quick Links
-              </h4>
-              <ul className="space-y-2.5 text-xs">
-                {quickLinks.map((link: any) => (
-                  <li key={link.path}>
-                    <Link
-                      to={link.path}
-                      className="hover:text-white hover:translate-x-1 transition-all inline-block cursor-pointer"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          {/* ── Column 2: Shop ── */}
+          <motion.div variants={colVariants} className="lg:col-span-2">
+            <h4 className="font-heading font-bold text-white text-xs uppercase tracking-[0.18em] mb-6">Shop</h4>
+            <ul className="space-y-3.5">
+              {shopLinks.map((link: any) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="footer-link text-sm text-white/50 inline-block cursor-pointer">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* ── Column 3: Support ── */}
+          <motion.div variants={colVariants} className="lg:col-span-2">
+            <h4 className="font-heading font-bold text-white text-xs uppercase tracking-[0.18em] mb-6">Support</h4>
+            <ul className="space-y-3.5">
+              {supportLinks.map((link: any) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="footer-link text-sm text-white/50 inline-block cursor-pointer">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 pt-6 border-t border-white/5">
+              <Link to="/locations" className="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-300 transition-colors font-accent font-semibold group">
+                <MapPin className="w-4 h-4" />
+                <span>Find Our Showrooms</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
+          </motion.div>
 
-            <div>
-              <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
-                Customer Care
+          {/* ── Column 4: Contact + Newsletter ── */}
+          <motion.div variants={colVariants} className="lg:col-span-4 space-y-8">
+            {/* Contact card */}
+            <div className="footer-glass-card p-6 space-y-4">
+              <h4 className="font-heading font-bold text-white/90 text-xs uppercase tracking-[0.18em] flex items-center gap-2">
+                <Store className="w-3.5 h-3.5 text-brand-400" />
+                Contact
               </h4>
-              <ul className="space-y-2.5 text-xs">
-                {customerCare.map((link) => (
-                  <li key={link.path}>
-                    <Link
-                      to={link.path}
-                      className="hover:text-white hover:translate-x-1 transition-all inline-block cursor-pointer"
+              <div className="space-y-3.5 text-sm">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
+                  <span className="text-white/50">{contactInfo.factoryAddress || 'Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana 500055'}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-brand-400 shrink-0" />
+                  <a href={`tel:+${contactInfo.mainPhone || '918686624494'}`} className="text-white/50 hover:text-white transition-colors">
+                    +91 {contactInfo.mainPhone?.replace(/^(\d{5})(\d{5})$/, '$1 $2') || '86866 24494'}
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-brand-400 shrink-0" />
+                  <a href={`mailto:${contactInfo.email || 'relaxpro2022@gmail.com'}`} className="text-white/50 hover:text-white transition-colors">
+                    {contactInfo.email || 'relaxpro2022@gmail.com'}
+                  </a>
+                </div>
+                <div className="flex flex-wrap gap-x-6 gap-y-3 pt-1">
+                  <div className="flex items-center gap-3">
+                    <MessageSquare className="w-4 h-4 text-eco-500 shrink-0" />
+                    <a
+                      href={`https://wa.me/${contactInfo.whatsappNumber || '918686624494'}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-eco-500 hover:text-eco-400 transition-colors font-accent font-semibold"
                     >
-                      {link.label}
+                      WhatsApp Chat
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-4 h-4 text-brand-400 shrink-0" />
+                    <Link to="/locations" className="text-white/50 hover:text-white transition-colors font-accent">
+                      Google Maps
                     </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-6 space-y-3 text-xs">
-                <div className="flex gap-2 items-start">
-                  <Phone className="w-3.5 h-3.5 text-blue shrink-0 mt-0.5" />
-                  <div>
-                    <a href={`tel:+${contactInfo.mainPhone || '918686624494'}`} className="hover:text-white block font-semibold">+91 {(contactInfo.mainPhone || '8686624494').replace(/^(\d{5})(\d{5})$/, '$1 $2')}</a>
-                    {contactInfo.whatsappNumber && contactInfo.whatsappNumber !== contactInfo.mainPhone && (
-                      <a href={`tel:+${contactInfo.whatsappNumber}`} className="hover:text-white block">+91 {contactInfo.whatsappNumber.replace(/^(\d{5})(\d{5})$/, '$1 $2')}</a>
-                    )}
                   </div>
                 </div>
-                <div className="flex gap-2 items-start">
-                  <Mail className="w-3.5 h-3.5 text-blue shrink-0 mt-0.5" />
-                  <a href={`mailto:${contactInfo.email || 'relaxpro2022@gmail.com'}`} className="hover:text-white">{contactInfo.email || 'relaxpro2022@gmail.com'}</a>
-                </div>
               </div>
             </div>
-          </div>
 
-          <div className="md:hidden space-y-0 border-t border-white/10 pt-4">
-            {[
-              { key: 'links', title: 'Quick Links', items: quickLinks },
-              { key: 'care', title: 'Customer Care', items: customerCare },
-            ].map(section => (
-              <div key={section.key} className="border-b border-white/10">
-                <button
-                  onClick={() => toggleAccordion(section.key)}
-                  className="w-full flex items-center justify-between py-4 text-white text-xs font-heading font-bold uppercase tracking-widest cursor-pointer"
+            {/* Newsletter */}
+            <div className="footer-glass-card p-6 space-y-4">
+              <h4 className="font-heading font-bold text-white/90 text-xs uppercase tracking-[0.18em] flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-brand-400" />
+                Stay Connected
+              </h4>
+              <p className="text-sm text-white/40 font-body leading-relaxed">
+                Receive exclusive offers, sleep tips, and product launches.
+              </p>
+              {!subscribed ? (
+                <form onSubmit={handleSubscribe} className="flex gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email address"
+                    className="footer-newsletter-input flex-1"
+                    aria-label="Email for newsletter"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="shrink-0 px-5 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-accent font-bold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-brand-600/25 active:scale-95"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 text-sm text-eco-500 font-accent font-semibold bg-white/5 rounded-xl px-4 py-3 border border-eco-500/20"
                 >
-                  {section.title}
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
-                    openAccordion === section.key ? 'rotate-180' : ''
-                  }`} />
-                </button>
-                <div className={`footer-accordion-content ${openAccordion === section.key ? 'open' : ''}`}>
-                  <ul className="space-y-2.5 text-xs pb-4">
-                    {section.items.map((link: any) => (
-                      <li key={link.path}>
-                        <Link to={link.path} className="hover:text-white transition-colors cursor-pointer block py-1">
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="lg:col-span-4 space-y-4">
-            <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest">
-              Factory Headquarters
-            </h4>
-            <div className="flex gap-2 items-start text-xs">
-              <MapPin className="w-4 h-4 text-blue shrink-0 mt-0.5" />
-              <p className="text-white/50">{contactInfo.factoryAddress || 'Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana'}</p>
+                  <MessageSquare className="w-4 h-4 shrink-0" />
+                  Thanks! We'll keep you posted.
+                </motion.div>
+              )}
             </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
 
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
-          <div className="text-center md:text-left">
+        {/* ── Mobile Accordions ── */}
+        <div className="md:hidden space-y-0 border-t border-white/10 mt-10 pt-6">
+          {[
+            { key: 'shop', title: 'Shop', items: shopLinks },
+            { key: 'support', title: 'Support', items: supportLinks },
+          ].map((section) => (
+            <div key={section.key} className="border-b border-white/10">
+              <button
+                onClick={() => toggleAccordion(section.key)}
+                className="w-full flex items-center justify-between py-4 text-white text-xs font-heading font-bold uppercase tracking-widest cursor-pointer"
+              >
+                {section.title}
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-300 ${openAccordion === section.key ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <div className={`footer-accordion-content ${openAccordion === section.key ? 'open' : ''}`}>
+                <ul className="space-y-3 text-sm pb-4">
+                  {section.items.map((link: any) => (
+                    <li key={link.path}>
+                      <Link to={link.path} className="hover:text-white transition-colors cursor-pointer block py-1 text-white/50">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Bottom Bar ── */}
+        <hr className="footer-divider my-10" />
+        <div className="flex flex-col md:flex-row justify-between items-center gap-5 text-xs text-white/30 font-body">
+          <div className="flex items-center gap-6">
+            <Link to="/contact" className="hover:text-white/60 transition-colors cursor-pointer">Privacy Policy</Link>
+            <Link to="/contact" className="hover:text-white/60 transition-colors cursor-pointer">Terms</Link>
+            <Link to="/contact" className="hover:text-white/60 transition-colors cursor-pointer">Shipping</Link>
+            <Link to="/contact" className="hover:text-white/60 transition-colors cursor-pointer">Returns</Link>
           </div>
         </div>
       </div>

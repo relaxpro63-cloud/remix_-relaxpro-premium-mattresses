@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
+import { FadeUp, StaggerChildren, staggerItem } from '../../components/motion/motionPrimitives';
 import PageShell from '../../components/layout/PageShell';
 import { getSleepScience } from '../../lib/queries';
 
@@ -20,13 +22,15 @@ export default function SleepSciencePage() {
       title={data?.seo?.metaTitle || 'Sleep Science & Orthopedic Spine Support | RelaxPro Education'}
       description={data?.seo?.metaDescription || 'Understand standard back alignment, the benefits of pincore ventilated natural latex, and how sleep ergonomics can cure chronic spine pain.'}
     >
-      <div className="rp-container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start py-16 md:py-24">
+      <section className="bg-secondary py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <FadeUp>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-7 space-y-6">
-            <span className="text-[10px] font-accent font-bold uppercase tracking-editorial text-accent bg-accent/10 px-4 py-1.5 rounded-full">
+            <span className="text-[10px] font-accent font-bold uppercase tracking-editorial text-brand-600 bg-brand-50 px-4 py-1.5 rounded-full">
               {data?.badge || 'The Science'}
             </span>
-            <h1 className="rp-display text-primary">
+            <h1 className="rp-display text-ink-900">
               {data?.heading || 'Sleep science and orthopedic spine support'}
             </h1>
             <p className="rp-body leading-loose drop-cap">
@@ -42,7 +46,7 @@ export default function SleepSciencePage() {
                     'Natural Dunlop latex from Kerala adds passive ventilation through its open-cell pincore structure. Unlike synthetic foam, it does not trap heat, which keeps cortisol levels low during deep NREM sleep cycles.',
                   ]
               ).map((p: string, i: number) => (
-                <p key={i} className="rp-body text-neutral-dark/70 leading-loose">{p}</p>
+                <p key={i} className="rp-body text-graphite-600 leading-loose">{p}</p>
               ))}
             </div>
           </div>
@@ -58,8 +62,13 @@ export default function SleepSciencePage() {
             </div>
           </div>
         </div>
+          </FadeUp>
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16 md:pb-24">
+      <section className="bg-sky-100/20 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {(data?.featuredCards && data.featuredCards.length > 0
             ? data.featuredCards
             : [
@@ -68,16 +77,18 @@ export default function SleepSciencePage() {
                 { title: 'Heat Dissipation', desc: 'Pincore vent channels and Oeko-Tex quilted covers allow continuous airflow, preventing heat buildup during deep sleep cycles.' },
               ]
           ).map((item: any) => (
-            <div
+            <motion.div
+              variants={staggerItem}
               key={item.title}
               className="bg-white p-6 md:p-8 rounded-3xl border border-brand-200 shadow-sm space-y-3"
             >
-              <h3 className="font-heading font-bold text-primary">{item.title}</h3>
-              <p className="text-sm text-neutral-dark/70 leading-relaxed font-body">{item.desc}</p>
-            </div>
+              <h3 className="font-heading font-bold text-ink-900">{item.title}</h3>
+              <p className="text-sm text-graphite-600 leading-relaxed font-body">{item.desc}</p>
+            </motion.div>
           ))}
+        </StaggerChildren>
         </div>
-      </div>
+      </section>
     </PageShell>
   );
 }

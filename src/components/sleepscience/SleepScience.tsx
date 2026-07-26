@@ -27,29 +27,29 @@ export default function SleepScience() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-24 relative">
       {/* Decorative background glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-brand-50 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* Editorial Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-        <span className="text-[11px] tracking-widest font-accent font-bold text-accent uppercase bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full inline-block shadow-sm">
+        <span className="text-[11px] tracking-widest font-accent font-bold text-brand-600 uppercase bg-brand-50 border border-brand-600/20 px-4 py-1.5 rounded-full inline-block shadow-sm">
           {data?.badge || 'PHYSIOLOGICAL WELLNESS DATABASE'}
         </span>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-6 text-primary leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-6 text-ink-900 leading-tight">
           {data?.heading || 'The Science of Sleep Orthopedics'}
         </h1>
-        <p className="text-neutral-dark/80 mt-6 leading-relaxed font-body text-base md:text-lg">
+        <p className="text-graphite-700 mt-6 leading-relaxed font-body text-base md:text-lg">
           {data?.intro || 'Deep, restorative sleep is not mystical—it is mechanical and thermal. Explore how natural Dunlop rubber latex supports natural posture and thermoregulates your sleeping climate natively.'}
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-col md:flex-row bg-neutral-light/50 p-1.5 rounded-2xl md:rounded-full border border-brand-200/50 text-sm font-bold font-accent max-w-2xl mx-auto mb-12 shadow-inner gap-1">
+      <div className="flex flex-col md:flex-row bg-sky-100/50 p-1.5 rounded-2xl md:rounded-full border border-brand-200/50 text-sm font-bold font-accent max-w-2xl mx-auto mb-12 shadow-inner gap-1">
         {tabKeys.map((key, i) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
             className={`flex-1 py-3.5 px-6 rounded-xl md:rounded-full transition-all duration-300 cursor-pointer text-center ${
-              activeTab === key ? 'bg-primary text-white shadow-md scale-[1.02]' : 'text-primary/60 hover:text-primary hover:bg-white'
+              activeTab === key ? 'bg-ink-900 text-white shadow-md scale-[1.02]' : 'text-ink-900/60 hover:text-ink-900 hover:bg-white'
             }`}
           >
             {tabs[i]?.label}
@@ -71,35 +71,35 @@ export default function SleepScience() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="space-y-8">
               <div>
-                <span className="text-[10px] font-accent text-accent uppercase tracking-widest bg-accent/10 border border-accent/20 px-3 py-1 rounded-md font-bold mb-4 inline-block">{comp?.badge || 'PHYSIOLOGY COMPARSION'}</span>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-tight mt-2">
+                <span className="text-[10px] font-accent text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-600/20 px-3 py-1 rounded-md font-bold mb-4 inline-block">{comp?.badge || 'PHYSIOLOGY COMPARSION'}</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-ink-900 leading-tight mt-2">
                   {comp?.heading || 'Why 100% Kerala Dunlop Rubber Latex Core Leads the World'}
                 </h2>
               </div>
-              <p className="text-neutral-dark/80 text-sm md:text-base leading-relaxed font-body">
+              <p className="text-graphite-700 text-sm md:text-base leading-relaxed font-body">
                 {comp?.description || 'Conventional polyurethane foams are petrochemical byproducts. They rely on gas-expanding polymers that sink and entrap heat, creating a "sleeping in a ditch" feeling that strains lumbar tendons over several hours.'}
               </p>
               
               <div className="space-y-4">
-                <div className="flex gap-4 bg-neutral-light p-5 rounded-2xl border border-brand-200/40 group hover:border-brand-300 transition-colors">
+                <div className="flex gap-4 bg-sky-100 p-5 rounded-2xl border border-brand-200/40 group hover:border-brand-300 transition-colors">
                   <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 border border-brand-200/60 group-hover:scale-110 transition-transform">
-                    <Activity className="w-5 h-5 text-accent" />
+                    <Activity className="w-5 h-5 text-brand-600" />
                   </div>
                   <div>
-                    <strong className="font-heading font-bold text-base text-primary block">{comp?.feature1Title || 'Instantaneous Spring Back Reaction'}</strong>
-                    <p className="text-sm text-neutral-dark/70 mt-1 leading-relaxed font-body">
+                    <strong className="font-heading font-bold text-base text-ink-900 block">{comp?.feature1Title || 'Instantaneous Spring Back Reaction'}</strong>
+                    <p className="text-sm text-graphite-600 mt-1 leading-relaxed font-body">
                       {comp?.feature1Desc || 'Latex holds deep natural elasticity. Unlike memory foam which adapts slowly, Dunlop rubber pushes back dynamically according to the force applied, keeping hips afloat.'}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex gap-4 bg-neutral-light p-5 rounded-2xl border border-brand-200/40 group hover:border-brand-300 transition-colors">
+                <div className="flex gap-4 bg-sky-100 p-5 rounded-2xl border border-brand-200/40 group hover:border-brand-300 transition-colors">
                   <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 border border-brand-200/60 group-hover:scale-110 transition-transform">
-                    <Airplay className="w-5 h-5 text-accent" />
+                    <Airplay className="w-5 h-5 text-brand-600" />
                   </div>
                   <div>
-                    <strong className="font-heading font-bold text-base text-primary block">{comp?.feature2Title || 'Open-Cell Honeycomb Microclimate'}</strong>
-                    <p className="text-sm text-neutral-dark/70 mt-1 leading-relaxed font-body">
+                    <strong className="font-heading font-bold text-base text-ink-900 block">{comp?.feature2Title || 'Open-Cell Honeycomb Microclimate'}</strong>
+                    <p className="text-sm text-graphite-600 mt-1 leading-relaxed font-body">
                       {comp?.feature2Desc || 'Liquid rubber sap is whipped before setting, resulting in millions of interconnected open micropores. Air flows naturally with your movements, lowering night sweating.'}
                     </p>
                   </div>
@@ -109,12 +109,12 @@ export default function SleepScience() {
 
             {/* Illustration Card rendering comparisons directly */}
             <div className="bg-gradient-to-br from-brand-50 to-neutral-light p-8 md:p-10 rounded-[2rem] border border-brand-200/60 font-body text-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full -mr-8 -mt-8" />
-              <h3 className="font-heading font-bold text-primary text-xl mb-6 relative z-10">{comp?.comparisonTitle || 'Direct Science Comparison'}</h3>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-full -mr-8 -mt-8" />
+              <h3 className="font-heading font-bold text-ink-900 text-xl mb-6 relative z-10">{comp?.comparisonTitle || 'Direct Science Comparison'}</h3>
               <div className="space-y-4 relative z-10">
-                <div className="grid grid-cols-3 font-bold pb-3 border-b border-brand-200/60 font-accent text-[11px] tracking-wider uppercase text-primary/60">
+                <div className="grid grid-cols-3 font-bold pb-3 border-b border-brand-200/60 font-accent text-[11px] tracking-wider uppercase text-ink-900/60">
                   <span>{(comp?.columns && comp.columns[0]) || 'CRITERIA'}</span>
-                  <span className="text-accent">{(comp?.columns && comp.columns[1]) || 'DUNLOP LATEX'}</span>
+                  <span className="text-brand-600">{(comp?.columns && comp.columns[1]) || 'DUNLOP LATEX'}</span>
                   <span>{(comp?.columns && comp.columns[2]) || 'MEMORY FOAM'}</span>
                 </div>
                 {(comp?.rows && comp.rows.length > 0 ? comp.rows : [
@@ -124,7 +124,7 @@ export default function SleepScience() {
                   { label: 'Off-Gassing / VOC', values: ['Zero (Food-Grade sap)', 'High (Chemical odor)'] },
                 ]).map((row: any, i: number) => (
                   <div key={i} className="grid grid-cols-3 py-2.5 border-b border-brand-200/40">
-                    <span className="font-semibold text-primary">{row.label}</span>
+                    <span className="font-semibold text-ink-900">{row.label}</span>
                     <span className="text-[#1DA851] font-bold">{row.values?.[0] || row.dunlopLatex || ''}</span>
                     <span className="text-red-500 font-medium">{row.values?.[1] || row.memoryFoam || ''}</span>
                   </div>
@@ -139,12 +139,12 @@ export default function SleepScience() {
             {/* Posture diagnostics */}
             <div className="space-y-8">
               <div>
-                <span className="text-[10px] font-accent text-accent uppercase tracking-widest bg-accent/10 border border-accent/20 px-3 py-1 rounded-md font-bold mb-4 inline-block">{ortho?.badge || 'ORTHOPEDIC DIAGNOSTICS'}</span>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-tight mt-2">
+                <span className="text-[10px] font-accent text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-600/20 px-3 py-1 rounded-md font-bold mb-4 inline-block">{ortho?.badge || 'ORTHOPEDIC DIAGNOSTICS'}</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-ink-900 leading-tight mt-2">
                   {ortho?.heading || 'Maintaining Natural Spine Alignment'}
                 </h2>
               </div>
-              <p className="text-neutral-dark/80 text-sm md:text-base leading-relaxed font-body">
+              <p className="text-graphite-700 text-sm md:text-base leading-relaxed font-body">
                 {ortho?.description || 'Your spine holds an elongated "S" shaped profile when standing. When sleeping, a bad mattress bends this alignment, causing persistent trigger point pressures. RelaxPro models offer customized orthopedic zones:'}
               </p>
 
@@ -154,10 +154,10 @@ export default function SleepScience() {
                   { title: 'Back Sleeper Postures', desc: 'Requires robust resistance under the lower lumbar area to keep vertebrae floating. Our <strong>Arogya</strong> & <strong>Sthira</strong> models prevent back hyperextension.' },
                 ]).map((item: any, i: number) => (
                   <div key={i} className="flex gap-4 group">
-                    <div className="w-8 h-8 rounded-full bg-primary text-white font-accent flex items-center justify-center font-bold text-sm shrink-0 shadow-md group-hover:bg-accent transition-colors">{i + 1}</div>
+                    <div className="w-8 h-8 rounded-full bg-ink-900 text-white font-accent flex items-center justify-center font-bold text-sm shrink-0 shadow-md group-hover:bg-brand-600 transition-colors">{i + 1}</div>
                     <div>
-                      <h4 className="font-heading font-bold text-lg text-primary">{item.title}</h4>
-                      <p className="text-neutral-dark/70 text-sm md:text-base mt-1.5 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc || item.description || '' }} />
+                      <h4 className="font-heading font-bold text-lg text-ink-900">{item.title}</h4>
+                      <p className="text-graphite-600 text-sm md:text-base mt-1.5 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc || item.description || '' }} />
                     </div>
                   </div>
                 ))}
@@ -165,21 +165,21 @@ export default function SleepScience() {
             </div>
 
             {/* Scientific diagnostic checklist */}
-            <div className="bg-neutral-light/60 p-8 md:p-10 rounded-[2rem] border border-brand-200/50 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-8 -mt-8" />
-              <h4 className="font-heading font-bold text-primary text-xl mb-4 relative z-10">{ortho?.checklistTitle || 'Did Suresh Direct You?'}</h4>
-              <p className="text-sm text-neutral-dark/80 leading-relaxed mb-6 font-body relative z-10">
+            <div className="bg-sky-100/60 p-8 md:p-10 rounded-[2rem] border border-brand-200/50 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-ink-900/5 rounded-bl-full -mr-8 -mt-8" />
+              <h4 className="font-heading font-bold text-ink-900 text-xl mb-4 relative z-10">{ortho?.checklistTitle || 'Did Suresh Direct You?'}</h4>
+              <p className="text-sm text-graphite-700 leading-relaxed mb-6 font-body relative z-10">
                 {ortho?.checklistIntro || 'Suresh coordinates personal back-care recommendations on physical mattress stiffness. He suggests:'}
               </p>
               
-              <ul className="space-y-4 text-sm md:text-base font-body text-neutral-dark/80 relative z-10">
+              <ul className="space-y-4 text-sm md:text-base font-body text-graphite-700 relative z-10">
                 {(ortho?.checklist && ortho.checklist.length > 0 ? ortho.checklist : [
                   'Choose <strong>Nirvana 8"</strong> if you have severe spine stiffness and want adjustable 7-Zone target realignment.',
                   'Choose <strong>Arogya / Sthira</strong> if doctors recommended a firm orthopedic surface for joint pain relief.',
                   'Choose <strong>Amrita 10"</strong> if you prefer the thick, buoyant feel of standard hotel beds with natural elasticity.',
                 ]).map((item: string | any, i: number) => (
                   <li key={i} className="flex items-start gap-3 p-3 bg-white/60 rounded-xl border border-brand-200/40">
-                    <Check className="w-5 h-5 text-emerald-500 mt-0.5 shrink-0" />
+                    <Check className="w-5 h-5 text-eco-500 mt-0.5 shrink-0" />
                     <span dangerouslySetInnerHTML={{ __html: typeof item === 'string' ? item : (item.text || item) }} />
                   </li>
                 ))}
@@ -191,11 +191,11 @@ export default function SleepScience() {
         {activeTab === 'certifications' && (
           <div className="space-y-12">
             <div className="max-w-3xl text-left">
-              <span className="text-[10px] font-accent text-accent uppercase tracking-widest bg-accent/10 border border-accent/20 px-3 py-1 rounded-md font-bold mb-4 inline-block">SAFETY AUDITS</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-tight mt-2">
+              <span className="text-[10px] font-accent text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-600/20 px-3 py-1 rounded-md font-bold mb-4 inline-block">SAFETY AUDITS</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-ink-900 leading-tight mt-2">
                 {data?.certificationsHeading || 'Certified Safe For Sensitive Skin and Infants'}
               </h2>
-              <p className="text-neutral-dark/80 text-sm md:text-base mt-4 leading-relaxed font-body">
+              <p className="text-graphite-700 text-sm md:text-base mt-4 leading-relaxed font-body">
                 {data?.certificationsIntro || 'Sleep products are direct contact points for open skin pores and night respiratory systems. RelaxPro raw rubber latex sap is audited and certified by leading global agencies:'}
               </p>
             </div>
@@ -211,14 +211,14 @@ export default function SleepScience() {
                 return (
                   <div key={i} className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group">
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold mb-6 font-heading border group-hover:scale-110 transition-transform ${
-                      i === 0 ? 'bg-[#FFF4E5] text-orange-600 border-orange-200 text-lg' :
-                      i === 1 ? 'bg-[#E8F0FE] text-blue-600 border-blue-200 text-sm text-center leading-tight' :
-                      'bg-[#E6F4EA] text-emerald-600 border-emerald-200 text-lg'
+                      i === 0 ? 'bg-sky-100 text-orange-600 border-orange-200 text-lg' :
+                      i === 1 ? 'bg-brand-50 text-brand-600 border-brand-600-200 text-sm text-center leading-tight' :
+                      'bg-eco-50 text-eco-500 border-eco-500/20 text-lg'
                     }`}>
                       {isOeko ? <>Oeko<br/>Tex</> : shortName}
                     </div>
-                    <h4 className="font-heading font-bold text-primary text-xl">{cert.title || cert.name}</h4>
-                    <p className="text-sm font-body text-neutral-dark/70 leading-relaxed mt-3">
+                    <h4 className="font-heading font-bold text-ink-900 text-xl">{cert.title || cert.name}</h4>
+                    <p className="text-sm font-body text-graphite-600 leading-relaxed mt-3">
                       {cert.description}
                     </p>
                   </div>
@@ -231,10 +231,10 @@ export default function SleepScience() {
       </AnimatePresence>
 
       {/* Mini CTA banner */}
-      <section className="bg-primary text-white rounded-[2.5rem] p-10 md:p-12 font-body mt-20 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl shadow-primary/20">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none -z-0" />
+      <section className="bg-ink-900 text-white rounded-[2.5rem] p-10 md:p-12 font-body mt-20 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl shadow-ink-900/20">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-200 rounded-full blur-3xl pointer-events-none -z-0" />
         <div className="max-w-2xl relative z-10">
-          <span className="text-[11px] tracking-widest text-accent font-accent font-bold block uppercase mb-2">{data?.ctaBadge || 'FACTORY DIRECT ASSURANCE'}</span>
+          <span className="text-[11px] tracking-widest text-brand-600 font-accent font-bold block uppercase mb-2">{data?.ctaBadge || 'FACTORY DIRECT ASSURANCE'}</span>
           <h3 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight">{data?.ctaHeading || 'Choose the mattress designed for your back'}</h3>
           <p className="text-white/80 text-sm md:text-base leading-relaxed mt-3 max-w-xl">
             {data?.ctaDescription || 'RelaxPro provides orthopedic clarity by eliminating retail agent costs. Start side-by-side spec comparison to select the exact alignment you need.'}
@@ -242,7 +242,7 @@ export default function SleepScience() {
         </div>
         <Link
           to={ctaLink}
-          className="bg-white hover:bg-neutral-light text-primary px-8 py-4.5 rounded-2xl text-[13px] font-bold font-accent tracking-widest uppercase shrink-0 transition-all cursor-pointer shadow-lg active:scale-95 relative z-10"
+          className="bg-white hover:bg-sky-100 text-ink-900 px-8 py-4.5 rounded-2xl text-[13px] font-bold font-accent tracking-widest uppercase shrink-0 transition-all cursor-pointer shadow-lg active:scale-95 relative z-10"
         >
           {data?.ctaLabel || 'Compare All 13 Models'}
         </Link>

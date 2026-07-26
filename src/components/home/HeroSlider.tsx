@@ -41,10 +41,9 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
     <section
       ref={sectionRef}
       id="main-content"
-      className="relative overflow-hidden min-h-screen flex items-center justify-center"
-      style={{ backgroundColor: '#0F1F17' }}
+      className="hero-ink relative overflow-hidden min-h-screen flex items-center justify-center"
     >
-      {/* Ken Burns Hero Background — slow 20s scale cycle */}
+      {/* Ken Burns Hero Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img
           initial={{ scale: 1.15, opacity: 0 }}
@@ -56,11 +55,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           className="w-full h-full object-cover select-none pointer-events-none will-change-transform"
           loading="eager"
         />
-        {/* Rich cinematic gradient overlay */}
+        {/* Cinematic gradient overlay using ink tokens */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(105deg, rgba(15, 31, 23, 0.94) 0%, rgba(15, 31, 23, 0.7) 50%, rgba(15, 31, 23, 0.2) 100%)',
+            background: 'linear-gradient(105deg, rgba(11, 18, 32, 0.94) 0%, rgba(11, 18, 32, 0.7) 50%, rgba(11, 18, 32, 0.2) 100%)',
           }}
         />
       </div>
@@ -70,12 +69,9 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         className="max-w-7xl mx-auto w-full px-6 md:px-16 relative z-10 flex flex-col justify-center min-h-[85vh] py-32"
       >
         <div className="max-w-3xl">
-          {/* Subtitle Accent — icon replaces emoji */}
+          {/* Subtitle Accent */}
           <FadeUp delay={0.1}>
-            <span
-              className="inline-flex items-center gap-2.5 text-[10px] font-accent font-bold tracking-[0.25em] uppercase"
-              style={{ color: '#C9A87C' }}
-            >
+            <span className="eyebrow inline-flex items-center gap-2.5">
               <Sparkles className="w-3.5 h-3.5" />
               {hero?.slides?.[0]?.badge || 'Handcrafted Dunlop Latex Since 2015'}
             </span>
@@ -98,17 +94,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 transition={{ duration: 0.9, ease: EASE_LUXURY, delay: 1.0 }}
               >
                 <GoldShimmer delay={2.0}>
-                  <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading italic font-normal tracking-[-0.02em] leading-[1.08]"
-                    style={{ color: '#C9A87C' }}
-                  >
+                  <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading italic font-normal tracking-[-0.02em] leading-[1.1] pb-1 text-brand-300">
                     {hero?.slides?.[0]?.highlight || 'From Kerala'}
                   </span>
                 </GoldShimmer>
-                <span
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading font-normal tracking-[-0.02em] leading-[1.08]"
-                  style={{ color: '#F5F2EB' }}
-                >
+                <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading font-normal tracking-[-0.02em] leading-[1.08] text-linen-100">
                   {' '}{hero?.slides?.[0]?.subheading || 'to Your Bed'}
                 </span>
               </motion.div>
@@ -117,10 +107,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
 
           {/* Description */}
           <FadeUp delay={0.6} y={30}>
-            <p
-              className="font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-8"
-              style={{ color: '#F5F2EB', opacity: 0.85 }}
-            >
+            <p className="font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-8 text-linen-200/85">
               {hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Hand-layered for the deepest, most restorative sleep.'}
             </p>
           </FadeUp>
@@ -133,8 +120,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                 onClick={() => onNavigate('catalog')}
-                className="w-full sm:w-auto text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl transition-all shadow-lg"
-                style={{ backgroundColor: '#C9A87C', color: '#0F1F17' }}
+                className="btn btn-primary w-full sm:w-auto text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl"
               >
                 {hero?.slides?.[0]?.primaryCta?.label || 'Explore the Collection'}
                 <ChevronRight className="w-4 h-4 shrink-0" />
@@ -145,10 +131,9 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                 onClick={handleScrollToShowrooms}
-                className="w-full sm:w-auto border border-white/20 hover:border-white/50 text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl transition-all bg-white/5 backdrop-blur-md"
-                style={{ color: '#F5F2EB' }}
+                className="btn btn-ghost-dark w-full sm:w-auto text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl"
               >
-                <Calendar className="w-4 h-4" style={{ color: '#C9A87C' }} />
+                <Calendar className="w-4 h-4 text-brand-300" />
                 {hero?.slides?.[0]?.secondaryCta?.label || 'Book a Showroom Visit'}
               </motion.button>
             </div>
@@ -178,10 +163,9 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 0.9, y: 0, transition: { duration: 0.6, ease: EASE_LUXURY } },
                   }}
-                  className="flex items-center gap-3 text-xs font-accent tracking-wider font-semibold whitespace-nowrap"
-                  style={{ color: '#F5F2EB' }}
+                  className="flex items-center gap-3 text-xs font-accent tracking-wider font-semibold whitespace-nowrap text-linen-100"
                 >
-                  <IconComp className="w-5 h-5 shrink-0" style={{ color: '#C9A87C' }} />
+                  <IconComp className="w-5 h-5 shrink-0 text-brand-400" />
                   {item.text}
                 </motion.div>
               );

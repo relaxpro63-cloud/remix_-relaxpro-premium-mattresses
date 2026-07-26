@@ -24,7 +24,7 @@ export default function SegmentedControl<T extends string>({
 }: SegmentedControlProps<T>) {
   return (
     <div
-      className={`relative flex items-center p-1 bg-neutral-light/50 border border-brand-200/40 rounded-xl overflow-x-auto hide-scrollbar ${
+      className={`relative flex items-center p-1 bg-sky-100/50 border border-brand-200/40 rounded-xl overflow-x-auto hide-scrollbar ${
         fullWidth ? 'w-full' : 'inline-flex'
       }`}
     >
@@ -40,7 +40,7 @@ export default function SegmentedControl<T extends string>({
             }}
             className={`relative flex-1 flex flex-col items-center justify-center rounded-lg transition-colors cursor-pointer select-none whitespace-nowrap min-w-max ${
               size === 'sm' ? 'px-3 py-1.5' : size === 'lg' ? 'px-6 py-3' : 'px-4 py-2'
-            } ${isActive ? 'text-primary' : 'text-neutral-dark/60 hover:text-primary hover:bg-white/40'}`}
+            } ${isActive ? 'text-ink-900' : 'text-graphite-500 hover:text-ink-900 hover:bg-white/40'}`}
           >
             {isActive && (
               <motion.div

@@ -21,5 +21,24 @@ export default {
     },
     { name: 'seo', title: 'Default SEO', type: 'pageSEO' },
     { name: 'analytics', title: 'Analytics and Tracking', type: 'object', fields: [{ name: 'gaTrackingId', title: 'Google Analytics ID', type: 'string' }, { name: 'metaPixelId', title: 'Meta Pixel ID', type: 'string' }, { name: 'gtmId', title: 'Google Tag Manager ID', type: 'string' }] },
+    {
+      name: 'certificates', title: 'Certificate PDF Links', type: 'array',
+      description: 'Certification documents displayed on the website. Add ISO, OEKO-TEX, and GOLS certificates here.',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'id', title: 'ID', type: 'string', description: 'Unique identifier (e.g. iso, oeko, gols)', validation: Rule => Rule.required() },
+          { name: 'title', title: 'Title', type: 'string', validation: Rule => Rule.required() },
+          { name: 'subtitle', title: 'Subtitle', type: 'string' },
+          { name: 'description', title: 'Description', type: 'text', rows: 3 },
+          { name: 'pdfUrl', title: 'PDF View URL', type: 'string', description: 'Google Drive view link (e.g. https://drive.google.com/file/d/.../view)' },
+          { name: 'pdfEmbedUrl', title: 'PDF Embed URL', type: 'string', description: 'Google Drive embed link for iframe (e.g. https://drive.google.com/file/d/.../preview)' },
+          { name: 'validity', title: 'Validity Text', type: 'string', description: 'e.g. "Valid — Audited Annually"' },
+        ],
+        preview: {
+          select: { title: 'title', subtitle: 'id' },
+        },
+      }],
+    },
   ],
 }

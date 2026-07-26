@@ -28,7 +28,22 @@ export default {
           fields: [
             { name: 'title', title: 'Card Title', type: 'string' },
             { name: 'description', title: 'Description', type: 'text', rows: 3 },
-            { name: 'features', title: 'Feature List', type: 'array', of: [{ type: 'string' }] },
+            { 
+              name: 'features', 
+              title: 'Feature List', 
+              type: 'array', 
+              of: [
+                { 
+                  type: 'object', 
+                  fields: [
+                    { name: 'icon', title: 'Icon (Lucide name)', type: 'string' },
+                    { name: 'title', title: 'Title', type: 'string' },
+                    { name: 'description', title: 'Description', type: 'string' }
+                  ]
+                },
+                { type: 'string' }
+              ] 
+            },
             { name: 'cta', title: 'CTA Button', type: 'ctaButton' },
             { name: 'image', title: 'Card Image', type: 'imageWithAlt' },
           ],
@@ -38,7 +53,22 @@ export default {
           fields: [
             { name: 'title', title: 'Card Title', type: 'string' },
             { name: 'description', title: 'Description', type: 'text', rows: 3 },
-            { name: 'features', title: 'Feature List', type: 'array', of: [{ type: 'string' }] },
+            { 
+              name: 'features', 
+              title: 'Feature List', 
+              type: 'array', 
+              of: [
+                { 
+                  type: 'object', 
+                  fields: [
+                    { name: 'icon', title: 'Icon (Lucide name)', type: 'string' },
+                    { name: 'title', title: 'Title', type: 'string' },
+                    { name: 'description', title: 'Description', type: 'string' }
+                  ]
+                },
+                { type: 'string' }
+              ] 
+            },
             { name: 'cta', title: 'CTA Button', type: 'ctaButton' },
             { name: 'image', title: 'Card Image', type: 'imageWithAlt' },
           ],

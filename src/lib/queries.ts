@@ -35,7 +35,8 @@ export async function getSiteSettings() {
     announcement { showBanner, bannerText, bannerLink, bannerColor },
     staticImages { gotsCotton, quiltedCotton, naturalLatex, comfortMeter, sizeChart, heroBedroom },
     seo { metaTitle, metaDescription, ogImage },
-    analytics { gaTrackingId, metaPixelId, gtmId }
+    analytics { gaTrackingId, metaPixelId, gtmId },
+    certificates[]{ id, title, subtitle, description, pdfUrl, pdfEmbedUrl, validity }
   }`)
 }
 
@@ -82,7 +83,11 @@ export async function getHomePage() {
       testimonials[]->{ customerName, location, rating, quote, isVerified, avatar { asset->{_id, url}, alt } }
     },
     allShowroomsSection { sectionTitle, sectionDescription,
-      showrooms[]->{ city, address, phones, hours, image { asset->{_id, url}, alt } }
+      showrooms[]->{ name, "slug": slug.current, type,
+        address { city, fullAddress, street, landmark, pincode, state },
+        contact { phoneNumbers, email, whatsapp },
+        hours { monday, tuesday, wednesday, thursday, friday, saturday, sunday, note },
+        image { asset->{_id, url}, alt } }
     },
     faqSection { sectionTitle, sectionDescription, categories,
       faqs[]->{ question, answer, category, order }
@@ -189,7 +194,11 @@ export async function getTestimonials() {
 
 export async function getAllShowrooms() {
   return sanityClient.fetch(`*[_type == "showroom"] | order(order asc){
-    city, address, phones, hours, image { asset->{_id, url}, alt }
+    name, "slug": slug.current, type,
+    address { city, fullAddress, street, landmark, pincode, state },
+    contact { phoneNumbers, email, whatsapp },
+    hours { monday, tuesday, wednesday, thursday, friday, saturday, sunday, note },
+    image { asset->{_id, url}, alt }
   }`)
 }
 
@@ -227,7 +236,12 @@ export async function getSleepScience() {
 
 export async function getLocations() {
   return sanityClient.fetch(`*[_type == "showroom"] | order(order asc){
-    city, address, phones, hours, mapLink, image { asset->{_id, url}, alt }
+    name, "slug": slug.current, type,
+    address { city, fullAddress, street, landmark, pincode, state },
+    contact { phoneNumbers, email, whatsapp },
+    hours { monday, tuesday, wednesday, thursday, friday, saturday, sunday, note },
+    coordinates { lat, lng },
+    image { asset->{_id, url}, alt }
   }`)
 }
 
@@ -263,4 +277,31 @@ export async function getAllProductsBasic() {
     isBestseller, isNew, totalThickness, rating, reviewCount,
     category->{ name, "slug": slug.current }
   }`)
+}
+
+/* ---- Accessories (Pillows, Protectors, etc.) ---- */
+export async function getAccessories() {
+  return sanityClient.fetch(`*[_type == "accessory" && inStock == true] | order(sortOrder asc){
+    name, "slug": slug.current, tagline, description, type,
+    pricing { price, mrp, currency },
+    sizes, features,
+    thumbnail { asset->{_id, url}, alt },
+    images[]{ asset->{_id, url}, alt },
+    isNew, isBestseller, sortOrder
+  }`)
+}
+
+export async function getAccessoryBySlug(slug: string) {
+  return sanityClient.fetch(
+    `*[_type == "accessory" && slug.current == $slug][0]{
+      name, tagline, description, type,
+      pricing { price, mrp, currency },
+      sizes, features,
+      thumbnail { asset->{_id, url}, alt },
+      images[]{ asset->{_id, url}, alt },
+      isNew, isBestseller, inStock, sortOrder,
+      seo { metaTitle, metaDescription }
+    }`,
+    { slug }
+  )
 }

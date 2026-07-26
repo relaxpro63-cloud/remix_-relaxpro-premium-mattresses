@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, PenTool, ShoppingBag, ArrowRight, Check } from 'lucide-react';
+import { Sparkles, Layers, BoxSelect, Expand, BedDouble, ShieldCheck, Truck, ArrowRight, ArrowRightCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
-import { getHomePage, imageUrl } from '../../lib/queries';
+import { getHomePage } from '../../lib/queries';
 
 interface TwoWaysToOwnProps {
   onStartBuilding: () => void;
@@ -15,130 +15,179 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
   useEffect(() => {
     getHomePage().then(p => setData(p?.ownershipWays)).catch(() => {});
   }, []);
+
+  // Helper to resolve icon from string if CMS provides it, or use fallback
+  const getIconForFeature = (index: number, type: 'custom' | 'shop') => {
+    if (type === 'custom') {
+      const icons = [Layers, BoxSelect, Expand, BedDouble];
+      const Icon = icons[index % icons.length];
+      return <Icon className="w-4 h-4 text-brand-500" strokeWidth={1.5} />;
+    } else {
+      const icons = [BedDouble, Sparkles, BoxSelect, Truck, ShieldCheck];
+      const Icon = icons[index % icons.length];
+      return <Icon className="w-4 h-4 text-brand-500" strokeWidth={1.5} />;
+    }
+  };
+
   return (
-    <section id="two-ways-section" className="py-12 md:py-16 bg-neutral-light border-y border-blue/15 relative overflow-hidden">
-      {/* Subtle blue radial glow background */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(45,140,255,0.04) 0%, transparent 70%)' }} />
+    <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden bg-[#F3F9FD]">
+      {/* Soft Luxury Gradients & Orbs in Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FFFFFF] blur-[120px] opacity-80" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#EEF7FC] blur-[150px] opacity-90" />
+        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-brand-100/40 blur-[100px]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-
         {/* Centered Heading */}
         <BlurFade delay={0.05}>
-          <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-            <span className="text-[11px] tracking-widest font-accent font-bold text-blue uppercase bg-blue/10 border border-blue/20 px-4 py-1.5 rounded-full inline-flex items-center gap-2 shadow-sm mb-6">
-              <Sparkles className="w-3.5 h-3.5" /> {data?.sectionSubtitle || 'Find Your Own Bed'}
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+            <span className="text-xs tracking-[0.15em] font-sans font-semibold text-brand-600 uppercase mb-4 inline-block">
+              {data?.sectionSubtitle || 'Bespoke Comfort'}
             </span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mt-4 text-primary leading-tight">{data?.sectionTitle || 'Best Selling Models'}</h2>
-            <p className="text-neutral-dark/70 text-sm md:text-base mt-4 leading-relaxed font-body max-w-lg mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium text-ink-900 leading-tight tracking-tight">
+              {data?.sectionTitle || 'Best Selling Models'}
+            </h2>
+            <p className="text-graphite-600 text-base md:text-lg mt-6 leading-relaxed font-body max-w-2xl mx-auto font-light">
               Whether you want to orchestrate your custom orthopedic configuration layer by layer or choose from our plantation-tested pre-built formulations.
             </p>
           </div>
         </BlurFade>
 
-        {/* 2-Column Responsive Grid */}
-        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-12 max-w-5xl mx-auto">
-
-          {/* Option 1: Customize Your Comfort */}
+        {/* 2-Column Luxury Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {/* Card 1: Customize Your Comfort */}
           <BlurFade delay={0.1}>
             <motion.div
               whileHover={{ y: -8 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-blue/10 transition-all duration-500 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative h-full flex flex-col justify-between bg-white/60 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/80 shadow-[0_4px_24px_-8px_rgba(11,18,32,0.05)] hover:shadow-[0_20px_48px_-12px_rgba(11,18,32,0.1)] transition-all duration-500 overflow-hidden"
             >
-              {/* Blue accent strip on top */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-blue rounded-t-[1.5rem] md:rounded-t-[2.5rem] z-20" />
-              {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-blue/5 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110 duration-700 ease-out z-0" />
+              {/* Subtle Glowing Border on Hover */}
+              <div className="absolute inset-0 rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
+              
+              {/* Background Image Corner (Low Opacity) */}
+              <div className="absolute top-0 right-0 w-[65%] h-[65%] opacity-[0.12] mix-blend-multiply pointer-events-none transform origin-top-right transition-transform duration-1000 group-hover:scale-110">
+                <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/40 to-white z-10" />
+                <img src="/images/mattress-hand.png" alt="Crafting mattress" className="w-full h-full object-cover object-top mask-image-radial" style={{ WebkitMaskImage: 'radial-gradient(ellipse at top right, black 20%, transparent 70%)' }} />
+              </div>
 
-              <div className="relative z-10 space-y-3 md:space-y-6">
-                {/* Icon Circle */}
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary text-white flex items-center justify-center shrink-0 shadow-lg border border-primary/20 group-hover:scale-110 transition-transform duration-500">
-                  <PenTool className="w-5 h-5 md:w-6 md:h-6 text-blue" />
-                </div>
+              <div className="relative z-10">
+                <h3 className="font-heading text-3xl md:text-4xl text-ink-900 tracking-tight leading-tight mb-8">
+                  {data?.customBuilder?.title || 'Customize Your Comfort'}
+                </h3>
 
-                <div className="pt-1 md:pt-2">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">{data?.customBuilder?.title || 'Customize Your Comfort'}</h3>
-                  <p className="font-heading italic text-blue text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
-                    {data?.customBuilder?.description || '&ldquo;Customize your mattress, layer by layer.&rdquo;'}
-                  </p>
-                  <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
-                    {(data?.customBuilder?.features || [
-                      'Pick Cover Fabric: Select casing textile',
-                      'Comfort Layers: Configure latex zones',
-                      'Dial in Thickness: 4″ to 10″ profiles',
-                      'Custom Built: Delivered in 5–7 days',
-                    ]).map((f: string, i: number) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                        <span>{f.includes(':') ? <><strong>{f.split(':')[0]}:</strong>{f.split(':')[1]}</> : f}</span>
+                <ul className="space-y-4 md:space-y-6">
+                  {(data?.customBuilder?.features || [
+                    'Pick Cover Fabric: Select casing textile',
+                    'Comfort Layers: Configure latex zones',
+                    'Dial in Thickness: 4″ to 10″ profiles',
+                    'Custom Built: Delivered in 5–7 days',
+                  ]).map((feature: any, i: number) => {
+                    // Handle both new Sanity object format and old string format
+                    const text = typeof feature === 'string' ? feature : `${feature.title}${feature.description ? `: ${feature.description}` : ''}`;
+                    const hasColon = text.includes(':');
+                    const prefix = hasColon ? text.split(':')[0] + ':' : text;
+                    const suffix = hasColon ? text.split(':')[1] : '';
+
+                    return (
+                      <li key={i} className="flex items-start gap-4 group/item">
+                        <div className="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100/50 group-hover/item:bg-brand-100 transition-colors duration-300">
+                           {getIconForFeature(i, 'custom')}
+                        </div>
+                        <p className="text-graphite-700 font-body text-[15px] leading-relaxed font-light mt-0.5">
+                          {hasColon ? (
+                            <>
+                              <strong className="font-medium text-ink-900">{prefix}</strong>
+                              <span className="opacity-90">{suffix}</span>
+                            </>
+                          ) : (
+                            <span className="opacity-90">{text}</span>
+                          )}
+                        </p>
                       </li>
-                    ))}
-                  </ul>
-                </div>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div className="relative z-10 mt-12 pt-8 border-t border-brand-100/60">
+                <button
+                  onClick={onStartBuilding}
+                  className="w-full flex items-center justify-between bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-sans font-medium text-sm md:text-base py-4 px-6 rounded-2xl transition-all duration-300 shadow-[0_8px_20px_-6px_rgba(21,104,163,0.4)] group-hover:shadow-[0_12px_28px_-6px_rgba(21,104,163,0.5)] cursor-pointer"
+                >
+                  <span className="tracking-wide">{data?.customBuilder?.cta?.label || 'Build Your Dream Mattress'}</span>
+                  <ArrowRightCircle className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
+                </button>
               </div>
             </motion.div>
           </BlurFade>
 
-          {/* Option 2: Shop Our Models */}
-          <BlurFade delay={0.15}>
+          {/* Card 2: Shop Our Models */}
+          <BlurFade delay={0.2}>
             <motion.div
               whileHover={{ y: -8 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-blue/10 transition-all duration-500 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative h-full flex flex-col justify-between bg-white/60 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/80 shadow-[0_4px_24px_-8px_rgba(11,18,32,0.05)] hover:shadow-[0_20px_48px_-12px_rgba(11,18,32,0.1)] transition-all duration-500 overflow-hidden"
             >
-              {/* Blue accent strip on top */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-blue rounded-t-[1.5rem] md:rounded-t-[2.5rem] z-20" />
-              {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-blue/5 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110 duration-700 ease-out z-0" />
+              {/* Subtle Glowing Border on Hover */}
+              <div className="absolute inset-0 rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
+              
+              {/* Background Image Corner (Low Opacity) */}
+              <div className="absolute top-0 right-0 w-[65%] h-[65%] opacity-[0.15] mix-blend-multiply pointer-events-none transform origin-top-right transition-transform duration-1000 group-hover:scale-110">
+                <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/40 to-white z-10" />
+                <img src="/images/hero-bedroom.png" alt="Luxury bedroom" className="w-full h-full object-cover object-top mask-image-radial" style={{ WebkitMaskImage: 'radial-gradient(ellipse at top right, black 20%, transparent 70%)' }} />
+              </div>
 
-              <div className="relative z-10 space-y-3 md:space-y-6">
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-neutral-light text-primary flex items-center justify-center shrink-0 shadow-sm border border-brand-200/60 group-hover:scale-110 transition-transform duration-500">
-                  <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 text-blue" />
-                </div>
+              <div className="relative z-10">
+                <h3 className="font-heading text-3xl md:text-4xl text-ink-900 tracking-tight leading-tight mb-8">
+                  {data?.shopPrebuilt?.title || 'Shop Our Models'}
+                </h3>
 
-                <div className="pt-1 md:pt-2">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">{data?.shopPrebuilt?.title || 'Shop Our Models'}</h3>
-                  <p className="font-heading italic text-blue text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
-                    {data?.shopPrebuilt?.description || '&ldquo;Shop pre-built — our mattresses, ready to ship.&rdquo;'}
-                  </p>
-                  <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
-                    {(data?.shopPrebuilt?.features || [
-                      '13 Organic Models: Orthopedic alignment',
-                      '3 Curated Tiers: Luxury, Premium & Comfort',
-                      'Pick Your Size: Standard or Custom',
-                      'Express Shipping: Delivered in 5–7 Days',
-                    ]).map((f: string, i: number) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-blue" strokeWidth={3} /></span>
-                        <span>{f.includes(':') ? <><strong>{f.split(':')[0]}:</strong>{f.split(':')[1]}</> : f}</span>
+                <ul className="space-y-4 md:space-y-6">
+                  {(data?.shopPrebuilt?.features || [
+                    '13 Organic Models: Orthopedic alignment',
+                    '3 Curated Tiers: Luxury, Premium & Comfort',
+                    'Pick Your Size: Standard or Custom',
+                    'Express Shipping: Delivered in 5–7 Days',
+                  ]).map((feature: any, i: number) => {
+                    const text = typeof feature === 'string' ? feature : `${feature.title}${feature.description ? `: ${feature.description}` : ''}`;
+                    const hasColon = text.includes(':');
+                    const prefix = hasColon ? text.split(':')[0] + ':' : text;
+                    const suffix = hasColon ? text.split(':')[1] : '';
+
+                    return (
+                      <li key={i} className="flex items-start gap-4 group/item">
+                        <div className="mt-1 w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 border border-brand-100/80 shadow-sm group-hover/item:border-brand-300 transition-colors duration-300">
+                          {getIconForFeature(i, 'shop')}
+                        </div>
+                        <p className="text-graphite-700 font-body text-[15px] leading-relaxed font-light mt-0.5">
+                          {hasColon ? (
+                            <>
+                              <strong className="font-medium text-ink-900">{prefix}</strong>
+                              <span className="opacity-90">{suffix}</span>
+                            </>
+                          ) : (
+                            <span className="opacity-90">{text}</span>
+                          )}
+                        </p>
                       </li>
-                    ))}
-                  </ul>
-                </div>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div className="relative z-10 mt-12 pt-8 border-t border-brand-100/60">
+                <button
+                  onClick={onSeeAllModels}
+                  className="w-full flex items-center justify-between bg-white hover:bg-brand-50 border border-brand-200/60 text-ink-900 font-sans font-medium text-sm md:text-base py-4 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/btn"
+                >
+                  <span className="tracking-wide">{data?.shopPrebuilt?.cta?.label || 'Explore Our Collection'}</span>
+                  <ArrowRight className="w-5 h-5 text-brand-600 group-hover/btn:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
+                </button>
               </div>
             </motion.div>
           </BlurFade>
-
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-blue/15 max-w-5xl mx-auto flex flex-col sm:flex-row gap-3 md:gap-4">
-          <button
-            onClick={onStartBuilding}
-            className="flex-1 btn-primary bg-blue hover:bg-blue-dark text-white font-accent font-bold text-[10px] sm:text-[11px] md:text-[13px] tracking-widest uppercase py-3 md:py-4.5 rounded-xl md:rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-1 md:gap-3 shadow-md"
-          >
-            <span className="hidden sm:inline">{data?.customBuilder?.cta?.label || 'Start building'}</span>
-            <span className="sm:hidden">{data?.customBuilder?.cta?.label?.split(' ')[0] || 'Build'}</span>
-            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-white" />
-          </button>
-          <button
-            onClick={onSeeAllModels}
-            className="flex-1 bg-neutral-light hover:bg-brand-100 text-primary font-accent font-bold text-[10px] sm:text-[11px] md:text-[13px] tracking-widest uppercase py-3 md:py-4.5 rounded-xl md:rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-1 md:gap-3 border border-brand-200/60 shadow-sm"
-          >
-            <span className="hidden sm:inline">{data?.shopPrebuilt?.cta?.label || 'See all models'}</span>
-            <span className="sm:hidden">{data?.shopPrebuilt?.cta?.label?.split(' ')[0] || 'All models'}</span>
-            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-          </button>
         </div>
       </div>
     </section>

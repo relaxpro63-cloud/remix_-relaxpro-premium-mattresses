@@ -8,12 +8,12 @@ interface LeadSubmissionData {
   name: string;
   phone: string;
   city?: string;
+  email?: string;
   source: string;
   product?: string;
   size?: string;
   price?: string;
   notes?: string;
-  email?: string;
   address?: string;
   orderId?: string;
   contactTime?: string;

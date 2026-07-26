@@ -18,7 +18,8 @@ export const deskStructure = (S: StructureBuilder) =>
             ])
         ),
       S.divider(),
-      S.documentTypeListItem('product').title('Products'),
+      S.documentTypeListItem('product').title('Mattresses'),
+      S.documentTypeListItem('accessory').title('Accessories'),
       S.documentTypeListItem('brandCategory').title('Categories'),
       S.documentTypeListItem('showroom').title('Showrooms'),
       S.documentTypeListItem('testimonial').title('Testimonials'),
