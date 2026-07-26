@@ -2,7 +2,8 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PriceText from '../../components/ui/PriceText';
-import ProductCarousel from '../../components/product/ProductCarousel';import {
+import ProductCarousel from '../../components/product/ProductCarousel';
+import {
   Check,
   Shield,
   Sparkles,
@@ -594,8 +595,9 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                     <MessageSquare className="w-4 h-4" /><span className="text-sm">Enquire on WhatsApp</span>
                   </button>
                 </div>
+              </div>
 
-{/* Clinical Posture Audit card */}
+              {/* Clinical Posture Audit card */}
               <div className="mt-6 bg-sky-100/80 p-6 md:p-8 rounded-[2rem] border border-brand-200/40 flex items-start gap-5 shadow-sm">
                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shrink-0 border border-brand-200/50 shadow-sm relative">
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-white animate-pulse"></div>

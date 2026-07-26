@@ -283,17 +283,18 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                       By submitting this form you agree to be contacted via call, WhatsApp or email.
                     </p>
 
-                    {/* Don't show again */}
-                    <div className="text-center pt-1">
-                      <button
-                        type="button"
-                        onClick={onDontShowAgain}
-                        className="text-[11px] font-accent text-graphite-400 hover:text-brand-600 transition-colors cursor-pointer underline underline-offset-2 decoration-dotted hover:decoration-solid"
-                      >
-                        Don't show this again
-                      </button>
-                    </div>
                   </form>
+
+                  {/* Don't show again — outside form */}
+                  <div className="text-center pt-2">
+                    <button
+                      type="button"
+                      onClick={onDontShowAgain}
+                      className="text-[11px] font-accent text-graphite-400 hover:text-brand-600 transition-colors cursor-pointer underline underline-offset-2 decoration-dotted hover:decoration-solid"
+                    >
+                      Don't show this again
+                    </button>
+                  </div>
                 </>
               ) : (
                 <motion.div
@@ -319,6 +320,16 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                   <div className="mt-5 flex items-center justify-center gap-2 text-graphite-400 text-xs font-body">
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
                     <span>Closing automatically...</span>
+                  </div>
+
+                  <div className="text-center mt-4">
+                    <button
+                      type="button"
+                      onClick={onDontShowAgain}
+                      className="text-[11px] font-accent text-graphite-400 hover:text-brand-600 transition-colors cursor-pointer underline underline-offset-2 decoration-dotted hover:decoration-solid"
+                    >
+                      Don't show this again
+                    </button>
                   </div>
                 </motion.div>
               )}
