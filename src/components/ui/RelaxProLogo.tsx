@@ -43,9 +43,9 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
         <img
           src="/images/relaxpro-logo-footer.jpeg"
           alt="RelaxPro Premium Mattresses"
-          className="h-28 md:h-32 lg:h-36 w-auto object-contain block"
-          width={600}
-          height={144}
+          className="h-14 md:h-16 lg:h-20 w-auto object-contain block"
+          width={300}
+          height={80}
           loading="eager"
           onError={() => setImgError(true)}
           style={{ imageRendering: 'auto' }}
