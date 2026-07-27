@@ -48,7 +48,7 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
           height={144}
           loading="eager"
           onError={() => setImgError(true)}
-          style={{ imageRendering: 'auto' }}
+          style={{ filter: 'brightness(0) invert(1)', imageRendering: 'auto' }}
         />
       </div>
     );
