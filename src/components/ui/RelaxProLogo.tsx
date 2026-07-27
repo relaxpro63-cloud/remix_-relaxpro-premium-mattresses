@@ -41,14 +41,14 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
     return (
       <div className={`flex flex-col items-start select-none ${className}`}>
         <img
-          src={src}
+          src="/images/relaxpro-logo-footer.jpeg"
           alt="RelaxPro Premium Mattresses"
           className="h-28 md:h-32 lg:h-36 w-auto object-contain block"
           width={600}
           height={144}
           loading="eager"
           onError={() => setImgError(true)}
-          style={{ filter: 'brightness(0) invert(1)', imageRendering: 'auto' }}
+          style={{ imageRendering: 'auto' }}
         />
       </div>
     );
