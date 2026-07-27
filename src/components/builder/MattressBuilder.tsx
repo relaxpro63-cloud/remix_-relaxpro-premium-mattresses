@@ -1294,7 +1294,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* ── RIGHT: Configurator (60%) ── */}
           <motion.div
@@ -1350,7 +1350,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
               );
             })}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* ========== MOBILE BOTTOM BAR ========== */}
