@@ -193,6 +193,22 @@ export default function HomePage({
 <FadeUp><CertificationMarquee /></FadeUp>
 <FadeUp><ShopByBrands /></FadeUp>
 
+      {/* Shuddha Banner */}
+      <FadeUp>
+        <section className="bg-secondary py-8 md:py-12 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30">
+              <img
+                src="/images/shuddha-banner.png"
+                alt="Shuddha Premium Collection"
+                className="w-full h-auto object-contain"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+      </FadeUp>
+
       <FadeUp><section id="bestsellers" className="bg-sky-100/20 border-y border-brand-200/30 py-12 md:py-16 px-4 md:px-8 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 20%, rgba(21,104,163,0.06) 0%, transparent 60%)' }} />
         <div className="max-w-7xl mx-auto">
