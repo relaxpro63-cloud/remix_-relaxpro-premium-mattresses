@@ -17,6 +17,7 @@ export const deskStructure = (S: StructureBuilder) =>
               S.documentListItem({ schemaType: 'contact', id: 'contact', title: 'Contact Page' }),
             ])
         ),
+      S.documentTypeListItem('offer').title('Offers & Campaigns'),
       S.divider(),
       S.documentTypeListItem('product').title('Mattresses'),
       S.documentTypeListItem('accessory').title('Accessories'),

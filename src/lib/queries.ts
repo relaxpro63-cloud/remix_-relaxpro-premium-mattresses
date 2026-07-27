@@ -30,10 +30,11 @@ export async function getSiteSettings() {
   return sanityClient.fetch(`*[_type == "siteSettings"][0]{
     branding { siteName, tagline, logo, favicon },
     navigation { mainMenu, footerMenu, ctaButton, phoneNumber },
-    footer { description, socialLinks, certifications[]{name, image}, copyrightText },
-    contactInfo { mainPhone, secondaryPhone, whatsappNumber, whatsappDefaultMessage, email, factoryAddress },
+    footer { description, socialLinks, trustBadges[]{icon, text}, certifications[]{name, image}, copyrightText },
+    contactInfo { mainPhone, secondaryPhone, whatsappNumber, whatsappDefaultMessage, email, factoryAddress, googleMapsUrl, googleMapsLink },
+    businessHours { monday, tuesday, wednesday, thursday, friday, saturday, sunday },
     announcement { showBanner, bannerText, bannerLink, bannerColor },
-    staticImages { gotsCotton, quiltedCotton, naturalLatex, comfortMeter, sizeChart, heroBedroom },
+    staticImages { gotsCotton, quiltedCotton, naturalLatex, comfortMeter, sizeChart, technicalSpecifications, vilasaBenefits, heroBedroom },
     seo { metaTitle, metaDescription, ogImage },
     analytics { gaTrackingId, metaPixelId, gtmId },
     certificates[]{ id, title, subtitle, description, pdfUrl, pdfEmbedUrl, validity },
@@ -310,4 +311,16 @@ export async function getAccessoryBySlug(slug: string) {
     }`,
     { slug }
   )
+}
+
+/* ---- Offers & Campaigns ---- */
+export async function getActiveOffers() {
+  return sanityClient.fetch(`*[_type == "offer" && isActive == true && (endDate == null || endDate > now())] | order(priority desc){
+    title, subtitle, description, discountText, badge, type,
+    bannerImage { asset->{_id, url}, alt },
+    cta { label, link, variant, openInNewTab },
+    couponCode, showBanner, bannerColor,
+    startDate, endDate,
+    targetProducts[]->{ name, "slug": slug.current }
+  }`)
 }

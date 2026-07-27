@@ -25,6 +25,7 @@ import PageShell from './components/layout/PageShell';
 import ProductDetailRoute from './routes/product/product-detail';
 import { ToastProvider } from './components/ui/Toast';
 import LeadPopup from './components/home/LeadPopup';
+import OfferBanner from './components/home/OfferBanner';
 import { usePopup } from './hooks/usePopup';
 const MattressBuilder = lazy(() => import('./components/builder/MattressBuilder'));
 
@@ -70,6 +71,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-secondary flex flex-col justify-between selection:bg-brand-500 selection:text-brand-950">
       <Header cartCount={cart.totalCount} />
+      <OfferBanner />
       <main className="flex-1">
         <ErrorBoundary>
           <Suspense

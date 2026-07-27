@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, ArrowRight, Heart, Award, MessageSquare, Store } from 'lucide-react';
+import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, ArrowRight, Heart, Award, MessageSquare, Store, Sparkles, CheckCircle } from 'lucide-react';
 import { getSiteSettings, getNavigation } from '../../lib/queries';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
@@ -37,14 +37,24 @@ export default function Footer() {
 
   const contactInfo = settings?.contactInfo || {};
 
-  const trustBadges = [
-    { icon: Shield, text: '100% Natural Latex' },
-    { icon: Award, text: '10-Year Warranty' },
-    { icon: Truck, text: 'Free Delivery Pan India' },
-    { icon: RefreshCcw, text: 'Direct Factory Pricing' },
-    { icon: Heart, text: 'Handmade in India' },
-  ];
+  // Icon resolver: maps Sanity icon names to lucide components
+  const footerIconMap: Record<string, any> = {
+    Shield, Award, Truck, Heart, RefreshCcw, MapPin, Sparkles, CheckCircle, Mail, Phone, MessageSquare,
+  };
 
+  const trustBadges = (settings?.footer?.trustBadges && settings.footer.trustBadges.length > 0
+    ? settings.footer.trustBadges.map((b: any) => ({
+        icon: footerIconMap[b.icon] || Shield,
+        text: b.text,
+      }))
+    : [
+        { icon: Shield, text: '100% Natural Latex' },
+        { icon: Award, text: '10-Year Warranty' },
+        { icon: Truck, text: 'Free Delivery Pan India' },
+        { icon: RefreshCcw, text: 'Direct Factory Pricing' },
+        { icon: Heart, text: 'Handmade in India' },
+      ]
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
