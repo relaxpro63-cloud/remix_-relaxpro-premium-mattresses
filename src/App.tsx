@@ -34,11 +34,20 @@ function AppContent() {
   const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
   const [selectedTier, setSelectedTier] = useState<Tier | 'all'>('all');
   const [defaultSeo, setDefaultSeo] = useState<any>(null);
-  const popup = usePopup();
+  const [popupSettings, setPopupSettings] = useState<any>(null);
+  const popup = usePopup(popupSettings?.leadPopup ? {
+    enabled: popupSettings.leadPopup.enabled,
+    initialDelay: popupSettings.leadPopup.initialDelay,
+    cooldownSeconds: popupSettings.leadPopup.cooldownSeconds,
+    scrollPercent: popupSettings.leadPopup.scrollPercent,
+  } : undefined);
   useGlobalScrollAnimations();
 
   useEffect(() => {
-    getSiteSettings().then(s => setDefaultSeo(s?.seo)).catch(() => {});
+    getSiteSettings().then(s => {
+      setDefaultSeo(s?.seo);
+      setPopupSettings(s);
+    }).catch(() => {});
   }, []);
 
   const page = (name: string) => {
@@ -182,7 +191,13 @@ function AppContent() {
       <Footer />
       <ScrollToTop />
       <WhatsAppFAB />
-      <LeadPopup isOpen={popup.isOpen} onClose={popup.close} onSubmitted={popup.onSubmitted} onDontShowAgain={popup.onDontShowAgain} />
+      <LeadPopup
+        isOpen={popup.isOpen}
+        onClose={popup.close}
+        onSubmitted={popup.onSubmitted}
+        onDontShowAgain={popup.onDontShowAgain}
+        content={popupSettings?.leadPopup}
+      />
     </div>
   );
 }

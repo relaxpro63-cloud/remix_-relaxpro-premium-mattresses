@@ -2,8 +2,13 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 const POPUP_SUBMITTED_KEY = 'relaxpro_popup_submitted';
 const POPUP_DISMISSED_KEY = 'relaxpro_popup_dismissed';
-const COOLDOWN_MS = 12_000; // 12 seconds before popup can reappear after close
-const SCROLL_PERCENT = 0.4;
+
+export interface PopupConfig {
+  enabled?: boolean;
+  initialDelay?: number;
+  cooldownSeconds?: number;
+  scrollPercent?: number;
+}
 
 interface UsePopupReturn {
   isOpen: boolean;
@@ -13,7 +18,7 @@ interface UsePopupReturn {
   onDontShowAgain: () => void;
 }
 
-export function usePopup(): UsePopupReturn {
+export function usePopup(config?: PopupConfig): UsePopupReturn {
   const [isOpen, setIsOpen] = useState(false);
   const [dismissed, setDismissed] = useState(() => {
     try { return localStorage.getItem(POPUP_DISMISSED_KEY) === 'true'; }
@@ -24,56 +29,61 @@ export function usePopup(): UsePopupReturn {
     catch { return false; }
   });
 
+  const cooldownMs = (config?.cooldownSeconds ?? 12) * 1000;
+  const initialDelayMs = (config?.initialDelay ?? 2) * 1000;
+  const scrollPercent = (config?.scrollPercent ?? 40) / 100;
+  const popupEnabled = config?.enabled !== false;
+
   // Track when popup was last closed to enforce cooldown
   const lastClosedRef = useRef<number>(0);
   // Track if scroll trigger has already fired this session
   const scrollFiredRef = useRef(false);
 
-  const permanentlySuppressed = dismissed || submitted;
+  const permanentlySuppressed = dismissed || submitted || !popupEnabled;
 
   // Helper: check cooldown before showing
   const canShow = useCallback(() => {
     if (permanentlySuppressed) return false;
     const elapsed = Date.now() - lastClosedRef.current;
-    return elapsed >= COOLDOWN_MS;
-  }, [permanentlySuppressed]);
+    return elapsed >= cooldownMs;
+  }, [permanentlySuppressed, cooldownMs]);
 
-  // Initial trigger: show popup 2 seconds after page load
+  // Initial trigger: show popup after configured delay
   useEffect(() => {
     if (!canShow()) return;
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 2000);
+    }, initialDelayMs);
     return () => clearTimeout(timer);
   }, [permanentlySuppressed]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Repeating interval: every 12 seconds, try to show the popup (respects cooldown)
+  // Repeating interval: every cooldown period, try to show the popup (respects cooldown)
   useEffect(() => {
     if (permanentlySuppressed) return;
     const interval = setInterval(() => {
       if (canShow()) {
         setIsOpen(true);
       }
-    }, COOLDOWN_MS);
+    }, cooldownMs);
     return () => clearInterval(interval);
-  }, [permanentlySuppressed, canShow]);
+  }, [permanentlySuppressed, canShow, cooldownMs]);
 
-  // Scroll trigger: show popup when user scrolls past 40% (fires only once per cooldown)
+  // Scroll trigger: show popup when user scrolls past threshold (fires only once per session)
   useEffect(() => {
     if (permanentlySuppressed) return;
     const onScroll = () => {
       if (scrollFiredRef.current) return;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollHeight <= 0) return;
-      const scrollPercent = window.scrollY / scrollHeight;
-      if (scrollPercent >= SCROLL_PERCENT && canShow()) {
+      const scrollPercentReached = window.scrollY / scrollHeight;
+      if (scrollPercentReached >= scrollPercent && canShow()) {
         scrollFiredRef.current = true;
         setIsOpen(true);
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [permanentlySuppressed, canShow]);
+  }, [permanentlySuppressed, canShow, scrollPercent]);
 
   const close = useCallback(() => {
     setIsOpen(false);

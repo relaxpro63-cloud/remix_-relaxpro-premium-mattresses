@@ -22,6 +22,31 @@ export default {
     { name: 'seo', title: 'Default SEO', type: 'pageSEO' },
     { name: 'analytics', title: 'Analytics and Tracking', type: 'object', fields: [{ name: 'gaTrackingId', title: 'Google Analytics ID', type: 'string' }, { name: 'metaPixelId', title: 'Meta Pixel ID', type: 'string' }, { name: 'gtmId', title: 'Google Tag Manager ID', type: 'string' }] },
     {
+      name: 'leadPopup', title: 'Lead Capture Popup',
+      description: 'Configure the lead capture popup that appears to collect visitor information.',
+      type: 'object',
+      fields: [
+        { name: 'enabled', title: 'Enable Popup', type: 'boolean', initialValue: true },
+        { name: 'heading', title: 'Heading', type: 'string', initialValue: 'Get Exclusive Offers' },
+        { name: 'description', title: 'Description', type: 'text', rows: 2, initialValue: 'Get personalized mattress recommendations and exclusive pricing directly from our sleep experts.' },
+        { name: 'badgeText', title: 'Badge Text', type: 'string', initialValue: '🎁 Limited-Time Offer' },
+        { name: 'ctaLabel', title: 'CTA Button Text', type: 'string', initialValue: 'Get My Offer' },
+        { name: 'successHeading', title: 'Success Heading', type: 'string', initialValue: '✅ Thank You!' },
+        { name: 'successDescription', title: 'Success Description', type: 'text', rows: 2, initialValue: 'Our sleep expert will contact you shortly.' },
+        { name: 'trustTexts', title: 'Trust Badges', type: 'array', of: [{ type: 'string' }],
+          description: 'List of trust messages shown below the form (e.g. "No Spam", "Expert Assistance").',
+          initialValue: ['No Spam', 'Expert Assistance', 'Exclusive Deals']
+        },
+        { name: 'disclaimer', title: 'Disclaimer Text', type: 'string', initialValue: 'By submitting this form you agree to be contacted via call, WhatsApp or email.' },
+        { name: 'dontShowAgainText', title: '"Don\'t Show Again" Text', type: 'string', initialValue: 'Don\'t show this again' },
+        { name: 'showLogo', title: 'Show Logo', type: 'boolean', initialValue: true },
+        { name: 'initialDelay', title: 'Initial Delay (seconds)', type: 'number', initialValue: 2, description: 'How long after page load before the popup first appears.' },
+        { name: 'cooldownSeconds', title: 'Cooldown (seconds)', type: 'number', initialValue: 12, description: 'Minimum time between popup closes and re-appearance.' },
+        { name: 'scrollPercent', title: 'Scroll Trigger (%)', type: 'number', initialValue: 40, description: 'Show popup when user scrolls past this percentage of the page.' },
+        { name: 'submittingText', title: 'Submitting Button Text', type: 'string', initialValue: 'Submitting...' },
+      ],
+    },
+    {
       name: 'certificates', title: 'Certificate PDF Links', type: 'array',
       description: 'Certification documents displayed on the website. Add ISO, OEKO-TEX, and GOLS certificates here.',
       of: [{

@@ -36,7 +36,13 @@ export async function getSiteSettings() {
     staticImages { gotsCotton, quiltedCotton, naturalLatex, comfortMeter, sizeChart, heroBedroom },
     seo { metaTitle, metaDescription, ogImage },
     analytics { gaTrackingId, metaPixelId, gtmId },
-    certificates[]{ id, title, subtitle, description, pdfUrl, pdfEmbedUrl, validity }
+    certificates[]{ id, title, subtitle, description, pdfUrl, pdfEmbedUrl, validity },
+    leadPopup {
+      enabled, heading, description, badgeText, ctaLabel,
+      successHeading, successDescription, trustTexts, disclaimer,
+      dontShowAgainText, showLogo, initialDelay, cooldownSeconds,
+      scrollPercent, submittingText
+    }
   }`)
 }
 

@@ -5,14 +5,44 @@ import { submitLead } from '../../services/leadService';
 import { validateName, validatePhone, validateCity } from '../../utils/validation';
 import { buildWhatsAppUrl } from '../../lib/site';
 
+interface PopupContent {
+  heading?: string;
+  description?: string;
+  badgeText?: string;
+  ctaLabel?: string;
+  successHeading?: string;
+  successDescription?: string;
+  trustTexts?: string[];
+  disclaimer?: string;
+  dontShowAgainText?: string;
+  showLogo?: boolean;
+  submittingText?: string;
+}
+
 interface LeadPopupProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmitted: () => void;
   onDontShowAgain: () => void;
+  content?: PopupContent;
 }
 
-export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgain }: LeadPopupProps) {
+const DEFAULT_CONTENT: PopupContent = {
+  heading: 'Get Exclusive Offers',
+  description: 'Get personalized mattress recommendations and exclusive pricing directly from our sleep experts.',
+  badgeText: '🎁 Limited-Time Offer',
+  ctaLabel: 'Get My Offer',
+  successHeading: '✅ Thank You!',
+  successDescription: 'Our sleep expert will contact you shortly.',
+  trustTexts: ['No Spam', 'Expert Assistance', 'Exclusive Deals'],
+  disclaimer: 'By submitting this form you agree to be contacted via call, WhatsApp or email.',
+  dontShowAgainText: "Don't show this again",
+  showLogo: true,
+  submittingText: 'Submitting...',
+};
+
+export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgain, content }: LeadPopupProps) {
+  const c = { ...DEFAULT_CONTENT, ...content };
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
@@ -155,19 +185,21 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                       transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
                       className="flex items-center justify-center gap-3 mb-5"
                     >
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-xl flex items-center justify-center shadow-md border border-brand-200/40">
-                        <span className="font-heading font-bold text-lg sm:text-xl text-ink-900 tracking-tight">RELAX<span className="text-brand-600">PRO</span></span>
-                      </div>
+                      {c.showLogo && (
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-xl flex items-center justify-center shadow-md border border-brand-200/40">
+                          <span className="font-heading font-bold text-lg sm:text-xl text-ink-900 tracking-tight">RELAX<span className="text-brand-600">PRO</span></span>
+                        </div>
+                      )}
                       <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-brand-600" />
                     </motion.div>
                     <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-accent font-bold text-brand-600 uppercase tracking-[0.15em] bg-brand-50 border border-brand-600/15 px-3 py-1 rounded-full mb-4">
-                      🎁 Limited-Time Offer
+                      {c.badgeText}
                     </span>
                     <h2 className="text-2xl sm:text-3xl md:text-[2rem] font-heading font-bold text-ink-900 tracking-tight leading-tight">
-                      Get Exclusive Offers
+                      {c.heading}
                     </h2>
                     <p className="font-body text-graphite-500 text-xs sm:text-sm mt-2.5 max-w-sm mx-auto leading-relaxed">
-                      Get personalized mattress recommendations and exclusive pricing directly from our sleep experts.
+                      {c.description}
                     </p>
                   </div>
 
@@ -261,26 +293,26 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                       className="w-full py-4 sm:py-[18px] rounded-xl font-accent font-bold text-[13px] sm:text-sm tracking-[0.12em] uppercase transition-all cursor-pointer flex items-center justify-center gap-2.5 bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 text-white shadow-lg shadow-brand-600/25 hover:from-brand-500 hover:via-brand-600 hover:to-brand-700 disabled:opacity-60 disabled:cursor-not-allowed mt-1"
                     >
                       {isSubmitting ? (
-                        <><Loader2 className="w-4 h-4 animate-spin" /><span>Submitting...</span></>
+                        <><Loader2 className="w-4 h-4 animate-spin" /><span>{c.submittingText}</span></>
                       ) : (
-                        <><span>Get My Offer</span><Send className="w-4 h-4" /></>
+                        <><span>{c.ctaLabel}</span><Send className="w-4 h-4" /></>
                       )}
                     </motion.button>
 
                     {/* Trust badges */}
                     <div className="flex items-center justify-center gap-4 sm:gap-6 pt-1">
-                      <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
-                        <Shield className="w-3 h-3 text-brand-600" /> No Spam
-                      </span>
-                      <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
-                        <Headphones className="w-3 h-3 text-brand-600" /> Expert Assistance
-                      </span>
-                      <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
-                        <Tag className="w-3 h-3 text-brand-600" /> Exclusive Deals
-                      </span>
+                      {(c.trustTexts || []).map((text, i) => {
+                        const icons = [Shield, Headphones, Tag];
+                        const Icon = icons[i % icons.length];
+                        return (
+                          <span key={i} className="flex items-center gap-1 text-[10px] sm:text-[11px] font-body text-graphite-500">
+                            <Icon className="w-3 h-3 text-brand-600" /> {text}
+                          </span>
+                        );
+                      })}
                     </div>
                     <p className="text-center text-[9px] sm:text-[10px] font-body text-graphite-400 leading-relaxed">
-                      By submitting this form you agree to be contacted via call, WhatsApp or email.
+                      {c.disclaimer}
                     </p>
 
                   </form>
@@ -292,7 +324,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                       onClick={onDontShowAgain}
                       className="text-[11px] font-accent text-graphite-400 hover:text-brand-600 transition-colors cursor-pointer underline underline-offset-2 decoration-dotted hover:decoration-solid"
                     >
-                      Don't show this again
+                      {c.dontShowAgainText}
                     </button>
                   </div>
                 </>
@@ -312,10 +344,10 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                     <CheckCircle className="w-9 h-9 sm:w-11 sm:h-11 text-eco-500" />
                   </motion.div>
                   <h3 className="text-2xl sm:text-3xl font-heading font-bold text-ink-900 tracking-tight">
-                    ✅ Thank You!
+                    {c.successHeading}
                   </h3>
                   <p className="font-body text-graphite-500 text-sm mt-3 leading-relaxed max-w-xs mx-auto">
-                    Our sleep expert will contact you shortly.
+                    {c.successDescription}
                   </p>
                   <div className="mt-5 flex items-center justify-center gap-2 text-graphite-400 text-xs font-body">
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -328,7 +360,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                       onClick={onDontShowAgain}
                       className="text-[11px] font-accent text-graphite-400 hover:text-brand-600 transition-colors cursor-pointer underline underline-offset-2 decoration-dotted hover:decoration-solid"
                     >
-                      Don't show this again
+                      {c.dontShowAgainText}
                     </button>
                   </div>
                 </motion.div>
