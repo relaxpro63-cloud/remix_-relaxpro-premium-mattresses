@@ -148,7 +148,7 @@ function initBuild(config: BuilderConfig): BuildState {
     size: { kind: 'preset', name: defaultSize.name, length: defaultSize.lengthInches, width: defaultSize.widthInches },
     comfort: def.comfortMaterialSlug ? [{ materialSlug: def.comfortMaterialSlug, thickness: def.comfortThickness }] : [],
     support: def.supportMaterialSlug ? [{ materialSlug: def.supportMaterialSlug, thickness: def.supportThickness }] : [],
-    cover: { fabricSlug: def.coverFabricSlug, quiltingSlug: def.quiltingSlug || undefined },
+    cover: { fabricSlug: '', quiltingSlug: undefined },
   };
 }
 
