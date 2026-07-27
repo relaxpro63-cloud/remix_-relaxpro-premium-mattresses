@@ -76,7 +76,7 @@ export default function Footer() {
         >
           {/* ── Column 1: Brand + Trust ── */}
           <motion.div variants={colVariants} className="lg:col-span-4 space-y-7">
-            <RelaxProLogo variant="footer" inverse={true} className="!items-start" />
+            <RelaxProLogo variant="footer" className="!items-start" />
             <p className="text-white/40 text-sm leading-relaxed max-w-sm font-body">
               {settings?.footer?.description ||
                 "Crafting India's finest natural latex mattresses designed for healthier sleep and lifelong comfort."}

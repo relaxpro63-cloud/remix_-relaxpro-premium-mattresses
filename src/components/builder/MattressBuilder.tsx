@@ -195,10 +195,23 @@ function MattressPreview({ build, config, price }: {
         </div>
       </div>
 
-      {/* Mattress visualization */}
-      <div className="relative bg-gradient-to-b from-ink-900 to-ink-950 rounded-2xl p-5 overflow-hidden min-h-[260px] flex flex-col justify-end shadow-xl border border-white/5">
+      {/* Mattress visualization - glassmorphism refined */}
+      <div className="relative bg-gradient-to-b from-ink-900 to-ink-950 rounded-[1.5rem] p-5 overflow-hidden min-h-[300px] flex flex-col justify-end shadow-[0_4px_40px_rgba(0,0,0,0.15),0_1px_4px_rgba(0,0,0,0.08)] border border-white/5">
         {/* Ambient glow */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-brand-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-brand-600/8 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-400/5 rounded-full blur-[60px] pointer-events-none" />
+
+        {/* Floating layer labels on right side */}
+        <div className="absolute right-4 top-6 flex flex-col gap-2.5 opacity-60 pointer-events-none z-10">
+          {layers.slice(0, 4).map((layer, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <div className="w-6 h-[1px] bg-white/30" />
+              <span className="text-[8px] font-medium text-white/40 uppercase tracking-wider whitespace-nowrap">
+                {layer.label}
+              </span>
+            </div>
+          ))}
+        </div>
 
         <div className="relative flex flex-col gap-1 justify-end">
           <AnimatePresence mode="popLayout">
@@ -351,22 +364,22 @@ function ThicknessPills({ options, active, onChange }: {
 }) {
   if (options.length <= 1) return null;
   return (
-    <div className="flex flex-wrap gap-1.5 mt-2 ml-5">
+    <div className="flex flex-wrap gap-2 mt-3 ml-6">
       {options.map(t => {
         const isActive = active === t.valueInches;
         return (
           <button
             key={t.valueInches}
             onClick={() => onChange(t.valueInches)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 cursor-pointer ${
+            className={`px-5 py-2 rounded-full text-xs font-semibold border-2 transition-all duration-200 cursor-pointer ${
               isActive
-                ? 'bg-ink-900 text-white border-ink-900 shadow-md scale-105'
-                : 'bg-white text-graphite-500 border-graphite-200 hover:border-ink-900/30 hover:text-ink-900 hover:bg-sky-50'
+                ? 'border-ink-900 bg-ink-900/5 text-ink-900 shadow-sm'
+                : 'border-graphite-200 bg-white text-graphite-500 hover:border-ink-900/30 hover:text-ink-900'
             }`}
           >
             {t.label}
             {t.addPrice > 0 && (
-              <span className="ml-1 opacity-70">+₹{t.addPrice.toLocaleString('en-IN')}</span>
+              <span className="ml-1.5 text-[10px] font-normal text-graphite-400">+₹{t.addPrice.toLocaleString('en-IN')}</span>
             )}
           </button>
         );
@@ -434,6 +447,29 @@ function MaterialCard({ mat, selected, thickness, onToggle, onThicknessChange, o
                 {mat.benefit && selected && (
                   <p className="text-[11px] text-graphite-400 mt-1 leading-relaxed">{mat.benefit}</p>
                 )}
+                {/* Spec attribute chips - inspired by stitch reference */}
+                {selected && (
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {mat.density && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-full">
+                        {mat.density}
+                      </span>
+                    )}
+                    {mat.brand && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-full">
+                        {mat.brand}
+                      </span>
+                    )}
+                    <span className="inline-flex items-center gap-1 text-[9px] font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-full">
+                      {mat.slot === 'support' ? 'Firm' : 'Comfort'}
+                    </span>
+                    {mat.ild && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-full">
+                        ILD {mat.ild}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -483,7 +519,7 @@ function StepAccordion({ step, isOpen, summary, children, onToggle, stepIdx }: {
 }) {
   const Icon = step.icon;
   return (
-    <div className={`bg-white rounded-2xl border transition-all duration-300 ${
+    <div className={`bg-white rounded-[1.5rem] border transition-all duration-300 ${
       isOpen ? 'border-ink-900/20 shadow-lg shadow-ink-900/5' : 'border-graphite-100 hover:border-graphite-200 shadow-sm'
     }`}>
       <button
@@ -1126,12 +1162,12 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* ── LEFT: Sticky Preview (40%) ── */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 order-1 space-y-6">
-            <div className="bg-white rounded-2xl border border-graphite-100 shadow-sm p-5 sm:p-6">
+            <div className="bg-white/80 backdrop-blur-xl rounded-[1.5rem] border border-white/30 shadow-[0_4px_40px_rgba(0,0,0,0.04),0_1px_4px_rgba(0,0,0,0.02)] p-5 sm:p-6">
               <MattressPreview build={build} config={config} price={price} />
             </div>
 
             {/* Price breakdown (desktop) */}
-            <div className="hidden lg:block bg-white rounded-2xl border border-graphite-100 shadow-sm p-5 sm:p-6">
+            <div className="hidden lg:block bg-white/80 backdrop-blur-xl rounded-[1.5rem] border border-white/30 shadow-[0_4px_40px_rgba(0,0,0,0.04),0_1px_4px_rgba(0,0,0,0.02)] p-5 sm:p-6">
               <PriceBreakdown build={build} config={config} price={price} />
             </div>
 
