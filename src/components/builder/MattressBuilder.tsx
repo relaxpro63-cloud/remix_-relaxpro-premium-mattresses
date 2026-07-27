@@ -174,10 +174,8 @@ function MattressPreview({ build, config, price }: {
 
   const layers = [
     ...(quiltFab ? [{ label: 'Quilted Top', mat: quiltFab.name, color: '#D4C5A9', thickness: quiltFab.quiltingMm || '12mm' }] : []),
-    { label: 'Cover Fabric', mat: coverFab?.name || 'Cotton', color: '#C9B99A', thickness: coverFab?.gsm || '' },
     ...comfortMats.map(s => ({ label: s.mat?.name || 'Comfort', mat: s.mat?.feelTag || '', color: s.mat?.stackColor || '#A8D5BA', thickness: `${s.thickness}"` })),
     ...supportMats.map(s => ({ label: s.mat?.name || 'Support', mat: s.mat?.feelTag || '', color: s.mat?.stackColor || '#7FA0C0', thickness: `${s.thickness}"` })),
-    { label: 'Canvas Base',  mat: 'Sturdy base fabric', color: '#8B7D6B', thickness: '' },
   ];
 
   const height = totalHeight(build, config);
@@ -713,45 +711,6 @@ function StepSize({ config, build, onSelect }: {
   );
 }
 
-/* ── Softness Bar (comfort layer step) ── */
-function SoftnessBar({ materials, build }: {
-  materials: BuilderMaterial[]; build: BuildState;
-}) {
-  const selections = build.comfort;
-  const slug = selections[0]?.materialSlug;
-  const mat = slug ? materials.find(m => m.slug === slug) : null;
-  const pct = mat ? (() => {
-    if (mat.ild) {
-      const v = parseFloat(mat.ild);
-      if (v < 18) return 15;
-      if (v < 28) return 50;
-      return 85;
-    }
-    const ft = (mat.feelTag || '').toLowerCase();
-    if (ft.includes('soft') || ft.includes('plush')) return 15;
-    if (ft.includes('firm') || ft.includes('support') || ft.includes('dense') || ft.includes('orthopedic')) return 85;
-    return 50;
-  })() : 50;
-  const label = mat?.feelTag || (selections.length === 0 ? 'Not selected' : 'Medium');
-
-  return (
-    <div className="mt-5 pt-5 border-t border-graphite-100">
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-medium text-graphite-400">Soft</span>
-        <span className="text-xs font-semibold text-ink-900">{label}</span>
-        <span className="text-xs font-medium text-graphite-400">Firm</span>
-      </div>
-      <div className="h-2 bg-graphite-100 rounded-full relative">
-        <motion.div
-          className="absolute w-4 h-4 bg-ink-900 rounded-full top-1/2 -translate-y-1/2 shadow-md border-2 border-white"
-          animate={{ left: `${pct}%` }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        />
-      </div>
-    </div>
-  );
-}
-
 /* ── Step: Material (generic for base/comfort/natural) ── */
 function StepMaterialGroup({ materials, build, onSelect, slot }: {
   materials: BuilderMaterial[]; build: BuildState;
@@ -808,11 +767,6 @@ function StepMaterialGroup({ materials, build, onSelect, slot }: {
           />
         );
       })}
-
-      {/* Softness bar — only for comfort step */}
-      {slot === 'comfort' && (
-        <SoftnessBar materials={materials} build={build} />
-      )}
 
       {/* Detail drawer */}
       <AnimatePresence>
@@ -881,44 +835,51 @@ function StepCover({ fabrics, build, onSelect }: {
         })}
       </div>
 
-      {/* Quilting upgrade */}
+      {/* Quilting upgrade - full card clickable */}
       {quiltFab && (
         <div className="pt-3 border-t border-graphite-100">
-          <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
-            build.cover.quiltingSlug
-              ? 'border-ink-900 bg-ink-900/[0.02]'
-              : 'border-graphite-100 bg-white hover:border-graphite-200'
-          }`}>
-            <div
-              onClick={() => onSelect({
-                ...build,
-                cover: { ...build.cover, quiltingSlug: build.cover.quiltingSlug ? '' : quiltFab.slug }
-              })}
-              className={`w-[18px] h-[18px] rounded flex items-center justify-center shrink-0 transition-all ${
+          <p className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider mb-3">Add a Quilted Top</p>
+          <motion.button
+            onClick={() => onSelect({
+              ...build,
+              cover: { ...build.cover, quiltingSlug: build.cover.quiltingSlug ? '' : quiltFab.slug }
+            })}
+            whileTap={{ scale: 0.99 }}
+            className={`relative w-full text-left rounded-xl border-2 transition-all duration-300 overflow-hidden cursor-pointer ${
+              build.cover.quiltingSlug
+                ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
+                : 'border-graphite-100 bg-white hover:border-graphite-200 hover:shadow-md'
+            }`}
+          >
+            {build.cover.quiltingSlug && (
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-ink-900" />
+            )}
+            <div className="flex items-center gap-3 p-4">
+              <div className={`w-[18px] h-[18px] rounded flex items-center justify-center shrink-0 transition-all ${
                 build.cover.quiltingSlug
-                  ? 'bg-ink-900 text-white'
+                  ? 'bg-ink-900 text-white ring-2 ring-ink-900/30'
                   : 'border-2 border-graphite-300 bg-white'
-              }`}
-            >
-              {build.cover.quiltingSlug && <Check className="w-3 h-3" />}
+              }`}>
+                {build.cover.quiltingSlug && <Check className="w-3 h-3 text-white" />}
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="font-bold text-sm text-ink-900">{quiltFab.name}</span>
+                {quiltFab.benefit && <p className="text-xs text-graphite-500 mt-0.5">{quiltFab.benefit}</p>}
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                {quiltFab.quiltingMm && (
+                  <span className="text-[10px] font-semibold text-graphite-400 bg-graphite-100 px-2 py-1 rounded-full">
+                    {quiltFab.quiltingMm}
+                  </span>
+                )}
+                {quiltFab.addPrice > 0 && (
+                  <span className="text-xs font-bold text-ink-900">
+                    +₹{quiltFab.addPrice.toLocaleString('en-IN')}
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="flex-1">
-              <span className="font-semibold text-sm text-ink-900">{quiltFab.name}</span>
-              <p className="text-xs text-graphite-500">{quiltFab.benefit}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              {quiltFab.quiltingMm && (
-                <span className="text-[10px] font-semibold text-graphite-400 bg-graphite-100 px-2 py-1 rounded-full">
-                  {quiltFab.quiltingMm}
-                </span>
-              )}
-              {quiltFab.addPrice > 0 && (
-                <span className="text-xs font-bold text-ink-900">
-                  +₹{quiltFab.addPrice.toLocaleString('en-IN')}
-                </span>
-              )}
-            </div>
-          </label>
+          </motion.button>
         </div>
       )}
     </div>
@@ -1248,11 +1209,44 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         </div>
       </div>
 
+      {/* Step progress indicator */}
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-4 md:pt-6 md:pb-2">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {STEP_DEFS.map((step, idx) => {
+            const Icon = step.icon;
+            const isCompleted = getStepSummary(step.key) !== 'Not set' && getStepSummary(step.key) !== '';
+            const isActiveStep = openStep === step.key;
+            return (
+              <button
+                key={step.key}
+                onClick={() => setOpenStep(step.key as StepKey)}
+                className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-semibold transition-all duration-300 cursor-pointer ${
+                  isActiveStep
+                    ? 'bg-ink-900 text-white shadow-md'
+                    : isCompleted
+                      ? 'bg-green-50 text-green-700 border border-green-200/50'
+                      : 'bg-white text-graphite-400 border border-graphite-200'
+                }`}
+              >
+                <Icon className={`w-3 h-3 ${isActiveStep ? 'text-white' : isCompleted ? 'text-green-600' : 'text-graphite-400'}`} />
+                <span className="hidden sm:inline">{step.label}</span>
+                {isCompleted && <Check className="w-2.5 h-2.5 text-green-600" />}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* ========== MAIN CONTENT ========== */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-6 md:py-10">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-4 md:py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* ── LEFT: Sticky Preview (40%) ── */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 order-1 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 lg:sticky lg:top-28 order-1 space-y-6"
+          >
             <div className="bg-white/80 backdrop-blur-xl rounded-[1.5rem] border border-white/30 shadow-[0_4px_40px_rgba(0,0,0,0.04),0_1px_4px_rgba(0,0,0,0.02)] p-5 sm:p-6">
               <MattressPreview build={build} config={config} price={price} />
             </div>
@@ -1303,7 +1297,12 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
           </div>
 
           {/* ── RIGHT: Configurator (60%) ── */}
-          <div className="lg:col-span-7 order-2 space-y-3 pb-24 lg:pb-0">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="lg:col-span-7 order-2 space-y-3 pb-24 lg:pb-0"
+          >
             {STEP_DEFS.map((step, idx) => {
               const isOpen = openStep === step.key;
               const summary = getStepSummary(step.key);
