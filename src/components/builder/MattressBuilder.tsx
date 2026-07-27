@@ -299,7 +299,7 @@ function MaterialDrawer({ material, onClose }: { material: BuilderMaterial; onCl
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-sky-100 hover:bg-sky-200 flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-graphite-100 hover:bg-graphite-200 flex items-center justify-center transition-colors cursor-pointer"
         >
           <X className="w-4 h-4 text-graphite-500" />
         </button>
@@ -324,19 +324,19 @@ function MaterialDrawer({ material, onClose }: { material: BuilderMaterial; onCl
         {/* Specs grid */}
         <div className="grid grid-cols-2 gap-3 mb-5">
           {material.density && (
-            <div className="bg-sky-50 rounded-xl p-3">
+            <div className="bg-graphite-100 rounded-xl p-3">
               <span className="text-[10px] font-medium text-graphite-400 uppercase tracking-wider">Density</span>
               <p className="font-semibold text-ink-900 text-sm mt-1">{material.density}</p>
             </div>
           )}
           {material.ild && (
-            <div className="bg-sky-50 rounded-xl p-3">
+            <div className="bg-graphite-100 rounded-xl p-3">
               <span className="text-[10px] font-medium text-graphite-400 uppercase tracking-wider">ILD Rating</span>
               <p className="font-semibold text-ink-900 text-sm mt-1">{material.ild}</p>
             </div>
           )}
           {material.feelTag && (
-            <div className="bg-sky-50 rounded-xl p-3 col-span-2">
+            <div className="bg-graphite-100 rounded-xl p-3 col-span-2">
               <span className="text-[10px] font-medium text-graphite-400 uppercase tracking-wider">Feel</span>
               <p className="font-semibold text-ink-900 text-sm mt-1 flex items-center gap-2">
                 <Feather className="w-4 h-4 text-brand-500" /> {material.feelTag}
@@ -349,7 +349,7 @@ function MaterialDrawer({ material, onClose }: { material: BuilderMaterial; onCl
         <h4 className="font-bold text-sm text-ink-900 mb-3">Available Thickness</h4>
         <div className="space-y-2">
           {material.thicknessOptions.map(t => (
-            <div key={t.valueInches} className="flex items-center justify-between bg-sky-50 rounded-xl px-4 py-3">
+            <div key={t.valueInches} className="flex items-center justify-between bg-graphite-100 rounded-xl px-4 py-3">
               <span className="font-semibold text-ink-900 text-sm">{t.label}</span>
               <span className="font-bold text-brand-600">₹{t.addPrice.toLocaleString('en-IN')}</span>
             </div>
@@ -484,7 +484,7 @@ function MaterialCard({ mat, selected, thickness, onToggle, onThicknessChange, o
               )}
               <button
                 onClick={e => { e.stopPropagation(); onDetail(); }}
-                className="w-7 h-7 rounded-full bg-sky-100 hover:bg-sky-200 text-graphite-400 flex items-center justify-center transition-colors cursor-pointer"
+                className="w-7 h-7 rounded-full bg-graphite-100 hover:bg-graphite-200 text-graphite-400 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <Info className="w-3.5 h-3.5 text-graphite-400" />
               </button>
@@ -530,7 +530,7 @@ function StepAccordion({ step, isOpen, summary, children, onToggle, stepIdx }: {
       >
         {/* Step number */}
         <span className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold transition-all duration-300 ${
-          isOpen ? 'bg-ink-900 text-white shadow-md' : 'bg-sky-100 text-graphite-500'
+          isOpen ? 'bg-ink-900 text-white shadow-md' : 'bg-graphite-100 text-graphite-500'
         }`}>
           {stepIdx + 1}
         </span>
@@ -558,7 +558,7 @@ function StepAccordion({ step, isOpen, summary, children, onToggle, stepIdx }: {
             ? 'bg-ink-900/10 text-ink-900'
             : summary && summary !== 'Not set'
               ? 'bg-green-50 text-green-700 border border-green-200/50'
-              : 'bg-sky-100 text-graphite-400'
+              : 'bg-graphite-100 text-graphite-400'
         }`}>
           {isOpen ? 'Editing' : (summary && summary !== 'Not set' ? 'Done' : 'Set')}
         </span>
@@ -663,7 +663,7 @@ function StepSize({ config, build, onSelect }: {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="p-5 bg-gradient-to-br from-sky-50 to-white rounded-xl border border-sky-200/60 space-y-4">
+            <div className="p-5 bg-gradient-to-br from-white to-white rounded-xl border border-graphite-200/60 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] font-bold text-ink-900 uppercase tracking-wider block mb-1.5">
@@ -908,7 +908,7 @@ function StepCover({ fabrics, build, onSelect }: {
             </div>
             <div className="flex items-center gap-2">
               {quiltFab.quiltingMm && (
-                <span className="text-[10px] font-semibold text-graphite-400 bg-sky-100 px-2 py-1 rounded-full">
+                <span className="text-[10px] font-semibold text-graphite-400 bg-graphite-100 px-2 py-1 rounded-full">
                   {quiltFab.quiltingMm}
                 </span>
               )}

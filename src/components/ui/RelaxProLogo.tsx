@@ -25,9 +25,9 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
         <img
           src={src}
           alt="RelaxPro Premium Mattresses"
-          className="h-14 md:h-16 lg:h-20 w-auto object-contain block"
-          width={300}
-          height={80}
+          className="h-24 md:h-28 lg:h-32 w-auto object-contain block"
+          width={500}
+          height={128}
           loading="eager"
           fetchPriority={isNav ? 'high' : undefined}
           onError={() => setImgError(true)}
@@ -43,9 +43,9 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
         <img
           src={src}
           alt="RelaxPro Premium Mattresses"
-          className="h-20 md:h-24 lg:h-28 w-auto object-contain block"
-          width={400}
-          height={112}
+          className="h-28 md:h-32 lg:h-36 w-auto object-contain block"
+          width={600}
+          height={144}
           loading="eager"
           onError={() => setImgError(true)}
           style={{ imageRendering: 'auto' }}
@@ -60,9 +60,9 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
       <img
         src={src}
         alt="RelaxPro Premium Mattresses"
-        className="h-14 md:h-16 lg:h-20 w-auto object-contain block"
-        width={300}
-        height={80}
+        className="h-24 md:h-28 lg:h-32 w-auto object-contain block"
+        width={500}
+        height={128}
         loading="eager"
         onError={() => setImgError(true)}
         style={{ imageRendering: 'auto' }}
