@@ -7,7 +7,8 @@ import {
   ChevronRight, Palette, Feather, Snowflake, Zap,
   Maximize2, Maximize, Leaf
 } from 'lucide-react';
-import { CartItem, MattressSize } from '../../types';
+import { CartItem, MattressSize, SizeCategory } from '../../types';
+import { STANDARD_SIZES, SIZE_CATEGORIES } from '../../types/sizes';
 import { getBuilderData } from '../../lib/queries';
 
 /* ──────────────────────────────────────────────────────────────
@@ -86,7 +87,7 @@ interface BuilderConfig {
 }
 
 interface BuildState {
-  size: { kind: 'preset' | 'custom'; name?: string; length: number; width: number };
+  size: { kind: 'preset' | 'custom'; name?: string; length: number; width: number; sizeCategory?: SizeCategory };
   comfort: { materialSlug: string; thickness: number }[];
   support: { materialSlug: string; thickness: number }[];
   cover: { fabricSlug: string; quiltingSlug?: string };
@@ -125,7 +126,8 @@ const STEP_HELPERS: Record<string, string> = {
    Helpers
    ────────────────────────────────────────────────────────────── */
 function totalPrice(build: BuildState, config: BuilderConfig): number {
-  const sizeObj = config.sizes.find(s => s.name === build.size.name);
+  const sizeObj = config.sizes.find(s => s.widthInches === build.size.width)
+    || [...config.sizes].sort((a, b) => Math.abs(a.widthInches - build.size.width) - Math.abs(b.widthInches - build.size.width))[0];
   const sizePrice = build.size.kind === 'preset' && sizeObj ? sizeObj.basePrice : 0;
   const layerPrice = (sels: { materialSlug: string; thickness: number }[]) =>
     sels.reduce((sum, sel) => {
@@ -143,9 +145,10 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
 
 function initBuild(config: BuilderConfig): BuildState {
   const def = config.defaults;
-  const defaultSize = config.sizes.find(s => s.name === def.sizeName) || config.sizes[0];
+  const defaultCat = SIZE_CATEGORIES[0];
+  const defaultVariant = STANDARD_SIZES[defaultCat.value].variants[0];
   return {
-    size: { kind: 'preset', name: defaultSize.name, length: defaultSize.lengthInches, width: defaultSize.widthInches },
+    size: { kind: 'preset', name: defaultCat.label, length: defaultVariant.dims.length, width: defaultVariant.dims.width, sizeCategory: defaultCat.value },
     comfort: def.comfortMaterialSlug ? [{ materialSlug: def.comfortMaterialSlug, thickness: def.comfortThickness }] : [],
     support: def.supportMaterialSlug ? [{ materialSlug: def.supportMaterialSlug, thickness: def.supportThickness }] : [],
     cover: { fabricSlug: '', quiltingSlug: undefined },
@@ -595,118 +598,138 @@ function StepSize({ config, build, onSelect }: {
   const [custL, setCustL] = useState(build.size.kind === 'custom' ? build.size.length : 78);
   const [custW, setCustW] = useState(build.size.kind === 'custom' ? build.size.width : 60);
 
+  const selectedCat = build.size.sizeCategory;
+
   return (
     <div className="space-y-4">
-      {/* Preset sizes */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {config.sizes.map(s => {
-          const active = build.size.kind === 'preset' && build.size.name === s.name;
-          return (
-            <motion.button
-              key={s.name}
-              onClick={() => {
-                setShowCustom(false);
-                onSelect({ ...build, size: { kind: 'preset', name: s.name, length: s.lengthInches, width: s.widthInches } });
-              }}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className={`relative p-4 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
-                active
-                  ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
-                  : 'border-graphite-100 bg-white hover:border-graphite-300 hover:shadow-md'
-              }`}
-            >
-              <Bed className={`w-5 h-5 mx-auto mb-1.5 ${active ? 'text-ink-900' : 'text-graphite-300'}`} />
-              <span className={`font-bold text-sm block ${active ? 'text-ink-900' : 'text-graphite-700'}`}>{s.name}</span>
-              <span className="text-[10px] font-medium mt-0.5 block text-graphite-400">
-                {s.widthInches}×{s.lengthInches}"
-              </span>
-              {s.popular && (
-                <span className="text-[9px] font-bold text-brand-600 mt-1 block">Most popular</span>
-              )}
-              {active && (
-                <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-ink-900 flex items-center justify-center shadow-md">
-                  <Check className="w-3 h-3 text-white" />
-                </div>
-              )}
-            </motion.button>
-          );
-        })}
-
-        {/* Custom */}
-        {config.customSize.enabled && (
-          <motion.button
-            onClick={() => setShowCustom(!showCustom)}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            className={`relative p-4 rounded-xl text-center border-2 border-dashed transition-all duration-200 cursor-pointer ${
-              build.size.kind === 'custom' || showCustom
-                ? 'border-ink-900 bg-ink-900/[0.03]'
-                : 'border-graphite-200 bg-white hover:border-graphite-300'
-            }`}
-          >
-            <RulerIcon className="w-5 h-5 mx-auto mb-1.5 text-graphite-400" />
-            <span className="font-bold text-xs block text-graphite-500">Custom</span>
-            <span className="text-[9px] text-graphite-400 mt-0.5 block">Any size</span>
-          </motion.button>
-        )}
+      {/* Step 1: Category selector */}
+      <div>
+        <p className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider mb-2">Select Category</p>
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+          {SIZE_CATEGORIES.map(cat => {
+            const active = selectedCat === cat.value && !showCustom && build.size.kind !== 'custom';
+            return (
+              <motion.button
+                key={cat.value}
+                onClick={() => {
+                  setShowCustom(false);
+                  const variant = STANDARD_SIZES[cat.value].variants[0];
+                  onSelect({ ...build, size: { kind: 'preset', name: cat.label, length: variant.dims.length, width: variant.dims.width, sizeCategory: cat.value } });
+                }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className={`relative p-3 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
+                  active
+                    ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
+                    : 'border-graphite-100 bg-white hover:border-graphite-300 hover:shadow-md'
+                }`}
+              >
+                <span className={`font-bold text-xs block ${active ? 'text-ink-900' : 'text-graphite-700'}`}>{cat.label}</span>
+                <span className="text-[9px] font-medium mt-0.5 block text-graphite-400">{cat.hint}</span>
+                {active && (
+                  <div className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-ink-900 flex items-center justify-center shadow-md">
+                    <Check className="w-2.5 h-2.5 text-white" />
+                  </div>
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Custom size panel */}
-      <AnimatePresence>
-        {(showCustom || build.size.kind === 'custom') && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
-          >
-            <div className="p-5 bg-gradient-to-br from-white to-white rounded-xl border border-graphite-200/60 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-ink-900 uppercase tracking-wider block mb-1.5">
-                    Length ({config.customSize.unit})
-                  </label>
-                  <input
-                    type="number"
-                    value={custL}
-                    onChange={e => setCustL(Number(e.target.value))}
-                    min={config.customSize.minLength}
-                    max={config.customSize.maxLength}
-                    className="w-full px-3 py-2.5 rounded-xl border border-graphite-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-ink-900/20 focus:border-ink-900 bg-white transition-all outline-none"
-                    onBlur={() => onSelect({ ...build, size: { kind: 'custom', length: custL, width: custW } })}
-                  />
-                  <p className="text-[8px] text-graphite-400 mt-1">
-                    Min {config.customSize.minLength} – Max {config.customSize.maxLength}
-                  </p>
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-ink-900 uppercase tracking-wider block mb-1.5">
-                    Width ({config.customSize.unit})
-                  </label>
-                  <input
-                    type="number"
-                    value={custW}
-                    onChange={e => setCustW(Number(e.target.value))}
-                    min={config.customSize.minWidth}
-                    max={config.customSize.maxWidth}
-                    className="w-full px-3 py-2.5 rounded-xl border border-graphite-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-ink-900/20 focus:border-ink-900 bg-white transition-all outline-none"
-                    onBlur={() => onSelect({ ...build, size: { kind: 'custom', length: custL, width: custW } })}
-                  />
-                  <p className="text-[8px] text-graphite-400 mt-1">
-                    Min {config.customSize.minWidth} – Max {config.customSize.maxWidth}
-                  </p>
-                </div>
-              </div>
-              {config.customSize.helper && (
-                <p className="text-[11px] text-graphite-400 leading-relaxed">
-                  {config.customSize.helper}
-                </p>
-              )}
+      {/* Step 2: Variant selector */}
+      {selectedCat && !showCustom && build.size.kind !== 'custom' && (
+        <div>
+          <p className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider mb-2">
+            Select Size — {STANDARD_SIZES[selectedCat].label}
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            {STANDARD_SIZES[selectedCat].variants.map((variant) => {
+              const active = build.size.kind === 'preset' && build.size.length === variant.dims.length && build.size.width === variant.dims.width;
+              return (
+                <motion.button
+                  key={variant.legacyKey}
+                  onClick={() => onSelect({ ...build, size: { kind: 'preset', name: STANDARD_SIZES[selectedCat].label, length: variant.dims.length, width: variant.dims.width, sizeCategory: selectedCat } })}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`relative p-3 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
+                    active
+                      ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
+                      : 'border-graphite-100 bg-white hover:border-graphite-300 hover:shadow-md'
+                  }`}
+                >
+                  <span className={`font-semibold text-xs block ${active ? 'text-ink-900' : 'text-graphite-700'}`}>{variant.label}</span>
+                  {active && (
+                    <div className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-ink-900 flex items-center justify-center shadow-md">
+                      <Check className="w-2.5 h-2.5 text-white" />
+                    </div>
+                  )}
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Custom Size */}
+      {config.customSize.enabled && (
+        <div className="border-t border-graphite-100 pt-3 space-y-3">
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <div
+              onClick={() => setShowCustom(!showCustom)}
+              className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-colors ${showCustom || build.size.kind === 'custom' ? 'border-ink-900 bg-ink-900 text-white' : 'border-graphite-300 bg-white'}`}
+            >
+              {(showCustom || build.size.kind === 'custom') && <Check className="w-2.5 h-2.5" />}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <span className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider">Need a Custom Size?</span>
+          </label>
+
+          <AnimatePresence>
+            {(showCustom || build.size.kind === 'custom') && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="p-4 bg-gradient-to-br from-white to-white rounded-xl border border-graphite-200/60 space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-[10px] font-bold text-ink-900 uppercase tracking-wider block mb-1">Length ({config.customSize.unit})</label>
+                      <input
+                        type="number"
+                        value={custL}
+                        onChange={e => setCustL(Number(e.target.value))}
+                        min={config.customSize.minLength}
+                        max={config.customSize.maxLength}
+                        className="w-full px-3 py-2.5 rounded-xl border border-graphite-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-ink-900/20 focus:border-ink-900 bg-white transition-all outline-none"
+                        onBlur={() => onSelect({ ...build, size: { kind: 'custom', length: custL, width: custW } })}
+                      />
+                      <p className="text-[8px] text-graphite-400 mt-1">Min {config.customSize.minLength} – Max {config.customSize.maxLength}</p>
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-bold text-ink-900 uppercase tracking-wider block mb-1">Width ({config.customSize.unit})</label>
+                      <input
+                        type="number"
+                        value={custW}
+                        onChange={e => setCustW(Number(e.target.value))}
+                        min={config.customSize.minWidth}
+                        max={config.customSize.maxWidth}
+                        className="w-full px-3 py-2.5 rounded-xl border border-graphite-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-ink-900/20 focus:border-ink-900 bg-white transition-all outline-none"
+                        onBlur={() => onSelect({ ...build, size: { kind: 'custom', length: custL, width: custW } })}
+                      />
+                      <p className="text-[8px] text-graphite-400 mt-1">Min {config.customSize.minWidth} – Max {config.customSize.maxWidth}</p>
+                    </div>
+                  </div>
+                  {config.customSize.helper && (
+                    <p className="text-[10px] text-graphite-400 leading-relaxed">{config.customSize.helper}</p>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 }
@@ -894,7 +917,8 @@ function PriceBreakdown({ build, config, price }: {
   const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug);
-  const sizeObj = config.sizes.find(s => s.name === build.size.name);
+  const sizeObj = config.sizes.find(s => s.widthInches === build.size.width)
+    || [...config.sizes].sort((a, b) => Math.abs(a.widthInches - build.size.width) - Math.abs(b.widthInches - build.size.width))[0];
 
   const breakdown: { label: string; price: number }[] = [];
   if (sizeObj && build.size.kind === 'preset') {
