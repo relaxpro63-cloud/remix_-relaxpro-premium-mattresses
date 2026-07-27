@@ -93,20 +93,20 @@ export default function Header({ cartCount }: HeaderProps) {
           scrolled ? 'nav-glass shadow-sm' : 'bg-sky-50/80 backdrop-blur-md border-b border-brand-200/30'
         }`}
       >
-{/* Top Banner */}
-<div className="bg-ink-900 text-white text-[10px] md:text-[11px] py-2 px-3 md:px-4 text-center font-accent tracking-widest flex items-center justify-center">
-  <span className="font-semibold text-brand-300 uppercase">
+        {/* Top Banner */}
+        <div className="bg-ink-900 text-white text-[10px] md:text-[11px] py-2 px-3 md:px-4 text-center font-accent tracking-widest flex items-center justify-center">
+          <span className="font-semibold text-brand-300 uppercase">
             {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
           </span>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between">
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center cursor-pointer group"
+            className="flex items-center cursor-pointer group shrink-0"
           >
-            <RelaxProLogo variant="compact" className="scale-85 md:scale-100 origin-left" />
+            <RelaxProLogo variant="compact" />
           </Link>
 
           {/* Desktop Navigation with dropdown for Shop */}

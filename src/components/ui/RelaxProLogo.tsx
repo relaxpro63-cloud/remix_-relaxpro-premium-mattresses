@@ -13,18 +13,25 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
   const src = imgError ? FALLBACK : logoFile;
   const isNav = variant === 'compact';
 
+  /**
+   * All variants use height-only sizing with width:auto.
+   * This prevents aspect-ratio distortion common with fixed w+h.
+   * object-fit: contain ensures no cropping on edge cases.
+   */
+
   if (variant === 'compact') {
     return (
       <div className={`flex items-center select-none ${className}`}>
         <img
           src={src}
           alt="RelaxPro Premium Mattresses"
-          className="w-[155px] h-[44px] md:w-[170px] md:h-[48px]"
-          width={170}
-          height={48}
+          className="h-10 md:h-12 lg:h-14 w-auto object-contain block"
+          width={200}
+          height={56}
           loading="eager"
           fetchPriority={isNav ? 'high' : undefined}
           onError={() => setImgError(true)}
+          style={{ imageRendering: 'auto' }}
         />
       </div>
     );
@@ -36,27 +43,29 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
         <img
           src={src}
           alt="RelaxPro Premium Mattresses"
-          className="w-[200px] h-[84px] md:w-[240px] md:h-[100px]"
-          width={240}
-          height={100}
+          className="h-16 md:h-20 lg:h-24 w-auto object-contain block"
+          width={340}
+          height={96}
           loading="eager"
           onError={() => setImgError(true)}
+          style={{ imageRendering: 'auto' }}
         />
       </div>
     );
   }
 
-  // Full variant
+  // Full variant (used on about/modals etc.)
   return (
     <div className={`flex flex-col items-center select-none ${className}`}>
       <img
         src={src}
         alt="RelaxPro Premium Mattresses"
-        className="h-[44px] md:h-[52px] w-auto"
+        className="h-10 md:h-12 lg:h-14 w-auto object-contain block"
         width={200}
-        height={44}
+        height={56}
         loading="eager"
         onError={() => setImgError(true)}
+        style={{ imageRendering: 'auto' }}
       />
     </div>
   );

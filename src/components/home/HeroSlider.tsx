@@ -85,7 +85,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               delay={0.3}
               stagger={0.1}
             >
-              {hero?.slides?.[0]?.heading || 'Pure Natural Latex,'}
+              {hero?.slides?.[0]?.heading || 'Pure Latex,'}
             </RevealText>
             <div className="overflow-hidden">
               <motion.div
@@ -95,11 +95,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               >
                 <GoldShimmer delay={2.0}>
                   <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading italic font-normal tracking-[-0.02em] leading-[1.1] pb-1 text-brand-300">
-                    {hero?.slides?.[0]?.highlight || 'From Kerala'}
+                    {hero?.slides?.[0]?.highlight || 'Kerala Origin,'}
                   </span>
                 </GoldShimmer>
                 <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading font-normal tracking-[-0.02em] leading-[1.08] text-linen-100">
-                  {' '}{hero?.slides?.[0]?.subheading || 'to Your Bed'}
+                  {' '}{hero?.slides?.[0]?.subheading || 'Zero Compromise'}
                 </span>
               </motion.div>
             </div>
@@ -108,7 +108,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           {/* Description */}
           <FadeUp delay={0.6} y={30}>
             <p className="font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-8 text-linen-200/85">
-              {hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Hand-layered for the deepest, most restorative sleep.'}
+              {hero?.slides?.[0]?.description || 'GOLS-certified organic latex. Zero synthetics. Handcrafted in Hyderabad.'}
             </p>
           </FadeUp>
 

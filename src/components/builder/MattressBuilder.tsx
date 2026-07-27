@@ -135,8 +135,10 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
     }, 0);
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
-  return sizePrice + layerPrice(build.comfort) + layerPrice(build.support)
+  const materialsTotal = layerPrice(build.comfort) + layerPrice(build.support)
     + (coverFab?.addPrice ?? 0) + (quiltFab?.addPrice ?? 0);
+  if (build.size.kind === 'custom') return 0;
+  return sizePrice + materialsTotal;
 }
 
 function initBuild(config: BuilderConfig): BuildState {
@@ -171,7 +173,7 @@ function MattressPreview({ build, config, price }: {
   const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
 
   const layers = [
-    ...(quiltFab ? [{ label: 'Quilted Top',   mat: quiltFab.name, color: '#D4C5A9', thickness: '12mm' }] : []),
+    ...(quiltFab ? [{ label: 'Quilted Top', mat: quiltFab.name, color: '#D4C5A9', thickness: quiltFab.quiltingMm || '12mm' }] : []),
     { label: 'Cover Fabric', mat: coverFab?.name || 'Cotton', color: '#C9B99A', thickness: coverFab?.gsm || '' },
     ...comfortMats.map(s => ({ label: s.mat?.name || 'Comfort', mat: s.mat?.feelTag || '', color: s.mat?.stackColor || '#A8D5BA', thickness: `${s.thickness}"` })),
     ...supportMats.map(s => ({ label: s.mat?.name || 'Support', mat: s.mat?.feelTag || '', color: s.mat?.stackColor || '#7FA0C0', thickness: `${s.thickness}"` })),
@@ -202,12 +204,12 @@ function MattressPreview({ build, config, price }: {
         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-400/5 rounded-full blur-[60px] pointer-events-none" />
 
         {/* Floating layer labels on right side */}
-        <div className="absolute right-4 top-6 flex flex-col gap-2.5 opacity-60 pointer-events-none z-10">
+        <div className="absolute right-5 top-6 flex flex-col gap-4 pointer-events-none z-10">
           {layers.slice(0, 4).map((layer, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="w-6 h-[1px] bg-white/30" />
-              <span className="text-[8px] font-medium text-white/40 uppercase tracking-wider whitespace-nowrap">
-                {layer.label}
+            <div key={i} className="flex items-center gap-3">
+              <div className="w-8 h-[1px] bg-white/20" />
+              <span className="text-[9px] font-medium text-white/50 tracking-wider whitespace-nowrap">
+                {layer.thickness ? `${layer.label} (${layer.thickness})` : layer.label}
               </span>
             </div>
           ))}
@@ -711,6 +713,45 @@ function StepSize({ config, build, onSelect }: {
   );
 }
 
+/* ── Softness Bar (comfort layer step) ── */
+function SoftnessBar({ materials, build }: {
+  materials: BuilderMaterial[]; build: BuildState;
+}) {
+  const selections = build.comfort;
+  const slug = selections[0]?.materialSlug;
+  const mat = slug ? materials.find(m => m.slug === slug) : null;
+  const pct = mat ? (() => {
+    if (mat.ild) {
+      const v = parseFloat(mat.ild);
+      if (v < 18) return 15;
+      if (v < 28) return 50;
+      return 85;
+    }
+    const ft = (mat.feelTag || '').toLowerCase();
+    if (ft.includes('soft') || ft.includes('plush')) return 15;
+    if (ft.includes('firm') || ft.includes('support') || ft.includes('dense') || ft.includes('orthopedic')) return 85;
+    return 50;
+  })() : 50;
+  const label = mat?.feelTag || (selections.length === 0 ? 'Not selected' : 'Medium');
+
+  return (
+    <div className="mt-5 pt-5 border-t border-graphite-100">
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-xs font-medium text-graphite-400">Soft</span>
+        <span className="text-xs font-semibold text-ink-900">{label}</span>
+        <span className="text-xs font-medium text-graphite-400">Firm</span>
+      </div>
+      <div className="h-2 bg-graphite-100 rounded-full relative">
+        <motion.div
+          className="absolute w-4 h-4 bg-ink-900 rounded-full top-1/2 -translate-y-1/2 shadow-md border-2 border-white"
+          animate={{ left: `${pct}%` }}
+          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        />
+      </div>
+    </div>
+  );
+}
+
 /* ── Step: Material (generic for base/comfort/natural) ── */
 function StepMaterialGroup({ materials, build, onSelect, slot }: {
   materials: BuilderMaterial[]; build: BuildState;
@@ -767,6 +808,11 @@ function StepMaterialGroup({ materials, build, onSelect, slot }: {
           />
         );
       })}
+
+      {/* Softness bar — only for comfort step */}
+      {slot === 'comfort' && (
+        <SoftnessBar materials={materials} build={build} />
+      )}
 
       {/* Detail drawer */}
       <AnimatePresence>
