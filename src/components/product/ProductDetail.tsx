@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail, ShoppingCart, Leaf } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
 import ProductCarousel from './ProductCarousel';
 import { WHATSAPP_NUMBER } from '../../lib/site';
+import { getSiteSettings, imageUrl } from '../../lib/queries';
 
 interface ProductDetailProps {
   product: Product;
@@ -17,6 +18,13 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
   const [activeSize, setActiveSize] = useState<MattressSize>('king');
   const [includeAccessories, setIncludeAccessories] = useState<boolean>(true);
   const [selectedFabric, setSelectedFabric] = useState<'300GSM' | '450GSM'>('300GSM');
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    getSiteSettings().then(s => setSettings(s)).catch(() => {});
+  }, []);
+
+  const SI = settings?.staticImages || {};
 
   const SIZE_LABELS = {
     king: 'King Size (72" x 78")',
@@ -407,7 +415,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           {/* Component 1 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
-              <img src="/images/gots-cotton.png" alt="GOTS Certified Organic Cotton Fabric" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img src={imageUrl(SI.gotsCotton) || '/images/gots-cotton.png'} alt="GOTS Certified Organic Cotton Fabric" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
             </div>
             <h3 className="font-heading font-bold text-lg sm:text-xl text-ink-900 mb-2">GOTS Organic Cotton Fabric</h3>
             <div className="inline-flex items-center gap-1 bg-success/15 border border-success/20 text-success text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
@@ -421,7 +429,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           {/* Component 2 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
-              <img src="/images/quilted-cotton.png" alt="Quilted Organic Cotton Layer" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img src={imageUrl(SI.quiltedCotton) || '/images/quilted-cotton.png'} alt="Quilted Organic Cotton Layer" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
             </div>
             <h3 className="font-heading font-bold text-lg sm:text-xl text-ink-900 mb-2">Quilted Organic Cotton</h3>
             <div className="inline-flex items-center gap-1 bg-success/15 border border-success/20 text-success text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
@@ -435,7 +443,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           {/* Component 3 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white bg-sky-100">
-              <img src="/images/natural-latex.png" alt="100% Natural Dunlop Latex" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img src={imageUrl(SI.naturalLatex) || '/images/natural-latex.png'} alt="100% Natural Dunlop Latex" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
             </div>
             <h3 className="font-heading font-bold text-lg sm:text-xl text-ink-900 mb-2">100% Natural Latex</h3>
             <div className="inline-flex items-center gap-1 bg-eco-600/15 border border-eco-600/20 text-eco-600 text-[11px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
@@ -454,17 +462,17 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
           <img src="/images/organic-cotton-quilting-fabric-latex-mattress-desktop-new.jpeg" alt="Organic Cotton Quilting" className="w-full h-auto object-cover" />
         </div>
         <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-          <img src="/images/technical-specifications.png" alt="Technical Specifications" className="w-full h-auto object-cover" />
+          <img src={imageUrl(SI.technicalSpecifications) || '/images/technical-specifications.png'} alt="Technical Specifications" className="w-full h-auto object-cover" />
         </div>
         <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-          <img src="/images/vilasa-benefits.png" alt="Vilasa Benefits" className="w-full h-auto object-cover" />
+          <img src={imageUrl(SI.vilasaBenefits) || '/images/vilasa-benefits.png'} alt="Vilasa Benefits" className="w-full h-auto object-cover" />
         </div>
       </div>
 
       {/* Comfort Meter Section */}
       <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
         <img 
-          src="/images/comfort-meter.png" 
+          src={imageUrl(SI.comfortMeter) || '/images/comfort-meter.png'} 
           alt="RelaxPro Mattress Comfort Meter" 
           className="w-full h-auto object-contain rounded-2xl shadow-sm"
         />
@@ -473,7 +481,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       {/* Size Chart Section */}
       <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
         <img 
-          src="/images/size-chart.png" 
+          src={imageUrl(SI.sizeChart) || '/images/size-chart.png'} 
           alt="RelaxPro Mattress Size Chart" 
           className="w-full h-auto object-contain rounded-2xl shadow-sm"
         />
