@@ -17,10 +17,20 @@
     "thicknessOptions": [{"label": "2 inches", "valueInches": 2, "addPrice": 0}]
   },
   {
+    "_id": "mat-hr-soft", "_type": "builderMaterial", "name": "High Resilience (HR) Soft", "slug": {"current": "hr-soft"},
+    "slot": "comfort", "brand": "Century", "density": "28 Density", "feelTag": "Soft, slow-sink comfort",
+    "benefit": "Plush, pressure-relieving soft foam that contours to your body for deeper relaxation.", "tooltip": "28 density soft HR foam.",
+    "stackColor": "#D4B896", "isRecommended": false, "order": 3, "isActive": true,
+    "thicknessOptions": [
+      {"label": "2 inches", "valueInches": 2, "addPrice": 0},
+      {"label": "4 inches", "valueInches": 4, "addPrice": 2500}
+    ]
+  },
+  {
     "_id": "mat-kerala-latex", "_type": "builderMaterial", "name": "Pure Organic Kerala Latex", "slug": {"current": "kerala-latex"},
     "slot": "comfort", "density": "90 Density", "ild": "ILD-38", "feelTag": "Natural, cooling & premium",
     "benefit": "GOLS-grade organic latex — breathable, durable, pressure-relieving.", "tooltip": "90 density natural latex, ILD-38 (medium-soft).",
-    "stackColor": "#BFE3C0", "isRecommended": true, "order": 3, "isActive": true,
+    "stackColor": "#BFE3C0", "isRecommended": true, "order": 4, "isActive": true,
     "thicknessOptions": [
       {"label": "2 inches", "valueInches": 2, "addPrice": 2000},
       {"label": "4 inches", "valueInches": 4, "addPrice": 6000},

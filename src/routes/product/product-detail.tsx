@@ -653,10 +653,10 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
             <img src="/images/organic-cotton-quilting-fabric-latex-mattress-desktop-new.jpeg" alt="Organic Cotton Quilting" className="w-full h-auto object-cover" />
           </div>
           <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-            <img src="/images/technical-specification-dreamzee-desktop.png" alt="Technical Specifications" className="w-full h-auto object-cover" />
+            <img src="/images/technical-specifications.png" alt="Technical Specifications" className="w-full h-auto object-cover" />
           </div>
           <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
-            <img src="/images/Vilasa-Benfits-fabric-desktop.jpeg" alt="Vilasa Benefits" className="w-full h-auto object-cover" />
+            <img src="/images/vilasa-benefits.png" alt="Vilasa Benefits" className="w-full h-auto object-cover" />
           </div>
         </div>
 
