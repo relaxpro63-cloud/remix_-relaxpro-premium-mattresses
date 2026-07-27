@@ -123,7 +123,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
             </motion.div>
           </BlurFade>
 
-          {/* Card 2: Shop Our Models */}
+          {/* Card 2: Our Models */}
           <BlurFade delay={0.2}>
             <motion.div
               whileHover={{ y: -8 }}
@@ -141,7 +141,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
 
               <div className="relative z-10">
                 <h3 className="font-heading text-3xl md:text-4xl text-ink-900 tracking-tight leading-tight mb-8">
-                  {data?.shopPrebuilt?.title || 'Shop Our Models'}
+                  {data?.shopPrebuilt?.title || 'Our Models'}
                 </h3>
 
                 <ul className="space-y-4 md:space-y-6">

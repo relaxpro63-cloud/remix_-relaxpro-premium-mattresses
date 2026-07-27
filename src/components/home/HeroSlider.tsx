@@ -50,7 +50,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           animate={{ scale: 1.08, opacity: 0.7 }}
           transition={{ duration: 2.5, ease: EASE_LUXURY }}
           style={{ scale: imageScale, y: imageY }}
-          src={imageUrl(hero?.slides?.[0]?.image) || '/images/hero-bedroom.png'}
+          src={imageUrl(hero?.slides?.[0]?.image) || '/images/hero-banner.png'}
           alt="Serene organic bedroom featuring a handcrafted RelaxPro natural latex mattress"
           className="w-full h-full object-cover select-none pointer-events-none will-change-transform"
           loading="eager"
