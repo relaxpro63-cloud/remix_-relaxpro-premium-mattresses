@@ -100,7 +100,7 @@ export default function Header({ cartCount }: HeaderProps) {
           </span>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-5 lg:py-6 flex items-center justify-between">
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
