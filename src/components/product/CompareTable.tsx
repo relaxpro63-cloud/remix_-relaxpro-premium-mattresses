@@ -5,6 +5,7 @@ import { Check, X, Shield, Plus, Minus, FileText, MessageSquare, Info, Award } f
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import { getAllProducts, imageUrl } from '../../lib/queries';
+import { WHATSAPP_NUMBER } from '../../lib/site';
 
 interface CompareTableProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -372,7 +373,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
                   <div className="space-y-2">
                     <a
-                      href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
+                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
                       target="_blank"
                       rel="noreferrer"
                       className="w-full bg-eco-500 hover:bg-eco-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-all"

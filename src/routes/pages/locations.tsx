@@ -4,10 +4,11 @@ import { FadeUp, StaggerChildren, staggerItem } from '../../components/motion/mo
 import PageShell from '../../components/layout/PageShell';
 import { getLocations } from '../../lib/queries';
 import { LOCATIONS as FALLBACK_LOCATIONS } from '../../data/products';
+import { WHATSAPP_NUMBER } from '../../lib/site';
 
 export default function LocationsPage() {
   const [locations, setLocations] = useState<any[]>([]);
-  const [waNumber, setWaNumber] = useState(import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494');
+  const [waNumber, setWaNumber] = useState(WHATSAPP_NUMBER);
 
   useEffect(() => {
     getLocations().then(data => {

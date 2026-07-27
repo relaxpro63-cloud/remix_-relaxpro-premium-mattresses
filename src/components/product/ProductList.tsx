@@ -7,6 +7,7 @@ import { PRODUCTS } from '../../data/products';
 import ShineBorder from '../ui/ShineBorder';
 import SegmentedControl from '../ui/SegmentedControl';
 import { getAllProducts, imageUrl } from '../../lib/queries';
+import { WHATSAPP_NUMBER } from '../../lib/site';
 
 interface ProductListProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -82,7 +83,7 @@ export default function ProductList({
   // WhatsApp Enquire handler
   const handleWhatsAppEnquire = (product: Product, size: MattressSize) => {
     const msg = `Hello Suresh, I am interested in the RelaxPro ${product.name} Mattress (${size} size). Could you please guide me on pricing, delivery and orthopedic suitability?`;
-    window.open(`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const handleAddToCart = (product: Product, size: MattressSize) => {

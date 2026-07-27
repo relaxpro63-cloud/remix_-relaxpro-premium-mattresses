@@ -1,5 +1,5 @@
 import { LeadFormData } from '../types';
-import { buildWhatsAppUrl } from '../lib/site';
+import { buildWhatsAppUrl, WHATSAPP_NUMBER } from '../lib/site';
 
 const GOOGLE_SCRIPT_URL = import.meta.env.VITE_PUBLIC_GOOGLE_SCRIPT_URL ||
   'https://script.google.com/macros/s/AKfycby-bBPsiqH8NjHZYWrY5ViieNtSfOqLhKXJNfxXEVwMNwuQCsJi-wQSZ8UIy4vIR7Ya/exec';
@@ -76,7 +76,7 @@ export async function submitLeadAndRedirect(data: LeadSubmissionData): Promise<{
   const result = await submitLead(data);
   
   if (result.success) {
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494';
+    const whatsappNumber = WHATSAPP_NUMBER;
     const message = buildWhatsAppMessage({
       name: data.name,
       phone: data.phone,

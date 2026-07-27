@@ -10,6 +10,7 @@ import {
 import { CartItem, MattressSize, SizeCategory } from '../../types';
 import { STANDARD_SIZES, SIZE_CATEGORIES } from '../../types/sizes';
 import { getBuilderData } from '../../lib/queries';
+import { WHATSAPP_NUMBER } from '../../lib/site';
 
 /* ──────────────────────────────────────────────────────────────
    Types (identical to Sanity data — no schema changes)
@@ -1149,7 +1150,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     ].join('\n');
 
     window.open(
-      `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(msg)}`,
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,
       '_blank'
     );
   };
