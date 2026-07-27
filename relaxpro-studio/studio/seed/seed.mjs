@@ -14,7 +14,7 @@ const client = createClient({
 })
 
 const PROJECT_ROOT = join(import.meta.dirname, '..', '..', '..')
-const IMAGE_DIR = join(import.meta.dirname, '..', 'public', 'images')
+const IMAGE_DIR = join(PROJECT_ROOT, 'public', 'images')
 const MAPPING_FILE = join(import.meta.dirname, 'imageMapping.json')
 
 let imageMapping = existsSync(MAPPING_FILE) ? JSON.parse(readFileSync(MAPPING_FILE, 'utf-8')) : {}
