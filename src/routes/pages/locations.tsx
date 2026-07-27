@@ -14,12 +14,31 @@ export default function LocationsPage() {
     getLocations().then(data => {
       if (data && data.length > 0) {
         // Normalize Sanity data to match fallback structure
-        const normalized = data.map((loc: any) => ({
-          city: loc.address?.city || loc.city || 'Showroom',
-          address: typeof loc.address === 'object' ? loc.address?.fullAddress || loc.address?.street || '' : (loc.address || ''),
-          hours: typeof loc.hours === 'object' ? [loc.hours.monday, loc.hours.tuesday, loc.hours.wednesday, loc.hours.thursday, loc.hours.friday, loc.hours.saturday, loc.hours.sunday].filter(Boolean).join(', ') : (loc.hours || ''),
-          phones: loc.contact?.phoneNumbers || loc.phones || [],
-        }));
+        const normalized = data.map((loc: any) => {
+          // Handle hours: could be flat string (old seed) or object (Sanity schema)
+          let hoursDisplay = '';
+          let hoursNote = '';
+          if (typeof loc.hours === 'object' && loc.hours !== null) {
+            const h = loc.hours;
+            // Try to find a single non-empty day value for a compact display
+            const dayHours = [h.monday, h.tuesday, h.wednesday, h.thursday, h.friday, h.saturday, h.sunday].filter(Boolean);
+            if (dayHours.length > 0) {
+              // If all days show the same hours, use a compact format
+              const unique = [...new Set(dayHours)];
+              hoursDisplay = unique.length === 1 ? `Open: ${unique[0]}` : dayHours.join(' / ');
+            }
+            hoursNote = h.note || '';
+          } else if (typeof loc.hours === 'string') {
+            hoursDisplay = loc.hours;
+          }
+          return {
+            city: loc.address?.city || loc.city || 'Showroom',
+            address: typeof loc.address === 'object' ? loc.address?.fullAddress || loc.address?.street || '' : (loc.address || ''),
+            hours: hoursDisplay,
+            hoursNote,
+            phones: loc.contact?.phoneNumbers || loc.phones || [],
+          };
+        });
         setLocations(normalized);
       }
     }).catch(() => {});
@@ -37,10 +56,10 @@ export default function LocationsPage() {
           <FadeUp>
           <div className="mb-12 max-w-2xl">
             <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-100 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-brand-600">
-              Showrooms
+              Experience Before Buying
             </span>
-            <h1 className="rp-display mt-5 text-ink-900">Visit our experience studios</h1>
-            <p className="rp-body mt-4">Test firmness profiles, compare latex layers, and speak with the RelaxPro team before ordering.</p>
+            <h1 className="rp-display mt-5 text-ink-900">Our Showrooms and Manufacturer Outlets</h1>
+            <p className="rp-body mt-4">Walk in, test firmness profiles, lay down, and speak with Suresh&#39;s trained team directly at the locations below.</p>
           </div>
           </FadeUp>
         </div>
@@ -53,11 +72,14 @@ export default function LocationsPage() {
             <motion.div key={idx} variants={staggerItem}>
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-brand-200 shadow-sm flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-ink-900 bg-brand-100 px-3 py-1 rounded-md inline-block">{loc.city} outlet</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-ink-900 bg-brand-100 px-3 py-1 rounded-md inline-block">{loc.city} Store</span>
                 <p className="text-sm text-graphite-700 leading-relaxed font-body">{loc.address}</p>
+                {loc.hoursNote && (
+                  <p className="text-xs text-graphite-500 italic font-body leading-relaxed">{loc.hoursNote}</p>
+                )}
                 <div className="text-xs space-y-2 border-t border-brand-200 pt-4 text-graphite-700 font-body">
-                  <div><strong className="text-ink-900 font-semibold block uppercase text-[9px] font-mono tracking-wider mb-0.5">Open hours</strong> {loc.hours}</div>
-                  <div><strong className="text-ink-900 font-semibold block uppercase text-[9px] font-mono tracking-wider mb-0.5">Direct phone</strong> <div className="font-mono">{loc.phones?.join(' / ') || ''}</div></div>
+                  <div><strong className="text-ink-900 font-semibold block uppercase text-[9px] font-mono tracking-wider mb-0.5">Outlet hours</strong> {loc.hours || '10:00 AM - 9:00 PM Daily'}</div>
+                  <div><strong className="text-ink-900 font-semibold block uppercase text-[9px] font-mono tracking-wider mb-0.5">Contact</strong> <div className="font-mono">{loc.phones?.join(' / ') || ''}</div></div>
                 </div>
               </div>
 
@@ -68,7 +90,7 @@ export default function LocationsPage() {
                   }}
                   className="w-full bg-ink-900 hover:bg-brand-800 text-white rounded-full py-3 text-xs font-bold uppercase tracking-wider cursor-pointer text-center"
                 >
-                  Book Visit Callback
+                  Book Visit + Map Route
                 </button>
               </div>
             </div>
