@@ -31,8 +31,17 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
 
   return (
     <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden bg-[#F3F9FD]">
-      {/* Soft Luxury Gradients & Orbs in Background */}
+      {/* Full-section background image (subtle texture) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <img
+          src="/images/section-bg.png"
+          alt="Natural organic latex texture with botanical accents"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          loading="lazy"
+        />
+        {/* Light wash so content stays readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F3F9FD] via-[#F3F9FD]/90 to-[#F3F9FD]" />
+        {/* Soft luxury orbs */}
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FFFFFF] blur-[120px] opacity-80" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#EEF7FC] blur-[150px] opacity-90" />
         <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-brand-100/40 blur-[100px]" />
@@ -66,10 +75,17 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               {/* Subtle Glowing Border on Hover */}
               <div className="absolute inset-0 rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
               
-              {/* Background Image Corner (Low Opacity) */}
-              <div className="absolute top-0 right-0 w-[65%] h-[65%] opacity-[0.12] mix-blend-multiply pointer-events-none transform origin-top-right transition-transform duration-1000 group-hover:scale-110">
-                <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/40 to-white z-10" />
-                <img src="/images/mattress-hand.png" alt="Crafting mattress" className="w-full h-full object-cover object-top mask-image-radial" style={{ WebkitMaskImage: 'radial-gradient(ellipse at top right, black 20%, transparent 70%)' }} />
+              {/* Full-bleed card image header — breaks out of card padding */}
+              <div className="-mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-6 rounded-t-[32px] overflow-hidden">
+                <div className="relative h-56 sm:h-64 overflow-hidden">
+                  <img
+                    src="/images/box-customize.png"
+                    alt="Artisan hand-layering natural latex and organic wool comfort layers"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
               </div>
 
               <div className="relative z-10">
@@ -133,10 +149,17 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               {/* Subtle Glowing Border on Hover */}
               <div className="absolute inset-0 rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
               
-              {/* Background Image Corner (Low Opacity) */}
-              <div className="absolute top-0 right-0 w-[65%] h-[65%] opacity-[0.15] mix-blend-multiply pointer-events-none transform origin-top-right transition-transform duration-1000 group-hover:scale-110">
-                <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/40 to-white z-10" />
-                <img src="/images/hero-bedroom.png" alt="Luxury bedroom" className="w-full h-full object-cover object-top mask-image-radial" style={{ WebkitMaskImage: 'radial-gradient(ellipse at top right, black 20%, transparent 70%)' }} />
+              {/* Full-bleed card image header — breaks out of card padding */}
+              <div className="-mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-6 rounded-t-[32px] overflow-hidden">
+                <div className="relative h-56 sm:h-64 overflow-hidden">
+                  <img
+                    src="/images/box-models.png"
+                    alt="Luxury bedroom with a premium organic latex mattress in warm morning light"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
               </div>
 
               <div className="relative z-10">
