@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Layers, BoxSelect, Expand, BedDouble, ShieldCheck, Truck, ArrowRight, ArrowRightCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
-import { getHomePage } from '../../lib/queries';
+import { getHomePage, imageUrl } from '../../lib/queries';
 
 interface TwoWaysToOwnProps {
   onStartBuilding: () => void;
@@ -79,7 +79,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="-mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-6 rounded-t-[32px] overflow-hidden">
                 <div className="relative h-56 sm:h-64 overflow-hidden">
                   <img
-                    src="/images/box-customize.png"
+                    src={imageUrl(data?.customBuilder?.image) || '/images/box-customize.png'}
                     alt="Artisan hand-layering natural latex and organic wool comfort layers"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
@@ -153,7 +153,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="-mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-6 rounded-t-[32px] overflow-hidden">
                 <div className="relative h-56 sm:h-64 overflow-hidden">
                   <img
-                    src="/images/box-models.png"
+                    src={imageUrl(data?.shopPrebuilt?.image) || '/images/box-models.png'}
                     alt="Luxury bedroom with a premium organic latex mattress in warm morning light"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
