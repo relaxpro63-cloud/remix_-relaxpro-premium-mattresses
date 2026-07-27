@@ -595,8 +595,8 @@ function StepSize({ config, build, onSelect }: {
   config: BuilderConfig; build: BuildState; onSelect: (b: BuildState) => void;
 }) {
   const [showCustom, setShowCustom] = useState(build.size.kind === 'custom');
-  const [custL, setCustL] = useState(build.size.kind === 'custom' ? build.size.length : 78);
-  const [custW, setCustW] = useState(build.size.kind === 'custom' ? build.size.width : 60);
+  const [custL, setCustL] = useState<string>(String(build.size.kind === 'custom' ? build.size.length : 78));
+  const [custW, setCustW] = useState<string>(String(build.size.kind === 'custom' ? build.size.width : 60));
 
   const selectedCat = build.size.sizeCategory;
 
@@ -699,11 +699,17 @@ function StepSize({ config, build, onSelect }: {
                       <input
                         type="number"
                         value={custL}
-                        onChange={e => setCustL(Number(e.target.value))}
+                        onChange={e => setCustL(e.target.value)}
                         min={config.customSize.minLength}
                         max={config.customSize.maxLength}
                         className="w-full px-3 py-2.5 rounded-xl border border-graphite-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-ink-900/20 focus:border-ink-900 bg-white transition-all outline-none"
-                        onBlur={() => onSelect({ ...build, size: { kind: 'custom', length: custL, width: custW } })}
+                        onBlur={() => {
+                          if (custL === '') return;
+                          const num = Number(custL);
+                          const clamped = Math.max(config.customSize.minLength, Math.min(config.customSize.maxLength, num));
+                          setCustL(String(clamped));
+                          onSelect({ ...build, size: { kind: 'custom', length: clamped, width: Number(custW) || 0 } });
+                        }}
                       />
                       <p className="text-[8px] text-graphite-400 mt-1">Min {config.customSize.minLength} – Max {config.customSize.maxLength}</p>
                     </div>
@@ -712,11 +718,17 @@ function StepSize({ config, build, onSelect }: {
                       <input
                         type="number"
                         value={custW}
-                        onChange={e => setCustW(Number(e.target.value))}
+                        onChange={e => setCustW(e.target.value)}
                         min={config.customSize.minWidth}
                         max={config.customSize.maxWidth}
                         className="w-full px-3 py-2.5 rounded-xl border border-graphite-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-ink-900/20 focus:border-ink-900 bg-white transition-all outline-none"
-                        onBlur={() => onSelect({ ...build, size: { kind: 'custom', length: custL, width: custW } })}
+                        onBlur={() => {
+                          if (custW === '') return;
+                          const num = Number(custW);
+                          const clamped = Math.max(config.customSize.minWidth, Math.min(config.customSize.maxWidth, num));
+                          setCustW(String(clamped));
+                          onSelect({ ...build, size: { kind: 'custom', length: Number(custL) || 0, width: clamped } });
+                        }}
                       />
                       <p className="text-[8px] text-graphite-400 mt-1">Min {config.customSize.minWidth} – Max {config.customSize.maxWidth}</p>
                     </div>
@@ -1373,8 +1385,8 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
                 </StepAccordion>
               );
             })}
-          </div>
         </motion.div>
+      </div>
       </div>
 
       {/* ========== MOBILE BOTTOM BAR ========== */}
