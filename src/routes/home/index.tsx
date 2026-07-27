@@ -193,18 +193,31 @@ export default function HomePage({
 <FadeUp><CertificationMarquee /></FadeUp>
 <FadeUp><ShopByBrands /></FadeUp>
 
-      {/* Shuddha Banner */}
+      {/* Shuddha Banner — Clickable to Catalog */}
       <FadeUp>
         <section className="bg-secondary py-8 md:py-12 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30">
+            <motion.button
+              onClick={() => handlePageNavigation('catalog')}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30 cursor-pointer group text-left"
+            >
               <img
                 src="/images/shuddha-banner.png"
-                alt="Shuddha Premium Collection"
+                alt="Shuddha Premium Collection — Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"
               />
-            </div>
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* CTA label */}
+              <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-sm text-ink-900 font-bold text-xs md:text-sm px-4 md:px-6 py-2.5 md:py-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 transition-all duration-400">
+                <ShoppingBag className="w-4 h-4" />
+                Explore Collection
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </motion.button>
           </div>
         </section>
       </FadeUp>
