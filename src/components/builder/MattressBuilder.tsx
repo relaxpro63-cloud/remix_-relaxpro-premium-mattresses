@@ -971,6 +971,30 @@ function PriceBreakdown({ build, config, price }: {
   );
 }
 
+/* ── Price Counter (animated) ── */
+function PriceCounter({ value }: { value: number }) {
+  const [displayVal, setDisplayVal] = useState(value);
+  
+  useEffect(() => {
+    const duration = 400;
+    const start = performance.now();
+    const from = displayVal;
+    const diff = value - from;
+    if (diff === 0) return;
+    
+    const raf = requestAnimationFrame(function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayVal(Math.round(from + diff * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [value]);
+
+  return <>&#8377;{displayVal.toLocaleString('en-IN')}</>;
+}
+
 /* ──────────────────────────────────────────────────────────────
    MAIN BUILDER COMPONENT
    ────────────────────────────────────────────────────────────── */
@@ -1164,40 +1188,61 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      {/* ========== TOP HEADER ========== */}
-      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-graphite-100">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-3 sm:py-4">
-          <div className="flex items-center justify-between gap-4">
+      {/* ========== TOP HEADER (Premium Redesign) ========== */}
+      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-graphite-100 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <div className="flex items-center justify-between gap-4 py-3 sm:py-4">
+            {/* Left: Brand + specs */}
             <div className="flex items-center gap-3 min-w-0">
-              <div className="w-8 h-8 rounded-lg bg-ink-900 flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-ink-900 flex items-center justify-center shrink-0">
                 <Bed className="w-4 h-4 text-white" />
               </div>
               <div className="min-w-0">
-                <h1 className="font-bold text-sm sm:text-base text-ink-900 truncate">Build Your Dream Mattress</h1>
-                <p className="text-[10px] sm:text-[11px] text-graphite-400 truncate">
-                  {build.size.name || 'Custom'} &middot; {build.size.width}&times;{build.size.length}" &middot; {height.toFixed(1)}" thick
-                </p>
+                <h1 className="font-bold text-sm sm:text-base text-ink-900 truncate font-heading">Build Your Dream Mattress</h1>
+                <div className="flex items-center gap-2 text-[10px] sm:text-[11px] text-graphite-400 mt-0.5">
+                  <span className="font-semibold text-ink-900/70">{build.size.name || 'Custom'}</span>
+                  <span className="text-graphite-300" aria-hidden="true">|</span>
+                  <span>{build.size.width}&times;{build.size.length}"</span>
+                  <span className="text-graphite-300" aria-hidden="true">|</span>
+                  <span className="font-medium">{height.toFixed(1)}" thick</span>
+                </div>
               </div>
             </div>
 
-            {/* Desktop price */}
-            <div className="hidden sm:flex items-center gap-4">
+            {/* Center: Trust chips (medium screens+) */}
+            <div className="hidden md:flex items-center gap-3">
+              <span className="inline-flex items-center gap-1 text-[10px] text-green-700 font-medium bg-green-50 border border-green-200/40 px-2.5 py-1 rounded-full">
+                <Shield className="w-3 h-3" /> 10-Yr Warranty
+              </span>
+              <span className="inline-flex items-center gap-1 text-[10px] text-brand-700 font-medium bg-brand-50 border border-brand-200/40 px-2.5 py-1 rounded-full">
+                <Truck className="w-3 h-3" /> Free Delivery
+              </span>
+              <span className="inline-flex items-center gap-1 text-[10px] text-amber-700 font-medium bg-amber-50 border border-amber-200/40 px-2.5 py-1 rounded-full">
+                <Clock className="w-3 h-3" /> 10-14 Days
+              </span>
+            </div>
+
+            {/* Right: Price + CTA */}
+            <div className="hidden sm:flex items-center gap-4 shrink-0">
               <div className="text-right">
-                <span className="text-[10px] font-medium text-graphite-400 uppercase tracking-wider block">Total</span>
-                <span className="text-xl font-bold text-ink-900">&#8377;{price.toLocaleString('en-IN')}</span>
+                <span className="text-[9px] font-medium text-graphite-400 uppercase tracking-[0.12em]">Total</span>
+                <div className="text-xl font-bold text-ink-900 tabular-nums">
+                  <PriceCounter value={price} />
+                </div>
               </div>
-              <button
+              <motion.button
                 onClick={handleAddToCart}
                 disabled={build.comfort.length === 0 || build.support.length === 0}
+                whileTap={build.comfort.length > 0 && build.support.length > 0 ? { scale: 0.97 } : {}}
                 className={`hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${
                   build.comfort.length > 0 && build.support.length > 0
-                    ? 'bg-ink-900 text-white hover:bg-ink-800 shadow-md cursor-pointer'
+                    ? 'bg-ink-900 text-white hover:bg-ink-800 shadow-md shadow-ink-900/10 cursor-pointer'
                     : 'bg-graphite-200 text-graphite-400 cursor-not-allowed'
                 }`}
               >
                 <ShoppingCart className="w-3.5 h-3.5" />
                 {addedToCart ? 'Added!' : config.ctas.primaryLabel}
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
