@@ -185,6 +185,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                     src={imageUrl(p.image) || '/images/products/' + p.slug + '.webp'}
                     alt={p.name}
                     className="w-full h-28 object-cover rounded-xl border border-zinc-100 shadow-xs"
+                    sizes="(max-width: 768px) 50vw, 180px"
                     referrerPolicy="no-referrer"
                   />
                 </td>

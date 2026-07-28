@@ -133,12 +133,13 @@ export default function ShopByBrands() {
                 const cardContent = (
                   <>
                     <div className="relative img-zoom" style={{ aspectRatio: '4/3' }}>
-                      <img
-                        src={imgUrl}
-                        alt={`${item.name} natural latex mattress`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
+                    <img
+                      src={imgUrl}
+                      alt={`${item.name} natural latex mattress`}
+                      className="w-full h-full object-cover"
+                      sizes="300px"
+                      loading="lazy"
+                    />
                       {isBestSeller ? (
                         <span className="absolute top-3 left-3 bg-brand-600 text-ink-900 font-accent text-[9px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md z-10">
                           <Sparkles className="w-3 h-3 fill-current" /> Best Seller

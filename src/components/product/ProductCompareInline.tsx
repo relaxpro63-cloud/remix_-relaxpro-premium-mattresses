@@ -115,6 +115,7 @@ export default function ProductCompareInline({ currentProduct, allProducts }: Pr
                         src={imageUrl(p?.image) || `/images/products/${p?.slug}.webp`}
                         alt={p?.name}
                         className="w-full h-full object-cover"
+                        sizes="40px"
                         referrerPolicy="no-referrer"
                       />
                     </div>

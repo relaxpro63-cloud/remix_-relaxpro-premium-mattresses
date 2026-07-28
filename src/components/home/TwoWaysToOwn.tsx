@@ -82,6 +82,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                     src={imageUrl(data?.customBuilder?.image) || '/images/box-customize.png'}
                     alt="Artisan hand-layering natural latex and organic wool comfort layers"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -156,6 +157,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                     src={imageUrl(data?.shopPrebuilt?.image) || '/images/box-models.png'}
                     alt="Luxury bedroom with a premium organic latex mattress in warm morning light"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
