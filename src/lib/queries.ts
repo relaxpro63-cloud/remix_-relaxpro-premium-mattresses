@@ -1,13 +1,17 @@
 import { sanityClient } from './sanity'
 import { urlFor } from './sanity'
 
-export function imageUrl(source: any) {
+export function imageUrl(source: any, maxWidth: number = 1920) {
   if (!source) return ''
   if (typeof source === 'string') return source
   if (typeof source === 'object') {
     const assetRef = source.asset?._ref || source.asset?._id || source._ref
     if (assetRef) {
-      return urlFor({ ...source, asset: { ...(source.asset || {}), _ref: assetRef } }).url()
+      return urlFor({ ...source, asset: { ...(source.asset || {}), _ref: assetRef } })
+        .width(maxWidth)
+        .auto('format')
+        .quality(80)
+        .url()
     }
   }
   return ''
