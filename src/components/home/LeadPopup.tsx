@@ -329,7 +329,8 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                   </div>
                 </>
               ) : (
-                <motion.div
+                <motion.form
+                  noValidate
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -363,7 +364,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                       {c.dontShowAgainText}
                     </button>
                   </div>
-                </motion.div>
+                </motion.form>
               )}
             </div>
           </motion.div>
