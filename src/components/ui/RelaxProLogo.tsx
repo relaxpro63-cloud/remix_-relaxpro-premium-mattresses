@@ -25,9 +25,9 @@ export default function RelaxProLogo({ variant = 'full', className = '' }: Relax
         <img
           src={src}
           alt="RelaxPro Premium Mattresses"
-          className="h-12 md:h-14 lg:h-16 w-auto object-contain block"
-          width={250}
-          height={64}
+          className="h-16 md:h-20 lg:h-24 w-auto object-contain block"
+          width={400}
+          height={96}
           loading="eager"
           fetchPriority={isNav ? 'high' : undefined}
           onError={() => setImgError(true)}
