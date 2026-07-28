@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ChevronRight, Calendar, Award, Shield, Truck, Sparkles, ChevronDown } from 'lucide-react';
-import { RevealText, FadeUp, GoldShimmer, ScrollIndicator, EASE_LUXURY } from '../motion/motionPrimitives';
+import { ChevronRight } from 'lucide-react';
+import { FadeUp, EASE_LUXURY } from '../motion/motionPrimitives';
 import { getHero, imageUrl } from '../../lib/queries';
 
 interface HeroSliderProps {
@@ -11,7 +11,6 @@ interface HeroSliderProps {
 
 export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const [hero, setHero] = useState<any>(null);
-  const trustIconMap: Record<string, any> = { truck: Truck, shield: Shield, award: Award };
 
   useEffect(() => {
     getHero().then(d => setHero(d)).catch(() => {});
@@ -27,15 +26,6 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const handleScrollToShowrooms = () => {
-    const el = document.getElementById('showroom-booking-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      onNavigate('showroom-booking-section');
-    }
-  };
 
   return (
     <section
@@ -56,7 +46,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           sizes="100vw"
           loading="eager"
         />
-        {/* Cinematic gradient overlay using ink tokens */}
+        {/* Cinematic gradient overlay */}
         <div
           className="absolute inset-0"
           style={{
@@ -70,113 +60,35 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         className="max-w-7xl mx-auto w-full px-6 md:px-16 relative z-10 flex flex-col justify-center min-h-[85vh] py-32"
       >
         <div className="max-w-3xl">
-          {/* Subtitle Accent */}
-          <FadeUp delay={0.1}>
-            <span className="eyebrow inline-flex items-center gap-2.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              {hero?.slides?.[0]?.badge || 'Handcrafted Dunlop Latex Since 2015'}
-            </span>
+          {/* Short heading — minimal, clean */}
+          <FadeUp delay={0.2}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-heading font-normal tracking-[-0.02em] leading-[1.08] text-white drop-shadow-lg">
+              {hero?.slides?.[0]?.heading || 'Sleep Pure. Sleep Natural.'}
+            </h1>
           </FadeUp>
 
-          {/* Heading with word-by-word reveal */}
-          <div className="mt-6 drop-shadow-lg">
-            <RevealText
-              as="h1"
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading font-normal tracking-[-0.02em] leading-[1.08] text-white"
-              delay={0.3}
-              stagger={0.1}
-            >
-              {hero?.slides?.[0]?.heading || 'Pure Latex,'}
-            </RevealText>
-            <div className="overflow-hidden">
-              <motion.div
-                initial={{ y: '110%', opacity: 0 }}
-                animate={{ y: '0%', opacity: 1 }}
-                transition={{ duration: 0.9, ease: EASE_LUXURY, delay: 1.0 }}
-              >
-                <GoldShimmer delay={2.0}>
-                  <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading italic font-normal tracking-[-0.02em] leading-[1.1] pb-1 text-brand-300">
-                    {hero?.slides?.[0]?.highlight || 'Kerala Origin,'}
-                  </span>
-                </GoldShimmer>
-                <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-heading font-normal tracking-[-0.02em] leading-[1.08] text-linen-100">
-                  {' '}{hero?.slides?.[0]?.subheading || 'Zero Compromise'}
-                </span>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Description */}
-          <FadeUp delay={0.6} y={30}>
-            <p className="font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-8 text-linen-200/85">
-              {hero?.slides?.[0]?.description || 'GOLS-certified organic latex. Zero synthetics. Handcrafted in Hyderabad.'}
+          {/* One line offer — replaces long description */}
+          <FadeUp delay={0.5} y={20}>
+            <p className="font-body text-base sm:text-lg md:text-xl max-w-xl leading-snug mt-6 text-brand-200 font-medium">
+              {hero?.slides?.[0]?.description || 'GOLS-Certified Organic Latex Mattresses — Save Up to 30%'}
             </p>
           </FadeUp>
 
-          {/* Buttons with spring hover */}
-          <FadeUp delay={0.8} y={24}>
-            <div className="flex flex-col sm:flex-row gap-5 pt-8">
+          {/* Single button — SHOP NOW */}
+          <FadeUp delay={0.7} y={20}>
+            <div className="pt-8">
               <motion.button
-                whileHover={{ scale: 1.03, y: -4 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                 onClick={() => onNavigate('catalog')}
-                className="btn btn-primary w-full sm:w-auto text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl"
+                className="btn btn-primary text-xs sm:text-sm font-bold font-accent uppercase tracking-[0.15em] cursor-pointer inline-flex items-center gap-3 py-5 px-10 md:px-12 rounded-2xl shadow-2xl shadow-brand-600/25"
               >
-                {hero?.slides?.[0]?.primaryCta?.label || 'Explore the Collection'}
+                {hero?.slides?.[0]?.primaryCta?.label || 'SHOP NOW'}
                 <ChevronRight className="w-4 h-4 shrink-0" />
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.03, y: -4 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                onClick={handleScrollToShowrooms}
-                className="btn btn-ghost-dark w-full sm:w-auto text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2 py-4.5 px-10 rounded-xl"
-              >
-                <Calendar className="w-4 h-4 text-brand-300" />
-                {hero?.slides?.[0]?.secondaryCta?.label || 'Book a Showroom Visit'}
               </motion.button>
             </div>
           </FadeUp>
-
-          {/* Trust Badges — stagger in */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.12, delayChildren: 1.2 },
-              },
-            }}
-            className="flex flex-wrap items-center gap-8 md:gap-12 pt-10 mt-14 border-t border-white/10"
-          >
-            {(hero?.slides?.[0]?.trustBadges || [
-              { icon: 'truck', text: 'Free Delivery' },
-              { icon: 'award', text: '10-Year Replacement Warranty' },
-            ]).map((item: any, idx: number) => {
-              const IconComp = trustIconMap[item.icon] || Shield;
-              return (
-                <motion.div
-                  key={idx}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 0.9, y: 0, transition: { duration: 0.6, ease: EASE_LUXURY } },
-                  }}
-                  className="flex items-center gap-3 text-xs font-accent tracking-wider font-semibold whitespace-nowrap text-linen-100"
-                >
-                  <IconComp className="w-5 h-5 shrink-0 text-brand-400" />
-                  {item.text}
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <ScrollIndicator />
         </div>
       </motion.div>
     </section>

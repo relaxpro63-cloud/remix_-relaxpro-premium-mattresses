@@ -5,6 +5,7 @@ import { PRODUCTS } from '../../data/products';
 import { CartItem, Product, MattressSize, OrderReceipt } from '../../types';
 import PageShell from '../../components/layout/PageShell';
 import HeroSlider from '../../components/home/HeroSlider';
+import TrustStrip from '../../components/home/TrustStrip';
 import Marquee from '../../components/ui/Marquee';
 import CertificationMarquee from '../../components/home/CertificationMarquee';
 import ShopByBrands from '../../components/home/ShopByBrands';
@@ -158,32 +159,8 @@ export default function HomePage({
         onNavigateToPdp={handleNavigateToPdp}
       />
 
-      {/* Quick Action CTA Buttons Just After Hero */}
-      <FadeUp>
-      <section className="bg-secondary py-5 md:py-7 border-b border-brand-200/30">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8">
-          <button
-            onClick={() => handlePageNavigation('builder')}
-            className="w-full sm:w-auto btn btn-secondary py-4 px-10 rounded-full text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2"
-          >
-            Find Your Perfect Bed
-          </button>
-          <button
-            onClick={() => {
-              const el = document.getElementById('bestsellers');
-              if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                handlePageNavigation('catalog');
-              }
-            }}
-            className="w-full sm:w-auto btn btn-primary py-4 px-10 rounded-full text-xs font-bold font-accent uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2"
-          >
-            Shop Best Sellers
-          </button>
-        </div>
-      </section>
-      </FadeUp>
+      {/* Trust badges strip below hero — clean horizontal bar */}
+      <TrustStrip />
 
       <FadeUp>      <TwoWaysToOwn
         onStartBuilding={() => handlePageNavigation('builder')}
