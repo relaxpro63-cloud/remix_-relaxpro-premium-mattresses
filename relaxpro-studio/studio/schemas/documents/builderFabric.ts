@@ -4,6 +4,7 @@ export default {
   type: 'document',
   fields: [
     { name: 'name', title: 'Name', type: 'string', validation: R => R.required() },
+    { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name', maxLength: 96 }, validation: R => R.required(), hidden: true },
     { name: 'role', title: 'Role', type: 'string',
       options: { list: [
         { title: 'Primary cover', value: 'primaryCover' },
