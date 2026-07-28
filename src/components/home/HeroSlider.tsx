@@ -47,7 +47,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img
           initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1.08, opacity: 0.95 }}
+          animate={{ scale: 1.08, opacity: 1 }}
           transition={{ duration: 2.5, ease: EASE_LUXURY }}
           style={{ scale: imageScale, y: imageY }}
           src={imageUrl(hero?.slides?.[0]?.image) || '/images/hero-banner.png'}
@@ -60,7 +60,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(105deg, rgba(11, 18, 32, 0.82) 0%, rgba(11, 18, 32, 0.5) 50%, rgba(11, 18, 32, 0.15) 100%)',
+            background: 'linear-gradient(105deg, rgba(11, 18, 32, 0.75) 0%, rgba(11, 18, 32, 0.35) 50%, rgba(11, 18, 32, 0.1) 100%)',
           }}
         />
       </div>
