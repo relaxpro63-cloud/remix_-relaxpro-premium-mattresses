@@ -622,7 +622,7 @@ function StepSize({ config, build, onSelect }: {
                 className={`relative p-3 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
                   active
                     ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
-                    : 'border-graphite-100 bg-white hover:border-graphite-300 hover:shadow-md'
+                    : 'border-graphite-100 bg-white hover:border-brand-600/40 hover:bg-sky-100 hover:shadow-md'
                 }`}
               >
                 <span className={`font-bold text-xs block ${active ? 'text-ink-900' : 'text-graphite-700'}`}>{cat.label}</span>
@@ -656,7 +656,7 @@ function StepSize({ config, build, onSelect }: {
                   className={`relative p-3 rounded-xl text-center border-2 transition-all duration-200 cursor-pointer ${
                     active
                       ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
-                      : 'border-graphite-100 bg-white hover:border-graphite-300 hover:shadow-md'
+                      : 'border-graphite-100 bg-white hover:border-brand-600/40 hover:bg-sky-100 hover:shadow-md'
                   }`}
                 >
                   <span className={`font-semibold text-xs block ${active ? 'text-ink-900' : 'text-graphite-700'}`}>{variant.label}</span>
