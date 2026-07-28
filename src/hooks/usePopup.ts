@@ -88,10 +88,12 @@ export function usePopup(config?: PopupConfig): UsePopupReturn {
   const close = useCallback(() => {
     setIsOpen(false);
     lastClosedRef.current = Date.now();
+    scrollFiredRef.current = false;
   }, []);
 
   const onSubmitted = useCallback(() => {
     setIsOpen(false);
+    scrollFiredRef.current = false;
     try { localStorage.setItem(POPUP_SUBMITTED_KEY, 'true'); }
     catch { /* noop */ }
     setSubmitted(true);
@@ -99,6 +101,7 @@ export function usePopup(config?: PopupConfig): UsePopupReturn {
 
   const onDontShowAgain = useCallback(() => {
     setIsOpen(false);
+    scrollFiredRef.current = false;
     try { localStorage.setItem(POPUP_DISMISSED_KEY, 'true'); }
     catch { /* noop */ }
     setDismissed(true);
