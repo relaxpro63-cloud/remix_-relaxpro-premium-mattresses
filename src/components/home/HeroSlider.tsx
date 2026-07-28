@@ -60,16 +60,16 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         className="max-w-7xl mx-auto w-full px-6 md:px-16 relative z-10 flex flex-col justify-center min-h-[85vh] py-32"
       >
         <div className="max-w-3xl">
-          {/* Short heading — minimal, clean */}
+          {/* Short heading — luxury editorial */}
           <FadeUp delay={0.2}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-heading font-normal tracking-[-0.02em] leading-[1.08] text-white drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-heading font-light italic tracking-[0.04em] leading-[1.12] text-linen-100 drop-shadow-xl">
               {hero?.slides?.[0]?.heading || 'Sleep Pure. Sleep Natural.'}
             </h1>
           </FadeUp>
 
-          {/* One line offer — replaces long description */}
+          {/* One line offer — champagne gold accent */}
           <FadeUp delay={0.5} y={20}>
-            <p className="font-body text-base sm:text-lg md:text-xl max-w-xl leading-snug mt-6 text-brand-200 font-medium">
+            <p className="font-accent text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mt-6 text-sand-300 font-light tracking-[0.06em]">
               {hero?.slides?.[0]?.description || 'GOLS-Certified Organic Latex Mattresses — Save Up to 30%'}
             </p>
           </FadeUp>
