@@ -31,7 +31,7 @@ export default function DecorativeBotanicals({
 
       {/* Top-left: Large leaf (leaf-1) — rotated, faint */}
       <motion.div
-        className="absolute -top-[5%] -left-[6%] w-[360px] opacity-[0.12]"
+        className="absolute -top-[5%] -left-[6%] w-[360px] opacity-[0.28]"
         animate={{
           y: [0, -10, 0],
           rotate: [-16, -12, -16],
@@ -53,7 +53,7 @@ export default function DecorativeBotanicals({
 
       {/* Middle-left: Medium botanical (leaf-2) */}
       <motion.div
-        className="absolute top-[35%] -left-[8%] w-[280px] opacity-[0.10]"
+        className="absolute top-[35%] -left-[8%] w-[280px] opacity-[0.25]"
         animate={{
           y: [0, 8, 0],
           rotate: [-8, -4, -8],
@@ -76,7 +76,7 @@ export default function DecorativeBotanicals({
 
       {/* Bottom-left: Small plant accent */}
       <motion.div
-        className="absolute bottom-[5%] -left-[5%] w-[240px] opacity-[0.10]"
+        className="absolute bottom-[5%] -left-[5%] w-[240px] opacity-[0.25]"
         animate={{
           y: [0, -6, 0],
           rotate: [5, 8, 5],
@@ -101,7 +101,7 @@ export default function DecorativeBotanicals({
 
       {/* Top-right: Large botanical */}
       <motion.div
-        className="absolute -top-[3%] -right-[6%] w-[380px] opacity-[0.12]"
+        className="absolute -top-[3%] -right-[6%] w-[380px] opacity-[0.28]"
         animate={{
           y: [0, -8, 0],
           rotate: [12, 16, 12],
@@ -124,7 +124,7 @@ export default function DecorativeBotanicals({
 
       {/* Middle-right: Medium branch */}
       <motion.div
-        className="absolute top-[45%] -right-[7%] w-[260px] opacity-[0.10]"
+        className="absolute top-[45%] -right-[7%] w-[260px] opacity-[0.25]"
         animate={{
           y: [0, 6, 0],
           rotate: [-10, -6, -10],
@@ -148,7 +148,7 @@ export default function DecorativeBotanicals({
       {/* Bottom-right: Small decorative */}
       {density === 'full' && (
         <motion.div
-          className="absolute bottom-[8%] -right-[4%] w-[200px] opacity-[0.10]"
+          className="absolute bottom-[8%] -right-[4%] w-[200px] opacity-[0.25]"
           animate={{
             y: [0, -5, 0],
             rotate: [-5, -2, -5],
@@ -172,7 +172,7 @@ export default function DecorativeBotanicals({
 
       {/* Floating corner leaves — very subtle */}
       <motion.div
-        className="absolute top-[15%] right-[12%] w-[60px] opacity-[0.06]"
+        className="absolute top-[15%] right-[12%] w-[60px] opacity-[0.12]"
         animate={{ y: [0, -4, 0], rotate: [-30, -25, -30] }}
         transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
       >
@@ -180,7 +180,7 @@ export default function DecorativeBotanicals({
       </motion.div>
 
       <motion.div
-        className="absolute bottom-[20%] left-[15%] w-[40px] opacity-[0.06]"
+        className="absolute bottom-[20%] left-[15%] w-[40px] opacity-[0.12]"
         animate={{ y: [0, 3, 0], rotate: [45, 50, 45] }}
         transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
       >

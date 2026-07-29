@@ -31,9 +31,8 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Derived data
   const heading = hero?.slides?.[0]?.heading || 'Sleep Pure. Sleep Natural.';
-  const subtext = hero?.slides?.[0]?.description || 'Handcrafted 100% Natural Latex Mattresses engineered for luxurious comfort, orthopedic support, and healthier sleep.';
+  const subtext = hero?.slides?.[0]?.description || 'Experience handcrafted 100% Natural Latex Mattresses designed for healthier sleep, orthopedic support, and lasting luxury.';
   const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Shop Collection';
   const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-banner.png';
 
@@ -44,34 +43,15 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       className="relative min-h-screen flex overflow-hidden"
     >
       {/* ============================================ */}
-      {/* LEFT SIDE — Founder + Mattress Image (40%)  */}
+      {/* LEFT SIDE — Content + Blue Gradient (40%)   */}
       {/* ============================================ */}
-      <div className="hidden md:block relative w-[40%] min-h-screen overflow-hidden">
-        <motion.img
-          initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1.08, opacity: 1 }}
-          transition={{ duration: 2.5, ease: EASE_LUXURY }}
-          src={heroImage}
-          alt="RelaxPro founder with premium handcrafted natural latex mattress"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: '25% center' }}
-          sizes="40vw"
-          loading="eager"
-        />
-        {/* Subtle edge fade to right */}
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-[#072038]/60 pointer-events-none" />
-      </div>
-
-      {/* ============================================ */}
-      {/* RIGHT SIDE — Premium Content + Blue Gradient (60%) */}
-      {/* ============================================ */}
-      <div className="w-full md:w-[60%] min-h-screen relative flex items-center overflow-hidden">
-        {/* Deep blue gradient background — enhanced */}
+      <div className="w-full md:w-[40%] min-h-screen relative flex items-center overflow-hidden">
+        {/* Deep blue gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B1424] via-[#0F1A2E] to-[#0A1628]">
           {/* Radial glow behind text */}
           <div
-            className="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(21,104,163,0.25) 0%, rgba(21,104,163,0.10) 40%, transparent 70%)' }}
+            className="absolute right-1/3 top-1/2 translate-x-1/2 -translate-y-1/2 w-[90%] h-[80%] rounded-full pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(21,104,163,0.25) 0%, rgba(21,104,163,0.10) 40%, transparent 70%)' }}
           />
           
           {/* Organic wave pattern */}
@@ -83,7 +63,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             </svg>
           </div>
 
-          {/* Faint floating particles */}
+          {/* Floating particles */}
           <div className="absolute inset-0">
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -111,18 +91,21 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(7,32,56,0.5)] pointer-events-none" />
         </div>
 
+        {/* Smooth edge fade — blends content bg into image seamlessly */}
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-[#0B1424]/90 pointer-events-none z-10" />
+
         {/* =============================== */}
         {/* CONTENT BLOCK */}
         {/* =============================== */}
         <motion.div
           style={{ opacity: contentOpacity }}
-          className="relative z-10 w-full px-8 md:px-16 lg:px-20 xl:px-24 py-24 md:py-32"
+          className="relative z-20 w-full pl-10 md:pl-16 lg:pl-28 pr-8 md:pr-12 py-24 md:py-32"
         >
-          <div className="max-w-2xl ml-auto md:mr-0">
+          <div className="max-w-[520px]">
             {/* Premium badge */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: EASE_LUXURY }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
             >
@@ -134,20 +117,20 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
 
             {/* Heading */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: EASE_LUXURY, delay: 0.1 }}
-              className="font-heading text-4xl sm:text-5xl md:text-[3.8rem] lg:text-[4.5rem] leading-[1.08] tracking-tight text-white"
+              className="font-heading text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] leading-[1.08] tracking-tight text-white"
             >
               {heading}
             </motion.h1>
 
             {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: EASE_LUXURY, delay: 0.3 }}
-              className="font-body text-base sm:text-lg md:text-xl leading-relaxed mt-6 text-gray-300 max-w-xl font-light"
+              className="font-body text-base sm:text-lg leading-relaxed mt-6 text-gray-300 max-w-md font-light"
             >
               {subtext}
             </motion.p>
@@ -177,7 +160,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 onClick={() => onNavigate('builder')}
                 className="text-xs sm:text-sm font-bold font-accent uppercase tracking-[0.15em] cursor-pointer inline-flex items-center gap-3 py-5 px-10 rounded-2xl border border-white/20 text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
               >
-                {hero?.slides?.[0]?.secondaryCta?.label || 'Customize Your Mattress'}
+                {hero?.slides?.[0]?.secondaryCta?.label || 'Build Your Mattress'}
                 <ChevronRight className="w-4 h-4 shrink-0" />
               </motion.button>
             </motion.div>
@@ -209,6 +192,25 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       </div>
 
       {/* ============================================ */}
+      {/* RIGHT SIDE — Founder + Mattress Image (60%) */}
+      {/* ============================================ */}
+      <div className="hidden md:block relative w-[60%] min-h-screen overflow-hidden">
+        <motion.img
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1.08, opacity: 1 }}
+          transition={{ duration: 2.5, ease: EASE_LUXURY }}
+          src={heroImage}
+          alt="RelaxPro founder with premium handcrafted natural latex mattress"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: '18% center' }}
+          sizes="60vw"
+          loading="eager"
+        />
+        {/* Subtle edge fade to left */}
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0B1424]/70 to-transparent pointer-events-none" />
+      </div>
+
+      {/* ============================================ */}
       {/* MOBILE — Stack image above content           */}
       {/* ============================================ */}
       <div className="md:hidden absolute inset-0 flex flex-col">
@@ -221,11 +223,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             style={{ objectPosition: '40% center' }}
             loading="eager"
           />
-          {/* Gradient overlay at bottom for text readability */}
+          {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#0B1424]" />
         </div>
 
-        {/* Content below image */}
+        {/* Content below */}
         <div className="flex-1 bg-gradient-to-br from-[#0B1424] via-[#0F1A2E] to-[#0A1628] px-6 py-8 flex flex-col justify-center">
           <motion.span
             initial={{ opacity: 0 }}
@@ -271,7 +273,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               onClick={() => onNavigate('builder')}
               className="text-xs font-bold font-accent uppercase tracking-[0.15em] py-4 px-8 rounded-2xl border border-white/20 text-white/70 w-full text-center"
             >
-              {hero?.slides?.[0]?.secondaryCta?.label || 'Customize Your Mattress'}
+              {hero?.slides?.[0]?.secondaryCta?.label || 'Build Your Mattress'}
             </button>
           </motion.div>
 
