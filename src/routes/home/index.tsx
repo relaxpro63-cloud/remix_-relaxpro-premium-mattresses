@@ -23,6 +23,7 @@ import ComparisonTable from '../../components/home/ComparisonTable';
 import CertificationsSection from '../../components/home/CertificationsSection';
 import CustomerVideos from '../../components/home/CustomerVideos';
 import FoundersPodcast from '../../components/home/FoundersPodcast';
+import TrustBadges from '../../components/home/TrustBadges';
 import {
   Check,
   Sparkles,
@@ -585,6 +586,8 @@ export default function HomePage({
       <FadeUp><section className="py-12 md:py-16 bg-secondary border-t border-brand-200/30 px-4">
         <ConsultationForm />
       </section></FadeUp>
+
+      <TrustBadges />
 
       <FoundersPodcast />
     </PageShell>
