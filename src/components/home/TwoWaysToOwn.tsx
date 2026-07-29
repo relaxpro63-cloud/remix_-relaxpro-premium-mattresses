@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Layers, BoxSelect, Expand, BedDouble, ShieldCheck, Truck, ArrowRight, ArrowRightCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
+import DecorativeBotanicals from './DecorativeBotanicals';
 import { getHomePage, imageUrl } from '../../lib/queries';
 
 interface TwoWaysToOwnProps {
@@ -30,17 +31,20 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
   };
 
   return (
-    <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden bg-[#F3F9FD]">
+    <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #FAFCFA 0%, #F3F9FD 40%, #F0F8F2 100%)'}}>
+      {/* Decorative botanical elements in margins */}
+      <DecorativeBotanicals density="full" />
+
       {/* Full-section background image (subtle texture) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img
           src="/images/section-bg.png"
           alt="Natural organic latex texture with botanical accents"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute inset-0 w-full h-full object-cover opacity-25"
           loading="lazy"
         />
         {/* Light wash so content stays readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F3F9FD] via-[#F3F9FD]/90 to-[#F3F9FD]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFCFA]/80 via-[#F3F9FD]/80 to-[#F0F8F2]/80" />
         {/* Soft luxury orbs */}
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FFFFFF] blur-[120px] opacity-80" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#EEF7FC] blur-[150px] opacity-90" />
