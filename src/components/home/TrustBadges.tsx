@@ -45,7 +45,7 @@ export default function TrustBadges() {
                 whileHover={{ y: -4, scale: 1.05 }}
                 className="flex flex-col items-center gap-2.5"
               >
-                <div className="h-14 md:h-16 flex items-center justify-center bg-white rounded-xl px-5 py-3 shadow-sm border border-[#ECE8DF] hover:border-[#C8A96A]/40 hover:shadow-md transition-all duration-300">
+                <div className="h-20 md:h-24 flex items-center justify-center bg-white rounded-2xl px-8 py-4 shadow-md border border-[#ECE8DF] hover:border-[#C8A96A]/40 hover:shadow-lg transition-all duration-300">
                   <img
                     src={cert.src}
                     alt={cert.alt}
@@ -53,7 +53,7 @@ export default function TrustBadges() {
                     loading="lazy"
                   />
                 </div>
-                <span className="text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500">
+                <span className="text-[11px] md:text-xs font-accent font-bold uppercase tracking-widest text-graphite-500">
                   {cert.name}
                 </span>
               </motion.div>
