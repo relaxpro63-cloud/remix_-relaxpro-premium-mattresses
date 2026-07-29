@@ -1,4 +1,4 @@
-export type SizeCategory = 'single' | 'diwan' | 'queen' | 'queen_xl' | 'king';
+export type SizeCategory = 'single' | 'diwan' | 'queen' | 'king';
 
 interface SizeVariant {
   label: string;
@@ -31,14 +31,7 @@ export const STANDARD_SIZES: Record<SizeCategory, { label: string; variants: Siz
       { label: '78" × 60"', dims: { length: 78, width: 60 }, legacyKey: '78x60' },
     ],
   },
-  queen_xl: {
-    label: 'Queen XL',
-    variants: [
-      { label: '72" × 66"', dims: { length: 72, width: 66 }, legacyKey: '72x66' },
-      { label: '75" × 66"', dims: { length: 75, width: 66 }, legacyKey: '75x66' },
-      { label: '78" × 66"', dims: { length: 78, width: 66 }, legacyKey: '78x66' },
-    ],
-  },
+
   king: {
     label: 'King',
     variants: [
@@ -53,6 +46,6 @@ export const SIZE_CATEGORIES: { value: SizeCategory; label: string; hint: string
   { value: 'single', label: 'Single', hint: '36" wide' },
   { value: 'diwan', label: 'Diwan / Double', hint: '48" wide' },
   { value: 'queen', label: 'Queen', hint: '60" wide' },
-  { value: 'queen_xl', label: 'Queen XL', hint: '66" wide' },
+
   { value: 'king', label: 'King', hint: '72" wide' },
 ];

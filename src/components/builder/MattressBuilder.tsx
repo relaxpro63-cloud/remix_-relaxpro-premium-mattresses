@@ -852,7 +852,6 @@ function StepCover({ fabrics, build, onSelect }: {
                       )}
                     </div>
                     {fab.benefit && <p className="text-xs text-graphite-500 mt-0.5">{fab.benefit}</p>}
-                    {fab.gsm && <p className="text-[10px] text-graphite-400 mt-1">{fab.gsm}</p>}
                   </div>
                 </div>
                 {fab.addPrice > 0 && (
