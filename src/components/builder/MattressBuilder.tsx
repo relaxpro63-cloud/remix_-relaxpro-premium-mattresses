@@ -126,17 +126,43 @@ const STEP_HELPERS: Record<string, string> = {
 /* ──────────────────────────────────────────────────────────────
    Helpers
    ────────────────────────────────────────────────────────────── */
+
+// Size-dependent pricing: [Single, Double, Queen, King]
+type PriceRow = [number, number, number, number];
+
+const SIZE_IDX: Record<string, number> = { single: 0, diwan: 1, queen: 2, king: 3 };
+
+const HARDCODED_PRICES: Record<string, Record<number, PriceRow>> = {
+  'pu-rebonded':  { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
+  'hr-foam':      { 2: [1500, 2000, 2500, 3000] },
+  'hr-soft':      { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
+  'kerala-latex': { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000], 6: [18000, 24000, 30000, 36000], 8: [24000, 32000, 40000, 48000] },
+  'latex-rebonded': { 2: [3000, 4000, 5000, 6000], 4: [6000, 8000, 10000, 12000] },
+};
+
+const QUILT_PRICES: PriceRow = [2500, 3500, 4200, 5000];
+
+function getSizeIdx(build: BuildState): number {
+  return build.size.kind === 'preset' && build.size.sizeCategory
+    ? (SIZE_IDX[build.size.sizeCategory] ?? 0) : 0;
+}
+
+function getLayerPrice(slug: string, thickness: number, sizeIdx: number, config: BuilderConfig): number {
+  const hardcoded = HARDCODED_PRICES[slug]?.[thickness];
+  if (hardcoded) return hardcoded[sizeIdx];
+  const m = config.materials.find(x => x.slug === slug);
+  const t = m?.thicknessOptions?.find(o => o.valueInches === thickness);
+  return t?.addPrice ?? 0;
+}
+
 function totalPrice(build: BuildState, config: BuilderConfig): number {
+  const sizeIdx = getSizeIdx(build);
   const layerPrice = (sels: { materialSlug: string; thickness: number }[]) =>
-    sels.reduce((sum, sel) => {
-      const m = config.materials.find(x => x.slug === sel.materialSlug);
-      const t = m?.thicknessOptions?.find(o => o.valueInches === sel.thickness);
-      return sum + (t?.addPrice ?? 0);
-    }, 0);
+    sels.reduce((sum, sel) => sum + getLayerPrice(sel.materialSlug, sel.thickness, sizeIdx, config), 0);
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
-  const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
+  const quiltPrice = build.cover.quiltingSlug ? QUILT_PRICES[sizeIdx] : 0;
   return layerPrice(build.comfort) + layerPrice(build.support)
-    + (coverFab?.addPrice ?? 0) + (quiltFab?.addPrice ?? 0);
+    + (coverFab?.addPrice ?? 0) + quiltPrice;
 }
 
 function initBuild(config: BuilderConfig): BuildState {
@@ -377,9 +403,6 @@ function ThicknessPills({ options, active, onChange }: {
             }`}
           >
             {t.label}
-            {t.addPrice > 0 && (
-              <span className="ml-1.5 text-[10px] font-normal text-graphite-400">+₹{t.addPrice.toLocaleString('en-IN')}</span>
-            )}
           </button>
         );
       })}
@@ -854,11 +877,7 @@ function StepCover({ fabrics, build, onSelect }: {
                     {fab.benefit && <p className="text-xs text-graphite-500 mt-0.5">{fab.benefit}</p>}
                   </div>
                 </div>
-                {fab.addPrice > 0 && (
-                  <span className="text-xs font-semibold text-ink-900 shrink-0">
-                    +₹{fab.addPrice.toLocaleString('en-IN')}
-                  </span>
-                )}
+
               </div>
             </motion.button>
           );
@@ -902,11 +921,7 @@ function StepCover({ fabrics, build, onSelect }: {
                     {quiltFab.quiltingMm}
                   </span>
                 )}
-                {quiltFab.addPrice > 0 && (
-                  <span className="text-xs font-bold text-ink-900">
-                    +₹{quiltFab.addPrice.toLocaleString('en-IN')}
-                  </span>
-                )}
+
               </div>
             </div>
           </motion.button>
@@ -920,6 +935,7 @@ function StepCover({ fabrics, build, onSelect }: {
 function PriceBreakdown({ build, config, price }: {
   build: BuildState; config: BuilderConfig; price: number;
 }) {
+  const sizeIdx = getSizeIdx(build);
   const comfortMats = build.comfort.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
   const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
@@ -927,18 +943,18 @@ function PriceBreakdown({ build, config, price }: {
 
   const breakdown: { label: string; price: number }[] = [];
   supportMats.forEach(s => {
-    const added = s.mat?.thicknessOptions.find(t => t.valueInches === s.thickness)?.addPrice ?? 0;
-    if (added > 0) breakdown.push({ label: `${s.mat?.name || 'Base'} (${s.thickness}")`, price: added });
+    const p = getLayerPrice(s.materialSlug, s.thickness, sizeIdx, config);
+    if (p > 0) breakdown.push({ label: `${s.mat?.name || 'Base'} (${s.thickness}")`, price: p });
   });
   comfortMats.forEach(s => {
-    const added = s.mat?.thicknessOptions.find(t => t.valueInches === s.thickness)?.addPrice ?? 0;
-    if (added > 0) breakdown.push({ label: `${s.mat?.name || 'Comfort'} (${s.thickness}")`, price: added });
+    const p = getLayerPrice(s.materialSlug, s.thickness, sizeIdx, config);
+    if (p > 0) breakdown.push({ label: `${s.mat?.name || 'Comfort'} (${s.thickness}")`, price: p });
   });
   if (coverFab && coverFab.addPrice > 0) {
     breakdown.push({ label: coverFab.name, price: coverFab.addPrice });
   }
-  if (quiltFab && quiltFab.addPrice > 0) {
-    breakdown.push({ label: quiltFab.name, price: quiltFab.addPrice });
+  if (quiltFab) {
+    breakdown.push({ label: quiltFab.name, price: QUILT_PRICES[sizeIdx] });
   }
 
   return (
