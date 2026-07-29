@@ -174,7 +174,7 @@ function initBuild(config: BuilderConfig): BuildState {
     size: { kind: 'preset', name: defaultCat.label, length: defaultVariant.dims.length, width: defaultVariant.dims.width, sizeCategory: defaultCat.value },
     comfort: def.comfortMaterialSlug ? [{ materialSlug: def.comfortMaterialSlug, thickness: def.comfortThickness }] : [],
     support: def.supportMaterialSlug ? [{ materialSlug: def.supportMaterialSlug, thickness: def.supportThickness }] : [],
-    cover: { fabricSlug: '', quiltingSlug: undefined },
+    cover: { fabricSlug: 'organic-cotton', quiltingSlug: undefined },
   };
 }
 
@@ -836,55 +836,11 @@ function StepCover({ fabrics, build, onSelect }: {
   fabrics: BuilderFabric[]; build: BuildState;
   onSelect: (b: BuildState) => void;
 }) {
-  const primaryFabrics = fabrics.filter(f => f.role === 'primaryCover');
   const quiltingFabrics = fabrics.filter(f => f.role === 'quiltingUpgrade');
   const quiltFab = quiltingFabrics[0];
 
   return (
     <div className="space-y-4">
-      {/* Primary cover */}
-      <div className="space-y-2.5">
-        {primaryFabrics.map(fab => {
-          const active = build.cover.fabricSlug === fab.slug;
-          return (
-            <motion.button
-              key={fab.slug}
-              onClick={() => onSelect({ ...build, cover: { ...build.cover, fabricSlug: fab.slug } })}
-              whileTap={{ scale: 0.99 }}
-              className={`relative w-full text-left rounded-xl border-2 transition-all duration-300 overflow-hidden cursor-pointer p-4 sm:p-5 ${
-                active
-                  ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
-                  : 'border-graphite-100 bg-white hover:border-graphite-200 hover:shadow-md'
-              }`}
-            >
-              {active && <div className="absolute left-0 top-0 bottom-0 w-1 bg-ink-900" />}
-
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-start gap-3 min-w-0 flex-1">
-                  <div className={`w-[18px] h-[18px] rounded-full mt-0.5 shrink-0 transition-all ${
-                    active ? 'bg-ink-900 ring-2 ring-ink-900/30 scale-110' : 'bg-graphite-200'
-                  }`}>
-                    {active && <Check className="w-[10px] h-[10px] text-white mx-auto mt-[3px]" />}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h4 className="font-bold text-sm text-ink-900">{fab.name}</h4>
-                      {fab.isRecommended && (
-                        <span className="text-[9px] font-bold text-amber-700 bg-amber-50 border border-amber-200/50 px-2 py-0.5 rounded-full">
-                          Recommended
-                        </span>
-                      )}
-                    </div>
-                    {fab.benefit && <p className="text-xs text-graphite-500 mt-0.5">{fab.benefit}</p>}
-                  </div>
-                </div>
-
-              </div>
-            </motion.button>
-          );
-        })}
-      </div>
-
       {/* Quilting upgrade - full card clickable */}
       {quiltFab && (
         <div className="pt-3 border-t border-graphite-100">
