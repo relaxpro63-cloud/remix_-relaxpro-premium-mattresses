@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useInView, animate } from 'motion/react';
 import { FadeUp, StaggerChildren, staggerItem } from '../motion/motionPrimitives';
 import {
   Play, Mic, ChevronRight, Quote, CheckCircle,
-  Target, Leaf, Clock, HeartHandshake, Lightbulb,
-  Youtube, Users, Award, Zap, Star
+  Leaf, Clock, Youtube, Users, Award, Zap, Star
 } from 'lucide-react';
 
 const YOUTUBE_ID = '7dcWsDOjMBg';
@@ -64,9 +64,10 @@ function AnimatedStat({ icon: Icon, label, value }: { icon: any; label: string; 
 }
 
 export default function FoundersPodcast() {
+  const navigate = useNavigate();
   const [playVideo, setPlayVideo] = useState(false);
   const videoContainerRef = useRef<HTMLDivElement>(null);
-  const videoInView = useInView(videoContainerRef, { once: true, margin: '-100px' });
+  useInView(videoContainerRef, { once: true, margin: '-100px' });
 
   const handlePlay = () => setPlayVideo(true);
 
@@ -140,7 +141,7 @@ export default function FoundersPodcast() {
                           animate={{ scale: [1, 1.08, 1] }}
                           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                         >
-                          <Play className="w-6 h-6 md:w-7 md:h-7 text-[#0F5B43] ml-1" fill="currentColor" />
+                          <Play className="w-6 h-6 md:w-7 md:h-7 text-[#0F5B43] ml-1" />
                         </motion.div>
                       </motion.button>
                     </div>
@@ -267,15 +268,15 @@ export default function FoundersPodcast() {
                   <Play className="w-4 h-4" fill="currentColor" />
                   <span>Watch Full Podcast</span>
                 </motion.a>
-                <motion.a
+                <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  href="/about"
+                  onClick={() => navigate('/about')}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-white border-2 border-[#C8A96A]/30 text-ink-900 font-accent font-bold text-xs sm:text-sm tracking-wide px-6 py-3.5 rounded-xl hover:border-[#C8A96A]/60 hover:bg-amber-50/30 transition-all duration-300 cursor-pointer group"
                 >
                   <span>Read Our Story</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-                </motion.a>
+                </motion.button>
               </div>
             </div>
           </div>
