@@ -17,6 +17,7 @@ import LocationsPage from './routes/pages/locations';
 import ContactPage from './routes/pages/contact';
 import NotFoundPage from './routes/pages/not-found';
 import AccessoriesPage from './routes/pages/accessories';
+import CertificatesPage from './routes/pages/certificates';
 import SuccessPage from './features/cart/success-page';
 import ProductList from './components/product/ProductList';
 import CompareTable from './components/product/CompareTable';
@@ -171,6 +172,7 @@ function AppContent() {
                   </PageShell>
                 }
               />
+              <Route path="/certificates" element={<CertificatesPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route
                 path="/success"

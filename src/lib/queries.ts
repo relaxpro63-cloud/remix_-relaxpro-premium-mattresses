@@ -318,6 +318,28 @@ export async function getAccessoryBySlug(slug: string) {
 }
 
 /* ---- Offers & Campaigns ---- */
+/* ---- Certifications ---- */
+export async function getCertifications() {
+  return sanityClient.fetch(`*[_type == "certification" && isActive == true] | order(order asc){
+    _id, title, "slug": slug.current,
+    logoImage { asset->{_id, url}, alt },
+    certificateImage { asset->{_id, url}, alt },
+    subtitle, description, certificateNumber,
+    issueDate, expiryDate, validity, pdfUrl, pdfEmbedUrl,
+  }`)
+}
+
+export async function getCertificationSettings() {
+  return sanityClient.fetch(`*[_type == "certificationSettings"][0]{
+    sectionTitle, sectionBadge, sectionDescription, buttonText,
+    backgroundColor, isEnabled,
+    certifications[]->{ _id, title, "slug": slug.current,
+      logoImage { asset->{_id, url}, alt },
+      subtitle, description, validity, pdfUrl, pdfEmbedUrl
+    }
+  }`)
+}
+
 export async function getActiveOffers() {
   return sanityClient.fetch(`*[_type == "offer" && isActive == true && (endDate == null || endDate > now())] | order(priority desc){
     title, subtitle, description, discountText, badge, type,

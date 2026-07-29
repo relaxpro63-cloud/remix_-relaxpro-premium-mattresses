@@ -1,0 +1,106 @@
+export default {
+  name: 'certification',
+  title: 'Certification',
+  type: 'document',
+  fields: [
+    {
+      name: 'title',
+      title: 'Certification Title',
+      type: 'string',
+      description: 'e.g. GOLS Certified Organic, ISO 9001:2015',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'title', maxLength: 96 },
+    },
+    {
+      name: 'logoImage',
+      title: 'Certification Logo',
+      type: 'imageWithAlt',
+      description: 'Logo displayed on the homepage certification cards (recommended: 200×200px, transparent PNG)',
+    },
+    {
+      name: 'certificateImage',
+      title: 'Certificate Preview Image',
+      type: 'imageWithAlt',
+      description: 'A preview image of the certificate document',
+    },
+    {
+      name: 'pdfFile',
+      title: 'PDF Certificate File',
+      type: 'file',
+      description: 'Upload the PDF certificate file directly',
+      options: { accept: '.pdf' },
+    },
+    {
+      name: 'pdfUrl',
+      title: 'PDF View URL',
+      type: 'string',
+      description: 'Or provide a Google Drive view link (e.g. https://drive.google.com/file/d/.../view)',
+    },
+    {
+      name: 'pdfEmbedUrl',
+      title: 'PDF Embed URL',
+      type: 'string',
+      description: 'Google Drive embed link for iframe preview (e.g. https://drive.google.com/file/d/.../preview)',
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      description: 'Short subtitle for the certification (e.g. Global Organic Latex Standard)',
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 3,
+      description: 'A brief description of what this certification means',
+    },
+    {
+      name: 'certificateNumber',
+      title: 'Certificate Number',
+      type: 'string',
+    },
+    {
+      name: 'issueDate',
+      title: 'Issue Date',
+      type: 'date',
+      options: { dateFormat: 'DD/MM/YYYY' },
+    },
+    {
+      name: 'expiryDate',
+      title: 'Expiry Date',
+      type: 'date',
+      options: { dateFormat: 'DD/MM/YYYY' },
+    },
+    {
+      name: 'validity',
+      title: 'Validity Text',
+      type: 'string',
+      description: 'e.g. "Valid — Audited Annually"',
+    },
+    {
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      initialValue: 0,
+    },
+    {
+      name: 'isActive',
+      title: 'Active',
+      type: 'boolean',
+      initialValue: true,
+      description: 'Uncheck to hide this certification from the website',
+    },
+  ],
+  orderings: [
+    { title: 'Display Order', name: 'order', by: [{ field: 'order', direction: 'asc' }] },
+  ],
+  preview: {
+    select: { title: 'title', subtitle: 'validity', media: 'logoImage' },
+  },
+}

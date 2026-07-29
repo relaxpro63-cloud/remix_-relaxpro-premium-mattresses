@@ -31,6 +31,8 @@ import gallery from './documents/gallery'
 import sleepStyle from './documents/sleepStyle'
 import accessory from './documents/accessory'
 import offer from './documents/offer'
+import certification from './documents/certification'
+import certificationSettings from './documents/certificationSettings'
 
 export const schemaTypes = [
   ctaButton,
@@ -65,4 +67,6 @@ export const schemaTypes = [
   sleepStyle,
   accessory,
   offer,
+  certification,
+  certificationSettings,
 ]
