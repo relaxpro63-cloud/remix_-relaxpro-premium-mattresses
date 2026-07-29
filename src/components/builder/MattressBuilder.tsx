@@ -1080,7 +1080,8 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     config?.materials.filter(m => {
       if (m.slot !== 'comfort') return false;
       const name = m.name.toLowerCase();
-      return name.includes('foam') || name.includes('soft') || name.includes('resilience');
+      // Only HR-based foams, not supersoft
+      return !name.includes('supersoft') && (name.includes('foam') || name.includes('soft') || name.includes('resilience'));
     }) || [], [config]);
   const naturalComfortMats = useMemo(() =>
     config?.materials.filter(m => {
