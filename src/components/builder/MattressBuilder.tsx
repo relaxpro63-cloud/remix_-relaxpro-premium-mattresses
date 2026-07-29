@@ -127,9 +127,6 @@ const STEP_HELPERS: Record<string, string> = {
    Helpers
    ────────────────────────────────────────────────────────────── */
 function totalPrice(build: BuildState, config: BuilderConfig): number {
-  const sizeObj = config.sizes.find(s => s.widthInches === build.size.width)
-    || [...config.sizes].sort((a, b) => Math.abs(a.widthInches - build.size.width) - Math.abs(b.widthInches - build.size.width))[0];
-  const sizePrice = build.size.kind === 'preset' && sizeObj ? sizeObj.basePrice : 0;
   const layerPrice = (sels: { materialSlug: string; thickness: number }[]) =>
     sels.reduce((sum, sel) => {
       const m = config.materials.find(x => x.slug === sel.materialSlug);
@@ -138,10 +135,8 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
     }, 0);
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
-  const materialsTotal = layerPrice(build.comfort) + layerPrice(build.support)
+  return layerPrice(build.comfort) + layerPrice(build.support)
     + (coverFab?.addPrice ?? 0) + (quiltFab?.addPrice ?? 0);
-  if (build.size.kind === 'custom') return 0;
-  return sizePrice + materialsTotal;
 }
 
 function initBuild(config: BuilderConfig): BuildState {
@@ -930,13 +925,8 @@ function PriceBreakdown({ build, config, price }: {
   const supportMats = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
   const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug);
-  const sizeObj = config.sizes.find(s => s.widthInches === build.size.width)
-    || [...config.sizes].sort((a, b) => Math.abs(a.widthInches - build.size.width) - Math.abs(b.widthInches - build.size.width))[0];
 
   const breakdown: { label: string; price: number }[] = [];
-  if (sizeObj && build.size.kind === 'preset') {
-    breakdown.push({ label: `${build.size.name} Size`, price: sizeObj.basePrice });
-  }
   supportMats.forEach(s => {
     const added = s.mat?.thicknessOptions.find(t => t.valueInches === s.thickness)?.addPrice ?? 0;
     if (added > 0) breakdown.push({ label: `${s.mat?.name || 'Base'} (${s.thickness}")`, price: added });
