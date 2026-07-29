@@ -10,9 +10,8 @@ import Marquee from '../../components/ui/Marquee';
 import CertificationMarquee from '../../components/home/CertificationMarquee';
 import ShopByBrands from '../../components/home/ShopByBrands';
 import CostComparison from '../../components/home/CostComparison';
-import AccessoriesSection from '../../components/home/AccessoriesSection';
 import { FadeUp, StaggerChildren, staggerItem, EASE_LUXURY } from '../../components/motion/motionPrimitives';
-import { ShoppingBag } from 'lucide-react';
+import { BedDouble, Bed, ShoppingBag } from 'lucide-react';
 
 import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
@@ -358,8 +357,78 @@ export default function HomePage({
         </div>
       </section></FadeUp>
 
-  {/* ── Premium Redesigned Accessories Section ── */}
-      <AccessoriesSection onNavigate={handlePageNavigation} />
+  {/* ── Accessories Section ── */}
+      <FadeUp><section className="bg-sky-100/20 py-16 md:py-24 px-4 md:px-8 border-t border-brand-200/30 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 80%, rgba(21,104,163,0.06) 0%, transparent 60%)' }} />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <FadeUp className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="max-w-xl">
+              <span className="eyebrow">Complete Your Setup</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-ink-900 mt-3 leading-tight">
+                Pillows, Protectors &<br />
+                <span className="text-brand-600">More Accessories</span>
+              </h2>
+              <p className="text-graphite-600 text-sm md:text-base mt-4 font-body leading-relaxed">
+                Crafted from the same premium materials as our mattresses — naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.
+              </p>
+            </div>
+            <button
+              onClick={() => handlePageNavigation('accessories')}
+              className="btn btn-primary shrink-0 group text-xs font-bold font-accent uppercase tracking-widest py-3.5 px-8 rounded-full flex items-center gap-2 cursor-pointer"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              Shop Accessories
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </FadeUp>
+
+          <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" stagger={0.12}>
+            {[
+              {
+                icon: BedDouble,
+                title: 'Latex Pillows',
+                desc: 'Ergonomic cervical support in natural Dunlop latex',
+                bg: 'from-brand-50 to-sky-50',
+                border: 'border-brand-200/50',
+              },
+              {
+                icon: BedDouble,
+                title: 'Shredded Pillows',
+                desc: 'Adjustable loft pillows with natural latex fill',
+                bg: 'from-sky-100/50 to-sky-50',
+                border: 'border-brand-200/40',
+              },
+              {
+                icon: Bed,
+                title: 'Mattress Protectors',
+                desc: 'Breathable waterproof protection, deep-pocket fit',
+                bg: 'from-brand-50 to-sky-50',
+                border: 'border-brand-200/50',
+              },
+              {
+                icon: Bed,
+                title: 'Fiber Pillows',
+                desc: 'Soft, plush microfiber for everyday comfort',
+                bg: 'from-sky-100/50 to-sky-50',
+                border: 'border-brand-200/40',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItem}
+                whileHover={{ y: -6 }}
+                className={`bg-gradient-to-br ${item.bg} rounded-2xl border ${item.border} shadow-sm p-5 md:p-7 flex flex-col items-start text-left group cursor-default transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/5`}
+              >
+                <div className="w-12 h-12 rounded-xl bg-white shadow-sm border border-brand-200/40 flex items-center justify-center text-brand-600 mb-4 group-hover:scale-110 group-hover:rotate-[-6deg] transition-all duration-400">
+                  <item.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-heading font-bold text-sm md:text-lg text-ink-900 mb-1.5">{item.title}</h3>
+                <p className="text-[10px] md:text-xs text-graphite-500 font-body leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section></FadeUp>
 
       <FadeUp><CostComparison /></FadeUp>
 
