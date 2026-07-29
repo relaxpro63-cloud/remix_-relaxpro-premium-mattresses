@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, useInView, animate } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { FadeUp, StaggerChildren, staggerItem } from '../motion/motionPrimitives';
 import {
   Play, Mic, ChevronRight, Quote, CheckCircle,
-  Leaf, Clock, Youtube, Users, Award, Zap, Star
+  Clock, Youtube, Star
 } from 'lucide-react';
 
 const YOUTUBE_ID = '7dcWsDOjMBg';
@@ -19,49 +19,6 @@ const highlights = [
   'Building Customer Trust Through Transparency',
   'From First-Time Entrepreneur to Premium Brand',
 ];
-
-const stats = [
-  { icon: Leaf, label: 'Natural Latex', value: '100%' },
-  { icon: Users, label: 'Happy Families', value: '1000+' },
-  { icon: Award, label: 'Years of Expertise', value: '10+' },
-  { icon: Zap, label: 'Customization', value: '1 Hour' },
-];
-
-function AnimatedStat({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [displayValue, setDisplayValue] = useState('0');
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-      const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
-      if (isNaN(numericValue)) {
-        setDisplayValue(value);
-        return;
-      }
-      const controls = animate(0, numericValue, {
-        duration: 1.5,
-        ease: [0.22, 1, 0.36, 1],
-        onUpdate: (latest) => {
-          const suffix = value.includes('%') ? '%' : value.includes('+') ? '+' : value.replace(/[0-9]/g, '');
-          setDisplayValue(`${Math.round(latest)}${suffix}`);
-        },
-      });
-      return () => controls.stop();
-    }    }, [isInView, value, hasAnimated]);
-
-  return (
-    <div ref={ref} className="flex flex-col items-center gap-2 p-4">
-      <div className="w-10 h-10 rounded-xl bg-[#0F5B43]/10 flex items-center justify-center text-[#0F5B43]">
-        <Icon className="w-5 h-5" />
-      </div>
-      <span className="text-2xl md:text-3xl font-heading font-bold text-[#0F5B43]">{displayValue}</span>
-      <span className="text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500 text-center leading-tight">{label}</span>
-    </div>
-  );
-}
 
 export default function FoundersPodcast() {
   const navigate = useNavigate();
@@ -247,13 +204,6 @@ export default function FoundersPodcast() {
                   </p>
                 </div>
               </motion.div>
-
-              {/* ===== Stats Row ===== */}
-              <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2 border-t border-[#ECE8DF] pt-6">
-                {stats.map((stat, i) => (
-                  <AnimatedStat key={i} {...stat} />
-                ))}
-              </div>
 
               {/* ===== CTAs ===== */}
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
