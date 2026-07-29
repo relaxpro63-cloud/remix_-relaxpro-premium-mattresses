@@ -27,7 +27,7 @@
     ]
   },
   {
-    "_id": "mat-kerala-latex", "_type": "builderMaterial", "name": "Pure Organic Kerala Latex", "slug": {"current": "kerala-latex"},
+    "_id": "mat-kerala-latex", "_type": "builderMaterial", "name": "Organic Latex", "slug": {"current": "kerala-latex"},
     "slot": "comfort", "density": "90 Density", "ild": "ILD-38", "feelTag": "Natural, cooling & premium",
     "benefit": "GOLS-grade organic latex — breathable, durable, pressure-relieving.", "tooltip": "90 density natural latex, ILD-38 (medium-soft).",
     "stackColor": "#BFE3C0", "isRecommended": true, "order": 4, "isActive": true,
