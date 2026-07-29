@@ -17,8 +17,7 @@ import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
 
 import SleepFAQs from '../../components/home/SleepFAQs';
-import ConsultationForm from '../../components/home/ConsultationForm';
-import ShowroomBookingForm from '../../components/home/ShowroomBookingForm';
+
 import ComparisonTable from '../../components/home/ComparisonTable';
 import CertificationsSection from '../../components/home/CertificationsSection';
 import CustomerVideos from '../../components/home/CustomerVideos';
@@ -577,14 +576,6 @@ export default function HomePage({
 
       <FadeUp><section className="bg-secondary border-t border-brand-200/30">
         <SleepFAQs />
-      </section></FadeUp>
-
-      <FadeUp><section className="py-12 md:py-16 bg-sky-100/20 px-4">
-        <ShowroomBookingForm />
-      </section></FadeUp>
-
-      <FadeUp><section className="py-12 md:py-16 bg-secondary border-t border-brand-200/30 px-4">
-        <ConsultationForm />
       </section></FadeUp>
 
       <TrustBadges />

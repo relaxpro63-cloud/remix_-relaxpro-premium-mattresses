@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ShoppingBag, ArrowRight } from 'lucide-react';
+import { ShoppingBag, ArrowRight, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { FadeUp } from '../../components/motion/motionPrimitives';
 import ConsultationForm from '../../components/home/ConsultationForm';
+import ShowroomBookingForm from '../../components/home/ShowroomBookingForm';
 import PageShell from '../../components/layout/PageShell';
 import { getContactPage } from '../../lib/queries';
 
@@ -34,15 +35,104 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-sky-100/20 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <ConsultationForm />
+      {/* Showroom Booking + Consultation Forms - Side by Side */}
+      <section className="bg-sky-100/20 py-16 md:py-24 relative overflow-hidden">
+        {/* Decorative glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-100/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-100/20 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <FadeUp className="text-center mb-12">
+            <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-100 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-brand-600">
+              Let's Connect
+            </span>
+            <h2 className="rp-display mt-4 text-ink-900">Book a Visit or Get Advice</h2>
+            <p className="rp-body mt-3 max-w-xl mx-auto">
+              Reserve a private showroom tour or request a callback from Suresh for personalized mattress recommendations.
+            </p>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <ShowroomBookingForm />
+            </div>
+            <div>
+              <ConsultationForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info + Map */}
+      <section className="bg-secondary py-16 md:py-24 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Details */}
+            <FadeUp>
+              <div className="space-y-6">
+                <span className="eyebrow">Get in Touch</span>
+                <h3 className="text-3xl md:text-4xl font-heading font-bold text-ink-900 leading-tight">
+                  We're Here to Help You Sleep Better
+                </h3>
+                
+                <div className="space-y-4 mt-8">
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-sky-50 border border-brand-200/40">
+                    <MapPin className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-accent font-bold text-sm text-ink-900">RelaxPro Factory Showroom</p>
+                      <p className="text-sm text-graphite-500 font-body mt-0.5">Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-sky-50 border border-brand-200/40">
+                    <Phone className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-accent font-bold text-sm text-ink-900">Phone / WhatsApp</p>
+                      <p className="text-sm text-graphite-500 font-body mt-0.5">+91 86866 24494<br />+91 72074 24494</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-sky-50 border border-brand-200/40">
+                    <Mail className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-accent font-bold text-sm text-ink-900">Email</p>
+                      <p className="text-sm text-graphite-500 font-body mt-0.5">relaxpro2022@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-sky-50 border border-brand-200/40">
+                    <Clock className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-accent font-bold text-sm text-ink-900">Business Hours</p>
+                      <p className="text-sm text-graphite-500 font-body mt-0.5">Monday - Sunday: 10:00 AM - 9:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* Map */}
+            <FadeUp delay={0.2}>
+              <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm h-full min-h-[400px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.640936998565!2d78.463397!3d17.504569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDMwJzE2LjQiTiA3OMKwMjcnNDguMiJF!5e0!3m2!1sen!2sin!4v1"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '400px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="RelaxPro Hyderabad Factory Showroom Location"
+                />
+              </div>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
       {/* Shuddha Banner CTA */}
       <FadeUp>
-        <section className="bg-secondary py-12 md:py-16 px-4 md:px-8">
+        <section className="bg-secondary pb-12 md:pb-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.button
               onClick={() => window.location.href = '/catalog'}
