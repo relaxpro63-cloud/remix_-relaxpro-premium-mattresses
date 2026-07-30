@@ -52,12 +52,16 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
   const handleClose = useCallback(() => {
+    // If user checked "Don't show again", persist it before closing
+    if (dontShow) {
+      onDontShowAgain();
+    }
     setName(''); setEmail(''); setPhone('');
     setDontShow(false);
     setErrors({}); setSubmitted(false); setIsSubmitting(false);
     setImgError(false);
     onClose();
-  }, [onClose]);
+  }, [onClose, dontShow, onDontShowAgain]);
 
   // Prevent background scrolling while preserving scroll position
   useEffect(() => {
