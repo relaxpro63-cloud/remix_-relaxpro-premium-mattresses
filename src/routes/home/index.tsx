@@ -362,6 +362,7 @@ export default function HomePage({
   {/* ── Accessories Section ── */}
       <FadeUp><section className="bg-sky-100/20 py-16 md:py-24 px-4 md:px-8 border-t border-brand-200/30 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 80%, rgba(21,104,163,0.06) 0%, transparent 60%)' }} />
+        <DecorativeBotanicals density="light" />
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeUp className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div className="max-w-xl">

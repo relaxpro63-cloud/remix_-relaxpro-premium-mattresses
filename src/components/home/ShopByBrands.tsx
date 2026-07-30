@@ -5,6 +5,7 @@ import { getHomePage, getAllProducts, imageUrl } from '../../lib/queries';
 import { buildWhatsAppUrl } from '../../lib/site';
 import PriceText from '../ui/PriceText';
 import ShineBorder from '../ui/ShineBorder';
+import DecorativeBotanicals from './DecorativeBotanicals';
 
 const categoryIcons: Record<string, React.ReactNode> = {
   'Full Latex Mattress': <BedDouble className="w-5 h-5" />,
@@ -67,8 +68,9 @@ export default function ShopByBrands() {
   if (categories.length === 0) return null;
 
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-secondary border-b border-brand-200/30">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-secondary border-b border-brand-200/30 relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-ink-900 mb-6 md:mb-8">
           Shop by Brands
         </h2>
