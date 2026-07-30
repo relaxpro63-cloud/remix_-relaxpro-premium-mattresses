@@ -330,5 +330,13 @@
   "mattress-hand.png": {
     "asset": "image-79d7d8de868b66cebe934e7769088324e0028707-1024x1024-png",
     "alt": "Mattress Hand"
+  },
+  "cert-fsc-logo.svg": {
+    "asset": "image-0f2f5d0db261f86359d02284a89c5427197384a5-200x200-svg",
+    "alt": "Cert Fsc Logo"
+  },
+  "cert-eco-institut-logo.svg": {
+    "asset": "image-a101719f7680b5c80c398f48aaee815e52aae802-200x200-svg",
+    "alt": "Cert Eco Institut Logo"
   }
 }

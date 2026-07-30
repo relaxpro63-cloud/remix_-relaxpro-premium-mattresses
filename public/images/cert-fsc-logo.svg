@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="fscGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D6A4F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1B4332;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="url(#fscGrad)" />
+  <!-- Tree silhouette -->
+  <path d="M100 35 L140 95 L115 95 L145 145 L55 145 L85 95 L60 95 Z" fill="#95D5B2" opacity="0.9" />
+  <!-- Checkmark -->
+  <path d="M80 120 L95 135 L125 105" stroke="#D8F3DC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <text x="100" y="172" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="28" fill="#D8F3DC" text-anchor="middle" letter-spacing="1">FSC</text>
+</svg>

@@ -173,10 +173,10 @@ async function seedCertifications() {
       pdfUrl: '', pdfEmbedUrl: '', validity: 'Valid — Recertified Annually', order: 3, isActive: true },
     { _id: 'cert-fsc', title: 'FSC Certified', slug: { current: 'fsc' }, subtitle: 'Forest Stewardship Council',
       description: 'Where wood products are used in our manufacturing and packaging, we source FSC-certified materials to ensure responsible forestry practices. We are committed to minimizing our environmental impact.',
-      logoImage: null, certificateImage: null, validity: 'Valid', order: 4, isActive: true },
+      logoImage: await img('cert-fsc-logo.svg', 'FSC Logo'), certificateImage: null, validity: 'Valid', order: 4, isActive: true },
     { _id: 'cert-eco-institut', title: 'ECO-Institut Verified', slug: { current: 'eco-institut' }, subtitle: 'Environmental Compatibility',
       description: 'Our eco-rebonded latex components have been tested and verified by ECO-Institut for environmental compatibility, confirming minimal ecological impact in both production and disposal phases.',
-      logoImage: null, certificateImage: null, validity: 'Valid', order: 5, isActive: true },
+      logoImage: await img('cert-eco-institut-logo.svg', 'ECO-Institut Logo'), certificateImage: null, validity: 'Valid', order: 5, isActive: true },
   ]
   for (const c of certs) await upsert('certification', c)
 }
