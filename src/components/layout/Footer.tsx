@@ -5,7 +5,7 @@ import {
   Mail, Phone, MapPin, Shield, RefreshCcw, Truck,
   Facebook, Instagram, Youtube,
   Heart, Award, MessageSquare, CheckCircle,
-  Clock, ExternalLink, ArrowUpToLine,
+  Clock, ExternalLink,
 } from 'lucide-react';
 import { getSiteSettings } from '../../lib/queries';
 
@@ -39,7 +39,6 @@ export default function Footer() {
     { label: 'About Us', path: '/about' },
     { label: 'Why Latex', path: '/science' },
     { label: 'Sleep Science', path: '/science' },
-    { label: 'Warranty', path: '/contact' },
   ];
 
   const productLinks = [
@@ -90,10 +89,6 @@ export default function Footer() {
     hidden: { opacity: 0, y: 24 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay } },
   });
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <footer className="relative overflow-hidden w-full bg-gradient-to-b from-[#061A24] via-[#0A2530] to-[#0F2C36] min-h-[880px] lg:min-h-[1020px]">
@@ -428,38 +423,7 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* ═══════ BOTTOM STRIP ═══════ */}
-        <div className="w-full border-t border-white/[0.06] relative">
-          <div className="absolute top-0 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-amber-400/15 to-transparent pointer-events-none" />
-          <div className="max-w-7xl mx-auto w-full px-6 md:px-10 lg:px-14 py-6 md:py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
-              <div className="flex items-center gap-2 text-white/20 text-[11px] font-body font-light">
-                <span>© {new Date().getFullYear()} RelaxPro Mattresses</span>
-                <span className="hidden md:inline text-white/10 mx-1">|</span>
-                <span className="hidden md:inline font-heading text-white/15 italic text-[10px]">
-                  Designed with Nature <span className="not-italic text-amber-400/30 mx-1">✦</span> Built for Better Sleep
-                </span>
-              </div>
-              <div className="flex items-center gap-5">
-                <Link to="/contact" className="text-[10px] text-white/25 hover:text-amber-400/60 transition-colors font-accent tracking-wide uppercase cursor-pointer">
-                  Privacy Policy
-                </Link>
-                <Link to="/contact" className="text-[10px] text-white/25 hover:text-amber-400/60 transition-colors font-accent tracking-wide uppercase cursor-pointer">
-                  Terms
-                </Link>
-                {/* Back to Top */}
-                <button
-                  onClick={scrollToTop}
-                  className="group flex items-center gap-1.5 text-[10px] text-white/25 hover:text-amber-400/60 transition-colors font-accent tracking-wide uppercase cursor-pointer"
-                  aria-label="Scroll to top"
-                >
-                  <ArrowUpToLine className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform" />
-                  Top
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* ═══════ BOTTOM STRIP — Removed per user request ═══════ */}
       </div>
     </footer>
   );
