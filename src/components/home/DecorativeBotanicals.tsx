@@ -8,10 +8,12 @@ interface DecorativeBotanicalsProps {
   className?: string;
 }
 
+type GradFn = (name: string) => string;
+
 /* ─── SVG Botanical Shapes ────────────────────────────── */
 
 /** Large broad leaf — Monstera/Fiddle-leaf style */
-function LeafLarge({ className }: { className?: string }) {
+function LeafLarge({ className, grad }: { className?: string; grad: GradFn }) {
   return (
     <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
@@ -41,7 +43,7 @@ function LeafLarge({ className }: { className?: string }) {
 }
 
 /** Medium branching leaf cluster */
-function LeafMedium({ className }: { className?: string }) {
+function LeafMedium({ className, grad }: { className?: string; grad: GradFn }) {
   return (
     <svg viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
@@ -76,7 +78,7 @@ function LeafMedium({ className }: { className?: string }) {
 }
 
 /** Small delicate leaf */
-function LeafSmall({ className }: { className?: string }) {
+function LeafSmall({ className, grad }: { className?: string; grad: GradFn }) {
   return (
     <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
@@ -102,7 +104,7 @@ function LeafSmall({ className }: { className?: string }) {
 }
 
 /** Curved vine accent */
-function VineAccent({ className }: { className?: string }) {
+function VineAccent({ className, grad }: { className?: string; grad: GradFn }) {
   return (
     <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
@@ -135,18 +137,19 @@ const EASE_ORGANIC = [0.22, 1, 0.36, 1] as const;
  * Uses hand-crafted SVG leaf shapes with brand color gradients
  * and slow floating animations. No external image files needed.
  *
+ * Each instance generates unique gradient IDs via useId() so that
+ * multiple instances on the same page never collide.
+ *
  * Density variants:
  *   'light' — 40% smaller leaves, fewer elements, for compact sections
  *   'full'  — 25% larger leaves, all decorative elements, for spacious sections
- *
- * These are hidden on mobile and only enhance the desktop experience.
  */
 export default function DecorativeBotanicals({
   density = 'full',
   className = '',
 }: DecorativeBotanicalsProps) {
   const uid = useId();
-  const grad = (name: string) => `${uid}-${name}`;
+  const grad: GradFn = (name: string) => `${uid}-${name}`;
   const isFull = density === 'full';
 
   return (
@@ -170,7 +173,7 @@ export default function DecorativeBotanicals({
           repeat: Infinity,
         }}
       >
-        <LeafLarge className="w-full h-auto" />
+        <LeafLarge className="w-full h-auto" grad={grad} />
       </motion.div>
 
       {/* Middle-left: Medium branch — gentle upward sway */}
@@ -188,7 +191,7 @@ export default function DecorativeBotanicals({
           delay: 1.8,
         }}
       >
-        <LeafMedium className="w-full h-auto" />
+        <LeafMedium className="w-full h-auto" grad={grad} />
       </motion.div>
 
       {/* Bottom-left: Small leaf — subtle bob */}
@@ -206,7 +209,7 @@ export default function DecorativeBotanicals({
           delay: 3.5,
         }}
       >
-        <LeafSmall className="w-full h-auto" />
+        <LeafSmall className="w-full h-auto" grad={grad} />
       </motion.div>
 
       {/* === RIGHT SIDE === */}
@@ -226,7 +229,7 @@ export default function DecorativeBotanicals({
           delay: 2.2,
         }}
       >
-        <LeafLarge className="w-full h-auto" />
+        <LeafLarge className="w-full h-auto" grad={grad} />
       </motion.div>
 
       {/* Middle-right: Medium branch — gentle downward sway */}
@@ -244,7 +247,7 @@ export default function DecorativeBotanicals({
           delay: 0.6,
         }}
       >
-        <LeafMedium className="w-full h-auto" />
+        <LeafMedium className="w-full h-auto" grad={grad} />
       </motion.div>
 
       {/* Bottom-right: Small decorative leaf — only on full density */}
@@ -263,7 +266,7 @@ export default function DecorativeBotanicals({
             delay: 4.5,
           }}
         >
-          <LeafSmall className="w-full h-auto" />
+          <LeafSmall className="w-full h-auto" grad={grad} />
         </motion.div>
       )}
 
@@ -275,7 +278,7 @@ export default function DecorativeBotanicals({
             animate={{ y: [0, -6, 0], rotate: [-20, -14, -20], scale: [1, 1.04, 1] }}
             transition={{ duration: 9, ease: EASE_ORGANIC, repeat: Infinity, delay: 1.2 }}
           >
-            <VineAccent className="w-full h-auto" />
+            <VineAccent className="w-full h-auto" grad={grad} />
           </motion.div>
           <motion.div
             className="absolute bottom-[14%] left-[1%] w-[95px] opacity-[0.45]"
@@ -283,7 +286,7 @@ export default function DecorativeBotanicals({
             transition={{ duration: 8, ease: EASE_ORGANIC, repeat: Infinity, delay: 2.8 }}
           >
             <div style={{ transform: 'scaleX(-1)' }}>
-              <VineAccent className="w-full h-auto" />
+              <VineAccent className="w-full h-auto" grad={grad} />
             </div>
           </motion.div>
         </>
