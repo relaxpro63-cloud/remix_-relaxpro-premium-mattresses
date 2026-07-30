@@ -998,9 +998,8 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         }).join(', ');
       }
       case 'comfort': {
-        // Show foam-based comfort (exclude PU Rebonded — it's in Step 4)
+        // Show foam-based comfort (not latex/organic)
         const foamMats = build.comfort.filter(s => {
-          if (s.materialSlug === 'pu-rebonded') return false;
           const m = config.materials.find(x => x.slug === s.materialSlug);
           const name = m?.name || '';
           return !name.toLowerCase().includes('latex') && !name.toLowerCase().includes('organic');
@@ -1012,9 +1011,8 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         }).join(', ');
       }
       case 'natural': {
-        // Show natural comfort + PU Rebonded
+        // Show natural comfort (latex/organic only)
         const naturalMats = build.comfort.filter(s => {
-          if (s.materialSlug === 'pu-rebonded') return true;
           const m = config.materials.find(x => x.slug === s.materialSlug);
           const name = m?.name || '';
           return name.toLowerCase().includes('latex') || name.toLowerCase().includes('organic');
@@ -1033,10 +1031,10 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     }
   }, [build, config]);
 
-  // Filter materials for each step
+  // Filter materials for each step — only show active materials
   const supportMats = useMemo(() =>
     config?.materials.filter(m =>
-      m.slug === 'pu-rebonded' || m.slug === 'latex-rebonded-core'
+      m.slug === 'latex-rebonded-core'
     ) || [], [config]);
   const foamComfortMats = useMemo(() =>
     config?.materials.filter(m =>
