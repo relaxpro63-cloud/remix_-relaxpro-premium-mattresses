@@ -154,7 +154,7 @@ export default function DecorativeBotanicals({
 
   return (
     <div
-      className={`block absolute inset-0 pointer-events-none overflow-hidden select-none z-0 opacity-40 scale-[0.58] sm:opacity-55 sm:scale-75 lg:opacity-100 lg:scale-100 ${className}`}
+      className={`block absolute inset-0 pointer-events-none overflow-hidden select-none z-0 opacity-70 scale-[0.75] sm:opacity-85 sm:scale-90 lg:opacity-100 lg:scale-100 ${className}`}
       aria-hidden="true"
     >
       {/* === LEFT SIDE === */}
