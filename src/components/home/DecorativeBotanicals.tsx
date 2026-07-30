@@ -149,7 +149,7 @@ export default function DecorativeBotanicals({
 
   return (
     <div
-      className={`hidden lg:block absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
+      className={`hidden lg:block absolute inset-0 pointer-events-none overflow-hidden select-none -z-10 ${className}`}
       aria-hidden="true"
     >
       {/* === LEFT SIDE === */}
