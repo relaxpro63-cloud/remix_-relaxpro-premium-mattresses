@@ -133,12 +133,13 @@ type PriceRow = [number, number, number, number];
 const SIZE_IDX: Record<string, number> = { single: 0, diwan: 1, queen: 2, king: 3 };
 
 const HARDCODED_PRICES: Record<string, Record<number, PriceRow>> = {
-  'pu-rebonded':    { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
-  'hr-foam':        { 2: [1500, 2000, 2500, 3000] },
-  'hr-soft':        { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
-  'supersoft-foam': { 2: [1500, 2000, 2500, 3000] },
-  'kerala-latex':   { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000], 6: [18000, 24000, 30000, 36000], 8: [24000, 32000, 40000, 48000] },
-  'latex-rebonded': { 2: [3000, 4000, 5000, 6000], 4: [6000, 8000, 10000, 12000] },
+  'pu-rebonded':           { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
+  'hr-foam':               { 2: [1500, 2000, 2500, 3000] },
+  'hr-softy-foam':         { 2: [1500, 2000, 2500, 3000] },
+  'latex-rebonded-core':   { 2: [3000, 4000, 5000, 6000], 4: [6000, 8000, 10000, 12000] },
+  'pure-natural-latex-soft':   { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000] },
+  'pure-natural-latex-medium': { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000] },
+  'pure-natural-latex-firm':   { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000] },
 };
 
 const QUILT_PRICES: PriceRow = [2500, 3500, 4200, 5000];
@@ -169,11 +170,12 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
 function initBuild(_config: BuilderConfig): BuildState {
   const defaultCat = SIZE_CATEGORIES[0];
   const defaultVariant = STANDARD_SIZES[defaultCat.value].variants[0];
+  const defaultQuilt = _config.fabrics.find(f => f.slug === 'quilting-12mm');
   return {
     size: { kind: 'preset', name: defaultCat.label, length: defaultVariant.dims.length, width: defaultVariant.dims.width, sizeCategory: defaultCat.value },
     comfort: [],
     support: [],
-    cover: { fabricSlug: '', quiltingSlug: undefined },
+    cover: { fabricSlug: '', quiltingSlug: defaultQuilt?.slug || undefined },
   };
 }
 
@@ -1033,22 +1035,17 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
 
   // Filter materials for each step
   const supportMats = useMemo(() =>
-    config?.materials.filter(m => m.slot === 'support' && m.slug !== 'pu-rebonded') || [], [config]);
+    config?.materials.filter(m =>
+      m.slug === 'pu-rebonded' || m.slug === 'latex-rebonded-core'
+    ) || [], [config]);
   const foamComfortMats = useMemo(() =>
-    config?.materials.filter(m => {
-      if (m.slot !== 'comfort') return false;
-      const name = m.name.toLowerCase();
-      // Only HR-based foams, not supersoft
-      return !name.includes('supersoft') && (name.includes('foam') || name.includes('soft') || name.includes('resilience'));
-    }) || [], [config]);
+    config?.materials.filter(m =>
+      m.slug === 'hr-foam' || m.slug === 'hr-softy-foam'
+    ) || [], [config]);
   const naturalComfortMats = useMemo(() =>
-    config?.materials.filter(m => {
-      const name = m.name.toLowerCase();
-      // Include natural latex/organic AND PU Rebonded (user wants it in Step 4)
-      if (m.slot === 'comfort' && (name.includes('latex') || name.includes('organic'))) return true;
-      if (m.slug === 'pu-rebonded') return true;
-      return false;
-    }) || [], [config]);
+    config?.materials.filter(m =>
+      ['pure-natural-latex-soft', 'pure-natural-latex-medium', 'pure-natural-latex-firm'].includes(m.slug)
+    ) || [], [config]);
 
   const handleAddToCart = () => {
     if (!build || !config) return;
