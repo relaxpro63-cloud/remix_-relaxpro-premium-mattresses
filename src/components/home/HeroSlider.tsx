@@ -44,6 +44,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       className="relative min-h-screen flex overflow-hidden"
     >
       {/* ============================================ */}
+      {/* BOTANICAL ACCENTS — Full section width      */}
+      {/* ============================================ */}
+      <DecorativeBotanicals density="light" />
+
+      {/* ============================================ */}
       {/* LEFT SIDE — Content + Blue Gradient (40%)   */}
       {/* ============================================ */}
       <div className="w-full md:w-[40%] min-h-screen relative flex items-center overflow-hidden">
@@ -209,8 +214,6 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         />
         {/* Subtle edge fade to left */}
         <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0B1424]/70 to-transparent pointer-events-none" />
-        {/* Botanical accents on the hero image side */}
-        <DecorativeBotanicals density="light" />
       </div>
 
       {/* ============================================ */}

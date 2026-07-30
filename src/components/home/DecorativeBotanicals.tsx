@@ -130,12 +130,18 @@ function VineAccent({ className }: { className?: string }) {
  * Uses hand-crafted SVG leaf shapes with brand color gradients
  * and slow floating animations. No external image files needed.
  *
+ * Density variants:
+ *   'light' — 40% smaller leaves, fewer elements, for compact sections
+ *   'full'  — 25% larger leaves, all decorative elements, for spacious sections
+ *
  * These are hidden on mobile and only enhance the desktop experience.
  */
 export default function DecorativeBotanicals({
   density = 'full',
   className = '',
 }: DecorativeBotanicalsProps) {
+  const isFull = density === 'full';
+
   return (
     <div
       className={`hidden lg:block absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
@@ -145,7 +151,7 @@ export default function DecorativeBotanicals({
 
       {/* Top-left: Large leaf */}
       <motion.div
-        className="absolute -top-[5%] -left-[6%] w-[320px] opacity-[0.85]"
+        className={`absolute -top-[2%] -left-[2%] ${isFull ? 'w-[400px]' : 'w-[200px]'} opacity-[0.85]`}
         animate={{
           y: [0, -10, 0],
           rotate: [-16, -12, -16],
@@ -161,7 +167,7 @@ export default function DecorativeBotanicals({
 
       {/* Middle-left: Medium branch */}
       <motion.div
-        className="absolute top-[35%] -left-[8%] w-[240px] opacity-[0.80]"
+        className={`absolute top-[35%] -left-[3%] ${isFull ? 'w-[300px]' : 'w-[140px]'} opacity-[0.80]`}
         animate={{
           y: [0, 8, 0],
           rotate: [-8, -4, -8],
@@ -178,7 +184,7 @@ export default function DecorativeBotanicals({
 
       {/* Bottom-left: Small leaf */}
       <motion.div
-        className="absolute bottom-[5%] -left-[5%] w-[200px] opacity-[0.85]"
+        className={`absolute bottom-[5%] -left-[2%] ${isFull ? 'w-[250px]' : 'w-[120px]'} opacity-[0.85]`}
         animate={{
           y: [0, -6, 0],
           rotate: [5, 8, 5],
@@ -197,7 +203,7 @@ export default function DecorativeBotanicals({
 
       {/* Top-right: Large leaf */}
       <motion.div
-        className="absolute -top-[3%] -right-[6%] w-[340px] opacity-[0.85]"
+        className={`absolute -top-[1%] -right-[2%] ${isFull ? 'w-[400px]' : 'w-[200px]'} opacity-[0.85]`}
         animate={{
           y: [0, -8, 0],
           rotate: [12, 16, 12],
@@ -214,7 +220,7 @@ export default function DecorativeBotanicals({
 
       {/* Middle-right: Medium branch */}
       <motion.div
-        className="absolute top-[45%] -right-[7%] w-[220px] opacity-[0.80]"
+        className={`absolute top-[45%] -right-[3%] ${isFull ? 'w-[280px]' : 'w-[130px]'} opacity-[0.80]`}
         animate={{
           y: [0, 6, 0],
           rotate: [-10, -6, -10],
@@ -230,9 +236,9 @@ export default function DecorativeBotanicals({
       </motion.div>
 
       {/* Bottom-right: Small decorative */}
-      {density === 'full' && (
+      {isFull && (
         <motion.div
-          className="absolute bottom-[8%] -right-[4%] w-[180px] opacity-[0.85]"
+          className="absolute bottom-[8%] -right-[2%] w-[220px] opacity-[0.85]"
           animate={{
             y: [0, -5, 0],
             rotate: [-5, -2, -5],
@@ -249,17 +255,17 @@ export default function DecorativeBotanicals({
       )}
 
       {/* Extra floating vine accents — only on full density */}
-      {density === 'full' && (
+      {isFull && (
         <>
           <motion.div
-            className="absolute top-[18%] right-[2%] w-[100px] opacity-[0.55]"
+            className="absolute top-[18%] right-[1%] w-[125px] opacity-[0.55]"
             animate={{ y: [0, -5, 0], rotate: [-20, -15, -20] }}
             transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 1 }}
           >
             <VineAccent className="w-full h-auto" />
           </motion.div>
           <motion.div
-            className="absolute bottom-[15%] left-[2%] w-[80px] opacity-[0.55]"
+            className="absolute bottom-[15%] left-[1%] w-[100px] opacity-[0.55]"
             animate={{ y: [0, 4, 0], rotate: [25, 30, 25] }}
             transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity, delay: 2.5 }}
           >
@@ -272,7 +278,7 @@ export default function DecorativeBotanicals({
 
       {/* Floating corner dots — subtle organic accent */}
       <motion.div
-        className="absolute top-[15%] right-[12%] w-[48px] opacity-[0.45]"
+        className={`absolute top-[15%] ${isFull ? 'right-[6%]' : 'right-[4%]'} ${isFull ? 'w-[60px]' : 'w-[28px]'} opacity-[0.45]`}
         animate={{ y: [0, -4, 0], rotate: [-30, -25, -30] }}
         transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
       >
@@ -280,7 +286,7 @@ export default function DecorativeBotanicals({
       </motion.div>
 
       <motion.div
-        className="absolute bottom-[20%] left-[15%] w-[32px] opacity-[0.45]"
+        className={`absolute bottom-[20%] ${isFull ? 'left-[8%]' : 'left-[5%]'} ${isFull ? 'w-[40px]' : 'w-[20px]'} opacity-[0.45]`}
         animate={{ y: [0, 3, 0], rotate: [45, 50, 45] }}
         transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
       >
