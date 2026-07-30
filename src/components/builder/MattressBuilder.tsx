@@ -159,21 +159,18 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
   const sizeIdx = getSizeIdx(build);
   const layerPrice = (sels: { materialSlug: string; thickness: number }[]) =>
     sels.reduce((sum, sel) => sum + getLayerPrice(sel.materialSlug, sel.thickness, sizeIdx, config), 0);
-  const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
   const quiltPrice = build.cover.quiltingSlug ? QUILT_PRICES[sizeIdx] : 0;
-  return layerPrice(build.comfort) + layerPrice(build.support)
-    + (coverFab?.addPrice ?? 0) + quiltPrice;
+  return layerPrice(build.comfort) + layerPrice(build.support) + quiltPrice;
 }
 
 function initBuild(_config: BuilderConfig): BuildState {
   const defaultCat = SIZE_CATEGORIES[0];
   const defaultVariant = STANDARD_SIZES[defaultCat.value].variants[0];
-  const defaultQuilt = _config.fabrics.find(f => f.slug === 'quilting-12mm');
   return {
     size: { kind: 'preset', name: defaultCat.label, length: defaultVariant.dims.length, width: defaultVariant.dims.width, sizeCategory: defaultCat.value },
     comfort: [],
     support: [],
-    cover: { fabricSlug: '', quiltingSlug: defaultQuilt?.slug || undefined },
+    cover: { fabricSlug: '', quiltingSlug: 'quilting-12mm' },
   };
 }
 
@@ -831,58 +828,33 @@ function StepMaterialGroup({ materials, build, onSelect, slot }: {
 }
 
 /* ── Step: Cover ── */
-function StepCover({ fabrics, build, onSelect }: {
-  fabrics: BuilderFabric[]; build: BuildState;
+function StepCover({ build, onSelect }: {
+  build: BuildState;
   onSelect: (b: BuildState) => void;
 }) {
-  const quiltingFabrics = fabrics.filter(f => f.role === 'quiltingUpgrade');
-  const quiltFab = quiltingFabrics[0];
-
   return (
     <div className="space-y-4">
-      {/* Quilting upgrade - full card clickable */}
-      {quiltFab && (
-        <div className="pt-3 border-t border-graphite-100">
-          <p className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider mb-3">Add a Quilted Top</p>
-          <motion.button
-            onClick={() => onSelect({
-              ...build,
-              cover: { ...build.cover, quiltingSlug: build.cover.quiltingSlug ? '' : quiltFab.slug }
-            })}
-            whileTap={{ scale: 0.99 }}
-            className={`relative w-full text-left rounded-xl border-2 transition-all duration-300 overflow-hidden cursor-pointer ${
-              build.cover.quiltingSlug
-                ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
-                : 'border-graphite-100 bg-white hover:border-graphite-200 hover:shadow-md'
-            }`}
-          >
-            {build.cover.quiltingSlug && (
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-ink-900" />
-            )}
-            <div className="flex items-center gap-3 p-4">
-              <div className={`w-[18px] h-[18px] rounded flex items-center justify-center shrink-0 transition-all ${
-                build.cover.quiltingSlug
-                  ? 'bg-ink-900 text-white ring-2 ring-ink-900/30'
-                  : 'border-2 border-graphite-300 bg-white'
-              }`}>
-                {build.cover.quiltingSlug && <Check className="w-3 h-3 text-white" />}
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="font-bold text-sm text-ink-900">{quiltFab.name}</span>
-                {quiltFab.benefit && <p className="text-xs text-graphite-500 mt-0.5">{quiltFab.benefit}</p>}
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                {quiltFab.quiltingMm && (
-                  <span className="text-[10px] font-semibold text-graphite-400 bg-graphite-100 px-2 py-1 rounded-full">
-                    {quiltFab.quiltingMm}
-                  </span>
-                )}
-
-              </div>
-            </div>
-          </motion.button>
+      <div className="p-5 sm:p-6 bg-gradient-to-br from-white to-ink-50/20 rounded-xl border border-ink-900/10 shadow-sm">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-xl bg-ink-900/10 flex items-center justify-center shrink-0">
+            <Palette className="w-5 h-5 text-ink-900" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h4 className="font-bold text-sm text-ink-900">12mm Deep Quilting (Premium)</h4>
+            <p className="text-xs text-graphite-500 mt-0.5">
+              Deep 12mm quilting for a luxurious pillow-top feel with enhanced pressure relief.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
+              <Check className="w-3 h-3" /> Included
+            </span>
+          </div>
         </div>
-      )}
+      </div>
+      <p className="text-[10px] text-graphite-400 text-center pt-1">
+        12mm quilted top is automatically included in your mattress. Pricing varies by size.
+      </p>
     </div>
   );
 }
@@ -1018,9 +990,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         }).join(', ');
       }
       case 'cover': {
-        const f = config.fabrics.find(x => x.slug === build.cover.fabricSlug);
-        const q = build.cover.quiltingSlug ? ' + Quilted' : '';
-        return f ? `${f.name}${q}` : 'Not set';
+        return build.cover.quiltingSlug ? '12mm Deep Quilting (Premium)' : 'Not set';
       }
     }
   }, [build, config]);
@@ -1045,12 +1015,10 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
 
     const comfortMats = build.comfort.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
     const supportMats2 = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
-    const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
     const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
 
     const layers = [
       ...(quiltFab ? [{ material: '12mm Quilted Top', thickness: 0 }] : []),
-      { material: coverFab?.name || 'Cotton Cover', thickness: 0 },
       ...comfortMats.map(s => ({ material: s.mat?.name || s.materialSlug, thickness: s.thickness })),
       ...supportMats2.map(s => ({ material: s.mat?.name || s.materialSlug, thickness: s.thickness })),
     ];
@@ -1076,7 +1044,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
 
   const handleWhatsApp = () => {
     if (!build || !config) return;
-    const coverFab = config.fabrics.find(f => f.slug === build.cover.fabricSlug);
     const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
     const comfortDescs = build.comfort.map(s => {
       const m = config.materials.find(x => x.slug === s.materialSlug);
@@ -1098,7 +1065,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
       'Support Core:',
       supportDescs || '  (none)',
       '',
-      `Cover: ${coverFab?.name || 'Not selected'}${quiltFab ? ` + ${quiltFab.name}` : ''}`,
+      `Cover: 12mm Deep Quilting (Premium)${quiltFab ? '' : ''}`,
       '',
       `Total: \u20b9${price.toLocaleString('en-IN')}`,
       '',
