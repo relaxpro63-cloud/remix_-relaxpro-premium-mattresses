@@ -2182,5 +2182,13 @@
       "_ref": "image-c015b602d1af04da03f0768d3e1a92efd2d1480c-1024x1024-jpg"
     },
     "alt": "Hero Bedroom"
+  },
+  "hero-section.png": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-76de58196d2bd1f42addf8cc7952bb23b62cabb2-1262x848-png"
+    },
+    "alt": "Hero Section"
   }
 }

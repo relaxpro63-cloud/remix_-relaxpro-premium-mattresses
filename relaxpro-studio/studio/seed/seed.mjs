@@ -439,7 +439,7 @@ const HERO_SLIDES = {
   _id: 'hero',
   title: 'Homepage Hero',
   slides: [{
-    image: await getImageAsset('hero-bedroom.png'),
+    image: await getImageAsset('hero-section.png'),
     badge: 'Handcrafted Dunlop Latex Since 2015',
     heading: 'Pure Natural Latex,',
     highlight: 'From Kerala',

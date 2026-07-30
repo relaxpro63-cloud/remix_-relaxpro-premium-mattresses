@@ -31,10 +31,10 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const heading = hero?.slides?.[0]?.heading || 'Sleep Pure. Sleep Natural.';
-  const subtext = hero?.slides?.[0]?.description || 'Experience handcrafted 100% Natural Latex Mattresses designed for healthier sleep, orthopedic support, and lasting luxury.';
+  const heading = hero?.slides?.[0]?.heading || 'Nature to Your Bed';
+  const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Handcrafted in Hyderabad and shipped directly to your doorstep.';
   const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Shop Collection';
-  const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-banner.png';
+  const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.png';
 
   return (
     <section
