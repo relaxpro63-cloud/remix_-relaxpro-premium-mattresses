@@ -1,13 +1,13 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Ruler, Layers, Shirt, Check, MessageSquare, ShoppingCart,
+  Ruler, Layers, Shirt, Check, MessageSquare,
   ChevronDown, Sparkles, Bed, Info, X, Plus, Minus,
   Ruler as RulerIcon, Shield, Truck, Clock, Heart,
   ChevronRight, Palette, Feather, Snowflake, Zap,
   Maximize2, Maximize, Leaf
 } from 'lucide-react';
-import { CartItem, MattressSize, SizeCategory } from '../../types';
+import { MattressSize, SizeCategory } from '../../types';
 import { STANDARD_SIZES, SIZE_CATEGORIES } from '../../types/sizes';
 import { getBuilderData } from '../../lib/queries';
 import { WHATSAPP_NUMBER } from '../../lib/site';
@@ -929,15 +929,14 @@ function PriceCounter({ value }: { value: number }) {
 /* ──────────────────────────────────────────────────────────────
    MAIN BUILDER COMPONENT
    ────────────────────────────────────────────────────────────── */
-export default function MattressBuilder({ onAddToCart, onNavigate }: {
-  onAddToCart: (item: CartItem) => void; onNavigate: (page: string) => void;
+export default function MattressBuilder({ onNavigate }: {
+  onNavigate: (page: string) => void;
 }) {
   const [config, setConfig] = useState<BuilderConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [build, setBuild] = useState<BuildState | null>(null);
   const [openStep, setOpenStep] = useState<StepKey>('size');
-  const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
     getBuilderData()
@@ -1008,39 +1007,6 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     config?.materials.filter(m =>
       m.slug === 'pure-natural-latex'
     ) || [], [config]);
-
-  const handleAddToCart = () => {
-    if (!build || !config) return;
-    if (build.comfort.length === 0 && build.support.length === 0) return;
-
-    const comfortMats = build.comfort.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
-    const supportMats2 = build.support.map(s => ({ ...s, mat: config.materials.find(m => m.slug === s.materialSlug) }));
-    const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
-
-    const layers = [
-      ...(quiltFab ? [{ material: '12mm Quilted Top', thickness: 0 }] : []),
-      ...comfortMats.map(s => ({ material: s.mat?.name || s.materialSlug, thickness: s.thickness })),
-      ...supportMats2.map(s => ({ material: s.mat?.name || s.materialSlug, thickness: s.thickness })),
-    ];
-
-    const item: CartItem = {
-      id: `custom-${Date.now()}`,
-      slug: 'custom-build',
-      name: `Custom ${build.size.name || 'Size'} Mattress`,
-      size: build.size.name?.toLowerCase() as MattressSize || 'custom',
-      price,
-      quantity: 1,
-      includeAccessories: false,
-      image: 'https://images.unsplash.com/photo-1631549916768-4119b812b1f0?w=800&q=80',
-      type: 'custom',
-      customLayers: layers,
-      customSize: build.size.kind === 'custom' ? { length: build.size.length, width: build.size.width } : undefined,
-    };
-
-    onAddToCart(item);
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
-  };
 
   const handleWhatsApp = () => {
     if (!build || !config) return;
@@ -1152,17 +1118,12 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
                 </div>
               </div>
               <motion.button
-                onClick={handleAddToCart}
-                disabled={build.comfort.length === 0 || build.support.length === 0}
-                whileTap={build.comfort.length > 0 && build.support.length > 0 ? { scale: 0.97 } : {}}
-                className={`hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${
-                  build.comfort.length > 0 && build.support.length > 0
-                    ? 'bg-ink-900 text-white hover:bg-ink-800 shadow-md shadow-ink-900/10 cursor-pointer'
-                    : 'bg-graphite-200 text-graphite-400 cursor-not-allowed'
-                }`}
+                onClick={handleWhatsApp}
+                whileTap={{ scale: 0.97 }}
+                className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all bg-green-600 text-white hover:bg-green-700 shadow-md shadow-green-600/20 cursor-pointer"
               >
-                <ShoppingCart className="w-3.5 h-3.5" />
-                {addedToCart ? 'Added!' : config.ctas.primaryLabel}
+                <MessageSquare className="w-3.5 h-3.5" />
+                {config.ctas.secondaryLabel}
               </motion.button>
             </div>
           </div>
@@ -1219,26 +1180,12 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
             {/* Desktop CTA */}
             <div className="hidden lg:block space-y-2">
               <motion.button
-                onClick={handleAddToCart}
-                whileTap={build.comfort.length > 0 && build.support.length > 0 ? { scale: 0.98 } : {}}
-                disabled={build.comfort.length === 0 || build.support.length === 0}
-                className={`w-full py-4 px-6 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 ${
-                  build.comfort.length > 0 && build.support.length > 0
-                    ? 'bg-ink-900 text-white shadow-lg hover:bg-ink-800 cursor-pointer'
-                    : 'bg-graphite-200 text-graphite-400 cursor-not-allowed'
-                }`}
-              >
-                <ShoppingCart className="w-4 h-4" />
-                {addedToCart ? 'Added to Cart!' : (build.comfort.length > 0 && build.support.length > 0 ? config.ctas.primaryLabel : config.ctas.disabledHint)}
-              </motion.button>
-
-              <motion.button
                 onClick={handleWhatsApp}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 px-6 rounded-xl border-2 border-eco-500/20 text-eco-600 hover:bg-eco-50 font-semibold text-xs tracking-wide transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 px-6 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 bg-green-600 text-white shadow-lg hover:bg-green-700 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                {config.ctas.secondaryLabel}
+                Send Enquiry via WhatsApp
               </motion.button>
 
               {/* Trust badges */}
@@ -1326,17 +1273,11 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
           </div>
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={handleAddToCart}
-            disabled={build.comfort.length === 0 || build.support.length === 0}
-            className={`flex-1 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${
-              build.comfort.length > 0 && build.support.length > 0
-                ? 'bg-ink-900 text-white shadow-md cursor-pointer'
-                : 'bg-graphite-200 text-graphite-400 cursor-not-allowed'
-            }`}
+          <button             onClick={handleWhatsApp}
+            className="flex-1 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all bg-green-600 text-white shadow-md cursor-pointer"
           >
-            <ShoppingCart className="w-4 h-4" />
-            {addedToCart ? 'Added!' : (build.comfort.length > 0 && build.support.length > 0 ? config.ctas.primaryLabel : config.ctas.disabledHint)}
+            <MessageSquare className="w-4 h-4" />
+            Send Enquiry
           </button>
           <button
             onClick={handleWhatsApp}
