@@ -117,40 +117,6 @@ async function seedAccessories() {
   for (const a of accessories) await upsert('accessory', a)
 }
 
-// ═════════════════════════════════════════════════════════════════════════════
-//  2 — OFFERS
-// ═════════════════════════════════════════════════════════════════════════════
-
-function seedOffers() {
-  console.log('\n═══════ OFFERS ═══════')
-  const offers = [
-    {
-      _id: 'offer-factory-direct', title: 'Factory Direct Pricing — Up to 30% Off',
-      subtitle: 'Why pay retail when you can buy directly from the manufacturer?',
-      description: 'Get genuine factory-direct pricing on all RelaxPro mattresses. No middlemen, no showroom commissions, no hidden costs. What you see is what you pay — plus free delivery.',
-      badge: 'Best Value', type: 'discount', discountText: 'Factory Direct — Save 30%',
-      cta: { label: 'Shop Factory Direct', link: '/catalog', variant: 'primary', openInNewTab: false },
-      isActive: true, showBanner: false, priority: 10,
-    },
-    {
-      _id: 'offer-free-accessories', title: 'Free Accessories with Every Purchase',
-      subtitle: 'Get 2 Latex Pillows + Mattress Protector Free',
-      description: 'When you buy any RelaxPro mattress, receive 2 natural latex pillows and an organic cotton mattress protector absolutely free. Limited stock offer — valid while supplies last.',
-      badge: 'Limited Time', type: 'bundle', discountText: 'Free ₹8,497 Worth of Accessories',
-      cta: { label: 'Claim This Offer', link: '/catalog', variant: 'primary', openInNewTab: false },
-      isActive: true, showBanner: true, bannerColor: 'brand', priority: 8,
-    },
-    {
-      _id: 'offer-comfort-collection', title: 'Comfort Collection — Starting at ₹6,500',
-      subtitle: 'Premium orthopedic mattresses at entry-level prices',
-      description: 'Explore our Comfort Collection featuring the Ojas and AyushRest models. Perfect for guest rooms, hostels, and budget-conscious buyers who refuse to compromise on quality.',
-      badge: 'Budget Friendly', type: 'seasonal', discountText: 'From ₹6,500',
-      cta: { label: 'Explore Comfort Collection', link: '/catalog?tier=comfort', variant: 'secondary', openInNewTab: false },
-      isActive: true, showBanner: false, priority: 6,
-    },
-  ]
-  return offers
-}
 
 // ═════════════════════════════════════════════════════════════════════════════
 //  3 — CERTIFICATIONS
@@ -280,8 +246,6 @@ async function main() {
   console.log('═'.repeat(50))
 
   await seedAccessories()
-  const offers = seedOffers()
-  for (const o of offers) await upsert('offer', o)
   await seedCertifications()
   await upsert('certificationSettings', seedCertificationSettings())
   const builderConfig = seedBuilderConfig()

@@ -340,13 +340,3 @@ export async function getCertificationSettings() {
   }`)
 }
 
-export async function getActiveOffers() {
-  return sanityClient.fetch(`*[_type == "offer" && isActive == true && (endDate == null || endDate > now())] | order(priority desc){
-    title, subtitle, description, discountText, badge, type,
-    bannerImage { asset->{_id, url}, alt },
-    cta { label, link, variant, openInNewTab },
-    couponCode, showBanner, bannerColor,
-    startDate, endDate,
-    targetProducts[]->{ name, "slug": slug.current }
-  }`)
-}
