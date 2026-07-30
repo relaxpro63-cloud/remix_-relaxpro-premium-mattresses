@@ -59,16 +59,38 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
     onClose();
   }, [onClose]);
 
-  // Prevent background scrolling
+  // Prevent background scrolling while preserving scroll position
   useEffect(() => {
     if (isOpen) {
       previousActiveElement.current = document.activeElement as HTMLElement;
-      document.body.style.overflow = 'hidden';
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflowY = 'scroll'; // preserve scrollbar gutter
     } else {
-      document.body.style.overflow = '';
-      previousActiveElement.current?.focus();
+      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, scrollY);
+      // Restore focus without forcing a scroll jump
+      requestAnimationFrame(() => {
+        previousActiveElement.current?.focus({ preventScroll: true });
+      });
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, scrollY);
+    };
   }, [isOpen]);
 
   // Focus trap
