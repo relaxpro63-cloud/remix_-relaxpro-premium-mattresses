@@ -24,8 +24,15 @@ const TYPE_ICONS: Record<AccessoryType, React.ReactNode> = {
   other: <Package className="w-5 h-5" />,
 };
 
+const FALLBACK_IMAGES: Record<string, string> = {
+  latex_pillow: '/images/accessories/latex-pillow.jpg',
+  shredded_pillow: '/images/accessories/shredded-pillow.jpg',
+  fiber_pillow: '/images/accessories/fiber-pillow.jpg',
+  mattress_protector: '/images/accessories/mattress-protector.jpg',
+};
+
 function AccCard({ acc }: { acc: SanityAccessory }) {
-  const imgSrc = imageUrl(acc.thumbnail) || imageUrl(acc.images?.[0]) || '';
+  const imgSrc = imageUrl(acc.thumbnail) || imageUrl(acc.images?.[0]) || FALLBACK_IMAGES[acc.type] || '';
   const hasDiscount = acc.pricing.mrp > acc.pricing.price;
 
   return (
