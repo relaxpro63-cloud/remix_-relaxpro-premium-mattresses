@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, ArrowUp } from 'lucide-react';
 import { FadeUp, RevealText, StaggerChildren, staggerItem, AnimatedCounter, EASE_LUXURY } from '../motion/motionPrimitives';
 import { getHomePage } from '../../lib/queries';
+import DecorativeBotanicals from './DecorativeBotanicals';
 
 const defaultData = [
   { label: 'Avg. Price (Double Bed)', latex: '₹40,000', foam: '₹20,000', foamHigher: false },
@@ -28,7 +29,8 @@ export default function CostComparison() {
     }).catch(() => {});
   }, []);
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-secondary border-y border-brand-200/30 font-body overflow-hidden">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-secondary border-y border-brand-200/30 font-body overflow-hidden relative">
+      <DecorativeBotanicals density="light" />
       <div className="max-w-5xl mx-auto">
         <FadeUp>
           <div className="text-center mb-12 md:mb-20">
