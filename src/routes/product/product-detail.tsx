@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PriceText from '../../components/ui/PriceText';
 import ProductCarousel from '../../components/product/ProductCarousel';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import {
   Check,
   Shield,
@@ -302,8 +303,10 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -15 }}
         transition={{ duration: 0.4 }}
-        className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16"
+        className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16 relative overflow-clip"
       >
+        <DecorativeBotanicals density="light" />
+
         <button
           onClick={() => onNavigateBack()}
           className="inline-flex items-center gap-2 text-graphite-500 hover:text-ink-900 text-xs font-accent font-semibold mb-8 lg:mb-12 group cursor-pointer transition-colors"
