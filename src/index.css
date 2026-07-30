@@ -46,7 +46,7 @@
   --color-brand-950: #072038;
 
   /* ---------- SKY  (soft blue luxury background, replaces linen) ---------- */
-  --color-sky-50:  #F3F9FD;
+  --color-sky-50:  #F4FBFF;
   --color-sky-100: #EAF4FA;
   --color-sky-200: #D7EBF5;
   --color-sky-300: #BEDFF0;
@@ -81,12 +81,12 @@
 
   /* ---------- Legacy token names -- REPOINTED to soft blue theme ---------- */
   --color-primary:        #0B1220;
-  --color-secondary:      #F3F9FD;
+  --color-secondary:      #F4FBFF;
   --color-accent:         #1568A3;
   --color-accent-dark:    #115484;
   --color-accent-light:   #6FAEE0;
   --color-neutral-dark:   #44505F;
-  --color-neutral-light:  #F3F9FD;
+  --color-neutral-light:  #F4FBFF;
   --color-success:        #4F7E6A;
   --color-warm-white:     #EAF4FA;
   --color-charcoal:       #111A2B;
@@ -184,11 +184,11 @@
    ============================================ */
 :root {
   --color-primary: #0B1220;
-  --color-secondary: #F3F9FD;
+  --color-secondary: #F4FBFF;
   --color-accent: #1568A3;
   --color-accent-dark: #115484;
   --color-neutral-dark: #44505F;
-  --color-neutral-light: #F3F9FD;
+  --color-neutral-light: #F4FBFF;
   --color-success: #4F7E6A;
   --color-accent-light: #6FAEE0;
   --color-warm-white: #EAF4FA;
@@ -247,7 +247,10 @@ html.lenis, html.lenis body {
   }
 
   body {
-    background-color: #F3F9FD;
+    background-color: #F4FBFF;
+    background-image: url('/patterns/luxury-leaf-pattern.svg');
+    background-repeat: repeat;
+    background-size: 180px 180px;
     color: var(--color-primary);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -741,6 +744,9 @@ html.lenis, html.lenis body {
 /* Footer luxury gradient background - Premium deep navy */
 .footer-luxury {
   background:
+    /* Luxury leaf pattern overlay (topmost layer) */
+    url('/patterns/luxury-leaf-pattern-dark.svg') repeat 0 0 / 180px 180px,
+    /* Existing gradient layers */
     radial-gradient(120% 50% at 50% 0%, rgba(21,104,163,0.18) 0%, transparent 55%),
     radial-gradient(80% 40% at 80% 100%, rgba(59,130,246,0.08) 0%, transparent 50%),
     radial-gradient(60% 50% at 20% 60%, rgba(21,104,163,0.06) 0%, transparent 50%),
@@ -1088,7 +1094,7 @@ html.lenis, html.lenis body {
 
   /* ---- Glass top-nav ---- */
   .nav-glass {
-    background: color-mix(in srgb, #F3F9FD 78%, transparent);
+    background: color-mix(in srgb, #F4FBFF 78%, transparent);
     backdrop-filter: saturate(140%) blur(14px);
     border-bottom: 1px solid var(--color-line);
   }

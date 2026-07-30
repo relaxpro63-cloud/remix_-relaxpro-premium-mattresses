@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronRight, Shield, Award, Leaf, IndianRupee } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
+import DecorativeBotanicals from './DecorativeBotanicals';
 
 const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
 
@@ -208,6 +209,8 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         />
         {/* Subtle edge fade to left */}
         <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0B1424]/70 to-transparent pointer-events-none" />
+        {/* Botanical accents on the hero image side */}
+        <DecorativeBotanicals density="light" />
       </div>
 
       {/* ============================================ */}

@@ -15,6 +15,7 @@ import { BedDouble, Bed, ShoppingBag } from 'lucide-react';
 
 import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 
 import SleepFAQs from '../../components/home/SleepFAQs';
 
@@ -435,7 +436,8 @@ export default function HomePage({
 
       <FadeUp><ComparisonTable /></FadeUp>
 
-      <section className="max-w-[1400px] mx-auto px-4 md:px-8 py-16 md:py-24 overflow-hidden">
+      <section className="max-w-[1400px] mx-auto px-4 md:px-8 py-16 md:py-24 overflow-hidden relative">
+        <DecorativeBotanicals density="full" />
         <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="eyebrow">Trust & Honest Feedback</span>
           <h2 className="text-3xl md:text-5xl font-heading font-bold mt-4 text-ink-900 leading-tight">What Our Customers Say</h2>
