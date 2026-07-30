@@ -16,9 +16,9 @@ function LeafLarge({ className }: { className?: string }) {
     <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="leafLg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.70" />
-          <stop offset="50%" stopColor="#6B9B85" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.40" />
+          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.60" />
+          <stop offset="50%" stopColor="#6B9B85" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.30" />
         </linearGradient>
       </defs>
       {/* Stem */}
@@ -46,13 +46,13 @@ function LeafMedium({ className }: { className?: string }) {
     <svg viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="leafMed" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#1568A3" stopOpacity="0.65" />
-          <stop offset="50%" stopColor="#6FAEE0" stopOpacity="0.45" />
-          <stop offset="100%" stopColor="#A6CDEC" stopOpacity="0.30" />
+          <stop offset="0%" stopColor="#1568A3" stopOpacity="0.55" />
+          <stop offset="50%" stopColor="#6FAEE0" stopOpacity="0.38" />
+          <stop offset="100%" stopColor="#A6CDEC" stopOpacity="0.25" />
         </linearGradient>
         <linearGradient id="leafMed2" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.65" />
-          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.35" />
+          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.28" />
         </linearGradient>
       </defs>
       {/* Main stem */}
@@ -81,9 +81,9 @@ function LeafSmall({ className }: { className?: string }) {
     <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="leafSm" x1="0" y1="0" x2="0.5" y2="1">
-          <stop offset="0%" stopColor="#B49A73" stopOpacity="0.70" />
-          <stop offset="50%" stopColor="#D8C4A4" stopOpacity="0.50" />
-          <stop offset="100%" stopColor="#ECE3D5" stopOpacity="0.30" />
+          <stop offset="0%" stopColor="#B49A73" stopOpacity="0.60" />
+          <stop offset="50%" stopColor="#D8C4A4" stopOpacity="0.40" />
+          <stop offset="100%" stopColor="#ECE3D5" stopOpacity="0.25" />
         </linearGradient>
       </defs>
       {/* Stem */}
@@ -107,8 +107,8 @@ function VineAccent({ className }: { className?: string }) {
     <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="vine" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.60" />
-          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.35" />
+          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.50" />
+          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.28" />
         </linearGradient>
       </defs>
       {/* Flowing vine */}
@@ -122,6 +122,11 @@ function VineAccent({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/**
+ * Shared animation presets for organic leaf motion.
+ */
+const EASE_ORGANIC = [0.22, 1, 0.36, 1] as const;
 
 /**
  * DecorativeBotanicals — premium SVG botanical accent elements
@@ -149,51 +154,54 @@ export default function DecorativeBotanicals({
     >
       {/* === LEFT SIDE === */}
 
-      {/* Top-left: Large leaf */}
+      {/* Top-left: Large leaf — gentle downward drift */}
       <motion.div
-        className={`absolute -top-[2%] -left-[2%] ${isFull ? 'w-[400px]' : 'w-[200px]'} opacity-[0.85]`}
+        className={`absolute -top-[2%] -left-[2%] ${isFull ? 'w-[380px]' : 'w-[190px]'} opacity-[0.75]`}
         animate={{
-          y: [0, -10, 0],
-          rotate: [-16, -12, -16],
+          y: [0, -12, 0],
+          rotate: [-16, -10, -16],
+          scale: [1, 1.02, 1],
         }}
         transition={{
-          duration: 10,
-          ease: 'easeInOut',
+          duration: 12,
+          ease: EASE_ORGANIC,
           repeat: Infinity,
         }}
       >
         <LeafLarge className="w-full h-auto" />
       </motion.div>
 
-      {/* Middle-left: Medium branch */}
+      {/* Middle-left: Medium branch — gentle upward sway */}
       <motion.div
-        className={`absolute top-[35%] -left-[3%] ${isFull ? 'w-[300px]' : 'w-[140px]'} opacity-[0.80]`}
+        className={`absolute top-[32%] -left-[3%] ${isFull ? 'w-[280px]' : 'w-[130px]'} opacity-[0.70]`}
         animate={{
-          y: [0, 8, 0],
-          rotate: [-8, -4, -8],
+          y: [0, 10, 0],
+          rotate: [-8, -3, -8],
+          scale: [1, 1.03, 1],
         }}
         transition={{
-          duration: 12,
-          ease: 'easeInOut',
+          duration: 14,
+          ease: EASE_ORGANIC,
           repeat: Infinity,
-          delay: 1.5,
+          delay: 1.8,
         }}
       >
         <LeafMedium className="w-full h-auto" />
       </motion.div>
 
-      {/* Bottom-left: Small leaf */}
+      {/* Bottom-left: Small leaf — subtle bob */}
       <motion.div
-        className={`absolute bottom-[5%] -left-[2%] ${isFull ? 'w-[250px]' : 'w-[120px]'} opacity-[0.85]`}
+        className={`absolute bottom-[6%] -left-[2%] ${isFull ? 'w-[230px]' : 'w-[110px]'} opacity-[0.75]`}
         animate={{
-          y: [0, -6, 0],
-          rotate: [5, 8, 5],
+          y: [0, -7, 0],
+          rotate: [5, 9, 5],
+          scale: [1, 1.02, 1],
         }}
         transition={{
-          duration: 9,
-          ease: 'easeInOut',
+          duration: 10,
+          ease: EASE_ORGANIC,
           repeat: Infinity,
-          delay: 3,
+          delay: 3.5,
         }}
       >
         <LeafSmall className="w-full h-auto" />
@@ -201,53 +209,56 @@ export default function DecorativeBotanicals({
 
       {/* === RIGHT SIDE === */}
 
-      {/* Top-right: Large leaf */}
+      {/* Top-right: Large leaf — gentle upward drift */}
       <motion.div
-        className={`absolute -top-[1%] -right-[2%] ${isFull ? 'w-[400px]' : 'w-[200px]'} opacity-[0.85]`}
+        className={`absolute -top-[1%] -right-[2%] ${isFull ? 'w-[380px]' : 'w-[190px]'} opacity-[0.75]`}
         animate={{
-          y: [0, -8, 0],
-          rotate: [12, 16, 12],
+          y: [0, -10, 0],
+          rotate: [12, 18, 12],
+          scale: [1, 1.02, 1],
         }}
         transition={{
-          duration: 11,
-          ease: 'easeInOut',
+          duration: 13,
+          ease: EASE_ORGANIC,
           repeat: Infinity,
-          delay: 2,
+          delay: 2.2,
         }}
       >
         <LeafLarge className="w-full h-auto" />
       </motion.div>
 
-      {/* Middle-right: Medium branch */}
+      {/* Middle-right: Medium branch — gentle downward sway */}
       <motion.div
-        className={`absolute top-[45%] -right-[3%] ${isFull ? 'w-[280px]' : 'w-[130px]'} opacity-[0.80]`}
+        className={`absolute top-[42%] -right-[3%] ${isFull ? 'w-[260px]' : 'w-[120px]'} opacity-[0.70]`}
         animate={{
-          y: [0, 6, 0],
-          rotate: [-10, -6, -10],
+          y: [0, 8, 0],
+          rotate: [-10, -5, -10],
+          scale: [1, 1.03, 1],
         }}
         transition={{
-          duration: 13,
-          ease: 'easeInOut',
+          duration: 15,
+          ease: EASE_ORGANIC,
           repeat: Infinity,
-          delay: 0.5,
+          delay: 0.6,
         }}
       >
         <LeafMedium className="w-full h-auto" />
       </motion.div>
 
-      {/* Bottom-right: Small decorative */}
+      {/* Bottom-right: Small decorative leaf — only on full density */}
       {isFull && (
         <motion.div
-          className="absolute bottom-[8%] -right-[2%] w-[220px] opacity-[0.85]"
+          className="absolute bottom-[8%] -right-[2%] w-[200px] opacity-[0.75]"
           animate={{
-            y: [0, -5, 0],
-            rotate: [-5, -2, -5],
+            y: [0, -6, 0],
+            rotate: [-5, -1, -5],
+            scale: [1, 1.02, 1],
           }}
           transition={{
-            duration: 8,
-            ease: 'easeInOut',
+            duration: 9,
+            ease: EASE_ORGANIC,
             repeat: Infinity,
-            delay: 4,
+            delay: 4.5,
           }}
         >
           <LeafSmall className="w-full h-auto" />
@@ -258,16 +269,16 @@ export default function DecorativeBotanicals({
       {isFull && (
         <>
           <motion.div
-            className="absolute top-[18%] right-[1%] w-[125px] opacity-[0.55]"
-            animate={{ y: [0, -5, 0], rotate: [-20, -15, -20] }}
-            transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 1 }}
+            className="absolute top-[16%] right-[1%] w-[120px] opacity-[0.45]"
+            animate={{ y: [0, -6, 0], rotate: [-20, -14, -20], scale: [1, 1.04, 1] }}
+            transition={{ duration: 9, ease: EASE_ORGANIC, repeat: Infinity, delay: 1.2 }}
           >
             <VineAccent className="w-full h-auto" />
           </motion.div>
           <motion.div
-            className="absolute bottom-[15%] left-[1%] w-[100px] opacity-[0.55]"
-            animate={{ y: [0, 4, 0], rotate: [25, 30, 25] }}
-            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity, delay: 2.5 }}
+            className="absolute bottom-[14%] left-[1%] w-[95px] opacity-[0.45]"
+            animate={{ y: [0, 5, 0], rotate: [25, 32, 25], scale: [1, 1.04, 1] }}
+            transition={{ duration: 8, ease: EASE_ORGANIC, repeat: Infinity, delay: 2.8 }}
           >
             <div style={{ transform: 'scaleX(-1)' }}>
               <VineAccent className="w-full h-auto" />
@@ -278,19 +289,19 @@ export default function DecorativeBotanicals({
 
       {/* Floating corner dots — subtle organic accent */}
       <motion.div
-        className={`absolute top-[15%] ${isFull ? 'right-[6%]' : 'right-[4%]'} ${isFull ? 'w-[60px]' : 'w-[28px]'} opacity-[0.45]`}
-        animate={{ y: [0, -4, 0], rotate: [-30, -25, -30] }}
-        transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
+        className={`absolute top-[14%] ${isFull ? 'right-[7%]' : 'right-[5%]'} ${isFull ? 'w-[55px]' : 'w-[26px]'} opacity-[0.35]`}
+        animate={{ y: [0, -5, 0], rotate: [-30, -24, -30], scale: [1, 1.08, 1] }}
+        transition={{ duration: 8, ease: EASE_ORGANIC, repeat: Infinity }}
       >
-        <div className="w-full aspect-square rounded-full bg-gradient-to-br from-[#4F7E6A]/25 to-transparent" />
+        <div className="w-full aspect-square rounded-full bg-gradient-to-br from-[#4F7E6A]/20 to-transparent" />
       </motion.div>
 
       <motion.div
-        className={`absolute bottom-[20%] ${isFull ? 'left-[8%]' : 'left-[5%]'} ${isFull ? 'w-[40px]' : 'w-[20px]'} opacity-[0.45]`}
-        animate={{ y: [0, 3, 0], rotate: [45, 50, 45] }}
-        transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
+        className={`absolute bottom-[22%] ${isFull ? 'left-[9%]' : 'left-[6%]'} ${isFull ? 'w-[36px]' : 'w-[18px]'} opacity-[0.35]`}
+        animate={{ y: [0, 4, 0], rotate: [45, 52, 45], scale: [1, 1.08, 1] }}
+        transition={{ duration: 9, ease: EASE_ORGANIC, repeat: Infinity, delay: 2.3 }}
       >
-        <div className="w-full aspect-square rounded-full bg-gradient-to-tr from-[#A8C99A]/25 to-transparent" />
+        <div className="w-full aspect-square rounded-full bg-gradient-to-tr from-[#A8C99A]/20 to-transparent" />
       </motion.div>
     </div>
   );
