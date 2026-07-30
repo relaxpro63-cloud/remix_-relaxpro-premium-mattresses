@@ -577,7 +577,8 @@ export default function HomePage({
 
       <QuickConnectBar />
 
-      <FadeUp><section className="bg-secondary border-t border-brand-200/30">
+      <FadeUp><section className="bg-secondary border-t border-brand-200/30 relative overflow-hidden">
+        <DecorativeBotanicals density="light" />
         <SleepFAQs />
       </section></FadeUp>
 

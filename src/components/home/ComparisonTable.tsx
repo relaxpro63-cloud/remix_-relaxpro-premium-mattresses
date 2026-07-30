@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { XCircle, CheckCircle2, Leaf, Award, SlidersHorizontal, ShieldCheck, HeartPulse } from 'lucide-react';
 // Uses new design tokens: eco-*, brand-*, ink-*, linen-*, graphite-*
 import { getHomePage } from '../../lib/queries';
+import DecorativeBotanicals from './DecorativeBotanicals';
 
 const iconMap: Record<string, React.ReactNode> = {
   leaf: <Leaf className="w-6 h-6 text-eco-500" />,
@@ -35,8 +36,9 @@ export default function ComparisonTable() {
   }, []);
 
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-sky-100/20">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-sky-100/20 relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
+      <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-10 md:mb-14">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-ink-900 mb-3">
             {data.sectionTitle}

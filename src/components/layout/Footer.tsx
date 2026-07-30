@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, ArrowRight, Heart, Award, MessageSquare, Store, Sparkles, CheckCircle } from 'lucide-react';
 import { getSiteSettings, getNavigation } from '../../lib/queries';
 import RelaxProLogo from '../ui/RelaxProLogo';
+import DecorativeBotanicals from '../home/DecorativeBotanicals';
 
 export default function Footer() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
@@ -71,6 +72,7 @@ export default function Footer() {
 
   return (
     <footer className="footer-luxury text-white/70 relative overflow-hidden">
+      <DecorativeBotanicals density="light" className="opacity-30" />
       {/* Soft glow behind logo */}
       <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brand-600/6 rounded-full blur-[150px] pointer-events-none" />
       {/* Bottom-right glow */}
