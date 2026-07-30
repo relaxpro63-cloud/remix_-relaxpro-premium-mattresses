@@ -111,9 +111,19 @@ export default function Footer() {
         aria-hidden="true"
       />
 
-      {/* ─── Subtle radial glow behind logo ─── */}
-      <div
+      {/* ─── Subtle radial glow behind logo — slowly drifts ─── */}
+      <motion.div
         className="absolute top-[10%] left-[8%] w-[600px] h-[400px] rounded-full pointer-events-none select-none z-[1]"
+        animate={{
+          x: [0, 20, -10, 0],
+          y: [0, -10, 15, 0],
+          opacity: [0.6, 0.9, 0.5, 0.6],
+        }}
+        transition={{
+          duration: 12,
+          ease: 'easeInOut',
+          repeat: Infinity,
+        }}
         style={{
           background: 'radial-gradient(ellipse 50% 50% at center, rgba(10,94,255,0.12) 0%, rgba(10,94,255,0.04) 30%, transparent 65%)',
           filter: 'blur(40px)',
@@ -165,7 +175,7 @@ export default function Footer() {
                 className="mt-6 text-white/40 text-sm md:text-base font-body font-light max-w-xl leading-relaxed tracking-wide"
               >
                 Pure Natural Latex Mattresses<span className="text-brand-400/60 mx-2">•</span>
-                Crafted in India for Healthier Sleep
+                Crafted for Better Sleep
               </motion.p>
 
               {/* Trust Pills — horizontal row */}
