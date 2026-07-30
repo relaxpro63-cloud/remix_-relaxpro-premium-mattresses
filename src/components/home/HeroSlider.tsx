@@ -8,7 +8,6 @@ const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
 
 interface HeroSliderProps {
   onNavigate: (page: string) => void;
-  onNavigateToPdp: (slug: string) => void;
 }
 
 const trustBadges = [
@@ -203,7 +202,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-[#0B1424]" />
         </div>
 
-        <div className="flex-1 bg-gradient-to-br from-[#0B1424] via-[#0F1A2E] to-[#0A1628] px-5 py-6 flex flex-col justify-start overflow-y-auto">
+        <div className="flex-1 bg-gradient-to-br from-[#0B1424] via-[#0F1A2E] to-[#0A1628] px-5 py-6 flex flex-col justify-start overflow-y-auto relative z-20">
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

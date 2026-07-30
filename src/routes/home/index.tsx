@@ -158,7 +158,6 @@ export default function HomePage({
     >
       <HeroSlider
         onNavigate={handlePageNavigation}
-        onNavigateToPdp={handleNavigateToPdp}
       />
 
       {/* Trust badges strip below hero — clean horizontal bar */}
