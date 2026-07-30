@@ -166,15 +166,14 @@ function totalPrice(build: BuildState, config: BuilderConfig): number {
     + (coverFab?.addPrice ?? 0) + quiltPrice;
 }
 
-function initBuild(config: BuilderConfig): BuildState {
-  const def = config.defaults;
+function initBuild(_config: BuilderConfig): BuildState {
   const defaultCat = SIZE_CATEGORIES[0];
   const defaultVariant = STANDARD_SIZES[defaultCat.value].variants[0];
   return {
     size: { kind: 'preset', name: defaultCat.label, length: defaultVariant.dims.length, width: defaultVariant.dims.width, sizeCategory: defaultCat.value },
-    comfort: def.comfortMaterialSlug ? [{ materialSlug: def.comfortMaterialSlug, thickness: def.comfortThickness }] : [],
-    support: def.supportMaterialSlug ? [{ materialSlug: def.supportMaterialSlug, thickness: def.supportThickness }] : [],
-    cover: { fabricSlug: 'organic-cotton', quiltingSlug: undefined },
+    comfort: [],
+    support: [],
+    cover: { fabricSlug: '', quiltingSlug: undefined },
   };
 }
 
