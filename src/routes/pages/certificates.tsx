@@ -7,6 +7,7 @@ import {
   CheckCircle, Sparkles, ScrollText, Maximize2, Minimize2, ArrowLeft, Calendar
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 
 interface CertData {
   _id: string;
@@ -171,7 +172,8 @@ export default function CertificatesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5]">
+    <div className="min-h-screen bg-[#FAF8F5] relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       {/* ===== Hero Section ===== */}
       <section className="relative overflow-hidden py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-sky-50 to-[#FAF8F5]">
         <div className="max-w-[1200px] mx-auto">

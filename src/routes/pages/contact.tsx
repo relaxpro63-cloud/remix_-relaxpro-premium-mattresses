@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ShoppingBag, ArrowRight, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { FadeUp } from '../../components/motion/motionPrimitives';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import ConsultationForm from '../../components/home/ConsultationForm';
 import ShowroomBookingForm from '../../components/home/ShowroomBookingForm';
 import PageShell from '../../components/layout/PageShell';
@@ -19,6 +20,8 @@ export default function ContactPage() {
       title={data?.seo?.metaTitle || 'Contact Suresh & Get Orthopedic Sleep Advice | RelaxPro'}
       description={data?.seo?.metaDescription || 'Request a free diagnostic sleep consultation callback. Suresh will review your orthopedic concerns and customize the perfect mattress configuration.'}
     >
+      <div className="relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <FadeUp>
@@ -156,6 +159,7 @@ export default function ContactPage() {
           </div>
         </section>
       </FadeUp>
+      </div>
     </PageShell>
   );
 }

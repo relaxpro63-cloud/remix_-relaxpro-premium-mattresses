@@ -5,6 +5,7 @@ import { ShoppingBag, ArrowRight } from 'lucide-react';
 import PageShell from '../../components/layout/PageShell';
 import { FadeUp } from '../../components/motion/motionPrimitives';
 import CertificationsSection from '../../components/home/CertificationsSection';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import { getAboutPage } from '../../lib/queries';
 
 const defaultSections = [
@@ -97,6 +98,8 @@ export default function AboutPage() {
       title={seo?.metaTitle || 'About RelaxPro | Pure Natural Latex Mattress Manufacturer'}
       description={seo?.metaDescription || 'Pioneering GOLS chemical-free natural organic latex mattresses in Andhra Pradesh, Telangana and Karnataka. Factory direct with zero markups.'}
     >
+      <div className="relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       {sections.map((section, idx) => {
         const hasImage = section.image !== null;
         const isDark = idx === 2;
@@ -192,6 +195,7 @@ export default function AboutPage() {
       <section className="bg-secondary py-16 md:py-24">
         <FadeUp><CertificationsSection /></FadeUp>
       </section>
+      </div>
     </PageShell>
   );
 }

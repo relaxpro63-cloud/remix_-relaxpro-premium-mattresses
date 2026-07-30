@@ -6,6 +6,7 @@ import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import { getAllProducts, imageUrl } from '../../lib/queries';
 import { WHATSAPP_NUMBER } from '../../lib/site';
+import DecorativeBotanicals from '../home/DecorativeBotanicals';
 
 interface CompareTableProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -60,7 +61,8 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       {/* Editorial Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <span className="text-xs tracking-widest font-mono text-brand-600 uppercase bg-brand-100 px-3 py-1 rounded-full">

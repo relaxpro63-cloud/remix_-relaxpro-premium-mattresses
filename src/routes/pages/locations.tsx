@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { FadeUp, StaggerChildren, staggerItem } from '../../components/motion/motionPrimitives';
 import PageShell from '../../components/layout/PageShell';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import { getLocations } from '../../lib/queries';
 import { LOCATIONS as FALLBACK_LOCATIONS } from '../../data/products';
 import { WHATSAPP_NUMBER } from '../../lib/site';
@@ -51,6 +52,8 @@ export default function LocationsPage() {
       title="RelaxPro Experience Stores - Hyderabad, Rajahmundry, Bangalore"
       description="Visit our experience showrooms to test 7-zone organic latex & firm ortho mattresses. Get direct factory pricing, maps & directions."
     >
+      <div className="relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <FadeUp>
@@ -99,6 +102,7 @@ export default function LocationsPage() {
         </StaggerChildren>
         </div>
       </section>
+      </div>
     </PageShell>
   );
 }

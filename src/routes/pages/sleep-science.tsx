@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { FadeUp, StaggerChildren, staggerItem } from '../../components/motion/motionPrimitives';
 import PageShell from '../../components/layout/PageShell';
+import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import { getSleepScience } from '../../lib/queries';
 
 function extractText(blocks: any): string {
@@ -22,6 +23,8 @@ export default function SleepSciencePage() {
       title={data?.seo?.metaTitle || 'Sleep Science & Orthopedic Spine Support | RelaxPro Education'}
       description={data?.seo?.metaDescription || 'Understand standard back alignment, the benefits of pincore ventilated natural latex, and how sleep ergonomics can cure chronic spine pain.'}
     >
+      <div className="relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <FadeUp>
@@ -89,6 +92,7 @@ export default function SleepSciencePage() {
         </StaggerChildren>
         </div>
       </section>
+      </div>
     </PageShell>
   );
 }
