@@ -32,10 +32,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
 
   return (
     <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #FAFCFA 0%, #F3F9FD 40%, #F0F8F2 100%)'}}>
-      {/* Decorative botanical elements in margins */}
-      <DecorativeBotanicals density="full" />
-
-      {/* Full-section background image (subtle texture) */}
+      {/* Full-section background image (subtle texture) — renders first, botanicals on top */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img
           src="/images/section-bg.png"
@@ -50,6 +47,9 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
         <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#EEF7FC] blur-[150px] opacity-90" />
         <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-brand-100/40 blur-[100px]" />
       </div>
+
+      {/* Decorative botanical elements in margins — renders above background but below content */}
+      <DecorativeBotanicals density="full" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         {/* Centered Heading */}

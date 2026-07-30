@@ -16,9 +16,9 @@ function LeafLarge({ className }: { className?: string }) {
     <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="leafLg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.35" />
-          <stop offset="50%" stopColor="#6B9B85" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.15" />
+          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.70" />
+          <stop offset="50%" stopColor="#6B9B85" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.40" />
         </linearGradient>
       </defs>
       {/* Stem */}
@@ -46,13 +46,13 @@ function LeafMedium({ className }: { className?: string }) {
     <svg viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="leafMed" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#1568A3" stopOpacity="0.30" />
-          <stop offset="50%" stopColor="#6FAEE0" stopOpacity="0.20" />
-          <stop offset="100%" stopColor="#A6CDEC" stopOpacity="0.10" />
+          <stop offset="0%" stopColor="#1568A3" stopOpacity="0.65" />
+          <stop offset="50%" stopColor="#6FAEE0" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="#A6CDEC" stopOpacity="0.30" />
         </linearGradient>
         <linearGradient id="leafMed2" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.30" />
-          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.12" />
+          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.65" />
+          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.35" />
         </linearGradient>
       </defs>
       {/* Main stem */}
@@ -81,9 +81,9 @@ function LeafSmall({ className }: { className?: string }) {
     <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="leafSm" x1="0" y1="0" x2="0.5" y2="1">
-          <stop offset="0%" stopColor="#B49A73" stopOpacity="0.35" />
-          <stop offset="50%" stopColor="#D8C4A4" stopOpacity="0.20" />
-          <stop offset="100%" stopColor="#ECE3D5" stopOpacity="0.10" />
+          <stop offset="0%" stopColor="#B49A73" stopOpacity="0.70" />
+          <stop offset="50%" stopColor="#D8C4A4" stopOpacity="0.50" />
+          <stop offset="100%" stopColor="#ECE3D5" stopOpacity="0.30" />
         </linearGradient>
       </defs>
       {/* Stem */}
@@ -107,8 +107,8 @@ function VineAccent({ className }: { className?: string }) {
     <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="vine" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.10" />
+          <stop offset="0%" stopColor="#4F7E6A" stopOpacity="0.60" />
+          <stop offset="100%" stopColor="#A8C99A" stopOpacity="0.35" />
         </linearGradient>
       </defs>
       {/* Flowing vine */}
