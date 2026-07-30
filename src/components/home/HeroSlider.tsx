@@ -46,7 +46,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       {/* ============================================ */}
       {/* BOTANICAL ACCENTS — Full section width      */}
       {/* ============================================ */}
-      <DecorativeBotanicals density="light" />
+      <DecorativeBotanicals density="light" className="opacity-40" />
 
       {/* ============================================ */}
       {/* LEFT SIDE — Content + Blue Gradient (40%)   */}
