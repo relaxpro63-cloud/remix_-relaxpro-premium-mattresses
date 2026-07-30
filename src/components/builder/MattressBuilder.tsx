@@ -133,16 +133,14 @@ type PriceRow = [number, number, number, number];
 const SIZE_IDX: Record<string, number> = { single: 0, diwan: 1, queen: 2, king: 3 };
 
 const HARDCODED_PRICES: Record<string, Record<number, PriceRow>> = {
-  'pu-rebonded':           { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
-  'hr-foam':               { 2: [1500, 2000, 2500, 3000] },
-  'hr-softy-foam':         { 2: [1500, 2000, 2500, 3000] },
-  'latex-rebonded-core':   { 2: [3000, 4000, 5000, 6000], 4: [6000, 8000, 10000, 12000] },
-  'pure-natural-latex-soft':   { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000] },
-  'pure-natural-latex-medium': { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000] },
-  'pure-natural-latex-firm':   { 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000] },
+  'pu-rebonded':           { 2: [3000, 2500, 2000, 1500], 4: [6000, 5000, 4000, 3000] },
+  'hr-foam':               { 2: [3000, 2500, 2000, 1500] },
+  'hr-softy-foam':         { 2: [3000, 2500, 2000, 1500] },
+  'latex-rebonded-core':   { 2: [6000, 5000, 4000, 3000], 4: [12000, 10000, 8000, 6000] },
+  'pure-natural-latex':    { 2: [12000, 10000, 8000, 6000], 4: [24000, 20000, 16000, 12000], 6: [36000, 30000, 24000, 18000], 8: [48000, 40000, 32000, 24000] },
 };
 
-const QUILT_PRICES: PriceRow = [2500, 3500, 4200, 5000];
+const QUILT_PRICES: PriceRow = [5000, 4200, 3500, 2500];
 
 function getSizeIdx(build: BuildState): number {
   return build.size.kind === 'preset' && build.size.sizeCategory
@@ -998,12 +996,10 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         }).join(', ');
       }
       case 'comfort': {
-        // Show foam-based comfort (not latex/organic)
-        const foamMats = build.comfort.filter(s => {
-          const m = config.materials.find(x => x.slug === s.materialSlug);
-          const name = m?.name || '';
-          return !name.toLowerCase().includes('latex') && !name.toLowerCase().includes('organic');
-        });
+        // Show middle comfort: HR Foam / HR Softy only
+        const foamMats = build.comfort.filter(s =>
+          s.materialSlug === 'hr-foam' || s.materialSlug === 'hr-softy-foam'
+        );
         if (foamMats.length === 0) return 'Not set';
         return foamMats.map(s => {
           const m = config.materials.find(x => x.slug === s.materialSlug);
@@ -1011,12 +1007,10 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         }).join(', ');
       }
       case 'natural': {
-        // Show natural comfort (latex/organic only)
-        const naturalMats = build.comfort.filter(s => {
-          const m = config.materials.find(x => x.slug === s.materialSlug);
-          const name = m?.name || '';
-          return name.toLowerCase().includes('latex') || name.toLowerCase().includes('organic');
-        });
+        // Show natural comfort: Latex Foam / PU Rebonded only
+        const naturalMats = build.comfort.filter(s =>
+          s.materialSlug === 'pure-natural-latex' || s.materialSlug === 'pu-rebonded'
+        );
         if (naturalMats.length === 0) return 'Not set';
         return naturalMats.map(s => {
           const m = config.materials.find(x => x.slug === s.materialSlug);
@@ -1031,10 +1025,10 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     }
   }, [build, config]);
 
-  // Filter materials for each step — only show active materials
+  // Filter materials for each step
   const supportMats = useMemo(() =>
     config?.materials.filter(m =>
-      m.slug === 'latex-rebonded-core'
+      m.slug === 'pu-rebonded' || m.slug === 'latex-rebonded-core'
     ) || [], [config]);
   const foamComfortMats = useMemo(() =>
     config?.materials.filter(m =>
@@ -1042,7 +1036,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     ) || [], [config]);
   const naturalComfortMats = useMemo(() =>
     config?.materials.filter(m =>
-      ['pure-natural-latex-soft', 'pure-natural-latex-medium', 'pure-natural-latex-firm'].includes(m.slug)
+      m.slug === 'pure-natural-latex' || m.slug === 'pu-rebonded'
     ) || [], [config]);
 
   const handleAddToCart = () => {
