@@ -121,6 +121,9 @@
   --section-vertical-md: clamp(80px, 9vw, 128px);
   --section-vertical-lg: clamp(120px, 12vw, 160px);
 
+  /* ---------- Custom breakpoints ---------- */
+  --breakpoint-xs: 480px;
+
   /* ---------- Motion ---------- */
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-luxury:   cubic-bezier(0.22, 1, 0.36, 1);

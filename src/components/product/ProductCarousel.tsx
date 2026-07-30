@@ -36,7 +36,7 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
         </span>
       )}
 
-      <div className="relative w-full h-[250px] sm:h-[400px] md:h-[550px] overflow-hidden">
+      <div className="relative w-full h-[200px] xs:h-[280px] sm:h-[400px] md:h-[500px] lg:h-[550px] overflow-hidden">
         <AnimatePresence custom={direction} mode="wait">
           <motion.img
             key={current}
@@ -48,7 +48,7 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
             animate="center"
             exit="exit"
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="w-full h-full object-contain p-4 md:p-8"
+            className="w-full h-full object-contain p-3 xs:p-4 md:p-6 lg:p-8"
             referrerPolicy="no-referrer"
           />
         </AnimatePresence>
@@ -71,7 +71,7 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
             <ChevronRight className="w-5 h-5 text-ink-900" />
           </button>
 
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1.5 sm:gap-2 z-10">
+          <div className="absolute bottom-2 xs:bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 xs:gap-1.5 sm:gap-2 z-10">
             {images.map((_, idx) => (
               <div
                 key={idx}
@@ -88,7 +88,7 @@ export default function ProductCarousel({ images, alt, badge }: ProductCarouselP
             ))}
           </div>
 
-          <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-sm text-white text-[11px] font-mono px-2.5 py-1 rounded-full z-10">
+          <div className="absolute top-3 xs:top-4 sm:top-6 right-3 xs:right-4 sm:right-6 bg-black/40 backdrop-blur-sm text-white text-[9px] xs:text-[10px] sm:text-[11px] font-mono px-1.5 xs:px-2 sm:px-2.5 py-0.5 xs:py-1 rounded-full z-10">
             {current + 1} / {images.length}
           </div>
         </>

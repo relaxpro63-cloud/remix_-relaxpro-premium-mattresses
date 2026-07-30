@@ -167,15 +167,15 @@ export default function ProductList({
   }, [searchTerm, selectedTier, selectedComfort, onlyLatex, sortBy]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24 relative overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       <DecorativeBotanicals density="light" />
       {/* Title block */}
-      <div className="mb-12 border-b border-brand-200/40 pb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 fade-up">
+      <div className="mb-8 xs:mb-10 sm:mb-12 lg:mb-16 border-b border-brand-200/40 pb-6 xs:pb-8 sm:pb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 xs:gap-5 md:gap-6 fade-up">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-brand-600 uppercase bg-brand-50 px-4 py-1.5 rounded-full font-bold">
             Real Natural Latex & Ortho Health Modules
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-6 text-ink-900 leading-[1.1]">
+          <h1 className="text-3xl xs:text-4xl sm:text-[2.5rem] md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-4 xs:mt-5 sm:mt-6 text-ink-900 leading-[1.1]">
             Explore Mattress Collections
           </h1>
           <p className="text-graphite-600 text-base md:text-lg mt-6 font-body leading-relaxed max-w-xl">
@@ -191,7 +191,7 @@ export default function ProductList({
       </div>
 
       {/* FILTER CONTROLLER DASHBOARD */}
-      <div className="bg-white/60 backdrop-blur-md p-4 md:p-6 rounded-3xl border border-brand-200/40 shadow-sm mb-12 flex flex-col xl:flex-row gap-5 items-center justify-between fade-up" style={{ transitionDelay: '0.1s' }}>
+      <div className="bg-white/60 backdrop-blur-md p-3 xs:p-4 sm:p-5 md:p-6 rounded-2xl xs:rounded-3xl border border-brand-200/40 shadow-sm mb-8 xs:mb-10 sm:mb-12 flex flex-col xl:flex-row gap-3 xs:gap-4 md:gap-5 items-center justify-between fade-up" style={{ transitionDelay: '0.1s' }}>
         
         {/* Search & Tier */}
         <div className="w-full xl:w-auto flex flex-col md:flex-row gap-4 items-center">
@@ -259,7 +259,7 @@ export default function ProductList({
       {/* PRODUCT GRID BLOCKS */}
       <AnimatePresence mode="popLayout">
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {filteredProducts.map((p, index) => {
               const activeSize = getProductSize(p.slug);
               const price = getProductStartingPrice(p, activeSize);
@@ -485,7 +485,7 @@ export default function ProductList({
       </AnimatePresence>
 
       {/* Trust Callout */}
-      <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-24 p-8 md:p-12 rounded-[2rem] border border-ink-900/20 flex flex-col md:flex-row gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">
+      <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-12 xs:mt-14 sm:mt-20 md:mt-24 p-5 xs:p-6 sm:p-8 md:p-12 rounded-[1.5rem] xs:rounded-[1.75rem] sm:rounded-[2rem] border border-ink-900/20 flex flex-col md:flex-row gap-6 xs:gap-8 md:gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">
         {/* Abstract background shapes */}
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-200 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-200/10 rounded-full blur-3xl pointer-events-none"></div>

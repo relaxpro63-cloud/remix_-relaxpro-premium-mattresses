@@ -87,7 +87,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       animate={{ opacity: 1, y: 0 }} 
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.4 }}
-      className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16"
+      className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24"
     >
       {/* Navigation & Back Link */}
       <button
@@ -101,9 +101,9 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       </button>
 
       {/* Main Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xs:gap-10 sm:gap-12 lg:gap-16">
         {/* Left: Product Images & Core Specs */}
-        <div className="lg:col-span-7 space-y-10">
+        <div className="lg:col-span-7 space-y-8 xs:space-y-10 lg:space-y-12">
           <ProductCarousel
             images={[product.image, ...product.images]}
             alt={product.name}
@@ -188,7 +188,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
         </div>
 
         {/* Right: Pricing, Configurations and Add To Cart */}
-        <div className="lg:col-span-5 space-y-8">
+        <div className="lg:col-span-5 space-y-6 xs:space-y-8 lg:space-y-10">
           {/* Header titles */}
           <div className="sticky top-32">
             <span className="inline-flex items-center gap-1 sm:gap-2 text-[8px] sm:text-[10px] tracking-widest font-accent font-bold text-success bg-success/10 border border-success/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full uppercase mb-2 sm:mb-4">
@@ -382,9 +382,10 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                   <span className="text-sm">Enquire on WhatsApp</span>
                 </button>
               </div>
+            </div>
 
-{/* Ask Suresh / Personal Consultation CTA */}
-            <div className="mt-6 bg-sky-100/80 p-6 md:p-8 rounded-[2rem] border border-brand-200/40 flex items-start gap-5 shadow-sm">
+            {/* Ask Suresh / Personal Consultation CTA */}
+            <div className="mt-6 bg-sky-100/80 p-5 xs:p-6 sm:p-6 md:p-8 rounded-[1.5rem] xs:rounded-[1.75rem] sm:rounded-[2rem] border border-brand-200/40 flex items-start gap-3 xs:gap-4 sm:gap-5 shadow-sm">
               <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shrink-0 border border-brand-200/50 shadow-sm relative">
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-white animate-pulse"></div>
                 <MessageSquare className="w-6 h-6 text-ink-900" />
@@ -408,10 +409,10 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       </div>
 
       {/* Components Section */}
-      <div className="mt-20 lg:mt-32 mb-10 border-t border-brand-200/40 pt-16 lg:pt-24">
-        <h2 className="text-3xl md:text-4xl font-heading text-center text-ink-900 mb-12 lg:mb-20">What Inside Counts: Premium Components</h2>
+      <div className="mt-16 xs:mt-20 sm:mt-20 md:mt-24 lg:mt-32 mb-8 xs:mb-10 sm:mb-10 md:mb-14 lg:mb-20 border-t border-brand-200/40 pt-12 xs:pt-14 sm:pt-14 md:pt-16 lg:pt-24">
+        <h2 className="text-2xl xs:text-[26px] sm:text-[30px] md:text-[34px] lg:text-4xl font-heading text-center text-ink-900 mb-8 xs:mb-10 sm:mb-12 md:mb-16 lg:mb-20">What Inside Counts: Premium Components</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 xs:gap-12 sm:gap-8 md:gap-8 lg:gap-12">
           {/* Component 1 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden mb-6 sm:mb-8 shadow-xl ring-4 ring-white">
@@ -457,7 +458,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       </div>
 
       {/* Certification Feature Images */}
-      <div className="mt-8 space-y-6">
+      <div className="mt-6 xs:mt-8 sm:mt-8 md:mt-10 lg:mt-12 space-y-4 xs:space-y-5 sm:space-y-6">
         <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
           <img src="/images/organic-cotton-quilting-fabric-latex-mattress-desktop-new.jpeg" alt="Organic Cotton Quilting" className="w-full h-auto object-cover" />
         </div>
@@ -470,17 +471,17 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       </div>
 
       {/* Comfort Meter Section */}
-      <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
+      <div className="mt-12 xs:mt-14 sm:mt-14 md:mt-16 lg:mt-24 mb-8 xs:mb-10 sm:mb-10 md:mb-14 lg:mb-20 border-t border-brand-200/40 pt-8 xs:pt-10 sm:pt-10 md:pt-12 lg:pt-16">
         <img 
           src={imageUrl(SI.comfortMeter) || '/images/comfort-meter.png'} 
           alt="RelaxPro Mattress Comfort Meter" 
-          className="w-full h-auto object-contain rounded-2xl shadow-sm"
+          className="w-full h-auto object-contain rounded-xl xs:rounded-2xl shadow-sm"
           sizes="100vw"
         />
       </div>
 
       {/* Size Chart Section */}
-      <div className="mt-16 lg:mt-24 mb-10 border-t border-brand-200/40 pt-10">
+      <div className="mt-12 xs:mt-14 sm:mt-14 md:mt-16 lg:mt-24 mb-8 xs:mb-10 sm:mb-10 md:mb-14 lg:mb-20 border-t border-brand-200/40 pt-8 xs:pt-10 sm:pt-10 md:pt-12 lg:pt-16">
         <img 
           src={imageUrl(SI.sizeChart) || '/images/size-chart.png'} 
           alt="RelaxPro Mattress Size Chart" 

@@ -363,9 +363,9 @@ const FAQS = [
 
 // ─── SHOWROOMS ──────────────────────────────────────────────────────────────
 const SHOWROOMS = [
-  { _id: 'shw-hyd', city: 'Hyderabad', address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', phones: ['+918686624494', '+917207424494'], hours: 'Mon - Sun: 10:00 AM - 9:00 PM', order: 1 },
-  { _id: 'shw-rjy', city: 'Rajahmundry', address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103', phones: ['+918686624494'], hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM', order: 2 },
-  { _id: 'shw-blr', city: 'Bangalore', address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038', phones: ['+917207424494'], hours: 'Mon - Sun: 10:30 AM - 8:30 PM', order: 3 },
+  { _id: 'showroom-hyderabad', city: 'Hyderabad', address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', phones: ['+918686624494', '+917207424494'], hours: 'Mon - Sun: 10:00 AM - 9:00 PM', order: 1 },
+  { _id: 'showroom-rajahmundry', city: 'Rajahmundry', address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103', phones: ['+918686624494'], hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM', order: 2 },
+  { _id: 'showroom-bangalore', city: 'Bangalore', address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038', phones: ['+917207424494'], hours: 'Mon - Sun: 10:30 AM - 8:30 PM', order: 3 },
 ]
 
 // ─── SITE SETTINGS ──────────────────────────────────────────────────────────
@@ -384,7 +384,7 @@ const HOME = {
   bestsellersSection: { sectionTitle: 'Best Selling Models', products: [{ _type: 'reference', _ref: 'product-nirvana' }, { _type: 'reference', _ref: 'product-amrita' }, { _type: 'reference', _ref: 'product-somya' }, { _type: 'reference', _ref: 'product-arogya' }, { _type: 'reference', _ref: 'product-sthira' }, { _type: 'reference', _ref: 'product-sunidra' }] },
   testimonialsSection: { sectionTitle: 'What Our Customers Say', overallRating: '4.9', totalReviews: '2,400+', testimonials: [{ _type: 'reference', _ref: 'testimonial-gm-1' }, { _type: 'reference', _ref: 'testimonial-gm-2' }, { _type: 'reference', _ref: 'testimonial-gm-3' }, { _type: 'reference', _ref: 'testimonial-gm-4' }, { _type: 'reference', _ref: 'testimonial-gm-5' }] },
   faqSection: { faqs: [{ _type: 'reference', _ref: 'faq-q1' }, { _type: 'reference', _ref: 'faq-q2' }, { _type: 'reference', _ref: 'faq-q3' }, { _type: 'reference', _ref: 'faq-q4' }, { _type: 'reference', _ref: 'faq-q5' }, { _type: 'reference', _ref: 'faq-q6' }, { _type: 'reference', _ref: 'faq-q7' }, { _type: 'reference', _ref: 'faq-q8' }] },
-  allShowroomsSection: { showrooms: [{ _type: 'reference', _ref: 'shw-hyd' }, { _type: 'reference', _ref: 'shw-rjy' }, { _type: 'reference', _ref: 'shw-blr' }] },
+  allShowroomsSection: { showrooms: [{ _type: 'reference', _ref: 'showroom-hyderabad' }, { _type: 'reference', _ref: 'showroom-rajahmundry' }, { _type: 'reference', _ref: 'showroom-bangalore' }] },
   shopByBrands: { categories: [{ _type: 'reference', _ref: 'cat-luxury' }, { _type: 'reference', _ref: 'cat-premium' }, { _type: 'reference', _ref: 'cat-comfort' }] },
 }
 

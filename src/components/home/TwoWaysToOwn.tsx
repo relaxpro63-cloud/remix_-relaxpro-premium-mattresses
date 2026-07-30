@@ -51,37 +51,37 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
       {/* Decorative botanical elements in margins — renders above background but below content */}
       <DecorativeBotanicals density="full" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 relative z-10">
         {/* Centered Heading */}
         <BlurFade delay={0.05}>
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
-            <span className="text-xs tracking-[0.15em] font-sans font-semibold text-brand-600 uppercase mb-4 inline-block">
+          <div className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24">
+            <span className="text-[10px] xs:text-[11px] sm:text-xs tracking-[0.12em] xs:tracking-[0.15em] font-sans font-semibold text-brand-600 uppercase mb-2 xs:mb-3 sm:mb-4 inline-block">
               {data?.sectionSubtitle || 'Bespoke Comfort'}
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium text-ink-900 leading-tight tracking-tight">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-medium text-ink-900 leading-tight tracking-tight">
               {data?.sectionTitle || 'Best Selling Models'}
             </h2>
-            <p className="text-graphite-600 text-base md:text-lg mt-6 leading-relaxed font-body max-w-2xl mx-auto font-light">
+            <p className="text-graphite-600 text-sm xs:text-[15px] sm:text-base md:text-lg mt-4 xs:mt-5 sm:mt-6 leading-relaxed font-body max-w-2xl mx-auto font-light px-2 xs:px-0">
               Whether you want to orchestrate your custom orthopedic configuration layer by layer or choose from our plantation-tested pre-built formulations.
             </p>
           </div>
         </BlurFade>
 
         {/* 2-Column Luxury Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xs:gap-8 sm:gap-10 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* Card 1: Customize Your Comfort */}
           <BlurFade delay={0.1}>
             <motion.div
               whileHover={{ y: -8 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative h-full flex flex-col justify-between bg-white/60 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/80 shadow-[0_4px_24px_-8px_rgba(11,18,32,0.05)] hover:shadow-[0_20px_48px_-12px_rgba(11,18,32,0.1)] transition-all duration-500 overflow-hidden"
+              className="group relative h-full flex flex-col justify-between bg-white/60 backdrop-blur-md rounded-2xl xs:rounded-3xl md:rounded-[28px] lg:rounded-[32px] p-5 xs:p-6 sm:p-8 md:p-10 lg:p-12 border border-white/80 shadow-[0_4px_24px_-8px_rgba(11,18,32,0.05)] hover:shadow-[0_20px_48px_-12px_rgba(11,18,32,0.1)] transition-all duration-500 overflow-hidden"
             >
               {/* Subtle Glowing Border on Hover */}
-              <div className="absolute inset-0 rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
+              <div className="absolute inset-0 rounded-2xl xs:rounded-3xl md:rounded-[28px] lg:rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
               
               {/* Full-bleed card image header — breaks out of card padding */}
-              <div className="-mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-6 rounded-t-[32px] overflow-hidden">
-                <div className="relative h-56 sm:h-64 overflow-hidden">
+              <div className="-mx-5 xs:-mx-6 sm:-mx-8 md:-mx-10 lg:-mx-12 -mt-5 xs:-mt-6 sm:-mt-8 md:-mt-10 lg:-mt-12 mb-4 xs:mb-5 sm:mb-6 rounded-t-2xl xs:rounded-t-3xl md:rounded-t-[28px] lg:rounded-t-[32px] overflow-hidden">
+                <div className="relative h-44 xs:h-48 sm:h-56 md:h-60 lg:h-64 overflow-hidden">
                   <img
                     src={imageUrl(data?.customBuilder?.image) || '/images/box-customize.png'}
                     alt="Artisan hand-layering natural latex and organic wool comfort layers"
@@ -94,11 +94,11 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               </div>
 
               <div className="relative z-10">
-                <h3 className="font-heading text-3xl md:text-4xl text-ink-900 tracking-tight leading-tight mb-8">
+                <h3 className="font-heading text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl text-ink-900 tracking-tight leading-tight mb-5 xs:mb-6 sm:mb-8">
                   {data?.customBuilder?.title || 'Customize Your Comfort'}
                 </h3>
 
-                <ul className="space-y-4 md:space-y-6">
+                <ul className="space-y-3 xs:space-y-3.5 sm:space-y-4 md:space-y-6">
                   {(data?.customBuilder?.features || [
                     'Pick Cover Fabric: Select casing textile',
                     'Comfort Layers: Configure latex zones',
@@ -116,7 +116,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                         <div className="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100/50 group-hover/item:bg-brand-100 transition-colors duration-300">
                            {getIconForFeature(i, 'custom')}
                         </div>
-                        <p className="text-graphite-700 font-body text-[15px] leading-relaxed font-light mt-0.5">
+                        <p className="text-graphite-700 font-body text-sm xs:text-[14px] sm:text-[15px] leading-relaxed font-light mt-0.5">
                           {hasColon ? (
                             <>
                               <strong className="font-medium text-ink-900">{prefix}</strong>
@@ -135,10 +135,10 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="relative z-10 mt-12 pt-8 border-t border-brand-100/60">
                 <button
                   onClick={onStartBuilding}
-                  className="w-full flex items-center justify-between bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-sans font-medium text-sm md:text-base py-4 px-6 rounded-2xl transition-all duration-300 shadow-[0_8px_20px_-6px_rgba(21,104,163,0.4)] group-hover:shadow-[0_12px_28px_-6px_rgba(21,104,163,0.5)] cursor-pointer"
+                  className="w-full flex items-center justify-between bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-sans font-medium text-xs xs:text-sm sm:text-base py-3 xs:py-3.5 sm:py-4 px-4 xs:px-5 sm:px-6 rounded-xl xs:rounded-2xl transition-all duration-300 shadow-[0_8px_20px_-6px_rgba(21,104,163,0.4)] group-hover:shadow-[0_12px_28px_-6px_rgba(21,104,163,0.5)] cursor-pointer"
                 >
-                  <span className="tracking-wide">{data?.customBuilder?.cta?.label || 'Build Your Dream Mattress'}</span>
-                  <ArrowRightCircle className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
+                  <span className="tracking-wide text-[11px] xs:text-xs sm:text-sm md:text-base">{data?.customBuilder?.cta?.label || 'Build Your Dream Mattress'}</span>
+                  <ArrowRightCircle className="w-4 h-4 xs:w-5 xs:h-5 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
                 </button>
               </div>
             </motion.div>
@@ -149,7 +149,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
             <motion.div
               whileHover={{ y: -8 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative h-full flex flex-col justify-between bg-white/60 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/80 shadow-[0_4px_24px_-8px_rgba(11,18,32,0.05)] hover:shadow-[0_20px_48px_-12px_rgba(11,18,32,0.1)] transition-all duration-500 overflow-hidden"
+              className="group relative h-full flex flex-col justify-between bg-white/60 backdrop-blur-md rounded-2xl xs:rounded-3xl md:rounded-[28px] lg:rounded-[32px] p-5 xs:p-6 sm:p-8 md:p-10 lg:p-12 border border-white/80 shadow-[0_4px_24px_-8px_rgba(11,18,32,0.05)] hover:shadow-[0_20px_48px_-12px_rgba(11,18,32,0.1)] transition-all duration-500 overflow-hidden"
             >
               {/* Subtle Glowing Border on Hover */}
               <div className="absolute inset-0 rounded-[32px] border-2 border-transparent group-hover:border-brand-200/50 transition-colors duration-700 pointer-events-none" />
@@ -169,11 +169,11 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               </div>
 
               <div className="relative z-10">
-                <h3 className="font-heading text-3xl md:text-4xl text-ink-900 tracking-tight leading-tight mb-8">
+                <h3 className="font-heading text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl text-ink-900 tracking-tight leading-tight mb-5 xs:mb-6 sm:mb-8">
                   {data?.shopPrebuilt?.title || 'Our Models'}
                 </h3>
 
-                <ul className="space-y-4 md:space-y-6">
+                <ul className="space-y-3 xs:space-y-3.5 sm:space-y-4 md:space-y-6">
                   {(data?.shopPrebuilt?.features || [
                     '13 Organic Models: Orthopedic alignment',
                     '3 Curated Tiers: Luxury, Premium & Comfort',
@@ -190,7 +190,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                         <div className="mt-1 w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 border border-brand-100/80 shadow-sm group-hover/item:border-brand-300 transition-colors duration-300">
                           {getIconForFeature(i, 'shop')}
                         </div>
-                        <p className="text-graphite-700 font-body text-[15px] leading-relaxed font-light mt-0.5">
+                        <p className="text-graphite-700 font-body text-sm xs:text-[14px] sm:text-[15px] leading-relaxed font-light mt-0.5">
                           {hasColon ? (
                             <>
                               <strong className="font-medium text-ink-900">{prefix}</strong>
@@ -209,10 +209,10 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="relative z-10 mt-12 pt-8 border-t border-brand-100/60">
                 <button
                   onClick={onSeeAllModels}
-                  className="w-full flex items-center justify-between bg-white hover:bg-brand-50 border border-brand-200/60 text-ink-900 font-sans font-medium text-sm md:text-base py-4 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/btn"
+                  className="w-full flex items-center justify-between bg-white hover:bg-brand-50 border border-brand-200/60 text-ink-900 font-sans font-medium text-xs xs:text-sm sm:text-base py-3 xs:py-3.5 sm:py-4 px-4 xs:px-5 sm:px-6 rounded-xl xs:rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/btn"
                 >
-                  <span className="tracking-wide">{data?.shopPrebuilt?.cta?.label || 'Explore Our Collection'}</span>
-                  <ArrowRight className="w-5 h-5 text-brand-600 group-hover/btn:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
+                  <span className="tracking-wide text-[11px] xs:text-xs sm:text-sm md:text-base">{data?.shopPrebuilt?.cta?.label || 'Explore Our Collection'}</span>
+                  <ArrowRight className="w-4 h-4 xs:w-5 xs:h-5 text-brand-600 group-hover/btn:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
                 </button>
               </div>
             </motion.div>

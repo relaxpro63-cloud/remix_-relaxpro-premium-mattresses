@@ -29,12 +29,12 @@ export default function CostComparison() {
     }).catch(() => {});
   }, []);
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-secondary border-y border-brand-200/30 font-body overflow-hidden relative">
+    <section className="py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-secondary border-y border-brand-200/30 font-body overflow-hidden relative">
       <DecorativeBotanicals density="light" />
       <div className="max-w-5xl mx-auto relative z-10">
         <FadeUp>
-          <div className="text-center mb-12 md:mb-20">
-            <RevealText as="h2" className="text-3xl md:text-4xl lg:text-5xl font-heading font-medium text-ink-900 leading-tight">
+          <div className="text-center mb-10 xs:mb-12 sm:mb-14 md:mb-20">
+            <RevealText as="h2" className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl lg:text-5xl font-heading font-medium text-ink-900 leading-tight">
               Is Buying Latex Mattress Really Expensive?
             </RevealText>
           </div>
@@ -44,13 +44,13 @@ export default function CostComparison() {
         <div className="relative pb-4 overflow-x-hidden max-w-[900px] mx-auto pt-4 md:pt-8">
           
           {/* Headers — slide in from opposite sides */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-16 mb-8 sm:mb-12 text-center">
+          <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-8 md:gap-12 lg:gap-16 mb-6 xs:mb-8 sm:mb-12 text-center">
             <motion.h3
               initial={{ x: -60, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.8, ease: EASE_LUXURY }}
-              className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-ink-900"
+              className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-ink-900"
             >
               Natural<br className="md:hidden" /> Latex
             </motion.h3>
@@ -59,7 +59,7 @@ export default function CostComparison() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.8, ease: EASE_LUXURY }}
-              className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-ink-900"
+              className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-ink-900"
             >
               Ordinary<br className="md:hidden" /> Foam
             </motion.h3>
@@ -96,36 +96,35 @@ export default function CostComparison() {
           </div>
 
           {/* VS Badge & Vertical Line */}
-          <div className="absolute left-1/2 top-24 bottom-0 w-1 sm:w-1.5 bg-ink-900/80 -translate-x-1/2 z-0" />
+          <div className="absolute left-1/2 top-20 xs:top-24 sm:top-32 md:top-36 bottom-0 w-0.5 xs:w-1 sm:w-1.5 bg-ink-900/80 -translate-x-1/2 z-0" />
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
-            className="absolute left-1/2 top-[120px] sm:top-[160px] -translate-x-1/2 z-20 flex flex-col items-center justify-center"
+            className="absolute left-1/2 top-[100px] xs:top-[120px] sm:top-[160px] md:top-[180px] -translate-x-1/2 z-20 flex flex-col items-center justify-center"
           >
-            <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-ink-900 text-white font-heading font-bold text-lg sm:text-3xl flex items-center justify-center shadow-xl border-[3px] sm:border-4 border-white">
+            <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-ink-900 text-white font-heading font-bold text-sm xs:text-lg sm:text-2xl md:text-3xl flex items-center justify-center shadow-xl border-[2px] xs:border-[3px] sm:border-4 border-white">
               VS
             </div>
           </motion.div>
 
           {/* Rows — stagger reveal row by row */}
-          <StaggerChildren className="space-y-3 sm:space-y-5 relative z-10 px-1 sm:px-4" stagger={0.12} delay={0.2}>
+          <StaggerChildren className="space-y-2 xs:space-y-3 sm:space-y-4 md:space-y-5 relative z-10 px-1 sm:px-4" stagger={0.12} delay={0.2}>
             {data.map((row, idx) => (
-              <motion.div key={idx} variants={staggerItem} className="grid grid-cols-2 gap-3 sm:gap-12 lg:gap-16 items-center">
+              <motion.div key={idx} variants={staggerItem} className="grid grid-cols-2 gap-2 xs:gap-3 sm:gap-8 md:gap-12 lg:gap-16 items-center">
                 
-                {/* Left Side: Label + Value */}
-                <div className="bg-brand-50 rounded-md sm:rounded-xl flex items-center justify-between p-2 sm:p-4 shadow-sm relative">
+                {/* Left Side: Label + Value */}                  <div className="bg-brand-50 rounded-md xs:rounded-lg sm:rounded-xl flex items-center justify-between p-2 xs:p-3 sm:p-4 shadow-sm relative">
                   <div className="flex items-center gap-1 sm:gap-3 shrink-0">
-                    <span className="font-bold text-ink-900 text-[9px] sm:text-sm lg:text-base leading-tight w-[60px] sm:w-[100px] lg:w-auto break-words">{typeof row.label === 'string' ? row.label.split(' (')[0] : row.label}</span>
-                    <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 text-ink-900 hidden min-[380px]:block" strokeWidth={3} />
+                    <span className="font-bold text-ink-900 text-[9px] xs:text-[10px] sm:text-sm lg:text-base leading-tight w-[55px] xs:w-[60px] sm:w-[100px] lg:w-auto break-words">{typeof row.label === 'string' ? row.label.split(' (')[0] : row.label}</span>
+                    <ArrowRight className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-5 sm:h-5 text-ink-900 hidden min-[380px]:block" strokeWidth={3} />
                   </div>
-                  <span className="font-bold text-ink-900 text-[10px] sm:text-base lg:text-lg text-right sm:text-left leading-tight">{row.latex}</span>
+                  <span className="font-bold text-ink-900 text-[10px] xs:text-[11px] sm:text-base lg:text-lg text-right sm:text-left leading-tight">{row.latex}</span>
                 </div>
 
                 {/* Right Side: Value */}
-                <div className="bg-brand-50 rounded-md sm:rounded-xl flex items-center justify-center p-2 sm:p-4 shadow-sm relative text-center">
-                  <span className="font-bold text-ink-900 text-[10px] sm:text-base lg:text-lg leading-tight">{row.foam}</span>
+                <div className="bg-brand-50 rounded-md xs:rounded-lg sm:rounded-xl flex items-center justify-center p-2 xs:p-3 sm:p-4 shadow-sm relative text-center">
+                  <span className="font-bold text-ink-900 text-[10px] xs:text-[11px] sm:text-base lg:text-lg leading-tight">{row.foam}</span>
                   {row.foamHigher && (
                     <ArrowUp className="w-3 h-3 sm:w-5 sm:h-5 text-ink-900 absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2" strokeWidth={4} />
                   )}
@@ -137,8 +136,8 @@ export default function CostComparison() {
         </div>
 
         <FadeUp delay={0.4}>
-          <div className="mt-10 md:mt-12 bg-brand-50 p-4 md:p-6 rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
-            <p className="text-ink-900 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
+          <div className="mt-8 xs:mt-10 sm:mt-12 md:mt-14 bg-brand-50 p-3 xs:p-4 sm:p-5 md:p-6 rounded-xl xs:rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
+            <p className="text-ink-900 font-medium text-[11px] xs:text-xs sm:text-sm md:text-base leading-relaxed">
               While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress
             </p>
           </div>

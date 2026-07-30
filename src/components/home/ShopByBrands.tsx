@@ -68,21 +68,21 @@ export default function ShopByBrands() {
   if (categories.length === 0) return null;
 
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-secondary border-b border-brand-200/30 relative overflow-hidden">
+    <section className="py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 bg-secondary border-b border-brand-200/30 relative overflow-hidden">
       <DecorativeBotanicals density="light" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-ink-900 mb-6 md:mb-8">
+        <h2 className="text-xl xs:text-2xl sm:text-[26px] md:text-3xl lg:text-4xl font-heading font-bold text-ink-900 mb-4 xs:mb-5 sm:mb-6 md:mb-8">
           Shop by Brands
         </h2>
         
         {/* Category Pills */}
-        <div className="flex overflow-x-auto pb-4 gap-4 md:gap-5 snap-x mb-8" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="flex overflow-x-auto pb-3 xs:pb-4 gap-3 xs:gap-4 md:gap-5 snap-x mb-6 xs:mb-8" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`
             .hide-scroll::-webkit-scrollbar {
               display: none;
             }
           `}</style>
-          <div className="flex gap-4 md:gap-5 hide-scroll w-full">
+          <div className="flex gap-3 xs:gap-4 md:gap-5 hide-scroll w-full">
             {categories.map((cat: any, idx: number) => (
               <button
                 key={idx}
@@ -97,16 +97,16 @@ export default function ShopByBrands() {
                     setActiveCategory(cat.name);
                   }
                 }}
-                className={`snap-start shrink-0 flex items-center gap-2 md:gap-3 px-4 md:px-6 py-3 md:py-4 border rounded-xl transition-all duration-300 cursor-pointer group ${
+                className={`snap-start shrink-0 flex items-center gap-1.5 xs:gap-2 md:gap-3 px-3 xs:px-3.5 sm:px-4 md:px-6 py-2 xs:py-2.5 sm:py-3 md:py-4 border rounded-lg xs:rounded-xl transition-all duration-300 cursor-pointer group ${
                   activeCategory === cat.name 
                     ? 'border-brand-600 bg-brand-50 shadow-sm text-brand-600' 
                     : 'border-brand-200/80 bg-white hover:border-brand-600 hover:shadow-md hover:bg-sky-100/60 text-ink-900'
                 }`}
               >
                 <div className={`group-hover:scale-110 transition-transform duration-300 ${activeCategory === cat.name ? 'text-brand-600' : 'text-brand-600'}`}>
-                  {categoryIcons[cat.name] || categoryIcons[cat.slug] || <BedDouble className="w-5 h-5" />}
+                  {categoryIcons[cat.name] || categoryIcons[cat.slug] || <BedDouble className="w-4 h-4 xs:w-5 xs:h-5" />}
                 </div>
-                <span className={`font-heading font-bold text-sm whitespace-nowrap ${activeCategory === cat.name ? 'text-ink-900' : 'text-ink-900'}`}>
+                <span className={`font-heading font-bold text-[11px] xs:text-xs sm:text-sm whitespace-nowrap ${activeCategory === cat.name ? 'text-ink-900' : 'text-ink-900'}`}>
                   {cat.name}
                 </span>
               </button>
@@ -119,14 +119,14 @@ export default function ShopByBrands() {
           <div className="relative group">
             <button 
               onClick={() => scroll('left')}
-              className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-brand-200 rounded-full p-2 shadow-md opacity-100 group-hover:opacity-100 md:opacity-0 transition-opacity hover:bg-sky-100/60 cursor-pointer"
+              className="absolute -left-3 xs:-left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-brand-200 rounded-full p-1.5 xs:p-2 shadow-md opacity-100 group-hover:opacity-100 md:opacity-0 transition-opacity hover:bg-sky-100/60 cursor-pointer"
             >
-              <ChevronLeft className="w-6 h-6 text-ink-900" />
+              <ChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 md:w-6 md:h-6 text-ink-900" />
             </button>
 
             <div 
               ref={scrollContainerRef}
-              className="flex gap-6 overflow-x-auto hide-scroll snap-x pb-8 pt-4 px-2"
+              className="flex gap-4 xs:gap-5 sm:gap-6 overflow-x-auto hide-scroll snap-x pb-6 xs:pb-8 pt-3 xs:pt-4 px-1 xs:px-2"
             >
               {activeProducts.map((item: any) => {
                 const isBestSeller = item.isBestseller || item.slug === 'nirvana';

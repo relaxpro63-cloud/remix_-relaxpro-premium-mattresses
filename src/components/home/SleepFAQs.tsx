@@ -72,17 +72,17 @@ export default function SleepFAQs() {
   };
 
   return (
-    <div id="sleep-faqs-section" className="max-w-4xl mx-auto px-4 md:px-6 py-16 md:py-20">
+    <div id="sleep-faqs-section" className="max-w-4xl mx-auto px-4 xs:px-5 sm:px-6 lg:px-8 py-12 xs:py-14 sm:py-16 md:py-20">
       <BlurFade delay={0.1}>
         {/* Title and subtitle */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50">
-            <HelpCircle className="w-3.5 h-3.5" /> FACTORY-DIRECT SLEEP EDUCATION
+        <div className="text-center max-w-2xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
+          <span className="eyebrow inline-flex items-center gap-2 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full bg-brand-50">
+            <HelpCircle className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> FACTORY-DIRECT SLEEP EDUCATION
           </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mt-6 text-ink-900 leading-tight">
+          <h2 className="text-3xl xs:text-4xl sm:text-[2.5rem] md:text-5xl font-heading font-bold mt-4 xs:mt-5 sm:mt-6 text-ink-900 leading-tight">
             Sleep FAQs & Latexmax Care Guides
           </h2>
-          <p className="text-graphite-500 text-sm md:text-base mt-4 leading-relaxed font-body">
+          <p className="text-graphite-500 text-sm xs:text-[15px] sm:text-base mt-3 xs:mt-4 leading-relaxed font-body">
             Have questions about customized dimensions, long-term GOLS durability, or keeping your organic sleep core fresh? Suresh and the engineering team outline everything below.
           </p>
         </div>
@@ -90,9 +90,9 @@ export default function SleepFAQs() {
 
       {/* Interactive Toolbar: Search & Categories */}
       <BlurFade delay={0.15}>
-        <div className="bg-secondary/80 backdrop-blur-xl rounded-2xl md:rounded-[2rem] border border-brand-200/50 p-4 md:p-5 shadow-lg shadow-brand-500/5 mb-8 md:mb-10 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-6 font-body text-sm relative z-10">
+        <div className="bg-secondary/80 backdrop-blur-xl rounded-2xl md:rounded-[2rem] border border-brand-200/50 p-3 xs:p-4 md:p-5 shadow-lg shadow-brand-500/5 mb-6 xs:mb-8 md:mb-10 space-y-3 xs:space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-6 font-body text-sm relative z-10">
           {/* Categories Tab Group with horizontal scroll on mobile */}
-          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none snap-x snap-mandatory">
+          <div className="flex gap-1.5 xs:gap-2 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none snap-x snap-mandatory">
             <button
               onClick={() => setActiveCategory('all')}
               className={`px-4 py-2 rounded-xl text-xs md:text-sm font-accent tracking-wide transition-all cursor-pointer shadow-sm shrink-0 snap-start ${
@@ -151,7 +151,7 @@ export default function SleepFAQs() {
 
       {/* Accordion List Container */}
       <BlurFade delay={0.2}>
-        <div className="space-y-4 min-h-[160px] relative z-10">
+        <div className="space-y-3 xs:space-y-4 min-h-[160px] relative z-10">
           <AnimatePresence mode="popLayout">
             {filteredFaqs.length > 0 ? (
               filteredFaqs.map((faq) => {
@@ -173,25 +173,25 @@ export default function SleepFAQs() {
                     {/* Header trigger button */}
                     <button
                       onClick={() => toggleFaq(faq.id)}
-                      className="w-full px-4 md:px-6 py-4 md:py-5 text-left flex items-start gap-4 md:gap-5 cursor-pointer focus:outline-none select-none group"
+                      className="w-full px-3 xs:px-4 md:px-6 py-3 xs:py-4 md:py-5 text-left flex items-start gap-3 xs:gap-4 md:gap-5 cursor-pointer focus:outline-none select-none group"
                     >
-                      <div className={`p-3 rounded-xl transition-all duration-300 mt-1 shadow-sm shrink-0 hidden sm:flex items-center justify-center ${isOpen ? 'bg-ink-900 text-white' : 'bg-sky-50 border border-brand-200/50 group-hover:bg-brand-50 group-hover:scale-110'}`}>
+                      <div className={`p-2 xs:p-3 rounded-xl transition-all duration-300 mt-1 shadow-sm shrink-0 hidden sm:flex items-center justify-center ${isOpen ? 'bg-ink-900 text-white' : 'bg-sky-50 border border-brand-200/50 group-hover:bg-brand-50 group-hover:scale-110'}`}>
                         {faq.icon}
                       </div>
 
                       <div className="flex-1 pr-2 pt-1">
-                        <span className="font-accent text-[10px] tracking-widest font-bold uppercase text-brand-600 block mb-1.5 opacity-80">
+                        <span className="font-accent text-[9px] xs:text-[10px] tracking-widest font-bold uppercase text-brand-600 block mb-1 xs:mb-1.5 opacity-80">
                           {faq.category === 'durability' ? 'Durability Guides' : faq.category === 'care' ? 'Care & Lifespan' : 'Custom Tailoring'}
                         </span>
-                        <h3 className="font-heading font-bold text-base md:text-xl text-ink-900 tracking-tight leading-snug group-hover:text-brand-600 transition-colors">
+                        <h3 className="font-heading font-bold text-sm xs:text-base md:text-xl text-ink-900 tracking-tight leading-snug group-hover:text-brand-600 transition-colors">
                           {faq.question}
                         </h3>
                       </div>
 
-                      <div className="shrink-0 mt-2 md:mt-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-brand-50' : 'bg-sky-50 group-hover:bg-brand-50'}`}>
+                      <div className="shrink-0 mt-1 xs:mt-2 md:mt-3">
+                        <div className={`w-6 h-6 xs:w-8 xs:h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-brand-50' : 'bg-sky-50 group-hover:bg-brand-50'}`}>
                           <ChevronDown 
-                            className={`w-4 h-4 md:w-5 h-5 transition-transform duration-500 ease-out ${
+                            className={`w-3 h-3 xs:w-4 xs:h-4 md:w-5 md:h-5 transition-transform duration-500 ease-out ${
                               isOpen ? 'transform rotate-180 text-brand-600' : 'text-ink-900/50'
                             }`} 
                           />
@@ -208,8 +208,8 @@ export default function SleepFAQs() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                          <div className="px-4 md:px-6 pb-5 md:pb-6 pt-2 md:ml-[68px] border-t border-brand-200/30">
-                            <p className="font-body text-sm md:text-base text-graphite-700 leading-relaxed max-w-3xl">
+                          <div className="px-3 xs:px-4 md:px-6 pb-4 xs:pb-5 md:pb-6 pt-2 md:ml-[68px] border-t border-brand-200/30">
+                            <p className="font-body text-sm xs:text-[15px] sm:text-base text-graphite-700 leading-relaxed max-w-3xl">
                               {faq.answer}
                             </p>
                           </div>

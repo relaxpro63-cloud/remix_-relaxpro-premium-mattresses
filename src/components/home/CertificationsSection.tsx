@@ -161,7 +161,7 @@ export default function CertificationsSection() {
 
   return (
     <>
-      <section className="relative overflow-hidden py-20 md:py-28 px-4 md:px-8 bg-[#FAF8F5]">
+      <section className="relative overflow-hidden py-14 xs:py-16 sm:py-20 md:py-24 lg:py-28 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-[#FAF8F5]">
         {/* Premium subtle organic texture */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
@@ -169,20 +169,20 @@ export default function CertificationsSection() {
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           {/* ===== Section Header ===== */}
-          <FadeUp className="text-center max-w-3xl mx-auto mb-14 md:mb-16">
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-4 py-1.5 rounded-full shadow-sm">
-              <Sparkles className="w-3 h-3" /> Certified Quality
+          <FadeUp className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
+            <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
+              <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> Certified Quality
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-5 text-ink-900 leading-[1.1]">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-4 xs:mt-5 text-ink-900 leading-[1.1]">
               Trusted by International <span className="text-[#C8A96A]">Quality Standards</span>
             </h2>
-            <p className="text-graphite-600 text-sm sm:text-base md:text-lg mt-4 font-body leading-relaxed max-w-2xl mx-auto">
+            <p className="text-graphite-600 text-sm xs:text-[15px] sm:text-base md:text-lg mt-3 xs:mt-4 font-body leading-relaxed max-w-2xl mx-auto">
               Every RelaxPro mattress is crafted using premium materials and manufactured to meet globally recognized quality, safety, and environmental standards. Sleep with complete confidence knowing your mattress is backed by certified excellence.
             </p>
           </FadeUp>
 
           {/* ===== Certification Logo Cards ===== */}
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12" stagger={0.15}>
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 xs:gap-6 sm:gap-8 lg:gap-12" stagger={0.15}>
             {certificates.map((cert) => (
               <motion.div
                 key={cert.id}
@@ -197,7 +197,7 @@ export default function CertificationsSection() {
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#C8A96A] to-transparent opacity-60" />
 
                 {/* Card content */}
-                <div className="p-8 md:p-10 flex flex-col items-center w-full">
+                <div className="p-5 xs:p-6 sm:p-8 md:p-10 flex flex-col items-center w-full">
                   {/* Logo image */}
                   <div className="h-20 md:h-[76px] flex items-center justify-center mb-6">
                     <img
@@ -214,7 +214,7 @@ export default function CertificationsSection() {
                   />
 
                   {/* Title */}
-                  <h3 className="font-heading font-bold text-lg md:text-xl text-ink-900 leading-tight">
+                  <h3 className="font-heading font-bold text-base xs:text-lg md:text-xl text-ink-900 leading-tight">
                     {cert.title}
                   </h3>
                   <p className="text-[11px] font-accent font-bold uppercase tracking-widest text-[#C8A96A]/70 mt-1.5">
@@ -238,8 +238,8 @@ export default function CertificationsSection() {
           </StaggerChildren>
 
           {/* ===== Trust Badges ===== */}
-          <FadeUp className="mt-12 md:mt-14">
-            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5">
+          <FadeUp className="mt-8 xs:mt-10 sm:mt-12 md:mt-14">
+            <div className="flex flex-wrap items-center justify-center gap-2 xs:gap-3 md:gap-5">
               {trustItems.map((item, i) => (
                 <motion.div
                   key={i}
@@ -250,7 +250,7 @@ export default function CertificationsSection() {
                   <div className="w-5 h-5 rounded-full bg-[#0F5B43]/10 flex items-center justify-center shrink-0">
                     <CheckCircle className="w-3.5 h-3.5 text-[#0F5B43]" />
                   </div>
-                  <span className="text-xs sm:text-sm font-accent font-semibold text-ink-900 tracking-wide">
+                  <span className="text-[11px] xs:text-xs sm:text-sm font-accent font-semibold text-ink-900 tracking-wide">
                     {item.text}
                   </span>
                 </motion.div>

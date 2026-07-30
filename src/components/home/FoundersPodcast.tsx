@@ -29,7 +29,7 @@ export default function FoundersPodcast() {
   const handlePlay = () => setPlayVideo(true);
 
   return (
-    <section className="relative overflow-hidden py-16 md:py-24 px-4 md:px-8 bg-[#FAF8F5]">
+    <section className="relative overflow-hidden py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-[#FAF8F5]">
       {/* Subtle organic background texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
@@ -37,11 +37,11 @@ export default function FoundersPodcast() {
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* ===== Section Heading Above Container ===== */}
-        <FadeUp className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-4 py-1.5 rounded-full shadow-sm">
-            <Mic className="w-3 h-3" /> Our Journey
+        <FadeUp className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
+          <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
+            <Mic className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> Our Journey
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-5 text-ink-900 leading-[1.1]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-4 xs:mt-5 text-ink-900 leading-[1.1]">
             The Story Behind Every <span className="text-[#C8A96A]">Better Night's Sleep</span>
           </h2>
           <p className="text-graphite-600 text-sm sm:text-base md:text-lg mt-4 font-body leading-relaxed max-w-2xl mx-auto">
@@ -59,7 +59,7 @@ export default function FoundersPodcast() {
         >
           <div className="flex flex-col lg:flex-row">
             {/* ===== LEFT: Video (55%) ===== */}
-            <div className="w-full lg:w-[55%] p-5 md:p-8 lg:p-10">
+            <div className="w-full lg:w-[55%] p-4 xs:p-5 md:p-8 lg:p-10">
               <div
                 ref={videoContainerRef}
                 className="relative rounded-2xl overflow-hidden bg-ink-900 shadow-2xl shadow-ink-900/20 group cursor-pointer"
@@ -136,7 +136,7 @@ export default function FoundersPodcast() {
             </div>
 
             {/* ===== RIGHT: Content (45%) ===== */}
-            <div className="w-full lg:w-[45%] p-5 md:p-8 lg:p-10 lg:pl-0 lg:pr-10 flex flex-col justify-center">
+            <div className="w-full lg:w-[45%] p-4 xs:p-5 md:p-8 lg:p-10 lg:pl-0 lg:pr-10 flex flex-col justify-center">
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -144,7 +144,7 @@ export default function FoundersPodcast() {
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               >
                 {/* Badge */}
-                <span className="inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-[0.15em] font-accent font-bold text-[#0F5B43] uppercase bg-[#0F5B43]/8 border border-[#0F5B43]/15 px-3 py-1.5 rounded-full mb-4">
+                <span className="inline-flex items-center gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] tracking-[0.15em] font-accent font-bold text-[#0F5B43] uppercase bg-[#0F5B43]/8 border border-[#0F5B43]/15 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full mb-3 xs:mb-4">
                   <Star className="w-3 h-3" /> Founder's Podcast
                 </span>
 
@@ -154,10 +154,10 @@ export default function FoundersPodcast() {
                 </p>
 
                 {/* Large heading */}
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 leading-[1.15] tracking-tight">
+                <h3 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 leading-[1.15] tracking-tight">
                   Zero నుండి RelaxPro వరకు
                 </h3>
-                <p className="text-base sm:text-lg font-heading text-graphite-600 mt-1.5 leading-snug">
+                <p className="text-sm xs:text-base sm:text-lg font-heading text-graphite-600 mt-1 xs:mt-1.5 leading-snug">
                   How We Built a Premium Natural Latex Mattress Brand
                 </p>
 
@@ -171,7 +171,7 @@ export default function FoundersPodcast() {
               </motion.div>
 
               {/* ===== Highlights ===== */}
-              <StaggerChildren className="mt-6 space-y-2" stagger={0.06}>
+              <StaggerChildren className="mt-4 xs:mt-5 sm:mt-6 space-y-1.5 xs:space-y-2" stagger={0.06}>
                 {highlights.map((item, i) => (
                   <motion.div
                     key={i}
@@ -192,7 +192,7 @@ export default function FoundersPodcast() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-6 relative bg-white/70 backdrop-blur-xl border border-amber-200/40 rounded-2xl p-5 shadow-md"
+                className="mt-4 xs:mt-5 sm:mt-6 relative bg-white/70 backdrop-blur-xl border border-amber-200/40 rounded-xl xs:rounded-2xl p-4 xs:p-5 shadow-md"
               >
                 <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[#C8A96A]/30" />
                 <div className="relative z-10">
@@ -206,7 +206,7 @@ export default function FoundersPodcast() {
               </motion.div>
 
               {/* ===== CTAs ===== */}
-              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <div className="mt-4 xs:mt-5 sm:mt-6 flex flex-col sm:flex-row gap-2 xs:gap-3">
                 <motion.a
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
