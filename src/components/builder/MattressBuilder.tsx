@@ -979,9 +979,9 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
         }).join(', ');
       }
       case 'natural': {
-        // Show natural comfort: Latex Foam / PU Rebonded only
+        // Show natural comfort: Latex Foam only
         const naturalMats = build.comfort.filter(s =>
-          s.materialSlug === 'pure-natural-latex' || s.materialSlug === 'pu-rebonded'
+          s.materialSlug === 'pure-natural-latex'
         );
         if (naturalMats.length === 0) return 'Not set';
         return naturalMats.map(s => {
@@ -1006,7 +1006,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: {
     ) || [], [config]);
   const naturalComfortMats = useMemo(() =>
     config?.materials.filter(m =>
-      m.slug === 'pure-natural-latex' || m.slug === 'pu-rebonded'
+      m.slug === 'pure-natural-latex'
     ) || [], [config]);
 
   const handleAddToCart = () => {
