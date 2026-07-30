@@ -8,6 +8,7 @@ import ShineBorder from '../ui/ShineBorder';
 import SegmentedControl from '../ui/SegmentedControl';
 import { getAllProducts, imageUrl } from '../../lib/queries';
 import { WHATSAPP_NUMBER } from '../../lib/site';
+import DecorativeBotanicals from '../home/DecorativeBotanicals';
 
 interface ProductListProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -166,7 +167,8 @@ export default function ProductList({
   }, [searchTerm, selectedTier, selectedComfort, onlyLatex, sortBy]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24 relative overflow-hidden">
+      <DecorativeBotanicals density="light" />
       {/* Title block */}
       <div className="mb-12 border-b border-brand-200/40 pb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 fade-up">
         <div className="max-w-2xl">
