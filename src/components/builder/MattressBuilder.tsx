@@ -170,7 +170,7 @@ function initBuild(_config: BuilderConfig): BuildState {
     size: { kind: 'preset', name: defaultCat.label, length: defaultVariant.dims.length, width: defaultVariant.dims.width, sizeCategory: defaultCat.value },
     comfort: [],
     support: [],
-    cover: { fabricSlug: '', quiltingSlug: 'quilting-12mm' },
+    cover: { fabricSlug: '', quiltingSlug: '' },
   };
 }
 
@@ -832,29 +832,58 @@ function StepCover({ build, onSelect }: {
   build: BuildState;
   onSelect: (b: BuildState) => void;
 }) {
+  const selected = !!build.cover.quiltingSlug;
+  const toggle = () => {
+    onSelect({
+      ...build,
+      cover: { ...build.cover, quiltingSlug: selected ? '' : 'quilting-12mm' },
+    });
+  };
   return (
     <div className="space-y-4">
-      <div className="p-5 sm:p-6 bg-gradient-to-br from-white to-ink-50/20 rounded-xl border border-ink-900/10 shadow-sm">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-ink-900/10 flex items-center justify-center shrink-0">
-            <Palette className="w-5 h-5 text-ink-900" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="font-bold text-sm text-ink-900">12mm Deep Quilting (Premium)</h4>
-            <p className="text-xs text-graphite-500 mt-0.5">
-              Deep 12mm quilting for a luxurious pillow-top feel with enhanced pressure relief.
-            </p>
-          </div>
-          <div className="shrink-0">
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
-              <Check className="w-3 h-3" /> Included
-            </span>
+      <motion.button
+        onClick={toggle}
+        whileTap={{ scale: 0.99 }}
+        className={`relative w-full text-left rounded-xl border-2 transition-all duration-300 overflow-hidden cursor-pointer ${
+          selected
+            ? 'border-ink-900 bg-ink-900/[0.03] shadow-lg shadow-ink-900/5'
+            : 'border-graphite-100 bg-white hover:border-graphite-200 hover:shadow-md'
+        }`}
+      >
+        {/* Selected indicator */}
+        {selected && <div className="absolute left-0 top-0 bottom-0 w-1 bg-ink-900" />}
+        <div className="p-5 sm:p-6">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-ink-900/10 flex items-center justify-center shrink-0">
+              <Palette className="w-5 h-5 text-ink-900" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h4 className="font-bold text-sm text-ink-900">12mm Deep Quilting (Premium)</h4>
+                {selected && (
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
+                    <Check className="w-3 h-3" /> Selected
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-graphite-500 mt-0.5">
+                Deep 12mm quilting for a luxurious pillow-top feel with enhanced pressure relief.
+              </p>
+              <p className="text-[11px] text-graphite-400 mt-1.5">
+                {selected
+                  ? 'Added to your mattress. Pricing varies by size.'
+                  : 'Tap to add the premium 12mm quilted top to your mattress.'}
+              </p>
+            </div>
+            {/* Checkbox */}
+            <div className={`shrink-0 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
+              selected ? 'border-ink-900 bg-ink-900' : 'border-graphite-300 bg-white'
+            }`}>
+              {selected && <Check className="w-4 h-4 text-white" />}
+            </div>
           </div>
         </div>
-      </div>
-      <p className="text-[10px] text-graphite-400 text-center pt-1">
-        12mm quilted top is automatically included in your mattress. Pricing varies by size.
-      </p>
+      </motion.button>
     </div>
   );
 }
@@ -1010,7 +1039,6 @@ export default function MattressBuilder({ onNavigate }: {
 
   const handleWhatsApp = () => {
     if (!build || !config) return;
-    const quiltFab = config.fabrics.find(f => f.slug === build.cover.quiltingSlug && f.role === 'quiltingUpgrade');
     const comfortDescs = build.comfort.map(s => {
       const m = config.materials.find(x => x.slug === s.materialSlug);
       return `  \u2022 ${m?.name || s.materialSlug} \u2014 ${s.thickness}"`;
@@ -1031,7 +1059,9 @@ export default function MattressBuilder({ onNavigate }: {
       'Support Core:',
       supportDescs || '  (none)',
       '',
-      `Cover: 12mm Deep Quilting (Premium)${quiltFab ? '' : ''}`,
+      build.cover.quiltingSlug
+        ? 'Cover: 12mm Deep Quilting (Premium)'
+        : 'Cover: Standard quilted top (no upgrade)',
       '',
       `Total: \u20b9${price.toLocaleString('en-IN')}`,
       '',
