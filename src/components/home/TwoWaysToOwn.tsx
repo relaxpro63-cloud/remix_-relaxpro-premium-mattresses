@@ -209,10 +209,10 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="relative z-10 mt-12 pt-8 border-t border-brand-100/60">
                 <button
                   onClick={onSeeAllModels}
-                  className="w-full flex items-center justify-between bg-white hover:bg-brand-50 border border-brand-200/60 text-ink-900 font-sans font-medium text-xs xs:text-sm sm:text-base py-3 xs:py-3.5 sm:py-4 px-4 xs:px-5 sm:px-6 rounded-xl xs:rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/btn"
+                  className="w-full flex items-center justify-between bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-sans font-medium text-xs xs:text-sm sm:text-base py-3 xs:py-3.5 sm:py-4 px-4 xs:px-5 sm:px-6 rounded-xl xs:rounded-2xl transition-all duration-300 shadow-[0_8px_20px_-6px_rgba(21,104,163,0.4)] group-hover:shadow-[0_12px_28px_-6px_rgba(21,104,163,0.5)] cursor-pointer group/btn"
                 >
                   <span className="tracking-wide text-[11px] xs:text-xs sm:text-sm md:text-base">{data?.shopPrebuilt?.cta?.label || 'Explore Our Collection'}</span>
-                  <ArrowRight className="w-4 h-4 xs:w-5 xs:h-5 text-brand-600 group-hover/btn:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
+                  <ArrowRight className="w-4 h-4 xs:w-5 xs:h-5 text-white group-hover/btn:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
                 </button>
               </div>
             </motion.div>
