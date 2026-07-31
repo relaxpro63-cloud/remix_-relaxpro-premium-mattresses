@@ -133,11 +133,11 @@ type PriceRow = [number, number, number, number];
 const SIZE_IDX: Record<string, number> = { single: 0, diwan: 1, queen: 2, king: 3 };
 
 const HARDCODED_PRICES: Record<string, Record<number, PriceRow>> = {
-  'pu-rebonded':           { 2: [3000, 2500, 2000, 1500], 4: [6000, 5000, 4000, 3000] },
-  'hr-foam':               { 2: [3000, 2500, 2000, 1500] },
-  'hr-softy-foam':         { 2: [3000, 2500, 2000, 1500] },
-  'latex-rebonded-core':   { 2: [6000, 5000, 4000, 3000], 4: [12000, 10000, 8000, 6000] },
-  'pure-natural-latex':    { 1: [6000, 5000, 4000, 3000], 2: [12000, 10000, 8000, 6000], 4: [24000, 20000, 16000, 12000], 6: [36000, 30000, 24000, 18000], 8: [48000, 40000, 32000, 24000] },
+  'pu-rebonded':           { 2: [1500, 2000, 2500, 3000], 4: [3000, 4000, 5000, 6000] },
+  'hr-foam':               { 2: [1500, 2000, 2500, 3000] },
+  'hr-softy-foam':         { 2: [1500, 2000, 2500, 3000] },
+  'latex-rebonded-core':   { 2: [3000, 4000, 5000, 6000], 4: [6000, 8000, 10000, 12000] },
+  'pure-natural-latex':    { 1: [3000, 4000, 5000, 6000], 2: [6000, 8000, 10000, 12000], 4: [12000, 16000, 20000, 24000], 6: [18000, 24000, 30000, 36000], 8: [24000, 32000, 40000, 48000] },
 };
 
 const QUILT_PRICES: PriceRow = [2500, 3500, 4200, 5000];
@@ -1251,7 +1251,7 @@ export default function MattressBuilder({ onNavigate }: {
                     />
                   )}
                   {step.key === 'cover' && (
-                    <StepCover fabrics={config.fabrics} build={build} onSelect={setBuild} />
+                    <StepCover build={build} onSelect={setBuild} />
                   )}
                 </StepAccordion>
               );
