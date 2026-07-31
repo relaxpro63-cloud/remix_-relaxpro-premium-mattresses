@@ -140,7 +140,7 @@ const HARDCODED_PRICES: Record<string, Record<number, PriceRow>> = {
   'pure-natural-latex':    { 1: [6000, 5000, 4000, 3000], 2: [12000, 10000, 8000, 6000], 4: [24000, 20000, 16000, 12000], 6: [36000, 30000, 24000, 18000], 8: [48000, 40000, 32000, 24000] },
 };
 
-const QUILT_PRICES: PriceRow = [5000, 4200, 3500, 2500];
+const QUILT_PRICES: PriceRow = [2500, 3500, 4200, 5000];
 
 function getSizeIdx(build: BuildState): number {
   return build.size.kind === 'preset' && build.size.sizeCategory
