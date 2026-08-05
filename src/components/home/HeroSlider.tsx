@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronRight, Shield, Award, Leaf, IndianRupee } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
-import DecorativeBotanicals from './DecorativeBotanicals';
 
 const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
 
@@ -42,11 +41,6 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       id="main-content"
       className="relative min-h-dvh overflow-hidden"
     >
-      {/* ============================================ */}
-      {/* BOTANICAL ACCENTS — responsive density      */}
-      {/* ============================================ */}
-      <DecorativeBotanicals density="light" className="z-10 opacity-30 sm:opacity-50 md:opacity-40 2xl:opacity-30" />
-
       {/* ============================================ */}
       {/* DESKTOP LAYOUT — 40/60 side-by-side         */}
       {/* Shows from md breakpoint (768px) and up     */}

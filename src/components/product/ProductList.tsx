@@ -9,6 +9,7 @@ import SegmentedControl from '../ui/SegmentedControl';
 import { getAllProducts, imageUrl } from '../../lib/queries';
 import { WHATSAPP_NUMBER } from '../../lib/site';
 import DecorativeBotanicals from '../home/DecorativeBotanicals';
+import OffersSection from '../home/OffersSection';
 
 interface ProductListProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -483,6 +484,11 @@ export default function ProductList({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Offers & Promotions — CMS-driven campaign visibility (full-bleed dark band) */}
+      <div className="relative -mx-4 xs:-mx-5 sm:-mx-6 md:-mx-8 lg:-mx-10">
+        <OffersSection onNavigate={onNavigate} />
+      </div>
 
       {/* Trust Callout */}
       <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-12 xs:mt-14 sm:mt-20 md:mt-24 p-5 xs:p-6 sm:p-8 md:p-12 rounded-[1.5rem] xs:rounded-[1.75rem] sm:rounded-[2rem] border border-ink-900/20 flex flex-col md:flex-row gap-6 xs:gap-8 md:gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">

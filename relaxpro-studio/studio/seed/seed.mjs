@@ -386,6 +386,7 @@ const HOME = {
   faqSection: { faqs: [{ _type: 'reference', _ref: 'faq-q1' }, { _type: 'reference', _ref: 'faq-q2' }, { _type: 'reference', _ref: 'faq-q3' }, { _type: 'reference', _ref: 'faq-q4' }, { _type: 'reference', _ref: 'faq-q5' }, { _type: 'reference', _ref: 'faq-q6' }, { _type: 'reference', _ref: 'faq-q7' }, { _type: 'reference', _ref: 'faq-q8' }] },
   allShowroomsSection: { showrooms: [{ _type: 'reference', _ref: 'showroom-hyderabad' }, { _type: 'reference', _ref: 'showroom-rajahmundry' }, { _type: 'reference', _ref: 'showroom-bangalore' }] },
   shopByBrands: { categories: [{ _type: 'reference', _ref: 'cat-luxury' }, { _type: 'reference', _ref: 'cat-premium' }, { _type: 'reference', _ref: 'cat-comfort' }] },
+  offersSection: { sectionBadge: 'Limited Time', sectionTitle: 'Offers & Promotions', sectionSubtitle: 'Factory-direct pricing on India\u2019s finest natural latex sleep systems.' },
 }
 
 // ─── ABOUT ──────────────────────────────────────────────────────────────────
@@ -468,6 +469,62 @@ const SLEEP_SCIENCE = {
   ctaLink: '/compare',
 }
 
+// ─── OFFERS & CAMPAIGNS ────────────────────────────────────────────────────
+// endDate is computed relative to seed-time so countdown timers are demonstrable.
+const daysFromNow = (days) => new Date(Date.now() + days * 86400000).toISOString()
+
+const OFFERS = [
+  {
+    _id: 'offer-factory-delivery',
+    title: 'Free Doorstep Delivery',
+    subtitle: 'On every mattress order across major Indian cities',
+    description: 'White-glove delivery, free assembly guidance, and no hidden charges. Factory-direct to your bedroom.',
+    badge: 'Nationwide',
+    type: 'promo',
+    discountText: 'Free Delivery',
+    cta: { label: 'Shop Now', link: '/catalog', variant: 'primary', openInNewTab: false },
+    isActive: true,
+    showBanner: false,
+    showOnHomepage: true,
+    bannerColor: 'brand',
+    priority: 30,
+  },
+  {
+    _id: 'offer-bundle-deal',
+    title: 'Complete Sleep Bundle',
+    subtitle: 'Order a mattress and get pillows + protector bundled',
+    description: 'Pair any luxury latex mattress with 2 organic latex pillows and a breathable protector at factory prices.',
+    badge: 'Bundle Offer',
+    type: 'bundle',
+    discountText: '2 Pillows Free',
+    cta: { label: 'Build Your Bundle', link: '/builder', variant: 'primary', openInNewTab: false },
+    startDate: new Date().toISOString(),
+    endDate: daysFromNow(30),
+    isActive: true,
+    showBanner: false,
+    showOnHomepage: true,
+    bannerColor: 'amber',
+    priority: 20,
+  },
+  {
+    _id: 'offer-emi-stay',
+    title: 'Sleep Now, Pay Later',
+    subtitle: 'No-cost EMI plans available on all premium models',
+    description: 'Split your purchase into easy monthly installments with zero added interest. Apply at checkout or over WhatsApp.',
+    badge: 'Flexible Payments',
+    type: 'promo',
+    discountText: '0% EMI',
+    cta: { label: 'Talk to Us', link: 'https://wa.me/918686624494', variant: 'secondary', openInNewTab: true },
+    startDate: new Date().toISOString(),
+    endDate: daysFromNow(15),
+    isActive: true,
+    showBanner: false,
+    showOnHomepage: true,
+    bannerColor: 'green',
+    priority: 10,
+  },
+]
+
 // ─── EXECUTION ──────────────────────────────────────────────────────────────
 async function main() {
   console.log('Starting seed...\n')
@@ -507,6 +564,9 @@ async function main() {
 
   console.log('\n── Sleep Science ──')
   await upsert('sleepScience', SLEEP_SCIENCE)
+
+  console.log('\n── Offers & Campaigns ──')
+  for (const o of OFFERS) await upsert('offer', o)
 
   console.log('\n✅ Seed complete!')
 }

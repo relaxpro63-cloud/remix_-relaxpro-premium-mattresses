@@ -1,0 +1,49 @@
+[
+  {
+    "_id": "offer-factory-delivery",
+    "title": "Free Doorstep Delivery",
+    "subtitle": "On every mattress order across major Indian cities",
+    "description": "White-glove delivery, free assembly guidance, and no hidden charges. Factory-direct to your bedroom.",
+    "badge": "Nationwide",
+    "type": "promo",
+    "discountText": "Free Delivery",
+    "cta": { "label": "Shop Now", "link": "/catalog", "variant": "primary", "openInNewTab": false },
+    "isActive": true,
+    "showBanner": false,
+    "showOnHomepage": true,
+    "bannerColor": "brand",
+    "priority": 30
+  },
+  {
+    "_id": "offer-bundle-deal",
+    "title": "Complete Sleep Bundle",
+    "subtitle": "Order a mattress and get pillows + protector bundled",
+    "description": "Pair any luxury latex mattress with 2 organic latex pillows and a breathable protector at factory prices.",
+    "badge": "Bundle Offer",
+    "type": "bundle",
+    "discountText": "2 Pillows Free",
+    "cta": { "label": "Build Your Bundle", "link": "/builder", "variant": "primary", "openInNewTab": false },
+    "endDateDaysFromNow": 30,
+    "isActive": true,
+    "showBanner": false,
+    "showOnHomepage": true,
+    "bannerColor": "amber",
+    "priority": 20
+  },
+  {
+    "_id": "offer-emi-stay",
+    "title": "Sleep Now, Pay Later",
+    "subtitle": "No-cost EMI plans available on all premium models",
+    "description": "Split your purchase into easy monthly installments with zero added interest. Apply at checkout or over WhatsApp.",
+    "badge": "Flexible Payments",
+    "type": "promo",
+    "discountText": "0% EMI",
+    "cta": { "label": "Talk to Us", "link": "https://wa.me/918686624494", "variant": "secondary", "openInNewTab": true },
+    "endDateDaysFromNow": 15,
+    "isActive": true,
+    "showBanner": false,
+    "showOnHomepage": true,
+    "bannerColor": "green",
+    "priority": 10
+  }
+]

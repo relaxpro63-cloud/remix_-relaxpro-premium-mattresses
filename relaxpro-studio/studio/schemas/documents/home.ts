@@ -214,6 +214,14 @@ export default {
         },
       ],
     },
+    {
+      name: 'offersSection', title: 'Offers & Promotions Section', type: 'object',
+      fields: [
+        { name: 'sectionBadge', title: 'Section Badge', type: 'string', initialValue: 'Limited Time' },
+        { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'Offers & Promotions' },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2, initialValue: 'Factory-direct pricing on India\u2019s finest natural latex sleep systems.' },
+      ],
+    },
     { name: 'bookingForm', title: 'Book Showroom Visit Form', type: 'formConfig' },
     { name: 'diagnosticForm', title: 'Diagnostic Consultation Form', type: 'formConfig' },
     { name: 'seo', title: 'SEO Settings', type: 'pageSEO' },

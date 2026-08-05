@@ -16,6 +16,7 @@ import { ShoppingBag } from 'lucide-react';
 import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
 import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
+import OffersSection from '../../components/home/OffersSection';
 
 import SleepFAQs from '../../components/home/SleepFAQs';
 
@@ -365,6 +366,9 @@ export default function HomePage({
       </section></FadeUp>
 
 
+
+      {/* Offers & Promotions — CMS-driven from Sanity "offer" documents */}
+      <OffersSection onNavigate={handlePageNavigation} />
 
       <FadeUp><section className="py-10 md:py-12 px-4 md:px-8 bg-secondary">
         <div className="max-w-6xl mx-auto">

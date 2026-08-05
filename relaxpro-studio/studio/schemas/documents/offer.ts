@@ -35,6 +35,7 @@ export default {
     { name: 'endDate', title: 'End Date', type: 'datetime', options: { dateFormat: 'YYYY-MM-DD', timeFormat: 'HH:mm' } },
     { name: 'isActive', title: 'Active', type: 'boolean', initialValue: true, description: 'Only active offers display on the website' },
     { name: 'showBanner', title: 'Show as Announcement Banner', type: 'boolean', description: 'When enabled, this offer appears as a top banner across all pages' },
+    { name: 'showOnHomepage', title: 'Show on Homepage Offers Section', type: 'boolean', initialValue: true, description: 'When enabled, this offer appears in the "Offers & Promotions" section on the homepage' },
     { name: 'bannerColor', title: 'Banner Color', type: 'string', options: { list: ['brand', 'amber', 'green', 'blue', 'red'] }, initialValue: 'brand' },
     { name: 'priority', title: 'Display Priority', type: 'number', description: 'Higher numbers show first' },
     { name: 'seo', title: 'SEO Settings', type: 'pageSEO' },
