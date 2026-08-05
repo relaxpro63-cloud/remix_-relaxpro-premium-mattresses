@@ -42,12 +42,17 @@ const defaultHeader = {
   sectionDescription: 'Have questions about customized dimensions, long-term GOLS durability, or keeping your organic sleep core fresh? Suresh and the engineering team outline everything below.',
 };
 
+// Show only the most important FAQs first; reveal the rest on demand.
+const INITIAL_VISIBLE = 6;
+
 export default function SleepFAQs() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<'all' | 'care' | 'durability' | 'customization'>('all');
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [header, setHeader] = useState(defaultHeader);
+  // When the user searches or picks a category, we show every match.
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     getHomePage().then((h: any) => {
@@ -82,6 +87,12 @@ export default function SleepFAQs() {
       return matchCategory && matchSearch;
     });
   }, [activeCategory, searchQuery, faqs]);
+
+  // Active filtering (search/category) always shows every match;
+  // the "collapsed" view shows only the top FAQs.
+  const isFiltering = activeCategory !== 'all' || searchQuery.trim() !== '';
+  const visibleFaqs = isFiltering || showAll ? filteredFaqs : filteredFaqs.slice(0, INITIAL_VISIBLE);
+  const hasHidden = filteredFaqs.length > INITIAL_VISIBLE;
 
   const toggleFaq = (id: string) => {
     setOpenId(prev => (prev === id ? null : id));
@@ -169,8 +180,8 @@ export default function SleepFAQs() {
       <BlurFade delay={0.2}>
         <div className="space-y-3 xs:space-y-4 min-h-[160px] relative z-10">
           <AnimatePresence mode="popLayout">
-            {filteredFaqs.length > 0 ? (
-              filteredFaqs.map((faq) => {
+            {visibleFaqs.length > 0 ? (
+              visibleFaqs.map((faq) => {
                 const isOpen = openId === faq.id;
                 return (
                   <motion.div
@@ -253,6 +264,28 @@ export default function SleepFAQs() {
           </AnimatePresence>
         </div>
       </BlurFade>
+
+      {/* Reveal more / collapse — only when extra FAQs exist and no filter is active */}
+      {hasHidden && !isFiltering && (
+        <BlurFade delay={0.25}>
+          <div className="mt-8 xs:mt-10 text-center">
+            <button
+              onClick={() => {
+                setShowAll(prev => !prev);
+                setOpenId(null);
+              }}
+              aria-expanded={showAll}
+              className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-ink-900 hover:bg-brand-700 text-white text-xs xs:text-sm font-accent font-bold tracking-wide uppercase shadow-lg shadow-ink-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-brand-600/25 hover:-translate-y-0.5 cursor-pointer"
+            >
+              {showAll ? (
+                <>Show Fewer <ChevronDown className="w-4 h-4 rotate-180 transition-transform" /></>
+              ) : (
+                <>View All {filteredFaqs.length} Questions <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" /></>
+              )}
+            </button>
+          </div>
+        </BlurFade>
+      )}
     </div>
   );
 }
