@@ -56,6 +56,7 @@ export default {
     {
       name: 'bestsellersSection', title: 'Bestselling Products Section', type: 'object',
       fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Best In Class' },
         { name: 'sectionTitle', title: 'Section Title', type: 'string' },
         { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2 },
         { name: 'products', title: 'Featured Products', type: 'array', of: [{ type: 'reference', to: [{ type: 'product' }] }], validation: (Rule: any) => Rule.max(8) },
@@ -104,6 +105,7 @@ export default {
     {
       name: 'whyChooseUs', title: 'Why Choose RelaxPro', type: 'object',
       fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Why Choose RelaxPro' },
         { name: 'sectionTitle', title: 'Section Title', type: 'string' },
         { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2 },
         { name: 'benefits', title: 'Benefits', type: 'array', of: [{ type: 'featureCard' }], validation: (Rule: any) => Rule.min(3).max(8) },
@@ -112,6 +114,7 @@ export default {
     {
       name: 'testimonialsSection', title: 'Testimonials Section', type: 'object',
       fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Trust & Honest Feedback' },
         { name: 'sectionTitle', title: 'Section Title', type: 'string' },
         { name: 'overallRating', title: 'Overall Rating', type: 'string' },
         { name: 'totalReviews', title: 'Total Reviews Count', type: 'string' },
@@ -121,6 +124,7 @@ export default {
     {
       name: 'allShowroomsSection', title: 'All Showrooms Section', type: 'object',
       fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Experience Before Buying' },
         { name: 'sectionTitle', title: 'Section Title', type: 'string' },
         { name: 'sectionDescription', title: 'Section Description', type: 'text', rows: 3 },
         { name: 'showrooms', title: 'Showrooms to Display', type: 'array', of: [{ type: 'reference', to: [{ type: 'showroom' }] }] },
@@ -129,6 +133,7 @@ export default {
     {
       name: 'faqSection', title: 'FAQ / Sleep Guides Section', type: 'object',
       fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Factory-Direct Sleep Education' },
         { name: 'sectionTitle', title: 'Section Title', type: 'string' },
         { name: 'sectionDescription', title: 'Section Description', type: 'text', rows: 3 },
         { name: 'categories', title: 'FAQ Category Tabs', type: 'array', of: [{ type: 'string' }] },
@@ -220,6 +225,38 @@ export default {
         { name: 'sectionBadge', title: 'Section Badge', type: 'string', initialValue: 'Limited Time' },
         { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'Offers & Promotions' },
         { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2, initialValue: 'Factory-direct pricing on India\u2019s finest natural latex sleep systems.' },
+      ],
+    },
+    {
+      name: 'accessoriesSection', title: 'Accessories Section', type: 'object',
+      fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Complete Your Setup' },
+        { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'Pillows, Protectors & More Accessories' },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 3, initialValue: 'Crafted from the same premium materials as our mattresses \u2014 naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.' },
+      ],
+    },
+    {
+      name: 'showroomMap', title: 'Showroom Map Section', type: 'object',
+      fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Visit Our Factory Showroom' },
+        { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'Find Us in Hyderabad' },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2, initialValue: 'Visit our factory showroom to test every model in person and talk to our team.' },
+      ],
+    },
+    {
+      name: 'customerVideos', title: 'Customer Videos Section', type: 'object',
+      fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Watch Our Craftsmanship' },
+        { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'See Our Craftsmanship' },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2, initialValue: 'Watch real customers experience the craftsmanship of our GOLS-certified natural latex mattresses, straight from our Kerala factory.' },
+      ],
+    },
+    {
+      name: 'foundersPodcast', title: "Founder's Podcast Section", type: 'object',
+      fields: [
+        { name: 'sectionBadge', title: 'Section Badge (eyebrow)', type: 'string', initialValue: 'Our Journey' },
+        { name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: "The Story Behind Every Better Night's Sleep" },
+        { name: 'sectionSubtitle', title: 'Section Subtitle', type: 'text', rows: 2, initialValue: 'Discover the vision, innovation, and passion behind RelaxPro directly from our founder through this exclusive business podcast.' },
       ],
     },
     { name: 'bookingForm', title: 'Book Showroom Visit Form', type: 'formConfig' },

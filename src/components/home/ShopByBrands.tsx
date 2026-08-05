@@ -24,9 +24,14 @@ export default function ShopByBrands() {
   const [categories, setCategories] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
   const [activeCategory, setActiveCategory] = useState('');
+  const [header, setHeader] = useState({ sectionTitle: 'Shop by Brands', sectionSubtitle: '' });
 
   useEffect(() => {
     getHomePage().then((data: any) => {
+      if (data?.shopByBrands?.sectionTitle) {
+        const { sectionTitle, sectionSubtitle } = data.shopByBrands;
+        setHeader({ sectionTitle, sectionSubtitle });
+      }
       const cats = data?.shopByBrands?.categories || [];
       if (cats.length > 0) {
         setCategories(cats);
@@ -71,9 +76,14 @@ export default function ShopByBrands() {
     <section className="py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 bg-secondary border-b border-brand-200/30 relative overflow-hidden">
       <DecorativeBotanicals density="light" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <h2 className="text-xl xs:text-2xl sm:text-[26px] md:text-3xl lg:text-4xl font-heading font-bold text-ink-900 mb-4 xs:mb-5 sm:mb-6 md:mb-8">
-          Shop by Brands
-        </h2>
+        <div className="mb-4 xs:mb-5 sm:mb-6 md:mb-8">
+          <h2 className="text-xl xs:text-2xl sm:text-[26px] md:text-3xl lg:text-4xl font-heading font-bold text-ink-900">
+            {header.sectionTitle || 'Shop by Brands'}
+          </h2>
+          {header.sectionSubtitle && (
+            <p className="text-graphite-500 text-sm sm:text-base mt-2 font-body leading-relaxed max-w-2xl">{header.sectionSubtitle}</p>
+          )}
+        </div>
         
         {/* Category Pills */}
         <div className="flex overflow-x-auto pb-3 xs:pb-4 gap-3 xs:gap-4 md:gap-5 snap-x mb-6 xs:mb-8" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>

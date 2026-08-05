@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
 import { FadeUp, StaggerChildren, staggerItem } from '../motion/motionPrimitives';
+import { getHomePage } from '../../lib/queries';
 import {
   Play, Mic, ChevronRight, Quote, CheckCircle,
   Clock, Youtube, Star
@@ -20,11 +21,30 @@ const highlights = [
   'From First-Time Entrepreneur to Premium Brand',
 ];
 
+const defaultHeader = {
+  sectionBadge: 'Our Journey',
+  sectionTitle: "The Story Behind Every Better Night's Sleep",
+  sectionSubtitle: 'Discover the vision, innovation, and passion behind RelaxPro directly from our founder through this exclusive business podcast.',
+};
+
 export default function FoundersPodcast() {
   const navigate = useNavigate();
   const [playVideo, setPlayVideo] = useState(false);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   useInView(videoContainerRef, { once: true, margin: '-100px' });
+  const [header, setHeader] = useState(defaultHeader);
+
+  useEffect(() => {
+    getHomePage().then((h: any) => {
+      if (h?.foundersPodcast?.sectionTitle) {
+        setHeader({
+          sectionBadge: h.foundersPodcast.sectionBadge || defaultHeader.sectionBadge,
+          sectionTitle: h.foundersPodcast.sectionTitle,
+          sectionSubtitle: h.foundersPodcast.sectionSubtitle || defaultHeader.sectionSubtitle,
+        });
+      }
+    }).catch(() => {});
+  }, []);
 
   const handlePlay = () => setPlayVideo(true);
 
@@ -39,13 +59,13 @@ export default function FoundersPodcast() {
         {/* ===== Section Heading Above Container ===== */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
           <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
-            <Mic className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> Our Journey
+            <Mic className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> {header.sectionBadge}
           </span>
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-4 xs:mt-5 text-ink-900 leading-[1.1]">
-            The Story Behind Every <span className="text-[#C8A96A]">Better Night's Sleep</span>
+            {header.sectionTitle}
           </h2>
           <p className="text-graphite-600 text-sm sm:text-base md:text-lg mt-4 font-body leading-relaxed max-w-2xl mx-auto">
-            Discover the vision, innovation, and passion behind RelaxPro directly from our founder through this exclusive business podcast.
+            {header.sectionSubtitle}
           </p>
         </FadeUp>
 

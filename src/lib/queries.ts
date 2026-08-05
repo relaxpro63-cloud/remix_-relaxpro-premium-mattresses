@@ -83,24 +83,24 @@ export async function getHomePage() {
       categories[]->{ name, "slug": slug.current, description, image { asset->{_id, url}, alt } }
     },
     bestsellersSection {
-      sectionTitle, sectionSubtitle,
+      sectionBadge, sectionTitle, sectionSubtitle,
       products[]->{ name, "slug": slug.current, tagline, keyBenefit, badge, tier, comfortLevel, comfortRating, totalThickness, pricingModel, pricing, image { asset->{_id, url}, alt }, images[]{ asset->{_id, url}, alt } },
       viewAllCta { label, link }
     },
     costComparison { sectionTitle, sectionSubtitle, naturalLatex { label, avgPrice, lifespan, perYearCost, perDayCost, highlighted }, ordinaryFoam { label, avgPrice, lifespan, perYearCost, perDayCost }, footnote },
     showroomCtaBanner { title, locationName, address, backgroundImage { asset->{_id, url}, alt }, cta { label, link, variant } },
-    whyChooseUs { sectionTitle, sectionSubtitle, benefits[]{ title, description, icon } },
-    testimonialsSection { sectionTitle, overallRating, totalReviews,
+    whyChooseUs { sectionBadge, sectionTitle, sectionSubtitle, benefits[]{ title, description, icon } },
+    testimonialsSection { sectionBadge, sectionTitle, overallRating, totalReviews,
       testimonials[]->{ customerName, location, rating, quote, isVerified, avatar { asset->{_id, url}, alt } }
     },
-    allShowroomsSection { sectionTitle, sectionDescription,
+    allShowroomsSection { sectionBadge, sectionTitle, sectionDescription,
       showrooms[]->{ name, "slug": slug.current, type,
         address { city, fullAddress, street, landmark, pincode, state },
         contact { phoneNumbers, email, whatsapp },
         hours { monday, tuesday, wednesday, thursday, friday, saturday, sunday, note },
         image { asset->{_id, url}, alt } }
     },
-    faqSection { sectionTitle, sectionDescription, categories,
+    faqSection { sectionBadge, sectionTitle, sectionDescription, categories,
       faqs[]->{ question, answer, category, order }
     },
     comparisonSection { sectionTitle, sectionSubtitle, items[]{ relaxProTitle, icon, otherTitle, otherSubtext } },
@@ -114,7 +114,11 @@ export async function getHomePage() {
     featuredComponents { sectionTitle,
       components[]{ title, description, badge, image { asset->{_id, url}, alt } }
     },
-    offersSection { sectionBadge, sectionTitle, sectionSubtitle }
+    offersSection { sectionBadge, sectionTitle, sectionSubtitle },
+    accessoriesSection { sectionBadge, sectionTitle, sectionSubtitle },
+    showroomMap { sectionBadge, sectionTitle, sectionSubtitle },
+    customerVideos { sectionBadge, sectionTitle, sectionSubtitle },
+    foundersPodcast { sectionBadge, sectionTitle, sectionSubtitle }
   }`)
 }
 

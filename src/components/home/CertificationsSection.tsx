@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Shield, Award, Leaf, FileText, Download, X, ExternalLink, CheckCircle, Sparkles, ScrollText, Maximize2, Minimize2, ChevronRight } from 'lucide-react';
 import { FadeUp, StaggerChildren, staggerItem } from '../motion/motionPrimitives';
-import { getSiteSettings } from '../../lib/queries';
+import { getSiteSettings, getCertificationSettings } from '../../lib/queries';
 
 interface Certificate {
   id: string;
@@ -140,8 +140,22 @@ export default function CertificationsSection() {
   const navigate = useNavigate();
   const [activePdf, setActivePdf] = useState<Certificate | null>(null);
   const [certificates, setCertificates] = useState<Certificate[]>(defaultCertificates);
+  const [header, setHeader] = useState({
+    sectionBadge: 'Certified Quality',
+    sectionTitle: 'Trusted by International Quality Standards',
+    sectionDescription: 'Every RelaxPro mattress is crafted using premium materials and manufactured to meet globally recognized quality, safety, and environmental standards. Sleep with complete confidence knowing your mattress is backed by certified excellence.',
+  });
 
   useEffect(() => {
+    getCertificationSettings().then((s: any) => {
+      if (s?.sectionTitle) {
+        setHeader({
+          sectionBadge: s.sectionBadge || header.sectionBadge,
+          sectionTitle: s.sectionTitle,
+          sectionDescription: s.sectionDescription || header.sectionDescription,
+        });
+      }
+    }).catch(() => {});
     getSiteSettings().then(data => {
       if (data?.certificates?.length > 0) {
         const mapped: Certificate[] = data.certificates.map((cert: any, idx: number) => ({
@@ -171,13 +185,13 @@ export default function CertificationsSection() {
           {/* ===== Section Header ===== */}
           <FadeUp className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
             <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
-              <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> Certified Quality
+              <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> {header.sectionBadge}
             </span>
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-4 xs:mt-5 text-ink-900 leading-[1.1]">
-              Trusted by International <span className="text-[#C8A96A]">Quality Standards</span>
+              {header.sectionTitle}
             </h2>
             <p className="text-graphite-600 text-sm xs:text-[15px] sm:text-base md:text-lg mt-3 xs:mt-4 font-body leading-relaxed max-w-2xl mx-auto">
-              Every RelaxPro mattress is crafted using premium materials and manufactured to meet globally recognized quality, safety, and environmental standards. Sleep with complete confidence knowing your mattress is backed by certified excellence.
+              {header.sectionDescription}
             </p>
           </FadeUp>
 

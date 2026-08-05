@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { getHomePage } from '../../lib/queries';
 
 interface VideoData {
   id: string;
@@ -42,6 +43,12 @@ const VIDEOS: VideoData[] = [
   },
 ];
 
+const defaultHeader = {
+  sectionBadge: 'Watch Our Craftsmanship',
+  sectionTitle: 'See Our Craftsmanship',
+  sectionSubtitle: 'Watch real customers experience the craftsmanship of our GOLS-certified natural latex mattresses, straight from our Kerala factory.',
+};
+
 export default function CustomerVideos() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -52,8 +59,18 @@ export default function CustomerVideos() {
 
   // Determine visible count based on viewport width
   const [visibleCount, setVisibleCount] = useState(3);
+  const [header, setHeader] = useState(defaultHeader);
 
   useEffect(() => {
+    getHomePage().then((h: any) => {
+      if (h?.customerVideos?.sectionTitle) {
+        setHeader({
+          sectionBadge: h.customerVideos.sectionBadge || defaultHeader.sectionBadge,
+          sectionTitle: h.customerVideos.sectionTitle,
+          sectionSubtitle: h.customerVideos.sectionSubtitle || defaultHeader.sectionSubtitle,
+        });
+      }
+    }).catch(() => {});
     const updateVisibleCount = () => {
       const w = window.innerWidth;
       if (w < 640) setVisibleCount(1);
@@ -130,14 +147,13 @@ export default function CustomerVideos() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 xs:mb-10 sm:mb-12 md:mb-16">
           <span className="inline-flex items-center gap-2 text-[9px] xs:text-[10px] sm:text-[11px] tracking-widest font-accent text-brand-600 uppercase bg-brand-50 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full font-bold">
-            <Sparkles className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> Watch Our Craftsmanship
+            <Sparkles className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> {header.sectionBadge}
           </span>
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold mt-3 xs:mt-4 text-ink-900 leading-tight">
-            See Our Craftsmanship
+            {header.sectionTitle}
           </h2>
           <p className="text-graphite-500 text-sm xs:text-[15px] sm:text-base mt-3 xs:mt-4 font-body leading-relaxed max-w-lg mx-auto">
-            Watch real customers experience the craftsmanship of our GOLS-certified natural latex mattresses,
-            straight from our Kerala factory.
+            {header.sectionSubtitle}
           </p>
         </div>
 

@@ -381,12 +381,55 @@ const SITE_SETTINGS = {
 // ─── HOME ───────────────────────────────────────────────────────────────────
 const HOME = {
   _id: 'home',
-  bestsellersSection: { sectionTitle: 'Best Selling Models', products: [{ _type: 'reference', _ref: 'product-nirvana' }, { _type: 'reference', _ref: 'product-amrita' }, { _type: 'reference', _ref: 'product-somya' }, { _type: 'reference', _ref: 'product-arogya' }, { _type: 'reference', _ref: 'product-sthira' }, { _type: 'reference', _ref: 'product-sunidra' }] },
-  testimonialsSection: { sectionTitle: 'What Our Customers Say', overallRating: '4.9', totalReviews: '2,400+', testimonials: [{ _type: 'reference', _ref: 'testimonial-gm-1' }, { _type: 'reference', _ref: 'testimonial-gm-2' }, { _type: 'reference', _ref: 'testimonial-gm-3' }, { _type: 'reference', _ref: 'testimonial-gm-4' }, { _type: 'reference', _ref: 'testimonial-gm-5' }] },
-  faqSection: { faqs: [{ _type: 'reference', _ref: 'faq-q1' }, { _type: 'reference', _ref: 'faq-q2' }, { _type: 'reference', _ref: 'faq-q3' }, { _type: 'reference', _ref: 'faq-q4' }, { _type: 'reference', _ref: 'faq-q5' }, { _type: 'reference', _ref: 'faq-q6' }, { _type: 'reference', _ref: 'faq-q7' }, { _type: 'reference', _ref: 'faq-q8' }] },
-  allShowroomsSection: { showrooms: [{ _type: 'reference', _ref: 'showroom-hyderabad' }, { _type: 'reference', _ref: 'showroom-rajahmundry' }, { _type: 'reference', _ref: 'showroom-bangalore' }] },
-  shopByBrands: { categories: [{ _type: 'reference', _ref: 'cat-luxury' }, { _type: 'reference', _ref: 'cat-premium' }, { _type: 'reference', _ref: 'cat-comfort' }] },
+  bestsellersSection: {
+    sectionBadge: 'Best In Class',
+    sectionTitle: 'Our Bestsellers',
+    products: [{ _type: 'reference', _ref: 'product-nirvana' }, { _type: 'reference', _ref: 'product-amrita' }, { _type: 'reference', _ref: 'product-somya' }, { _type: 'reference', _ref: 'product-arogya' }, { _type: 'reference', _ref: 'product-sthira' }, { _type: 'reference', _ref: 'product-sunidra' }],
+  },
+  testimonialsSection: {
+    sectionBadge: 'Trust & Honest Feedback',
+    sectionTitle: 'What Our Customers Say',
+    overallRating: '4.9',
+    totalReviews: '2,400+',
+    testimonials: [{ _type: 'reference', _ref: 'testimonial-gm-1' }, { _type: 'reference', _ref: 'testimonial-gm-2' }, { _type: 'reference', _ref: 'testimonial-gm-3' }, { _type: 'reference', _ref: 'testimonial-gm-4' }, { _type: 'reference', _ref: 'testimonial-gm-5' }],
+  },
+  faqSection: {
+    sectionBadge: 'Factory-Direct Sleep Education',
+    sectionTitle: 'Sleep FAQs & Latexmax Care Guides',
+    sectionDescription: 'Have questions about customized dimensions, long-term GOLS durability, or keeping your organic sleep core fresh? Suresh and the engineering team outline everything below.',
+    faqs: [{ _type: 'reference', _ref: 'faq-q1' }, { _type: 'reference', _ref: 'faq-q2' }, { _type: 'reference', _ref: 'faq-q3' }, { _type: 'reference', _ref: 'faq-q4' }, { _type: 'reference', _ref: 'faq-q5' }, { _type: 'reference', _ref: 'faq-q6' }, { _type: 'reference', _ref: 'faq-q7' }, { _type: 'reference', _ref: 'faq-q8' }],
+  },
+  allShowroomsSection: {
+    sectionBadge: 'Experience Before Buying',
+    sectionTitle: 'Our Showrooms and Manufacturer Outlets',
+    sectionDescription: 'Walk in, test firmness profiles, lay down, and speak with Suresh\'s trained team directly at the locations below.',
+    showrooms: [{ _type: 'reference', _ref: 'showroom-hyderabad' }, { _type: 'reference', _ref: 'showroom-rajahmundry' }, { _type: 'reference', _ref: 'showroom-bangalore' }],
+  },
+  shopByBrands: {
+    sectionTitle: 'Shop by Brands',
+    categories: [{ _type: 'reference', _ref: 'cat-luxury' }, { _type: 'reference', _ref: 'cat-premium' }, { _type: 'reference', _ref: 'cat-comfort' }],
+  },
   offersSection: { sectionBadge: 'Limited Time', sectionTitle: 'Offers & Promotions', sectionSubtitle: 'Factory-direct pricing on India\u2019s finest natural latex sleep systems.' },
+  accessoriesSection: {
+    sectionBadge: 'Complete Your Setup',
+    sectionTitle: 'Pillows, Protectors & More Accessories',
+    sectionSubtitle: 'Crafted from the same premium materials as our mattresses \u2014 naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.',
+  },
+  showroomMap: {
+    sectionBadge: 'Visit Our Factory Showroom',
+    sectionTitle: 'Find Us in Hyderabad',
+    sectionSubtitle: 'Visit our factory showroom to test every model in person and talk to our team.',
+  },
+  customerVideos: {
+    sectionBadge: 'Watch Our Craftsmanship',
+    sectionTitle: 'See Our Craftsmanship',
+    sectionSubtitle: 'Watch real customers experience the craftsmanship of our GOLS-certified natural latex mattresses, straight from our Kerala factory.',
+  },
+  foundersPodcast: {
+    sectionBadge: 'Our Journey',
+    sectionTitle: 'The Story Behind Every Better Night\u2019s Sleep',
+    sectionSubtitle: 'Discover the vision, innovation, and passion behind RelaxPro directly from our founder through this exclusive business podcast.',
+  },
 }
 
 // ─── ABOUT ──────────────────────────────────────────────────────────────────

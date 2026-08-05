@@ -31,12 +31,26 @@ const defaultStats = [
   { value: 15, suffix: '+', label: 'Years Experience' },
 ];
 
+const defaultHeader = {
+  sectionBadge: 'Why Choose RelaxPro',
+  sectionTitle: 'Engineered for Your Best Sleep',
+  sectionSubtitle: 'Every mattress we craft combines generations of expertise with the finest natural materials.',
+};
+
 export default function WhyChooseUs() {
   const [features, setFeatures] = useState(defaultFeatures);
   const [stats, setStats] = useState(defaultStats);
+  const [header, setHeader] = useState(defaultHeader);
 
   useEffect(() => {
     getHomePage().then(data => {
+      if (data?.whyChooseUs?.sectionTitle) {
+        setHeader({
+          sectionBadge: data.whyChooseUs.sectionBadge || defaultHeader.sectionBadge,
+          sectionTitle: data.whyChooseUs.sectionTitle,
+          sectionSubtitle: data.whyChooseUs.sectionSubtitle || defaultHeader.sectionSubtitle,
+        });
+      }
       if (data?.whyChooseUs?.benefits?.length > 0) {
         setFeatures(data.whyChooseUs.benefits.map((b: any) => ({
           icon: b.icon || 'shield',
@@ -54,13 +68,13 @@ export default function WhyChooseUs() {
           {/* Section Header */}
           <FadeUp className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
             <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-brand-600 uppercase bg-brand-50 px-4 py-1.5 rounded-full font-bold">
-              Why Choose RelaxPro
+              {header.sectionBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mt-4 text-ink-900 leading-tight">
-              Engineered for Your Best Sleep
+              {header.sectionTitle}
             </h2>
             <p className="text-graphite-500 text-sm mt-3 font-body leading-relaxed">
-              Every mattress we craft combines generations of expertise with the finest natural materials.
+              {header.sectionSubtitle}
             </p>
           </FadeUp>
 

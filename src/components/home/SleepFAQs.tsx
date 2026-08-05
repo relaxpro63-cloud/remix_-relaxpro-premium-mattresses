@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Search, Sparkles, HelpCircle, Shield, RefreshCw, PenTool, CheckCircle, Info } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
-import { getFaqs } from '../../lib/queries';
+import { getFaqs, getHomePage } from '../../lib/queries';
 
 interface FAQItem {
   id: string;
@@ -36,13 +36,29 @@ function extractText(blocks: any): string {
   return blocks.map((b: any) => b.children?.map((c: any) => c.text).join('') || '').join('\n');
 }
 
+const defaultHeader = {
+  sectionBadge: 'FACTORY-DIRECT SLEEP EDUCATION',
+  sectionTitle: 'Sleep FAQs & Latexmax Care Guides',
+  sectionDescription: 'Have questions about customized dimensions, long-term GOLS durability, or keeping your organic sleep core fresh? Suresh and the engineering team outline everything below.',
+};
+
 export default function SleepFAQs() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<'all' | 'care' | 'durability' | 'customization'>('all');
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
+  const [header, setHeader] = useState(defaultHeader);
 
   useEffect(() => {
+    getHomePage().then((h: any) => {
+      if (h?.faqSection?.sectionTitle) {
+        setHeader({
+          sectionBadge: h.faqSection.sectionBadge || defaultHeader.sectionBadge,
+          sectionTitle: h.faqSection.sectionTitle,
+          sectionDescription: h.faqSection.sectionDescription || defaultHeader.sectionDescription,
+        });
+      }
+    }).catch(() => {});
     getFaqs().then((data: any[]) => {
       if (data && data.length > 0) {
         setFaqs(data.map((f: any, i: number) => ({
@@ -77,13 +93,13 @@ export default function SleepFAQs() {
         {/* Title and subtitle */}
         <div className="text-center max-w-2xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
           <span className="eyebrow inline-flex items-center gap-2 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full bg-brand-50">
-            <HelpCircle className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> FACTORY-DIRECT SLEEP EDUCATION
+            <HelpCircle className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> {header.sectionBadge}
           </span>
           <h2 className="text-3xl xs:text-4xl sm:text-[2.5rem] md:text-5xl font-heading font-bold mt-4 xs:mt-5 sm:mt-6 text-ink-900 leading-tight">
-            Sleep FAQs & Latexmax Care Guides
+            {header.sectionTitle}
           </h2>
           <p className="text-graphite-500 text-sm xs:text-[15px] sm:text-base mt-3 xs:mt-4 leading-relaxed font-body">
-            Have questions about customized dimensions, long-term GOLS durability, or keeping your organic sleep core fresh? Suresh and the engineering team outline everything below.
+            {header.sectionDescription}
           </p>
         </div>
       </BlurFade>

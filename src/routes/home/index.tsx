@@ -103,6 +103,7 @@ export default function HomePage({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const [homeSections, setHomeSections] = useState<any>(null);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [showrooms, setShowrooms] = useState<any[]>([]);
   const [bestsellers, setBestsellers] = useState<any[]>([]);
@@ -136,6 +137,7 @@ export default function HomePage({
     }).catch(() => {});
 
     getHomePage().then(data => {
+      setHomeSections(data);
       // Only use homepage bestsellers if getAllProducts didn't return any
       if (!bestsellersLoaded) {
         const prods = data?.bestsellersSection?.products || [];
@@ -236,8 +238,8 @@ export default function HomePage({
         <div className="max-w-7xl mx-auto">
           <FadeUp className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 xs:mb-8 sm:mb-10 md:mb-14 gap-3 xs:gap-4">
             <div>
-              <span className="eyebrow text-[10px] xs:text-[11px] sm:text-xs">Best In Class</span>
-              <h2 className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl font-heading font-bold text-ink-900 mt-2 xs:mt-3">Our Bestsellers</h2>
+              <span className="eyebrow text-[10px] xs:text-[11px] sm:text-xs">{homeSections?.bestsellersSection?.sectionBadge || 'Best In Class'}</span>
+              <h2 className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl font-heading font-bold text-ink-900 mt-2 xs:mt-3">{homeSections?.bestsellersSection?.sectionTitle || 'Our Bestsellers'}</h2>
             </div>
             <button
               onClick={() => handlePageNavigation('catalog')}
@@ -373,8 +375,11 @@ export default function HomePage({
       <FadeUp><section className="py-10 md:py-12 px-4 md:px-8 bg-secondary">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <span className="eyebrow">Visit Our Factory Showroom</span>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-ink-900">Find Us in Hyderabad</h2>
+            <span className="eyebrow">{homeSections?.showroomMap?.sectionBadge || 'Visit Our Factory Showroom'}</span>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-ink-900">{homeSections?.showroomMap?.sectionTitle || 'Find Us in Hyderabad'}</h2>
+            {homeSections?.showroomMap?.sectionSubtitle && (
+              <p className="text-center text-graphite-500 text-sm mt-3 font-body max-w-xl mx-auto">{homeSections.showroomMap.sectionSubtitle}</p>
+            )}
           </div>
           <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
             <iframe
@@ -401,13 +406,17 @@ export default function HomePage({
           <FadeUp className="flex flex-col md:flex-row md:items-center justify-between mb-8 xs:mb-10 sm:mb-12 gap-6 xs:gap-8 md:gap-10">
             {/* Left: Text content */}
             <div className="max-w-xl">
-              <span className="eyebrow">Complete Your Setup</span>
+              <span className="eyebrow">{homeSections?.accessoriesSection?.sectionBadge || 'Complete Your Setup'}</span>
               <h2 className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl font-heading font-bold text-ink-900 mt-2 xs:mt-3 leading-tight">
-                Pillows, Protectors &<br />
-                <span className="text-brand-600">More Accessories</span>
+                {homeSections?.accessoriesSection?.sectionTitle || (
+                  <>
+                    Pillows, Protectors &<br />
+                    <span className="text-brand-600">More Accessories</span>
+                  </>
+                )}
               </h2>
               <p className="text-graphite-600 text-sm md:text-base mt-4 font-body leading-relaxed">
-                Crafted from the same premium materials as our mattresses — naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.
+                {homeSections?.accessoriesSection?.sectionSubtitle || 'Crafted from the same premium materials as our mattresses — naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.'}
               </p>
               <button
                 onClick={() => handlePageNavigation('accessories')}
@@ -523,8 +532,8 @@ export default function HomePage({
       <section className="max-w-[1400px] mx-auto px-4 md:px-8 py-16 md:py-24 overflow-hidden relative">
         <DecorativeBotanicals density="full" />
         <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <span className="eyebrow">Trust & Honest Feedback</span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mt-4 text-ink-900 leading-tight">What Our Customers Say</h2>
+          <span className="eyebrow">{homeSections?.testimonialsSection?.sectionBadge || 'Trust & Honest Feedback'}</span>
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mt-4 text-ink-900 leading-tight">{homeSections?.testimonialsSection?.sectionTitle || 'What Our Customers Say'}</h2>
           <div className="flex items-center justify-center gap-2 mt-4">
             <span className="text-2xl font-bold font-heading text-ink-900">{testimonialMeta?.overallRating || '4.9'}</span>
             <span className="text-brand-600 text-lg">/ 5 ★</span>
@@ -613,9 +622,9 @@ export default function HomePage({
         
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeUp className="max-w-2xl mb-8 xs:mb-10 sm:mb-12 md:mb-16">
-            <span className="eyebrow">Experience Before Buying</span>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-medium text-ink-900 mt-0.5 xs:mt-1">Our Showrooms and Manufacturer Outlets</h2>
-            <p className="text-graphite-500 text-sm xs:text-[15px] sm:text-base mt-3 xs:mt-4 font-body leading-relaxed max-w-lg">Walk in, test firmness profiles, lay down, and speak with Suresh's trained team directly at the locations below.</p>
+            <span className="eyebrow">{homeSections?.allShowroomsSection?.sectionBadge || 'Experience Before Buying'}</span>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-medium text-ink-900 mt-0.5 xs:mt-1">{homeSections?.allShowroomsSection?.sectionTitle || 'Our Showrooms and Manufacturer Outlets'}</h2>
+            <p className="text-graphite-500 text-sm xs:text-[15px] sm:text-base mt-3 xs:mt-4 font-body leading-relaxed max-w-lg">{homeSections?.allShowroomsSection?.sectionDescription || "Walk in, test firmness profiles, lay down, and speak with Suresh's trained team directly at the locations below."}</p>
           </FadeUp>
 
           <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 md:gap-8" stagger={0.15}>
