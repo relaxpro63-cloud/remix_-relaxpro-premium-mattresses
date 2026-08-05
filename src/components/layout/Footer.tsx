@@ -91,7 +91,7 @@ export default function Footer() {
   });
 
   return (
-    <footer className="relative overflow-hidden w-full bg-gradient-to-b from-[#05080D] via-[#0B1B33] to-[#0A3E72] min-h-[880px] lg:min-h-[1020px]">
+    <footer className="relative overflow-hidden w-full bg-gradient-to-b from-[#05080D] via-[#0B1B33] to-[#0A3E72]">
       {/* ─── Botanical leaf texture overlay ─── */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-[1]"
@@ -143,14 +143,14 @@ export default function Footer() {
       />
 
       {/* ─── Main Content ─── */}
-      <div className="relative z-10 w-full min-h-[880px] lg:min-h-[1020px] flex flex-col justify-between">
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-10 lg:px-14 pt-16 md:pt-24 lg:pt-28 pb-6 md:pb-8">
+      <div className="relative z-10 w-full flex flex-col justify-between">
+        <div className="max-w-7xl mx-auto w-full px-5 sm:px-6 md:px-10 lg:px-14 pt-12 md:pt-24 lg:pt-28 pb-6 md:pb-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="flex flex-col gap-12 md:gap-14 lg:gap-16"
+            className="flex flex-col gap-9 sm:gap-10 md:gap-14 lg:gap-16"
           >
             {/* ═══════ BRAND SECTION — Large Logo + Tagline + Trust Pills ═══════ */}
             <motion.div variants={fadeUp} className="flex flex-col items-start w-full">
@@ -166,7 +166,7 @@ export default function Footer() {
                 <img
                   src="/relaxpro-logo-white.svg"
                   alt="RelaxPro Premium Mattresses"
-                  className="h-20 md:h-24 lg:h-28 w-auto object-contain block relative brightness-110 drop-shadow-[0_0_30px_rgba(117,183,230,0.30)]"
+                  className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain block relative brightness-110 drop-shadow-[0_0_30px_rgba(117,183,230,0.30)]"
                   width={500}
                   height={128}
                   loading="eager"
@@ -174,21 +174,21 @@ export default function Footer() {
                 />
               </motion.div>
 
-              {/* Tagline with blue dot divider */}
-              <motion.p
-                variants={fadeUpStaggered(0.1)}
-                className="mt-5 text-white/50 text-sm md:text-base font-body font-light max-w-xl leading-relaxed tracking-wide"
-              >
-                Pure Natural Latex Mattresses{' '}
-                <span className="text-brand-300/90 mx-2 inline-block">✦</span>{' '}
-                Crafted for Better Sleep
-              </motion.p>
+                {/* Tagline with blue dot divider */}
+                <motion.p
+                  variants={fadeUpStaggered(0.1)}
+                  className="mt-4 md:mt-5 text-white/50 text-sm md:text-base font-body font-light max-w-xl leading-relaxed tracking-wide"
+                >
+                  Pure Natural Latex Mattresses{' '}
+                  <span className="text-brand-300/90 mx-2 inline-block">✦</span>{' '}
+                  Crafted for Better Sleep
+                </motion.p>
 
-              {/* Trust Pills — horizontal row with blue accent border */}
-              <motion.div
-                variants={fadeUpStaggered(0.18)}
-                className="flex flex-wrap gap-2.5 mt-6"
-              >
+                {/* Trust Pills — horizontal row with blue accent border */}
+                <motion.div
+                  variants={fadeUpStaggered(0.18)}
+                  className="flex flex-wrap gap-2 mt-4 md:mt-6"
+                >
                 {trustItems.map((item, i) => (
                   <motion.div
                     key={i}
@@ -208,19 +208,19 @@ export default function Footer() {
             {/* ═══════ NAVIGATION — 4 Columns with blue top border ═══════ */}
             <motion.div
               variants={fadeUpStaggered(0.25)}
-              className="relative pt-8 md:pt-10"
+              className="relative pt-6 md:pt-10"
             >
               {/* Blue accent divider line */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-300/35 via-brand-300/20 to-transparent" />
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 lg:gap-10 pt-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 md:gap-6 lg:gap-10 pt-4">
                 {/* Company */}
                 <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-6 flex items-center gap-2.5">
+                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
                     <span className="inline-block w-5 h-px bg-brand-400/80" />
                     Company
                   </h4>
-                  <ul className="space-y-3">
+                  <ul className="space-y-1.5 md:space-y-3">
                     {companyLinks.map((link) => (
                       <li key={link.label}>
                         <Link
@@ -237,11 +237,11 @@ export default function Footer() {
 
                 {/* Products */}
                 <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-6 flex items-center gap-2.5">
+                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
                     <span className="inline-block w-5 h-px bg-brand-400/80" />
                     Products
                   </h4>
-                  <ul className="space-y-3">
+                  <ul className="space-y-1.5 md:space-y-3">
                     {productLinks.map((link) => (
                       <li key={link.label}>
                         <Link
@@ -258,11 +258,11 @@ export default function Footer() {
 
                 {/* Support */}
                 <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-6 flex items-center gap-2.5">
+                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
                     <span className="inline-block w-5 h-px bg-brand-400/80" />
                     Support
                   </h4>
-                  <ul className="space-y-3">
+                  <ul className="space-y-1.5 md:space-y-3">
                     {supportLinks.map((link) => (
                       <li key={link.label}>
                         <Link
@@ -279,11 +279,11 @@ export default function Footer() {
 
                 {/* Follow */}
                 <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-6 flex items-center gap-2.5">
+                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
                     <span className="inline-block w-5 h-px bg-brand-400/80" />
                     Follow
                   </h4>
-                  <ul className="space-y-3">
+                  <ul className="space-y-1.5 md:space-y-3">
                     {followLinks.map((link) => (
                       <li key={link.label}>
                         <a
@@ -307,18 +307,18 @@ export default function Footer() {
             {/* ═══════ CERTIFICATIONS + CONTACT — Premium Glass Cards ═══════ */}
             <motion.div
               variants={fadeUpStaggered(0.35)}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8"
             >
               {/* Certification Row — Premium Card */}
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="relative group rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-300/40 p-6 md:p-7 transition-all duration-500 overflow-hidden"
+                className="relative group rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-300/40 p-5 md:p-7 transition-all duration-500 overflow-hidden"
               >
                 {/* Subtle hover glow */}
                 <div className="absolute -inset-20 bg-brand-300/[0.03] opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none" />
                 
-                <h4 className="font-heading font-bold text-brand-300/90 text-[10px] uppercase tracking-[0.25em] mb-5 relative">
+                <h4 className="font-heading font-bold text-brand-300/90 text-[10px] uppercase tracking-[0.25em] mb-4 md:mb-5 relative">
                   Certified Natural Materials
                 </h4>
                 <div className="flex flex-wrap gap-3 relative">
@@ -342,14 +342,14 @@ export default function Footer() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="relative group rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-300/40 p-6 md:p-7 transition-all duration-500 overflow-hidden"
+                className="relative group rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-300/40 p-5 md:p-7 transition-all duration-500 overflow-hidden"
               >
                 <div className="absolute -inset-20 bg-brand-300/[0.03] opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none" />
 
-                <h4 className="font-heading font-bold text-brand-300/90 text-[10px] uppercase tracking-[0.25em] mb-5 relative">
+                <h4 className="font-heading font-bold text-brand-300/90 text-[10px] uppercase tracking-[0.25em] mb-4 md:mb-5 relative">
                   Visit Our Showroom
                 </h4>
-                <div className="flex flex-col gap-3 relative">
+                <div className="flex flex-col gap-2.5 md:gap-3 relative">
                   {showrooms.map((loc) => (
                     <div key={loc.city} className="flex items-start gap-3 group/loc">
                       <div className="w-6 h-6 rounded-full bg-brand-300/20 border border-brand-300/40 flex items-center justify-center shrink-0 mt-0.5 group-hover/loc:bg-brand-300/20 transition-colors">
@@ -385,7 +385,7 @@ export default function Footer() {
             {/* ═══════ WHATSAPP CTA + SOCIAL ICONS ═══════ */}
             <motion.div
               variants={fadeUpStaggered(0.45)}
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6"
             >
               {/* WhatsApp CTA Button */}
               <a

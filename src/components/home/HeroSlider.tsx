@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronRight, Shield, Award, Leaf, IndianRupee } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
+import DecorativeBotanicals from './DecorativeBotanicals';
 
 const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
 
@@ -39,7 +40,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
     <section
       ref={sectionRef}
       id="main-content"
-      className="relative min-h-dvh overflow-hidden"
+      className="relative overflow-hidden"
     >
       {/* ============================================ */}
       {/* DESKTOP LAYOUT — 40/60 side-by-side         */}
@@ -72,6 +73,10 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               ))}
             </div>
             <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(4,32,58,0.55)] pointer-events-none" />
+          </div>
+
+          <div className="absolute inset-0 z-[1] pointer-events-none">
+            <DecorativeBotanicals density="light" />
           </div>
 
           <div className="absolute inset-y-0 right-0 w-16 lg:w-20 xl:w-24 bg-gradient-to-r from-transparent to-[#05080D]/90 pointer-events-none z-10" />
@@ -202,9 +207,12 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       {/* MOBILE / TABLET LAYOUT — Image stacked      */}
       {/* Shows from 320px up to md breakpoint (768px)*/}
       {/* ============================================ */}
-      <div className="md:hidden relative flex flex-col min-h-dvh">
+      <div className="md:hidden relative flex flex-col min-h-[100dvh]">
+        <div className="absolute inset-0 z-[1] pointer-events-none">
+          <DecorativeBotanicals density="light" />
+        </div>
         {/* Image — adjusts height for very small screens */}
-        <div className="relative h-[35vh] xs:h-[38vh] sm:h-[42vh] min-h-[260px] xs:min-h-[280px] sm:min-h-[320px] overflow-hidden">
+        <div className="relative h-[36vh] xs:h-[40vh] sm:h-[44vh] min-h-[280px] xs:min-h-[300px] sm:min-h-[330px] overflow-hidden">
           <img
             src={heroImage}
             alt="RelaxPro founder with premium natural latex mattress"
@@ -217,7 +225,8 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         </div>
 
         {/* Content — responsive padding and spacing */}
-        <div className="flex-1 bg-gradient-to-br from-[#05080D] via-[#0A1120] to-[#063D64] px-4 xs:px-5 sm:px-6 py-5 xs:py-6 sm:py-8 flex flex-col justify-start overflow-y-auto relative z-20">
+        <div className="flex-1 bg-gradient-to-br from-[#05080D] via-[#0A1120] to-[#063D64] px-4 xs:px-5 sm:px-6 py-5 xs:py-6 sm:py-8 flex flex-col justify-center overflow-y-auto relative z-20">
+          <div className="w-full flex flex-col">
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -288,6 +297,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               );
             })}
           </motion.div>
+          </div>
         </div>
       </div>
     </section>
