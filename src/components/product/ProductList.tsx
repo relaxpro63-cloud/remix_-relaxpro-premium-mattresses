@@ -9,7 +9,6 @@ import SegmentedControl from '../ui/SegmentedControl';
 import { getAllProducts, imageUrl } from '../../lib/queries';
 import { WHATSAPP_NUMBER } from '../../lib/site';
 import DecorativeBotanicals from '../home/DecorativeBotanicals';
-import OffersSection from '../home/OffersSection';
 
 interface ProductListProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
@@ -62,7 +61,7 @@ export default function ProductList({
     const mediumLevels = ['medium', 'medium-firm', 'medium-plush'];
     if (softLevels.includes(level)) return { label: 'Soft', color: 'bg-eco-500/15 text-eco-500 border-eco-500/20' };
     if (mediumLevels.includes(level)) return { label: 'Medium', color: 'bg-brand-500/15 text-brand-600 border-brand-600-200' };
-    return { label: 'Firm', color: 'bg-orange-500/15 text-orange-600 border-orange-200' };
+    return { label: 'Firm', color: 'bg-ink-900/10 text-ink-800 border-ink-900/20' };
   };
 
   // Price range helper
@@ -449,7 +448,7 @@ export default function ProductList({
                       {cardInner}
                     </ShineBorder>
                   ) : (
-                    <div className="bg-white rounded-2xl border border-brand-200/40 shadow-sm overflow-hidden flex flex-col justify-between group h-full relative card-hover">
+                    <div className="bg-white rounded-2xl border border-brand-200/40 shadow-sm overflow-hidden flex flex-col justify-between group h-full relative card-hover card-gradient-border">
                       {cardInner}
                     </div>
                   )}
@@ -484,11 +483,6 @@ export default function ProductList({
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Offers & Promotions — CMS-driven campaign visibility (full-bleed dark band) */}
-      <div className="relative -mx-4 xs:-mx-5 sm:-mx-6 md:-mx-8 lg:-mx-10">
-        <OffersSection onNavigate={onNavigate} />
-      </div>
 
       {/* Trust Callout */}
       <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-12 xs:mt-14 sm:mt-20 md:mt-24 p-5 xs:p-6 sm:p-8 md:p-12 rounded-[1.5rem] xs:rounded-[1.75rem] sm:rounded-[2rem] border border-ink-900/20 flex flex-col md:flex-row gap-6 xs:gap-8 md:gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">

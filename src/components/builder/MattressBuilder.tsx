@@ -100,7 +100,7 @@ interface BuildState {
 const STEP_DEFS = [
   { key: 'size',    icon: Bed,    color: '#2563EB', label: 'Size' },
   { key: 'support', icon: Layers, color: '#0F172A', label: 'Base Layer' },
-  { key: 'comfort', icon: Feather, color: '#C8A96A', label: 'Middle Comfort' },
+  { key: 'comfort', icon: Feather, color: '#3D95D6', label: 'Middle Comfort' },
   { key: 'natural', icon: Leaf,   color: '#10B981', label: 'Natural Comfort' },
   { key: 'cover',   icon: Palette, color: '#D4A574', label: 'Cover & Finish' },
 ] as const;
@@ -447,7 +447,7 @@ function MaterialCard({ mat, selected, thickness, onToggle, onThicknessChange, o
                 <div className="flex items-center gap-2 flex-wrap">
                   <h4 className="font-bold text-sm text-ink-900">{mat.name}</h4>
                   {mat.isRecommended && !selected && (
-                    <span className="text-[9px] font-bold text-amber-700 bg-amber-50 border border-amber-200/50 px-2 py-0.5 rounded-full">
+                    <span className="text-[9px] font-bold text-brand-700 bg-brand-50 border border-brand-200/50 px-2 py-0.5 rounded-full">
                       Recommended
                     </span>
                   )}
@@ -1134,7 +1134,7 @@ export default function MattressBuilder({ onNavigate }: {
               <span className="inline-flex items-center gap-1 text-[10px] text-brand-700 font-medium bg-brand-50 border border-brand-200/40 px-2.5 py-1 rounded-full">
                 <Truck className="w-3 h-3" /> Free Delivery
               </span>
-              <span className="inline-flex items-center gap-1 text-[10px] text-amber-700 font-medium bg-amber-50 border border-amber-200/40 px-2.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1 text-[10px] text-brand-700 font-medium bg-brand-50 border border-brand-200/40 px-2.5 py-1 rounded-full">
                 <Clock className="w-3 h-3" /> 10-14 Days
               </span>
             </div>

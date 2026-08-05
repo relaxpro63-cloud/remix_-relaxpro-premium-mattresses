@@ -48,16 +48,16 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       <div className="hidden md:flex min-h-dvh">
         {/* LEFT — Blue gradient + content (40%) */}
         <div className="w-full lg:w-[45%] xl:w-[40%] 2xl:w-[38%] relative flex items-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0B1424] via-[#0F1A2E] to-[#0A1628]">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#05080D] via-[#0A1120] to-[#063D64]">
             <div
               className="absolute right-1/3 top-1/2 translate-x-1/2 -translate-y-1/2 w-[90%] h-[80%] rounded-full pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(21,104,163,0.25) 0%, rgba(21,104,163,0.10) 40%, transparent 70%)' }}
+              style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,94,157,0.32) 0%, rgba(0,94,157,0.14) 40%, transparent 70%)' }}
             />
             <div className="absolute inset-0 opacity-[0.04] sm:opacity-[0.06]">
               <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
-                <path d="M0,400 C200,300 400,500 600,400 S800,300 1000,400 S1100,500 1200,400 L1200,0 L0,0 Z" fill="#6FAEE0" opacity="0.5" />
-                <path d="M0,500 C200,400 400,600 600,500 S800,400 1000,500 S1100,600 1200,500 L1200,800 L0,800 Z" fill="#3A8FD2" opacity="0.3" />
-                <path d="M0,300 C200,200 400,400 600,300 S800,200 1000,300 S1100,400 1200,300 L1200,800 L0,800 Z" fill="#1568A3" opacity="0.2" />
+                <path d="M0,400 C200,300 400,500 600,400 S800,300 1000,400 S1100,500 1200,400 L1200,0 L0,0 Z" fill="#75B7E6" opacity="0.5" />
+                <path d="M0,500 C200,400 400,600 600,500 S800,400 1000,500 S1100,600 1200,500 L1200,800 L0,800 Z" fill="#3D95D6" opacity="0.3" />
+                <path d="M0,300 C200,200 400,400 600,300 S800,200 1000,300 S1100,400 1200,300 L1200,800 L0,800 Z" fill="#005E9D" opacity="0.2" />
               </svg>
             </div>
             <div className="absolute inset-0">
@@ -71,10 +71,10 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 />
               ))}
             </div>
-            <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(7,32,56,0.5)] pointer-events-none" />
+            <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(4,32,58,0.55)] pointer-events-none" />
           </div>
 
-          <div className="absolute inset-y-0 right-0 w-16 lg:w-20 xl:w-24 bg-gradient-to-r from-transparent to-[#0B1424]/90 pointer-events-none z-10" />
+          <div className="absolute inset-y-0 right-0 w-16 lg:w-20 xl:w-24 bg-gradient-to-r from-transparent to-[#05080D]/90 pointer-events-none z-10" />
 
           <motion.div
             style={{ opacity: contentOpacity }}
@@ -100,6 +100,12 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 className="font-heading text-[2.5rem] lg:text-[3.2rem] xl:text-[3.8rem] 2xl:text-[4.5rem] leading-[1.05] lg:leading-[1.06] xl:leading-[1.08] tracking-tight text-white"
               >
                 {heading}
+                {hero?.slides?.[0]?.highlight && (
+                  <span className="block text-gradient-brand">{hero.slides[0].highlight}</span>
+                )}
+                {hero?.slides?.[0]?.subheading && (
+                  <span className="block">{hero.slides[0].subheading}</span>
+                )}
               </motion.h1>
 
               <motion.p
@@ -178,7 +184,17 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             sizes="(max-width: 768px) 0vw, 60vw"
             loading="eager"
           />
-          <div className="absolute inset-y-0 left-0 w-16 lg:w-20 xl:w-24 bg-gradient-to-r from-[#0B1424]/70 to-transparent pointer-events-none" />
+          {/* Breathing ambient blue glow — screen-blended over the photo */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none mix-blend-screen z-[1]">
+            <div
+              className="ambient-breathe w-[68%] h-[74%] rounded-full"
+              style={{
+                background: 'radial-gradient(ellipse 50% 50% at center, rgba(22,133,197,0.34) 0%, rgba(0,94,157,0.12) 45%, transparent 72%)',
+                filter: 'blur(70px)',
+              }}
+            />
+          </div>
+          <div className="absolute inset-y-0 left-0 w-16 lg:w-20 xl:w-24 bg-gradient-to-r from-[#05080D]/70 to-transparent pointer-events-none" />
         </div>
       </div>
 
@@ -197,11 +213,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             sizes="100vw"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-[#0B1424]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-[#063D64]" />
         </div>
 
         {/* Content — responsive padding and spacing */}
-        <div className="flex-1 bg-gradient-to-br from-[#0B1424] via-[#0F1A2E] to-[#0A1628] px-4 xs:px-5 sm:px-6 py-5 xs:py-6 sm:py-8 flex flex-col justify-start overflow-y-auto relative z-20">
+        <div className="flex-1 bg-gradient-to-br from-[#05080D] via-[#0A1120] to-[#063D64] px-4 xs:px-5 sm:px-6 py-5 xs:py-6 sm:py-8 flex flex-col justify-start overflow-y-auto relative z-20">
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -218,6 +234,12 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             className="font-heading text-xl xs:text-2xl sm:text-3xl leading-[1.15] xs:leading-[1.12] sm:leading-[1.1] text-white"
           >
             {heading}
+            {hero?.slides?.[0]?.highlight && (
+              <span className="block text-gradient-brand">{hero.slides[0].highlight}</span>
+            )}
+            {hero?.slides?.[0]?.subheading && (
+              <span className="block">{hero.slides[0].subheading}</span>
+            )}
           </motion.h1>
 
           <motion.p

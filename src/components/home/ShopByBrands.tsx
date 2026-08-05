@@ -225,7 +225,7 @@ export default function ShopByBrands() {
                 return (
                   <div 
                     key={item.slug} 
-                    className="snap-start shrink-0 w-[85vw] sm:w-[280px] md:w-[320px] bg-white rounded-2xl border border-brand-200/40 overflow-hidden flex flex-col justify-between group shadow-sm card-hover cursor-pointer"
+                    className="snap-start shrink-0 w-[85vw] sm:w-[280px] md:w-[320px] bg-white rounded-2xl border border-brand-200/40 overflow-hidden flex flex-col justify-between group shadow-sm card-hover card-gradient-border cursor-pointer"
                     onClick={() => handleNavigateToPdp(item.slug)}
                   >
                     {cardContent}

@@ -25,7 +25,7 @@ export default function SleepSciencePage() {
     >
       <div className="relative overflow-hidden">
       <DecorativeBotanicals density="light" />
-      <section className="bg-secondary py-16 md:py-24">
+      <section className="section-light-lux py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <FadeUp>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">

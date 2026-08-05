@@ -16,11 +16,11 @@
   --font-tagline: 'Playfair Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-  /* ---------- INK  (cool near-black, blue undertone) ---------- */
-  --color-ink-950: #070B12;
-  --color-ink-900: #0B1220;
-  --color-ink-800: #111A2B;
-  --color-ink-700: #1A2740;
+  /* ---------- INK  (luxury black + charcoal, blue undertone) ---------- */
+  --color-ink-950: #05080D;
+  --color-ink-900: #0A1120;
+  --color-ink-800: #111418;
+  --color-ink-700: #1B2026;
 
   /* ---------- GRAPHITE  (neutral text + borders on light) ---------- */
   --color-graphite-900: #131A24;
@@ -32,36 +32,36 @@
   --color-graphite-200: #DDE2E9;
   --color-graphite-100: #EEF1F5;
 
-  /* ---------- SAPPHIRE / BRAND  (logo blue, refined scale) ---------- */
-  --color-brand-50:  #EAF3FB;
-  --color-brand-100: #D3E6F6;
-  --color-brand-200: #A6CDEC;
-  --color-brand-300: #6FAEE0;
-  --color-brand-400: #3A8FD2;
-  --color-brand-500: #1A7CBE;
-  --color-brand-600: #1568A3;
-  --color-brand-700: #115484;
-  --color-brand-800: #0E4268;
-  --color-brand-900: #0B3352;
-  --color-brand-950: #072038;
+  /* ---------- SAPPHIRE / BRAND  (RelaxPro logo blue scale) ---------- */
+  --color-brand-50:  #EBF4FB;
+  --color-brand-100: #D7EAF8;
+  --color-brand-200: #ABD3EF;
+  --color-brand-300: #75B7E6;
+  --color-brand-400: #2E8CD0;
+  --color-brand-500: #1685C5;
+  --color-brand-600: #005E9D;
+  --color-brand-700: #0A5487;
+  --color-brand-800: #063D64;
+  --color-brand-900: #05304F;
+  --color-brand-950: #04203A;
 
-  /* ---------- SKY  (soft blue luxury background, replaces linen) ---------- */
-  --color-sky-50:  #F4FBFF;
-  --color-sky-100: #EAF4FA;
-  --color-sky-200: #D7EBF5;
-  --color-sky-300: #BEDFF0;
+  /* ---------- SKY  (soft blue luxury background) ---------- */
+  --color-sky-50:  #EEF6FD;
+  --color-sky-100: #DFEDF9;
+  --color-sky-200: #CBE2F4;
+  --color-sky-300: #B7DAF0;
 
-  /* ---------- LINEN  (kept for card interiors, inputs) ---------- */
-  --color-linen-50:  #FBF8F3;
-  --color-linen-100: #F5F0E7;
-  --color-linen-200: #ECE3D5;
-  --color-linen-300: #DCCDB6;
+  /* ---------- LINEN  (cool pale blue, card interiors/inputs) ---------- */
+  --color-linen-50:  #F8FBFF;
+  --color-linen-100: #F0F6FC;
+  --color-linen-200: #E2EDF7;
+  --color-linen-300: #C7D9EA;
 
-  /* ---------- SAND  (matte warm accent -- replaces metallic gold) ---------- */
-  --color-sand-300: #D8C4A4;
-  --color-sand-400: #C7B291;
-  --color-sand-500: #B49A73;
-  --color-sand-600: #9A8159;
+  /* ---------- SAND  (cool steel-blue accent, no warm gold) ---------- */
+  --color-sand-300: #A9CDE8;
+  --color-sand-400: #8FB9DD;
+  --color-sand-500: #6CA2D0;
+  --color-sand-600: #4A84B5;
 
   /* ---------- ECO  (semantic green for certifications) ---------- */
   --color-eco-50:  #EAF2EE;
@@ -79,22 +79,22 @@
   --color-line-warm:   #ECE3D5;
   --color-ring:        #6FAEE0;
 
-  /* ---------- Legacy token names -- REPOINTED to soft blue theme ---------- */
-  --color-primary:        #0B1220;
-  --color-secondary:      #F4FBFF;
-  --color-accent:         #1568A3;
-  --color-accent-dark:    #115484;
-  --color-accent-light:   #6FAEE0;
+  /* ---------- Legacy token names -- REPOINTED to logo blue theme ---------- */
+  --color-primary:        #0A1120;
+  --color-secondary:      #EEF6FD;
+  --color-accent:         #005E9D;
+  --color-accent-dark:    #063D64;
+  --color-accent-light:   #75B7E6;
   --color-neutral-dark:   #44505F;
-  --color-neutral-light:  #F4FBFF;
+  --color-neutral-light:  #EEF6FD;
   --color-success:        #4F7E6A;
-  --color-warm-white:     #EAF4FA;
-  --color-charcoal:       #111A2B;
-  --color-deep-charcoal:  #070B12;
-  --color-blue:           #1A7CBE;
-  --color-blue-bright:    #3A8FD2;
-  --color-blue-dark:      #115484;
-  --color-luxury-gold:    #B49A73;
+  --color-warm-white:     #DFEDF9;
+  --color-charcoal:       #111418;
+  --color-deep-charcoal:  #05080D;
+  --color-blue:           #1685C5;
+  --color-blue-bright:    #2E8CD0;
+  --color-blue-dark:      #0A5487;
+  --color-luxury-gold:    #8FB9DD;
 
   /* ---------- Radii ---------- */
   --radius-sm: 10px;
@@ -105,10 +105,10 @@
   --radius-full: 9999px;
 
   /* ---------- Premium layered shadows (cool-tinted) ---------- */
-  --shadow-card:  0 1px 2px rgba(11,18,32,.04), 0 8px 24px -12px rgba(11,18,32,.12);
-  --shadow-lift:  0 2px 6px rgba(11,18,32,.06), 0 24px 48px -20px rgba(11,18,32,.22);
-  --shadow-glow:  0 10px 30px -8px rgba(21,104,163,.45);
-  --shadow-float: 0 30px 60px -25px rgba(7,11,18,.35);
+  --shadow-card:  0 1px 2px rgba(5,8,13,.04), 0 8px 24px -12px rgba(5,8,13,.12);
+  --shadow-lift:  0 2px 6px rgba(5,8,13,.06), 0 24px 48px -20px rgba(5,8,13,.24);
+  --shadow-glow:  0 10px 30px -8px rgba(0,94,157,.5);
+  --shadow-float: 0 30px 60px -25px rgba(5,8,13,.35);
 
   /* ---------- Spacing rhythm ---------- */
   --spacing-12: 2.5rem;
@@ -186,25 +186,25 @@
    CSS Custom Properties for Non-Tailwind Usage
    ============================================ */
 :root {
-  --color-primary: #0B1220;
-  --color-secondary: #F4FBFF;
-  --color-accent: #1568A3;
-  --color-accent-dark: #115484;
+  --color-primary: #0A1120;
+  --color-secondary: #EEF6FD;
+  --color-accent: #005E9D;
+  --color-accent-dark: #063D64;
   --color-neutral-dark: #44505F;
-  --color-neutral-light: #F4FBFF;
+  --color-neutral-light: #EEF6FD;
   --color-success: #4F7E6A;
-  --color-accent-light: #6FAEE0;
-  --color-warm-white: #EAF4FA;
-  --color-charcoal: #111A2B;
-  --color-blue: #1A7CBE;
-  --color-blue-dark: #115484;
-  --color-luxury-gold: #B49A73;
-  --color-line: #D7EBF5;
+  --color-accent-light: #75B7E6;
+  --color-warm-white: #DFEDF9;
+  --color-charcoal: #111418;
+  --color-blue: #1685C5;
+  --color-blue-dark: #0A5487;
+  --color-luxury-gold: #8FB9DD;
+  --color-line: #CBE2F4;
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-accent: 'Plus Jakarta Sans', sans-serif;
   --radius-card: 16px;
-  --shadow-card: 0 1px 2px rgba(11,18,32,.04), 0 8px 24px -12px rgba(11,18,32,.12);
+  --shadow-card: 0 1px 2px rgba(5,8,13,.04), 0 8px 24px -12px rgba(5,8,13,.12);
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -250,7 +250,7 @@ html.lenis, html.lenis body {
   }
 
   body {
-    background-color: #F4FBFF;
+    background-color: #EEF6FD;
     background-image: url('/patterns/luxury-leaf-pattern.svg');
     background-repeat: repeat;
     background-size: 180px 180px;
@@ -685,10 +685,10 @@ html.lenis, html.lenis body {
   box-shadow: none;
 }
 .header-scrolled {
-  background: rgba(251, 248, 243, 0.97);
-  backdrop-filter: blur(12px);
+  background: rgba(243, 249, 253, 0.92);
+  backdrop-filter: blur(14px) saturate(140%);
   border-bottom-color: var(--color-line);
-  box-shadow: 0 2px 20px rgba(11, 18, 32, 0.06);
+  box-shadow: 0 2px 24px rgba(5, 8, 13, 0.08);
 }
 
 /* ============================================
@@ -881,8 +881,8 @@ html.lenis, html.lenis body {
     radial-gradient(120% 60% at 10% 0%, rgba(10,94,255,0.12) 0%, transparent 50%),
     radial-gradient(80% 50% at 90% 30%, rgba(18,60,106,0.15) 0%, transparent 45%),
     radial-gradient(70% 60% at 50% 70%, rgba(7,25,44,0.3) 0%, transparent 50%),
-    radial-gradient(100% 30% at 30% 100%, rgba(10,94,255,0.05) 0%, transparent 40%),
-    linear-gradient(180deg, #061321 0%, #07192C 20%, #0B2240 45%, #123C6A 70%, #07192C 100%);
+    radial-gradient(100% 30% at 30% 100%, rgba(22,133,197,0.08) 0%, transparent 40%),
+    linear-gradient(180deg, #05080D 0%, #0A1120 20%, #063D64 48%, #005E9D 72%, #0A1120 100%);
   position: relative;
 }
 
@@ -1230,7 +1230,7 @@ html.lenis, html.lenis body {
 @media (hover: hover) and (pointer: fine) {
   .card-hover:hover {
     transform: translateY(-8px) scale(1.01);
-    box-shadow: var(--shadow-lift), 0 0 0 1px var(--color-brand-200);
+    box-shadow: var(--shadow-lift), 0 0 0 1px var(--color-brand-200), 0 16px 48px -16px rgba(0,94,157,.45);
   }
 }
 
@@ -1257,13 +1257,33 @@ html.lenis, html.lenis body {
 
   .btn-primary {
     color: #fff;
-    background: linear-gradient(180deg, var(--color-brand-500), var(--color-brand-700));
-    box-shadow: var(--shadow-glow);
+    background: linear-gradient(90deg, #0A5FA0 0%, #1A8BD0 50%, #0A5FA0 100%);
+    background-size: 200% 100%;
+    background-position: 0% 0;
+    box-shadow: 0 10px 30px -10px rgba(0, 94, 157, .65);
+    position: relative;
+    overflow: hidden;
+    transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, background-position .6s ease, filter .35s ease;
   }
   .btn-primary:hover {
-    background: linear-gradient(180deg, var(--color-brand-400), var(--color-brand-600));
-    box-shadow: 0 14px 36px -8px rgba(21, 104, 163, .6);
+    background-position: 100% 0;
+    box-shadow: 0 16px 42px -10px rgba(30, 144, 216, .75);
     transform: translateY(-2px);
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 45%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .3), transparent);
+    transform: translateX(-160%) skewX(-20deg);
+    transition: transform .7s cubic-bezier(.22,1,.36,1);
+    pointer-events: none;
+  }
+  .btn-primary:hover::before {
+    transform: translateX(320%) skewX(-20deg);
   }
 
   .btn-secondary {
@@ -1364,8 +1384,8 @@ html.lenis, html.lenis body {
 
   /* ---- Glass top-nav ---- */
   .nav-glass {
-    background: color-mix(in srgb, #F4FBFF 78%, transparent);
-    backdrop-filter: saturate(140%) blur(14px);
+    background: color-mix(in srgb, #EAF3FB 82%, transparent);
+    backdrop-filter: saturate(150%) blur(16px);
     border-bottom: 1px solid var(--color-line);
   }
 
@@ -1376,10 +1396,65 @@ html.lenis, html.lenis body {
   }
 }
 
-/* ---- Hero / dark section backdrop (ink -> sapphire glow) ---- */
+/* ---- Hero / dark section backdrop (luxury black -> sapphire glow) ---- */
 .hero-ink {
   background:
-    radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--color-brand-700) 55%, transparent), transparent 60%),
-    radial-gradient(90% 70% at 0% 110%, color-mix(in srgb, var(--color-brand-900) 60%, transparent), transparent 55%),
+    radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--color-brand-600) 55%, transparent), transparent 60%),
+    radial-gradient(90% 70% at 0% 110%, color-mix(in srgb, var(--color-brand-800) 65%, transparent), transparent 55%),
     linear-gradient(180deg, var(--color-ink-900), var(--color-ink-950));
 }
+
+/* ============================================
+   RELAXPRO PREMIUM ENHANCEMENT LAYER
+   Logo palette: #005E9D / #1685C5 / #063D64 / #05080D / #F3F9FD
+   ============================================ */
+
+/* Brand gradient text — selective emphasis only */
+@utility text-gradient-brand {
+  background: linear-gradient(90deg, #0070BC 0%, #1E90D8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Light section — white to pale blue gradient */
+@utility section-light-lux {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F1F8FE 50%, #DDEBFA 100%);
+}
+
+/* Ambient breathing glow — used behind hero product / key imagery */
+@keyframes ambient-breathe {
+  0%, 100% { transform: scale(1); opacity: .18; }
+  50% { transform: scale(1.06); opacity: .32; }
+}
+.ambient-breathe {
+  animation: ambient-breathe 8s ease-in-out infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Gradient card border — subtle by default, rich on hover */
+.card-gradient-border {
+  position: relative;
+}
+.card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(22,133,197,.8), rgba(0,94,157,.30) 50%, rgba(6,61,100,.8));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: .65;
+  transition: opacity .45s cubic-bezier(.22,1,.36,1);
+}
+.card-gradient-border:hover::before {
+  opacity: 1;
+}
+
+

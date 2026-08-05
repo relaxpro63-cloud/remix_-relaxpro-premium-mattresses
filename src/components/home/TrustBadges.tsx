@@ -19,7 +19,7 @@ const trustPoints = [
 export default function TrustBadges() {
   return (
     <FadeUp>
-      <section className="bg-gradient-to-b from-[#FAF8F5] to-white border-t border-[#ECE8DF]/60 py-14 md:py-16 px-4 md:px-8 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-[#F3F9FD] to-white border-t border-[#D5E8F7]/60 py-14 md:py-16 px-4 md:px-8 relative overflow-hidden">
         {/* Subtle texture */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.015]"
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
@@ -28,7 +28,7 @@ export default function TrustBadges() {
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Badge */}
           <div className="text-center mb-8 md:mb-10">
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-4 py-1.5 rounded-full shadow-sm">
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#3D95D6] uppercase bg-brand-50/80 border border-[#3D95D6]/20 px-4 py-1.5 rounded-full shadow-sm">
               <ShieldCheck className="w-3 h-3" /> Certified & Trusted
             </span>
           </div>
@@ -45,7 +45,7 @@ export default function TrustBadges() {
                 whileHover={{ y: -4, scale: 1.05 }}
                 className="flex flex-col items-center gap-2.5"
               >
-                <div className="h-20 md:h-24 flex items-center justify-center bg-white rounded-2xl px-8 py-4 shadow-md border border-[#ECE8DF] hover:border-[#C8A96A]/40 hover:shadow-lg transition-all duration-300">
+                <div className="h-20 md:h-24 flex items-center justify-center bg-white rounded-2xl px-8 py-4 shadow-md border border-[#D5E8F7] hover:border-[#3D95D6]/40 hover:shadow-lg transition-all duration-300">
                   <img
                     src={cert.src}
                     alt={cert.alt}
@@ -62,7 +62,7 @@ export default function TrustBadges() {
 
           {/* Trust Points Divider */}
           <div className="relative flex items-center justify-center gap-8 md:gap-12 flex-wrap">
-            <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-[#C8A96A]/20 to-transparent" />
+            <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-[#3D95D6]/20 to-transparent" />
             {trustPoints.map((point, i) => (
               <motion.div
                 key={i}
@@ -70,9 +70,9 @@ export default function TrustBadges() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-                className="relative z-10 bg-[#FAF8F5] px-3 flex items-center gap-2"
+                className="relative z-10 bg-[#F3F9FD] px-3 flex items-center gap-2"
               >
-                <div className="w-2 h-2 rounded-full bg-[#0F5B43]" />
+                <div className="w-2 h-2 rounded-full bg-[#063D64]" />
                 <span className="text-xs sm:text-sm font-accent font-semibold text-graphite-700 whitespace-nowrap">
                   {point}
                 </span>

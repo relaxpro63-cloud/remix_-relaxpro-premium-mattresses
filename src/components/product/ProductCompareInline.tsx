@@ -164,7 +164,7 @@ export default function ProductCompareInline({ currentProduct, allProducts }: Pr
               {visibleProducts.map((p: any) => (
                 <td key={p?.slug} className={`p-4 md:p-5 border-l border-brand-200/40 capitalize ${p?.slug === currentProduct?.slug ? 'bg-brand-50/30' : ''}`}>
                   <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-accent font-bold uppercase tracking-wider ${
-                    p?.tier === 'luxury' ? 'bg-amber-50 text-amber-700 border border-amber-200' :
+                    p?.tier === 'luxury' ? 'bg-brand-50 text-brand-700 border border-brand-200' :
                     p?.tier === 'premium' ? 'bg-brand-50 text-brand-700 border border-brand-200' :
                     'bg-graphite-100 text-graphite-700 border border-graphite-200'
                   }`}>

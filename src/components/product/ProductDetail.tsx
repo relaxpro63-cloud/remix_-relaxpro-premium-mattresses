@@ -104,11 +104,25 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xs:gap-10 sm:gap-12 lg:gap-16">
         {/* Left: Product Images & Core Specs */}
         <div className="lg:col-span-7 space-y-8 xs:space-y-10 lg:space-y-12">
-          <ProductCarousel
+          <div className="relative">
+            {/* Breathing ambient blue glow behind the product imagery */}
+            <div className="absolute -inset-6 sm:-inset-10 flex items-center justify-center pointer-events-none">
+              <div
+                className="ambient-breathe w-[72%] h-[82%] rounded-full"
+                style={{
+                  background: 'radial-gradient(ellipse 50% 50% at center, rgba(22,133,197,0.28) 0%, rgba(0,94,157,0.10) 45%, transparent 72%)',
+                  filter: 'blur(80px)',
+                }}
+              />
+            </div>
+            <div className="relative z-10">
+              <ProductCarousel
             images={[product.image, ...product.images]}
             alt={product.name}
             badge={product.badge}
           />
+            </div>
+          </div>
 
           {/* Core Spec Badges Section */}
           <div className="bg-white p-3 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-brand-200/40 shadow-sm grid grid-cols-3 gap-2 sm:gap-6 text-center">

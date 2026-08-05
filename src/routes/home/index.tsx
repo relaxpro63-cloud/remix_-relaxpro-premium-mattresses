@@ -16,7 +16,6 @@ import { ShoppingBag } from 'lucide-react';
 import QuickConnectBar from '../../components/home/QuickConnectBar';
 import TwoWaysToOwn from '../../components/home/TwoWaysToOwn';
 import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
-import OffersSection from '../../components/home/OffersSection';
 
 import SleepFAQs from '../../components/home/SleepFAQs';
 
@@ -206,7 +205,7 @@ export default function HomePage({
 
       {/* Shuddha Banner — Clickable to Catalog */}
       <FadeUp>
-        <section className="bg-secondary py-8 md:py-12 px-4 md:px-8">
+        <section className="section-light-lux py-8 md:py-12 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.button
               onClick={() => handlePageNavigation('catalog')}
@@ -260,7 +259,7 @@ export default function HomePage({
                   variants={staggerItem}
                   whileHover={{ scale: 1.025, rotateY: 4, rotateX: 2, y: -6 }}
                   transition={{ duration: 0.6, ease: EASE_LUXURY }}
-                  className="card-ink overflow-hidden flex flex-col justify-between group cursor-pointer h-full relative"
+                  className="card-ink card-gradient-border overflow-hidden flex flex-col justify-between group cursor-pointer h-full relative"
                   onClick={() => handleNavigateToPdp(item.slug)}
                 >
                   {/* Sapphire glow effect on card hover */}
@@ -369,10 +368,8 @@ export default function HomePage({
 
 
 
-      {/* Offers & Promotions — CMS-driven from Sanity "offer" documents */}
-      <OffersSection onNavigate={handlePageNavigation} />
 
-      <FadeUp><section className="py-10 md:py-12 px-4 md:px-8 bg-secondary">
+      <FadeUp><section className="section-light-lux py-10 md:py-12 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <span className="eyebrow">{homeSections?.showroomMap?.sectionBadge || 'Visit Our Factory Showroom'}</span>

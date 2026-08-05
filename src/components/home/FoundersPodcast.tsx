@@ -49,7 +49,7 @@ export default function FoundersPodcast() {
   const handlePlay = () => setPlayVideo(true);
 
   return (
-    <section className="relative overflow-hidden py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-[#FAF8F5]">
+    <section className="relative overflow-hidden py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-[#F3F9FD]">
       {/* Subtle organic background texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
@@ -58,7 +58,7 @@ export default function FoundersPodcast() {
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* ===== Section Heading Above Container ===== */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
-          <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
+          <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#3D95D6] uppercase bg-brand-50/80 border border-[#3D95D6]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
             <Mic className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> {header.sectionBadge}
           </span>
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-4 xs:mt-5 text-ink-900 leading-[1.1]">
@@ -75,7 +75,7 @@ export default function FoundersPodcast() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-[#FCFCF8] rounded-[28px] border border-[#ECE8DF] shadow-xl shadow-ink-900/3 overflow-hidden"
+          className="bg-[#FFFFFF] rounded-[28px] border border-[#D5E8F7] shadow-xl shadow-ink-900/3 overflow-hidden"
         >
           <div className="flex flex-col lg:flex-row">
             {/* ===== LEFT: Video (55%) ===== */}
@@ -112,13 +112,13 @@ export default function FoundersPodcast() {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={handlePlay}
-                        className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/95 shadow-2xl flex items-center justify-center transition-all duration-300 hover:shadow-[#C8A96A]/30 hover:shadow-2xl cursor-pointer"
+                        className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/95 shadow-2xl flex items-center justify-center transition-all duration-300 hover:shadow-[#3D95D6]/30 hover:shadow-2xl cursor-pointer"
                       >
                         <motion.div
                           animate={{ scale: [1, 1.08, 1] }}
                           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                         >
-                          <Play className="w-6 h-6 md:w-7 md:h-7 text-[#0F5B43] ml-1" />
+                          <Play className="w-6 h-6 md:w-7 md:h-7 text-[#063D64] ml-1" />
                         </motion.div>
                       </motion.button>
                     </div>
@@ -164,7 +164,7 @@ export default function FoundersPodcast() {
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               >
                 {/* Badge */}
-                <span className="inline-flex items-center gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] tracking-[0.15em] font-accent font-bold text-[#0F5B43] uppercase bg-[#0F5B43]/8 border border-[#0F5B43]/15 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full mb-3 xs:mb-4">
+                <span className="inline-flex items-center gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] tracking-[0.15em] font-accent font-bold text-[#063D64] uppercase bg-[#063D64]/8 border border-[#063D64]/15 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full mb-3 xs:mb-4">
                   <Star className="w-3 h-3" /> Founder's Podcast
                 </span>
 
@@ -198,8 +198,8 @@ export default function FoundersPodcast() {
                     variants={staggerItem}
                     className="flex items-start gap-2.5"
                   >
-                    <div className="w-5 h-5 rounded-full bg-[#0F5B43]/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle className="w-3 h-3 text-[#0F5B43]" />
+                    <div className="w-5 h-5 rounded-full bg-[#063D64]/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle className="w-3 h-3 text-[#063D64]" />
                     </div>
                     <span className="text-xs sm:text-sm text-graphite-700 font-body leading-relaxed">{item}</span>
                   </motion.div>
@@ -212,9 +212,9 @@ export default function FoundersPodcast() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-4 xs:mt-5 sm:mt-6 relative bg-white/70 backdrop-blur-xl border border-amber-200/40 rounded-xl xs:rounded-2xl p-4 xs:p-5 shadow-md"
+                className="mt-4 xs:mt-5 sm:mt-6 relative bg-white/70 backdrop-blur-xl border border-brand-200/40 rounded-xl xs:rounded-2xl p-4 xs:p-5 shadow-md"
               >
-                <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[#C8A96A]/30" />
+                <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[#3D95D6]/30" />
                 <div className="relative z-10">
                   <p className="text-sm italic text-ink-900 font-body leading-relaxed">
                     "We don't just manufacture mattresses — we educate people to choose healthier sleep."
@@ -233,7 +233,7 @@ export default function FoundersPodcast() {
                   href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0F5B43] text-white font-accent font-bold text-xs sm:text-sm tracking-wide px-6 py-3.5 rounded-xl shadow-lg shadow-[#0F5B43]/20 hover:shadow-xl hover:shadow-[#0F5B43]/30 transition-all duration-300 cursor-pointer group"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-[#063D64] text-white font-accent font-bold text-xs sm:text-sm tracking-wide px-6 py-3.5 rounded-xl shadow-lg shadow-[#063D64]/20 hover:shadow-xl hover:shadow-[#063D64]/30 transition-all duration-300 cursor-pointer group"
                 >
                   <Play className="w-4 h-4" fill="currentColor" />
                   <span>Watch Full Podcast</span>
@@ -242,7 +242,7 @@ export default function FoundersPodcast() {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => navigate('/about')}
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-white border-2 border-[#C8A96A]/30 text-ink-900 font-accent font-bold text-xs sm:text-sm tracking-wide px-6 py-3.5 rounded-xl hover:border-[#C8A96A]/60 hover:bg-amber-50/30 transition-all duration-300 cursor-pointer group"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-white border-2 border-[#3D95D6]/30 text-ink-900 font-accent font-bold text-xs sm:text-sm tracking-wide px-6 py-3.5 rounded-xl hover:border-[#3D95D6]/60 hover:bg-brand-50/30 transition-all duration-300 cursor-pointer group"
                 >
                   <span>Read Our Story</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />

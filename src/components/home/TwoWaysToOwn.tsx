@@ -31,7 +31,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
   };
 
   return (
-    <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #FAFCFA 0%, #F3F9FD 40%, #F0F8F2 100%)'}}>
+    <section id="two-ways-section" className="py-20 md:py-32 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #F8FBFF 0%, #F3F9FD 40%, #E8F2FB 100%)'}}>
       {/* Full-section background image (subtle texture) — renders first, botanicals on top */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img
@@ -41,7 +41,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
           loading="lazy"
         />
         {/* Light wash so content stays readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFCFA]/80 via-[#F3F9FD]/80 to-[#F0F8F2]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FBFF]/80 via-[#F3F9FD]/80 to-[#E8F2FB]/80" />
         {/* Soft luxury orbs */}
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FFFFFF] blur-[120px] opacity-80" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#EEF7FC] blur-[150px] opacity-90" />

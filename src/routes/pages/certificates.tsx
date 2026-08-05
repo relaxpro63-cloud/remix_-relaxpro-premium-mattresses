@@ -172,10 +172,10 @@ export default function CertificatesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] relative overflow-hidden">
+    <div className="min-h-screen bg-[#F3F9FD] relative overflow-hidden">
       <DecorativeBotanicals density="light" />
       {/* ===== Hero Section ===== */}
-      <section className="relative overflow-hidden py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-sky-50 to-[#FAF8F5]">
+      <section className="relative overflow-hidden py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-sky-50 to-[#F3F9FD]">
         <div className="max-w-[1200px] mx-auto">
           <FadeUp className="text-center max-w-3xl mx-auto">
             <button
@@ -184,11 +184,11 @@ export default function CertificatesPage() {
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back
             </button>
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-4 py-1.5 rounded-full shadow-sm">
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#3D95D6] uppercase bg-brand-50/80 border border-[#3D95D6]/20 px-4 py-1.5 rounded-full shadow-sm">
               <Sparkles className="w-3 h-3" /> Transparency & Trust
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-5 text-ink-900 leading-[1.1]">
-              Our <span className="text-[#C8A96A]">Certifications</span>
+              Our <span className="text-[#3D95D6]">Certifications</span>
             </h1>
             <p className="text-graphite-600 text-sm sm:text-base md:text-lg mt-4 font-body leading-relaxed max-w-2xl mx-auto">
               Transparency builds trust. Explore the certifications that validate the quality, safety, and sustainability of every RelaxPro mattress.
@@ -204,11 +204,11 @@ export default function CertificatesPage() {
             <motion.div
               key={cert._id}
               variants={staggerItem}
-              className="bg-white rounded-[20px] border border-[#C8A96A]/20 shadow-lg shadow-ink-900/4 overflow-hidden hover:shadow-xl hover:shadow-amber-500/10 transition-all duration-300 group"
+              className="bg-white rounded-[20px] border border-[#3D95D6]/20 shadow-lg shadow-ink-900/4 overflow-hidden hover:shadow-xl hover:shadow-brand-500/10 transition-all duration-300 group"
             >
               <div className="flex flex-col md:flex-row">
                 {/* Left: Certificate Preview */}
-                <div className="md:w-[280px] lg:w-[320px] shrink-0 bg-gradient-to-br from-sky-50 to-amber-50/30 p-6 md:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#C8A96A]/20">
+                <div className="md:w-[280px] lg:w-[320px] shrink-0 bg-gradient-to-br from-sky-50 to-brand-50/30 p-6 md:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#3D95D6]/20">
                   <div className="w-full aspect-[3/4] max-w-[200px] mx-auto bg-white rounded-xl border border-brand-200/30 shadow-sm flex items-center justify-center overflow-hidden mb-4">
                     {cert.certificateImage ? (
                       <img
@@ -223,7 +223,7 @@ export default function CertificatesPage() {
                   </div>
                   <button
                     onClick={() => setActivePdf(cert)}
-                    className="text-[10px] font-accent font-bold uppercase tracking-widest text-[#C8A96A] hover:text-amber-700 border border-[#C8A96A]/30 px-4 py-2 rounded-full transition-all cursor-pointer hover:bg-amber-50/50"
+                    className="text-[10px] font-accent font-bold uppercase tracking-widest text-[#3D95D6] hover:text-brand-700 border border-[#3D95D6]/30 px-4 py-2 rounded-full transition-all cursor-pointer hover:bg-brand-50/50"
                   >
                     <ExternalLink className="w-3 h-3 inline mr-1.5" /> View Full Certificate
                   </button>
@@ -233,7 +233,7 @@ export default function CertificatesPage() {
                 <div className="flex-1 p-6 md:p-8 lg:p-10">
                   {/* Logo + Title row */}
                   <div className="flex items-start gap-4 mb-5">
-                    <div className="w-14 h-14 rounded-xl bg-white border border-[#C8A96A]/20 shadow-sm flex items-center justify-center p-2.5 shrink-0">
+                    <div className="w-14 h-14 rounded-xl bg-white border border-[#3D95D6]/20 shadow-sm flex items-center justify-center p-2.5 shrink-0">
                       <img
                         src={cert.logoImage ? imageUrl(cert.logoImage, 200) : `/images/cert-${cert.slug || cert._id}-logo.png`}
                         alt={`${cert.title} logo`}
@@ -246,7 +246,7 @@ export default function CertificatesPage() {
                         {cert.title}
                       </h2>
                       {cert.subtitle && (
-                        <p className="text-[11px] font-accent font-bold uppercase tracking-widest text-[#C8A96A]/70 mt-1">
+                        <p className="text-[11px] font-accent font-bold uppercase tracking-widest text-[#3D95D6]/70 mt-1">
                           {cert.subtitle}
                         </p>
                       )}
@@ -273,7 +273,7 @@ export default function CertificatesPage() {
                       <div className="bg-sky-50 rounded-xl px-4 py-3 border border-brand-200/30">
                         <span className="text-[9px] font-accent font-bold uppercase tracking-widest text-graphite-500">Expiry Date</span>
                         <p className="text-sm font-body text-ink-900 font-medium mt-0.5 flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-amber-500" />
+                          <Calendar className="w-3.5 h-3.5 text-brand-500" />
                           {new Date(cert.expiryDate).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}
                         </p>
                       </div>
@@ -295,14 +295,14 @@ export default function CertificatesPage() {
                       href={cert.pdfUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 bg-[#0F5B43] text-white text-[12px] font-accent font-bold px-5 py-3 rounded-xl hover:bg-[#0a4733] transition-all shadow-lg shadow-[#0F5B43]/20 cursor-pointer"
+                      className="inline-flex items-center gap-2 bg-[#063D64] text-white text-[12px] font-accent font-bold px-5 py-3 rounded-xl hover:bg-[#05304F] transition-all shadow-lg shadow-[#063D64]/20 cursor-pointer"
                     >
                       <Download className="w-4 h-4" />
                       Download Certificate
                     </a>
                     <button
                       onClick={() => setActivePdf(cert)}
-                      className="inline-flex items-center gap-2 bg-white border border-[#C8A96A]/30 text-ink-900 text-[12px] font-accent font-bold px-5 py-3 rounded-xl hover:border-[#C8A96A]/60 hover:bg-amber-50/30 transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 bg-white border border-[#3D95D6]/30 text-ink-900 text-[12px] font-accent font-bold px-5 py-3 rounded-xl hover:border-[#3D95D6]/60 hover:bg-brand-50/30 transition-all cursor-pointer"
                     >
                       <ExternalLink className="w-4 h-4" />
                       View Online
@@ -316,8 +316,8 @@ export default function CertificatesPage() {
 
         {/* Trust Statement */}
         <FadeUp className="mt-12 text-center">
-          <div className="inline-flex items-center gap-3 bg-white border border-[#C8A96A]/20 rounded-full px-6 py-3 shadow-sm">
-            <CheckCircle className="w-5 h-5 text-[#0F5B43]" />
+          <div className="inline-flex items-center gap-3 bg-white border border-[#3D95D6]/20 rounded-full px-6 py-3 shadow-sm">
+            <CheckCircle className="w-5 h-5 text-[#063D64]" />
             <span className="text-sm font-accent font-bold text-ink-900">
               All certificates are verified and up to date
             </span>

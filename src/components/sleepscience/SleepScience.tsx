@@ -211,7 +211,7 @@ export default function SleepScience() {
                 return (
                   <div key={i} className="bg-white p-8 rounded-[2rem] border border-brand-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group">
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold mb-6 font-heading border group-hover:scale-110 transition-transform ${
-                      i === 0 ? 'bg-sky-100 text-orange-600 border-orange-200 text-lg' :
+                      i === 0 ? 'bg-sky-100 text-brand-600 border-brand-200 text-lg' :
                       i === 1 ? 'bg-brand-50 text-brand-600 border-brand-600-200 text-sm text-center leading-tight' :
                       'bg-eco-50 text-eco-500 border-eco-500/20 text-lg'
                     }`}>

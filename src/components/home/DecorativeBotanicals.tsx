@@ -83,9 +83,9 @@ function LeafSmall({ className, grad }: { className?: string; grad: GradFn }) {
     <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id={grad('leafSm')} x1="0" y1="0" x2="0.5" y2="1">
-          <stop offset="0%" stopColor="#B49A73" stopOpacity="0.60" />
-          <stop offset="50%" stopColor="#D8C4A4" stopOpacity="0.40" />
-          <stop offset="100%" stopColor="#ECE3D5" stopOpacity="0.25" />
+          <stop offset="0%" stopColor="#3D95D6" stopOpacity="0.60" />
+          <stop offset="50%" stopColor="#8CCBEF" stopOpacity="0.40" />
+          <stop offset="100%" stopColor="#D5E8F7" stopOpacity="0.25" />
         </linearGradient>
       </defs>
       {/* Stem */}

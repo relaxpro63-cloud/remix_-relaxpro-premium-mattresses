@@ -322,16 +322,6 @@ export async function getAccessoryBySlug(slug: string) {
   )
 }
 
-/* ---- Offers & Campaigns ---- */
-export async function getActiveOffers() {
-  return sanityClient.fetch(`*[_type == "offer" && isActive == true && (endDate == null || endDate > now()) && (startDate == null || startDate <= now()) && showOnHomepage != false] | order(priority desc){
-    _id, title, subtitle, description, badge, discountText, couponCode, bannerColor, type, priority,
-    startDate, endDate,
-    bannerImage { asset->{ _id, url }, alt },
-    cta { label, link, variant, openInNewTab }
-  }`)
-}
-
 /* ---- Certifications ---- */
 export async function getCertifications() {
   return sanityClient.fetch(`*[_type == "certification" && isActive == true] | order(order asc){

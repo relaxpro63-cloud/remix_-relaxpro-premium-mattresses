@@ -175,7 +175,7 @@ export default function CertificationsSection() {
 
   return (
     <>
-      <section className="relative overflow-hidden py-14 xs:py-16 sm:py-20 md:py-24 lg:py-28 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-[#FAF8F5]">
+      <section className="relative overflow-hidden py-14 xs:py-16 sm:py-20 md:py-24 lg:py-28 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-[#F3F9FD]">
         {/* Premium subtle organic texture */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
@@ -184,7 +184,7 @@ export default function CertificationsSection() {
         <div className="max-w-[1200px] mx-auto relative z-10">
           {/* ===== Section Header ===== */}
           <FadeUp className="text-center max-w-3xl mx-auto mb-10 xs:mb-12 sm:mb-14 md:mb-16">
-            <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#C8A96A] uppercase bg-amber-50/80 border border-[#C8A96A]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
+            <span className="inline-flex items-center gap-1.5 text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.18em] font-accent font-bold text-[#3D95D6] uppercase bg-brand-50/80 border border-[#3D95D6]/20 px-3 xs:px-4 py-1 xs:py-1.5 rounded-full shadow-sm">
               <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3" /> {header.sectionBadge}
             </span>
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mt-4 xs:mt-5 text-ink-900 leading-[1.1]">
@@ -201,14 +201,14 @@ export default function CertificationsSection() {
               <motion.div
                 key={cert.id}
                 variants={staggerItem}
-                className="group relative bg-white rounded-[16px] border border-[#C8A96A]/30 shadow-lg shadow-ink-900/4 hover:shadow-2xl hover:shadow-amber-500/15 transition-all duration-300 flex flex-col items-center text-center overflow-hidden cursor-pointer"
+                className="group relative bg-white rounded-[16px] border border-[#3D95D6]/30 shadow-lg shadow-ink-900/4 hover:shadow-2xl hover:shadow-brand-500/15 transition-all duration-300 flex flex-col items-center text-center overflow-hidden cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 onClick={() => setActivePdf(cert)}
               >
                 {/* Gold top accent */}
-                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#C8A96A] to-transparent opacity-60" />
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#3D95D6] to-transparent opacity-60" />
 
                 {/* Card content */}
                 <div className="p-5 xs:p-6 sm:p-8 md:p-10 flex flex-col items-center w-full">
@@ -231,7 +231,7 @@ export default function CertificationsSection() {
                   <h3 className="font-heading font-bold text-base xs:text-lg md:text-xl text-ink-900 leading-tight">
                     {cert.title}
                   </h3>
-                  <p className="text-[11px] font-accent font-bold uppercase tracking-widest text-[#C8A96A]/70 mt-1.5">
+                  <p className="text-[11px] font-accent font-bold uppercase tracking-widest text-[#3D95D6]/70 mt-1.5">
                     {cert.subtitle}
                   </p>
 
@@ -241,7 +241,7 @@ export default function CertificationsSection() {
                   </p>
 
                   {/* View Certificate link */}
-                  <div className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-accent font-bold text-[#C8A96A] hover:text-amber-700 transition-colors group/link">
+                  <div className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-accent font-bold text-[#3D95D6] hover:text-brand-700 transition-colors group/link">
                     <FileText className="w-3.5 h-3.5" />
                     <span>View Certificate</span>
                     <ExternalLink className="w-3 h-3 opacity-60 group-hover/link:translate-x-0.5 transition-transform" />
@@ -259,10 +259,10 @@ export default function CertificationsSection() {
                   key={i}
                   whileHover={{ scale: 1.04, y: -2 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-                  className="inline-flex items-center gap-2 bg-white border border-[#C8A96A]/20 rounded-full px-4 py-2.5 shadow-sm hover:shadow-md hover:border-[#C8A96A]/40 transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-white border border-[#3D95D6]/20 rounded-full px-4 py-2.5 shadow-sm hover:shadow-md hover:border-[#3D95D6]/40 transition-all duration-300"
                 >
-                  <div className="w-5 h-5 rounded-full bg-[#0F5B43]/10 flex items-center justify-center shrink-0">
-                    <CheckCircle className="w-3.5 h-3.5 text-[#0F5B43]" />
+                  <div className="w-5 h-5 rounded-full bg-[#063D64]/10 flex items-center justify-center shrink-0">
+                    <CheckCircle className="w-3.5 h-3.5 text-[#063D64]" />
                   </div>
                   <span className="text-[11px] xs:text-xs sm:text-sm font-accent font-semibold text-ink-900 tracking-wide">
                     {item.text}
@@ -278,7 +278,7 @@ export default function CertificationsSection() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => navigate('/certificates')}
-              className="inline-flex items-center gap-2.5 bg-[#0F5B43] text-white font-accent font-bold text-sm tracking-wide px-8 py-3.5 rounded-full shadow-lg shadow-[#0F5B43]/20 hover:shadow-xl hover:shadow-[#0F5B43]/30 border border-transparent hover:border-[#C8A96A]/50 transition-all duration-300 cursor-pointer group"
+              className="inline-flex items-center gap-2.5 bg-[#063D64] text-white font-accent font-bold text-sm tracking-wide px-8 py-3.5 rounded-full shadow-lg shadow-[#063D64]/20 hover:shadow-xl hover:shadow-[#063D64]/30 border border-transparent hover:border-[#3D95D6]/50 transition-all duration-300 cursor-pointer group"
             >
               <span>View Certificates</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
