@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import PriceText from '../ui/PriceText';
-import { Check, X, Shield, Plus, Minus, FileText, MessageSquare, Info, Award } from 'lucide-react';
+import { Check, X, Plus, Minus, FileText, ChatCircleText, Info, Medal } from '@phosphor-icons/react';
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
 
@@ -60,7 +60,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
         <h1 className="text-4xl font-display font-medium tracking-tight mt-4 text-brand-950">
           Compare Premium Mattresses
         </h1>
-        <p className="text-gray-600 mt-4 leading-relaxed font-sans text-md">
+        <p className="text-muted mt-4 leading-relaxed font-sans text-md">
           Evaluate construction layers, comfort rankings, solid warranties, and direct-to-consumer pricing side-by-side. Configure comparison criteria to match your sleep patterns.
         </p>
       </div>
@@ -70,7 +70,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <h3 className="font-display font-medium text-brand-950 text-md">Configure Mattress Comparison</h3>
-            <p className="text-xs text-gray-500 mt-1">Select up to 4 models. Toggle target mattress sizes below for local pricing charts.</p>
+            <p className="text-xs text-muted mt-1">Select up to 4 models. Toggle target mattress sizes below for local pricing charts.</p>
           </div>
           
           {/* Size filter selector */}
@@ -102,7 +102,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               <span className="font-display font-semibold">{p.name}</span>
               <button
                 onClick={() => handleRemoveProduct(p.slug)}
-                className="w-4 h-4 rounded-full hover:bg-rose-50 text-gray-400 hover:text-rose-600 flex items-center justify-center cursor-pointer"
+                className="w-4 h-4 rounded-full hover:bg-rose-50 text-muted/60 hover:text-rose-600 flex items-center justify-center cursor-pointer"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -196,7 +196,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                       <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                     </div>
                     {p.pricingModel === 'with_without_accessories' && (
-                      <span className="text-[10px] text-emerald-800 font-mono bg-emerald-100/80 px-1.5 py-0.5 rounded mt-1.5 inline-block">
+                      <span className="text-[10px] text-success-800 font-mono bg-success-100/80 px-1.5 py-0.5 rounded mt-1.5 inline-block">
                         Accessories Exl.
                       </span>
                     )}
@@ -224,7 +224,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                         }`}
                       ></span>
                     ))}
-                    <span className="text-[10px] text-gray-500 ml-1 font-mono">{p.comfortRating}/5 stiffness</span>
+                    <span className="text-[10px] text-muted ml-1 font-mono">{p.comfortRating}/5 stiffness</span>
                   </div>
                 </td>
               ))}
@@ -250,7 +250,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               {comparedProducts.map((p) => (
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200 font-sans">
                   <span className="text-base font-bold font-display text-brand-950">{p.totalThickness}"</span>
-                  <span className="text-xs text-gray-500 font-mono"> (Inches Composite)</span>
+                  <span className="text-xs text-muted font-mono"> (Inches Composite)</span>
                 </td>
               ))}
             </tr>
@@ -267,7 +267,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                     <div className="flex items-center gap-1.5">
                       {latex ? (
                         <>
-                          <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
+                          <div className="w-5 h-5 rounded-full bg-success-100 flex items-center justify-center text-success-700">
                             <Check className="w-3.5 h-3.5" />
                           </div>
                           <span className="font-medium text-zinc-900 font-display">100% Organic Dunlop</span>
@@ -286,7 +286,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               })}
             </tr>
 
-            {/* Row: Foundation Layers */}
+            {/* Row: Foundation Stack */}
             <tr>
               <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
                 Layer Breakdown
@@ -299,7 +299,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-1.5 shrink-0" />
                         <div>
                           <strong className="font-semibold text-brand-950 text-xs font-display">{l.thickness}" {l.material.replace('_', ' ').toUpperCase()}</strong>
-                          <p className="text-[11px] text-gray-500 leading-tight">{l.description}</p>
+                          <p className="text-[11px] text-muted leading-tight">{l.description}</p>
                         </div>
                       </div>
                     ))}
@@ -316,7 +316,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               {comparedProducts.map((p) => (
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
                   <span className="font-semibold text-brand-950 text-xs font-mono block">{p.fabricGsm} GSM Cotton</span>
-                  <span className="text-xs text-gray-500 leading-tight block mt-0.5">{p.fabricType}</span>
+                  <span className="text-xs text-muted leading-tight block mt-0.5">{p.fabricType}</span>
                 </td>
               ))}
             </tr>
@@ -334,26 +334,13 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                         {cer}
                       </span>
                     ))}
-                    {p.certifications.length === 0 && <span className="text-gray-400 font-mono text-xs">Standard Certified</span>}
+                    {p.certifications.length === 0 && <span className="text-muted/60 font-mono text-xs">Standard Certified</span>}
                   </div>
                 </td>
               ))}
             </tr>
 
-            {/* Row: Pure Warranty */}
-            <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50 sticky left-0 z-10">
-                Warranty Coverage
-              </td>
-              {comparedProducts.map((p) => (
-                <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
-                  <div className="flex items-center gap-1 text-zinc-900 font-medium font-mono text-xs">
-                    <Shield className="w-3.5 h-3.5 text-brand-500" />
-                    <span>{p.warranty} Years Indian Warranty</span>
-                  </div>
-                </td>
-              ))}
-            </tr>
+
 
             {/* Row: Actions */}
             <tr className="bg-zinc-50/30">
@@ -367,9 +354,9 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                       href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
+                      className="w-full bg-success-500 hover:bg-success-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out"
                     >
-                      <MessageSquare className="w-3.5 h-3.5" />
+                      <ChatCircleText className="w-3.5 h-3.5" />
                       Enquire on WhatsApp
                     </a>
                     <button
@@ -388,7 +375,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
       </div>
 
       <div className="mt-8 flex items-start gap-3 bg-yellow-50/80 border border-yellow-200 p-4 rounded-xl max-w-2xl">
-        <Award className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+        <Medal className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
         <p className="text-xs text-blue-900 leading-relaxed font-sans">
           <strong className="font-semibold">Buying Direct Tip:</strong> Comparing mattresses shows how RelaxPro saves you up to 40% vs. retail showroom brands. By cutting national distributor commissions, transport overhead, and retail rents, Suresh delivers luxury latex straight from natural sap units to your home.
         </p>

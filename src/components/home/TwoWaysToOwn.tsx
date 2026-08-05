@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, PenTool, ShoppingBag, ArrowRight, Check } from 'lucide-react';
+import { Gear, ShoppingBag, ArrowRight } from '@phosphor-icons/react';
 import BlurFade from '../ui/BlurFade';
 
 interface TwoWaysToOwnProps {
@@ -10,140 +10,105 @@ interface TwoWaysToOwnProps {
 
 export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWaysToOwnProps) {
   return (
-    <section id="two-ways-section" className="py-12 md:py-16 bg-neutral-light border-y border-brand-200/40">
+    <section className="py-20 md:py-36 bg-bg">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        
-        {/* Centered Heading */}
         <BlurFade delay={0.05}>
-          <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-            <span className="text-[11px] tracking-widest font-accent font-bold text-accent uppercase bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full inline-flex items-center gap-2 shadow-sm mb-6">
-              <Sparkles className="w-3.5 h-3.5" /> Tailored Pure Organic Sleep
-            </span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mt-4 text-primary leading-tight">
-              Two Ways to Own a RelaxPro
-            </h2>
-            <p className="text-neutral-dark/70 text-sm md:text-base mt-4 leading-relaxed font-body max-w-lg mx-auto">
-              Whether you want to orchestrate your custom orthopedic configuration layer by layer or choose from our plantation-tested pre-built formulations.
-            </p>
-          </div>
+          <h2 className="text-center text-3xl md:text-5xl font-heading font-normal tracking-[-0.02em] text-primary leading-[1.1] max-w-2xl mx-auto">
+            Two ways to own a RelaxPro
+          </h2>
+          <p className="text-center text-muted text-sm md:text-base mt-4 leading-relaxed font-body max-w-lg mx-auto">
+            Build layer by layer, or pick a plantation-tested system ready to ship.
+          </p>
         </BlurFade>
 
-        {/* 2-Column Responsive Grid */}
-        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-12 max-w-5xl mx-auto">
-          
-           {/* Option 1: Build Your Own */}
-           <BlurFade delay={0.1}>
-             <motion.div 
-               whileHover={{ y: -8 }}
-               transition={{ duration: 0.4, ease: 'easeOut' }}
-               className="bg-white rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-xl hover:shadow-accent/5 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group transition-[transform,box-shadow] duration-300 ease-out"
-             >
-              {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-accent/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-700 ease-out z-0" />
-              
-              <div className="relative z-10 space-y-3 md:space-y-6">
-                {/* Icon Circle */}
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary text-white flex items-center justify-center shrink-0 shadow-lg border border-primary/20 group-hover:scale-110 transition-transform duration-500">
-                  <PenTool className="w-5 h-5 md:w-6 md:h-6 text-accent" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-8 max-w-4xl mx-auto mt-12 md:mt-16">
+          {/* Left: Build your own (forest) */}
+          <BlurFade delay={0.1}>
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="flex flex-col rounded-2xl bg-primary p-6 md:p-10 h-full group"
+            >
+              <div className="mb-6">
+                <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center mb-5">
+                  <Gear className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
-
-                <div className="pt-1 md:pt-2">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">
-                    Build your own
-                  </h3>
-                  <p className="font-heading italic text-accent text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
-                    &ldquo;Customize your mattress, layer by layer.&rdquo;
-                  </p>
-                  <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
-                      <span><strong>Pick Cover Fabric:</strong> Select casing textile</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
-                      <span><strong>Comfort Layers:</strong> Configure latex zones</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
-                      <span><strong>Dial in Thickness:</strong> 4″ to 10″ profiles</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-accent" strokeWidth={3} /></span>
-                      <span><strong>Custom Built:</strong> Shipped in 5–7 days</span>
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="font-heading text-xl md:text-2xl text-white mb-3">Build your own</h3>
+                <p className="text-white/60 text-sm font-body leading-relaxed">
+                  Configure every layer from cover to core. Made to your specification in 5-7 days.
+                </p>
               </div>
 
-              <div className="mt-4 md:mt-10 pt-4 md:pt-8 border-t border-brand-200/40 relative z-10">
+              <div className="mt-auto pt-6">
+                <ul className="text-white/55 text-xs font-body space-y-2 mb-6">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                    Select cover fabric and comfort layers
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                    Choose thickness: 4 to 10 inches
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                    Factory-direct pricing, no middleman
+                  </li>
+                </ul>
                 <button
                   onClick={onStartBuilding}
-                  className="w-full inline-flex items-center justify-center gap-1 md:gap-3 min-h-11 rounded-xl md:rounded-2xl px-4 py-3 md:py-4.5 text-[10px] sm:text-[11px] md:text-[13px] font-bold uppercase tracking-widest transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out active:scale-[0.97] bg-primary hover:bg-neutral-dark text-white font-accent cursor-pointer shadow-md"
+                  className="w-full inline-flex items-center justify-center gap-2 min-h-11 rounded-full px-6 py-3 text-xs font-accent font-bold uppercase tracking-wider bg-accent text-primary hover:bg-accent-dark transition-[background-color,transform] duration-200 active:scale-[0.97]"
                 >
-                  <span className="hidden sm:inline">Start building</span>
-                  <span className="sm:hidden">Build</span>
-                  <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-accent" />
+                  Customize
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </motion.div>
           </BlurFade>
 
-           {/* Option 2: Shop Pre-built */}
-           <BlurFade delay={0.15}>
-             <motion.div 
-               whileHover={{ y: -8 }}
-               transition={{ duration: 0.4, ease: 'easeOut' }}
-               className="bg-white rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-xl hover:shadow-accent/5 p-3 sm:p-5 md:p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden group transition-[transform,box-shadow] duration-300 ease-out"
-             >
-              {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-brand-100/50 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-700 ease-out z-0" />
-
-              <div className="relative z-10 space-y-3 md:space-y-6">
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-neutral-light text-primary flex items-center justify-center shrink-0 shadow-sm border border-brand-200/60 group-hover:scale-110 transition-transform duration-500">
-                  <ShoppingBag className="w-5 h-5 md:w-6 md:h-6" />
-                </div>
-
-                <div className="pt-1 md:pt-2">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl md:text-3xl text-primary tracking-tight">
-                    Shop pre-built
-                  </h3>
-                  <p className="font-heading italic text-accent text-[10px] sm:text-xs md:text-sm mt-1 md:mt-2 line-clamp-2 md:line-clamp-none">
-                    &ldquo;Our mattresses, ready to ship.&rdquo;
+          {/* Right: Shop pre-built (light) */}
+          <BlurFade delay={0.15}>
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="flex flex-col rounded-2xl bg-white shadow-[0_4px_16px_rgba(10,23,19,0.03)] h-full group"
+            >
+              <div className="p-6 md:p-10 flex flex-col h-full">
+                <div className="mb-6">
+                  <div className="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5">
+                    <ShoppingBag className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-heading text-xl md:text-2xl text-primary mb-3">Shop pre-built</h3>
+                  <p className="text-muted text-sm font-body leading-relaxed">
+                    Plantation-tested sleep systems. Proven by thousands of sleepers across India.
                   </p>
-                  <ul className="text-neutral-dark/75 text-[10px] sm:text-xs md:text-sm mt-3 md:mt-5 space-y-1 sm:space-y-1.5 md:space-y-2 text-left font-body">
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
-                      <span><strong>13 Organic Models:</strong> Orthopedic alignment</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
-                      <span><strong>3 Curated Tiers:</strong> Luxury, Premium & Comfort</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
-                      <span><strong>Instant Fit:</strong> Choose standard dimensions</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="mt-0.5 shrink-0"><Check className="w-3 h-3 md:w-4 md:h-4 text-emerald-700" strokeWidth={3} /></span>
-                      <span><strong>Express Delivery:</strong> Sent direct in 5–7 days</span>
-                    </li>
-                  </ul>
                 </div>
-              </div>
 
-              <div className="mt-4 md:mt-10 pt-4 md:pt-8 border-t border-brand-200/40 relative z-10">
-                <button
-                  onClick={onSeeAllModels}
-                  className="w-full inline-flex items-center justify-center gap-1 md:gap-3 min-h-11 rounded-xl md:rounded-2xl px-4 py-3 md:py-4.5 text-[10px] sm:text-[11px] md:text-[13px] font-bold uppercase tracking-widest transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out active:scale-[0.97] bg-surface hover:bg-surface-warm text-primary font-accent cursor-pointer border border-border shadow-sm"
-                >
-                  <span className="hidden sm:inline">See all models</span>
-                  <span className="sm:hidden">All models</span>
-                  <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                </button>
+                <div className="mt-auto pt-6">
+                  <ul className="text-muted/70 text-xs font-body space-y-2 mb-6">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                      Nirvana, Amrita, Prakriti, and more
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                      Ready to ship in 48 hours
+                    </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                    Handcrafted with premium materials
+                  </li>
+                  </ul>
+                  <button
+                    onClick={onSeeAllModels}
+                    className="w-full inline-flex items-center justify-center gap-2 min-h-11 rounded-full px-6 py-3 text-xs font-accent font-bold uppercase tracking-wider border border-border text-primary hover:border-accent hover:text-accent transition-[border-color,color,transform] duration-200 active:scale-[0.97] bg-transparent"
+                  >
+                    Shop
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </motion.div>
           </BlurFade>
-
         </div>
       </div>
     </section>

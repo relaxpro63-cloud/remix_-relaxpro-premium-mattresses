@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, ArrowUp, Leaf, Award, SlidersHorizontal, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUp, Leaf, Medal, Sliders, ShieldCheck } from '@phosphor-icons/react';
 import { FadeUp, RevealText, StaggerChildren, staggerItem, AnimatedCounter, EASE_LUXURY } from '../motion/motionPrimitives';
 
 const compareData = [
@@ -32,27 +32,30 @@ const compareData = [
 
 export default function CostComparison() {
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-white border-y border-brand-200/40 font-body overflow-hidden">
+    <section className="py-16 md:py-28 px-4 md:px-8 bg-surface border-y border-border font-body overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <FadeUp>
-          <div className="text-center mb-12 md:mb-20">
-            <RevealText as="h2" className="text-3xl md:text-4xl lg:text-5xl font-heading font-medium text-neutral-800 leading-tight">
-              Is Buying Latex Mattress Really Expensive?
-            </RevealText>
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-heading font-normal tracking-[-0.02em] text-primary leading-[1.1]">
+              Is latex really more expensive?
+            </h2>
+            <p className="mt-4 text-muted font-body text-sm md:text-base max-w-lg">
+              The upfront price tells half the story. Latex outlasts foam by two to one.
+            </p>
           </div>
         </FadeUp>
 
         {/* Unified Layout for Mobile & Desktop */}
         <div className="relative pb-4 overflow-x-hidden max-w-[900px] mx-auto pt-4 md:pt-8">
           
-          {/* Headers — slide in from opposite sides */}
+          {/* Headers - slide in from opposite sides */}
           <div className="grid grid-cols-2 gap-4 sm:gap-16 mb-8 sm:mb-12 text-center">
             <motion.h3
               initial={{ x: -60, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.8, ease: EASE_LUXURY }}
-              className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-emerald-800"
+              className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-primary"
             >
               Natural<br className="md:hidden" /> Latex
             </motion.h3>
@@ -61,13 +64,13 @@ export default function CostComparison() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.8, ease: EASE_LUXURY }}
-              className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-emerald-800"
+              className="text-xl sm:text-3xl lg:text-4xl font-heading font-bold text-primary"
             >
               Ordinary<br className="md:hidden" /> Foam
             </motion.h3>
           </div>
 
-          {/* Images Section — slide in from opposite sides */}
+          {/* Images Section - slide in from opposite sides */}
           <div className="grid grid-cols-2 gap-4 sm:gap-16 mb-8 sm:mb-10 text-center relative z-10 px-4">
             <motion.div
               initial={{ x: -80, opacity: 0 }}
@@ -98,7 +101,7 @@ export default function CostComparison() {
           </div>
 
           {/* VS Badge & Vertical Line */}
-          <div className="absolute left-1/2 top-24 bottom-0 w-1 sm:w-1.5 bg-emerald-800/80 -translate-x-1/2 z-0" />
+          <div className="absolute left-1/2 top-24 bottom-0 w-1 sm:w-1.5 bg-primary/80 -translate-x-1/2 z-0" />
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -106,30 +109,30 @@ export default function CostComparison() {
             transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
             className="absolute left-1/2 top-[120px] sm:top-[160px] -translate-x-1/2 z-20 flex flex-col items-center justify-center"
           >
-            <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-emerald-800 text-white font-heading font-bold text-lg sm:text-3xl flex items-center justify-center shadow-xl border-[3px] sm:border-4 border-white">
+            <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-primary text-white font-heading font-bold text-lg sm:text-3xl flex items-center justify-center shadow-xl border-[3px] sm:border-4 border-white">
               VS
             </div>
           </motion.div>
 
-          {/* Rows — stagger reveal row by row */}
+          {/* Rows - stagger reveal row by row */}
           <StaggerChildren className="space-y-3 sm:space-y-5 relative z-10 px-1 sm:px-4" stagger={0.12} delay={0.2}>
             {compareData.map((row, idx) => (
               <motion.div key={idx} variants={staggerItem} className="grid grid-cols-2 gap-3 sm:gap-12 lg:gap-16 items-center">
                 
                 {/* Left Side: Label + Value */}
-                <div className="bg-[#c2e2be] rounded-md sm:rounded-xl flex items-center justify-between p-2 sm:p-4 shadow-sm relative">
+                <div className="bg-brand-100 rounded-md sm:rounded-xl flex items-center justify-between p-2 sm:p-4 shadow-sm relative">
                   <div className="flex items-center gap-1 sm:gap-3 shrink-0">
-                    <span className="font-bold text-emerald-950 text-[9px] sm:text-sm lg:text-base leading-tight w-[60px] sm:w-[100px] lg:w-auto break-words">{row.label}</span>
-                    <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 text-emerald-950 hidden min-[380px]:block" strokeWidth={3} />
+                    <span className="font-bold text-primary text-[9px] sm:text-sm lg:text-base leading-tight w-[60px] sm:w-[100px] lg:w-auto break-words">{row.label}</span>
+                    <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 text-primary hidden min-[380px]:block" strokeWidth={3} />
                   </div>
-                  <span className="font-bold text-emerald-950 text-[10px] sm:text-base lg:text-lg text-right sm:text-left leading-tight">{row.latex}</span>
+                  <span className="font-bold text-primary text-[10px] sm:text-base lg:text-lg text-right sm:text-left leading-tight">{row.latex}</span>
                 </div>
 
                 {/* Right Side: Value */}
-                <div className="bg-[#c2e2be] rounded-md sm:rounded-xl flex items-center justify-center p-2 sm:p-4 shadow-sm relative text-center">
-                  <span className="font-bold text-emerald-950 text-[10px] sm:text-base lg:text-lg leading-tight">{row.foam}</span>
+                <div className="bg-brand-100 rounded-md sm:rounded-xl flex items-center justify-center p-2 sm:p-4 shadow-sm relative text-center">
+                  <span className="font-bold text-primary text-[10px] sm:text-base lg:text-lg leading-tight">{row.foam}</span>
                   {row.foamHigher && (
-                    <ArrowUp className="w-3 h-3 sm:w-5 sm:h-5 text-emerald-950 absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2" strokeWidth={4} />
+                    <ArrowUp className="w-3 h-3 sm:w-5 sm:h-5 text-primary absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2" strokeWidth={4} />
                   )}
                 </div>
 
@@ -139,8 +142,8 @@ export default function CostComparison() {
         </div>
 
           <FadeUp delay={0.4}>
-            <div className="mt-10 md:mt-12 bg-[#c2e2be] p-4 md:p-6 rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
-              <p className="text-emerald-950 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
+            <div className="mt-10 md:mt-12 bg-brand-100 p-4 md:p-6 rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
+              <p className="text-primary font-medium text-xs sm:text-sm md:text-base leading-relaxed">
                 While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress
               </p>
             </div>
@@ -160,14 +163,14 @@ export default function CostComparison() {
                 </div>
                 <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
                   <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-5 h-5 text-accent" />
+                    <Medal className="w-5 h-5 text-accent" />
                     <span className="font-bold text-primary">Certified Quality</span>
                   </div>
                   <p className="text-muted text-sm">Rigorous certifications ensure safety, sustainability, and performance you can trust.</p>
                 </div>
                 <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
                   <div className="flex items-center gap-3 mb-4">
-                    <SlidersHorizontal className="w-5 h-5 text-accent" />
+                    <Sliders className="w-5 h-5 text-accent" />
                     <span className="font-bold text-primary">Custom Comfort</span>
                   </div>
                   <p className="text-muted text-sm">Tailored firmness profiles and layer configurations for your perfect sleep experience.</p>
@@ -177,7 +180,7 @@ export default function CostComparison() {
                     <ShieldCheck className="w-5 h-5 text-accent" />
                     <span className="font-bold text-primary">Built to Last</span>
                   </div>
-                  <p className="text-muted text-sm">15+ year lifespan with proper care, backed by our 10-year replacement warranty.</p>
+                  <p className="text-muted text-sm">15+ year lifespan with proper care, built to last for years.</p>
                 </div>
               </div>
             </div>

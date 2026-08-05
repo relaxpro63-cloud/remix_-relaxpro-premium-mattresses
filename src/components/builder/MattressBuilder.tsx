@@ -2,9 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import {
-  Ruler, Layers, Sparkles, Check, MessageSquare, Shirt, Bed,
-  ChevronDown, Shield, Truck, Gift, ShoppingCart
-} from 'lucide-react';
+  Ruler, Stack, Sparkle, Check, ChatCircleText, TShirt, Bed,
+  CaretDown, ShieldCheck, Truck, Gift, ShoppingCart
+} from '@phosphor-icons/react';
 import { MattressSize, CartItem } from '../../types';
 
 interface LayerOption {
@@ -20,10 +20,10 @@ interface LayerOption {
 
 const STEPS_CONFIG = [
   { key: 'size', label: 'Mattress Size', icon: Bed, desc: 'Choose your size' },
-  { key: 'base', label: 'Foundation', icon: Layers, desc: 'Support core' },
-  { key: 'transition', label: 'Transition', icon: Layers, desc: 'Pressure relief' },
-  { key: 'topper', label: 'Comfort Topper', icon: Layers, desc: 'Surface feel' },
-  { key: 'cover', label: 'Outer Cover', icon: Shirt, desc: 'Finish & fabric' },
+  { key: 'base', label: 'Foundation', icon: Stack, desc: 'Support core' },
+  { key: 'transition', label: 'Transition', icon: Stack, desc: 'Pressure relief' },
+  { key: 'topper', label: 'Comfort Topper', icon: Stack, desc: 'Surface feel' },
+  { key: 'cover', label: 'Outer Cover', icon: TShirt, desc: 'Finish & fabric' },
   { key: 'accessories', label: 'Accessories', icon: Gift, desc: 'Complete the set' },
 ] as const;
 
@@ -34,14 +34,14 @@ const BASE_LAYERS: LayerOption[] = [
     id: 'b1', name: 'Century 95-Density', type: 'base',
     material: 'rebonded_foam', thickness: 4,
     priceFactor: { king: 12000, queen: 10000, double: 8000, single: 6000 },
-    colorClass: 'bg-zinc-800',
+    colorClass: 'bg-[#1A1E1C]',
     description: 'Ultra-firm orthopedic foundation. Maximum support and durability.'
   },
   {
     id: 'b2', name: 'Eco-Dense Latex', type: 'base',
     material: 'latex_rebonded', thickness: 4,
     priceFactor: { king: 16000, queen: 13500, double: 11000, single: 8500 },
-    colorClass: 'bg-blue-900',
+    colorClass: 'bg-[#2A3A2E]',
     description: 'Premium bonded latex shreds. Zero synthetic foam, higher elasticity.'
   }
 ];
@@ -51,20 +51,20 @@ const TRANSITION_LAYERS: LayerOption[] = [
     id: 't-none', name: 'None (Direct Support)', type: 'transition',
     material: 'hr_foam', thickness: 0,
     priceFactor: { king: 0, queen: 0, double: 0, single: 0 },
-    colorClass: '', description: 'Firmer feel — top cover sits directly on the support block.'
+    colorClass: '', description: 'Firmer feel - top cover sits directly on the support block.'
   },
   {
     id: 't1', name: '2" Century HR AirFlow', type: 'transition',
     material: 'hr_softy_foam', thickness: 2,
     priceFactor: { king: 5000, queen: 4000, double: 3200, single: 2400 },
-    colorClass: 'bg-amber-100',
+    colorClass: 'bg-[#D4C5A0]',
     description: 'Highly resilient cushioning that relieves pressure from the base layer.'
   },
   {
     id: 't2', name: '2" Natural Kerala Latex', type: 'transition',
     material: 'latex', thickness: 2,
     priceFactor: { king: 10000, queen: 8500, double: 6800, single: 5000 },
-    colorClass: 'bg-sky-100',
+    colorClass: 'bg-[#C8D5C0]',
     description: 'Pure elastic response for active springiness and motion isolation.'
   }
 ];
@@ -80,14 +80,14 @@ const COMFORT_TOPPER_LAYERS: LayerOption[] = [
     id: 'top1', name: '2" Pure GOLS', type: 'top',
     material: 'latex', thickness: 2,
     priceFactor: { king: 11000, queen: 9000, double: 7200, single: 5500 },
-    colorClass: 'bg-yellow-50',
+    colorClass: 'bg-[#EDE8D8]',
     description: 'Perfect natural cradling. Soft-medium comfort for pain-free sleep.'
   },
   {
     id: 'top2', name: '4" 7-Zone Therapeutic', type: 'top',
     material: 'latex', thickness: 4,
     priceFactor: { king: 21000, queen: 18000, double: 14500, single: 11000 },
-    colorClass: 'bg-indigo-50',
+    colorClass: 'bg-[#D8E0DB]',
     description: 'Seven segmented density zones for head-to-hip pressure distribution.'
   }
 ];
@@ -148,30 +148,30 @@ function BuilderTotal({
   addedToCart,
 }: BuilderTotalProps) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100/80 shadow-[0_4px_16px_rgba(0,0,0,0.03)] p-5 md:p-6">
+    <div className="bg-white rounded-2xl border border-brand-200/30 shadow-[0_4px_16px_rgba(10,23,19,0.03)] p-5 md:p-6">
       <div className="space-y-1.5 mb-5">
-        <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+        <div className="flex items-center justify-between text-xs text-muted/80 py-1">
           <span>Foundation</span>
           <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.base.toLocaleString('en-IN')}</PriceText></span>
         </div>
         {priceBreakdown.trans > 0 && (
-          <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+          <div className="flex items-center justify-between text-xs text-muted/80 py-1">
             <span>Transition</span>
             <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.trans.toLocaleString('en-IN')}</PriceText></span>
           </div>
         )}
         {priceBreakdown.top > 0 && (
-          <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+          <div className="flex items-center justify-between text-xs text-muted/80 py-1">
             <span>Comfort Topper</span>
             <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.top.toLocaleString('en-IN')}</PriceText></span>
           </div>
         )}
-        <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+        <div className="flex items-center justify-between text-xs text-muted/80 py-1">
           <span>Cover</span>
           <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.fabric.toLocaleString('en-IN')}</PriceText></span>
         </div>
         {includeAccessories && (
-          <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
+          <div className="flex items-center justify-between text-xs text-muted/80 py-1">
             <span className="flex items-center gap-1"><Gift className="w-3 h-3" /> Accessories</span>
             <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.acc.toLocaleString('en-IN')}</PriceText></span>
           </div>
@@ -181,7 +181,7 @@ function BuilderTotal({
       <div className="pt-5 border-t border-brand-200/40">
         <div className="flex items-end justify-between mb-5">
           <div>
-            <span className="text-[10px] font-accent font-semibold text-neutral-dark/50 uppercase tracking-editorial">
+            <span className="text-[10px] font-accent font-semibold text-muted/60 uppercase tracking-editorial">
               Final Configuration Total
             </span>
             <div className="text-4xl font-heading font-bold text-primary tracking-tight mt-1">
@@ -189,7 +189,7 @@ function BuilderTotal({
             </div>
           </div>
           <div className="text-right">
-            <span className="text-[11px] text-neutral-dark/50 block capitalize">{size}</span>
+            <span className="text-[11px] text-muted/60 block capitalize">{size}</span>
             <span className="text-[10px] text-success font-medium flex items-center gap-1 mt-0.5">
               <Truck className="w-3 h-3" /> Free Delivery
             </span>
@@ -197,9 +197,9 @@ function BuilderTotal({
         </div>
 
         <div className="flex items-center gap-2 mb-4 bg-brand-100/60 rounded-xl px-4 py-2.5 border border-brand-200/50">
-          <Shield className="w-4 h-4 text-accent shrink-0" />
-          <span className="text-[11px] text-neutral-dark/70 leading-relaxed">
-            10-year warranty · 100-night trial · Certified materials
+          <ShieldCheck className="w-4 h-4 text-accent shrink-0" />
+          <span className="text-[11px] text-muted/80 leading-relaxed">
+            Certified materials · Handcrafted quality
           </span>
         </div>
 
@@ -209,7 +209,7 @@ function BuilderTotal({
               onClick={onAddToCart}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full bg-primary hover:bg-neutral-dark text-warm-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full bg-primary hover:bg-neutral-dark text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <ShoppingCart className="w-4 h-4" />
               <span>{addedToCart ? 'Added' : 'Add to Cart'}</span>
@@ -225,10 +225,10 @@ function BuilderTotal({
           </div>
           <button
             onClick={onWhatsAppEnquire}
-            className="w-full py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs tracking-wide transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3 px-4 rounded-xl border border-success/20 text-success hover:bg-success/[0.04] font-semibold text-xs tracking-wide transition-all duration-200 ease-out flex items-center justify-center gap-2 cursor-pointer"
           >
-            <MessageSquare className="w-4 h-4" />
-            <span>Enquire on WhatsApp — ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
+            <ChatCircleText className="w-4 h-4" />
+            <span>Enquire on WhatsApp - ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
           </button>
         </div>
       </div>
@@ -287,7 +287,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
     return {
       id: `custom-${Date.now()}`,
       slug: 'custom-build',
-      name: `Custom ${size} Mattress (${layers.join(' + ')})`,
+      name: `${generateMattressName()} (${size})`,
       size,
       price: priceBreakdown.total,
       quantity: 1,
@@ -320,8 +320,20 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
       ...(selectedTransition.thickness > 0 ? [selectedTransition.name] : []),
       ...(selectedTop.thickness > 0 ? [selectedTop.name] : [])
     ];
-    const msg = `Hello! I designed a custom RelaxPro mattress.\nConfiguration: ${layers.join(' + ')}\nSize: ${size}\nFabric: ${selectedFabric.name}\nTotal: ₹${priceBreakdown.total.toLocaleString('en-IN')}\nPlease guide me on this configuration.`;
+    const msg = `Hello! I designed ${generateMattressName()} on RelaxPro.\n\nConfiguration: ${layers.join(' + ')}\nSize: ${size}\nFabric: ${selectedFabric.name}\nTotal: ₹${priceBreakdown.total.toLocaleString('en-IN')}\n\nPlease guide me on this configuration.`;
     window.open(`https://wa.me/918686624494?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  const generateMattressName = (): string => {
+    const baseWord = selectedBase.name.includes('Century') ? 'Century' : 'Eco-Dense';
+    const transWord = selectedTransition.thickness > 0
+      ? (selectedTransition.name.includes('Kerala') ? 'Kerala' : 'AirFlow')
+      : '';
+    const topWord = selectedTop.thickness > 0
+      ? (selectedTop.name.includes('GOLS') ? 'Pure' : 'Zone')
+      : '';
+    const parts = [baseWord, transWord, topWord].filter(Boolean);
+    return parts.length > 1 ? `The ${parts.join(' ')}` : `The ${parts[0]}`;
   };
 
   const activeLayers = [
@@ -332,7 +344,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
 
   const getSelectionSummary = (key: StepKey): string => {
     switch (key) {
-      case 'size': return `${size} — ${SIZE_DIMS[size]}`;
+      case 'size': return `${size} - ${SIZE_DIMS[size]}`;
       case 'base': return selectedBase.name;
       case 'transition': return selectedTransition.name;
       case 'topper': return selectedTop.name;
@@ -344,46 +356,72 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <span className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.2em] font-semibold text-accent uppercase mb-4">
-          <Sparkles className="w-3.5 h-3.5" /> Direct From Kerala Factory
-        </span>
-        <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-tight text-primary leading-tight">
-          Build Your Mattress
+      <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-flex items-center gap-2 text-[10px] tracking-[0.2em] font-accent font-bold text-accent uppercase bg-accent/5 border border-accent/15 px-5 py-2 rounded-full mb-6"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          Crafting in Jeedimetla, Hyderabad
+        </motion.div>
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-normal tracking-[-0.015em] text-primary leading-[1.06]">
+          Design your sleep
         </h1>
-        <p className="text-neutral-dark/80 mt-3 text-sm md:text-base leading-relaxed max-w-lg mx-auto">
-          Choose every layer — from base to cover — and see your custom mattress take shape in real time.
+        <p className="text-muted/70 text-sm md:text-base mt-5 leading-relaxed max-w-xl mx-auto font-body">
+          Every layer chosen by you. Every material sourced from Kerala. One mattress, built to your body &mdash; not a showroom average.
         </p>
+
+        {/* Ambient craft indicators */}
+        <div className="flex items-center justify-center gap-6 mt-8 text-[10px] font-accent uppercase tracking-widest text-muted/40">
+          <span className="flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-success/60" />
+            GOLS latex
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-success/60" />
+            Oeko-Tex fabric
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-success/60" />
+            Premium craftsmanship
+          </span>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-        {/* ========== LEFT COLUMN — Visualizer ========== */}
+        {/* ========== LEFT COLUMN - Visualizer ========== */}
         <div className="lg:col-span-5 lg:sticky lg:top-24 order-1">
-          <div className="bg-white rounded-3xl border border-gray-100/80 shadow-[0_12px_40px_rgba(0,0,0,0.06)] overflow-hidden">
+          <div className="bg-white rounded-[2rem] border border-brand-200/30 shadow-[0_8px_40px_rgba(10,23,19,0.04)] overflow-hidden">
             
-            {/* Artboard */}
-            <div className="p-6 md:p-7">
-              <div className="flex items-center justify-between mb-5">
+            {/* Artboard header */}
+            <div className="px-6 md:px-7 pt-6 md:pt-7 pb-3 border-b border-brand-200/20">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-bold text-base text-primary tracking-tight">Your Build</h3>
-                  <p className="text-[11px] text-neutral-dark/60 mt-0.5">Live layer preview</p>
+                  <p className="text-[10px] font-accent uppercase tracking-widest text-muted/50">Your creation</p>
+                  <h3 className="font-heading text-xl text-primary mt-0.5 italic">
+                    {generateMattressName()}
+                  </h3>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold text-white bg-primary/80 px-2.5 py-1 rounded-full tracking-wide">
-                    {totalThickness}" Profile
-                  </span>
-                </div>
+                <span className="text-[10px] font-bold text-white bg-primary/90 px-3 py-1.5 rounded-lg tracking-wide">
+                  {totalThickness}" profile
+                </span>
               </div>
+            </div>
 
-              {/* Layer Stack */}
-              <div className="relative bg-[#0F1A2E] rounded-2xl p-5 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
-                <div className="relative flex flex-col items-center gap-1.5 min-h-[240px] justify-end">
+            {/* Layer Stack */}
+            <div className="p-6 md:p-7">
+              <div className="relative bg-[#0A1511] rounded-2xl p-5 overflow-hidden">
+                {/* Subtle ambient glow */}
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-white/[0.02] pointer-events-none" />
+                <div className="relative flex flex-col items-center gap-1 min-h-[240px] justify-end">
                   
-                  {/* Fabric wrapper outline */}
-                  <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none" />
-                  <div className="absolute -inset-1 rounded-[18px] border border-white/5 pointer-events-none" />
+                  {/* Craft frame lines */}
+                  <div className="absolute inset-0 rounded-2xl border border-white/[0.06] pointer-events-none" />
+                  <div className="absolute -inset-[3px] rounded-[18px] border border-white/[0.03] pointer-events-none" />
 
                   <AnimatePresence mode="popLayout">
                     {activeLayers.map((layer, idx) => {
@@ -400,11 +438,11 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                           style={{ height: h }}
                           className={`relative w-full rounded-xl flex flex-col items-center justify-center overflow-hidden ${layer.option.colorClass || 'bg-gray-700'}`}
                         >
-                          <div className={`absolute inset-0 ${isTop ? 'bg-gradient-to-b from-white/10 to-black/20' : 'bg-gradient-to-b from-white/5 to-black/10'}`} />
-                          <span className={`text-xs font-bold relative z-10 ${isTop ? 'text-white' : idx === activeLayers.length - 2 && !layer.option.colorClass.includes('bg-') ? 'text-gray-300' : 'text-gray-800'}`}>
+                          <div className={`absolute inset-0 ${isTop ? 'bg-gradient-to-b from-white/8 to-black/15' : 'bg-gradient-to-b from-white/3 to-black/8'}`} />
+                          <span className="text-xs font-bold relative z-10 text-white/90">
                             {layer.option.name}
                           </span>
-                          <span className={`text-[10px] font-medium relative z-10 mt-0.5 ${isTop ? 'text-white/60' : 'text-gray-400'}`}>
+                          <span className="text-[10px] font-medium relative z-10 mt-0.5 text-white/50">
                             {layer.option.thickness}"
                           </span>
                           {/* Side label */}
@@ -421,10 +459,26 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     key={selectedFabric.id}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 text-[8px] font-bold text-white/70 uppercase tracking-widest whitespace-nowrap"
+                    className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white/[0.07] backdrop-blur-md px-4 py-1.5 rounded-full border border-white/[0.08] text-[9px] font-accent font-bold text-white/50 uppercase tracking-widest whitespace-nowrap"
                   >
                     {selectedFabric.name}
                   </motion.div>
+                </div>
+              </div>
+
+              {/* Spec sheet preview */}
+              <div className="mt-5 grid grid-cols-3 gap-3 text-center">
+                <div className="bg-brand-50/50 rounded-xl p-3">
+                  <span className="block text-[10px] font-accent uppercase tracking-widest text-muted/50 mb-1">Size</span>
+                  <span className="font-heading text-sm text-primary capitalize">{size}</span>
+                </div>
+                <div className="bg-brand-50/50 rounded-xl p-3">
+                  <span className="block text-[10px] font-accent uppercase tracking-widest text-muted/50 mb-1">Profile</span>
+                  <span className="font-heading text-sm text-primary">{totalThickness}"</span>
+                </div>
+                <div className="bg-brand-50/50 rounded-xl p-3">
+                  <span className="block text-[10px] font-accent uppercase tracking-widest text-muted/50 mb-1">Layers</span>
+                  <span className="font-heading text-sm text-primary">{activeLayers.length}</span>
                 </div>
               </div>
 
@@ -432,7 +486,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           </div>
         </div>
 
-        {/* ========== RIGHT COLUMN — Configurator ========== */}
+        {/* ========== RIGHT COLUMN - Configurator ========== */}
         <div className="lg:col-span-7 order-2 space-y-3">
 
           {STEPS_CONFIG.map((step, idx) => {
@@ -440,33 +494,31 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             const StepIcon = step.icon;
 
             return (
-              <div key={step.key} className="bg-white rounded-2xl border border-gray-100/80 shadow-[0_4px_16px_rgba(0,0,0,0.03)] overflow-hidden">
+              <div key={step.key} className="bg-white rounded-2xl border border-brand-200/30 shadow-[0_4px_16px_rgba(10,23,19,0.02)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(10,23,19,0.05)]">
                 
-                {/* Step Header */}
+                {/* Step Header - Timeline style */}
                 <button
                   onClick={() => toggleStep(step.key)}
-                  className="w-full flex items-center gap-4 p-4 md:p-5 text-left cursor-pointer transition-colors hover:bg-gray-50/50"
+                  className="w-full flex items-center gap-4 p-4 md:p-5 text-left cursor-pointer transition-colors hover:bg-brand-50/30"
                 >
-                  <span className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-[11px] font-bold transition-colors ${
-                    isOpen ? 'bg-accent text-white' : 'bg-gray-100 text-gray-500'
+                  {/* Timeline dot */}
+                  <span className={`relative flex items-center justify-center shrink-0 ${
+                    isOpen ? 'text-accent' : 'text-muted/40'
                   }`}>
-                    {idx + 1}
+                    <span className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      isOpen ? 'bg-accent shadow-[0_0_0_4px_rgba(196,162,101,0.12)] scale-110' : 'bg-current'
+                    }`} />
                   </span>
-                  <StepIcon className={`w-4 h-4 shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-gray-400'}`} />
+                  <StepIcon className={`w-4 h-4 shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-muted/40'}`} />
                   <div className="flex-1 min-w-0">
-                    <span className={`font-bold text-sm block transition-colors ${isOpen ? 'text-primary' : 'text-gray-600'}`}>
+                    <span className={`font-heading text-sm block transition-colors ${isOpen ? 'text-primary' : 'text-muted/60'}`}>
                       {step.label}
                     </span>
-                    <span className="text-[11px] text-gray-400 block mt-0.5">
+                    <span className="text-[11px] text-muted/40 block mt-0.5 font-body">
                       {isOpen ? step.desc : getSelectionSummary(step.key)}
                     </span>
                   </div>
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full transition-colors ${
-                    isOpen ? 'bg-accent/10 text-accent' : 'bg-gray-100 text-gray-400'
-                  }`}>
-                    {isOpen ? 'Open' : 'Edit'}
-                  </span>
-                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                  <CaretDown className={`w-4 h-4 text-muted/30 transition-transform duration-300 ${isOpen ? 'rotate-180 text-accent' : ''}`} />
                 </button>
 
                 {/* Step Body */}
@@ -485,7 +537,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                         {/* Step 1: Mattress Size */}
                         {step.key === 'size' && (
                           <div>
-                            <p className="text-xs text-neutral-dark/60 mb-4">Standard Indian bed dimensions.</p>
+                            <p className="text-xs text-muted/70 mb-4">Standard Indian bed dimensions.</p>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                               {(Object.keys(SIZE_LABELS) as MattressSize[]).map((sz) => {
                                 const isActive = size === sz;
@@ -504,7 +556,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                       <Bed className="w-5 h-5 mx-auto mb-1.5" />
                                       <span className="font-bold text-sm capitalize block">{sz}</span>
                                     </div>
-                                    <span className={`text-[10px] font-medium mt-1 block ${isActive ? 'text-accent/70' : 'text-gray-400'}`}>
+                                    <span className={`text-[10px] font-medium mt-1 block ${isActive ? 'text-accent/70' : 'text-muted/60'}`}>
                                       {SIZE_DIMS[sz]}
                                     </span>
                                     {isActive && (
@@ -522,7 +574,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                         {/* Step 2: Foundation Base */}
                         {step.key === 'base' && (
                           <div>
-                            <p className="text-xs text-neutral-dark/60 mb-4">The backbone of your mattress.</p>
+                            <p className="text-xs text-muted/70 mb-4">The backbone of your mattress.</p>
                             <div className="space-y-2.5">
                               {BASE_LAYERS.map((base) => {
                                 const isActive = selectedBase.id === base.id;
@@ -542,7 +594,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                         <LayerCircle className={base.colorClass} />
                                         <div className="min-w-0">
                                           <h4 className="font-bold text-sm text-primary">{base.name}</h4>
-                                          <p className={`text-xs mt-0.5 leading-relaxed ${isActive ? 'text-accent/70' : 'text-neutral-dark/70'}`}>
+                                          <p className={`text-xs mt-0.5 leading-relaxed ${isActive ? 'text-accent/70' : 'text-muted/80'}`}>
                                             {base.description}
                                           </p>
                                         </div>
@@ -568,7 +620,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                         {/* Step 3: Transition Layer */}
                         {step.key === 'transition' && (
                           <div>
-                            <p className="text-xs text-neutral-dark/60 mb-4">Acts as a damper to prevent pressure points.</p>
+                            <p className="text-xs text-muted/70 mb-4">Acts as a damper to prevent pressure points.</p>
                             <div className="space-y-2.5">
                               {TRANSITION_LAYERS.map((trans) => {
                                 const isActive = selectedTransition.id === trans.id;
@@ -593,9 +645,9 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                         <div className="min-w-0">
                                           <h4 className="font-bold text-sm text-primary">
                                             {trans.name}
-                                            {trans.thickness > 0 && <span className="text-[10px] font-semibold text-gray-400 ml-1.5">({trans.thickness}")</span>}
+                                            {trans.thickness > 0 && <span className="text-[10px] font-semibold text-muted/60 ml-1.5">({trans.thickness}")</span>}
                                           </h4>
-                                          <p className={`text-xs mt-0.5 leading-relaxed ${isActive ? 'text-accent/70' : 'text-neutral-dark/70'}`}>
+                                          <p className={`text-xs mt-0.5 leading-relaxed ${isActive ? 'text-accent/70' : 'text-muted/80'}`}>
                                             {trans.description}
                                           </p>
                                         </div>
@@ -621,7 +673,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                         {/* Step 4: Comfort Topper */}
                         {step.key === 'topper' && (
                           <div>
-                            <p className="text-xs text-neutral-dark/60 mb-4">100% natural latex for ultimate surface comfort.</p>
+                            <p className="text-xs text-muted/70 mb-4">100% natural latex for ultimate surface comfort.</p>
                             <div className="space-y-2.5">
                               {COMFORT_TOPPER_LAYERS.map((top) => {
                                 const isActive = selectedTop.id === top.id;
@@ -646,9 +698,9 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                         <div className="min-w-0">
                                           <h4 className="font-bold text-sm text-primary">
                                             {top.name}
-                                            {top.thickness > 0 && <span className="text-[10px] font-semibold text-gray-400 ml-1.5">({top.thickness}")</span>}
+                                            {top.thickness > 0 && <span className="text-[10px] font-semibold text-muted/60 ml-1.5">({top.thickness}")</span>}
                                           </h4>
-                                          <p className={`text-xs mt-0.5 leading-relaxed ${isActive ? 'text-accent/70' : 'text-neutral-dark/70'}`}>
+                                          <p className={`text-xs mt-0.5 leading-relaxed ${isActive ? 'text-accent/70' : 'text-muted/80'}`}>
                                             {top.description}
                                           </p>
                                         </div>
@@ -674,7 +726,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                         {/* Step 5: Outer Cover */}
                         {step.key === 'cover' && (
                           <div>
-                            <p className="text-xs text-neutral-dark/60 mb-4">The direct touch point of your rest.</p>
+                            <p className="text-xs text-muted/70 mb-4">The direct touch point of your rest.</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                               {FABRICS.map((fabric) => {
                                 const isActive = selectedFabric.id === fabric.id;
@@ -691,14 +743,14 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                   >
                                     <div className="flex items-start gap-1 mb-3">
                                       <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded ${
-                                        isActive ? 'bg-accent/10 text-accent' : 'bg-gray-100 text-gray-500'
+                                        isActive ? 'bg-accent/10 text-accent' : 'bg-bg text-muted'
                                       }`}>
                                         {fabric.badge}
                                       </span>
                                     </div>
                                     <div className="mb-3">
                                       <h4 className="font-bold text-sm text-primary mb-0.5">{fabric.name}</h4>
-                                      <p className={`text-xs leading-relaxed ${isActive ? 'text-accent/70' : 'text-neutral-dark/70'}`}>
+                                      <p className={`text-xs leading-relaxed ${isActive ? 'text-accent/70' : 'text-muted/80'}`}>
                                         {fabric.description}
                                       </p>
                                     </div>
@@ -722,7 +774,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                         {/* Step 6: Accessories */}
                         {step.key === 'accessories' && (
                           <div>
-                            <p className="text-xs text-neutral-dark/60 mb-4">Complete your sleep system.</p>
+                            <p className="text-xs text-muted/70 mb-4">Complete your sleep system.</p>
                             <motion.button
                               onClick={() => setIncludeAccessories(!includeAccessories)}
                               whileTap={{ scale: 0.995 }}
@@ -741,7 +793,7 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                   </div>
                                   <div className="min-w-0">
                                     <h4 className="font-bold text-sm text-primary">Premium Bundle Pack</h4>
-                                    <p className={`text-xs mt-0.5 leading-relaxed ${includeAccessories ? 'text-accent/70' : 'text-neutral-dark/70'}`}>
+                                    <p className={`text-xs mt-0.5 leading-relaxed ${includeAccessories ? 'text-accent/70' : 'text-muted/80'}`}>
                                       2 luxury latex pillows &amp; 1 premium waterproof mattress protector.
                                     </p>
                                   </div>
@@ -768,8 +820,8 @@ transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
 
           {/* Footer note */}
           <div className="text-center pt-4 pb-2">
-            <p className="text-[11px] text-neutral-dark/40">
-              Made with care in Kerala, India 🇮🇳
+            <p className="text-[11px] text-muted/40">
+              Handcrafted in Jeedimetla, Hyderabad
             </p>
           </div>
 

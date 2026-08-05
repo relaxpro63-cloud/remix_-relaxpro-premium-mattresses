@@ -1,107 +1,100 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Shield, Truck, Award, Leaf } from 'lucide-react';
-import { AnimatedCounter, FadeUp, StaggerChildren, staggerItem, EASE_LUXURY } from '../motion/motionPrimitives';
+import { Truck, Leaf } from '@phosphor-icons/react';
+import {
+  AnimatedCounter,
+  FadeUp,
+  StaggerChildren,
+  staggerItem,
+  EASE_LUXURY,
+} from '../motion/motionPrimitives';
 
 const features = [
   {
-    icon: <Shield className="w-5 h-5 sm:w-7 sm:h-7" />,
-    title: '100-Night Sleep Trial',
-    desc: 'Try it risk-free. Return for free if not in love with your new mattress.',
+    icon: Truck,
+    title: 'White-glove delivery',
+    desc: 'We deliver and set up in your bedroom. No hidden fees.',
+    span: 'md:col-span-2',
   },
   {
-    icon: <Truck className="w-5 h-5 sm:w-7 sm:h-7" />,
-    title: 'Free White-Glove Delivery',
-    desc: 'We deliver and set up in your bedroom. No extra cost, no hassle.',
-  },
-  {
-    icon: <Award className="w-5 h-5 sm:w-7 sm:h-7" />,
-    title: '10-Year Warranty',
-    desc: 'Built to last a decade, guaranteed. Direct factory replacement policy.',
-  },
-  {
-    icon: <Leaf className="w-5 h-5 sm:w-7 sm:h-7" />,
-    title: 'Eco-Friendly Materials',
-    desc: 'CertiPUR-US certified foam. GOLS certified natural latex from Kerala.',
+    icon: Leaf,
+    title: 'GOLS natural latex',
+    desc: 'Kerala Dunlop latex. Zero synthetic fillers. Safe for family sleep.',
+    span: 'md:col-span-2',
   },
 ];
 
 const stats = [
-  { value: 10000, suffix: '+', label: 'Happy Customers' },
-  { value: 500, suffix: '+', label: 'Products Sold' },
-  { value: 0, suffix: '', prefix: '', label: '4.9★ Avg Rating', isStatic: true },
-  { value: 15, suffix: '+', label: 'Years Experience' },
+  { value: 12700, suffix: '+', label: 'Sleepers served' },
+  { value: 11, suffix: '', label: 'Mattress models' },
+  { value: 3, suffix: '', label: 'Generations of craft' },
+  { value: 17, suffix: '+', label: 'Years of expertise' },
 ];
 
 export default function WhyChooseUs() {
   return (
     <>
-      {/* Why Choose Us Section */}
-      <section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <FadeUp className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
-            <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">
-              Why Choose RelaxPro
-            </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mt-4 text-primary leading-tight">
-              Engineered for Your Best Sleep
+      <section className="bg-bg px-4 py-20 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <FadeUp className="mb-10 max-w-2xl md:mb-14">
+            <h2 className="text-3xl font-heading font-normal leading-[1.1] tracking-[-0.02em] text-primary md:text-5xl">
+              Engineered for restorative sleep
             </h2>
-            <p className="text-neutral-dark/50 text-sm mt-3 font-body leading-relaxed">
-              Every mattress we craft combines generations of expertise with the finest natural materials.
+            <p className="mt-4 max-w-lg font-body text-sm leading-relaxed text-muted md:text-base">
+              Generations of mattress craft, pure materials, and policies that respect your night.
             </p>
           </FadeUp>
 
-          {/* Feature Cards Grid — stagger reveal */}
-          <StaggerChildren className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" stagger={0.1}>
-            {features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                variants={staggerItem}
-                whileHover={{ y: -6, transition: { duration: 0.3, ease: EASE_LUXURY } }}
-                className="bg-surface p-4 sm:p-5 md:p-7 rounded-2xl border border-border shadow-sm flex flex-col cursor-default"
-              >
-                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-primary/5 border border-border flex items-center justify-center mb-3 sm:mb-5 shrink-0 text-accent">
-                  {feature.icon}
-                </div>
-                <h3 className="font-heading font-bold text-xs sm:text-base md:text-lg text-ink mb-1.5 sm:mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-muted text-[10px] sm:text-xs md:text-sm font-body leading-relaxed">
-                  {feature.desc}
-                </p>
-              </motion.div>
-            ))}
+          <StaggerChildren
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5"
+            stagger={0.07}
+          >
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={feature.title}
+                  variants={staggerItem}
+                  whileHover={{ y: -4, transition: { duration: 0.3, ease: EASE_LUXURY } }}
+                  className={`${feature.span} rounded-[1.25rem] p-1.5 bg-primary/[0.03] ring-1 ring-border`}
+                >
+                  <div className="flex h-full flex-col rounded-[calc(1.25rem-0.25rem)] border border-border/60 bg-surface p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] md:p-8">
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-primary/[0.04] text-accent">
+                      <Icon className="h-5 w-5" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-heading text-lg text-ink md:text-xl">{feature.title}</h3>
+                    <p className="mt-2 font-body text-sm leading-relaxed text-muted">
+                      {feature.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </StaggerChildren>
         </div>
       </section>
 
-      {/* Stats Counter Bar — spring count-up with gold underline */}
-      <section className="bg-primary py-12 md:py-16 px-4 md:px-8 border-y border-white/10">
-        <StaggerChildren className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4" stagger={0.15}>
+      <section className="border-y border-white/10 bg-primary px-4 py-14 md:px-8 md:py-16">
+        <StaggerChildren
+          className="mx-auto grid max-w-5xl grid-cols-2 gap-8 md:grid-cols-4 md:gap-4"
+          stagger={0.1}
+        >
           {stats.map((stat, idx) => (
             <motion.div
-              key={idx}
+              key={stat.label}
               variants={staggerItem}
               className={`text-center ${
                 idx < stats.length - 1 ? 'md:border-r md:border-white/10' : ''
               }`}
             >
-              {stat.isStatic ? (
-                <div className="text-3xl md:text-4xl font-bold font-heading text-white">
-                  4.9<span className="text-accent">★</span>
-                </div>
-              ) : (
-                <AnimatedCounter
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  prefix={stat.prefix}
-                  className="text-3xl md:text-4xl font-bold font-heading text-white"
-                />
-              )}
-              {/* Gold underline draw */}
-              <div className="w-8 h-[2px] bg-accent/40 mx-auto mt-2 rounded-full" />
-              <p className="text-white/40 text-xs font-accent uppercase tracking-wider mt-2 font-semibold">
+              <AnimatedCounter
+                value={stat.value}
+                suffix={stat.suffix}
+                prefix={'prefix' in stat ? (stat as { prefix?: string }).prefix : undefined}
+                className="font-heading text-3xl font-normal text-white md:text-4xl"
+              />
+              <div className="mx-auto mt-2 h-[2px] w-8 rounded-full bg-accent/40" />
+              <p className="mt-2 font-accent text-[11px] font-semibold uppercase tracking-wider text-white/45">
                 {stat.label}
               </p>
             </motion.div>

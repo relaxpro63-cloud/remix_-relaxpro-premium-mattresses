@@ -5,9 +5,7 @@ export const PRODUCTS: Product[] = [
     slug: 'nirvana',
     name: 'Nirvana',
     tagline: 'Experience ultimate relaxation',
-    subtitle: 'Luxury sleep begins with Nirvana latex mattress',
-    warranty: 10,
-    comfortLevel: 'plush',
+    subtitle: 'Luxury sleep begins with Nirvana latex mattress',    comfortLevel: 'plush',
     comfortRating: 5,
     totalThickness: 6,
     layers: [
@@ -30,20 +28,18 @@ export const PRODUCTS: Product[] = [
     features: [
       '6" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep',
       '100% natural biodegradable Dunlop latex sap harvested under strict GOLS organic standards',
-      'Zero synthetic chemicals, fillers, or VOC emissions — completely safe for infants and elders',
+      'Zero synthetic chemicals, fillers, or VOC emissions - completely safe for infants and elders',
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
       'Get video call while making and receive 1 edited making video for reference'
     ],
     metaTitle: 'Nirvana 6" Pure Natural Latex Mattress | RelaxPro',
-    metaDescription: 'Buy RelaxPro Nirvana 6-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. 10-year warranty, free shipping.'
+    metaDescription: 'Buy RelaxPro Nirvana 6-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. Free shipping.'
   },
   {
     slug: 'amrita',
     name: 'Amrita',
     tagline: 'Sleep that rejuvenates you',
-    subtitle: 'Feel long-lasting luxury with Amrita latex mattress',
-    warranty: 10,
-    comfortLevel: 'medium-soft',
+    subtitle: 'Feel long-lasting luxury with Amrita latex mattress',    comfortLevel: 'medium-soft',
     comfortRating: 4,
     totalThickness: 10,
     layers: [
@@ -78,9 +74,7 @@ export const PRODUCTS: Product[] = [
     slug: 'ananda',
     name: 'Ananda',
     tagline: 'Blissful comfort every night',
-    subtitle: 'Turn bedtime into joy with Ananda latex mattress',
-    warranty: 10,
-    comfortLevel: 'soft-medium',
+    subtitle: 'Turn bedtime into joy with Ananda latex mattress',    comfortLevel: 'soft-medium',
     comfortRating: 4,
     totalThickness: 6,
     layers: [
@@ -114,9 +108,7 @@ export const PRODUCTS: Product[] = [
     slug: 'prakriti',
     name: 'Prakriti',
     tagline: 'Comfort inspired by nature',
-    subtitle: 'Breathe easy, sleep better with Prakriti latex mattress',
-    warranty: 10,
-    comfortLevel: 'medium-soft',
+    subtitle: 'Breathe easy, sleep better with Prakriti latex mattress',    comfortLevel: 'medium-soft',
     comfortRating: 4,
     totalThickness: 8,
     layers: [
@@ -151,9 +143,7 @@ export const PRODUCTS: Product[] = [
     slug: 'somya',
     name: 'Somya',
     tagline: 'Soft, Gentle comfort that your body will love',
-    subtitle: 'Sleep peacefully with Somya — Natural latex mattress',
-    warranty: 10,
-    comfortLevel: 'medium-soft',
+    subtitle: 'Sleep peacefully with Somya - Natural latex mattress',    comfortLevel: 'medium-soft',
     comfortRating: 4,
     totalThickness: 10,
     layers: [
@@ -190,9 +180,7 @@ export const PRODUCTS: Product[] = [
     slug: 'arogya',
     name: 'Arogya',
     tagline: 'Health starts with good sleep',
-    subtitle: 'Support your body naturally with Arogya latex mattress',
-    warranty: 10,
-    comfortLevel: 'medium-firm',
+    subtitle: 'Support your body naturally with Arogya latex mattress',    comfortLevel: 'medium-firm',
     comfortRating: 4,
     totalThickness: 8,
     layers: [
@@ -227,9 +215,7 @@ export const PRODUCTS: Product[] = [
     slug: 'shuddha',
     name: 'Shuddha',
     tagline: 'Pure sleep begins here',
-    subtitle: 'Shuddha is made for those who choose natural comfort',
-    warranty: 10,
-    comfortLevel: 'medium',
+    subtitle: 'Shuddha is made for those who choose natural comfort',    comfortLevel: 'medium',
     comfortRating: 4,
     totalThickness: 6,
     layers: [
@@ -264,9 +250,7 @@ export const PRODUCTS: Product[] = [
     slug: 'sthira',
     name: 'Sthira',
     tagline: 'Strong support for deep sleep',
-    subtitle: 'Firm, Stable comfort with Sthira latex mattress',
-    warranty: 10,
-    comfortLevel: 'firm',
+    subtitle: 'Firm, Stable comfort with Sthira latex mattress',    comfortLevel: 'firm',
     comfortRating: 5,
     totalThickness: 6,
     layers: [
@@ -301,9 +285,7 @@ export const PRODUCTS: Product[] = [
     slug: 'bhumi',
     name: 'Bhumi',
     tagline: 'Strong Stable Support Inspired by the Earth',
-    subtitle: 'Experience balanced sleep with Bhumi latex mattress',
-    warranty: 10,
-    comfortLevel: 'medium-firm',
+    subtitle: 'Experience balanced sleep with Bhumi latex mattress',    comfortLevel: 'medium-firm',
     comfortRating: 4,
     totalThickness: 8,
     layers: [
@@ -339,9 +321,7 @@ export const PRODUCTS: Product[] = [
     slug: 'sunidra',
     name: 'Sunidra',
     tagline: 'Sleep Deeper, Wake Refreshed',
-    subtitle: 'Experience peaceful nights with Sunidra latex mattress',
-    warranty: 10,
-    comfortLevel: 'medium',
+    subtitle: 'Experience peaceful nights with Sunidra latex mattress',    comfortLevel: 'medium',
     comfortRating: 4,
     totalThickness: 8,
     layers: [
@@ -377,9 +357,7 @@ export const PRODUCTS: Product[] = [
     slug: 'vishram',
     name: 'Vishram',
     tagline: 'Rest, Relaxation, Complete Ease',
-    subtitle: 'Vishram designed for true rest and deep relaxation',
-    warranty: 10,
-    comfortLevel: 'medium',
+    subtitle: 'Vishram designed for true rest and deep relaxation',    comfortLevel: 'medium',
     comfortRating: 3,
     totalThickness: 7,
     layers: [
@@ -415,9 +393,7 @@ export const PRODUCTS: Product[] = [
     slug: 'ojas',
     name: 'Ojas',
     tagline: 'Wake up refreshed and energised every morning',
-    subtitle: 'Feel the power of natural sleep with Ojas ortho mattress',
-    warranty: 10,
-    comfortLevel: 'firm',
+    subtitle: 'Feel the power of natural sleep with Ojas ortho mattress',    comfortLevel: 'firm',
     comfortRating: 3,
     totalThickness: 6,
     layers: [
@@ -452,9 +428,7 @@ export const PRODUCTS: Product[] = [
     slug: 'ayushrest',
     name: 'AyushRest',
     tagline: 'Sleep built to last',
-    subtitle: 'Long-term comfort with AyushRest ortho mattress',
-    warranty: 10,
-    comfortLevel: 'firm',
+    subtitle: 'Long-term comfort with AyushRest ortho mattress',    comfortLevel: 'firm',
     comfortRating: 4,
     totalThickness: 8,
     layers: [
@@ -501,7 +475,7 @@ export const TESTIMONIALS = [
     id: 't2',
     name: 'Anvitha Reddy',
     city: 'Bangalore',
-    rating: 5,
+    rating: 4,
     comment: 'We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly; I do not feel my husband tossing and turning at all. The direct factory price represents fantastic value.',
     product: 'Amrita 10" Hybrid'
   },
@@ -517,7 +491,7 @@ export const TESTIMONIALS = [
     id: 't4',
     name: 'Deepak Sharma',
     city: 'Hyderabad',
-    rating: 5,
+    rating: 4,
     comment: 'I am amazed by the Custom Mattress builder! I configured a custom 10-inch mattress with 5 inches of raw Kerala latex and it was delivered within 6 days. Best sleep ever.',
     product: 'Custom Build'
   }
