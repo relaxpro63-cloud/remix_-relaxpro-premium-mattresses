@@ -125,7 +125,7 @@ export async function getHomePage() {
 export async function getAllProducts() {
   return sanityClient.fetch(`*[_type == "product" && inStock == true] | order(sortOrder asc){
     name, "slug": slug.current, tagline, subtitle, keyBenefit, description, badge,
-    warranty, comfortLevel, comfortRating, totalThickness,
+    comfortLevel, comfortRating, totalThickness,
     layers[]{ thickness, material, brand, certification, description },
     fabricGsm, fabricType, certifications, accessories,
     pricingModel,
@@ -143,7 +143,7 @@ export async function getProductBySlug(slug: string) {
   return sanityClient.fetch(
     `*[_type == "product" && slug.current == $slug][0]{
       name, tagline, subtitle, keyBenefit, description, shortDescription, longDescription,
-      badge, badges, warranty, tier, comfortLevel, comfortRating, totalThickness,
+      badge, badges, tier, comfortLevel, comfortRating, totalThickness,
       layers[]{ thickness, material, brand, certification, description },
       fabricGsm, fabricType, certifications, accessories,
       pricingModel,

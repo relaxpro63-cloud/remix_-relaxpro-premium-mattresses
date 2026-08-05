@@ -13,7 +13,6 @@ const trustPoints = [
   '100% Natural Latex',
   'Chemical-Free',
   'Factory Direct Pricing',
-  '10-Year Warranty',
 ];
 
 export default function TrustBadges() {

@@ -120,7 +120,7 @@ export default function SleepScience() {
                 {(comp?.rows && comp.rows.length > 0 ? comp.rows : [
                   { label: 'Push-Back Support', values: ['Excellent (Adaptive)', 'Poor (Sunken Sink-in)'] },
                   { label: 'Heat Dispersion', values: ['95% (Open-Cell Matrix)', '15% (Traps Body Heat)'] },
-                  { label: 'Life Span / Warranty', values: ['15+ Years (Dense)', '3-5 Years (Polymers)'] },
+                  { label: 'Life Span', values: ['15+ Years (Dense)', '3-5 Years (Polymers)'] },
                   { label: 'Off-Gassing / VOC', values: ['Zero (Food-Grade sap)', 'High (Chemical odor)'] },
                 ]).map((row: any, i: number) => (
                   <div key={i} className="grid grid-cols-3 py-2.5 border-b border-brand-200/40">

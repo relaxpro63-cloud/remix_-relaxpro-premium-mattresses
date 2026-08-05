@@ -58,7 +58,6 @@ export interface SanityProduct {
   description?: string
   shortDescription?: string
   badge?: string
-  warranty?: number
   comfortLevel?: string
   comfortRating?: number
   totalThickness?: number

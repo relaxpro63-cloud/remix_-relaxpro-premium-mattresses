@@ -276,9 +276,6 @@ export default function ProductList({
                   {/* Header metadata display */}
 <div className="p-2 sm:p-5 bg-sky-100/50 border-b border-brand-200/40 flex flex-row items-center justify-between gap-1 sm:gap-0 text-[7px] sm:text-[10px] font-mono text-graphite-500 select-none">
   <span className="uppercase tracking-widest font-bold text-brand-600 truncate">{p.tier} collection</span>
-  <span className="text-[9px] sm:text-[10px] font-mono text-graphite-500 uppercase tracking-widest">
-    {p.warranty}-Year Warranty
-  </span>
 </div>
 
                   {/* Product Image block */}

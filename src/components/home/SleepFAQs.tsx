@@ -17,7 +17,6 @@ const categoryIcons: Record<string, React.ReactNode> = {
   'Care and Setting Up': <RefreshCw className="w-5 h-5 text-brand-600 shrink-0" />,
   'Custom Sizing': <PenTool className="w-5 h-5 text-brand-600 shrink-0" />,
   'Shipping and Delivery': <CheckCircle className="w-5 h-5 text-brand-600 shrink-0" />,
-  'Warranty and Returns': <Shield className="w-5 h-5 text-brand-600 shrink-0" />,
   'General': <Info className="w-5 h-5 text-brand-600 shrink-0" />,
 };
 
@@ -26,9 +25,14 @@ const categoryMap: Record<string, 'care' | 'durability' | 'customization'> = {
   'Care and Setting Up': 'care',
   'Custom Sizing': 'customization',
   'Shipping and Delivery': 'customization',
-  'Warranty and Returns': 'durability',
   'General': 'care',
 };
+
+const REMOVED_CATEGORIES = new Set(['Warranty and Returns']);
+
+function isRemovedFaq(f: any): boolean {
+  return REMOVED_CATEGORIES.has(f.category);
+}
 
 function extractText(blocks: any): string {
   if (typeof blocks === 'string') return blocks;
@@ -66,7 +70,8 @@ export default function SleepFAQs() {
     }).catch(() => {});
     getFaqs().then((data: any[]) => {
       if (data && data.length > 0) {
-        setFaqs(data.map((f: any, i: number) => ({
+        const filtered = data.filter((f: any) => !isRemovedFaq(f));
+        setFaqs(filtered.map((f: any, i: number) => ({
           id: `faq-${i}`,
           category: categoryMap[f.category] || 'general',
           question: f.question,

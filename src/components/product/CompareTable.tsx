@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import PriceText from '../ui/PriceText';
-import { Check, X, Shield, Plus, Minus, FileText, MessageSquare, Info, Award } from 'lucide-react';
+import { Check, X, Plus, Minus, FileText, MessageSquare, Info, Award } from 'lucide-react';
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import { getAllProducts, imageUrl } from '../../lib/queries';
@@ -347,21 +347,6 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                       </span>
                     ))}
                     {p.certifications.length === 0 && <span className="text-graphite-400 font-mono text-xs">Standard Certified</span>}
-                  </div>
-                </td>
-              ))}
-            </tr>
-
-            {/* Row: Pure Warranty */}
-            <tr>
-              <td className="p-4 md:p-6 font-mono font-medium text-zinc-600 bg-zinc-50/50">
-                Warranty Coverage
-              </td>
-              {comparedProducts.map((p) => (
-                <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
-                  <div className="flex items-center gap-1 text-zinc-900 font-medium font-mono text-xs">
-                    <Shield className="w-3.5 h-3.5 text-brand-500" />
-                    <span>{p.warranty} Years Indian Warranty</span>
                   </div>
                 </td>
               ))}

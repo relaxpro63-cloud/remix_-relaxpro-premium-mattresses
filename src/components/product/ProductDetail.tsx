@@ -149,11 +149,6 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
               <span className="text-[7px] sm:text-[11px] text-graphite-500 font-body block mt-0.5 sm:mt-1 truncate">Inches Composite</span>
             </div>
 
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-[7px] sm:text-[10px] font-mono text-graphite-400 uppercase tracking-widest block mb-1">Warranty</span>
-              <span className="text-xl sm:text-2xl md:text-3xl font-bold font-heading text-ink-900 block leading-none sm:leading-tight">{product.warranty}-Year</span>
-              <span className="text-[7px] sm:text-[11px] text-graphite-500 font-body block mt-0.5 sm:mt-1 truncate">Direct Replacement</span>
-            </div>
           </div>
 
           {/* Stacked Layer Breakdown with descriptions */}

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Truck, Shield, Building2, Award, Ruler } from 'lucide-react';
+import { Truck, Building2, Award, Ruler } from 'lucide-react';
 import { FadeUp } from '../motion/motionPrimitives';
 
 const TRUST_ITEMS = [
   { icon: Truck, label: 'Free Shipping' },
   { icon: Award, label: 'Since 2015' },
   { icon: Building2, label: 'Factory Direct' },
-  { icon: Shield, label: '10-Yr Warranty' },
   { icon: Ruler, label: 'Custom Sizes' },
 ];
 

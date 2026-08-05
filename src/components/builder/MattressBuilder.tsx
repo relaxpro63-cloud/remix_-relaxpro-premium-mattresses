@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Ruler, Layers, Shirt, Check, MessageSquare,
   ChevronDown, Sparkles, Bed, Info, X, Plus, Minus,
-  Ruler as RulerIcon, Shield, Truck, Clock, Heart,
+  Ruler as RulerIcon, Truck, Clock, Heart,
   ChevronRight, Palette, Feather, Snowflake, Zap,
   Maximize2, Maximize, Leaf
 } from 'lucide-react';
@@ -287,9 +287,6 @@ function MattressPreview({ build, config, price }: {
           </span>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mt-3">
-          <span className="inline-flex items-center gap-1 text-[10px] text-green-600 font-medium bg-green-50 border border-green-200/50 px-2 py-1 rounded-full">
-            <Shield className="w-3 h-3" /> 10-Yr Warranty
-          </span>
           <span className="inline-flex items-center gap-1 text-[10px] text-brand-600 font-medium bg-brand-50 border border-brand-200/50 px-2 py-1 rounded-full">
             <Truck className="w-3 h-3" /> Free Delivery
           </span>
@@ -1128,9 +1125,6 @@ export default function MattressBuilder({ onNavigate }: {
 
             {/* Center: Trust chips (medium screens+) */}
             <div className="hidden md:flex items-center gap-3">
-              <span className="inline-flex items-center gap-1 text-[10px] text-green-700 font-medium bg-green-50 border border-green-200/40 px-2.5 py-1 rounded-full">
-                <Shield className="w-3 h-3" /> 10-Yr Warranty
-              </span>
               <span className="inline-flex items-center gap-1 text-[10px] text-brand-700 font-medium bg-brand-50 border border-brand-200/40 px-2.5 py-1 rounded-full">
                 <Truck className="w-3 h-3" /> Free Delivery
               </span>
@@ -1220,9 +1214,6 @@ export default function MattressBuilder({ onNavigate }: {
 
               {/* Trust badges */}
               <div className="flex flex-wrap gap-2 pt-2">
-                <span className="text-[10px] text-graphite-400 flex items-center gap-1">
-                  <Shield className="w-3 h-3" /> 10-Yr Warranty
-                </span>
                 <span className="text-[10px] text-graphite-400 flex items-center gap-1">
                   <Truck className="w-3 h-3" /> Free Delivery
                 </span>

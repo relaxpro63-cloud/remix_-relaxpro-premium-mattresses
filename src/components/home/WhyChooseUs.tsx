@@ -20,9 +20,10 @@ const colorMap: Record<string, string> = {
 
 const defaultFeatures = [
   { icon: 'shield', title: 'Free White-Glove Delivery', desc: 'We deliver and set up in your bedroom. No extra cost, no hassle.' },
-  { icon: 'award', title: '10-Year Warranty', desc: 'Built to last a decade, guaranteed. Direct factory replacement policy.' },
   { icon: 'leaf', title: 'Eco-Friendly Materials', desc: 'CertiPUR-US certified foam. GOLS certified natural latex from Kerala.' },
 ];
+
+const REMOVED_FEATURE_TITLES = /warranty/i;
 
 const defaultStats = [
   { value: 10000, suffix: '+', label: 'Happy Customers' },
@@ -52,11 +53,15 @@ export default function WhyChooseUs() {
         });
       }
       if (data?.whyChooseUs?.benefits?.length > 0) {
-        setFeatures(data.whyChooseUs.benefits.map((b: any) => ({
-          icon: b.icon || 'shield',
-          title: b.title,
-          desc: b.description,
-        })));
+        setFeatures(
+          data.whyChooseUs.benefits
+            .filter((b: any) => !REMOVED_FEATURE_TITLES.test(b.title))
+            .map((b: any) => ({
+              icon: b.icon || 'shield',
+              title: b.title,
+              desc: b.description,
+            })),
+        );
       }
     }).catch(() => {});
   }, []);

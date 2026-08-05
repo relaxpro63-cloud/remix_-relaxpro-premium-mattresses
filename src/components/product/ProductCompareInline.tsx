@@ -296,21 +296,6 @@ export default function ProductCompareInline({ currentProduct, allProducts }: Pr
               ))}
             </tr>
 
-            {/* Row: Warranty */}
-            <tr>
-              <td className="p-4 md:p-5 font-accent font-bold text-graphite-500 bg-secondary/50 text-[11px] uppercase tracking-wider">
-                Warranty
-              </td>
-              {visibleProducts.map((p: any) => (
-                <td key={p?.slug} className={`p-4 md:p-5 border-l border-brand-200/40 ${p?.slug === currentProduct?.slug ? 'bg-brand-50/30' : ''}`}>
-                  <div className="flex items-center gap-1">
-                    <Shield className="w-3.5 h-3.5 text-brand-500" />
-                    <span className="font-accent font-bold text-ink-900 text-xs">{p?.warranty} Years</span>
-                  </div>
-                </td>
-              ))}
-            </tr>
-
             {/* Row: Actions */}
             <tr className="bg-secondary/30">
               <td className="p-4 md:p-5 font-accent font-bold text-graphite-500 bg-secondary/50 text-[11px] uppercase tracking-wider">

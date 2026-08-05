@@ -41,7 +41,7 @@ export interface Product {
   name: string;
   tagline: string;
   subtitle: string;
-  warranty: number;
+
   comfortLevel: ComfortLevel;
   comfortRating: number; // 1 to 5 scale
   totalThickness: number; // inches
