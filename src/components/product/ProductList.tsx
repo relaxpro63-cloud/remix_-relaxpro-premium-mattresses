@@ -179,7 +179,7 @@ export default function ProductList({
             Explore Mattress Collections
           </h1>
           <p className="text-graphite-600 text-base md:text-lg mt-6 font-body leading-relaxed max-w-xl">
-            Direct-from-factory pricing with absolute transparency. Tap any product image for comprehensive layered specifications and custom warranties.
+            Direct-from-factory pricing with absolute transparency. Tap any product image for comprehensive layered specifications and custom builds.
           </p>
         </div>
         

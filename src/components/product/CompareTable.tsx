@@ -72,7 +72,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
           Compare Premium Mattresses
         </h1>
         <p className="text-graphite-600 mt-4 leading-relaxed font-sans text-md">
-          Evaluate construction layers, comfort rankings, solid warranties, and direct-to-consumer pricing side-by-side. Configure comparison criteria to match your sleep patterns.
+          Evaluate construction layers, comfort rankings, durability, and direct-to-consumer pricing side-by-side. Configure comparison criteria to match your sleep patterns.
         </p>
       </div>
 

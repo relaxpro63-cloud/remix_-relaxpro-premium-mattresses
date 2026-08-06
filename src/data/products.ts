@@ -52,7 +52,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Heavy hybrid foundation topped with a ultra-thick premium organic latex comfort layer for deep body contouring and muscle recovery',
-    description: 'Amrita is a 10-inch hybrid masterpiece that pairs a 4-inch high-density rebonded Century foam base with a luxurious 6-inch slab of GOLS-certified pure organic Kerala latex. This combination delivers the best of both worlds: the rock-solid foundation that never sags, topped with a thick cloud of natural latex that contours to every curve of your body. The result is a mattress that supports deep muscle recovery while providing a floating-in-air sensation. The rebonded base — crafted from 90-95 density Century foam — guarantees zero structural deflection even after a decade of use, while the latex comfort layer actively reduces pressure points across shoulders, hips, and lower back. Ideal for combination sleepers who want orthopedic support without sacrificing plush comfort.',
+    description: 'Amrita is a 10-inch hybrid masterpiece that pairs a 4-inch high-density rebonded Century foam base with a luxurious 6-inch slab of GOLS-certified pure organic Kerala latex. This combination delivers the best of both worlds: the rock-solid foundation that never sags, topped with a thick cloud of natural latex that contours to every curve of your body. The result is a mattress that supports deep muscle recovery while providing a floating-in-air sensation. The rebonded base — crafted from 90-95 density Century foam — ensures zero structural deflection even after a decade of use, while the latex comfort layer actively reduces pressure points across shoulders, hips, and lower back. Ideal for combination sleepers who want orthopedic support without sacrificing plush comfort.',
     badge: 'Premium 10" Reversible Rebonded + Latex Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
     features: [
       'Luxurious 10-inch thick profile combining the posture support of premium rebonded foam and cloud latex comfort',
       '6 inches of pure Kerala latex handles natural spine-contouring, lowering tosses and turns',
-      'Ultra durable Century 95-density rebonded base guarantees zero sagging for over a decade',
+      'Ultra durable Century 95-density rebonded base ensures zero sagging for over a decade',
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
       'Get video call while making and receive 1 edited making video for reference'
     ],

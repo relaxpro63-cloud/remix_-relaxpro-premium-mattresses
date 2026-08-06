@@ -12,6 +12,10 @@ const defaultItems = [
   'ISO 9001 Certified'
 ];
 
+// Consumer promises (warranty/trial/shipping) are no longer marketed —
+// never surface them in the certification marquee even if present in the CMS.
+const REMOVED_PROMISE_TERMS = ['warranty', 'guarantee', 'replacement', 'trial', 'refund', 'return', 'shipping', 'delivery'];
+
 export default function CertificationMarquee() {
   const [items, setItems] = useState(defaultItems);
 
@@ -19,7 +23,12 @@ export default function CertificationMarquee() {
     getSiteSettings().then(s => {
       const certs = s?.footer?.certifications;
       if (certs?.length > 0) {
-        setItems(certs.map((c: any) => typeof c === 'string' ? c : c.name));
+        const cleaned = certs
+          .map((c: any) => (typeof c === 'string' ? c : c.name))
+          .filter((name: string) => name && !REMOVED_PROMISE_TERMS.some(term => name.toLowerCase().includes(term)));
+        if (cleaned.length > 0) {
+          setItems(cleaned);
+        }
       }
     }).catch(() => {});
   }, []);

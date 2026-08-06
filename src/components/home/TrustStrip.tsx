@@ -1,21 +1,48 @@
-import React from 'react';
-import { Truck, Building2, Award, Ruler } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+  Truck, Building2, Award, Ruler, Shield, ShieldCheck, Leaf,
+  RefreshCcw, CheckCircle, Heart, BadgeCheck, Sparkles,
+} from 'lucide-react';
 import { FadeUp } from '../motion/motionPrimitives';
+import { getSiteSettings } from '../../lib/queries';
 
-const TRUST_ITEMS = [
+const FALLBACK_TRUST_ITEMS = [
   { icon: Truck, label: 'Free Shipping' },
   { icon: Award, label: 'Since 2015' },
   { icon: Building2, label: 'Factory Direct' },
   { icon: Ruler, label: 'Custom Sizes' },
 ];
 
+// Sanity stores badge icons as lucide name strings — map them to components.
+const iconMap: Record<string, any> = {
+  Truck, Building2, Award, Ruler, Shield, ShieldCheck, Leaf, RefreshCcw,
+  CheckCircle, Heart, BadgeCheck, Sparkles,
+};
+
+// Trial/warranty/refund promises are no longer offered — drop such badges.
+const REMOVED_BADGE_TERMS = ['warranty', 'guarantee', 'trial', 'refund', 'return policy', '100-night', '10-year'];
+
 export default function TrustStrip() {
+  const [trustItems, setTrustItems] = useState(FALLBACK_TRUST_ITEMS);
+
+  useEffect(() => {
+    getSiteSettings().then(s => {
+      const badges = s?.footer?.trustBadges;
+      if (badges?.length > 0) {
+        const cleaned = badges
+          .filter((b: any) => b?.text && !REMOVED_BADGE_TERMS.some(term => b.text.toLowerCase().includes(term)))
+          .map((b: any) => ({ icon: iconMap[b.icon] || Shield, label: b.text }));
+        if (cleaned.length) setTrustItems(cleaned);
+      }
+    }).catch(() => {});
+  }, []);
+
   return (
     <FadeUp>
       <section className="bg-white border-b border-brand-200/30 py-3 xs:py-3.5 sm:py-4 md:py-5 px-3 xs:px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-x-4 xs:gap-x-5 sm:gap-x-6 md:gap-x-8 lg:gap-x-12 gap-y-1.5 xs:gap-y-2">
-            {TRUST_ITEMS.map((item, i) => {
+            {trustItems.map((item, i) => {
               const Icon = item.icon;
               return (
                 <div

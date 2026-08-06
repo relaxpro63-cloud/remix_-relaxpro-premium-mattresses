@@ -1656,7 +1656,7 @@ function seedTestimonials() {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-//  SECTION 4 — FAQS (20 across categories)
+//  SECTION 4 — FAQS (18 across categories)
 // ═════════════════════════════════════════════════════════════════════════════
 
 function seedFaqs() {
@@ -1689,15 +1689,6 @@ function seedFaqs() {
       ),
       category: 'Pricing & Sizes',
       order: 3,
-    },
-    {
-      _id: 'faq-4',
-      question: 'Do you offer a trial period and warranty?',
-      answer: block(
-        'Absolutely. Every RelaxPro mattress comes with a 100-night sleep trial. If you are not completely satisfied within the first 100 nights, we will arrange free pickup and provide a full refund. Additionally, all our mattresses carry a 10-year factory replacement warranty against manufacturing defects. No restocking fees, no hidden charges.'
-      ),
-      category: 'Pricing & Sizes',
-      order: 4,
     },
     {
       _id: 'faq-5',
@@ -1788,15 +1779,6 @@ function seedFaqs() {
       ),
       category: 'Comfort & Feel',
       order: 14,
-    },
-    {
-      _id: 'faq-15',
-      question: 'What is the return and refund process?',
-      answer: block(
-        'If you are not satisfied within the 100-night trial period, contact us on WhatsApp or email. We will arrange free pickup from your location. Once the mattress is received at our factory, we process your refund within 5-7 business days. No restocking fees, no questions asked. We want you to love your mattress.'
-      ),
-      category: 'Pricing & Sizes',
-      order: 15,
     },
     {
       _id: 'faq-16',
@@ -3000,8 +2982,8 @@ async function seedHero() {
         },
         trustBadges: [
           { text: 'Free Delivery', icon: 'Truck' },
-          { text: '10-Year Replacement Warranty', icon: 'Shield' },
-          { text: '100-Night Trial', icon: 'RefreshCcw' },
+          { text: 'GOLS Certified Organic', icon: 'Shield' },
+          { text: 'Factory Direct', icon: 'BadgeCheck' },
         ],
       },
     ],

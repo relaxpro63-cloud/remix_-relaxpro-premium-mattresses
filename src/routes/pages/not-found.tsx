@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import PageShell from '../../components/layout/PageShell';
 
 export default function NotFoundPage() {
   return (
+    <PageShell
+      title="Page Not Found | RelaxPro Premium Mattresses"
+      description="The page you are looking for could not be found. Explore our natural latex mattress catalog or return home."
+    >
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
@@ -22,5 +27,6 @@ export default function NotFoundPage() {
       </div>
       </div>
     </motion.div>
+    </PageShell>
   );
 }

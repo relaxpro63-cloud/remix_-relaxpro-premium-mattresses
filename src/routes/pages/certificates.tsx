@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
+import PageShell from '../../components/layout/PageShell';
 
 interface CertData {
   _id: string;
@@ -172,6 +173,10 @@ export default function CertificatesPage() {
   }, []);
 
   return (
+    <PageShell
+      title="Our Certifications | RelaxPro Premium Mattresses"
+      description="Explore the GOLS, OEKO-TEX and ISO certifications that validate the quality, safety and sustainability of every RelaxPro natural latex mattress."
+    >
     <div className="min-h-screen bg-[#F3F9FD] relative overflow-hidden">
       <DecorativeBotanicals density="light" />
       {/* ===== Hero Section ===== */}
@@ -330,5 +335,6 @@ export default function CertificatesPage() {
         {activePdf && <PdfModal cert={activePdf} onClose={() => setActivePdf(null)} />}
       </AnimatePresence>
     </div>
+    </PageShell>
   );
 }

@@ -14,11 +14,20 @@ const defaultData = [
 
 export default function CostComparison() {
   const [data, setData] = useState(defaultData);
+  const [heading, setHeading] = useState('Is Buying Latex Mattress Really Expensive?');
+  const [latexLabel, setLatexLabel] = useState('Natural Latex');
+  const [foamLabel, setFoamLabel] = useState('Ordinary Foam');
+  const [footnote, setFootnote] = useState('While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress');
 
   useEffect(() => {
     getHomePage().then(p => {
       const c = p?.costComparison;
-      if (c?.naturalLatex && c?.ordinaryFoam) {
+      if (!c) return;
+      if (c.sectionTitle) setHeading(c.sectionTitle);
+      if (c.naturalLatex?.label) setLatexLabel(c.naturalLatex.label);
+      if (c.ordinaryFoam?.label) setFoamLabel(c.ordinaryFoam.label);
+      if (c.footnote) setFootnote(c.footnote);
+      if (c.naturalLatex && c.ordinaryFoam) {
         setData([
           { label: 'Avg. Price (Double Bed)', latex: c.naturalLatex.avgPrice, foam: c.ordinaryFoam.avgPrice, foamHigher: false },
           { label: 'Avg. Lifespan', latex: c.naturalLatex.lifespan, foam: c.ordinaryFoam.lifespan, foamHigher: false },
@@ -28,6 +37,10 @@ export default function CostComparison() {
       }
     }).catch(() => {});
   }, []);
+
+  const [latexFirst, ...latexRest] = latexLabel.split(' ');
+  const [foamFirst, ...foamRest] = foamLabel.split(' ');
+
   return (
     <section className="py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-secondary border-y border-brand-200/30 font-body overflow-hidden relative">
       <DecorativeBotanicals density="light" />
@@ -35,7 +48,7 @@ export default function CostComparison() {
         <FadeUp>
           <div className="text-center mb-10 xs:mb-12 sm:mb-14 md:mb-20">
             <RevealText as="h2" className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl lg:text-5xl font-heading font-medium text-ink-900 leading-tight">
-              Is Buying Latex Mattress Really Expensive?
+              {heading}
             </RevealText>
           </div>
         </FadeUp>
@@ -52,7 +65,7 @@ export default function CostComparison() {
               transition={{ duration: 0.8, ease: EASE_LUXURY }}
               className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-ink-900"
             >
-              Natural<br className="md:hidden" /> Latex
+              {latexFirst}{latexRest.length ? <><br className="md:hidden" /> {latexRest.join(' ')}</> : null}
             </motion.h3>
             <motion.h3
               initial={{ x: 60, opacity: 0 }}
@@ -61,7 +74,7 @@ export default function CostComparison() {
               transition={{ duration: 0.8, ease: EASE_LUXURY }}
               className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-ink-900"
             >
-              Ordinary<br className="md:hidden" /> Foam
+              {foamFirst}{foamRest.length ? <><br className="md:hidden" /> {foamRest.join(' ')}</> : null}
             </motion.h3>
           </div>
 
@@ -138,7 +151,7 @@ export default function CostComparison() {
         <FadeUp delay={0.4}>
           <div className="mt-8 xs:mt-10 sm:mt-12 md:mt-14 bg-brand-50 p-3 xs:p-4 sm:p-5 md:p-6 rounded-xl xs:rounded-2xl max-w-2xl mx-auto text-center shadow-sm relative z-10">
             <p className="text-ink-900 font-medium text-[11px] xs:text-xs sm:text-sm md:text-base leading-relaxed">
-              While a 100% Natural Latex Mattress may seem more expensive upfront, it actually offers better long-term value than an Ordinary Foam Mattress
+              {footnote}
             </p>
           </div>
         </FadeUp>

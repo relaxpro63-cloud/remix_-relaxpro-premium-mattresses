@@ -98,6 +98,12 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                   {data?.customBuilder?.title || 'Customize Your Comfort'}
                 </h3>
 
+                {data?.customBuilder?.description && (
+                  <p className="text-graphite-600 text-sm xs:text-[15px] sm:text-base leading-relaxed font-body font-light mb-5 xs:mb-6">
+                    {data.customBuilder.description}
+                  </p>
+                )}
+
                 <ul className="space-y-3 xs:space-y-3.5 sm:space-y-4 md:space-y-6">
                   {(data?.customBuilder?.features || [
                     'Pick Cover Fabric: Select casing textile',
@@ -172,6 +178,12 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
                 <h3 className="font-heading text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl text-ink-900 tracking-tight leading-tight mb-5 xs:mb-6 sm:mb-8">
                   {data?.shopPrebuilt?.title || 'Our Models'}
                 </h3>
+
+                {data?.shopPrebuilt?.description && (
+                  <p className="text-graphite-600 text-sm xs:text-[15px] sm:text-base leading-relaxed font-body font-light mb-5 xs:mb-6">
+                    {data.shopPrebuilt.description}
+                  </p>
+                )}
 
                 <ul className="space-y-3 xs:space-y-3.5 sm:space-y-4 md:space-y-6">
                   {(data?.shopPrebuilt?.features || [

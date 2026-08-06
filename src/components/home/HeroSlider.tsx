@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import { ChevronRight, Shield, Award, Leaf, IndianRupee } from 'lucide-react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import { ChevronRight, Shield, Award, Leaf, IndianRupee, ShieldCheck, Sparkles, Truck, RefreshCcw, CheckCircle, Heart, BadgeCheck, FlameKindling, ShieldAlert } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
 import DecorativeBotanicals from './DecorativeBotanicals';
 
@@ -17,8 +17,25 @@ const trustBadges = [
   { icon: IndianRupee, label: 'Made in India' },
 ];
 
+const floatingTrustBadges = [
+  { icon: Leaf, label: '100% Natural Latex', position: 'top-[40%] right-[3%]', rotate: -2, delay: 0.7 },
+  { icon: ShieldCheck, label: 'GOLS Certified', position: 'top-[57%] right-[8%]', rotate: 1, delay: 0.85 },
+  { icon: Sparkles, label: 'Handmade Since 2015', position: 'bottom-[9%] right-[2%]', rotate: -1, delay: 1 },
+];
+
+// Sanity stores badge icons as lucide name strings — map them to components.
+const iconMap: Record<string, any> = {
+  Shield, ShieldCheck, Award, Leaf, IndianRupee, Truck, RefreshCcw,
+  CheckCircle, Heart, BadgeCheck, Sparkles, FlameKindling, ShieldAlert,
+};
+
+// Trial/warranty/refund promises are no longer offered — drop such badges
+// even if someone adds them in the CMS.
+const REMOVED_BADGE_TERMS = ['warranty', 'trial', 'refund', 'return policy', '100-night', '10-year'];
+
 export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const [hero, setHero] = useState<any>(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     getHero().then(d => setHero(d)).catch(() => {});
@@ -35,6 +52,15 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Handcrafted in Hyderabad and shipped directly to your doorstep.';
   const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Shop Collection';
   const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.png';
+  const eyebrow = hero?.slides?.[0]?.badge || 'Handcrafted Since 2015';
+
+  const heroTrustBadges = (hero?.slides?.[0]?.trustBadges || [])
+    .filter((b: any) => {
+      const t = (b?.text || '').toLowerCase();
+      return !REMOVED_BADGE_TERMS.some(term => t.includes(term));
+    })
+    .map((b: any) => ({ ...b, iconComponent: iconMap[b.icon] || Shield }));
+  const displayTrustBadges = heroTrustBadges.length ? heroTrustBadges : trustBadges;
 
   return (
     <section
@@ -94,7 +120,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
               >
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-brand-400 animate-pulse" />
                 <span className="text-[9px] sm:text-[10px] lg:text-[11px] font-accent font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-brand-200">
-                  Handcrafted Since 2015
+                  {eyebrow}
                 </span>
               </motion.div>
 
@@ -157,8 +183,8 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 transition={{ duration: 0.6, ease: EASE_LUXURY, delay: 0.7 }}
                 className="flex flex-wrap gap-2 lg:gap-3 mt-8 lg:mt-10 xl:mt-12 pt-4 lg:pt-6 xl:pt-8 border-t border-white/10"
               >
-                {trustBadges.map((badge, i) => {
-                  const Icon = badge.icon;
+                {displayTrustBadges.map((badge, i) => {
+                  const Icon = badge.iconComponent || Shield;
                   return (
                     <div
                       key={i}
@@ -208,8 +234,10 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
       {/* Shows from 320px up to md breakpoint (768px)*/}
       {/* ============================================ */}
       <div className="md:hidden relative flex flex-col min-h-[100dvh]">
-        <div className="absolute inset-0 z-[1] pointer-events-none">
-          <DecorativeBotanicals density="light" />
+        {/* Botanicals reduced to a faint watermark behind the photo — the mobile
+            hero's negative space is for informative trust badges, not decoration */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <DecorativeBotanicals density="light" className="opacity-[0.06]! scale-[0.7]! translate-x-10!" />
         </div>
         {/* Image — adjusts height for very small screens */}
         <div className="relative h-[36vh] xs:h-[40vh] sm:h-[44vh] min-h-[280px] xs:min-h-[300px] sm:min-h-[330px] overflow-hidden">
@@ -222,6 +250,34 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-[#063D64]" />
+
+          {/* Floating trust badges — fill the right-side negative space beside the
+              subject, informative instead of decorative (glassmorphism) */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            {floatingTrustBadges.map((badge, i) => {
+              const Icon = badge.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={reduce ? false : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: EASE_LUXURY, delay: badge.delay }}
+                  className={`absolute ${badge.position}`}
+                >
+                  <motion.div
+                    animate={reduce ? { rotate: badge.rotate } : { y: [0, -5, 0], rotate: badge.rotate }}
+                    transition={reduce ? undefined : { duration: 4 + i, ease: 'easeInOut', repeat: Infinity, delay: i * 0.6 }}
+                    className="inline-flex items-center gap-1.5 xs:gap-2 rounded-xl bg-white/10 border border-white/15 backdrop-blur-md px-2.5 xs:px-3 py-1.5 xs:py-2 shadow-lg shadow-black/25"
+                  >
+                    <Icon className="w-3 h-3 xs:w-3.5 xs:h-3.5 text-brand-300" strokeWidth={1.75} />
+                    <span className="text-[9px] xs:text-[10px] font-accent font-semibold text-white/90 whitespace-nowrap tracking-wide">
+                      {badge.label}
+                    </span>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Content — responsive padding and spacing */}
@@ -233,7 +289,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             transition={{ delay: 0.2 }}
             className="text-[9px] xs:text-[10px] sm:text-[11px] font-accent font-semibold uppercase tracking-[0.15em] xs:tracking-[0.2em] text-brand-300 mb-1.5 xs:mb-2"
           >
-            Handcrafted Since 2015
+            {eyebrow}
           </motion.span>
 
           <motion.h1
@@ -287,8 +343,8 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             transition={{ delay: 0.6 }}
             className="flex flex-wrap gap-1.5 xs:gap-2 mt-3 xs:mt-4 pt-3 xs:pt-4 border-t border-white/10"
           >
-            {trustBadges.map((badge, i) => {
-              const Icon = badge.icon;
+            {displayTrustBadges.map((badge, i) => {
+              const Icon = badge.iconComponent || Shield;
               return (
                 <div key={i} className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 py-1 xs:py-1.5 rounded-lg bg-white/5 border border-white/10">
                   <Icon className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-brand-300" strokeWidth={1.5} />

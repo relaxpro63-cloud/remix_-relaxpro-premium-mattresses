@@ -81,7 +81,7 @@ export default function Header({ cartCount }: HeaderProps) {
     };
   }, [mobileMenuOpen]);
 
-  const rawItems: { path: string; label: string }[] = (nav?.desktopMenu || [
+  const fallbackNav = [
     { path: '/', label: 'Home' },
     { path: '/catalog', label: 'Shop' },
     { path: '/builder', label: 'Customize' },
@@ -89,12 +89,50 @@ export default function Header({ cartCount }: HeaderProps) {
     { path: '/science', label: 'Sleep Science' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
-  ]).map((item: any) => ({ path: item.path, label: item.label }));
+  ];
+
+  const rawItems: any[] = (nav?.desktopMenu || fallbackNav).map((item: any) => ({
+    path: item.path,
+    label: item.label,
+    isCta: !!item.isCta,
+    children: Array.isArray(item.children)
+      ? item.children.filter((c: any) => c?.label && c?.path)
+      : [],
+  }));
 
   // Deduplicate by path to prevent duplicate key warnings (Sanity may return duplicates)
   const navItems = rawItems.filter(
     (item, idx, self) => idx === self.findIndex((t) => t.path === item.path)
   );
+
+  const ctaItem = navItems.find((i) => i.isCta) || null;
+
+  const mobileItems: { path: string; label: string }[] = nav?.mobileMenu?.length
+    ? nav.mobileMenu
+        .filter((m: any) => m?.label && m?.path)
+        .map((m: any) => ({ path: m.path, label: m.label }))
+    : navItems;
+
+  const fallbackShopChildren = [
+    { label: 'Explore Collections', path: '/catalog' },
+    { label: 'Design Your Bed', path: '/builder' },
+    { label: 'Compare Models', path: '/compare' },
+    { label: 'Accessories', path: '/accessories' },
+  ];
+
+  const socialHref = (platform: string, fallback: string) => {
+    const link = settings?.footer?.socialLinks?.find(
+      (l: any) => (l?.platform || '').toLowerCase() === platform
+    );
+    return link?.url || fallback;
+  };
+
+  const bannerColors: Record<string, string> = {
+    green: '#065F46',
+    blue: '#1E3A8A',
+    red: '#7F1D1D',
+    yellow: '#854D0E',
+  };
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -111,10 +149,22 @@ export default function Header({ cartCount }: HeaderProps) {
         }`}
       >
         {/* Top Banner — responsive text size and padding */}
-        <div className="bg-ink-900 text-white text-[9px] xs:text-[10px] sm:text-[11px] py-1.5 xs:py-2 px-2 xs:px-3 sm:px-4 text-center font-accent tracking-wider xs:tracking-widest flex items-center justify-center">
-          <span className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none">
-            {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
-          </span>
+        <div
+          className="bg-ink-900 text-white text-[9px] xs:text-[10px] sm:text-[11px] py-1.5 xs:py-2 px-2 xs:px-3 sm:px-4 text-center font-accent tracking-wider xs:tracking-widest flex items-center justify-center"
+          style={settings?.announcement?.bannerColor ? { backgroundColor: bannerColors[settings.announcement.bannerColor] } : undefined}
+        >
+          {settings?.announcement?.bannerLink ? (
+            <a
+              href={settings.announcement.bannerLink}
+              className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none hover:underline"
+            >
+              {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
+            </a>
+          ) : (
+            <span className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none">
+              {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
+            </span>
+          )}
         </div>
 
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-2 xs:py-2.5 md:py-3 lg:py-4 flex items-center justify-between">
@@ -129,7 +179,10 @@ export default function Header({ cartCount }: HeaderProps) {
           {/* Desktop Navigation with dropdown for Shop */}
           <nav className="hidden lg:flex items-center gap-7" role="navigation" aria-label="Main navigation">
             {navItems.map((item) => {
+              if (item.isCta) return null;
+
               if (item.label === 'Shop') {
+                const shopChildren = item.children?.length ? item.children : fallbackShopChildren;
                 return (
                   <div key={item.path} className="relative group py-2">
                     <Link
@@ -144,30 +197,15 @@ export default function Header({ cartCount }: HeaderProps) {
                     {/* Hover Dropdown */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-52 bg-white border border-brand-200 shadow-xl rounded-xl p-3.5 z-50">
                       <div className="flex flex-col gap-2 font-accent tracking-wider text-[10px] font-bold text-left">
-                        <Link
-                          to="/catalog"
-                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50"
-                        >
-                          Explore Collections
-                        </Link>
-                        <Link
-                          to="/builder"
-                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
-                        >
-                          Design Your Bed
-                        </Link>
-                        <Link
-                          to="/compare"
-                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
-                        >
-                          Compare Models
-                        </Link>
-                        <Link
-                          to="/accessories"
-                          className="hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50 border-t border-brand-200/20 pt-2"
-                        >
-                          Accessories
-                        </Link>
+                        {shopChildren.map((child, i) => (
+                          <Link
+                            key={child.path}
+                            to={child.path}
+                            className={`hover:text-brand-600 text-ink-900 transition-colors block py-2 px-2.5 rounded-lg hover:bg-brand-50${i > 0 ? ' border-t border-brand-200/20 pt-2' : ''}`}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -202,10 +240,10 @@ export default function Header({ cartCount }: HeaderProps) {
             </Link>
 
       <Link
-        to="/catalog"
+        to={ctaItem?.path || '/catalog'}
         className="btn btn-primary py-2.5 px-6 rounded-xl text-xs font-bold font-accent uppercase tracking-wider shadow-sm cursor-pointer"
       >
-              Shop Now
+              {ctaItem?.label || 'Shop Now'}
             </Link>
 
             <Link
@@ -278,7 +316,7 @@ export default function Header({ cartCount }: HeaderProps) {
           </div>
 
           <div className="flex-1 px-6 py-6 space-y-1.5">
-            {navItems.map((item) => (
+            {mobileItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
@@ -300,7 +338,7 @@ export default function Header({ cartCount }: HeaderProps) {
             </p>
             <div className="flex items-center justify-center gap-6 pt-1">
               <a
-              href={settings?.contactInfo?.facebookUrl || 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/'}
+              href={socialHref('facebook', 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-white transition-colors"
@@ -309,7 +347,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href={settings?.contactInfo?.instagramUrl || 'https://www.instagram.com/relaxpro__mattresses/?hl=en'}
+                href={socialHref('instagram', 'https://www.instagram.com/relaxpro__mattresses/?hl=en')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-white transition-colors"
@@ -318,7 +356,7 @@ export default function Header({ cartCount }: HeaderProps) {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href={settings?.contactInfo?.youtubeUrl || 'https://www.youtube.com/@sureshmattressmanufacturer3784'}
+                href={socialHref('youtube', 'https://www.youtube.com/@sureshmattressmanufacturer3784')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-white transition-colors"

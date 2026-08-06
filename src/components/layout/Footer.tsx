@@ -5,22 +5,26 @@ import {
   Mail, Phone, MapPin, Shield, RefreshCcw, Truck,
   Facebook, Instagram, Youtube,
   Heart, Award, MessageSquare, CheckCircle,
-  Clock, ExternalLink,
+  Clock, ExternalLink, Leaf, ShieldCheck, BadgeCheck, Sparkles, Building2, Ruler,
 } from 'lucide-react';
-import { getSiteSettings } from '../../lib/queries';
+import { getSiteSettings, getNavigation, getAllShowrooms } from '../../lib/queries';
 
 export default function Footer() {
   const [settings, setSettings] = useState<any>(null);
+  const [nav, setNav] = useState<any>(null);
+  const [showrooms, setShowrooms] = useState<any[] | null>(null);
 
   useEffect(() => {
     getSiteSettings().then(setSettings).catch(() => {});
+    getNavigation().then(setNav).catch(() => {});
+    getAllShowrooms().then(setShowrooms).catch(() => {});
   }, []);
 
   const contactInfo = settings?.contactInfo || {};
 
   /* ─── Data ─────────────────────────────────────── */
 
-  const trustItems = [
+  const fallbackTrustItems = [
     { icon: Shield, text: '100% Natural Latex' },
     { icon: Award, text: 'GOLS Certified' },
     { icon: CheckCircle, text: 'OEKO-TEX Certified' },
@@ -29,11 +33,19 @@ export default function Footer() {
     { icon: Heart, text: 'Handmade in India' },
   ];
 
-  const certifications = [
-    { label: 'GOLS', sub: 'Certified Organic' },
-    { label: 'OEKO-TEX', sub: 'Standard 100' },
-    { label: 'ISO', sub: '9001:2015' },
-  ];
+  // Sanity stores badge icons as lucide name strings — map them to components.
+  const iconMap: Record<string, any> = {
+    Shield, ShieldCheck, Award, Leaf, Truck, RefreshCcw, CheckCircle,
+    Heart, BadgeCheck, Sparkles, Building2, Ruler,
+  };
+
+  // Trial/warranty/refund promises are no longer offered — drop such badges.
+  const REMOVED_BADGE_TERMS = ['warranty', 'guarantee', 'trial', 'refund', 'return policy', '100-night', '10-year'];
+
+  const cmsTrustItems = (settings?.footer?.trustBadges || [])
+    .filter((b: any) => b?.text && !REMOVED_BADGE_TERMS.some(term => b.text.toLowerCase().includes(term)))
+    .map((b: any) => ({ icon: iconMap[b.icon] || Shield, text: b.text }));
+  const trustItems = cmsTrustItems.length ? cmsTrustItems : fallbackTrustItems;
 
   const companyLinks = [
     { label: 'About Us', path: '/about' },
@@ -55,18 +67,61 @@ export default function Footer() {
     { label: 'Showrooms', path: '/locations' },
   ];
 
-  const followLinks = [
-    { label: 'Instagram', href: settings?.contactInfo?.instagramUrl || 'https://www.instagram.com/relaxpro__mattresses/?hl=en', icon: Instagram },
-    { label: 'Facebook', href: settings?.contactInfo?.facebookUrl || 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/', icon: Facebook },
-    { label: 'YouTube', href: settings?.contactInfo?.youtubeUrl || 'https://www.youtube.com/@sureshmattressmanufacturer3784', icon: Youtube },
+  const fallbackFollowLinks = [
+    { label: 'Instagram', href: 'https://www.instagram.com/relaxpro__mattresses/?hl=en', icon: Instagram },
+    { label: 'Facebook', href: 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/', icon: Facebook },
+    { label: 'YouTube', href: 'https://www.youtube.com/@sureshmattressmanufacturer3784', icon: Youtube },
     { label: 'WhatsApp', href: `https://wa.me/${contactInfo.whatsappNumber || '918686624494'}`, icon: MessageSquare },
   ];
 
-  const showrooms = [
+  const platformIcons: Record<string, any> = {
+    instagram: Instagram,
+    facebook: Facebook,
+    youtube: Youtube,
+    whatsapp: MessageSquare,
+  };
+
+  const followLinks = settings?.footer?.socialLinks?.length
+    ? settings.footer.socialLinks
+        .map((link: any) => ({
+          label: link.platform || 'Follow',
+          href: link.url || '#',
+          icon: platformIcons[(link.platform || '').toLowerCase()] || MessageSquare,
+        }))
+    : fallbackFollowLinks;
+
+  const fallbackShowrooms = [
     { city: 'Hyderabad', address: 'Jeedimetla Industrial Area, Phase 3' },
     { city: 'Rajahmundry', address: 'Danavaipeta Mall Road' },
     { city: 'Bangalore', address: 'Indiranagar, 100 Feet Road' },
   ];
+
+  const cmsShowrooms = showrooms
+    ? showrooms
+        .filter((loc) => loc?.address?.city)
+        .map((loc) => ({
+          city: loc.address.city,
+          address: loc.address.fullAddress || loc.address.street || loc.address.city,
+        }))
+    : [];
+  const displayShowrooms = cmsShowrooms.length ? cmsShowrooms : fallbackShowrooms;
+
+  const fallbackLinkColumns = [
+    { heading: 'Company', links: companyLinks },
+    { heading: 'Products', links: productLinks },
+    { heading: 'Support', links: supportLinks },
+  ];
+
+  const linkColumns = nav?.footerMenu?.length
+    ? nav.footerMenu
+        .filter((col: any) => col?.heading)
+        .map((col: any) => ({
+          heading: col.heading,
+          links: col.links?.length
+            ? col.links.filter((l: any) => l?.label).map((l: any) => ({ label: l.label, path: l.path }))
+            : [],
+        }))
+    : fallbackLinkColumns;
 
   const businessHours = settings?.contactInfo?.businessHours || 'Mon–Sat: 9 AM – 7 PM';
 
@@ -213,72 +268,31 @@ export default function Footer() {
               {/* Blue accent divider line */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-300/35 via-brand-300/20 to-transparent" />
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 md:gap-6 lg:gap-10 pt-4">
-                {/* Company */}
-                <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
-                    <span className="inline-block w-5 h-px bg-brand-400/80" />
-                    Company
-                  </h4>
-                  <ul className="space-y-1.5 md:space-y-3">
-                    {companyLinks.map((link) => (
-                      <li key={link.label}>
-                        <Link
-                          to={link.path}
-                          className="group inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-brand-300 transition-all duration-300 cursor-pointer"
-                        >
-                          <span className="w-0 h-px bg-brand-300/80 group-hover:w-3 transition-all duration-300" />
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Products */}
-                <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
-                    <span className="inline-block w-5 h-px bg-brand-400/80" />
-                    Products
-                  </h4>
-                  <ul className="space-y-1.5 md:space-y-3">
-                    {productLinks.map((link) => (
-                      <li key={link.label}>
-                        <Link
-                          to={link.path}
-                          className="group inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-brand-300 transition-all duration-300 cursor-pointer"
-                        >
-                          <span className="w-0 h-px bg-brand-300/80 group-hover:w-3 transition-all duration-300" />
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Support */}
-                <div>
-                  <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
-                    <span className="inline-block w-5 h-px bg-brand-400/80" />
-                    Support
-                  </h4>
-                  <ul className="space-y-1.5 md:space-y-3">
-                    {supportLinks.map((link) => (
-                      <li key={link.label}>
-                        <Link
-                          to={link.path}
-                          className="group inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-brand-300 transition-all duration-300 cursor-pointer"
-                        >
-                          <span className="w-0 h-px bg-brand-300/80 group-hover:w-3 transition-all duration-300" />
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="flex flex-wrap gap-x-6 gap-y-8 md:gap-6 lg:gap-10 pt-4">
+                {linkColumns.map((column) => (
+                  <div key={column.heading} className="min-w-[150px] flex-1">
+                    <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
+                      <span className="inline-block w-5 h-px bg-brand-400/80" />
+                      {column.heading}
+                    </h4>
+                    <ul className="space-y-1.5 md:space-y-3">
+                      {column.links.map((link) => (
+                        <li key={link.label}>
+                          <Link
+                            to={link.path}
+                            className="group inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-brand-300 transition-all duration-300 cursor-pointer"
+                          >
+                            <span className="w-0 h-px bg-brand-300/80 group-hover:w-3 transition-all duration-300" />
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
 
                 {/* Follow */}
-                <div>
+                <div className="min-w-[150px] flex-1">
                   <h4 className="font-heading font-bold text-white/80 text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-6 flex items-center gap-2.5">
                     <span className="inline-block w-5 h-px bg-brand-400/80" />
                     Follow
@@ -304,40 +318,11 @@ export default function Footer() {
               </div>
             </motion.div>
 
-            {/* ═══════ CERTIFICATIONS + CONTACT — Premium Glass Cards ═══════ */}
+            {/* ═══════ CONTACT — Premium Glass Card ═══════ */}
             <motion.div
               variants={fadeUpStaggered(0.35)}
-              className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8"
+              className="grid grid-cols-1 gap-5 md:gap-8"
             >
-              {/* Certification Row — Premium Card */}
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="relative group rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-300/40 p-5 md:p-7 transition-all duration-500 overflow-hidden"
-              >
-                {/* Subtle hover glow */}
-                <div className="absolute -inset-20 bg-brand-300/[0.03] opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none" />
-                
-                <h4 className="font-heading font-bold text-brand-300/90 text-[10px] uppercase tracking-[0.25em] mb-4 md:mb-5 relative">
-                  Certified Natural Materials
-                </h4>
-                <div className="flex flex-wrap gap-3 relative">
-                  {certifications.map((cert) => (
-                    <div
-                      key={cert.label}
-                      className="group/cert flex flex-col items-center gap-1 px-5 py-3 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:bg-brand-300/[0.10] hover:border-brand-300/45 transition-all duration-300 min-w-[90px]"
-                    >
-                      <span className="font-accent font-bold text-sm tracking-wider text-white/40 group-hover/cert:text-brand-300 transition-colors duration-300">
-                        {cert.label}
-                      </span>
-                      <span className="text-[8px] text-white/20 group-hover/cert:text-white/40 font-body transition-colors duration-300 text-center leading-tight">
-                        {cert.sub}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
               {/* Contact Card — Premium Glass Card */}
               <motion.div
                 whileHover={{ y: -4 }}
@@ -350,7 +335,7 @@ export default function Footer() {
                   Visit Our Showroom
                 </h4>
                 <div className="flex flex-col gap-2.5 md:gap-3 relative">
-                  {showrooms.map((loc) => (
+                  {displayShowrooms.map((loc) => (
                     <div key={loc.city} className="flex items-start gap-3 group/loc">
                       <div className="w-6 h-6 rounded-full bg-brand-300/20 border border-brand-300/40 flex items-center justify-center shrink-0 mt-0.5 group-hover/loc:bg-brand-300/20 transition-colors">
                         <MapPin className="w-3 h-3 text-brand-300/80" />

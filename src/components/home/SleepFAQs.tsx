@@ -30,8 +30,12 @@ const categoryMap: Record<string, 'care' | 'durability' | 'customization'> = {
 
 const REMOVED_CATEGORIES = new Set(['Warranty and Returns']);
 
+// Trial & warranty questions are no longer offered — drop them from the site.
+const REMOVED_FAQ_TERMS = ['trial', 'warranty', 'return and refund'];
+
 function isRemovedFaq(f: any): boolean {
-  return REMOVED_CATEGORIES.has(f.category);
+  const q = (f.question || '').toLowerCase();
+  return REMOVED_CATEGORIES.has(f.category) || REMOVED_FAQ_TERMS.some(term => q.includes(term));
 }
 
 function extractText(blocks: any): string {
