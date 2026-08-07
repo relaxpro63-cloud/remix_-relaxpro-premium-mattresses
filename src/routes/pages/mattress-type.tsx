@@ -121,20 +121,17 @@ export default function MattressTypePage({ slug: propSlug }: { slug?: string }) 
               </FadeUp>
               <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {category.products.map((p) => (
-                  <motion.div
-                    key={p.slug}
-                    variants={staggerItem}
-                    whileHover={{ y: -6 }}
-                    onClick={() => navigate(`/mattresses/${p.slug}`)}
-                    className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-brand-200 shadow-sm hover:border-brand-600/30 hover:shadow-lg transition-all cursor-pointer flex flex-col justify-between gap-4"
-                  >
-                    <div>
+                  <motion.div key={p.slug} variants={staggerItem}>
+                    <Link
+                      to={`/mattresses/${p.slug}`}
+                      className="group block bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-brand-200 shadow-sm hover:border-brand-600/30 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 h-full"
+                    >
                       <h3 className="font-heading font-bold text-lg text-ink-900">{p.name}</h3>
-                      <p className="text-[12px] sm:text-sm text-graphite-600 font-body leading-relaxed mt-2">{p.note}</p>
-                    </div>
-                    <span className="inline-flex items-center gap-2 text-[10px] font-accent font-bold uppercase tracking-widest text-brand-600">
-                      View Model <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
+                      <p className="text-[12px] sm:text-sm text-graphite-600 font-body leading-relaxed mt-2 mb-6">{p.note}</p>
+                      <span className="inline-flex items-center gap-2 text-[10px] font-accent font-bold uppercase tracking-widest text-brand-600">
+                        View Model <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Link>
                   </motion.div>
                 ))}
               </StaggerChildren>
