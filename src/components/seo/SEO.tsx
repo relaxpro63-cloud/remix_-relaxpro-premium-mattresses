@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { getSiteSettings } from '../../lib/queries';
-import { SITE_URL } from '../../lib/site';
+import { SITE_URL, toAbsoluteUrl } from '../../lib/site';
 
 interface SEOProps {
   title: string;
@@ -11,6 +11,7 @@ interface SEOProps {
   ogType?: string;
   ogImage?: string;
   schema?: Record<string, any> | Record<string, any>[];
+  noindex?: boolean;
 }
 
 export default function SEO({
@@ -19,7 +20,8 @@ export default function SEO({
   canonical,
   ogType = 'website',
   ogImage,
-  schema
+  schema,
+  noindex = false
 }: SEOProps) {
   const [siteName, setSiteName] = useState('RelaxPro Premium Mattresses');
   const [siteUrl, setSiteUrl] = useState(SITE_URL);
@@ -45,12 +47,13 @@ export default function SEO({
     ? computedPath
     : `${siteUrl}${computedPath.startsWith('/') ? computedPath : `/${computedPath}`}`;
 
-  const resolvedOgImage = ogImage || defaultOgImage || '/favicon-128x128.png';
+  const resolvedOgImage = toAbsoluteUrl(ogImage || defaultOgImage || '/favicon-128x128.png');
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       {/* Open Graph / Facebook */}
       <meta property="og:title" content={title} />

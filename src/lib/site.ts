@@ -44,6 +44,21 @@ export const CONTACT_PHONE = '8686624494';
 export const CONTACT_PHONE_SECONDARY = '9642024494';
 
 /**
+ * Ensure a URL is absolute for SEO metadata (JSON-LD, og:image, twitter:image).
+ * - Already-absolute http(s) URLs are preserved.
+ * - Relative paths are resolved against SITE_URL.
+ * - Missing/empty values return ''.
+ * - No double slashes.
+ */
+export function toAbsoluteUrl(value: string | undefined | null): string {
+  if (!value) return '';
+  const trimmed = value.trim();
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return trimmed.startsWith('/') ? `${SITE_URL}${trimmed}` : `${SITE_URL}/${trimmed}`;
+}
+
+/**
  * Build a WhatsApp deep-link URL.
  * Synchronous — uses the compile-time constant WHATSAPP_NUMBER directly.
  * The async version getWhatsAppNumber() is only for cases where the

@@ -22,6 +22,7 @@ import { Product, MattressSize, SizeCategory } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import { STANDARD_SIZES, SIZE_CATEGORIES } from '../../types/sizes';
 import { getProductBySlug, getAllProducts, getSiteSettings, imageUrl } from '../../lib/queries';
+import { SITE_URL, toAbsoluteUrl } from '../../lib/site';
 
 interface ProductDetailRouteProps {
   onAddToCartDirect: (
@@ -174,7 +175,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       '@type': 'WebPage',
       name: 'Product Not Found | RelaxPro Premium Mattresses',
       description: 'The requested mattress model could not be found.',
-      url: `${window.location.origin}/mattresses/${slug}`,
+      url: `${SITE_URL}/mattresses/${slug}`,
     };
     return (
       <PageShell title="Product Not Found | RelaxPro Premium Mattresses" description="The requested mattress model could not be found." schema={productSchema}>
@@ -191,18 +192,18 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
-    image: product.image,
+    image: toAbsoluteUrl(product.image),
     description: product.keyBenefit,
     brand: { '@type': 'Brand', name: 'RelaxPro' },
     offers: {
       '@type': 'Offer',
+      url: `${SITE_URL}/mattresses/${product.slug}`,
       priceCurrency: 'INR',
       price: product.pricingModel === 'with_without_accessories'
         ? product.pricing.withoutAccessories?.[legacyKey] || 0
         : product.pricing.fabric300Gsm?.[legacyKey] || 0,
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
-      url: `${window.location.origin}/mattresses/${product.slug}`,
     },
   };
 

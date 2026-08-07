@@ -7,6 +7,7 @@ export interface PageShellProps {
   description: string;
   ogImage?: string;
   schema?: Record<string, unknown> | Array<Record<string, unknown>>;
+  noindex?: boolean;
   children: React.ReactNode;
 }
 
@@ -15,6 +16,7 @@ export default function PageShell({
   description,
   ogImage,
   schema,
+  noindex,
   children,
 }: PageShellProps) {
   return (
@@ -23,7 +25,7 @@ export default function PageShell({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <SEO title={title} description={description} ogImage={ogImage} schema={schema} />
+      <SEO title={title} description={description} ogImage={ogImage} schema={schema} noindex={noindex} />
       {children}
     </motion.div>
   );

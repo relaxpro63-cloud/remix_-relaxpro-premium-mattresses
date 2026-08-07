@@ -35,7 +35,6 @@ function AppContent() {
   const cart = useCart();
   const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
   const [selectedTier, setSelectedTier] = useState<Tier | 'all'>('all');
-  const [defaultSeo, setDefaultSeo] = useState<any>(null);
   const [popupSettings, setPopupSettings] = useState<any>(null);
   const popup = usePopup(popupSettings?.leadPopup ? {
     enabled: popupSettings.leadPopup.enabled,
@@ -47,7 +46,6 @@ function AppContent() {
 
   useEffect(() => {
     getSiteSettings().then(s => {
-      setDefaultSeo(s?.seo);
       setPopupSettings(s);
     }).catch(() => {});
   }, []);
@@ -99,8 +97,8 @@ function AppContent() {
                 path="/builder"
                 element={
                   <PageShell
-                    title={defaultSeo?.metaTitle || "Custom Mattress Builder - Design Your Perfect Sleep | RelaxPro"}
-                    description={defaultSeo?.metaDescription || "Personalize your GOLS natural latex mattress layer-by-layer. Choose GOTS bamboo cover, composite layers, custom size."}
+                    title="Build Your Mattress | RelaxPro"
+                    description="Personalize your GOLS natural latex mattress layer-by-layer. Choose GOTS bamboo cover, composite layers, custom size."
                   >
                     <MattressBuilder onAddToCart={(item) => cart.addToCart(item)} onNavigate={page} />
                   </PageShell>
@@ -110,8 +108,8 @@ function AppContent() {
                 path="/catalog"
                 element={
                   <PageShell
-                    title={defaultSeo?.metaTitle || "Our Natural Latex & Orthopedic Mattresses | RelaxPro"}
-                    description={defaultSeo?.metaDescription || "Browse India's finest chemical-free mattresses. Premium 7-zone latex, heavy rebonded ortho systems, and ventilated sleep tech."}
+                    title="Natural Latex Mattresses | RelaxPro Premium Mattresses"
+                    description="Browse India's finest chemical-free mattresses. Premium 7-zone latex, heavy rebonded ortho systems, and ventilated sleep tech."
                   >
                     <ProductList
                       onAddToCartDirect={(product, size, includeAcc) => cart.addToCartDirect(product, size, includeAcc)}
@@ -128,8 +126,8 @@ function AppContent() {
                 path="/compare"
                 element={
                   <PageShell
-                    title={defaultSeo?.metaTitle || "Compare Mattresses | RelaxPro Premium Mattresses"}
-                    description={defaultSeo?.metaDescription || "Compare dimensions, layers, comfort levels, and prices of RelaxPro natural latex mattresses."}
+                    title="Compare Natural Latex Mattresses | RelaxPro"
+                    description="Compare dimensions, layers, comfort levels, and prices of RelaxPro natural latex mattresses."
                   >
                     <CompareTable
                       onAddToCartDirect={(product, size, includeAcc) => cart.addToCartDirect(product, size, includeAcc)}
@@ -143,8 +141,9 @@ function AppContent() {
                 path="/cart"
                 element={
                   <PageShell
-                    title={defaultSeo?.metaTitle || "Your Cart | RelaxPro Premium Mattresses"}
-                    description={defaultSeo?.metaDescription || "Review your selected natural latex mattress and accessories before checkout."}
+                    title="Cart | RelaxPro"
+                    description="Review your selected natural latex mattress and accessories before checkout."
+                    noindex
                   >
                     <CartPage
                       cart={cart.cart}

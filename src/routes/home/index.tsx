@@ -38,7 +38,7 @@ import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
 import { getHomePage, getAllProducts, getTestimonials, getAllShowrooms, imageUrl } from '../../lib/queries';
-import { buildWhatsAppUrl } from '../../lib/site';
+import { buildWhatsAppUrl, SITE_URL, toAbsoluteUrl } from '../../lib/site';
 
 interface HomePageProps {
   onAddToCartDirect: (
@@ -54,8 +54,10 @@ interface HomePageProps {
 const homeSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#localbusiness`,
   name: 'RelaxPro Premium Mattresses',
-  image: '/images/products/prakriti.webp',
+  image: toAbsoluteUrl('/images/relaxpro-logo.png'),
+  logo: toAbsoluteUrl('/images/relaxpro-logo.png'),
   telephone: '+918686624494',
   email: 'relaxpro2022@gmail.com',
   address: {
@@ -66,7 +68,7 @@ const homeSchema = {
     postalCode: '500055',
     addressCountry: 'IN',
   },
-  url: 'https://www.relaxpromattress.com/',
+  url: SITE_URL,
   priceRange: '₹6,500 - ₹54,000',
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
@@ -181,7 +183,7 @@ export default function HomePage({
 
   return (
     <PageShell
-      title="RelaxPro Premium Mattresses | 100% Natural Organic Latex India"
+      title="RelaxPro Mattresses | Natural Latex Mattress Manufacturer in Hyderabad"
       description="Telangana and AP's leading manufacturer of pure natural latex mattresses. Handcrafted, GOLS certified Dunlop rubber latex direct from Kerala unit to your bedroom."
       schema={homeSchema}
     >

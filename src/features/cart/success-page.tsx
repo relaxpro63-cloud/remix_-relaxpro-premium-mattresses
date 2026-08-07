@@ -33,7 +33,7 @@ export default function SuccessPage({ orderReceipt, onReset }: SuccessPageProps)
 
   if (!orderReceipt) {
     return (
-      <PageShell title={pageTitle} description={pageDesc}>
+      <PageShell title={pageTitle} description={pageDesc} noindex>
         <div className="max-w-xl mx-auto px-4 md:px-6 py-20 text-center space-y-6 text-zinc-950">
           <h1 className="text-3xl font-display font-medium text-brand-950">No order found</h1>
           <button onClick={() => navigate('/catalog')} className="btn-primary bg-ink-900 hover:bg-ink-800 text-white font-accent text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-xl cursor-pointer shadow-md transition-all">{continueShopping}</button>
@@ -51,7 +51,7 @@ export default function SuccessPage({ orderReceipt, onReset }: SuccessPageProps)
   const message = `Hello Suresh! I have completed order booking ${orderReceipt.orderId} on the website. Final Amount: ₹${orderReceipt.grandTotal.toLocaleString('en-IN')}. items:%0A${orderItems}%0A%0AConsignee Details: Name: ${orderReceipt.name}, phone: ${orderReceipt.phone}, address: ${orderReceipt.address}. Please verify and dispatch!`;
 
   return (
-    <PageShell title={pageTitle} description={pageDesc}>
+    <PageShell title={pageTitle} description={pageDesc} noindex>
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}

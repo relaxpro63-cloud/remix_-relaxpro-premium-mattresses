@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /studio
+Disallow: /cart
+Disallow: /success
+
 Sitemap: https://www.relaxpromattress.com/sitemap.xml
