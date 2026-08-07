@@ -65,10 +65,18 @@ function parseFallbackHours(str: string | undefined): string[] {
     .split(',')
     .map((seg) => {
       const m = seg.match(/(\w{3})\s*-\s*(\w{3})\s*:\s*(.+)/);
-      if (!m) return null;
-      const parsed = parseHoursRange(m[3]);
-      if (!parsed) return null;
-      return `${SHORT_DAYS[m[1]] || m[1]}-${SHORT_DAYS[m[2]] || m[2]} ${parsed.open}-${parsed.close}`;
+      if (m) {
+        const parsed = parseHoursRange(m[3]);
+        if (!parsed) return null;
+        return `${SHORT_DAYS[m[1]] || m[1]}-${SHORT_DAYS[m[2]] || m[2]} ${parsed.open}-${parsed.close}`;
+      }
+      const single = seg.match(/(\w{3})\s*:\s*(.+)/);
+      if (single) {
+        const parsed = parseHoursRange(single[2]);
+        if (!parsed) return null;
+        return `${SHORT_DAYS[single[1]] || single[1]} ${parsed.open}-${parsed.close}`;
+      }
+      return null;
     })
     .filter(Boolean) as string[];
 }
