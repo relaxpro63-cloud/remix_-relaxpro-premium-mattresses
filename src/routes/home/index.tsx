@@ -200,23 +200,6 @@ export default function HomePage({
       {/* Certified & Trusted badges — moved from footer area to just after hero */}
       <FadeUp><TrustBadges /></FadeUp>
 
-      {/* Brand entity intro — makes the RelaxPro Mattress relationship explicit */}
-      <FadeUp>
-        <section className="section-light-lux py-12 md:py-16 px-4 md:px-8 border-b border-brand-200/30">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="eyebrow">The Manufacturer Behind the Sleep</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 mt-3">RelaxPro Mattress</h2>
-            <p className="text-graphite-600 text-sm sm:text-base md:text-lg font-body leading-relaxed mt-4 max-w-3xl mx-auto">
-              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep — handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
-              <Link to="/about-relaxpro-mattress" className="btn btn-primary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">About RelaxPro Mattress</Link>
-              <Link to="/latex-mattress" className="btn btn-secondary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">Explore Latex Mattresses</Link>
-            </div>
-          </div>
-        </section>
-      </FadeUp>
-
       <FadeUp>      <TwoWaysToOwn
         onStartBuilding={() => handlePageNavigation('builder')}
         onSeeAllModels={() => handlePageNavigation('catalog')}
@@ -694,6 +677,23 @@ export default function HomePage({
         <DecorativeBotanicals density="light" />
         <SleepFAQs />
       </section></FadeUp>
+
+      {/* Brand entity — The Manufacturer Behind the Sleep */}
+      <FadeUp>
+        <section className="section-light-lux py-16 md:py-24 px-4 md:px-8 border-t border-brand-200/30">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="eyebrow">The Manufacturer Behind the Sleep</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 mt-3">RelaxPro Mattress</h2>
+            <p className="text-graphite-600 text-sm sm:text-base md:text-lg font-body leading-relaxed mt-4 max-w-3xl mx-auto">
+              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep — handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
+              <Link to="/about-relaxpro-mattress" className="btn btn-primary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">About RelaxPro Mattress</Link>
+              <Link to="/latex-mattress" className="btn btn-secondary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">Explore Latex Mattresses</Link>
+            </div>
+          </div>
+        </section>
+      </FadeUp>
 
     </PageShell>
   );
