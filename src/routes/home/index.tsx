@@ -66,7 +66,7 @@ const homeSchema = {
     postalCode: '500055',
     addressCountry: 'IN',
   },
-  url: 'https://remix-relaxpro-matress.vercel.app/',
+  url: 'https://www.relaxpromattress.com/',
   priceRange: '₹6,500 - ₹54,000',
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
