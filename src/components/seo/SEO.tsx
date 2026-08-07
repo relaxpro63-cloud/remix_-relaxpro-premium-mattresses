@@ -45,7 +45,7 @@ export default function SEO({
     ? computedPath
     : `${siteUrl}${computedPath.startsWith('/') ? computedPath : `/${computedPath}`}`;
 
-  const resolvedOgImage = ogImage || defaultOgImage || '/favicon.svg';
+  const resolvedOgImage = ogImage || defaultOgImage || '/favicon-128x128.png';
 
   return (
     <Helmet>
