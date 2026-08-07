@@ -83,6 +83,8 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       subtitle: sanityProduct.subtitle || hc.subtitle,
       keyBenefit: sanityProduct.keyBenefit || sanityProduct.shortDescription || hc.keyBenefit,
       description: sanityProduct.description || sanityProduct.longDescription || hc.description,
+      longDescription: sanityProduct.longDescription || sanityProduct.description || hc.description,
+      category: sanityProduct.category || hc.category || undefined,
       badge: sanityProduct.badge || sanityProduct.badges?.[0] || hc.badge,
       comfortLevel: sanityProduct.comfortLevel || hc.comfortLevel,
       comfortRating: sanityProduct.comfortRating ?? hc.comfortRating,
@@ -190,21 +192,36 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
 
   const productSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    image: toAbsoluteUrl(product.image),
-    description: product.keyBenefit,
-    brand: { '@type': 'Brand', name: 'RelaxPro' },
-    offers: {
-      '@type': 'Offer',
-      url: `${SITE_URL}/mattresses/${product.slug}`,
-      priceCurrency: 'INR',
-      price: product.pricingModel === 'with_without_accessories'
-        ? product.pricing.withoutAccessories?.[legacyKey] || 0
-        : product.pricing.fabric300Gsm?.[legacyKey] || 0,
-      itemCondition: 'https://schema.org/NewCondition',
-      availability: 'https://schema.org/InStock',
-    },
+    '@graph': [
+      {
+        '@type': 'Product',
+        '@id': `${SITE_URL}/mattresses/${product.slug}#product`,
+        name: product.name,
+        image: toAbsoluteUrl(product.image),
+        description: product.longDescription || product.description || product.keyBenefit,
+        ...(product.category?.name ? { category: product.category.name } : {}),
+        brand: { '@type': 'Brand', name: 'RelaxPro' },
+        offers: {
+          '@type': 'Offer',
+          url: `${SITE_URL}/mattresses/${product.slug}`,
+          priceCurrency: 'INR',
+          price: product.pricingModel === 'with_without_accessories'
+            ? product.pricing.withoutAccessories?.[legacyKey] || 0
+            : product.pricing.fabric300Gsm?.[legacyKey] || 0,
+          itemCondition: 'https://schema.org/NewCondition',
+          availability: 'https://schema.org/InStock',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${SITE_URL}/mattresses/${product.slug}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Catalog', item: `${SITE_URL}/catalog` },
+          { '@type': 'ListItem', position: 3, name: product.name, item: `${SITE_URL}/mattresses/${product.slug}` },
+        ],
+      },
+    ],
   };
 
   // ─── Handlers ──────────────────────────────────────────────────────────────
@@ -388,6 +405,9 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                     <li key={i}>{s}{s.endsWith('.') ? '' : '.'}</li>
                   ))}
                 </ul>
+                {product.longDescription && product.longDescription !== product.description && (
+                  <p className="text-graphite-600 text-sm leading-relaxed font-body mt-4">{product.longDescription}</p>
+                )}
               </div>
 
               {/* ─── SIZE SELECTION BLOCK ─────────────────────────────────── */}
