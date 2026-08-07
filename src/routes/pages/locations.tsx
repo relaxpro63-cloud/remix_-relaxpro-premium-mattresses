@@ -5,11 +5,137 @@ import PageShell from '../../components/layout/PageShell';
 import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import { getLocations } from '../../lib/queries';
 import { LOCATIONS as FALLBACK_LOCATIONS } from '../../data/products';
-import { WHATSAPP_NUMBER } from '../../lib/site';
+import { WHATSAPP_NUMBER, SITE_URL, toAbsoluteUrl } from '../../lib/site';
+
+function parseHoursRange(range: string | undefined): { open: string; close: string } | null {
+  if (!range) return null;
+  const m = range.match(/(\d{1,2}):(\d{2})\s*(AM|PM)\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!m) return null;
+  const to24 = (h: number, meridiem: string) => {
+    if (meridiem.toUpperCase() === 'AM') return h === 12 ? 0 : h;
+    return h === 12 ? 12 : h + 12;
+  };
+  return {
+    open: `${String(to24(+m[1], m[3])).padStart(2, '0')}:${m[2]}`,
+    close: `${String(to24(+m[4], m[6])).padStart(2, '0')}:${m[5]}`,
+  };
+}
+
+const DAY_NAMES: Array<[string, string]> = [
+  ['monday', 'Monday'],
+  ['tuesday', 'Tuesday'],
+  ['wednesday', 'Wednesday'],
+  ['thursday', 'Thursday'],
+  ['friday', 'Friday'],
+  ['saturday', 'Saturday'],
+  ['sunday', 'Sunday'],
+];
+
+function openingHoursSpec(hours: unknown): any[] {
+  if (!hours || typeof hours !== 'object') return [];
+  const h = hours as Record<string, string | undefined>;
+  const byRange: Record<string, string[]> = {};
+  for (const [key, schemaDay] of DAY_NAMES) {
+    const parsed = parseHoursRange(h[key]);
+    if (!parsed) continue;
+    const rangeKey = `${parsed.open}-${parsed.close}`;
+    (byRange[rangeKey] = byRange[rangeKey] || []).push(schemaDay);
+  }
+  return Object.entries(byRange).map(([rangeKey, days]) => {
+    const [open, close] = rangeKey.split('-');
+    return {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: days,
+      opens: open,
+      closes: close,
+    };
+  });
+}
+
+const SHORT_DAYS: Record<string, string> = {
+  Mon: 'Mo', Tue: 'Tu', Wed: 'We', Thu: 'Th', Fri: 'Fr', Sat: 'Sa', Sun: 'Su',
+};
+
+// Parse the legacy combined string form, e.g.
+// "Mon - Sun: 10:00 AM - 9:00 PM"
+// "Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM"
+function parseFallbackHours(str: string | undefined): string[] {
+  if (!str) return [];
+  return str
+    .split(',')
+    .map((seg) => {
+      const m = seg.match(/(\w{3})\s*-\s*(\w{3})\s*:\s*(.+)/);
+      if (!m) return null;
+      const parsed = parseHoursRange(m[3]);
+      if (!parsed) return null;
+      return `${SHORT_DAYS[m[1]] || m[1]}-${SHORT_DAYS[m[2]] || m[2]} ${parsed.open}-${parsed.close}`;
+    })
+    .filter(Boolean) as string[];
+}
+
+function storeSchema(store: any): Record<string, unknown> {
+  const city = store.address?.city || store.city || 'Showroom';
+  const slug = store.slug || city.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'showroom';
+  const addrObj = typeof store.address === 'object' && store.address !== null ? store.address : {};
+  const fullAddress =
+    addrObj.fullAddress ||
+    addrObj.street ||
+    store.fullAddress ||
+    (typeof store.address === 'string' ? store.address : '');
+  const phones = store.contact?.phoneNumbers || store.phones || [];
+  const phone = phones[0] || store.telephone || '+918686624494';
+  const email = store.contact?.email || store.email || '';
+  const coords = store.coordinates || store.coords;
+  const geo =
+    coords && typeof coords.lat === 'number' && typeof coords.lng === 'number'
+      ? { '@type': 'GeoCoordinates', latitude: coords.lat, longitude: coords.lng }
+      : undefined;
+  const pincode = addrObj.pincode || store.pincode || fullAddress.match(/\b\d{6}\b/)?.[0] || undefined;
+  const openingHours = openingHoursSpec(store.hours);
+  const openingHoursLegacy = parseFallbackHours(store.hours);
+
+  return {
+    '@type': 'Store',
+    '@id': `${SITE_URL}/locations#${slug}`,
+    name: `RelaxPro ${city} Store`,
+    url: `${SITE_URL}/locations`,
+    image: toAbsoluteUrl('/og-image.jpg'),
+    telephone: phone,
+    ...(email ? { email } : {}),
+    priceRange: '₹₹',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: fullAddress,
+      addressLocality: city,
+      ...(pincode ? { postalCode: pincode } : {}),
+      addressCountry: 'IN',
+    },
+    ...(geo ? { geo } : {}),
+    ...(openingHours.length > 0
+      ? { openingHoursSpecification: openingHours }
+      : openingHoursLegacy.length > 0
+        ? { openingHours: openingHoursLegacy }
+        : {}),
+  };
+}
+
+function buildStoreSchemas(showrooms: any[]): Record<string, unknown> {
+  const stores = showrooms.map(storeSchema);
+  if (stores.length <= 1) {
+    return stores[0] || storeSchema(FALLBACK_LOCATIONS[0]);
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@graph': stores,
+  };
+}
 
 export default function LocationsPage() {
   const [locations, setLocations] = useState<any[]>([]);
   const [waNumber, setWaNumber] = useState(WHATSAPP_NUMBER);
+  const [storeSchemas, setStoreSchemas] = useState<Record<string, unknown>>(() =>
+    buildStoreSchemas(FALLBACK_LOCATIONS),
+  );
 
   useEffect(() => {
     getLocations().then(data => {
@@ -54,6 +180,7 @@ export default function LocationsPage() {
           };
         });
         setLocations(normalized);
+        setStoreSchemas(buildStoreSchemas(data));
       }
     }).catch(() => {});
   }, []);
@@ -64,6 +191,7 @@ export default function LocationsPage() {
     <PageShell
       title="RelaxPro Experience Stores - Hyderabad, Rajahmundry, Bangalore"
       description="Visit our experience showrooms to test 7-zone organic latex & firm ortho mattresses. Get direct factory pricing, maps & directions."
+      schema={storeSchemas}
     >
       <div className="relative overflow-hidden">
       <DecorativeBotanicals density="light" />
