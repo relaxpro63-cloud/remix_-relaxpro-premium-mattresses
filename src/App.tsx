@@ -13,6 +13,8 @@ import { OrderReceipt, Tier } from './types';
 import HomePage from './routes/home/index';
 import SleepSciencePage from './routes/pages/sleep-science';
 import AboutPage from './routes/pages/about';
+import AboutRelaxProMattressPage from './routes/pages/about-relaxpro-mattress';
+import MattressTypePage from './routes/pages/mattress-type';
 import LocationsPage from './routes/pages/locations';
 import ContactPage from './routes/pages/contact';
 import NotFoundPage from './routes/pages/not-found';
@@ -158,6 +160,13 @@ function AppContent() {
               />
               <Route path="/science" element={<SleepSciencePage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/about-relaxpro-mattress" element={<AboutRelaxProMattressPage />} />
+              <Route path="/latex-mattress" element={<MattressTypePage slug="latex-mattress" />} />
+              <Route path="/natural-latex-mattress" element={<MattressTypePage slug="natural-latex-mattress" />} />
+              <Route path="/hr-foam-mattress" element={<MattressTypePage slug="hr-foam-mattress" />} />
+              <Route path="/rebonded-mattress" element={<MattressTypePage slug="rebonded-mattress" />} />
+              <Route path="/orthopedic-mattress" element={<MattressTypePage slug="orthopedic-mattress" />} />
+              <Route path="/custom-size-mattress" element={<MattressTypePage slug="custom-size-mattress" />} />
               <Route path="/locations" element={<LocationsPage />} />
               <Route
                 path="/accessories"

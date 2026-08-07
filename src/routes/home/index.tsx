@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion, useMotionValue, animate } from 'motion/react';
 import { PRODUCTS } from '../../data/products';
 import { CartItem, Product, MattressSize, OrderReceipt } from '../../types';
@@ -38,7 +38,7 @@ import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
 import { getHomePage, getAllProducts, getTestimonials, getAllShowrooms, imageUrl } from '../../lib/queries';
-import { buildWhatsAppUrl, SITE_URL, toAbsoluteUrl } from '../../lib/site';
+import { buildWhatsAppUrl, SITE_URL, toAbsoluteUrl, BUSINESS_NAME, SAME_AS } from '../../lib/site';
 
 interface HomePageProps {
   onAddToCartDirect: (
@@ -55,11 +55,14 @@ const homeSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `${SITE_URL}/#localbusiness`,
-  name: 'RelaxPro Premium Mattresses',
+  name: BUSINESS_NAME,
+  alternateName: 'RelaxPro Premium Mattresses',
   image: toAbsoluteUrl('/images/relaxpro-logo.png'),
   logo: toAbsoluteUrl('/images/relaxpro-logo.png'),
   telephone: '+918686624494',
   email: 'relaxpro2022@gmail.com',
+  foundingDate: '2015',
+  sameAs: SAME_AS,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Jeedimetla Industrial Area, Phase 3, Near Prasad Labs',
@@ -183,8 +186,8 @@ export default function HomePage({
 
   return (
     <PageShell
-      title="RelaxPro Mattresses | Natural Latex Mattress Manufacturer in Hyderabad"
-      description="Telangana and AP's leading manufacturer of pure natural latex mattresses. Handcrafted, GOLS certified Dunlop rubber latex direct from Kerala unit to your bedroom."
+      title="RelaxPro Mattress | Premium Latex Mattresses in Hyderabad"
+      description="RelaxPro Mattress is a Hyderabad-based mattress manufacturer producing premium natural latex, HR foam, rebonded and custom-size mattresses. GOLS-certified, factory-direct."
       schema={homeSchema}
     >
       <HeroSlider
@@ -196,6 +199,23 @@ export default function HomePage({
 
       {/* Certified & Trusted badges — moved from footer area to just after hero */}
       <FadeUp><TrustBadges /></FadeUp>
+
+      {/* Brand entity intro — makes the RelaxPro Mattress relationship explicit */}
+      <FadeUp>
+        <section className="section-light-lux py-12 md:py-16 px-4 md:px-8 border-b border-brand-200/30">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="eyebrow">The Manufacturer Behind the Sleep</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 mt-3">RelaxPro Mattress</h2>
+            <p className="text-graphite-600 text-sm sm:text-base md:text-lg font-body leading-relaxed mt-4 max-w-3xl mx-auto">
+              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep — handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
+              <Link to="/about-relaxpro-mattress" className="btn btn-primary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">About RelaxPro Mattress</Link>
+              <Link to="/latex-mattress" className="btn btn-secondary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">Explore Latex Mattresses</Link>
+            </div>
+          </div>
+        </section>
+      </FadeUp>
 
       <FadeUp>      <TwoWaysToOwn
         onStartBuilding={() => handlePageNavigation('builder')}

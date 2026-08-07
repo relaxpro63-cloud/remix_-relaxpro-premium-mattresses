@@ -49,14 +49,20 @@ export default function Footer() {
 
   const companyLinks = [
     { label: 'About Us', path: '/about' },
+    { label: 'About RelaxPro Mattress', path: '/about-relaxpro-mattress' },
     { label: 'Why Latex', path: '/science' },
     { label: 'Sleep Science', path: '/science' },
   ];
 
   const productLinks = [
     { label: 'Our Models', path: '/catalog' },
-    { label: 'Custom Mattress', path: '/builder' },
-    { label: 'Luxury Collection', path: '/catalog' },
+    { label: 'Latex Mattress', path: '/latex-mattress' },
+    { label: 'Natural Latex Mattress', path: '/natural-latex-mattress' },
+    { label: 'HR Foam Mattress', path: '/hr-foam-mattress' },
+    { label: 'Rebonded Mattress', path: '/rebonded-mattress' },
+    { label: 'Orthopedic Mattress', path: '/orthopedic-mattress' },
+    { label: 'Custom Size Mattress', path: '/custom-size-mattress' },
+    { label: 'Custom Builder', path: '/builder' },
     { label: 'Accessories', path: '/accessories' },
   ];
 

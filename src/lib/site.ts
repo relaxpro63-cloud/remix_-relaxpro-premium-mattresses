@@ -43,6 +43,17 @@ export const WHATSAPP_NUMBER = env.VITE_WHATSAPP_NUMBER || '918686624494';
 export const CONTACT_PHONE = '8686624494';
 export const CONTACT_PHONE_SECONDARY = '9642024494';
 
+/** Canonical brand name for structured data and entity consistency. */
+export const BUSINESS_NAME = 'RelaxPro Mattress';
+
+/** Official social profiles (also used for Organization/LocalBusiness sameAs). */
+export const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/',
+  instagram: 'https://www.instagram.com/relaxpro__mattresses/?hl=en',
+  youtube: 'https://www.youtube.com/@sureshmattressmanufacturer3784',
+};
+export const SAME_AS = Object.values(SOCIAL_LINKS);
+
 /**
  * Ensure a URL is absolute for SEO metadata (JSON-LD, og:image, twitter:image).
  * - Already-absolute http(s) URLs are preserved.

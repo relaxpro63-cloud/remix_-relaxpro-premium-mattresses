@@ -48,7 +48,8 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const heading = hero?.slides?.[0]?.heading || 'Nature to Your Bed';
+  const heading = 'RelaxPro Mattress';
+  const subheading = 'Premium Latex & Natural Rubber Mattresses for Better Sleep';
   const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Handcrafted in Hyderabad and shipped directly to your doorstep.';
   const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Shop Collection';
   const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.webp';
@@ -131,12 +132,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 className="font-heading text-[2.5rem] lg:text-[3.2rem] xl:text-[3.8rem] 2xl:text-[4.5rem] leading-[1.05] lg:leading-[1.06] xl:leading-[1.08] tracking-tight text-white"
               >
                 {heading}
-                {hero?.slides?.[0]?.highlight && (
-                  <span className="block text-gradient-brand">{hero.slides[0].highlight}</span>
-                )}
-                {hero?.slides?.[0]?.subheading && (
-                  <span className="block">{hero.slides[0].subheading}</span>
-                )}
+                <span className="block text-gradient-brand">{subheading}</span>
               </motion.h1>
 
               <motion.p
@@ -299,12 +295,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             className="font-heading text-xl xs:text-2xl sm:text-3xl leading-[1.15] xs:leading-[1.12] sm:leading-[1.1] text-white"
           >
             {heading}
-            {hero?.slides?.[0]?.highlight && (
-              <span className="block text-gradient-brand">{hero.slides[0].highlight}</span>
-            )}
-            {hero?.slides?.[0]?.subheading && (
-              <span className="block">{hero.slides[0].subheading}</span>
-            )}
+            <span className="block text-gradient-brand">{subheading}</span>
           </motion.h1>
 
           <motion.p

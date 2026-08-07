@@ -64,6 +64,13 @@ const pages = [
   { path: '/accessories', priority: 0.5, changefreq: 'monthly', lastmod: today },
   { path: '/certificates', priority: 0.5, changefreq: 'monthly', lastmod: today },
   { path: '/compare', priority: 0.5, changefreq: 'monthly', lastmod: today },
+  { path: '/about-relaxpro-mattress', priority: 0.6, changefreq: 'monthly', lastmod: today },
+  { path: '/latex-mattress', priority: 0.7, changefreq: 'weekly', lastmod: today },
+  { path: '/natural-latex-mattress', priority: 0.7, changefreq: 'weekly', lastmod: today },
+  { path: '/hr-foam-mattress', priority: 0.6, changefreq: 'weekly', lastmod: today },
+  { path: '/rebonded-mattress', priority: 0.6, changefreq: 'weekly', lastmod: today },
+  { path: '/orthopedic-mattress', priority: 0.6, changefreq: 'weekly', lastmod: today },
+  { path: '/custom-size-mattress', priority: 0.6, changefreq: 'weekly', lastmod: today },
 ];
 
 async function getProductSlugsFromSanity() {
