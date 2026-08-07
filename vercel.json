@@ -1,4 +1,36 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://www.relaxpromattress.com/:path*",
+      "has": [{ "type": "host", "value": "relaxpro-matress.vercel.app" }],
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://www.relaxpromattress.com/:path*",
+      "has": [{ "type": "host", "value": "remix-relaxpro-matress.vercel.app" }],
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://www.relaxpromattress.com/:path*",
+      "has": [{ "type": "host", "value": "relaxpromatress.vercel.app" }],
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://www.relaxpromattress.com/:path*",
+      "has": [{ "type": "host", "value": "relaxpro-premium-mattresses.vercel.app" }],
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://www.relaxpromattress.com/:path*",
+      "has": [{ "type": "host", "value": "relaxpromattress.com" }],
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
