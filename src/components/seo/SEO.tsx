@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { getSiteSettings } from '../../lib/queries';
+import { SITE_URL } from '../../lib/site';
 
 interface SEOProps {
   title: string;
@@ -21,7 +22,7 @@ export default function SEO({
   schema
 }: SEOProps) {
   const [siteName, setSiteName] = useState('RelaxPro Premium Mattresses');
-  const [siteUrl, setSiteUrl] = useState('https://relaxpro.in');
+  const [siteUrl, setSiteUrl] = useState(SITE_URL);
   const [defaultOgImage, setDefaultOgImage] = useState(ogImage || '');
   const location = useLocation();
 

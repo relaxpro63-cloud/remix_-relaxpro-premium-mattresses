@@ -15,7 +15,31 @@ function readEnv(key) {
   return process.env[key]?.trim();
 }
 
-const baseUrl = (readEnv('VITE_SITE_URL') || 'https://www.relaxpromattress.com').replace(/\/+$/, '');
+const PRODUCTION_SITE_URL = 'https://www.relaxpromattress.com';
+
+function resolveBaseUrl() {
+  const fromEnv = readEnv('VITE_SITE_URL');
+  if (fromEnv) {
+    try {
+      const host = new URL(fromEnv).hostname;
+      const isInvalid =
+        host.endsWith('vercel.app') ||
+        host === 'localhost' ||
+        host.startsWith('127.') ||
+        host.endsWith('.local');
+      if (isInvalid) {
+        console.warn(`[generate-sitemap] Ignoring invalid VITE_SITE_URL "${fromEnv}" (not a production domain).`);
+      } else {
+        return fromEnv.replace(/\/+$/, '');
+      }
+    } catch {
+      console.warn(`[generate-sitemap] Ignoring malformed VITE_SITE_URL "${fromEnv}".`);
+    }
+  }
+  return PRODUCTION_SITE_URL;
+}
+
+const baseUrl = resolveBaseUrl();
 const lastmod = new Date().toISOString().slice(0, 10);
 
 const pages = [
@@ -26,6 +50,9 @@ const pages = [
   { path: '/locations', priority: 0.6, changefreq: 'monthly' },
   { path: '/contact', priority: 0.6, changefreq: 'monthly' },
   { path: '/about', priority: 0.5, changefreq: 'monthly' },
+  { path: '/accessories', priority: 0.5, changefreq: 'monthly' },
+  { path: '/certificates', priority: 0.5, changefreq: 'monthly' },
+  { path: '/compare', priority: 0.5, changefreq: 'monthly' },
 ];
 
 const productsSrc = readFileSync(resolve(root, 'src/data/products.ts'), 'utf8');
