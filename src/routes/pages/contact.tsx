@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ShoppingBag, ArrowRight, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { FadeUp } from '../../components/motion/motionPrimitives';
@@ -144,7 +144,7 @@ export default function ContactPage() {
               className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30 cursor-pointer group text-left"
             >
               <img
-                src="/images/shuddha-banner.png"
+                src="/images/shuddha-banner.webp"
                 alt="Shuddha Premium Collection — Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"

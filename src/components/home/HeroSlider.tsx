@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { ChevronRight, Shield, Award, Leaf, IndianRupee, ShieldCheck, Sparkles, Truck, RefreshCcw, CheckCircle, Heart, BadgeCheck, FlameKindling, ShieldAlert } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
@@ -51,7 +51,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const heading = hero?.slides?.[0]?.heading || 'Nature to Your Bed';
   const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Handcrafted in Hyderabad and shipped directly to your doorstep.';
   const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Shop Collection';
-  const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.png';
+  const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.webp';
   const eyebrow = hero?.slides?.[0]?.badge || 'Handcrafted Since 2015';
 
   const heroTrustBadges = (hero?.slides?.[0]?.trustBadges || [])

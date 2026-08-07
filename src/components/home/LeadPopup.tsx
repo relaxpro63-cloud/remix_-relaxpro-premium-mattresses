@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Mail, Phone, User, Loader2, CheckCircle, ChevronRight } from 'lucide-react';
 import { submitLead } from '../../services/leadService';
@@ -35,7 +35,7 @@ const DEFAULT_CONTENT: PopupContent = {
   dontShowAgainText: "Don't show this again",
   showLogo: true,
   submittingText: 'Submitting...',
-  image: '/images/hero-bedroom.png',
+  image: '/images/hero-bedroom.webp',
 };
 
 export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgain, content }: LeadPopupProps) {

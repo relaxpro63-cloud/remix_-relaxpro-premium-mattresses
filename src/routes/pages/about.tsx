@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ShoppingBag, ArrowRight } from 'lucide-react';
@@ -12,7 +12,7 @@ const defaultSections = [
   {
     label: 'Our Story',
     heading: "Telangana and AP's first pure latex mattress company",
-    image: '/images/about-story.png',
+    image: '/images/about-story.webp',
     imageAlt: 'RelaxPro factory floor in Jeedimetla, Hyderabad',
     paragraphs: [
       'RelaxPro handcrafts natural latex sleep systems for South India, delivered direct from our Kerala factory with transparent pricing and no synthetic fillers. Founded by Suresh, a third-generation rubber goods manufacturer, the brand was built to solve a problem he saw everywhere: families paying luxury prices for mattresses filled with industrial chemicals.',
@@ -23,7 +23,7 @@ const defaultSections = [
   {
     label: 'The Kerala Process',
     heading: 'From plantation to bedroom in fourteen days',
-    image: '/images/about-process.png',
+    image: '/images/about-process.webp',
     imageAlt: 'Latex tapping at a Kerala rubber plantation at dawn',
     paragraphs: [
       'At 4 AM each morning, tappers move through the plantation making clean diagonal cuts in the bark. The raw latex flows into collection cups and is transported to our unit within hours — before polymerization begins.',
@@ -176,7 +176,7 @@ export default function AboutPage() {
               className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30 cursor-pointer group text-left"
             >
               <img
-                src="/images/shuddha-banner.png"
+                src="/images/shuddha-banner.webp"
                 alt="Shuddha Premium Collection — Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"

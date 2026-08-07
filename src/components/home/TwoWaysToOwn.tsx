@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Layers, BoxSelect, Expand, BedDouble, ShieldCheck, Truck, ArrowRight, ArrowRightCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
@@ -35,7 +35,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
       {/* Full-section background image (subtle texture) — renders first, botanicals on top */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img
-          src="/images/section-bg.png"
+          src="/images/section-bg.webp"
           alt="Natural organic latex texture with botanical accents"
           className="absolute inset-0 w-full h-full object-cover opacity-25"
           loading="lazy"
@@ -83,7 +83,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="-mx-5 xs:-mx-6 sm:-mx-8 md:-mx-10 lg:-mx-12 -mt-5 xs:-mt-6 sm:-mt-8 md:-mt-10 lg:-mt-12 mb-4 xs:mb-5 sm:mb-6 rounded-t-2xl xs:rounded-t-3xl md:rounded-t-[28px] lg:rounded-t-[32px] overflow-hidden">
                 <div className="relative h-44 xs:h-48 sm:h-56 md:h-60 lg:h-64 overflow-hidden">
                   <img
-                    src={imageUrl(data?.customBuilder?.image) || '/images/box-customize.png'}
+                    src={imageUrl(data?.customBuilder?.image) || '/images/box-customize.webp'}
                     alt="Artisan hand-layering natural latex and organic wool comfort layers"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -164,7 +164,7 @@ export default function TwoWaysToOwn({ onStartBuilding, onSeeAllModels }: TwoWay
               <div className="-mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-6 rounded-t-[32px] overflow-hidden">
                 <div className="relative h-56 sm:h-64 overflow-hidden">
                   <img
-                    src={imageUrl(data?.shopPrebuilt?.image) || '/images/box-models.png'}
+                    src={imageUrl(data?.shopPrebuilt?.image) || '/images/box-models.webp'}
                     alt="Luxury bedroom with a premium organic latex mattress in warm morning light"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"

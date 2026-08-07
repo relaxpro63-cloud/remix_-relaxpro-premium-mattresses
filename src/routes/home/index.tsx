@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useMotionValue, animate } from 'motion/react';
 import { PRODUCTS } from '../../data/products';
@@ -216,7 +216,7 @@ export default function HomePage({
               className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30 cursor-pointer group text-left"
             >
               <img
-                src="/images/shuddha-banner.png"
+                src="/images/shuddha-banner.webp"
                 alt="Shuddha Premium Collection — Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"
