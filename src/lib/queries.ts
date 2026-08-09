@@ -214,6 +214,7 @@ export async function getAllShowrooms() {
     address { city, fullAddress, street, landmark, pincode, state },
     contact { phoneNumbers, email, whatsapp },
     hours { monday, tuesday, wednesday, thursday, friday, saturday, sunday, note },
+    coordinates { lat, lng },
     image { asset->{_id, url}, alt }
   }`)
 }

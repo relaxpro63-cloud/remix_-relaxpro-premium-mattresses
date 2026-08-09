@@ -5,7 +5,7 @@ import PageShell from '../../components/layout/PageShell';
 import DecorativeBotanicals from '../../components/home/DecorativeBotanicals';
 import { getLocations } from '../../lib/queries';
 import { LOCATIONS as FALLBACK_LOCATIONS } from '../../data/products';
-import { WHATSAPP_NUMBER, SITE_URL, toAbsoluteUrl } from '../../lib/site';
+import { WHATSAPP_NUMBER, SITE_URL, toAbsoluteUrl, buildMapsUrl } from '../../lib/site';
 
 function parseHoursRange(range: string | undefined): { open: string; close: string } | null {
   if (!range) return null;
@@ -185,6 +185,7 @@ export default function LocationsPage() {
             hours: hoursDisplay,
             hoursNote,
             phones: loc.contact?.phoneNumbers || loc.phones || [],
+            coords: loc.coordinates,
           };
         });
         setLocations(normalized);
@@ -242,8 +243,16 @@ export default function LocationsPage() {
                   }}
                   className="w-full bg-ink-900 hover:bg-brand-800 text-white rounded-full py-2.5 sm:py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer text-center"
                 >
-                  Book Visit + Map Route
+                  Book Visit
                 </button>
+                <a
+                  href={buildMapsUrl(loc.coords, `${loc.address}, ${loc.city}, India`)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full border border-ink-900 text-ink-900 hover:bg-brand-50 rounded-full py-2.5 sm:py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer text-center block"
+                >
+                  Map Route
+                </a>
               </div>
             </div>
             </motion.div>

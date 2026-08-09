@@ -78,3 +78,27 @@ export function toAbsoluteUrl(value: string | undefined | null): string {
 export const buildWhatsAppUrl = (message: string) => {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 };
+
+/**
+ * Build a Google Maps link for a showroom.
+ * - Uses exact GPS coordinates (lat,lng) when available → opens turn-by-turn
+ *   directions to that store.
+ * - Falls back to a Google Maps search for the full address string.
+ */
+export function buildMapsUrl(
+  coords?: { lat?: number; lng?: number } | null,
+  query?: string,
+): string {
+  if (
+    coords &&
+    typeof coords.lat === 'number' &&
+    typeof coords.lng === 'number' &&
+    Number.isFinite(coords.lat) &&
+    Number.isFinite(coords.lng)
+  ) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${coords.lat},${coords.lng}`;
+  }
+  const q = (query || '').trim();
+  if (!q) return 'https://www.google.com/maps/search/?api=1&query=RelaxPro+Showroom';
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+};

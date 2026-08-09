@@ -38,7 +38,7 @@ import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
 import { getHomePage, getAllProducts, getTestimonials, getAllShowrooms, imageUrl } from '../../lib/queries';
-import { buildWhatsAppUrl, SITE_URL, toAbsoluteUrl, BUSINESS_NAME, SAME_AS } from '../../lib/site';
+import { buildWhatsAppUrl, buildMapsUrl, SITE_URL, toAbsoluteUrl, BUSINESS_NAME, SAME_AS } from '../../lib/site';
 
 interface HomePageProps {
   onAddToCartDirect: (
@@ -651,7 +651,7 @@ export default function HomePage({
                   <div className="text-ink-900"><strong className="text-graphite-500 font-medium">Contact:</strong> {(loc.contact?.phoneNumbers || []).join(', ')}</div>
                 </div>
                 
-                <div className="mt-6 pt-5 border-t border-brand-200/30">
+                <div className="mt-6 pt-5 border-t border-brand-200/30 flex flex-col gap-2">
                   <motion.a
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -660,7 +660,20 @@ export default function HomePage({
                     rel="noreferrer"
                     className="btn btn-primary w-full flex items-center justify-center gap-2 py-3.5 px-4 text-[10px] sm:text-xs font-accent font-bold uppercase tracking-widest rounded-xl shadow-md"
                   >
-                    Book Visit + Map Route
+                    Book Visit
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href={buildMapsUrl(
+                      loc.coordinates,
+                      `${loc.address?.fullAddress || loc.address?.street || ''}, ${loc.address?.city || loc.name}, ${loc.address?.state || ''}, India`
+                    )}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-secondary w-full flex items-center justify-center gap-2 py-3.5 px-4 text-[10px] sm:text-xs font-accent font-bold uppercase tracking-widest rounded-xl shadow-md"
+                  >
+                    Map Route
                   </motion.a>
                 </div>
               </motion.div>
