@@ -48,10 +48,10 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const heading = 'RelaxPro Mattress';
-  const subheading = 'Premium Latex & Natural Rubber Mattresses for Better Sleep';
-  const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, zero synthetic fillers or cancer-causing VOCs. Handcrafted in Hyderabad and shipped directly to your doorstep.';
-  const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Shop Collection';
+  const heading = 'RelaxPro';
+  const subheading = 'Luxury Natural Latex Mattresses';
+  const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, handcrafted in Hyderabad and delivered to your door.';
+  const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Explore Collection';
   const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.webp';
   const eyebrow = hero?.slides?.[0]?.badge || 'Handcrafted Since 2015';
 

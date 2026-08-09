@@ -75,6 +75,9 @@ const COLUMN_HEADERS = [
 // ─── MAIN ENTRY POINT (POST) ───────────────────────────────
 function doPost(e) {
   try {
+    // Guard against missing event object (e.g. manual run from editor).
+    e = e || {};
+
     // 1. Get or create the 'Leads' sheet
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     let sheet = ss.getSheetByName(SHEET_NAME);
@@ -90,9 +93,42 @@ function doPost(e) {
         .setFontColor('#0F1F17');  // dark text
     }
 
-    // 2. Extract parameters from the POST request
-    //    (sent as URL-encoded form data from leadService.ts)
-    const params = e.parameter || {};
+    // 2. Extract parameters from the POST request.
+    //    The frontend (leadService.ts) sends URL-encoded form data, but also
+    //    includes a JSON blob in `payload` / `json` fields. Merge all sources
+    //    so every field survives no matter how the body was encoded.
+    const params = {};
+    if (e.parameter) Object.assign(params, e.parameter);
+
+    if (e.postData && e.postData.contents) {
+      try {
+        const json = JSON.parse(e.postData.contents);
+        if (json && typeof json === 'object') Object.assign(params, json);
+      } catch (jsonErr) {
+        // Not JSON — could be raw urlencoded text; fall through.
+        try {
+          const raw = e.postData.contents;
+          if (typeof raw === 'string' && raw.indexOf('=') !== -1) {
+            for (const pair of raw.split('&')) {
+              const kv = pair.split('=');
+              if (kv.length === 2 && kv[0]) {
+                params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1].replace(/\+/g, ' '));
+              }
+            }
+          }
+        } catch (parseErr) { /* ignore */ }
+      }
+    }
+
+    // If payload/json fields contained nested JSON, merge them too.
+    for (const key of ['payload', 'json']) {
+      if (params[key] && typeof params[key] === 'string') {
+        try {
+          const nested = JSON.parse(params[key]);
+          if (nested && typeof nested === 'object') Object.assign(params, nested);
+        } catch (nestedErr) { /* ignore */ }
+      }
+    }
 
     // 3. Build the row — matching the COLUMN_HEADERS order
     const row = [
