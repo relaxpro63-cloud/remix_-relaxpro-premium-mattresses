@@ -33,5 +33,22 @@ export default defineConfig(() => {
     define: {
       'import.meta.env.VITE_BACKEND_URL': JSON.stringify(process.env.BACKEND_URL),
     },
+    build: {
+      target: 'es2018',
+      sourcemap: false,
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('gsap') || id.includes('lenis')) return 'scroll';
+              if (id.includes('@sanity') || id.includes('sanity')) return 'sanity';
+              if (id.includes('motion') || id.includes('framer-motion')) return 'motion';
+              if (id.includes('react-dom') || id.includes('react-router') || id.includes('react-helmet') || id.includes('scheduler')) return 'react';
+            }
+          },
+        },
+      },
+    },
   };
 });

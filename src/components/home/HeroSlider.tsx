@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { ChevronRight, Shield, Award, Leaf, IndianRupee, ShieldCheck, Sparkles, Truck, RefreshCcw, CheckCircle, Heart, BadgeCheck, FlameKindling, ShieldAlert } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
+import { urlFor } from '../../lib/sanity';
 import DecorativeBotanicals from './DecorativeBotanicals';
 
 const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
@@ -52,7 +53,11 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
   const subheading = 'Luxury Natural Latex Mattresses';
   const subtext = hero?.slides?.[0]?.description || 'GOLS-certified organic latex, handcrafted in Hyderabad and delivered to your door.';
   const ctaLabel = hero?.slides?.[0]?.primaryCta?.label || 'Explore Collection';
-  const heroImage = imageUrl(hero?.slides?.[0]?.image) || '/images/hero-section.webp';
+  const heroImg = hero?.slides?.[0]?.image || null;
+  const heroImage = heroImg ? imageUrl(heroImg) : '/images/hero-section.webp';
+  const heroSrcSet = heroImg
+    ? [640, 828, 1200, 1600, 1920].map(w => `${urlFor(heroImg).width(w).auto('format').quality(80).url()} ${w}w`).join(', ')
+    : '';
   const eyebrow = hero?.slides?.[0]?.badge || 'Handcrafted Since 2015';
 
   const heroTrustBadges = (hero?.slides?.[0]?.trustBadges || [])
@@ -205,11 +210,14 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             animate={{ scale: 1.08, opacity: 1 }}
             transition={{ duration: 2.5, ease: EASE_LUXURY }}
             src={heroImage}
+            srcSet={heroSrcSet || undefined}
+            sizes="(max-width: 768px) 0vw, 60vw"
             alt="RelaxPro founder with premium handcrafted natural latex mattress"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: '18% center' }}
-            sizes="(max-width: 768px) 0vw, 60vw"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           {/* Breathing ambient blue glow — screen-blended over the photo */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none mix-blend-screen z-[1]">
@@ -239,11 +247,14 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         <div className="relative h-[36vh] xs:h-[40vh] sm:h-[44vh] min-h-[280px] xs:min-h-[300px] sm:min-h-[330px] overflow-hidden">
           <img
             src={heroImage}
+            srcSet={heroSrcSet || undefined}
+            sizes="100vw"
             alt="RelaxPro founder with premium natural latex mattress"
             className="w-full h-full object-cover"
             style={{ objectPosition: '40% center' }}
-            sizes="100vw"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-[#063D64]" />
 
