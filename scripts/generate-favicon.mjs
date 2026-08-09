@@ -14,8 +14,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.resolve(__dirname, '..', 'public');
 
 const SOURCE =
-  fs.existsSync(path.join(PUBLIC, 'images', '128 favicon logo.png'))
-    ? path.join(PUBLIC, 'images', '128 favicon logo.png')
+  fs.existsSync(path.join(PUBLIC, 'images', 'relaxpro-logo.png'))
+    ? path.join(PUBLIC, 'images', 'relaxpro-logo.png')
     : path.join(PUBLIC, 'favicon-128x128.png');
 
 const SIZES = [16, 32, 48, 64, 128];
@@ -62,7 +62,10 @@ async function main() {
 
   const pngBuffers = [];
   for (const size of SIZES) {
-    const buf = await sharp(SOURCE).resize(size, size).png().toBuffer();
+    const buf = await sharp(SOURCE)
+      .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .png()
+      .toBuffer();
     pngBuffers.push({ size, buffer: buf });
     fs.writeFileSync(path.join(PUBLIC, `favicon-${size}x${size}.png`), buf);
     console.log(`  ✓ favicon-${size}x${size}.png  (${buf.length} bytes)`);
@@ -74,7 +77,10 @@ async function main() {
   console.log(`  ✓ favicon.ico  (${ico.length} bytes)`);
 
   // apple-touch-icon (180×180) for iOS home-screen shortcuts
-  const apple = await sharp(SOURCE).resize(180, 180).png().toBuffer();
+  const apple = await sharp(SOURCE)
+    .resize(180, 180, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toBuffer();
   fs.writeFileSync(path.join(PUBLIC, 'apple-touch-icon.png'), apple);
   console.log(`  ✓ apple-touch-icon.png  (${apple.length} bytes)`);
 
