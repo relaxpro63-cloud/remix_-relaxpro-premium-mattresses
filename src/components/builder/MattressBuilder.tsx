@@ -217,25 +217,28 @@ function MattressPreview({ build, config, price }: {
         </div>
       </div>
 
-      {/* Mattress visualization - glassmorphism refined */}
-      <div className="relative bg-gradient-to-b from-ink-900 to-ink-950 rounded-[1.5rem] p-5 overflow-hidden min-h-[300px] flex flex-col justify-end shadow-[0_4px_40px_rgba(0,0,0,0.15),0_1px_4px_rgba(0,0,0,0.08)] border border-white/5">
-        {/* Ambient glow */}
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-brand-600/8 rounded-full blur-[80px] pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-400/5 rounded-full blur-[60px] pointer-events-none" />
+      {/* Mattress visualization — technical cutaway */}
+      <div
+        className="relative rounded-lg p-5 pt-9 overflow-hidden min-h-[300px] flex flex-col justify-end shadow-[0_4px_40px_rgba(0,0,0,0.25)] border border-[#B08D57]/25"
+        style={{
+          backgroundColor: '#0A1E3D',
+          backgroundImage:
+            'linear-gradient(rgba(176,141,87,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(176,141,87,0.09) 1px, transparent 1px)',
+          backgroundSize: '16px 16px',
+        }}
+      >
+        {/* Registration corner ticks */}
+        <div className="absolute top-3 left-3 w-3 h-3 border-t border-l border-[#B08D57]/50 pointer-events-none" />
+        <div className="absolute top-3 right-3 w-3 h-3 border-t border-r border-[#B08D57]/50 pointer-events-none" />
+        <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-[#B08D57]/50 pointer-events-none" />
+        <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-[#B08D57]/50 pointer-events-none" />
 
-        {/* Floating layer labels on right side */}
-        <div className="absolute right-5 top-6 flex flex-col gap-4 pointer-events-none z-10">
-          {layers.slice(0, 4).map((layer, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div className="w-8 h-[1px] bg-white/20" />
-              <span className="text-[9px] font-medium text-white/50 tracking-wider whitespace-nowrap">
-                {layer.thickness ? `${layer.label} (${layer.thickness})` : layer.label}
-              </span>
-            </div>
-          ))}
+        {/* Spec label */}
+        <div className="absolute top-4 left-4 text-[8px] font-mono uppercase tracking-[0.15em] text-[#B08D57]/70 pointer-events-none">
+          Fig. 01 — Cross Section
         </div>
 
-        <div className="relative flex flex-col gap-1 justify-end">
+        <div className="relative flex flex-col gap-[3px] justify-end">
           <AnimatePresence mode="popLayout">
             {layers.map((layer, i) => (
               <motion.div
@@ -249,25 +252,33 @@ function MattressPreview({ build, config, price }: {
                   ease: [0.22, 1, 0.36, 1],
                   delay: i * 0.04,
                 }}
-                className="relative w-full rounded-lg overflow-hidden"
+                className="relative w-full rounded-sm overflow-hidden"
                 style={{ height: 40, backgroundColor: layer.color || '#3A3A4A' }}
               >
-                {/* Shine */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.12] to-black/20 pointer-events-none" />
-                {/* Left accent stripe */}
+                {/* Material hatch texture */}
                 <div
-                  className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-lg"
-                  style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
+                  className="absolute inset-0 opacity-[0.16] pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      'repeating-linear-gradient(135deg, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0.5) 1px, transparent 1px, transparent 6px)',
+                  }}
+                />
+                {/* Shine */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.10] to-black/25 pointer-events-none" />
+                {/* Brass dimension bracket */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-[3px]"
+                  style={{ backgroundColor: '#B08D57' }}
                 />
                 <div className="relative z-10 flex items-center h-full px-3 gap-2">
-                  <span className="text-[9px] font-bold text-white/50 uppercase tracking-wider w-[80px] shrink-0">
+                  <span className="text-[9px] font-bold text-white/60 uppercase tracking-wider w-[80px] shrink-0 font-mono">
                     {layer.label}
                   </span>
                   <span className="text-[11px] font-medium text-white/90 truncate">
                     {layer.mat}
                   </span>
                   {layer.thickness && (
-                    <span className="text-[9px] font-medium text-white/40 ml-auto shrink-0">
+                    <span className="text-[10px] font-mono font-semibold text-[#D9B98A] ml-auto shrink-0 tabular-nums">
                       {layer.thickness}
                     </span>
                   )}
@@ -282,7 +293,7 @@ function MattressPreview({ build, config, price }: {
       <div className="text-center">
         <span className="text-[11px] font-medium text-graphite-400 uppercase tracking-wider">Total Price</span>
         <div className="flex items-baseline justify-center gap-2 mt-1">
-          <span className="text-4xl font-bold text-ink-900 tracking-tight">
+          <span className="text-4xl font-bold text-ink-900 tracking-tight font-mono tabular-nums">
             ₹{price.toLocaleString('en-IN')}
           </span>
         </div>
@@ -390,10 +401,10 @@ function ThicknessPills({ options, active, onChange }: {
           <button
             key={t.valueInches}
             onClick={() => onChange(t.valueInches)}
-            className={`px-5 py-2 rounded-full text-xs font-semibold border-2 transition-all duration-200 cursor-pointer ${
+            className={`px-5 py-2 rounded-sm text-xs font-mono font-semibold border-2 transition-all duration-200 cursor-pointer ${
               isActive
-                ? 'border-ink-900 bg-ink-900/5 text-ink-900 shadow-sm'
-                : 'border-graphite-200 bg-white text-graphite-500 hover:border-ink-900/30 hover:text-ink-900'
+                ? 'border-[#B08D57] bg-[#B08D57]/10 text-ink-900 shadow-sm'
+                : 'border-graphite-200 bg-white text-graphite-500 hover:border-[#B08D57]/50 hover:text-ink-900'
             }`}
           >
             {t.label}
@@ -428,15 +439,22 @@ function MaterialCard({ mat, selected, thickness, onToggle, onThicknessChange, o
         <div className="p-4 sm:p-5">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-3 min-w-0 flex-1">
-              {/* Color dot */}
+              {/* Material swatch — textured to hint at grain, not a flat color dot */}
               <div
-                className={`w-[18px] h-[18px] rounded-full mt-0.5 shrink-0 ring-2 transition-all duration-300 ${
-                  selected ? 'ring-ink-900/30 scale-110' : 'ring-white'
+                className={`relative w-[18px] h-[18px] rounded-sm mt-0.5 shrink-0 overflow-hidden ring-1 transition-all duration-300 ${
+                  selected ? 'ring-ink-900/40 scale-110' : 'ring-graphite-300'
                 }`}
                 style={{ backgroundColor: mat.stackColor || '#CBD5E1' }}
               >
+                <div
+                  className="absolute inset-0 opacity-25 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      'repeating-linear-gradient(135deg, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0.5) 1px, transparent 1px, transparent 4px)',
+                  }}
+                />
                 {selected && (
-                  <Check className="w-[10px] h-[10px] text-white mx-auto mt-[3px]" />
+                  <Check className="relative z-10 w-[10px] h-[10px] text-white mx-auto mt-[3px]" />
                 )}
               </div>
 
@@ -467,7 +485,7 @@ function MaterialCard({ mat, selected, thickness, onToggle, onThicknessChange, o
                 {selected && (
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {mat.density && (
-                      <span className="inline-flex items-center gap-1 text-[9px] font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-full">
+                      <span className="inline-flex items-center gap-1 text-[9px] font-mono font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-sm">
                         {mat.density}
                       </span>
                     )}
@@ -480,7 +498,7 @@ function MaterialCard({ mat, selected, thickness, onToggle, onThicknessChange, o
                       {mat.slot === 'support' ? 'Firm' : 'Comfort'}
                     </span>
                     {mat.ild && (
-                      <span className="inline-flex items-center gap-1 text-[9px] font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-full">
+                      <span className="inline-flex items-center gap-1 text-[9px] font-mono font-medium text-graphite-500 bg-graphite-100/70 px-2 py-0.5 rounded-sm">
                         ILD {mat.ild}
                       </span>
                     )}
@@ -542,11 +560,11 @@ function StepAccordion({ step, isOpen, summary, children, onToggle, stepIdx }: {
         onClick={onToggle}
         className="w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 text-left cursor-pointer transition-colors"
       >
-        {/* Step number */}
-        <span className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold transition-all duration-300 ${
-          isOpen ? 'bg-ink-900 text-white shadow-md' : 'bg-graphite-100 text-graphite-500'
+        {/* Step number — spec-sheet reference marker */}
+        <span className={`w-8 h-8 rounded-sm flex items-center justify-center shrink-0 text-xs font-bold font-mono transition-all duration-300 ${
+          isOpen ? 'bg-ink-900 text-[#D9B98A] shadow-md' : 'bg-white text-graphite-500 border border-graphite-300'
         }`}>
-          {stepIdx + 1}
+          {String(stepIdx + 1).padStart(2, '0')}
         </span>
 
         {/* Icon */}
@@ -912,17 +930,17 @@ function PriceBreakdown({ build, config, price }: {
   }
 
   return (
-    <div className="bg-ink-900/5 rounded-xl p-4 space-y-2">
-      <h4 className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider mb-2">Price Breakdown</h4>
+    <div className="bg-white border border-graphite-200 rounded-sm p-4">
+      <h4 className="text-[10px] font-bold text-graphite-500 uppercase tracking-wider font-mono mb-1">Price Breakdown</h4>
       {breakdown.map((item, i) => (
-        <div key={i} className="flex items-center justify-between text-xs">
+        <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-graphite-100">
           <span className="text-graphite-500">{item.label}</span>
-          <span className="font-semibold text-ink-900">₹{item.price.toLocaleString('en-IN')}</span>
+          <span className="font-semibold text-ink-900 font-mono tabular-nums">₹{item.price.toLocaleString('en-IN')}</span>
         </div>
       ))}
-      <div className="flex items-center justify-between text-sm font-bold text-ink-900 pt-2 border-t border-graphite-200/60">
+      <div className="flex items-center justify-between text-sm font-bold text-ink-900 pt-3 mt-1 border-t-2 border-[#B08D57]">
         <span>Total</span>
-        <span>₹{price.toLocaleString('en-IN')}</span>
+        <span className="font-mono tabular-nums">₹{price.toLocaleString('en-IN')}</span>
       </div>
     </div>
   );
@@ -1137,7 +1155,7 @@ export default function MattressBuilder({ onNavigate }: {
             <div className="hidden sm:flex items-center gap-4 shrink-0">
               <div className="text-right">
                 <span className="text-[9px] font-medium text-graphite-400 uppercase tracking-[0.12em]">Total</span>
-                <div className="text-xl font-bold text-ink-900 tabular-nums">
+                <div className="text-xl font-bold text-ink-900 font-mono tabular-nums">
                   <PriceCounter value={price} />
                 </div>
               </div>
@@ -1286,7 +1304,7 @@ export default function MattressBuilder({ onNavigate }: {
         <div className="flex items-center justify-between mb-3">
           <div>
             <span className="text-[9px] font-medium text-graphite-400 uppercase tracking-wider block">Total</span>
-            <span className="text-2xl font-bold text-ink-900">&#8377;{price.toLocaleString('en-IN')}</span>
+            <span className="text-2xl font-bold text-ink-900 font-mono tabular-nums">&#8377;{price.toLocaleString('en-IN')}</span>
           </div>
           <div className="flex items-center gap-2 text-[10px] text-graphite-400">
             <RulerIcon className="w-3 h-3" />
