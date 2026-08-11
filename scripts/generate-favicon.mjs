@@ -1,13 +1,7 @@
 /**
- * Generate all favicon assets (PNG, ICO, apple-touch-icon) from the dedicated
- * square favicon source. Browsers request /favicon.ico by default, so it MUST
- * be rebuilt from the same source or the old logo keeps showing.
- *
- * NOTE: this intentionally does NOT fall back to images/relaxpro-logo.png —
- * that file is the wide horizontal brand lockup (header/popup/SEO logo), not
- * square, and letterboxing it into a square canvas produces a padded,
- * low-quality favicon. relaxpro-favicon-source.png is a square crop kept
- * specifically for this script.
+ * Generate all favicon assets (PNG, ICO, apple-touch-icon) from the RelaxPro
+ * logo PNG source. Browsers request /favicon.ico by default, so it MUST be
+ * rebuilt from the same source or the old logo keeps showing.
  *
  * Usage: node scripts/generate-favicon.mjs
  */
@@ -20,8 +14,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.resolve(__dirname, '..', 'public');
 
 const SOURCE =
-  fs.existsSync(path.join(PUBLIC, 'images', 'relaxpro-favicon-source.png'))
-    ? path.join(PUBLIC, 'images', 'relaxpro-favicon-source.png')
+  fs.existsSync(path.join(PUBLIC, 'images', 'relaxpro-logo.png'))
+    ? path.join(PUBLIC, 'images', 'relaxpro-logo.png')
     : path.join(PUBLIC, 'favicon-128x128.png');
 
 const SIZES = [16, 32, 48, 64, 128];
