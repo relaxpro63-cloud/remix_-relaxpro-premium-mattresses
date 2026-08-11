@@ -86,7 +86,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
         document.body.style.top = '';
         document.body.style.left = '';
         document.body.style.right = '';
-        window.scrollTo(0, pos);
+        window.scrollTo({ top: pos, left: 0, behavior: 'instant' });
         // Restore focus without forcing a scroll jump
         requestAnimationFrame(() => {
           previousActiveElement.current?.focus({ preventScroll: true });
@@ -203,7 +203,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="relative w-full max-w-[700px] max-h-[500px] overflow-hidden rounded-[18px] bg-white shadow-2xl flex"
+            className="relative w-full max-w-[700px] max-h-[90vh] overflow-hidden rounded-[18px] bg-white shadow-2xl flex"
             style={{ boxShadow: '0 24px 80px -12px rgba(0,0,0,0.35)' }}
           >
             {/* ===== LEFT PANEL — Image (40%) ===== */}
