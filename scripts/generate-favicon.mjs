@@ -1,7 +1,15 @@
 /**
- * Generate all favicon assets (PNG, ICO, apple-touch-icon) from the RelaxPro
- * logo PNG source. Browsers request /favicon.ico by default, so it MUST be
- * rebuilt from the same source or the old logo keeps showing.
+ * Generate all favicon assets (PNG, ICO, apple-touch-icon) from the current
+ * favicon-128x128.png. This runs on every `npm run build` (Vercel included),
+ * so it MUST source from the actual favicon artwork.
+ *
+ * IMPORTANT: do NOT fall back to images/relaxpro-logo.png. That file is the
+ * wide horizontal brand lockup used for the header/popup/SEO logo, not
+ * square — a previous version of this script fell back to it, which meant
+ * every deploy silently regenerated the favicon from the wrong, letterboxed
+ * logo, overwriting whatever favicon-128x128.png actually had. To change
+ * the favicon going forward, replace favicon-128x128.png itself, then run
+ * this script.
  *
  * Usage: node scripts/generate-favicon.mjs
  */
@@ -13,10 +21,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.resolve(__dirname, '..', 'public');
 
-const SOURCE =
-  fs.existsSync(path.join(PUBLIC, 'images', 'relaxpro-logo.png'))
-    ? path.join(PUBLIC, 'images', 'relaxpro-logo.png')
-    : path.join(PUBLIC, 'favicon-128x128.png');
+const SOURCE = path.join(PUBLIC, 'favicon-128x128.png');
 
 const SIZES = [16, 32, 48, 64, 128];
 
