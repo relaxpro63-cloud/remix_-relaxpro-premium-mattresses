@@ -23,7 +23,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
     return res.status(200).json({ products, count: products.length });
-  } catch {
+  } catch (err) {
+    console.error('[api/products]', err);
     return res.status(503).json({ error: 'Catalog unavailable', products: [], count: 0 });
   }
 }
