@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-ro
 import { AnimatePresence, motion } from 'motion/react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import WhatsAppFAB from './components/layout/WhatsAppFAB';
 import ScrollToTop from './components/ui/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartProvider, useCart } from './features/cart/CartContext';
@@ -203,7 +202,6 @@ function AppContent() {
       </main>
       <Footer />
       <ScrollToTop />
-      <WhatsAppFAB />
       <Suspense fallback={null}>
         <VoiceAssistant />
       </Suspense>
