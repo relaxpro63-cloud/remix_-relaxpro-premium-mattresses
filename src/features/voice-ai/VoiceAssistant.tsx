@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { MessageSquare, X, Send, Volume2, VolumeX } from 'lucide-react';
 import MessageList from './components/MessageList';
 import ProductRecommendationCard from './components/ProductRecommendationCard';
+import LeadCaptureForm from './components/LeadCaptureForm';
 import QuickActions from './components/QuickActions';
 import MicButton from './components/MicButton';
 import LanguagePicker from './components/LanguagePicker';
@@ -20,11 +21,14 @@ export const GREETING =
 export default function VoiceAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [draft, setDraft] = useState('');
+  const [leadDismissed, setLeadDismissed] = useState(false);
   const chat = useChat();
 
   const languageConfig = LANGUAGES[chat.language];
   const speech = useSpeechSynthesis();
   const voice = useVoiceRecognition(languageConfig.asr);
+
+  const showLeadForm = chat.intent === 'lead_capture' && !leadDismissed && chat.status === 'idle';
 
   const speakReply = (text: string) => {
     speech.speak(text, languageConfig.tts, languageConfig.ttsFallback);
@@ -60,6 +64,18 @@ export default function VoiceAssistant() {
 
   const handleQuickAction = async (prompt: string) => {
     const reply = await chat.send(prompt);
+    if (reply) speakReply(reply);
+  };
+
+  const handleLeadSubmit = async (lead: {
+    name: string;
+    phone: string;
+    preferredContact: 'whatsapp' | 'call';
+  }) => {
+    setLeadDismissed(true);
+    const reply = await chat.send(
+      `My name is ${lead.name}, my number is ${lead.phone}, please contact me on ${lead.preferredContact}.`,
+    );
     if (reply) speakReply(reply);
   };
 
@@ -179,6 +195,13 @@ export default function VoiceAssistant() {
                       </React.Fragment>
                     ))}
                   </div>
+                )}
+                {showLeadForm && (
+                  <LeadCaptureForm
+                    onSubmit={handleLeadSubmit}
+                    onDismiss={() => setLeadDismissed(true)}
+                    isSubmitting={chat.status === 'sending'}
+                  />
                 )}
               </MessageList>
 

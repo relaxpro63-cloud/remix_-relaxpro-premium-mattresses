@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { submitLead } from '../lead';
 import {
   getCatalog,
   findProduct,
@@ -331,15 +332,42 @@ async function handleEscalate(argumentsJson: string): Promise<ToolResult> {
   };
 }
 
-/** Lead capture is wired to the Sheet in Task 13. */
 async function handleCaptureLead(argumentsJson: string): Promise<ToolResult> {
   const parsed = parseArgs(captureLeadSchema, argumentsJson);
   if (!parsed.ok) return fail(parsed.error, 'lead_capture');
+
+  const { name, phone, preferredContact, city, notes, summary } = parsed.value;
+
+  const result = await submitLead({
+    name,
+    phone,
+    city,
+    notes,
+    contactTime: preferredContact === 'call' ? 'Phone call' : 'WhatsApp',
+    aiSummary: summary ?? '',
+    source: 'RelaxPro AI Assistant',
+  });
+
+  if (!result.ok) {
+    return {
+      ok: false,
+      products: [],
+      intent: 'lead_capture',
+      data: {
+        error:
+          'The details could not be saved. Apologise briefly and offer the WhatsApp link instead by calling escalate_to_human.',
+      },
+    };
+  }
+
   return {
     ok: true,
     products: [],
     intent: 'lead_capture',
-    data: { saved: false, note: 'Lead delivery is not wired yet.' },
+    data: {
+      saved: true,
+      note: `Confirm to ${name} that a RelaxPro expert will contact them on ${preferredContact}. Do not ask for any further details.`,
+    },
   };
 }
 

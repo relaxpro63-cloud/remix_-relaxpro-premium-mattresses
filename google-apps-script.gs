@@ -49,6 +49,7 @@
  *   L: Price            — Order amount
  *   M: Notes            — Custom notes / back pain level
  *   N: Source           — Form type (see table above)
+ *   O: AI Summary       — AI-generated conversation summary
  *
  * ═══════════════════════════════════════════════════════════════
  */
@@ -70,6 +71,7 @@ const COLUMN_HEADERS = [
   'Price',
   'Notes / Details',
   'Source',
+  'AI Summary',
 ];
 
 // ─── MAIN ENTRY POINT (POST) ───────────────────────────────
@@ -146,6 +148,7 @@ function doPost(e) {
       params.price      || '',             // L: Price
       params.notes      || '',             // M: Notes / Details
       params.source     || 'Website',      // N: Source (form type)
+      params.aiSummary  || '',             // O: AI Summary
     ];
 
     // 4. Append the row to the sheet
