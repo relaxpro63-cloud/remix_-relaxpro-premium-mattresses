@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { MessageSquare, X, Send } from 'lucide-react';
 import MessageList from './components/MessageList';
+import ProductRecommendationCard from './components/ProductRecommendationCard';
+import QuickActions from './components/QuickActions';
 import { useChat } from './hooks/useChat';
+import { buildWhatsAppUrl } from '../../lib/site';
+import type { RecommendedProduct } from './types';
 
 export const GREETING =
   'Namaskaram! 👋 Nenu meeku right mattress choose cheyyadaniki help chestanu.';
@@ -11,6 +16,26 @@ export default function VoiceAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [draft, setDraft] = useState('');
   const chat = useChat();
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (url: string) => {
+    setIsOpen(false);
+    navigate(url);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const handleEnquire = (product: RecommendedProduct) => {
+    const price = product.price !== null ? ` (₹${product.price.toLocaleString('en-IN')})` : '';
+    window.open(
+      buildWhatsAppUrl(`Hi RelaxPro, I am interested in the ${product.name} mattress${price}.`),
+      '_blank',
+    );
+  };
+
+  const handleQuickAction = async (prompt: string) => {
+    await chat.send(prompt);
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -74,12 +99,35 @@ export default function VoiceAssistant() {
               </header>
 
               {chat.messages.length === 0 && (
-                <div className="px-4 pt-5 pb-2">
-                  <p className="text-sm leading-relaxed text-graphite-700">{GREETING}</p>
-                </div>
+                <>
+                  <div className="px-4 pt-5 pb-3">
+                    <p className="text-sm leading-relaxed text-graphite-700">{GREETING}</p>
+                  </div>
+                  <QuickActions
+                    onSelect={handleQuickAction}
+                    disabled={chat.status === 'sending'}
+                  />
+                </>
               )}
 
-              <MessageList messages={chat.messages} isSending={chat.status === 'sending'} />
+              <MessageList messages={chat.messages} isSending={chat.status === 'sending'}>
+                {chat.products.length > 0 && chat.status === 'idle' && (
+                  <div
+                    className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-1"
+                    aria-label="Recommended mattresses"
+                  >
+                    {chat.products.map((product) => (
+                      <React.Fragment key={product.slug}>
+                        <ProductRecommendationCard
+                          product={product}
+                          onNavigate={handleNavigate}
+                          onEnquire={handleEnquire}
+                        />
+                      </React.Fragment>
+                    ))}
+                  </div>
+                )}
+              </MessageList>
 
               <form
                 onSubmit={handleSubmit}
