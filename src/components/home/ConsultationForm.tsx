@@ -112,7 +112,7 @@ export default function ConsultationForm() {
                 maxLength={10}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="e.g. 8686624494"
+                placeholder="e.g. 9281424494"
                 className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 bg-sky-50/50 text-ink-900 transition-all font-body placeholder:text-graphite-400"
               />
             </div>

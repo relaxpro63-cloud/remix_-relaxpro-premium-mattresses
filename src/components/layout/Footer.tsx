@@ -77,7 +77,7 @@ export default function Footer() {
     { label: 'Instagram', href: 'https://www.instagram.com/relaxpro__mattresses/?hl=en', icon: Instagram },
     { label: 'Facebook', href: 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/', icon: Facebook },
     { label: 'YouTube', href: 'https://www.youtube.com/@sureshmattressmanufacturer3784', icon: Youtube },
-    { label: 'WhatsApp', href: `https://wa.me/${contactInfo.whatsappNumber || '918686624494'}`, icon: MessageSquare },
+    { label: 'WhatsApp', href: `https://wa.me/${contactInfo.whatsappNumber || '919281424494'}`, icon: MessageSquare },
   ];
 
   const platformIcons: Record<string, any> = {
@@ -355,8 +355,8 @@ export default function Footer() {
                   <div className="w-full h-px bg-gradient-to-r from-brand-300/15 via-white/[0.05] to-transparent my-1" />
                   <div className="flex items-center gap-3 group/contact">
                     <Phone className="w-3.5 h-3.5 text-brand-300/75 shrink-0" />
-                    <a href={`tel:+${contactInfo.mainPhone || '918686624494'}`} className="text-white/35 hover:text-brand-300 transition-colors text-[12px] font-body">
-                      +91 {contactInfo.mainPhone?.replace(/^(\d{5})(\d{5})$/, '$1 $2') || '86866 24494'}
+                    <a href={`tel:+${contactInfo.mainPhone || '919281424494'}`} className="text-white/35 hover:text-brand-300 transition-colors text-[12px] font-body">
+                      +91 {contactInfo.mainPhone?.replace(/^(\d{5})(\d{5})$/, '$1 $2') || '92814 24494'}
                     </a>
                   </div>
                   <div className="flex items-center gap-3 group/contact">
@@ -380,7 +380,7 @@ export default function Footer() {
             >
               {/* WhatsApp CTA Button */}
               <a
-                href={`https://wa.me/${contactInfo.whatsappNumber || '918686624494'}?text=${encodeURIComponent('Hello Suresh, I would like to know more about RelaxPro mattresses. Can you help?')}`}
+                href={`https://wa.me/${contactInfo.whatsappNumber || '919281424494'}?text=${encodeURIComponent('Hello Suresh, I would like to know more about RelaxPro mattresses. Can you help?')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-brand-400/30 to-brand-300/10 border border-brand-300/45 hover:border-brand-300/50 hover:from-brand-400/40 hover:to-brand-300/20 transition-all duration-300 shadow-lg shadow-brand-400/10"

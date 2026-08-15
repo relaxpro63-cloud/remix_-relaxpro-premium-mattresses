@@ -37,6 +37,7 @@ import {
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
+import WhatsAppWidget from '../../components/home/WhatsAppWidget';
 import { getHomePage, getAllProducts, getTestimonials, getAllShowrooms, imageUrl } from '../../lib/queries';
 import { buildWhatsAppUrl, buildMapsUrl, SITE_URL, toAbsoluteUrl, BUSINESS_NAME, SAME_AS } from '../../lib/site';
 
@@ -59,7 +60,7 @@ const homeSchema = {
   alternateName: 'RelaxPro Premium Mattresses',
   image: toAbsoluteUrl('/images/relaxpro-logo.png'),
   logo: toAbsoluteUrl('/images/relaxpro-logo.png'),
-  telephone: '+918686624494',
+  telephone: '+919281424494',
   email: 'relaxpro2022@gmail.com',
   foundingDate: '2015',
   sameAs: SAME_AS,
@@ -353,7 +354,7 @@ export default function HomePage({
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                      href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918686624494'}?text=${encodeURIComponent(
+                      href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '919281424494'}?text=${encodeURIComponent(
                         `Hi! I am interested in the ${item.name} mattress. Can you help me select the right size and customization?`
                       )}`}
                       target="_blank"
@@ -708,6 +709,7 @@ export default function HomePage({
         </section>
       </FadeUp>
 
+      <WhatsAppWidget />
     </PageShell>
   );
 }

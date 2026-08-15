@@ -514,13 +514,13 @@ export const LOCATIONS = [
   {
     city: 'Hyderabad',
     address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055',
-    phones: ['+918686624494', '+917207424494'],
+    phones: ['+919281424494', '+917207424494'],
     hours: 'Mon - Sun: 10:00 AM - 9:00 PM'
   },
   {
     city: 'Rajahmundry',
     address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103',
-    phones: ['+918686624494'],
+    phones: ['+919281424494'],
     hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM'
   },
   {

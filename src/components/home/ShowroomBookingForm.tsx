@@ -146,7 +146,7 @@ export default function ShowroomBookingForm() {
                   maxLength={10}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="e.g. 8686624494"
+                  placeholder="e.g. 9281424494"
                   className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 bg-white/5 transition-all font-body placeholder:text-white/20 text-linen-100"
                 />
               </div>

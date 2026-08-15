@@ -91,7 +91,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
                     <div>
                       <p className="font-accent font-bold text-sm text-ink-900">Phone / WhatsApp</p>
-                      <p className="text-sm text-graphite-500 font-body mt-0.5">+91 86866 24494<br />+91 72074 24494</p>
+                      <p className="text-sm text-graphite-500 font-body mt-0.5">+91 92814 24494<br />+91 72074 24494</p>
                     </div>
                   </div>
 

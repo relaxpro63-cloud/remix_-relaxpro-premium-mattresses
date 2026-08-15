@@ -170,7 +170,7 @@ export default function MattressTypePage({ slug: propSlug }: { slug?: string }) 
                     Browse the Catalog
                   </Link>
                   <a
-                    href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello Suresh, I am considering a ${category.h1.toLowerCase()}. Can you help me pick the right one?`)}`}
+                    href={`https://wa.me/919281424494?text=${encodeURIComponent(`Hello Suresh, I am considering a ${category.h1.toLowerCase()}. Can you help me pick the right one?`)}`}
                     target="_blank"
                     rel="noreferrer"
                     className="btn btn-secondary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3.5 px-8 rounded-full text-center cursor-pointer inline-flex items-center justify-center gap-2"
