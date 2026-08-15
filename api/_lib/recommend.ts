@@ -2,6 +2,7 @@ import {
   type CatalogProduct,
   type CatalogSize,
   type Tier,
+  CATALOG_SIZES,
   priceFor,
   lowestPrice,
 } from './catalog';
@@ -197,4 +198,57 @@ export function scoreProducts(
   }
 
   return scored.sort((a, b) => b.score - a.score);
+}
+
+type QueryValue = string | string[] | undefined;
+
+function first(v: QueryValue): string | undefined {
+  const value = Array.isArray(v) ? v[0] : v;
+  return typeof value === 'string' && value.trim() ? value.trim() : undefined;
+}
+
+function positiveNumber(v: QueryValue): number | undefined {
+  const raw = first(v);
+  if (raw === undefined) return undefined;
+  const n = Number(raw);
+  return Number.isFinite(n) && n > 0 ? n : undefined;
+}
+
+const TIERS: Tier[] = ['comfort', 'premium', 'luxury'];
+const POSITIONS: SleepingPosition[] = ['side', 'back', 'stomach', 'combination'];
+
+export function parseFilters(query: Record<string, QueryValue>): Preferences {
+  const prefs: Preferences = {};
+
+  const maxPrice = positiveNumber(query.maxPrice);
+  if (maxPrice !== undefined) prefs.maxPrice = maxPrice;
+
+  const minPrice = positiveNumber(query.minPrice);
+  if (minPrice !== undefined) prefs.minPrice = minPrice;
+
+  const size = first(query.size)?.toLowerCase();
+  if (size && (CATALOG_SIZES as readonly string[]).includes(size)) {
+    prefs.size = size as CatalogSize;
+  }
+
+  const tier = first(query.tier)?.toLowerCase();
+  if (tier && (TIERS as string[]).includes(tier)) prefs.tier = tier as Tier;
+
+  const position = first(query.sleepingPosition)?.toLowerCase();
+  if (position && (POSITIONS as string[]).includes(position)) {
+    prefs.sleepingPosition = position as SleepingPosition;
+  }
+
+  const firmness = first(query.firmness);
+  if (firmness) prefs.firmness = firmness.toLowerCase();
+
+  const material = first(query.material);
+  if (material) prefs.material = material.toLowerCase();
+
+  if (first(query.includeAccessories) === 'true') prefs.includeAccessories = true;
+
+  const fabric = first(query.fabricOption)?.toUpperCase();
+  if (fabric === '300GSM' || fabric === '450GSM') prefs.fabricOption = fabric;
+
+  return prefs;
 }
