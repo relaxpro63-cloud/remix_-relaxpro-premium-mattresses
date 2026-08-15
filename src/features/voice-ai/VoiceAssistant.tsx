@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { MessageSquare, X, Send } from 'lucide-react';
+import { MessageSquare, X, Send, Volume2, VolumeX } from 'lucide-react';
 import MessageList from './components/MessageList';
 import ProductRecommendationCard from './components/ProductRecommendationCard';
 import QuickActions from './components/QuickActions';
+import MicButton from './components/MicButton';
+import LanguagePicker from './components/LanguagePicker';
 import { useChat } from './hooks/useChat';
+import { useVoiceRecognition } from './hooks/useVoiceRecognition';
+import { useSpeechSynthesis } from './hooks/useSpeechSynthesis';
+import { LANGUAGES } from './lib/languages';
 import { buildWhatsAppUrl } from '../../lib/site';
 import type { RecommendedProduct } from './types';
 
@@ -16,6 +21,26 @@ export default function VoiceAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [draft, setDraft] = useState('');
   const chat = useChat();
+
+  const languageConfig = LANGUAGES[chat.language];
+  const speech = useSpeechSynthesis();
+  const voice = useVoiceRecognition(languageConfig.asr);
+
+  const speakReply = (text: string) => {
+    speech.speak(text, languageConfig.tts, languageConfig.ttsFallback);
+  };
+
+  // A finished transcript becomes the draft; the customer confirms before sending,
+  // so a misheard phrase is corrected rather than sent.
+  React.useEffect(() => {
+    if (voice.transcript) setDraft(voice.transcript);
+  }, [voice.transcript]);
+
+  const handleMicStart = () => {
+    speech.stop();
+    voice.reset();
+    voice.start();
+  };
 
   const navigate = useNavigate();
 
@@ -34,7 +59,8 @@ export default function VoiceAssistant() {
   };
 
   const handleQuickAction = async (prompt: string) => {
-    await chat.send(prompt);
+    const reply = await chat.send(prompt);
+    if (reply) speakReply(reply);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -42,7 +68,9 @@ export default function VoiceAssistant() {
     const text = draft.trim();
     if (!text) return;
     setDraft('');
-    await chat.send(text);
+    voice.reset();
+    const reply = await chat.send(text);
+    if (reply) speakReply(reply);
   };
 
   return (
@@ -88,15 +116,36 @@ export default function VoiceAssistant() {
                     Mattress consultant
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close RelaxPro AI"
-                  className="rounded-full p-2 text-graphite-500 transition-colors hover:bg-linen-100 hover:text-ink-900"
-                >
-                  <X className="w-5 h-5" aria-hidden="true" />
-                </button>
+                <div className="flex items-center gap-1.5">
+                  {speech.isSupported && (
+                    <button
+                      type="button"
+                      onClick={() => speech.setEnabled(!speech.enabled)}
+                      aria-label={speech.enabled ? 'Turn voice replies off' : 'Turn voice replies on'}
+                      aria-pressed={speech.enabled}
+                      className="rounded-full p-2 text-graphite-500 transition-colors hover:bg-linen-100 hover:text-ink-900"
+                    >
+                      {speech.enabled ? (
+                        <Volume2 className="h-5 w-5" aria-hidden="true" />
+                      ) : (
+                        <VolumeX className="h-5 w-5" aria-hidden="true" />
+                      )}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close RelaxPro AI"
+                    className="rounded-full p-2 text-graphite-500 transition-colors hover:bg-linen-100 hover:text-ink-900"
+                  >
+                    <X className="h-5 w-5" aria-hidden="true" />
+                  </button>
+                </div>
               </header>
+
+              <div className="flex items-center justify-between border-b border-graphite-100 px-4 py-2">
+                <LanguagePicker value={chat.language} onChange={chat.setLanguage} />
+              </div>
 
               {chat.messages.length === 0 && (
                 <>
@@ -110,7 +159,11 @@ export default function VoiceAssistant() {
                 </>
               )}
 
-              <MessageList messages={chat.messages} isSending={chat.status === 'sending'}>
+              <MessageList
+                messages={chat.messages}
+                isSending={chat.status === 'sending'}
+                onReplay={speakReply}
+              >
                 {chat.products.length > 0 && chat.status === 'idle' && (
                   <div
                     className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-1"
@@ -129,30 +182,63 @@ export default function VoiceAssistant() {
                 )}
               </MessageList>
 
-              <form
-                onSubmit={handleSubmit}
-                className="flex items-center gap-2 border-t border-graphite-200 px-3 py-3"
-              >
-                <label htmlFor="relaxpro-ai-input" className="sr-only">
-                  Type your question
-                </label>
-                <input
-                  id="relaxpro-ai-input"
-                  value={draft}
-                  onChange={(event) => setDraft(event.target.value)}
-                  placeholder="Naaku queen mattress kavali..."
-                  autoComplete="off"
-                  className="min-h-11 flex-1 rounded-full border border-graphite-200 bg-linen-50 px-4 text-sm text-ink-900 placeholder:text-graphite-400 focus:border-brand-500 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  disabled={!draft.trim() || chat.status === 'sending'}
-                  aria-label="Send message"
-                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-600 text-white transition-colors hover:bg-brand-700 disabled:opacity-40"
+              <div className="border-t border-graphite-200 px-3 py-3">
+                {voice.isListening && (
+                  <p className="mb-2 flex items-center gap-2 px-1 text-[11px] font-medium text-red-500">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" aria-hidden="true" />
+                    Listening… tap the square to stop
+                  </p>
+                )}
+                {voice.error && (
+                  <p role="alert" className="mb-2 px-1 text-[11px] text-graphite-600">
+                    {voice.error}
+                  </p>
+                )}
+
+                {/*
+                  Spec §11: a WhatsApp escape hatch must be reachable from every error state.
+                  Keeping it permanently in the footer covers the chat-failure, mic-failure,
+                  unsupported-browser, and no-results cases with one control.
+                */}
+                <a
+                  href={buildWhatsAppUrl('Hi RelaxPro, I need help choosing a mattress.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mb-2 block px-1 text-[11px] font-medium text-brand-600 underline-offset-2 hover:underline"
                 >
-                  <Send className="w-4 h-4" aria-hidden="true" />
-                </button>
-              </form>
+                  Talk to a RelaxPro expert on WhatsApp
+                </a>
+
+                <form onSubmit={handleSubmit} className="flex items-center gap-2">
+                  <label htmlFor="relaxpro-ai-input" className="sr-only">
+                    Type your question
+                  </label>
+                  <input
+                    id="relaxpro-ai-input"
+                    value={draft}
+                    onChange={(event) => setDraft(event.target.value)}
+                    placeholder={voice.interimTranscript || 'Naaku queen mattress kavali...'}
+                    autoComplete="off"
+                    className="min-h-11 flex-1 rounded-full border border-graphite-200 bg-linen-50 px-4 text-sm text-ink-900 placeholder:text-graphite-400 focus:border-brand-500 focus:outline-none"
+                  />
+                  {voice.isSupported && (
+                    <MicButton
+                      isListening={voice.isListening}
+                      disabled={chat.status === 'sending'}
+                      onStart={handleMicStart}
+                      onStop={voice.stop}
+                    />
+                  )}
+                  <button
+                    type="submit"
+                    disabled={!draft.trim() || chat.status === 'sending'}
+                    aria-label="Send message"
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-600 text-white transition-colors hover:bg-brand-700 disabled:opacity-40"
+                  >
+                    <Send className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                </form>
+              </div>
             </motion.div>
           </>
         )}
