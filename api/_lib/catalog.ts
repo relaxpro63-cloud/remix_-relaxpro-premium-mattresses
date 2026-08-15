@@ -1,3 +1,5 @@
+import { sanityClient } from './sanity';
+
 export const CATALOG_SIZES = ['single', 'double', 'queen', 'king', 'diwan'] as const;
 export type CatalogSize = (typeof CATALOG_SIZES)[number];
 
@@ -168,4 +170,55 @@ export function availableSizes(product: CatalogProduct): CatalogSize[] {
   return CATALOG_SIZES.filter((size) =>
     Object.values(product.prices).some((table) => typeof table[size] === 'number'),
   );
+}
+
+const CATALOG_QUERY = `*[_type == "product" && inStock == true] | order(sortOrder asc){
+  name, "slug": slug.current, tagline, keyBenefit, description, shortDescription,
+  tier, comfortLevel, comfortRating, totalThickness, warranty,
+  layers[]{ material, thickness },
+  fabricGsm, fabricType, certifications, accessories, features,
+  pricingModel, pricing,
+  rating, reviewCount, isBestseller, inStock,
+  category->{ name },
+  image{ asset->{ url } },
+  images[]{ asset->{ url } }
+}`;
+
+const CACHE_TTL_MS = 5 * 60 * 1000;
+
+type CatalogFetcher = () => Promise<any[]>;
+
+let fetcher: CatalogFetcher = () => sanityClient.fetch(CATALOG_QUERY);
+let cache: { products: CatalogProduct[]; expiresAt: number } | null = null;
+
+/** Test seam. Not used in production code paths. */
+export function __setCatalogFetcher(fn: CatalogFetcher): void {
+  fetcher = fn;
+  cache = null;
+}
+
+export function invalidateCatalog(): void {
+  if (cache) cache = { ...cache, expiresAt: 0 };
+}
+
+export async function getCatalog(): Promise<CatalogProduct[]> {
+  if (cache && cache.expiresAt > Date.now()) return cache.products;
+
+  try {
+    const raw = await fetcher();
+    const products = (Array.isArray(raw) ? raw : [])
+      .map(normalizeProduct)
+      .filter((p): p is CatalogProduct => p !== null);
+    cache = { products, expiresAt: Date.now() + CACHE_TTL_MS };
+    return products;
+  } catch (err) {
+    // A stale catalog beats no catalog — the assistant stays useful during a
+    // Sanity outage rather than telling every visitor it is broken.
+    if (cache) return cache.products;
+    throw err;
+  }
+}
+
+export function findProduct(products: CatalogProduct[], slug: string): CatalogProduct | null {
+  return products.find((p) => p.slug === slug) ?? null;
 }
