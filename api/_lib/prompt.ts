@@ -1,4 +1,4 @@
-import type { LanguageKey } from './types';
+import type { LanguageKey } from './types.js';
 
 const BASE = `You are RelaxPro AI, the official virtual mattress shopping assistant for RelaxPro.
 

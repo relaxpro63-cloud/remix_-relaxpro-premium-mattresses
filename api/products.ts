@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getCatalog, findProduct } from './_lib/catalog';
-import { parseFilters, scoreProducts } from './_lib/recommend';
-import { toRecommendedProduct } from './_lib/types';
+import { getCatalog, findProduct } from './_lib/catalog.js';
+import { parseFilters, scoreProducts } from './_lib/recommend.js';
+import { toRecommendedProduct } from './_lib/types.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {

@@ -1,9 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { chatCompletion, type LlmMessage } from './_lib/llm';
-import { buildSystemPrompt } from './_lib/prompt';
-import { TOOL_SCHEMAS, runTool } from './_lib/tools';
-import { checkRateLimit } from './_lib/ratelimit';
-import type { ChatRequestBody, ChatResponseBody, LanguageKey, RecommendedProduct } from './_lib/types';
+import { chatCompletion, type LlmMessage } from './_lib/llm.js';
+import { buildSystemPrompt } from './_lib/prompt.js';
+import { TOOL_SCHEMAS, runTool } from './_lib/tools.js';
+import { checkRateLimit } from './_lib/ratelimit.js';
+import type { ChatRequestBody, ChatResponseBody, LanguageKey, RecommendedProduct } from './_lib/types.js';
 
 const CONNECTION_ERROR =
   "Sorry, I'm having trouble connecting right now. Please try again or contact our RelaxPro expert on WhatsApp.";

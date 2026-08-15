@@ -1,4 +1,4 @@
-import { sanityClient } from './sanity';
+import { sanityClient } from './sanity.js';
 
 export const CATALOG_SIZES = ['single', 'double', 'queen', 'king', 'diwan'] as const;
 export type CatalogSize = (typeof CATALOG_SIZES)[number];

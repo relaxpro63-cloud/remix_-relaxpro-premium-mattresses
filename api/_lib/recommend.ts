@@ -5,7 +5,7 @@ import {
   CATALOG_SIZES,
   priceFor,
   lowestPrice,
-} from './catalog';
+} from './catalog.js';
 
 export const WEIGHTS = {
   budget: 30,

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { submitLead } from '../lead';
+import { submitLead } from '../lead.js';
 import {
   getCatalog,
   findProduct,
@@ -8,9 +8,9 @@ import {
   lowestPrice,
   CATALOG_SIZES,
   type CatalogSize,
-} from './catalog';
-import { scoreProducts, type Preferences } from './recommend';
-import { toRecommendedProduct, type RecommendedProduct } from './types';
+} from './catalog.js';
+import { scoreProducts, type Preferences } from './recommend.js';
+import { toRecommendedProduct, type RecommendedProduct } from './types.js';
 
 /**
  * Server-side copy of the WhatsApp number. Kept in sync with

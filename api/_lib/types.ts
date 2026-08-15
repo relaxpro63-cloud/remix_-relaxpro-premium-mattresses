@@ -1,6 +1,6 @@
-import type { CatalogProduct, CatalogSize } from './catalog';
-import type { ScoredProduct } from './recommend';
-import { availableSizes } from './catalog';
+import type { CatalogProduct, CatalogSize } from './catalog.js';
+import type { ScoredProduct } from './recommend.js';
+import { availableSizes } from './catalog.js';
 
 export interface RecommendedProduct {
   slug: string;
