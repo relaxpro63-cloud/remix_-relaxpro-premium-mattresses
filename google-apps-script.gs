@@ -55,7 +55,11 @@
  */
 
 // ─── CONFIGURATION ──────────────────────────────────────────
-const SHEET_NAME  = 'Leads';       // Sheet tab name in Google Sheets
+const SHEET_NAME = 'Leads';
+
+// Idempotency window: a lead with the same phone is treated as a duplicate
+// (skipped) when it arrived within this many milliseconds.
+const LEAD_DEDUPE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const COLUMN_HEADERS = [
   'Timestamp',
   'Order ID',
@@ -151,10 +155,20 @@ function doPost(e) {
       params.aiSummary  || '',             // O: AI Summary
     ];
 
-    // 4. Append the row to the sheet
+    // 4. Idempotency guard: skip the write when the same phone number was
+    //    saved within the last window. The AI assistant captures a lead in
+    //    the tool call, then the customer's confirmation form re-sends the
+    //    same details, so the sheet must not get two rows for one person.
+    //    This also guards the legacy leadService.ts forms.
+    const phone = String(params.phone || '').trim();
+    if (phone && hasRecentLead(sheet, phone, LEAD_DEDUPE_WINDOW_MS)) {
+      return respond({ success: true, message: 'Lead already saved recently', deduped: true });
+    }
+
+    // 5. Append the row to the sheet
     sheet.appendRow(row);
 
-    // 5. Return success response
+    // 6. Return success response
     return respond({ success: true, message: 'Lead saved successfully' });
 
   } catch (err) {
@@ -196,6 +210,30 @@ function doGet(e) {
   } catch (err) {
     return respond({ status: 'error', error: err.toString() });
   }
+}
+
+// ─── HELPER: Is there a recent row with this phone number? ──
+// Phone lives in column D (index 4), Timestamp in column A (index 1).
+// Returns true when the most recent matching row is inside the window.
+function hasRecentLead(sheet, phone, windowMs) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return false; // header only
+
+  const phones = sheet.getRange(2, 4, lastRow - 1, 1).getValues();
+  const stamps = sheet.getRange(2, 1, lastRow - 1, 1).getValues();
+  const now = Date.now();
+
+  for (let i = phones.length - 1; i >= 0; i--) {
+    const existing = String(phones[i][0] || '').trim();
+    if (existing !== phone) continue;
+
+    const ts = stamps[i][0];
+    if (ts instanceof Date) {
+      if (now - ts.getTime() <= windowMs) return true;
+      return false; // newer duplicates fall after older rows; stop at first hit
+    }
+  }
+  return false;
 }
 
 // ─── HELPER: Return JSON response ──────────────────────────
