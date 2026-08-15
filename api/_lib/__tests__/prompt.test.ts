@@ -35,7 +35,9 @@ describe('buildSystemPrompt', () => {
   });
 
   it('instructs Hindi for the hindi language', () => {
-    expect(buildSystemPrompt('hindi')).toMatch(/Hindi/);
+    const prompt = buildSystemPrompt('hindi');
+    expect(prompt).toMatch(/Hindi/);
+    expect(prompt).toMatch(/Devanagari/);
   });
 
   it('produces a different language block per language', () => {
