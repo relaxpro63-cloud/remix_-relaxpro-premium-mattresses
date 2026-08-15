@@ -132,7 +132,7 @@ describe('runTool — escalate_to_human', () => {
   it('returns a wa.me url with the configured number', async () => {
     const result = await runTool('escalate_to_human', JSON.stringify({ context: 'queen latex' }));
     expect(result.ok).toBe(true);
-    expect(result.data.whatsappUrl).toMatch(/^https:\/\/wa\.me\/918686624494\?text=/);
+    expect(result.data.whatsappUrl).toMatch(/^https:\/\/wa\.me\/919281424494\?text=/);
     expect(decodeURIComponent(result.data.whatsappUrl)).toContain('queen latex');
   });
 });

@@ -13,17 +13,13 @@ export interface LanguageConfig {
 }
 
 export const LANGUAGES: Record<LanguageKey, LanguageConfig> = {
-  // Tenglish uses en-IN for recognition because no speech recogniser anywhere
-  // emits romanized Telugu — te-IN returns Telugu script. The model decodes the
-  // approximate English transcript reliably. It speaks with an en-IN voice
-  // because Latin-script Tenglish read by a Telugu voice mispronounces badly.
-  tenglish: { key: 'tenglish', label: 'Tenglish', asr: 'en-IN', tts: 'en-IN', enabled: true },
+  tenglish: { key: 'tenglish', label: 'Tenglish', asr: 'en-IN', tts: 'en-IN', enabled: false },
   english: { key: 'english', label: 'English', asr: 'en-IN', tts: 'en-IN', enabled: true },
-  telugu: { key: 'telugu', label: 'తెలుగు', asr: 'te-IN', tts: 'te-IN', ttsFallback: 'en-IN', enabled: true },
+  telugu: { key: 'telugu', label: 'తెలుగు', asr: 'te-IN', tts: 'te-IN', ttsFallback: 'en-IN', enabled: false },
   hindi: { key: 'hindi', label: 'हिन्दी', asr: 'hi-IN', tts: 'hi-IN', ttsFallback: 'en-IN', enabled: false },
 };
 
-export const DEFAULT_LANGUAGE: LanguageKey = 'tenglish';
+export const DEFAULT_LANGUAGE: LanguageKey = 'english';
 
 export function enabledLanguages(): LanguageConfig[] {
   return Object.values(LANGUAGES).filter((l) => l.enabled);

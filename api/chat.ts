@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const body = req.body as Partial<ChatRequestBody>;
   const language: LanguageKey = LANGUAGES.includes(body?.language as LanguageKey)
     ? (body!.language as LanguageKey)
-    : 'tenglish';
+    : 'english';
 
   if (!Array.isArray(body?.messages) || body.messages.length === 0) {
     return res.status(400).json({ error: 'messages is required' });

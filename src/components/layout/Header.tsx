@@ -334,7 +334,7 @@ export default function Header({ cartCount }: HeaderProps) {
 
           <div className="px-6 py-6 border-t border-white/10 space-y-4">
             <p className="text-[11px] text-white/50 font-body leading-relaxed">
-              Need help choosing? Chat with us on WhatsApp or call {settings?.contactInfo?.whatsappNumber || '918686624494'}.
+              Need help choosing? Chat with us on WhatsApp or call {settings?.contactInfo?.whatsappNumber || '919281424494'}.
             </p>
             <div className="flex items-center justify-center gap-6 pt-1">
               <a

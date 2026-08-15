@@ -12,7 +12,7 @@ test.describe('RelaxPro AI assistant', () => {
 
     const dialog = page.getByRole('dialog', { name: 'RelaxPro AI assistant' });
     await expect(dialog).toBeVisible();
-    await expect(dialog).toContainText('Namaskaram');
+    await expect(dialog).toContainText('Welcome');
 
     await dialog.getByRole('button', { name: 'Under ₹20K' }).click();
 
@@ -42,7 +42,7 @@ test.describe('RelaxPro AI assistant', () => {
     const popupPromise = context.waitForEvent('page');
     await dialog.getByRole('button', { name: /^Enquire about / }).first().click();
     const popup = await popupPromise;
-    expect(popup.url()).toContain('wa.me/918686624494');
+    expect(popup.url()).toContain('wa.me/919281424494');
   });
 
   test('site still works when the ai backend is unavailable', async ({ page }) => {

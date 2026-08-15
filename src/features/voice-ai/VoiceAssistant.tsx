@@ -7,7 +7,6 @@ import ProductRecommendationCard from './components/ProductRecommendationCard';
 import LeadCaptureForm from './components/LeadCaptureForm';
 import QuickActions from './components/QuickActions';
 import MicButton from './components/MicButton';
-import LanguagePicker from './components/LanguagePicker';
 import { useChat } from './hooks/useChat';
 import { useVoiceRecognition } from './hooks/useVoiceRecognition';
 import { useSpeechSynthesis } from './hooks/useSpeechSynthesis';
@@ -16,7 +15,7 @@ import { buildWhatsAppUrl } from '../../lib/site';
 import type { RecommendedProduct } from './types';
 
 export const GREETING =
-  'Namaskaram! 👋 Nenu meeku right mattress choose cheyyadaniki help chestanu.';
+  'Welcome! 👋 I can help you choose the right mattress for your needs.';
 
 export default function VoiceAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -160,7 +159,9 @@ export default function VoiceAssistant() {
               </header>
 
               <div className="flex items-center justify-between border-b border-graphite-100 px-4 py-2">
-                <LanguagePicker value={chat.language} onChange={chat.setLanguage} />
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-graphite-500">
+                  English
+                </span>
               </div>
 
               {chat.messages.length === 0 && (
@@ -240,7 +241,7 @@ export default function VoiceAssistant() {
                     id="relaxpro-ai-input"
                     value={draft}
                     onChange={(event) => setDraft(event.target.value)}
-                    placeholder={voice.interimTranscript || 'Naaku queen mattress kavali...'}
+                    placeholder={voice.interimTranscript || 'I need a queen mattress...'}
                     autoComplete="off"
                     className="min-h-11 flex-1 rounded-full border border-graphite-200 bg-linen-50 px-4 text-sm text-ink-900 placeholder:text-graphite-400 focus:border-brand-500 focus:outline-none"
                   />

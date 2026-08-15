@@ -16,7 +16,7 @@ import { toRecommendedProduct, type RecommendedProduct } from './types';
  * Server-side copy of the WhatsApp number. Kept in sync with
  * src/lib/site.ts, which remains the browser's single source.
  */
-const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '918686624494';
+const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '919281424494';
 
 const MAX_RESULTS = 3;
 

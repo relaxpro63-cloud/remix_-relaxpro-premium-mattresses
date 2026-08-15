@@ -6,23 +6,16 @@ function voice(lang: string, name = lang): SpeechSynthesisVoice {
 }
 
 describe('LANGUAGES', () => {
-  it('defaults to Tenglish', () => {
-    expect(DEFAULT_LANGUAGE).toBe('tenglish');
-    expect(LANGUAGES.tenglish.enabled).toBe(true);
+  it('defaults to English', () => {
+    expect(DEFAULT_LANGUAGE).toBe('english');
+    expect(LANGUAGES.english.enabled).toBe(true);
   });
 
-  it('recognises Tenglish with en-IN, because no recogniser emits romanized Telugu', () => {
+  it('keeps Tenglish and Telugu wired but disabled', () => {
     expect(LANGUAGES.tenglish.asr).toBe('en-IN');
-  });
-
-  it('speaks Tenglish with an en-IN voice, not a Telugu one', () => {
-    expect(LANGUAGES.tenglish.tts).toBe('en-IN');
-  });
-
-  it('recognises and speaks Telugu with te-IN', () => {
+    expect(LANGUAGES.tenglish.enabled).toBe(false);
     expect(LANGUAGES.telugu.asr).toBe('te-IN');
-    expect(LANGUAGES.telugu.tts).toBe('te-IN');
-    expect(LANGUAGES.telugu.ttsFallback).toBe('en-IN');
+    expect(LANGUAGES.telugu.enabled).toBe(false);
   });
 
   it('keeps Hindi wired but disabled', () => {
@@ -32,7 +25,7 @@ describe('LANGUAGES', () => {
 
   it('excludes disabled languages from the picker list', () => {
     const keys = enabledLanguages().map((l) => l.key);
-    expect(keys).toEqual(['tenglish', 'english', 'telugu']);
+    expect(keys).toEqual(['english']);
   });
 });
 

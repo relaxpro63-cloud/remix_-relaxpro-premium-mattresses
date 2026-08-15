@@ -43,7 +43,7 @@ const aboutSchema = {
         foundingDate: '2015',
         logo: toAbsoluteUrl('/images/relaxpro-logo.png'),
         email: 'relaxpro2022@gmail.com',
-        telephone: '+918686624494',
+        telephone: '+919281424494',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Jeedimetla Industrial Area, Phase 3, Near Prasad Labs',
@@ -201,7 +201,7 @@ export default function AboutRelaxProMattressPage() {
                 <div className="mt-6 space-y-4 text-sm text-graphite-700 font-body">
                   <div className="flex items-start gap-3">
                     <Phone className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
-                    <a href="tel:+918686624494" className="hover:text-brand-600 transition-colors">+91 86866 24494</a>
+                    <a href="tel:+919281424494" className="hover:text-brand-600 transition-colors">+91 92814 24494</a>
                   </div>
                   <div className="flex items-start gap-3">
                     <Mail className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
@@ -219,7 +219,7 @@ export default function AboutRelaxProMattressPage() {
                 <div className="flex flex-col sm:flex-row gap-3 mt-8">
                   <Link to="/catalog" className="btn btn-primary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3.5 px-6 rounded-full text-center cursor-pointer">Browse Mattresses</Link>
                   <a
-                    href={`https://wa.me/918686624494?text=${encodeURIComponent('Hello Suresh, I would like to know more about RelaxPro Mattress and your range. Can you help?')}`}
+                    href={`https://wa.me/919281424494?text=${encodeURIComponent('Hello Suresh, I would like to know more about RelaxPro Mattress and your range. Can you help?')}`}
                     target="_blank"
                     rel="noreferrer"
                     className="btn btn-secondary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3.5 px-6 rounded-full text-center cursor-pointer inline-flex items-center justify-center gap-2"

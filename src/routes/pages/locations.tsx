@@ -91,7 +91,7 @@ function storeSchema(store: any): Record<string, unknown> {
     store.fullAddress ||
     (typeof store.address === 'string' ? store.address : '');
   const phones = store.contact?.phoneNumbers || store.phones || [];
-  const phone = phones[0] || store.telephone || '+918686624494';
+  const phone = phones[0] || store.telephone || '+919281424494';
   const email = store.contact?.email || store.email || '';
   const coords = store.coordinates || store.coords;
   const geo =
