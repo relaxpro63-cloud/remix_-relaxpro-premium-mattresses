@@ -45,15 +45,17 @@ describe('getCatalog', () => {
 
   it('serves the stale cache when a refetch fails', async () => {
     let call = 0;
-    __setCatalogFetcher(async () => {
+    const fetcher = vi.fn(async () => {
       call += 1;
       if (call === 1) return [rawProduct];
       throw new Error('sanity down');
     });
+    __setCatalogFetcher(fetcher);
     const first = await getCatalog();
     invalidateCatalog();
     const second = await getCatalog();
     expect(second).toEqual(first);
+    expect(fetcher).toHaveBeenCalledTimes(2);
   });
 
   it('rethrows when a fetch fails and no cache exists', async () => {
@@ -61,5 +63,20 @@ describe('getCatalog', () => {
       throw new Error('sanity down');
     });
     await expect(getCatalog()).rejects.toThrow('sanity down');
+  });
+
+  it('preserves stale cache when fetcher returns non-array', async () => {
+    let call = 0;
+    const fetcher = vi.fn(async () => {
+      call += 1;
+      if (call === 1) return [rawProduct];
+      return null;
+    }) as any;
+    __setCatalogFetcher(fetcher);
+    const first = await getCatalog();
+    invalidateCatalog();
+    const second = await getCatalog();
+    expect(second).toEqual(first);
+    expect(fetcher).toHaveBeenCalledTimes(2);
   });
 });

@@ -206,7 +206,12 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
 
   try {
     const raw = await fetcher();
-    const products = (Array.isArray(raw) ? raw : [])
+    // Treat non-array responses as errors so they fall through to stale-cache preservation.
+    // Empty arrays are valid (all products could be out of stock).
+    if (!Array.isArray(raw)) {
+      throw new Error('Fetcher returned non-array response');
+    }
+    const products = raw
       .map(normalizeProduct)
       .filter((p): p is CatalogProduct => p !== null);
     cache = { products, expiresAt: Date.now() + CACHE_TTL_MS };
