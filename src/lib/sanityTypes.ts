@@ -21,6 +21,16 @@ export interface SanitySeo {
   canonical?: string
 }
 
+export interface SanitySpecifications {
+  thickness?: string
+  density?: string
+  purity?: string
+  certification?: string
+  feel?: string
+  material?: string
+  weight?: string
+}
+
 export interface SanityLayer {
   thickness: number
   material: 'rebonded_foam' | 'latex' | 'hr_foam' | 'hr_softy_foam' | 'latex_rebonded' | 'pu_rebonded'
@@ -62,6 +72,7 @@ export interface SanityProduct {
   comfortRating?: number
   totalThickness?: number
   layers?: SanityLayer[]
+  specifications?: SanitySpecifications
   fabricGsm?: number
   fabricType?: string
   certifications?: string[]

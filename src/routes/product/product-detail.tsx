@@ -90,6 +90,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
       comfortRating: sanityProduct.comfortRating ?? hc.comfortRating,
       totalThickness: sanityProduct.totalThickness ?? hc.totalThickness,
       layers: sanityProduct.layers || hc.layers,
+      specifications: sanityProduct.specifications || hc.specifications,
       fabricGsm: sanityProduct.fabricGsm ?? hc.fabricGsm,
       fabricType: sanityProduct.fabricType || hc.fabricType,
       certifications: sanityProduct.certifications || hc.certifications,
@@ -352,7 +353,15 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
               <div className="border-x border-brand-200/30 flex flex-col items-center justify-center">
                 <span className="text-[7px] sm:text-[10px] font-mono text-graphite-400 uppercase tracking-widest block mb-1">Depth Profile</span>
                 <span className="text-xl sm:text-2xl md:text-3xl font-bold font-heading text-ink-900 block leading-none sm:leading-tight">{product.totalThickness}"</span>
-                <span className="text-[7px] sm:text-[11px] text-graphite-500 font-body block mt-0.5 sm:mt-1 truncate">Inches Composite</span>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-[7px] sm:text-[10px] font-mono text-graphite-400 uppercase tracking-widest block mb-1 sm:mb-2 truncate">Material</span>
+                <div className="flex items-center justify-center mb-1 sm:mb-2">
+                  <Leaf className="w-4 h-4 sm:w-6 sm:h-6 text-brand-600" />
+                </div>
+                <span className="text-xs sm:text-sm font-heading font-bold text-ink-900 capitalize leading-tight truncate">
+                  {product.specifications?.material || product.layers?.[0]?.material?.replace('_', ' ') || 'Natural Latex'}
+                </span>
               </div>
             </div>
 

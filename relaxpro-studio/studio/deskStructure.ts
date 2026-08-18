@@ -15,6 +15,7 @@ export const deskStructure = (S: StructureBuilder) =>
               S.documentListItem({ schemaType: 'customBuilder', id: 'customBuilder', title: 'Mattress Builder' }),
               S.documentListItem({ schemaType: 'about', id: 'about', title: 'About Page' }),
               S.documentListItem({ schemaType: 'contact', id: 'contact', title: 'Contact Page' }),
+              S.documentListItem({ schemaType: 'sleepScience', id: 'sleepScience', title: 'Sleep Science Page' }),
             ])
         ),
       S.documentTypeListItem('offer').title('Offers & Campaigns'),
@@ -25,6 +26,20 @@ export const deskStructure = (S: StructureBuilder) =>
       S.documentTypeListItem('showroom').title('Showrooms'),
       S.documentTypeListItem('testimonial').title('Testimonials'),
       S.documentTypeListItem('faq').title('FAQs'),
+      S.documentTypeListItem('sleepStyle').title('Sleep Style Guide'),
+      S.documentTypeListItem('gallery').title('Image Galleries'),
+      S.documentTypeListItem('policyPage').title('Policy Pages'),
+      S.divider(),
+      S.listItem()
+        .title('Certifications')
+        .child(
+          S.list()
+            .title('Certifications')
+            .items([
+              S.documentListItem({ schemaType: 'certificationSettings', id: 'certificationSettings', title: 'Certification Section Settings' }),
+              S.documentTypeListItem('certification').title('All Certifications'),
+            ])
+        ),
       S.divider(),
       S.listItem()
         .title('Builder')
@@ -37,5 +52,6 @@ export const deskStructure = (S: StructureBuilder) =>
             ])
         ),
       S.divider(),
+      S.documentListItem({ schemaType: 'navigation', id: 'navigation', title: 'Navigation Menu' }),
       S.documentListItem({ schemaType: 'siteSettings', id: 'siteSettings', title: 'Site Settings' }),
     ])

@@ -262,7 +262,6 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               {comparedProducts.map((p) => (
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200 font-sans">
                   <span className="text-base font-bold font-display text-brand-950">{p.totalThickness}"</span>
-                  <span className="text-xs text-graphite-500 font-mono"> (Inches Composite)</span>
                 </td>
               ))}
             </tr>

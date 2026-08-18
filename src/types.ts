@@ -36,6 +36,16 @@ export interface SizePrice {
   custom?: 0;
 }
 
+export interface ProductSpecifications {
+  thickness?: string;
+  density?: string;
+  purity?: string;
+  certification?: string;
+  feel?: string;
+  material?: string;
+  weight?: string;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -46,6 +56,7 @@ export interface Product {
   comfortRating: number; // 1 to 5 scale
   totalThickness: number; // inches
   layers: MattressLayer[];
+  specifications?: ProductSpecifications;
   fabricGsm: number;
   fabricType: string;
   certifications: string[];
