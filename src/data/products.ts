@@ -115,7 +115,7 @@ export const PRODUCTS: Product[] = [
     comfortRating: 4,
     totalThickness: 8,
     layers: [
-      { thickness: 4, material: 'latex_rebonded', brand: 'RelaxPro Core Tech', certification: ['ECO-Institut'], description: '4" Eco-Dense Latex Rebonded Foam made of upcycled latex shreds' },
+      { thickness: 4, material: 'latex_rebonded', brand: 'RelaxPro Core Tech', description: '4" Eco-Dense Latex Rebonded Foam made of upcycled latex shreds' },
       { thickness: 4, material: 'latex', brand: 'RelaxPro Pure Organic', certification: ['GOLS'], description: '4" pure certified organic Kerala latex' }
     ],
     fabricGsm: 400,
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Eco-conscious design utilizing organic latex shredded elements bound in high-density core topped with pure organic latex comfort layer',
-    description: 'Prakriti is our most eco-conscious design, featuring a dual-latex construction that upcycles shredded organic latex into a 4-inch high-density rebonded core, topped with 4 inches of pure GOLS-certified organic Kerala latex. The lower layer uses advanced ECO-Institut certified latex rebond technology — transforming natural latex remnants into a dense, supportive foundation that would otherwise go to waste. Above it, a thick slab of pure virgin latex delivers instant luxurious contouring and pressure relief. This twin-latex approach delivers uniform cloud-like support with exceptional core endurance, while reducing environmental impact. At 8 inches thick, Prakriti offers substantial orthopedic depth suitable for all body types.',
+    description: 'Prakriti is our most eco-conscious design, featuring a dual-latex construction that upcycles shredded organic latex into a 4-inch high-density rebonded core, topped with 4 inches of pure GOLS-certified organic Kerala latex. The lower layer uses advanced latex rebond technology — transforming natural latex remnants into a dense, supportive foundation that would otherwise go to waste. Above it, a thick slab of pure virgin latex delivers instant luxurious contouring and pressure relief. This twin-latex approach delivers uniform cloud-like support with exceptional core endurance, while reducing environmental impact. At 8 inches thick, Prakriti offers substantial orthopedic depth suitable for all body types.',
     badge: 'Eco-Friendly Twin Latex Engineering',
     pricingModel: 'with_without_accessories',
     pricing: {

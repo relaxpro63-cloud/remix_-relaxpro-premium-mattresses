@@ -103,7 +103,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
       { slug: 'nirvana', name: 'Nirvana 6" Pure Natural Latex', note: '90 density, 96.6% GOLS-certified pure natural latex' },
       { slug: 'ananda', name: 'Ananda 6" Solid Latex', note: 'GOLS + OEKO-TEX certified 100% pure organic latex' },
       { slug: 'prakriti', name: 'Prakriti 8" Eco & Natural Latex', note: 'Upcycled eco-rebonded core under pure certified latex' },
-      { slug: 'shuddha', name: 'Shuddha 6" Eco Latex', note: 'ECO-Institut certified latex-rebonded core with GOLS topper' },
+      { slug: 'shuddha', name: 'Shuddha 6" Eco Latex', note: 'Eco latex-rebonded core with GOLS topper' },
     ],
     related: [
       { label: 'Latex Mattress', path: '/latex-mattress' },
@@ -194,7 +194,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
       {
         heading: 'Eco latex-rebonded cores',
         paragraphs: [
-          'For a more sustainable twist, some models use latex-rebonded cores made from upcycled natural latex shreds — 120-density, ECO-Institut certified, and cast from shredded organic latex that would otherwise go to waste. Prakriti and Shuddha lead this eco construction.',
+          'For a more sustainable twist, some models use latex-rebonded cores made from upcycled natural latex shreds — 120-density, cast from shredded organic latex that would otherwise go to waste. Prakriti and Shuddha lead this eco construction.',
         ],
       },
     ],
@@ -203,7 +203,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
       { slug: 'arogya', name: 'Arogya 8" Ortho Hybrid', note: 'High-firm Century rebonded + certified latex core' },
       { slug: 'sthira', name: 'Sthira 6" Firm Ortho', note: '95-density ortho rebonded base + GOLS latex' },
       { slug: 'bhumi', name: 'Bhumi 8" Supportive Hybrid', note: 'PU rebonded base + eco latex-rebonded transition' },
-      { slug: 'prakriti', name: 'Prakriti 8" Eco Latex', note: 'ECO-Institut certified eco latex-rebonded core' },
+      { slug: 'prakriti', name: 'Prakriti 8" Eco Latex', note: 'Eco latex-rebonded core' },
     ],
     related: [
       { label: 'HR Foam Mattress', path: '/hr-foam-mattress' },
