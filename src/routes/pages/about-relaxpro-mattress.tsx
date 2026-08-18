@@ -70,7 +70,7 @@ const productTypes = [
 const facts = [
   { icon: MapPin, title: 'Manufacturing', text: 'Handcrafted at our factory in Jeedimetla Industrial Area, Phase 3, Hyderabad, with natural latex sourced from our unit in Kerala.' },
   { icon: Ruler, title: 'Custom Sizes', text: 'Made-to-measure mattresses from 48" to 96" long and 24" to 84" wide, plus custom thickness.' },
-  { icon: Shield, title: 'Certified', text: 'GOLS-certified organic latex, OEKO-TEX certified fabrics, and ECO-Institut certified eco-rebond materials.' },
+  { icon: Shield, title: 'Certified', text: 'GOLS-certified organic latex and OEKO-TEX certified fabrics.' },
   { icon: Truck, title: 'Factory-Direct Delivery', text: 'Shipped directly to your doorstep across India — free shipping, tax included.' },
 ];
 
@@ -182,8 +182,6 @@ export default function AboutRelaxProMattressPage() {
                   {[
                     'GOLS — certified organic latex integrity',
                     'OEKO-TEX Standard 100 — certified fabric safety',
-                    'ECO-Institut — certified eco-rebonded latex foam',
-                    'FSC — sustainable rubber sourcing',
                     'Manufacturer warranty on every mattress — confirm current terms with our team',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">

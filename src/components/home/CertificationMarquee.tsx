@@ -6,9 +6,7 @@ import { getSiteSettings } from '../../lib/queries';
 const defaultItems = [
   'GOLS Certified Organic',
   'Oeko-Tex Standard 100',
-  'FSC Certified Wood',
   'Zero VOC Emissions',
-  'Eco-Institut Verified',
   'ISO 9001 Certified'
 ];
 

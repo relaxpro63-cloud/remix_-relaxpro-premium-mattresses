@@ -204,7 +204,7 @@ export default function SleepScience() {
               {(certs.length > 0 ? certs : [
                 { title: 'Global Organic Latex Standard', description: 'Mandates that 100% of latex sap must be grown under organic procedures without synthetic fertilizers or GMOs. Audited at Kerala plantations.', shortName: 'GOLS' },
                 { title: 'Oeko-Tex Standard-100', description: 'Guarantees textiles are fully audited to be clear of harmful dyes, heavy heavy-metal residues, toxic formaldehyde, and pesticides. Safe for infants.', shortName: 'Oeko' },
-                { title: 'Eco-Institut Certified', description: 'Direct evaluation of chemical emissions and product purities conducted in Germany. Guarantees zero hazardous off-gassing issues.', shortName: 'ECO' },
+                { title: 'ISO 9001 Certified', description: 'Independently audited quality management system covering every stage of manufacturing, from raw latex intake to final dispatch.', shortName: 'ISO' },
               ]).map((cert: any, i: number) => {
                 const isOeko = cert.title?.includes('Oeko') || i === 1;
                 const shortName = isOeko ? '' : (cert.shortName || cert.title?.substring(0, 3) || `Cert ${i + 1}`);
