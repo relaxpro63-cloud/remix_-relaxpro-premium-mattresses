@@ -55,7 +55,11 @@ export function useVoiceRecognition(langCode: string): VoiceRecognitionState {
 
     const recognition = new Ctor();
     recognition.lang = langCode;
-    recognition.continuous = false;
+    // Keep listening across natural pauses in speech — the UI promises the
+    // customer "tap the square to stop" (user-controlled), so the browser
+    // must not auto-end on the first detected gap. With continuous:false it
+    // silently cut people off mid-sentence, which read as "voice doesn't work".
+    recognition.continuous = true;
     recognition.interimResults = true;
 
     recognition.onstart = () => {

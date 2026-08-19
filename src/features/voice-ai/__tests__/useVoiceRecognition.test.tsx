@@ -63,6 +63,44 @@ describe('useVoiceRecognition', () => {
     expect(instance.lang).toBe('te-IN');
   });
 
+  it('listens continuously instead of stopping after the first pause', () => {
+    // The UI tells the customer to "tap the square to stop" — that promise
+    // only holds if the browser keeps listening through natural pauses in
+    // speech instead of auto-ending after the first detected gap.
+    const { result } = renderHook(() => useVoiceRecognition('en-IN'));
+    act(() => result.current.start());
+    expect(instance.continuous).toBe(true);
+  });
+
+  it('keeps listening and accumulates transcript across a pause mid-sentence', () => {
+    const { result } = renderHook(() => useVoiceRecognition('en-IN'));
+    act(() => result.current.start());
+
+    // First phrase, then a pause the browser reports as a final result —
+    // with continuous=false this would also fire onend and cut the user off.
+    act(() => {
+      instance.onresult?.({
+        resultIndex: 0,
+        results: [Object.assign([{ transcript: 'naaku queen mattress' }], { isFinal: true })],
+      });
+    });
+    expect(result.current.isListening).toBe(true);
+
+    // Customer resumes after the pause; recognition is still running.
+    act(() => {
+      instance.onresult?.({
+        resultIndex: 1,
+        results: [
+          Object.assign([{ transcript: 'naaku queen mattress' }], { isFinal: true }),
+          Object.assign([{ transcript: 'kavali back pain kosam' }], { isFinal: true }),
+        ],
+      });
+    });
+
+    expect(result.current.transcript).toBe('naaku queen mattress kavali back pain kosam');
+    expect(result.current.isListening).toBe(true);
+  });
+
   it('tracks the listening state', () => {
     const { result } = renderHook(() => useVoiceRecognition('en-IN'));
     act(() => result.current.start());
