@@ -26,11 +26,6 @@ export function prefersReducedMotion(): boolean {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-/** True on devices with a real mouse — gates cursor-follow / magnetic effects. */
-export function hasFinePointer(): boolean {
-  return typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-}
-
 /**
  * Splits an element's text into per-line spans (wrapped in an
  * overflow-hidden mask) so each line can be revealed independently —
@@ -166,43 +161,6 @@ export function useImageReveal<T extends HTMLElement = HTMLDivElement>(
     return () => ctx.revert();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  return ref;
-}
-
-/**
- * React hook: subtle magnetic pull toward the cursor for primary CTAs.
- * Disabled on touch devices and under reduced-motion (spec: max 6-10px).
- */
-export function useMagnetic<T extends HTMLElement = HTMLButtonElement>(strength = 10): RefObject<T | null> {
-  const ref = useRef<T | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion() || !hasFinePointer()) return;
-
-    const xTo = gsap.quickTo(el, 'x', { duration: 0.4, ease: EASE.smooth });
-    const yTo = gsap.quickTo(el, 'y', { duration: 0.4, ease: EASE.smooth });
-
-    const onMove = (e: PointerEvent) => {
-      const rect = el.getBoundingClientRect();
-      const relX = e.clientX - (rect.left + rect.width / 2);
-      const relY = e.clientY - (rect.top + rect.height / 2);
-      xTo(gsap.utils.clamp(-strength, strength, relX * 0.3));
-      yTo(gsap.utils.clamp(-strength, strength, relY * 0.3));
-    };
-    const onLeave = () => {
-      xTo(0);
-      yTo(0);
-    };
-
-    el.addEventListener('pointermove', onMove);
-    el.addEventListener('pointerleave', onLeave);
-    return () => {
-      el.removeEventListener('pointermove', onMove);
-      el.removeEventListener('pointerleave', onLeave);
-    };
-  }, [strength]);
 
   return ref;
 }

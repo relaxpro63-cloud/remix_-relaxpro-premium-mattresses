@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion, type HTMLMotionProps } from 'motion/react';
 import { usePrefersReducedMotion, SPRING_TAP, SPRING_HOVER } from '../motion/motionPrimitives';
-import { useMagnetic } from '../../lib/animations';
 
 type Variant = 'primary' | 'secondary' | 'outline' | 'ghost';
 
@@ -17,8 +16,6 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   const reduced = usePrefersReducedMotion();
-  const magneticRef = useMagnetic<HTMLSpanElement>(8);
-  const isMagnetic = variant === 'primary' || variant === 'secondary';
 
   const base =
     'inline-flex items-center justify-center min-h-11 rounded-full px-6 py-3 text-sm font-bold uppercase tracking-widest transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-60 disabled:pointer-events-none';
@@ -30,24 +27,14 @@ export default function Button({
     ghost: 'text-ink-900 hover:text-brand-600',
   };
 
-  const lift = isMagnetic ? -2 : 0;
-
-  const button = (
+  return (
     <motion.button
       className={`${base} ${variants[variant]} ${className}`.trim()}
-      whileHover={reduced ? undefined : { y: lift, scale: 1.01, transition: SPRING_HOVER }}
-      whileTap={reduced ? undefined : { y: 1, scale: 0.97, transition: SPRING_TAP }}
+      whileHover={reduced ? undefined : { scale: 1.01, transition: SPRING_HOVER }}
+      whileTap={reduced ? undefined : { scale: 0.97, transition: SPRING_TAP }}
       {...rest}
     >
       {children}
     </motion.button>
-  );
-
-  if (!isMagnetic) return button;
-
-  return (
-    <span ref={magneticRef} className="inline-block">
-      {button}
-    </span>
   );
 }

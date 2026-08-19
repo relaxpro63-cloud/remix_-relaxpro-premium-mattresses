@@ -6,7 +6,6 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ui/ScrollToTop';
 import ScrollProgressBar from './components/ui/ScrollProgressBar';
-import CustomCursor from './components/ui/CustomCursor';
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartProvider, useCart } from './features/cart/CartContext';
 import { useGlobalScrollAnimations } from './hooks/useIntersectionObserver';
@@ -76,7 +75,6 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-secondary flex flex-col justify-between selection:bg-brand-500 selection:text-brand-950">
       <ScrollProgressBar />
-      <CustomCursor />
       <Header cartCount={cart.totalCount} />
       <main className="flex-1">
         <ErrorBoundary>

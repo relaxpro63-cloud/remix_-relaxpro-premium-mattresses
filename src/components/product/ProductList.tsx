@@ -279,7 +279,7 @@ export default function ProductList({
 </div>
 
                   {/* Product Image block */}
-                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-sky-100 cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)} data-cursor-label="View">
+                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-sky-100 cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
                     {p.badge && (
                       <span className="absolute top-1 sm:top-4 left-1 sm:left-4 bg-ink-900/95 backdrop-blur-sm text-white font-accent text-[6px] sm:text-[10px] tracking-widest uppercase font-bold px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
                         {p.badge}

@@ -9,7 +9,6 @@ import { getHero, imageUrl } from '../../lib/queries';
 import { urlFor } from '../../lib/sanity';
 import DecorativeBotanicals from './DecorativeBotanicals';
 import { RevealText } from '../motion/motionPrimitives';
-import { useMagnetic } from '../../lib/animations';
 
 const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
 
@@ -54,9 +53,6 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
     offset: ['start start', 'end start'],
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const magneticPrimaryRef = useMagnetic<HTMLSpanElement>(10);
-  const magneticSecondaryRef = useMagnetic<HTMLSpanElement>(10);
 
   const heroImgWrapRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -195,21 +191,20 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 transition={{ duration: 0.7, ease: EASE_LUXURY, delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 lg:mt-8 xl:mt-10"
               >
-                <span ref={magneticPrimaryRef} className="inline-block">
+                <span className="inline-block">
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                     onClick={() => onNavigate('catalog')}
                     className="btn-primary text-[11px] lg:text-xs xl:text-sm font-bold font-accent uppercase tracking-[0.12em] lg:tracking-[0.15em] cursor-pointer inline-flex items-center gap-2 lg:gap-3 py-3.5 lg:py-4 xl:py-5 px-6 lg:px-8 xl:px-10 rounded-xl lg:rounded-2xl shadow-2xl shadow-brand-600/30"
-                    data-cursor-label="Explore"
                   >
                     {ctaLabel}
                     <ChevronRight className="w-3 h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 shrink-0" />
                   </motion.button>
                 </span>
 
-                <span ref={magneticSecondaryRef} className="inline-block">
+                <span className="inline-block">
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.97 }}
