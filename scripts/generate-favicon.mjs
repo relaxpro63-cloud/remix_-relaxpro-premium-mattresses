@@ -81,6 +81,13 @@ async function main() {
   fs.writeFileSync(path.join(PUBLIC, 'favicon.ico'), ico);
   console.log(`  ✓ favicon.ico  (${ico.length} bytes)`);
 
+  // Google-documented default /favicon.png (48px)
+  const faviconPng = pngBuffers.find((e) => e.size === 48);
+  if (faviconPng) {
+    fs.writeFileSync(path.join(PUBLIC, 'favicon.png'), faviconPng.buffer);
+    console.log(`  ✓ favicon.png  (${faviconPng.buffer.length} bytes)`);
+  }
+
   // apple-touch-icon (180×180) for iOS home-screen shortcuts
   const apple = await sharp(SOURCE)
     .resize(180, 180, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
