@@ -215,25 +215,23 @@ export default function Footer() {
           >
             {/* ═══════ BRAND SECTION — Large Logo + Tagline + Trust Pills ═══════ */}
             <motion.div variants={fadeUp} className="flex flex-col items-start w-full">
-              {/* Large White Logo — clearly visible on dark background */}
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="relative inline-block"
-              >
-                {/* Bold white glow behind logo for maximum contrast */}
-                <div className="absolute -inset-12 md:-inset-16 rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(61,149,214,0.28)_0%,_rgba(61,149,214,0.12)_50%,_transparent_100%)] blur-3xl pointer-events-none" />
-                <div className="absolute -inset-6 rounded-full bg-white/[0.06] blur-xl pointer-events-none" />
+              {/* Navbar logo on a white rectangle cut — blends into the dark footer */}
+              <div className="relative inline-block">
+                {/* White rectangle plate (cut background) */}
+                <div
+                  className="absolute -inset-3 sm:-inset-4 md:-inset-5 lg:-inset-6 rounded-2xl bg-white pointer-events-none"
+                  aria-hidden="true"
+                />
                 <img
-                  src="/relaxpro-logo-white.svg"
+                  src="/images/relaxpro-logo.png"
                   alt="RelaxPro Premium Mattresses"
-                  className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain block relative brightness-110 drop-shadow-[0_0_30px_rgba(117,183,230,0.30)]"
+                  className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain block relative"
                   width={500}
-                  height={128}
+                  height={344}
                   loading="eager"
                   style={{ imageRendering: 'auto' }}
                 />
-              </motion.div>
+              </div>
 
                 {/* Tagline with blue dot divider */}
                 <motion.p
