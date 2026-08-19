@@ -1,3 +1,5 @@
+import imageMember from './imageMember'
+
 export default {
   name: 'richText',
   title: 'Rich Text',
@@ -22,7 +24,7 @@ export default {
         ]},
       ],
     }},
-    { type: 'imageWithAlt' },
+    imageMember,
     { type: 'ctaButton' },
   ],
 }

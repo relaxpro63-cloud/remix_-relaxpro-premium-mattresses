@@ -1,3 +1,5 @@
+import imageMember from '../objects/imageMember'
+
 export default {
   name: 'accessory',
   title: 'Accessory',
@@ -31,7 +33,7 @@ export default {
     },
     { name: 'sizes', title: 'Available Sizes', type: 'array', of: [{ type: 'string' }], options: { list: ['Standard', 'King', 'Queen', 'Single'] } },
     { name: 'features', title: 'Key Features', type: 'array', of: [{ type: 'string' }] },
-    { name: 'images', title: 'Product Images', type: 'array', of: [{ type: 'imageWithAlt' }] },
+    { name: 'images', title: 'Product Images', type: 'array', of: [imageMember] },
     { name: 'thumbnail', title: 'Thumbnail', type: 'imageWithAlt' },
     { name: 'inStock', title: 'In Stock', type: 'boolean', initialValue: true },
     { name: 'isNew', title: 'New Arrival', type: 'boolean' },

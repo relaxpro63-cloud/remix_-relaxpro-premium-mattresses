@@ -1,3 +1,5 @@
+import imageMember from '../objects/imageMember'
+
 export default {
   name: 'product',
   title: 'Product',
@@ -7,7 +9,7 @@ export default {
     { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name', maxLength: 96 }, validation: (R: any) => R.required() },
     { name: 'tagline', title: 'Tagline', type: 'string' },
     { name: 'shortDescription', title: 'Short Description', type: 'text', rows: 3 },
-    { name: 'longDescription', title: 'Long Description', type: 'array', of: [{ type: 'block' }, { type: 'imageWithAlt' }] },
+    { name: 'longDescription', title: 'Long Description', type: 'array', of: [{ type: 'block' }, imageMember] },
     {
       name: 'pricing', title: 'Pricing', type: 'object',
       fields: [
@@ -48,7 +50,7 @@ export default {
         { name: 'returnPolicy', title: 'Return Policy Text', type: 'text', rows: 3 },
       ],
     },
-    { name: 'images', title: 'Product Images', type: 'array', of: [{ type: 'imageWithAlt' }], validation: (R: any) => R.min(1) },
+    { name: 'images', title: 'Product Images', type: 'array', of: [imageMember], validation: (R: any) => R.min(1) },
     { name: 'video', title: 'Product Video URL', type: 'url' },
     { name: 'category', title: 'Category', type: 'reference', to: [{ type: 'brandCategory' }] },
     { name: 'tier', title: 'Product Tier', type: 'string', options: { list: [{ title: 'Comfort', value: 'comfort' }, { title: 'Premium', value: 'premium' }, { title: 'Luxury', value: 'luxury' }] } },

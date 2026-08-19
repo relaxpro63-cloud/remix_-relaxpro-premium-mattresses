@@ -1,3 +1,5 @@
+import imageMember from '../objects/imageMember'
+
 export default {
   name: 'product',
   title: 'Product',
@@ -11,7 +13,7 @@ export default {
     { name: 'description', title: 'Description', type: 'text', rows: 5 },
     { name: 'badge', title: 'Badge', type: 'string' },
     { name: 'shortDescription', title: 'Short Description', type: 'text', rows: 3 },
-    { name: 'longDescription', title: 'Long Description', type: 'array', of: [{ type: 'block' }, { type: 'imageWithAlt' }] },
+    { name: 'longDescription', title: 'Long Description', type: 'array', of: [{ type: 'block' }, imageMember] },
     {
       name: 'comfortLevel', title: 'Comfort Level',
       type: 'string',
@@ -114,7 +116,7 @@ export default {
         { name: 'returnPolicy', title: 'Return Policy Text', type: 'text', rows: 3 },
       ],
     },
-    { name: 'images', title: 'Product Images', type: 'array', of: [{ type: 'imageWithAlt' }] },
+    { name: 'images', title: 'Product Images', type: 'array', of: [imageMember] },
     { name: 'thumbnail', title: 'Thumbnail', type: 'imageWithAlt' },
     { name: 'video', title: 'Product Video URL', type: 'url' },
     { name: 'category', title: 'Category', type: 'reference', to: [{ type: 'brandCategory' }] },
