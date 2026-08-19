@@ -3,6 +3,7 @@ import { XCircle, CheckCircle2, Leaf, Award, SlidersHorizontal, ShieldCheck, Hea
 // Uses new design tokens: eco-*, brand-*, ink-*, linen-*, graphite-*
 import { getHomePage } from '../../lib/queries';
 import DecorativeBotanicals from './DecorativeBotanicals';
+import BlurFade from '../ui/BlurFade';
 
 const iconMap: Record<string, React.ReactNode> = {
   leaf: <Leaf className="w-6 h-6 text-eco-500" />,
@@ -39,14 +40,16 @@ export default function ComparisonTable() {
     <section className="py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 bg-sky-100/20 relative overflow-hidden">
       <DecorativeBotanicals density="light" />
       <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-8 xs:mb-10 sm:mb-12 md:mb-14">
-          <h2 className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl font-heading font-bold text-ink-900 mb-2 xs:mb-3">
-            {data.sectionTitle}
-          </h2>
-          <p className="text-graphite-500 font-body text-sm xs:text-[15px] sm:text-base">
-            {data.sectionSubtitle}
-          </p>
-        </div>
+        <BlurFade>
+          <div className="text-center mb-8 xs:mb-10 sm:mb-12 md:mb-14">
+            <h2 className="text-2xl xs:text-3xl sm:text-[2rem] md:text-4xl font-heading font-bold text-ink-900 mb-2 xs:mb-3">
+              {data.sectionTitle}
+            </h2>
+            <p className="text-graphite-500 font-body text-sm xs:text-[15px] sm:text-base">
+              {data.sectionSubtitle}
+            </p>
+          </div>
+        </BlurFade>
 
         <div className="rounded-2xl overflow-hidden border border-brand-200/50 shadow-sm font-body">
           <div className="grid grid-cols-2 bg-eco-50">

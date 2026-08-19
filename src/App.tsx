@@ -1,9 +1,12 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
+import { RouteTransition } from './components/motion/motionPrimitives';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ui/ScrollToTop';
+import ScrollProgressBar from './components/ui/ScrollProgressBar';
+import CustomCursor from './components/ui/CustomCursor';
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartProvider, useCart } from './features/cart/CartContext';
 import { useGlobalScrollAnimations } from './hooks/useIntersectionObserver';
@@ -34,6 +37,7 @@ import { ToastProvider } from './components/ui/Toast';
 
 function AppContent() {
   const navigate = useNavigate();
+  const location = useLocation();
   const cart = useCart();
   const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
   const [selectedTier, setSelectedTier] = useState<Tier | 'all'>('all');
@@ -71,9 +75,13 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-secondary flex flex-col justify-between selection:bg-brand-500 selection:text-brand-950">
+      <ScrollProgressBar />
+      <CustomCursor />
       <Header cartCount={cart.totalCount} />
       <main className="flex-1">
         <ErrorBoundary>
+          <AnimatePresence mode="wait" initial={false}>
+            <RouteTransition key={location.pathname}>
           <Suspense
             fallback={
               <div className="min-h-[60vh] flex items-center justify-center bg-secondary">
@@ -84,7 +92,7 @@ function AppContent() {
               </div>
             }
           >
-            <Routes>
+            <Routes location={location}>
               <Route
                 path="/"
                 element={
@@ -197,7 +205,8 @@ function AppContent() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
-
+            </RouteTransition>
+          </AnimatePresence>
         </ErrorBoundary>
       </main>
       <Footer />

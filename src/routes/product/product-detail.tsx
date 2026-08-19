@@ -370,10 +370,26 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center border border-brand-200/50 shadow-sm shrink-0"><BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600" /></div>
                 Internal Architecture
               </h3>
-              <div className="space-y-3 sm:space-y-4">
+              <div className="relative space-y-3 sm:space-y-4">
+                {/* Connecting spine — draws itself down through the layer stack */}
+                <motion.div
+                  aria-hidden="true"
+                  className="absolute left-[28px] sm:left-[34px] top-6 bottom-6 w-px bg-gradient-to-b from-brand-400 via-brand-200 to-transparent origin-top pointer-events-none"
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                />
                 {product.layers.map((layer, idx) => (
-                  <div key={idx} className="flex gap-3 sm:gap-5 items-start p-3 sm:p-5 bg-white rounded-xl sm:rounded-2xl border border-brand-200/40 relative overflow-hidden group hover:border-brand-600/30 transition-colors">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-50 text-brand-600 font-heading font-bold flex items-center justify-center shrink-0 border border-brand-600/20 text-sm sm:text-lg group-hover:bg-brand-600 group-hover:text-white transition-colors">{layer.thickness}"</div>
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: idx * 0.12 }}
+                    className="flex gap-3 sm:gap-5 items-start p-3 sm:p-5 bg-white rounded-xl sm:rounded-2xl border border-brand-200/40 relative overflow-hidden group hover:border-brand-600/30 transition-colors"
+                  >
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-50 text-brand-600 font-heading font-bold flex items-center justify-center shrink-0 border border-brand-600/20 text-sm sm:text-lg group-hover:bg-brand-600 group-hover:text-white transition-colors relative z-10">{layer.thickness}"</div>
                     <div className="flex-1 pt-0 sm:pt-1">
                       <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
                         <h4 className="font-accent font-bold text-xs sm:text-[14px] text-ink-900 uppercase tracking-wide">{layer.material.replace('_', ' ')}</h4>
@@ -388,7 +404,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                         </div>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>

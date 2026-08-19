@@ -1183,17 +1183,26 @@ export default function MattressBuilder({ onNavigate }: {
               <button
                 key={step.key}
                 onClick={() => setOpenStep(step.key as StepKey)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-semibold transition-all duration-300 cursor-pointer ${
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-semibold cursor-pointer ${
                   isActiveStep
-                    ? 'bg-ink-900 text-white shadow-md'
+                    ? 'text-white shadow-md'
                     : isCompleted
                       ? 'bg-green-50 text-green-700 border border-green-200/50'
                       : 'bg-white text-graphite-400 border border-graphite-200'
                 }`}
               >
-                <Icon className={`w-3 h-3 ${isActiveStep ? 'text-white' : isCompleted ? 'text-green-600' : 'text-graphite-400'}`} />
-                <span className="hidden sm:inline">{step.label}</span>
-                {isCompleted && <Check className="w-2.5 h-2.5 text-green-600" />}
+                {isActiveStep && (
+                  <motion.div
+                    layoutId="activeStepPill"
+                    className="absolute inset-0 bg-ink-900 rounded-full"
+                    transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                  <Icon className={`w-3 h-3 ${isActiveStep ? 'text-white' : isCompleted ? 'text-green-600' : 'text-graphite-400'}`} />
+                  <span className="hidden sm:inline">{step.label}</span>
+                  {isCompleted && <Check className="w-2.5 h-2.5 text-green-600" />}
+                </span>
               </button>
             );
           })}

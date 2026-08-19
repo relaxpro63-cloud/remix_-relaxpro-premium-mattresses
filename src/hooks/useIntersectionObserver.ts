@@ -42,34 +42,54 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
   return [ref, isVisible];
 }
 
+const REVEAL_SELECTOR = '.fade-up, .fade-left, .fade-right, .scale-in';
+
 /**
  * Hook to initialize global scroll animation observer.
  * Call once at the App root level to observe all .fade-up, .fade-left, .fade-right, .scale-in elements.
+ *
+ * Reveal elements frequently mount well after the route change (React.lazy +
+ * Suspense resolving, async data fetches) — a one-shot querySelectorAll misses
+ * them and they stay at opacity:0 forever. A MutationObserver picks up
+ * anything added for as long as the route is mounted, not just the first pass.
  */
 export function useGlobalScrollAnimations(): void {
   const location = useLocation();
 
   useEffect(() => {
-    // Need a slight delay to allow React to render the new DOM elements after route change
-    const timeout = setTimeout(() => {
-      const animatedEls = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in');
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+    );
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animate-in');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
-      );
+    const observeMatches = (root: ParentNode) => {
+      root.querySelectorAll(REVEAL_SELECTOR).forEach((el) => io.observe(el));
+    };
 
-      animatedEls.forEach((el) => observer.observe(el));
-    }, 100);
+    observeMatches(document);
 
-    return () => clearTimeout(timeout);
+    const mo = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof Element)) return;
+          if (node.matches(REVEAL_SELECTOR)) io.observe(node);
+          observeMatches(node);
+        });
+      }
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [location.pathname]);
 }
 

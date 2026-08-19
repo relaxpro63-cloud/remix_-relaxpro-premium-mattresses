@@ -1,9 +1,15 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import { ChevronRight, Shield, Award, Leaf, IndianRupee, ShieldCheck, Sparkles, Truck, RefreshCcw, CheckCircle, Heart, BadgeCheck, FlameKindling, ShieldAlert } from 'lucide-react';
 import { getHero, imageUrl } from '../../lib/queries';
 import { urlFor } from '../../lib/sanity';
 import DecorativeBotanicals from './DecorativeBotanicals';
+import { RevealText } from '../motion/motionPrimitives';
+import { useMagnetic } from '../../lib/animations';
 
 const EASE_LUXURY = [0.22, 1, 0.36, 1] as const;
 
@@ -48,6 +54,41 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
     offset: ['start start', 'end start'],
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const magneticPrimaryRef = useMagnetic<HTMLSpanElement>(10);
+  const magneticSecondaryRef = useMagnetic<HTMLSpanElement>(10);
+
+  const heroImgWrapRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const wrap = heroImgWrapRef.current;
+    if (!wrap || reduce) return;
+
+    const ctx = gsap.context(() => {
+      // Unveil: the photo emerges from behind a soft inset mask on load —
+      // a separate CSS property from the img's own Framer scale/opacity
+      // entrance, so the two engines never fight over the same value.
+      gsap.fromTo(
+        wrap,
+        { clipPath: 'inset(6% 6% 6% 6%)' },
+        { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power3.out', delay: 0.15 }
+      );
+
+      // Scroll-scrub: the frame itself creeps in slightly further as the
+      // user scrolls past the hero, on top of the photo's own zoom.
+      gsap.fromTo(
+        wrap,
+        { scale: 1 },
+        {
+          scale: 1.04,
+          ease: 'none',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+        }
+      );
+    }, wrap);
+
+    return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduce]);
 
   const heading = 'RelaxPro';
   const subheading = 'Luxury Natural Latex Mattresses';
@@ -130,15 +171,14 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 </span>
               </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: EASE_LUXURY, delay: 0.1 }}
-                className="font-heading text-[2.5rem] lg:text-[3.2rem] xl:text-[3.8rem] 2xl:text-[4.5rem] leading-[1.05] lg:leading-[1.06] xl:leading-[1.08] tracking-tight text-white"
-              >
-                {heading}
-                <span className="block text-gradient-brand">{subheading}</span>
-              </motion.h1>
+              <h1 className="font-heading text-[2.5rem] lg:text-[3.2rem] xl:text-[3.8rem] 2xl:text-[4.5rem] leading-[1.05] lg:leading-[1.06] xl:leading-[1.08] tracking-tight text-white">
+                <RevealText as="span" className="block" delay={0.1} splitBy="words">
+                  {heading}
+                </RevealText>
+                <RevealText as="span" className="block text-gradient-brand" delay={0.22} splitBy="words">
+                  {subheading}
+                </RevealText>
+              </h1>
 
               <motion.p
                 initial={{ opacity: 0, x: -20 }}
@@ -155,27 +195,32 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
                 transition={{ duration: 0.7, ease: EASE_LUXURY, delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 lg:mt-8 xl:mt-10"
               >
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                  onClick={() => onNavigate('catalog')}
-                  className="btn-primary text-[11px] lg:text-xs xl:text-sm font-bold font-accent uppercase tracking-[0.12em] lg:tracking-[0.15em] cursor-pointer inline-flex items-center gap-2 lg:gap-3 py-3.5 lg:py-4 xl:py-5 px-6 lg:px-8 xl:px-10 rounded-xl lg:rounded-2xl shadow-2xl shadow-brand-600/30"
-                >
-                  {ctaLabel}
-                  <ChevronRight className="w-3 h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 shrink-0" />
-                </motion.button>
+                <span ref={magneticPrimaryRef} className="inline-block">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                    onClick={() => onNavigate('catalog')}
+                    className="btn-primary text-[11px] lg:text-xs xl:text-sm font-bold font-accent uppercase tracking-[0.12em] lg:tracking-[0.15em] cursor-pointer inline-flex items-center gap-2 lg:gap-3 py-3.5 lg:py-4 xl:py-5 px-6 lg:px-8 xl:px-10 rounded-xl lg:rounded-2xl shadow-2xl shadow-brand-600/30"
+                    data-cursor-label="Explore"
+                  >
+                    {ctaLabel}
+                    <ChevronRight className="w-3 h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 shrink-0" />
+                  </motion.button>
+                </span>
 
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                  onClick={() => onNavigate('builder')}
-                  className="text-[11px] lg:text-xs xl:text-sm font-bold font-accent uppercase tracking-[0.12em] lg:tracking-[0.15em] cursor-pointer inline-flex items-center gap-2 lg:gap-3 py-3.5 lg:py-4 xl:py-5 px-6 lg:px-8 xl:px-10 rounded-xl lg:rounded-2xl border border-white/20 text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
-                >
-                  {hero?.slides?.[0]?.secondaryCta?.label || 'Build Your Mattress'}
-                  <ChevronRight className="w-3 h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 shrink-0" />
-                </motion.button>
+                <span ref={magneticSecondaryRef} className="inline-block">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                    onClick={() => onNavigate('builder')}
+                    className="text-[11px] lg:text-xs xl:text-sm font-bold font-accent uppercase tracking-[0.12em] lg:tracking-[0.15em] cursor-pointer inline-flex items-center gap-2 lg:gap-3 py-3.5 lg:py-4 xl:py-5 px-6 lg:px-8 xl:px-10 rounded-xl lg:rounded-2xl border border-white/20 text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
+                  >
+                    {hero?.slides?.[0]?.secondaryCta?.label || 'Build Your Mattress'}
+                    <ChevronRight className="w-3 h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 shrink-0" />
+                  </motion.button>
+                </span>
               </motion.div>
 
               <motion.div
@@ -204,7 +249,7 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         </div>
 
         {/* RIGHT — Image (60%) */}
-        <div className="relative w-full lg:w-[55%] xl:w-[60%] 2xl:w-[62%] overflow-hidden">
+        <div ref={heroImgWrapRef} className="relative w-full lg:w-[55%] xl:w-[60%] 2xl:w-[62%] overflow-hidden">
           <motion.img
             initial={{ scale: 1.15, opacity: 0 }}
             animate={{ scale: 1.08, opacity: 1 }}
@@ -245,7 +290,10 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
         </div>
         {/* Image — adjusts height for very small screens */}
         <div className="relative h-[36vh] xs:h-[40vh] sm:h-[44vh] min-h-[280px] xs:min-h-[300px] sm:min-h-[330px] overflow-hidden">
-          <img
+          <motion.img
+            initial={reduce ? { opacity: 0 } : { scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: reduce ? 0.3 : 1.4, ease: EASE_LUXURY }}
             src={heroImage}
             srcSet={heroSrcSet || undefined}
             sizes="100vw"

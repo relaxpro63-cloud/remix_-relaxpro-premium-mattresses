@@ -1,8 +1,17 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingCart, MessageSquare, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import RelaxProLogo from '../ui/RelaxProLogo';
 import { getSiteSettings, getNavigation } from '../../lib/queries';
+import {
+  usePrefersReducedMotion,
+  StaggerChildren,
+  staggerItem,
+  SPRING_MOVE,
+  SPRING_DRAWER,
+  SPRING_TAP,
+} from '../motion/motionPrimitives';
 
 interface HeaderProps {
   cartCount: number;
@@ -17,6 +26,7 @@ export default function Header({ cartCount }: HeaderProps) {
   const [nav, setNav] = useState<any>(null);
   const location = useLocation();
   const lastScrollY = useRef(0);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     getSiteSettings().then(s => {
@@ -141,39 +151,55 @@ export default function Header({ cartCount }: HeaderProps) {
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-500 ${
-          hidden && !mobileMenuOpen ? '-translate-y-full' : 'translate-y-0'
-        } ${
+      <motion.header
+        className={`sticky top-0 z-40 w-full ${
           scrolled ? 'nav-glass shadow-sm' : 'bg-sky-50/80 backdrop-blur-md border-b border-brand-200/30'
         }`}
+        animate={{ y: hidden && !mobileMenuOpen ? '-100%' : '0%' }}
+        transition={reduced ? { duration: 0.15 } : SPRING_MOVE}
       >
-        {/* Top Banner — responsive text size and padding */}
-        <div
-          className="bg-ink-900 text-white text-[9px] xs:text-[10px] sm:text-[11px] py-1.5 xs:py-2 px-2 xs:px-3 sm:px-4 text-center font-accent tracking-wider xs:tracking-widest flex items-center justify-center"
-          style={settings?.announcement?.bannerColor ? { backgroundColor: bannerColors[settings.announcement.bannerColor] } : undefined}
+        {/* Top Banner — collapses away as the nav compacts on scroll */}
+        <motion.div
+          animate={{ height: scrolled ? 0 : 'auto', opacity: scrolled ? 0 : 1 }}
+          transition={{ duration: reduced ? 0.15 : 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden"
         >
-          {settings?.announcement?.bannerLink ? (
-            <a
-              href={settings.announcement.bannerLink}
-              className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none hover:underline"
-            >
-              {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
-            </a>
-          ) : (
-            <span className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none">
-              {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
-            </span>
-          )}
-        </div>
+          <div
+            className="bg-ink-900 text-white text-[9px] xs:text-[10px] sm:text-[11px] py-1.5 xs:py-2 px-2 xs:px-3 sm:px-4 text-center font-accent tracking-wider xs:tracking-widest flex items-center justify-center"
+            style={settings?.announcement?.bannerColor ? { backgroundColor: bannerColors[settings.announcement.bannerColor] } : undefined}
+          >
+            {settings?.announcement?.bannerLink ? (
+              <a
+                href={settings.announcement.bannerLink}
+                className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none hover:underline"
+              >
+                {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
+              </a>
+            ) : (
+              <span className="font-semibold text-brand-300 uppercase truncate max-w-[90vw] xs:max-w-none">
+                {bannerText || "Telangana & AP's 1st Pure Latex Mattress Company • GOLS Certified Organic Latex • Direct Factory Pricing"}
+              </span>
+            )}
+          </div>
+        </motion.div>
 
-        <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-2 xs:py-2.5 md:py-3 lg:py-4 flex items-center justify-between">
+        <motion.div
+          animate={{ paddingTop: scrolled ? 8 : 16, paddingBottom: scrolled ? 8 : 16 }}
+          transition={{ duration: reduced ? 0.15 : 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex items-center justify-between"
+        >
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center cursor-pointer group shrink-0"
           >
-            <RelaxProLogo variant="compact" />
+            <motion.div
+              animate={{ scale: scrolled ? 0.88 : 1 }}
+              transition={{ duration: reduced ? 0.15 : 0.4, ease: [0.22, 1, 0.36, 1] }}
+              style={{ transformOrigin: 'left center' }}
+            >
+              <RelaxProLogo variant="compact" />
+            </motion.div>
           </Link>
 
           {/* Desktop Navigation with dropdown for Shop */}
@@ -251,11 +277,20 @@ export default function Header({ cartCount }: HeaderProps) {
               className="relative bg-ink-900 hover:bg-ink-800 text-white p-2.5 rounded-xl transition-all cursor-pointer shadow-sm ml-1"
             >
               <ShoppingCart className="w-4 h-4" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white font-mono text-[9px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
-                  {cartCount}
-                </span>
-              )}
+              <AnimatePresence>
+                {cartCount > 0 && (
+                  <motion.span
+                    key={cartCount}
+                    initial={reduced ? { opacity: 0 } : { scale: 0.4, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={reduced ? { opacity: 0 } : { scale: 0.4, opacity: 0 }}
+                    transition={SPRING_TAP}
+                    className="absolute -top-1.5 -right-1.5 bg-red-500 text-white font-mono text-[9px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white"
+                  >
+                    {cartCount}
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </Link>
           </div>
 
@@ -265,11 +300,20 @@ export default function Header({ cartCount }: HeaderProps) {
               className="relative bg-sky-50 hover:bg-brand-100 text-ink-900 p-2.5 rounded-xl transition-all cursor-pointer"
             >
               <ShoppingCart className="w-4 h-4" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white font-mono text-[8px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
+              <AnimatePresence>
+                {cartCount > 0 && (
+                  <motion.span
+                    key={cartCount}
+                    initial={reduced ? { opacity: 0 } : { scale: 0.4, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={reduced ? { opacity: 0 } : { scale: 0.4, opacity: 0 }}
+                    transition={SPRING_TAP}
+                    className="absolute -top-1 -right-1 bg-red-500 text-white font-mono text-[8px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center"
+                  >
+                    {cartCount}
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </Link>
 
             <button
@@ -285,89 +329,106 @@ export default function Header({ cartCount }: HeaderProps) {
               <span className="hamburger-line" />
             </button>
           </div>
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
 
-      {mobileMenuOpen && (
-        <div
-          className="mobile-menu-backdrop open"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            key="mobile-menu-backdrop"
+            className="fixed inset-0 bg-black/50 z-[99]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduced ? 0.1 : 0.25 }}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Styled Mobile Menu with bg-ink-900 and white text */}
-      <nav
-        className={`mobile-menu-panel bg-ink-900 ${mobileMenuOpen ? 'open' : ''}`}
-        role="navigation"
-        aria-label="Mobile navigation"
-      >
-        <div className="flex flex-col h-full text-white">
-          <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-            <span className="font-heading font-bold text-lg text-white">Menu</span>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-white p-1 rounded-lg hover:bg-white/10 cursor-pointer"
-              aria-label="Close navigation menu"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.nav
+            key="mobile-menu-panel"
+            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[380px] z-[100] overflow-y-auto bg-ink-900"
+            style={{ paddingTop: 'env(safe-area-inset-top)' }}
+            role="navigation"
+            aria-label="Mobile navigation"
+            initial={reduced ? { opacity: 0 } : { x: '100%' }}
+            animate={reduced ? { opacity: 1 } : { x: '0%' }}
+            exit={reduced ? { opacity: 0 } : { x: '100%' }}
+            transition={reduced ? { duration: 0.15 } : SPRING_DRAWER}
+          >
+            <div className="flex flex-col h-full text-white">
+              <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <span className="font-heading font-bold text-lg text-white">Menu</span>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-white p-1 rounded-lg hover:bg-white/10 cursor-pointer"
+                  aria-label="Close navigation menu"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
 
-          <div className="flex-1 px-6 py-6 space-y-1.5">
-            {mobileItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`mobile-menu-item block py-3.5 px-4 rounded-xl text-sm font-semibold font-accent uppercase tracking-wider transition-colors ${
-                  isActive(item.path)
-        ? 'text-white bg-white/10 border-l-4 border-brand-500'
-        : 'text-white/70 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
+              <StaggerChildren className="flex-1 px-6 py-6 space-y-1.5" stagger={0.04}>
+                {mobileItems.map((item) => (
+                  <motion.div key={item.path} variants={staggerItem}>
+                    <Link
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block py-3.5 px-4 rounded-xl text-sm font-semibold font-accent uppercase tracking-wider transition-colors ${
+                        isActive(item.path)
+                          ? 'text-white bg-white/10 border-l-4 border-brand-500'
+                          : 'text-white/70 hover:bg-white/10 hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </StaggerChildren>
 
-          <div className="px-6 py-6 border-t border-white/10 space-y-4">
-            <p className="text-[11px] text-white/50 font-body leading-relaxed">
-              Need help choosing? Chat with us on WhatsApp or call {settings?.contactInfo?.whatsappNumber || '919281424494'}.
-            </p>
-            <div className="flex items-center justify-center gap-6 pt-1">
-              <a
-              href={socialHref('facebook', 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
-                title="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href={socialHref('instagram', 'https://www.instagram.com/relaxpro__mattresses/?hl=en')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
-                title="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href={socialHref('youtube', 'https://www.youtube.com/@sureshmattressmanufacturer3784')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
-                title="YouTube"
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
+              <div className="px-6 py-6 border-t border-white/10 space-y-4">
+                <p className="text-[11px] text-white/50 font-body leading-relaxed">
+                  Need help choosing? Chat with us on WhatsApp or call {settings?.contactInfo?.whatsappNumber || '919281424494'}.
+                </p>
+                <div className="flex items-center justify-center gap-6 pt-1">
+                  <a
+                  href={socialHref('facebook', 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 hover:text-white transition-colors"
+                    title="Facebook"
+                  >
+                    <Facebook className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={socialHref('instagram', 'https://www.instagram.com/relaxpro__mattresses/?hl=en')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 hover:text-white transition-colors"
+                    title="Instagram"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={socialHref('youtube', 'https://www.youtube.com/@sureshmattressmanufacturer3784')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 hover:text-white transition-colors"
+                    title="YouTube"
+                  >
+                    <Youtube className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </nav>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </>
   );
 }

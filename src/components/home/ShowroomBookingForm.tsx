@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Calendar, Send, Sparkles, MapPin, UserCheck, AlertCircle, Clock } from 'lucide-react';
 import { submitLead } from '../../services/leadService';
 import { buildWhatsAppUrl } from '../../lib/site';
+import FloatingLabelField from '../ui/FloatingLabelField';
 
 export default function ShowroomBookingForm() {
   const [name, setName] = useState('');
@@ -127,29 +128,25 @@ export default function ShowroomBookingForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-body">
               {/* Full Name */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase font-accent tracking-[0.2em] font-bold text-brand-400">Your Full Name</label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Srinivas Rao"
-                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 bg-white/5 transition-all font-body placeholder:text-white/20 text-linen-100"
-                />
-              </div>
+              <FloatingLabelField
+                id="showroom-name"
+                label="Your Full Name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                dark
+              />
 
               {/* Mobile Number */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase font-accent tracking-[0.2em] font-bold text-brand-400">WhatsApp Callback Number</label>
-                <input
-                  type="tel"
-                  maxLength={10}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="e.g. 9281424494"
-                  className="w-full px-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 bg-white/5 transition-all font-body placeholder:text-white/20 text-linen-100"
-                />
-              </div>
+              <FloatingLabelField
+                id="showroom-phone"
+                label="WhatsApp Callback Number"
+                type="tel"
+                maxLength={10}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                dark
+              />
 
               {/* Showroom Location */}
               <div className="space-y-2">

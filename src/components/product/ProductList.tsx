@@ -279,7 +279,7 @@ export default function ProductList({
 </div>
 
                   {/* Product Image block */}
-                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-sky-100 cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
+                  <div className="h-28 sm:h-48 md:h-60 relative overflow-hidden bg-sky-100 cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)} data-cursor-label="View">
                     {p.badge && (
                       <span className="absolute top-1 sm:top-4 left-1 sm:left-4 bg-ink-900/95 backdrop-blur-sm text-white font-accent text-[6px] sm:text-[10px] tracking-widest uppercase font-bold px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
                         {p.badge}
@@ -434,9 +434,10 @@ export default function ProductList({
                   key={p.slug}
                   layout
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, delay: Math.min(index * 0.08, 0.4) }}
+                  transition={{ duration: 0.4, delay: Math.min((index % 6) * 0.06, 0.3) }}
                   className="h-full cursor-pointer fade-up"
                   onClick={() => onNavigateToPdp(p.slug)}
                 >

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MessageSquare, Check, Phone, Clipboard, Send, UserCheck, AlertCircle } from 'lucide-react';
 import BlurFade from '../ui/BlurFade';
+import FloatingLabelField from '../ui/FloatingLabelField';
 import { submitLead } from '../../services/leadService';
 import { buildWhatsAppUrl } from '../../lib/site';
 
@@ -94,28 +95,22 @@ export default function ConsultationForm() {
           )}
 
           <div className="space-y-5">
-            <div>
-              <label className="block text-[11px] uppercase font-accent tracking-widest text-ink-900/70 font-bold mb-2">Your Name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Srinivas Rao"
-                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 bg-sky-50/50 text-ink-900 transition-all font-body placeholder:text-graphite-400"
-              />
-            </div>
+            <FloatingLabelField
+              id="consult-name"
+              label="Your Name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-            <div>
-              <label className="block text-[11px] uppercase font-accent tracking-widest text-ink-900/70 font-bold mb-2">Mobile Number (WhatsApp Callback)</label>
-              <input
-                type="tel"
-                maxLength={10}
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="e.g. 9281424494"
-                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 bg-sky-50/50 text-ink-900 transition-all font-body placeholder:text-graphite-400"
-              />
-            </div>
+            <FloatingLabelField
+              id="consult-phone"
+              label="Mobile Number (WhatsApp Callback)"
+              type="tel"
+              maxLength={10}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
 
             <div>
               <label className="block text-[11px] uppercase font-accent tracking-widest text-ink-900/70 font-bold mb-3">Current Back Comfort Concerns?</label>
@@ -142,16 +137,14 @@ export default function ConsultationForm() {
               </div>
             </div>
 
-            <div>
-              <label className="block text-[11px] uppercase font-accent tracking-widest text-ink-900/70 font-bold mb-2">Anatomical Notes or Doctors Advice (Optional)</label>
-              <textarea
-                value={customNotes}
-                onChange={(e) => setCustomNotes(e.target.value)}
-                rows={3}
-                placeholder="Write specific details (e.g. Doc recommended GOLS hard mattress...)"
-                className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 bg-sky-50/50 resize-none text-ink-900 transition-all font-body placeholder:text-graphite-400"
-              />
-            </div>
+            <FloatingLabelField
+              as="textarea"
+              id="consult-notes"
+              label="Anatomical Notes or Doctors Advice (Optional)"
+              value={customNotes}
+              onChange={(e) => setCustomNotes(e.target.value)}
+              rows={3}
+            />
           </div>
 
           <button

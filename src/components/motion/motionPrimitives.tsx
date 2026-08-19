@@ -8,7 +8,7 @@ const EASE_LUXURY: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const DURATION_REVEAL = 0.8;
 const STAGGER_STEP = 0.08;
 
-function usePrefersReducedMotion(): boolean {
+export function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -18,6 +18,38 @@ function usePrefersReducedMotion(): boolean {
     return () => mql.removeEventListener('change', handler);
   }, []);
   return reduced;
+}
+
+/* =============================================
+   SPRING PRESETS — Apple "Designing Fluid Interfaces"
+   Critically damped by default; bounce reserved for
+   momentum-driven gestures (drawers, flicks).
+   ============================================= */
+export const SPRING_TAP = { type: 'spring' as const, bounce: 0, duration: 0.2 };
+export const SPRING_HOVER = { type: 'spring' as const, bounce: 0, duration: 0.3 };
+export const SPRING_MOVE = { type: 'spring' as const, bounce: 0, duration: 0.4 };
+export const SPRING_DRAWER = { type: 'spring' as const, bounce: 0.15, duration: 0.35 };
+
+/* =============================================
+   ROUTE TRANSITION — Crossfade + rise between pages
+   ============================================= */
+interface RouteTransitionProps {
+  children: React.ReactNode;
+}
+
+export function RouteTransition({ children }: RouteTransitionProps) {
+  const reduced = usePrefersReducedMotion();
+
+  return (
+    <motion.div
+      initial={reduced ? { opacity: 1 } : { opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={reduced ? { opacity: 1 } : { opacity: 0, y: -10 }}
+      transition={{ duration: reduced ? 0.15 : 0.35, ease: EASE_LUXURY }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 /* =============================================

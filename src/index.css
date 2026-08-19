@@ -245,7 +245,13 @@ html.lenis, html.lenis body {
     -webkit-text-size-adjust: 100%;
   }
 
-  html, body {
+  /* overflow-x only on html, not body: setting it on both silently
+     promotes body's overflow-y to `auto` (CSS mixed visible/non-visible
+     axis rule), turning body into a second scroll container that never
+     actually scrolls — which breaks `position: sticky` for everything
+     on the page, since sticky elements resolve against that dead
+     container instead of the real one. */
+  html {
     overflow-x: hidden;
   }
 
@@ -1421,6 +1427,12 @@ html.lenis, html.lenis body {
 /* Light section — white to pale blue gradient */
 @utility section-light-lux {
   background: linear-gradient(135deg, #FFFFFF 0%, #F1F8FE 50%, #DDEBFA 100%);
+}
+
+/* Custom cursor active — hide the native cursor site-wide while ours tracks */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
 }
 
 /* Ambient breathing glow — used behind hero product / key imagery */
