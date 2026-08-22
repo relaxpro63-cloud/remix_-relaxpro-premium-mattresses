@@ -53,7 +53,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
       },
     ],
     products: [
-      { slug: 'nirvana', name: 'Nirvana 6" Pure Natural Latex', note: '100% latex construction with 96.6% GOLS-certified purity' },
+      { slug: 'nirvana', name: 'Nirvana 8" Pure Natural Latex', note: '100% latex construction with 96.6% GOLS-certified purity — 7-zone / monozone' },
       { slug: 'ananda', name: 'Ananda 6" Solid Latex', note: 'GOLS + OEKO-TEX certified pure organic latex' },
     ],
     related: [
@@ -100,7 +100,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
       },
     ],
     products: [
-      { slug: 'nirvana', name: 'Nirvana 6" Pure Natural Latex', note: '90 density, 96.6% GOLS-certified pure natural latex' },
+      { slug: 'nirvana', name: 'Nirvana 8" Pure Natural Latex', note: '90 density, 96.6% GOLS-certified pure natural latex — 7-zone / monozone 8" block' },
       { slug: 'ananda', name: 'Ananda 6" Solid Latex', note: 'GOLS + OEKO-TEX certified 100% pure organic latex' },
       { slug: 'prakriti', name: 'Prakriti 8" Eco & Natural Latex', note: 'Upcycled eco-rebonded core under pure certified latex' },
       { slug: 'shuddha', name: 'Shuddha 6" Eco Latex', note: 'Eco latex-rebonded core with GOLS topper' },

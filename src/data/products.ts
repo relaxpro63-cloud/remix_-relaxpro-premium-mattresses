@@ -31,8 +31,7 @@ export const PRODUCTS: Product[] = [
       'Firm orthopedic configuration that corrects bad sleeping habits and stabilizes the lumbar spine',
       '4" ultra-high density Century orthopedic foam block prevents any structural deflection',
       '2" true pure latex on top adds necessary gentle cushioning so hips and shoulders do not ache',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Sthira 6" Firm Orthopedic Latex Mattress | RelaxPro',
     metaDescription: 'Shop Sthira 6-inch extra supportive firm mattress. Features 4" heavy rebonded base and 2" organic latex luxury topper. Highly durable.'
@@ -69,8 +68,7 @@ export const PRODUCTS: Product[] = [
       'Universal comfort profile that adapts effortlessly to side, back, and stomach sleepers',
       '2" GOLS certified top natural latex delivers excellent active pressure point reduction',
       'Middle 2" highly resilient softy foam cushions sensitive areas like collarbones and tailbones',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Sunidra 8" Universal Latex Comfort Mattress | RelaxPro',
     metaDescription: 'Buy Sunidra 8-inch medium comfort mattress by RelaxPro. Sturdy rebonded core, breathable HR softy layer, and 2" pure natural latex sheet.'
@@ -106,8 +104,7 @@ export const PRODUCTS: Product[] = [
       '50/50 balance engineering specifically configured for chronic lower back and spinal recovery',
       'Substantial 4" pure Kerala natural latex gives correct support for standard hip/shoulder pressure zones',
       'Durable orthopedic rebonded block distributes skeletal loads evenly, promoting healthier sleep postures',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Arogya 8" Orthopedic Latex Mattress | RelaxPro',
     metaDescription: 'Configure Arogya 8"-thick premium mattress with 4" GOLS latex and 4" high-density orthopedic rebond foam base. Eradicate back soreness.'
@@ -143,8 +140,7 @@ export const PRODUCTS: Product[] = [
       'Luxurious 10-inch thick profile combining the posture support of premium rebonded foam and cloud latex comfort',
       '6 inches of pure Kerala latex handles natural spine-contouring, lowering tosses and turns',
       'Ultra durable Century 95-density rebonded base ensures zero sagging for over a decade',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Amrita 10" Rebonded & Latex Luxury Mattress | RelaxPro',
     metaDescription: 'Shop the Amrita 10-inch luxurious mattress with 4" rebonded support and 6" certified natural rubber latex. Optimal orthopedic relaxation.'
@@ -182,8 +178,7 @@ export const PRODUCTS: Product[] = [
       '4 inches of dense latex on top delivers immediate muscle easing properties',
       '2" HR softy foam transition layer eliminates joint pressure spikes from the hard base element',
       '4" century 90-95 density rebond keeps the spine in strict medical alignment',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Somya 10" Natural Latex Comfort Mattress | RelaxPro',
     metaDescription: 'Shop Somya 10-inch mattress combining natural Kerala organic latex, plush HR soft foam, and sturdy rebonded base. Pure comfort and pain-free joints.'
@@ -219,8 +214,7 @@ export const PRODUCTS: Product[] = [
       'Twin active latex components combine for uniform, cloud-like support with robust core endurance',
       '4" Eco-Dense latex rebonded base acts as a bouncy supportive core instead of conventional high-energy synthetic base foam',
       '4" pure Kerala top latex provides immediate luxurious contouring and comfort',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Prakriti 8" Natural & Eco-Rebonded Latex Mattress | RelaxPro',
     metaDescription: 'Discover the Prakriti 8-inch natural latex mattress. Engineered with natural eco-rebonded core and 100% natural latex topper.'
@@ -256,8 +250,7 @@ export const PRODUCTS: Product[] = [
       'Engineered with advanced upcycled latex-bonded material preserving high durability at a smart cost',
       '2" top of organic natural latex adds that signature luxury spring-back comfort',
       '120-density core provides high load distribution, preventing that sunken trapped feel',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Shuddha 6" Premium Pure Latex Hybrid Mattress | RelaxPro',
     metaDescription: 'Buy Shuddha 6-inch premium mattress with natural latex and eco-dense rebond latex block. Organic comfort, medium support.'
@@ -271,7 +264,7 @@ export const PRODUCTS: Product[] = [
     comfortRating: 5,
     totalThickness: 8,
     layers: [
-      { thickness: 8, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS'], description: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified' }
+      { thickness: 8, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS'], description: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified — one side 7-zone, one side monozone' }
     ],
     fabricGsm: 400,
     fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
@@ -292,8 +285,7 @@ export const PRODUCTS: Product[] = [
       '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep',
       '100% natural biodegradable Dunlop latex sap harvested under strict GOLS organic standards',
       'Zero synthetic chemicals, fillers, or VOC emissions — completely safe for infants and elders',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Nirvana 8" Pure Natural Latex Mattress | RelaxPro',
     metaDescription: 'Buy RelaxPro Nirvana 8-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. Free shipping.'
@@ -330,8 +322,7 @@ export const PRODUCTS: Product[] = [
       'Layered progressive firmness: gets firmer as more compression force is applied',
       'Combination of raw polyurethane rebond, eco latex rebond, and classic virgin latex sap sheets',
       'Helps back-sleepers keep their pelvis neutral and chest-aligned',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Bhumi 8" Triple-Core Hybrid Latex Mattress | RelaxPro',
     metaDescription: 'Unlock restorative sleep with Bhumi 8-inch mattress. Advanced triple core combining GOLS organic latex, latex-rebonded and PU-rebond base.'
@@ -366,8 +357,7 @@ export const PRODUCTS: Product[] = [
       'Made purely of a robust 6" luxury solid core of natural Dunlop organic latex, no foam fillers added',
       'Highly elastic properties distribute physical pressure points uniformly across the system',
       'Unsurpassed motion isolation ensures partner movements generate zero seismic disturbance',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Ananda 6" Pure Natural Latex Mattress | RelaxPro',
     metaDescription: 'Order the Ananda 6-inch solid natural latex mattress by RelaxPro. Dynamic orthopedic elasticity, eco-conscious materials, and durable build.'
@@ -394,7 +384,7 @@ export const PRODUCTS: Product[] = [
     pricingModel: 'fabric_options',
     pricing: {
       fabric300Gsm: { king: 13000, queen: 11000, double: 8500, single: 6500 , diwan: 9500, custom: 0 },
-      fabric450Gsm: { king: 15000, queen: 12500, double: 10000, single: 7500 , diwan: 11500 , custom: 0 }
+      fabric450Gsm: { king: 15000, queen: 13000, double: 10000, single: 7500 , diwan: 11500 , custom: 0 }
     },
     image: '/images/products/ojas.webp',
     images: Array.from({ length: 10 }, (_, i) => `/images/products/ojas-gallery-${i + 1}.webp`),
@@ -403,8 +393,7 @@ export const PRODUCTS: Product[] = [
       'Tailored for budgets looking for robust spine stabilization without latex premium tags',
       'Dual foam profile: 4" highly dense rebond base with heavy 2" soft resilience topper',
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Aero-ventilation channels promote passive heat dissipation',
-      'Get video call while making and receive 1 edited making video for reference'
+      'Aero-ventilation channels promote passive heat dissipation'
     ],
     metaTitle: 'Ojas Ortho Value Mattress - Standard & Quilted Covers | RelaxPro',
     metaDescription: 'Buy Ojas 6" Orthopedic mattress. Tailored with density transitions for spine safety. Choose 300 GSM standard or upgrade to 450 GSM deluxe quilting.'
@@ -441,8 +430,7 @@ export const PRODUCTS: Product[] = [
       'Thick 8" orthopedic profile without latex, packing three distinct posture layers',
       'Heavy-duty 4" rebound base combined with central 2" structured orthopedic HR density',
       'Crowned with a plush 2" Century softy cushion, preventing skin or bone pressure sores',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'AyushRest 8" Orthopedic Foam Mattress | RelaxPro',
     metaDescription: 'Explore the AyushRest 8" orthopedic mattress by RelaxPro. Three high-performance foam layers protect orthopedic alignment perfectly with custom fabric.'
@@ -479,8 +467,7 @@ export const PRODUCTS: Product[] = [
       'Affordable entry layer to the luxurious universe of raw natural latex sleep',
       '1" organic Kerala latex sheet blocks thermal heat pockets of the base foams',
       '2" HR soft pillow cushioning transitions body lines smoothly onto the base layer',
-      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
-      'Get video call while making and receive 1 edited making video for reference'
+      '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Vishram 7" Hybrid Value Latex Mattress | RelaxPro',
     metaDescription: 'Experience Vishram 7" mattress: 4" Century rebond, 2" softy cushioning, and 1" raw natural latex. Comfort and savings combined.'
