@@ -573,10 +573,10 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                   <div className="overflow-x-auto">
                     <table className="w-full text-left">
                       <thead>
-                        <tr className="border-b border-brand-200/60">
-                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500">Size</th>
-                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500 text-right">With Pillows + Protector</th>
-                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500 text-right">Mattress Only</th>
+                        <tr className="border-b-2 border-brand-200/80">
+                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.15em] text-graphite-400">Size</th>
+                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.15em] text-graphite-400 text-right">With Pillows + Protector</th>
+                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.15em] text-graphite-400 text-right">Mattress Only</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -605,10 +605,10 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                                 <span className="text-[9px] sm:text-[10px] text-graphite-400 font-mono">{dims}</span>
                               </td>
                               <td className="py-3 px-3 text-right">
-                                <span className="font-heading font-bold text-sm sm:text-base text-ink-900">₹{wPrice.toLocaleString('en-IN')}</span>
+                                <span className="inline-flex items-baseline gap-0.5"><span className="text-[10px] sm:text-xs font-body font-medium text-graphite-500">₹</span><span className="font-body font-extrabold text-base sm:text-lg text-ink-900 tracking-tight">{wPrice.toLocaleString('en-IN')}</span></span>
                               </td>
                               <td className="py-3 px-3 text-right">
-                                <span className="font-heading font-semibold text-xs sm:text-sm text-graphite-500">₹{woPrice.toLocaleString('en-IN')}</span>
+                                <span className="inline-flex items-baseline gap-0.5"><span className="text-[10px] sm:text-xs font-body font-medium text-graphite-400">₹</span><span className="font-body font-bold text-sm sm:text-base text-graphite-500 tracking-tight">{woPrice.toLocaleString('en-IN')}</span></span>
                               </td>
                             </tr>
                           );
