@@ -36,7 +36,7 @@ export default function ProductCompareInline({ currentProduct, allProducts }: Pr
   const getDisplayPrice = (product: any) => {
     if (!product?.pricing) return 0;
     if (product.pricingModel === 'with_without_accessories') {
-      return product.pricing.withoutAccessories?.king || product.pricing.withAccessories?.king || 0;
+      return product.pricing.withAccessories?.king || product.pricing.withoutAccessories?.king || 0;
     }
     return product.pricing.fabric300Gsm?.king || product.pricing.fabric450Gsm?.king || 0;
   };

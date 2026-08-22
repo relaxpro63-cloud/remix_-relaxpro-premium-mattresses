@@ -181,7 +181,7 @@ export default function ShopByBrands() {
                           <span className="text-lg font-bold text-ink-900 font-body">
                             <PriceText>
                               ₹
-                              {item.pricing?.withoutAccessories?.king?.toLocaleString('en-IN') ||
+                              {item.pricing?.withAccessories?.king?.toLocaleString('en-IN') ||
                                item.pricing?.fabric300Gsm?.king?.toLocaleString('en-IN') ||
                                ''}
                             </PriceText>

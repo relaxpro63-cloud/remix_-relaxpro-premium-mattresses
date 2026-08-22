@@ -207,7 +207,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
           url: `${SITE_URL}/mattresses/${product.slug}`,
           priceCurrency: 'INR',
           price: product.pricingModel === 'with_without_accessories'
-            ? product.pricing.withoutAccessories?.[legacyKey] || 0
+            ? product.pricing.withAccessories?.[legacyKey] || 0
             : product.pricing.fabric300Gsm?.[legacyKey] || 0,
           itemCondition: 'https://schema.org/NewCondition',
           availability: 'https://schema.org/InStock',

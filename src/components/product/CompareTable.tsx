@@ -49,7 +49,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
   // Helper to extract pricing for compared cards
   const getDisplayPrice = (product: Product, size: MattressSize) => {
     if (product.pricingModel === 'with_without_accessories') {
-      return product.pricing.withoutAccessories?.[size] || 0;
+      return product.pricing.withAccessories?.[size] || 0;
     } else {
       return product.pricing.fabric300Gsm?.[size] || 0;
     }

@@ -69,7 +69,7 @@ export default function ProductList({
     const sizes: MattressSize[] = ['single', 'double', 'queen', 'king'];
     let prices: number[] = [];
     if (product.pricingModel === 'with_without_accessories') {
-      const wo = product.pricing.withoutAccessories || {};
+      const wo = product.pricing.withAccessories || {};
       prices = sizes.map(s => wo[s] || 0);
     } else {
       const f3 = product.pricing.fabric300Gsm || {};
@@ -107,7 +107,7 @@ export default function ProductList({
   // Helper to extract baseline starting price
   const getProductStartingPrice = (product: Product, size: MattressSize) => {
     if (product.pricingModel === 'with_without_accessories') {
-      return product.pricing.withoutAccessories?.[size] || 0;
+      return product.pricing.withAccessories?.[size] || 0;
     } else {
       return product.pricing.fabric300Gsm?.[size] || 0;
     }
