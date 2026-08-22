@@ -1,4 +1,4 @@
-import { createClient } from '@sanity/client'
+﻿import { createClient } from '@sanity/client'
 import { readFileSync, readdirSync, statSync, writeFileSync, existsSync } from 'fs'
 import { join, extname, relative } from 'path'
 
@@ -35,7 +35,7 @@ async function getImageAsset(localPath) {
     }
     imageMapping[key] = result
     writeFileSync(MAPPING_FILE, JSON.stringify(imageMapping, null, 2))
-    console.log(`  UPLOADED ${key} → ${asset._id}`)
+    console.log(`  UPLOADED ${key} â†’ ${asset._id}`)
     return result
   } catch (err) {
     console.error(`  FAILED ${key}: ${err.message}`)
@@ -58,27 +58,27 @@ async function upsert(type, item) {
   console.log(`  OK ${type.padEnd(14)} ${label}`)
 }
 
-// ─── CATEGORIES ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ CATEGORIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const CATEGORIES = [
   { _id: 'cat-luxury', name: 'Luxury Collection', slug: { current: 'luxury' }, description: 'Our premium 100% pure natural latex mattresses with GOLS certification and superior comfort.', image: await getImageAsset('products/nirvana.webp'), order: 1 },
   { _id: 'cat-premium', name: 'Premium Collection', slug: { current: 'premium' }, description: 'Latex hybrids combining organic latex with high-density support layers for balanced comfort.', image: await getImageAsset('products/somya.webp'), order: 2 },
   { _id: 'cat-comfort', name: 'Comfort Collection', slug: { current: 'comfort' }, description: 'Value orthopedic foam and latex-entry mattresses designed for accessible comfort.', image: await getImageAsset('products/sunidra.webp'), order: 3 },
 ]
 
-// ─── PRODUCTS ───────────────────────────────────────────────────────────────
+// â”€â”€â”€ PRODUCTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PRODUCTS_DATA = [
   {
     _id: 'product-nirvana', slug: { current: 'nirvana' },
     name: 'Nirvana', tagline: 'Experience ultimate relaxation', subtitle: 'Luxury sleep begins with Nirvana latex mattress',
-    keyBenefit: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep & pressure relief — one side 7-zone, one side monozone',
-    description: 'Nirvana is our flagship pure latex mattress, crafted entirely from a single 8-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations. With an exceptional 96.6% purity and GOLS certification, every inch delivers therapeutic pressure relief that cradles your body while maintaining perfect spinal alignment. The open-cell latex structure naturally dissipates heat, keeping you cool through the night, while the inherent elasticity of latex absorbs motion completely — so you sleep undisturbed even with a restless partner. Zero synthetic chemicals, fillers, or VOC emissions make it completely safe for infants, elders, and anyone with chemical sensitivities.',
+    keyBenefit: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep & pressure relief â€” one side 7-zone, one side monozone',
+    description: 'Nirvana is our flagship pure latex mattress, crafted entirely from a single 8-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations. With an exceptional 96.6% purity and GOLS certification, every inch delivers therapeutic pressure relief that cradles your body while maintaining perfect spinal alignment. The open-cell latex structure naturally dissipates heat, keeping you cool through the night, while the inherent elasticity of latex absorbs motion completely â€” so you sleep undisturbed even with a restless partner. Zero synthetic chemicals, fillers, or VOC emissions make it completely safe for infants, elders, and anyone with chemical sensitivities.',
     badge: 'Premium Pure Latex Comfort', warranty: 10, comfortLevel: 'plush', comfortRating: 5, totalThickness: 8,
-    layers: [{ thickness: 8, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS'], description: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified — one side 7-zone, one side monozone' }],
+    layers: [{ thickness: 8, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS'], description: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified â€” one side 7-zone, one side monozone' }],
     fabricGsm: 400, fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
     certifications: ['GOLS', 'Oeko-Tex'], accessories: ['2 Latex Pillows', '1 Protector'],
     pricingModel: 'with_without_accessories',
     pricing: { withAccessories: { king: 54000, queen: 45000, double: 36000, single: 27000, diwan: 36000, custom: 0 }, withoutAccessories: { king: 49000, queen: 41000, double: 33000, single: 24500, diwan: 33000, custom: 0 } },
-    features: ['8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep — one side 7-zone, one side monozone', '100% natural biodegradable Dunlop latex sap harvested under strict GOLS organic standards', 'Zero synthetic chemicals, fillers, or VOC emissions — completely safe for infants and elders', '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability', 'Get video call while making and receive 1 edited making video for reference'],
+    features: ['8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep â€” one side 7-zone, one side monozone', '100% natural biodegradable Dunlop latex sap harvested under strict GOLS organic standards', 'Zero synthetic chemicals, fillers, or VOC emissions â€” completely safe for infants and elders', '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability', 'Get video call while making and receive 1 edited making video for reference'],
     image: await getImageAsset('products/nirvana.webp'), images: [],
     tier: 'luxury', isBestseller: true, isFeatured: true, inStock: true, rating: 4.9, reviewCount: 1200, sortOrder: 1,
     category: { _type: 'reference', _ref: 'cat-luxury' },
@@ -90,7 +90,7 @@ const PRODUCTS_DATA = [
     _id: 'product-amrita', slug: { current: 'amrita' },
     name: 'Amrita', tagline: 'Sleep that rejuvenates you', subtitle: 'Feel long-lasting luxury with Amrita latex mattress',
     keyBenefit: 'Heavy hybrid foundation topped with a ultra-thick premium organic latex comfort layer for deep body contouring and muscle recovery',
-    description: 'Amrita is a 10-inch hybrid masterpiece that pairs a 4-inch high-density rebonded Century foam base with a luxurious 6-inch slab of GOLS-certified pure organic Kerala latex. This combination delivers the best of both worlds: the rock-solid foundation that never sags, topped with a thick cloud of natural latex that contours to every curve of your body. The result is a mattress that supports deep muscle recovery while providing a floating-in-air sensation. The rebonded base — crafted from 90-95 density Century foam — guarantees zero structural deflection even after a decade of use.',
+    description: 'Amrita is a 10-inch hybrid masterpiece that pairs a 4-inch high-density rebonded Century foam base with a luxurious 6-inch slab of GOLS-certified pure organic Kerala latex. This combination delivers the best of both worlds: the rock-solid foundation that never sags, topped with a thick cloud of natural latex that contours to every curve of your body. The result is a mattress that supports deep muscle recovery while providing a floating-in-air sensation. The rebonded base â€” crafted from 90-95 density Century foam â€” guarantees zero structural deflection even after a decade of use.',
     badge: 'Premium 10" Reversible Rebonded + Latex Hybrid', warranty: 10, comfortLevel: 'medium-soft', comfortRating: 4, totalThickness: 10,
     layers: [
       { thickness: 4, material: 'rebonded_foam', brand: 'Century High Density', description: '4" Rebonded Base Foam with 90 to 95 Density' },
@@ -110,7 +110,7 @@ const PRODUCTS_DATA = [
     _id: 'product-ananda', slug: { current: 'ananda' },
     name: 'Ananda', tagline: 'Blissful comfort every night', subtitle: 'Turn bedtime into joy with Ananda latex mattress',
     keyBenefit: 'Pure seamless solid organic latex master block yielding a buoyant response that cradles curves while securing independent motion isolation',
-    description: 'Ananda is a pure 6-inch solid natural latex mattress that strips away all foam and fillers to deliver the purest sleep experience possible. Made entirely from a single seamless block of Dunlop-processed organic latex, Ananda offers a buoyant, responsive feel that gently pushes back against your body — providing natural spinal alignment without the sinking sensation of memory foam.',
+    description: 'Ananda is a pure 6-inch solid natural latex mattress that strips away all foam and fillers to deliver the purest sleep experience possible. Made entirely from a single seamless block of Dunlop-processed organic latex, Ananda offers a buoyant, responsive feel that gently pushes back against your body â€” providing natural spinal alignment without the sinking sensation of memory foam.',
     badge: '100% Pure Classic Latex Comfort', warranty: 10, comfortLevel: 'soft-medium', comfortRating: 4, totalThickness: 6,
     layers: [{ thickness: 6, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS', 'Oeko-Tex'], description: '6" GOLS Certified 100% Pure Organic Latex' }],
     fabricGsm: 400, fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
@@ -145,7 +145,7 @@ const PRODUCTS_DATA = [
   },
   {
     _id: 'product-somya', slug: { current: 'somya' },
-    name: 'Somya', tagline: 'Soft, Gentle comfort that your body will love', subtitle: 'Sleep peacefully with Somya — Natural latex mattress',
+    name: 'Somya', tagline: 'Soft, Gentle comfort that your body will love', subtitle: 'Sleep peacefully with Somya â€” Natural latex mattress',
     keyBenefit: 'Triple-layer design featuring ultra-plush resilient softy foam nested under premium pure latex to cradle heavy pressure points with heavy-duty rebonded support below',
     description: 'Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone.',
     badge: 'Soft Contouring Orthopedic Hybrid', warranty: 10, comfortLevel: 'medium-soft', comfortRating: 4, totalThickness: 10,
@@ -168,7 +168,7 @@ const PRODUCTS_DATA = [
     _id: 'product-arogya', slug: { current: 'arogya' },
     name: 'Arogya', tagline: 'Health starts with good sleep', subtitle: 'Support your body naturally with Arogya latex mattress',
     keyBenefit: 'Perfect equal split of supportive heavy rebond base foam and cushioning latex, optimized for posture relief and corrective orthopedic support',
-    description: 'Arogya is a perfectly balanced 8-inch mattress that splits evenly between support and comfort — 4 inches of Century high-firm rebonded foam paired with 4 inches of GOLS-certified organic Kerala latex.',
+    description: 'Arogya is a perfectly balanced 8-inch mattress that splits evenly between support and comfort â€” 4 inches of Century high-firm rebonded foam paired with 4 inches of GOLS-certified organic Kerala latex.',
     badge: 'Doctor Recommended Ortho Core', warranty: 10, comfortLevel: 'medium-firm', comfortRating: 4, totalThickness: 8,
     layers: [
       { thickness: 4, material: 'rebonded_foam', brand: 'Century High Firm', description: '4" Rebonded Support Foam with 90 to 95 Density' },
@@ -300,7 +300,7 @@ const PRODUCTS_DATA = [
     fabricGsm: 400, fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
     certifications: ['Oeko-Tex'], accessories: ['2 Shredded Pillows', '1 Protector'],
     pricingModel: 'fabric_options',
-    pricing: { fabric300Gsm: { king: 13000, queen: 11000, double: 8500, single: 6500, diwan: 9500, custom: 0 }, fabric450Gsm: { king: 15000, queen: 12500, double: 10000, single: 7500, diwan: 11500, custom: 0 } },
+    pricing: { fabric300Gsm: { king: 13000, queen: 11000, double: 8500, single: 6500, diwan: 9500, custom: 0 }, fabric450Gsm: { king: 15000, queen: 13000, double: 10000, single: 7500, diwan: 11500, custom: 0 } },
     features: ['Tailored for budgets looking for robust spine stabilization without latex premium tags', 'Dual foam profile: 4" highly dense rebond base with heavy 2" soft resilience topper', 'Aero-ventilation channels promote passive heat dissipation'],
     image: await getImageAsset('products/ojas.webp'), images: [],
     tier: 'comfort', isBestseller: false, isFeatured: false, inStock: true, rating: 4.3, reviewCount: 650, sortOrder: 12,
@@ -340,7 +340,7 @@ for (const prod of PRODUCTS_DATA) {
   if (gallery.length > 0) prod.images = gallery
 }
 
-// ─── TESTIMONIALS ───────────────────────────────────────────────────────────
+// â”€â”€â”€ TESTIMONIALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const TESTIMONIALS = [
   { _id: 'testimonial-gm-1', customerName: 'Srinivas Rao', location: 'Hyderabad', rating: 5, quote: 'Buying the Nirvana mattress was the best decision for my chronic lower back issues. The 7-Zone support works like a charm. Absolutely highly recommended!', isVerified: true, featured: true, order: 1, productPurchased: { _type: 'reference', _ref: 'product-nirvana' } },
   { _id: 'testimonial-gm-2', customerName: 'Anvitha Reddy', location: 'Bangalore', rating: 5, quote: 'We got the Amrita mattress 6 months ago. Incredible comfort. It isolates motion perfectly; I do not feel my husband tossing and turning at all. The direct factory price represents fantastic value.', isVerified: true, featured: true, order: 2, productPurchased: { _type: 'reference', _ref: 'product-amrita' } },
@@ -349,7 +349,7 @@ const TESTIMONIALS = [
   { _id: 'testimonial-gm-5', customerName: 'Priya Singh', location: 'Chennai', rating: 5, quote: 'The Arogya mattress has completely transformed my sleep. My back pain has reduced significantly since switching to natural latex. Highly recommend!', isVerified: true, featured: true, order: 5 },
 ]
 
-// ─── FAQS ───────────────────────────────────────────────────────────────────
+// â”€â”€â”€ FAQS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const FAQS = [
   { _id: 'faq-q1', question: 'What makes RelaxPro mattresses different from other brands?', answer: [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'RelaxPro mattresses are handcrafted using 100% GOLS-certified natural Dunlop latex sourced directly from Kerala plantations. Unlike most brands that use synthetic latex or polyurethane foam with a thin latex layer, our mattresses feature solid natural latex cores with zero chemical fillers. We manufacture directly at our factory in Jeedimetla, Hyderabad, which eliminates middlemen and allows us to offer premium quality at factory-direct prices.' }] }], category: 'General', order: 1 },
   { _id: 'faq-q2', question: 'Are RelaxPro mattresses good for back pain?', answer: [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'Yes. Our natural latex mattresses are recommended by orthopedic specialists for back pain relief. The open-cell latex structure conforms to your body\'s natural curves while providing the responsive support needed for proper spinal alignment. Unlike memory foam that can trap heat and cause you to sink into poor posture, latex gently pushes back, keeping your spine neutral throughout the night.' }] }], category: 'General', order: 2 },
@@ -360,24 +360,24 @@ const FAQS = [
   { _id: 'faq-q8', question: 'Where are your showrooms located?', answer: [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'We have three experience centers: Hyderabad Factory Showroom in Jeedimetla Industrial Area, Rajahmundry Factory Showroom on JN Road, Opposite Surya Function Hall, and Bangalore Factory Showroom in KR Puram Hoodi Main Road. Visit any location to test our full range of mattresses in person.' }] }], category: 'Locations', order: 8 },
 ]
 
-// ─── SHOWROOMS ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ SHOWROOMS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const SHOWROOMS = [
-  { _id: 'showroom-hyderabad', name: 'Hyderabad Factory Showroom', type: 'factory', address: { city: 'Hyderabad', fullAddress: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', street: 'Jeedimetla Industrial Area, Phase 3', state: 'Telangana', pincode: '500055' }, contact: { phoneNumbers: ['+918686624494', '+917207424494'] }, hours: { monday: '10:00 AM - 9:00 PM', tuesday: '10:00 AM - 9:00 PM', wednesday: '10:00 AM - 9:00 PM', thursday: '10:00 AM - 9:00 PM', friday: '10:00 AM - 9:00 PM', saturday: '10:00 AM - 9:00 PM', sunday: '10:00 AM - 9:00 PM', note: 'Factory outlet — all 12 models on display' }, order: 1 },
-  { _id: 'showroom-rajahmundry', name: 'RelaxPro Factory Showroom — Rajahmundry', type: 'factory', address: { city: 'Rajahmundry', fullAddress: 'RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103', street: 'JN Road', state: 'Andhra Pradesh', pincode: '533103' }, contact: { phoneNumbers: ['+918686624494'] }, hours: { monday: '10:00 AM - 8:30 PM', tuesday: '10:00 AM - 8:30 PM', wednesday: '10:00 AM - 8:30 PM', thursday: '10:00 AM - 8:30 PM', friday: '10:00 AM - 8:30 PM', saturday: '10:00 AM - 8:30 PM', sunday: '11:00 AM - 7:00 PM', note: 'Showroom for East Andhra Pradesh customers' }, order: 2 },
-  { _id: 'showroom-bangalore', name: 'RelaxPro Factory Showroom — Bangalore', type: 'factory', address: { city: 'Bangalore', fullAddress: 'RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036', street: 'KR Puram Hoodi Main Road', state: 'Karnataka', pincode: '560036' }, contact: { phoneNumbers: ['+917207424494'] }, hours: { monday: '10:30 AM - 8:30 PM', tuesday: '10:30 AM - 8:30 PM', wednesday: '10:30 AM - 8:30 PM', thursday: '10:30 AM - 8:30 PM', friday: '10:30 AM - 8:30 PM', saturday: '10:30 AM - 8:30 PM', sunday: '10:30 AM - 8:30 PM', note: 'Karnataka partner location — all models available for viewing' }, order: 3 },
+  { _id: 'showroom-hyderabad', name: 'Hyderabad Factory Showroom', type: 'factory', address: { city: 'Hyderabad', fullAddress: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', street: 'Jeedimetla Industrial Area, Phase 3', state: 'Telangana', pincode: '500055' }, contact: { phoneNumbers: ['+918686624494', '+917207424494'] }, hours: { monday: '10:00 AM - 9:00 PM', tuesday: '10:00 AM - 9:00 PM', wednesday: '10:00 AM - 9:00 PM', thursday: '10:00 AM - 9:00 PM', friday: '10:00 AM - 9:00 PM', saturday: '10:00 AM - 9:00 PM', sunday: '10:00 AM - 9:00 PM', note: 'Factory outlet â€” all 12 models on display' }, order: 1 },
+  { _id: 'showroom-rajahmundry', name: 'RelaxPro Factory Showroom â€” Rajahmundry', type: 'factory', address: { city: 'Rajahmundry', fullAddress: 'RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103', street: 'JN Road', state: 'Andhra Pradesh', pincode: '533103' }, contact: { phoneNumbers: ['+918686624494'] }, hours: { monday: '10:00 AM - 8:30 PM', tuesday: '10:00 AM - 8:30 PM', wednesday: '10:00 AM - 8:30 PM', thursday: '10:00 AM - 8:30 PM', friday: '10:00 AM - 8:30 PM', saturday: '10:00 AM - 8:30 PM', sunday: '11:00 AM - 7:00 PM', note: 'Showroom for East Andhra Pradesh customers' }, order: 2 },
+  { _id: 'showroom-bangalore', name: 'RelaxPro Factory Showroom â€” Bangalore', type: 'factory', address: { city: 'Bangalore', fullAddress: 'RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036', street: 'KR Puram Hoodi Main Road', state: 'Karnataka', pincode: '560036' }, contact: { phoneNumbers: ['+917207424494'] }, hours: { monday: '10:30 AM - 8:30 PM', tuesday: '10:30 AM - 8:30 PM', wednesday: '10:30 AM - 8:30 PM', thursday: '10:30 AM - 8:30 PM', friday: '10:30 AM - 8:30 PM', saturday: '10:30 AM - 8:30 PM', sunday: '10:30 AM - 8:30 PM', note: 'Karnataka partner location â€” all models available for viewing' }, order: 3 },
 ]
 
-// ─── SITE SETTINGS ──────────────────────────────────────────────────────────
+// â”€â”€â”€ SITE SETTINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const SITE_SETTINGS = {
   _id: 'siteSettings',
-  branding: { siteName: 'RelaxPro Premium Mattresses', tagline: '100% Natural Organic Latex Mattresses — Direct from Kerala Factory', logo: null, favicon: null },
+  branding: { siteName: 'RelaxPro Premium Mattresses', tagline: '100% Natural Organic Latex Mattresses â€” Direct from Kerala Factory', logo: null, favicon: null },
   contactInfo: { mainPhone: '8686624494', secondaryPhone: '9642024494', whatsappNumber: '918686624494', whatsappDefaultMessage: 'Hello Suresh, I am visiting the RelaxPro Mattress website and would like a specialized orthopedic mattress advice. Please guide me!', email: 'relaxpro2022@gmail.com', factoryAddress: 'RelaxPro Factory, Jeedimetla Industrial Area, Phase 3, Hyderabad, Telangana - 500055' },
   announcement: { showBanner: true, bannerText: 'Telangana & AP\'s 1st Pure Latex Mattress Company * GOLS Certified Organic Latex * Direct Factory Pricing * Free Delivery', bannerColor: 'green' },
   footer: { description: 'Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber latex sourced directly from Kerala. Factory-direct pricing with zero middlemen.', certifications: [{ name: '10-Year Factory Replacement Warranty' }, { name: 'Direct From Kerala * No Middleman' }, { name: 'Free Doorstep Shipping To Major Cities' }], socialLinks: [{ platform: 'Facebook', url: 'https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/' }, { platform: 'Instagram', url: 'https://www.instagram.com/relaxpro__mattresses/?hl=en' }, { platform: 'YouTube', url: 'https://www.youtube.com/@sureshmattressmanufacturer3784' }] },
   seo: { metaTitle: 'RelaxPro Premium Mattresses | 100% Natural Organic Latex India', metaDescription: 'India\'s premium natural latex mattress manufacturer. GOLS certified organic Kerala latex. Direct factory pricing, 10-year warranty, free delivery. Visit our Hyderabad showroom.' },
 }
 
-// ─── HOME ───────────────────────────────────────────────────────────────────
+// â”€â”€â”€ HOME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const HOME = {
   _id: 'home',
   bestsellersSection: {
@@ -431,16 +431,16 @@ const HOME = {
   },
 }
 
-// ─── ABOUT ──────────────────────────────────────────────────────────────────
+// â”€â”€â”€ ABOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const ABOUT = {
   _id: 'about',
   hero: { title: 'Our Story', subtitle: 'Handcrafting Kerala\'s Finest Natural Latex Mattresses Since 2015' },
-  ourStory: { heading: 'From Kerala Plantations to Your Bedroom', body: [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'RelaxPro was born from a simple belief: that everyone deserves access to pure, chemical-free sleep. Founded by Suresh, a mattress manufacturer with deep roots in Kerala\'s natural rubber industry, our journey began in a small workshop in Hyderabad\'s Jeedimetla industrial area. Today, we are recognized as Telangana and Andhra Pradesh\'s first dedicated natural latex mattress company.' }] }, { _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'Unlike mass-produced mattresses that rely on synthetic foams and adhesives, every RelaxPro mattress is handcrafted using 100% natural Dunlop latex sourced directly from GOLS-certified organic plantations in Kerala. Our direct-to-consumer model means you get premium quality at factory prices — no middlemen, no markup.' }] }] },
+  ourStory: { heading: 'From Kerala Plantations to Your Bedroom', body: [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'RelaxPro was born from a simple belief: that everyone deserves access to pure, chemical-free sleep. Founded by Suresh, a mattress manufacturer with deep roots in Kerala\'s natural rubber industry, our journey began in a small workshop in Hyderabad\'s Jeedimetla industrial area. Today, we are recognized as Telangana and Andhra Pradesh\'s first dedicated natural latex mattress company.' }] }, { _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'Unlike mass-produced mattresses that rely on synthetic foams and adhesives, every RelaxPro mattress is handcrafted using 100% natural Dunlop latex sourced directly from GOLS-certified organic plantations in Kerala. Our direct-to-consumer model means you get premium quality at factory prices â€” no middlemen, no markup.' }] }] },
   ourProcess: { heading: 'How We Craft Your Mattress', steps: [{ title: 'Sap Harvesting', description: 'Raw latex sap is tapped from certified organic rubber trees in Kerala under strict GOLS guidelines.' }, { title: 'Dunlop Processing', description: 'The sap is whipped into a froth and poured into molds. No synthetic fillers or chemicals are added.' }, { title: 'Vulcanization', description: 'The latex is baked at high temperatures to set its cellular structure, creating the signature open-cell breathability.' }, { title: 'Hand Assembly', description: 'Latex cores are precision-cut and layered with certified fabrics. Each mattress is inspected by Suresh personally.' }, { title: 'Compression & Packing', description: 'Your mattress is vacuum-compressed for easy shipping, rolled, and shipped directly to your doorstep.' }] },
   seo: { metaTitle: 'About RelaxPro | Natural Latex Mattress Manufacturer India', metaDescription: 'Learn about RelaxPro\'s journey crafting premium GOLS-certified natural latex mattresses directly from our Hyderabad factory.' },
 }
 
-// ─── CONTACT ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ CONTACT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const CONTACT = {
   _id: 'contact',
   heading: 'Submit Your Sleep Concern',
@@ -448,7 +448,7 @@ const CONTACT = {
   seo: { metaTitle: 'Contact RelaxPro | Get Orthopedic Mattress Advice', metaDescription: 'Contact RelaxPro for expert orthopedic mattress consultation. WhatsApp or call for personalized advice on natural latex mattresses.' },
 }
 
-// ─── NAVIGATION ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ NAVIGATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const NAVIGATION = {
   _id: 'navigation',
   title: 'Main Navigation',
@@ -477,7 +477,7 @@ const NAVIGATION = {
   ],
 }
 
-// ─── HERO ───────────────────────────────────────────────────────────────────
+// â”€â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const HERO_SLIDES = {
   _id: 'hero',
   title: 'Homepage Hero',
@@ -492,7 +492,7 @@ const HERO_SLIDES = {
   }],
 }
 
-// ─── SLEEP SCIENCE ──────────────────────────────────────────────────────────
+// â”€â”€â”€ SLEEP SCIENCE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const SLEEP_SCIENCE = {
   _id: 'sleepScience',
   title: 'Sleep Science',
@@ -511,7 +511,7 @@ const SLEEP_SCIENCE = {
   ctaLink: '/compare',
 }
 
-// ─── OFFERS & CAMPAIGNS ────────────────────────────────────────────────────
+// â”€â”€â”€ OFFERS & CAMPAIGNS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // endDate is computed relative to seed-time so countdown timers are demonstrable.
 const daysFromNow = (days) => new Date(Date.now() + days * 86400000).toISOString()
 
@@ -567,50 +567,51 @@ const OFFERS = [
   },
 ]
 
-// ─── EXECUTION ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ EXECUTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function main() {
   console.log('Starting seed...\n')
 
-  console.log('── Categories ──')
+  console.log('â”€â”€ Categories â”€â”€')
   for (const c of CATEGORIES) await upsert('brandCategory', c)
 
-  console.log('\n── Products ──')
+  console.log('\nâ”€â”€ Products â”€â”€')
   for (const p of PRODUCTS_DATA) await upsert('product', p)
 
-  console.log('\n── Testimonials ──')
+  console.log('\nâ”€â”€ Testimonials â”€â”€')
   for (const t of TESTIMONIALS) await upsert('testimonial', t)
 
-  console.log('\n── FAQs ──')
+  console.log('\nâ”€â”€ FAQs â”€â”€')
   for (const f of FAQS) await upsert('faq', f)
 
-  console.log('\n── Showrooms ──')
+  console.log('\nâ”€â”€ Showrooms â”€â”€')
   for (const s of SHOWROOMS) await upsert('showroom', s)
 
-  console.log('\n── Site Settings ──')
+  console.log('\nâ”€â”€ Site Settings â”€â”€')
   await upsert('siteSettings', SITE_SETTINGS)
 
-  console.log('\n── Homepage ──')
+  console.log('\nâ”€â”€ Homepage â”€â”€')
   await upsert('home', HOME)
 
-  console.log('\n── About ──')
+  console.log('\nâ”€â”€ About â”€â”€')
   await upsert('about', ABOUT)
 
-  console.log('\n── Contact ──')
+  console.log('\nâ”€â”€ Contact â”€â”€')
   await upsert('contact', CONTACT)
 
-  console.log('\n── Navigation ──')
+  console.log('\nâ”€â”€ Navigation â”€â”€')
   await upsert('navigation', NAVIGATION)
 
-  console.log('\n── Hero ──')
+  console.log('\nâ”€â”€ Hero â”€â”€')
   await upsert('hero', HERO_SLIDES)
 
-  console.log('\n── Sleep Science ──')
+  console.log('\nâ”€â”€ Sleep Science â”€â”€')
   await upsert('sleepScience', SLEEP_SCIENCE)
 
-  console.log('\n── Offers & Campaigns ──')
+  console.log('\nâ”€â”€ Offers & Campaigns â”€â”€')
   for (const o of OFFERS) await upsert('offer', o)
 
-  console.log('\n✅ Seed complete!')
+  console.log('\nâœ… Seed complete!')
 }
 
-main().catch(err => { console.error('\n❌ Seed failed:', err); process.exit(1) })
+main().catch(err => { console.error('\nâŒ Seed failed:', err); process.exit(1) })
+
