@@ -582,7 +582,7 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                       <tbody>
                         {([
                           { key: 'single', label: 'Single', dims: '36″ × 75″' },
-                          { key: 'double', label: 'Diwan / Double', dims: '48″ × 75″' },
+                          { key: 'diwan', label: 'Diwan / Double', dims: '48″ × 75″' },
                           { key: 'queen', label: 'Queen', dims: '60″ × 78″' },
                           { key: 'king', label: 'King', dims: '72″ × 72″' },
                         ] as const).map(({ key, label, dims }) => {
