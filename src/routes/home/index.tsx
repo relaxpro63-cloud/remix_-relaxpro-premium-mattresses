@@ -325,7 +325,7 @@ export default function HomePage({
                             <PriceText>
                               ₹
                               {(() => {
-                                const price = item.pricing?.withoutAccessories?.king ?? item.pricing?.fabric300Gsm?.king ?? item.pricing?.withAccessories?.king ?? 0;
+                                const price = item.pricing?.withAccessories?.king ?? item.pricing?.fabric300Gsm?.king ?? item.pricing?.withoutAccessories?.king ?? 0;
                                 return price ? price.toLocaleString('en-IN') : '';
                               })()}
                             </PriceText>
@@ -626,7 +626,7 @@ export default function HomePage({
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeUp className="max-w-2xl mb-8 xs:mb-10 sm:mb-12 md:mb-16">
             <span className="eyebrow">{homeSections?.allShowroomsSection?.sectionBadge || 'Experience Before Buying'}</span>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-medium text-ink-900 mt-0.5 xs:mt-1">{homeSections?.allShowroomsSection?.sectionTitle || 'Our Showrooms and Manufacturer Outlets'}</h2>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-medium text-ink-900 mt-0.5 xs:mt-1">{homeSections?.allShowroomsSection?.sectionTitle || 'RelaxPro Mattress Partner to Showrooms'}</h2>
             <p className="text-graphite-500 text-sm xs:text-[15px] sm:text-base mt-3 xs:mt-4 font-body leading-relaxed max-w-lg">{homeSections?.allShowroomsSection?.sectionDescription || "Walk in, test firmness profiles, lay down, and speak with Suresh's trained team directly at the locations below."}</p>
           </FadeUp>
 

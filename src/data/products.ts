@@ -519,13 +519,13 @@ export const LOCATIONS = [
   },
   {
     city: 'Rajahmundry',
-    address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103',
+    address: 'RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103',
     phones: ['+919281424494'],
     hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM'
   },
   {
     city: 'Bangalore',
-    address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038',
+    address: 'RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036',
     phones: ['+917207424494'],
     hours: 'Mon - Sun: 10:30 AM - 8:30 PM'
   }

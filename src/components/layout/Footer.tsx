@@ -97,8 +97,8 @@ export default function Footer() {
 
   const fallbackShowrooms = [
     { city: 'Hyderabad', address: 'Jeedimetla Industrial Area, Phase 3' },
-    { city: 'Rajahmundry', address: 'Danavaipeta Mall Road' },
-    { city: 'Bangalore', address: 'Indiranagar, 100 Feet Road' },
+    { city: 'Rajahmundry', address: 'JN Road, Opposite Surya Function Hall' },
+    { city: 'Bangalore', address: 'KR Puram Hoodi Main Road' },
   ];
 
   const cmsShowrooms = showrooms

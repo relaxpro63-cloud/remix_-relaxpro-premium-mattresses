@@ -120,7 +120,7 @@
     ]
   },
   "allShowroomsSection": {
-    "sectionTitle": "Visit Our Showrooms",
+    "sectionTitle": "RelaxPro Mattress Partner to Showrooms",
     "sectionDescription": "Experience the RelaxPro difference in person. Our sleep consultants are ready to help you find your perfect mattress.",
     "showrooms": [
       { "_type": "reference", "_ref": "showroom-hyderabad" },

@@ -260,8 +260,8 @@ export default function HomePage() {
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" stagger={0.15}>
             {[
               { city: 'Hyderabad', address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055', phones: ['+918686624494', '+917207424494'], hours: 'Mon - Sun: 10:00 AM - 9:00 PM' },
-              { city: 'Rajahmundry', address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103', phones: ['+918686624494'], hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM' },
-              { city: 'Bangalore', address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038', phones: ['+917207424494'], hours: 'Mon - Sun: 10:30 AM - 8:30 PM' },
+              { city: 'Rajahmundry', address: 'RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103', phones: ['+918686624494'], hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM' },
+              { city: 'Bangalore', address: 'RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036', phones: ['+917207424494'], hours: 'Mon - Sun: 10:30 AM - 8:30 PM' },
             ].map((loc, idx) => (
               <motion.div key={idx} variants={staggerItem} whileHover={{ y: -8, boxShadow: '0 20px 40px -15px rgba(201, 168, 124, 0.15)' }}
                 transition={{ duration: 0.4, ease: EASE_LUXURY }}

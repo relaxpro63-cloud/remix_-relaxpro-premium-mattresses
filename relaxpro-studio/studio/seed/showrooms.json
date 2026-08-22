@@ -40,16 +40,16 @@
   {
     "_id": "showroom-rajahmundry",
     "_type": "showroom",
-    "name": "Rajahmundry Experience Store",
+    "name": "RelaxPro Factory Showroom — Rajahmundry",
     "slug": { "current": "rajahmundry" },
     "type": "experience",
     "address": {
-      "street": "Danavaipeta Mall Road",
-      "landmark": "Opposite Municipal Complex",
+      "street": "JN Road",
+      "landmark": "Opposite Surya Function Hall",
       "city": "Rajahmundry",
       "state": "Andhra Pradesh",
       "pincode": "533103",
-      "fullAddress": "RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103"
+      "fullAddress": "RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103"
     },
     "coordinates": { "lat": 17.0005, "lng": 81.7836 },
     "hours": {
@@ -78,16 +78,16 @@
   {
     "_id": "showroom-bangalore",
     "_type": "showroom",
-    "name": "Bangalore Partner Store",
+    "name": "RelaxPro Factory Showroom — Bangalore",
     "slug": { "current": "bangalore" },
     "type": "partner",
     "address": {
-      "street": "100 Feet Road, Indiranagar",
-      "landmark": "Near Halasuru Metro Station",
+      "street": "KR Puram Hoodi Main Road",
+      "landmark": "KR Puram Hoodi Main Road",
       "city": "Bangalore",
       "state": "Karnataka",
-      "pincode": "560038",
-      "fullAddress": "RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038"
+      "pincode": "560036",
+      "fullAddress": "RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036"
     },
     "coordinates": { "lat": 12.9784, "lng": 77.6408 },
     "hours": {

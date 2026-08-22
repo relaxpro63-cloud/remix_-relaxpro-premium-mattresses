@@ -1617,7 +1617,7 @@ function seedTestimonials() {
       location: 'Bangalore',
       rating: 5,
       quote:
-        'Visited their Bangalore partner store and tried all models. The team was patient and knowledgeable. Ended up choosing the Shuddha for our small apartment — perfect 6-inch profile!',
+        'Visited their Bangalore factory showroom and tried all models. The team was patient and knowledgeable. Ended up choosing the Shuddha for our small apartment — perfect 6-inch profile!',
       isVerified: true,
       featured: false,
       order: 13,
@@ -1721,7 +1721,7 @@ function seedFaqs() {
       _id: 'faq-8',
       question: 'Where are your showrooms located?',
       answer: block(
-        'We have three experience centers: (1) Hyderabad Factory Showroom in Jeedimetla Industrial Area, Phase 3, (2) Rajahmundry Experience Store on Danavaipeta Mall Road, and (3) Bangalore Partner Store in Indiranagar, 100 Feet Road. Visit any location to test our full range of mattresses in person. We recommend booking an appointment for a personalized consultation.'
+        'We have three experience centers: (1) Hyderabad Factory Showroom in Jeedimetla Industrial Area, Phase 3, (2) Rajahmundry Factory Showroom on JN Road, Opposite Surya Function Hall, and (3) Bangalore Factory Showroom in KR Puram Hoodi Main Road. Visit any location to test our full range of mattresses in person. We recommend booking an appointment for a personalized consultation.'
       ),
       category: 'Pricing & Sizes',
       order: 8,
@@ -1872,15 +1872,15 @@ async function seedShowrooms() {
     },
     {
       _id: 'showroom-rajahmundry',
-      name: 'RelaxPro Experience Store — Rajahmundry',
+      name: 'RelaxPro Factory Showroom — Rajahmundry',
       slug: { current: 'rajahmundry' },
       type: 'experience',
       address: {
         city: 'Rajahmundry',
         fullAddress:
-          'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103',
-        street: 'Danavaipeta Mall Road',
-        landmark: 'Opposite Municipal Complex',
+          'RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103',
+        street: 'JN Road',
+        landmark: 'Opposite Surya Function Hall',
         pincode: '533103',
         state: 'Andhra Pradesh',
       },
@@ -1904,15 +1904,15 @@ async function seedShowrooms() {
     },
     {
       _id: 'showroom-bangalore',
-      name: 'RelaxPro Partner Store — Bangalore',
+      name: 'RelaxPro Factory Showroom — Bangalore',
       slug: { current: 'bangalore' },
       type: 'partner',
       address: {
         city: 'Bangalore',
         fullAddress:
-          'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038',
-        street: 'Indiranagar, 100 Feet Road',
-        landmark: 'Near Halasuru Metro Station',
+          'RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036',
+        street: 'KR Puram Hoodi Main Road',
+        landmark: 'KR Puram Hoodi Main Road',
         pincode: '560038',
         state: 'Karnataka',
       },
@@ -3370,7 +3370,7 @@ async function seedHomepage() {
       ],
     },
     allShowroomsSection: {
-      sectionTitle: 'Visit Our Showrooms',
+      sectionTitle: 'RelaxPro Mattress Partner to Showrooms',
       sectionDescription:
         'Experience the RelaxPro difference in person. Our sleep consultants are ready to help you find your perfect mattress.',
       showrooms: [
@@ -4057,7 +4057,7 @@ async function seedLocations() {
       city: 'Rajahmundry',
       slug: { current: 'rajahmundry' },
       address:
-        'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103',
+        'RelaxPro Factory Showroom, JN Road, Opposite Surya Function Hall, Rajahmundry, Andhra Pradesh - 533103',
       phones: ['+918686624494'],
       hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM',
       image: null,
@@ -4069,7 +4069,7 @@ async function seedLocations() {
       city: 'Bangalore',
       slug: { current: 'bangalore' },
       address:
-        'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038',
+        'RelaxPro Factory Showroom, KR Puram Hoodi Main Road, Bangalore, Karnataka - 560036',
       phones: ['+917207424494'],
       hours: 'Mon - Sun: 10:30 AM - 8:30 PM',
       image: null,

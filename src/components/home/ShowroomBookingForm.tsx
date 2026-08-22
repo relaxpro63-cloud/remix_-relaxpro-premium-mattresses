@@ -159,8 +159,8 @@ export default function ShowroomBookingForm() {
                     className="w-full pl-11 pr-5 py-4 rounded-xl border border-white/10 text-sm focus:outline-hidden focus:border-brand-500 bg-ink-900 transition-all font-body appearance-none cursor-pointer text-linen-100"
                   >
                     <option value="Hyderabad">Hyderabad Factory Showroom (Jeedimetla)</option>
-                    <option value="Rajahmundry">Rajahmundry Experience Store (Danavaipeta)</option>
-                    <option value="Bangalore">Bangalore Partner Store (Indiranagar)</option>
+                    <option value="Rajahmundry">Rajahmundry Factory Showroom (JN Road, Opposite Surya Function Hall)</option>
+                    <option value="Bangalore">Bangalore Factory Showroom (KR Puram Hoodi Main Road)</option>
                   </select>
                   <div className="absolute right-4 top-5 w-2 h-2 border-r-2 border-b-2 border-brand-600 transform rotate-45 pointer-events-none" />
                 </div>

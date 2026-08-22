@@ -198,7 +198,7 @@ export default function LocationsPage() {
 
   return (
     <PageShell
-      title="RelaxPro Experience Stores - Hyderabad, Rajahmundry, Bangalore"
+      title="RelaxPro Factory Showrooms - Hyderabad, Rajahmundry, Bangalore"
       description="Visit our experience showrooms to test 7-zone organic latex & firm ortho mattresses. Get direct factory pricing, maps & directions."
       schema={storeSchemas}
     >
@@ -211,7 +211,7 @@ export default function LocationsPage() {
             <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-100 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-brand-600">
               Experience Before Buying
             </span>
-            <h1 className="rp-display mt-5 text-ink-900">Our Showrooms and Manufacturer Outlets</h1>
+            <h1 className="rp-display mt-5 text-ink-900">RelaxPro Mattress Partner to Showrooms</h1>
             <p className="rp-body mt-4">Walk in, test firmness profiles, lay down, and speak with Suresh&#39;s trained team directly at the locations below.</p>
           </div>
           </FadeUp>
