@@ -63,7 +63,7 @@ const patches = [
       friday: '10:00 AM – 8:30 PM',
       saturday: '10:00 AM – 8:30 PM',
       sunday: '11:00 AM – 7:00 PM',
-      note: 'Experience center for East Andhra Pradesh customers',
+      note: 'Showroom for East Andhra Pradesh customers',
     },
     coordinates: { lat: 17.0005, lng: 81.7836 },
     ctaButtons: [
@@ -89,7 +89,7 @@ const patches = [
       friday: '10:30 AM – 8:30 PM',
       saturday: '10:30 AM – 8:30 PM',
       sunday: '10:30 AM – 8:30 PM',
-      note: 'Karnataka partner location — all RelaxPro models available for viewing',
+      note: 'Karnataka showroom — all RelaxPro models available for viewing',
     },
     coordinates: { lat: 12.9784, lng: 77.6408 },
     ctaButtons: [
