@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Sthira 6" Firm Orthopedic Latex Mattress | RelaxPro',
     metaDescription: 'Shop Sthira 6-inch extra supportive firm mattress. Features 4" heavy rebonded base and 2" organic latex luxury topper. Highly durable.'
-  },,
+  },
 
 {
     slug: 'sunidra',
@@ -74,7 +74,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Sunidra 8" Universal Latex Comfort Mattress | RelaxPro',
     metaDescription: 'Buy Sunidra 8-inch medium comfort mattress by RelaxPro. Sturdy rebonded core, breathable HR softy layer, and 2" pure natural latex sheet.'
-  },,
+  },
 
 {
     slug: 'arogya',
@@ -111,7 +111,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Arogya 8" Orthopedic Latex Mattress | RelaxPro',
     metaDescription: 'Configure Arogya 8"-thick premium mattress with 4" GOLS latex and 4" high-density orthopedic rebond foam base. Eradicate back soreness.'
-  },,
+  },
 
 {
     slug: 'amrita',
@@ -148,7 +148,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Amrita 10" Rebonded & Latex Luxury Mattress | RelaxPro',
     metaDescription: 'Shop the Amrita 10-inch luxurious mattress with 4" rebonded support and 6" certified natural rubber latex. Optimal orthopedic relaxation.'
-  },,
+  },
 
 {
     slug: 'somya',
@@ -187,7 +187,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Somya 10" Natural Latex Comfort Mattress | RelaxPro',
     metaDescription: 'Shop Somya 10-inch mattress combining natural Kerala organic latex, plush HR soft foam, and sturdy rebonded base. Pure comfort and pain-free joints.'
-  },,
+  },
 
 {
     slug: 'prakriti',
@@ -224,7 +224,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Prakriti 8" Natural & Eco-Rebonded Latex Mattress | RelaxPro',
     metaDescription: 'Discover the Prakriti 8-inch natural latex mattress. Engineered with natural eco-rebonded core and 100% natural latex topper.'
-  },,
+  },
 
 {
     slug: 'shuddha',
@@ -261,7 +261,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Shuddha 6" Premium Pure Latex Hybrid Mattress | RelaxPro',
     metaDescription: 'Buy Shuddha 6-inch premium mattress with natural latex and eco-dense rebond latex block. Organic comfort, medium support.'
-  },,
+  },
 
 {
     slug: 'nirvana',
@@ -269,35 +269,35 @@ export const PRODUCTS: Product[] = [
     tagline: 'Experience ultimate relaxation',
     subtitle: 'Luxury sleep begins with Nirvana latex mattress',    comfortLevel: 'plush',
     comfortRating: 5,
-    totalThickness: 6,
+    totalThickness: 8,
     layers: [
-      { thickness: 6, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS'], description: '6" Kerala Latex 90 density pure 96.6% Purity GOLS certified' }
+      { thickness: 8, material: 'latex', brand: 'RelaxPro Kerala Organic', certification: ['GOLS'], description: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified' }
     ],
     fabricGsm: 400,
     fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
-    keyBenefit: '6" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep & pressure relief',
-    description: 'Nirvana is our flagship pure latex mattress, crafted entirely from a single 6-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations. With an exceptional 96.6% purity and GOLS certification, every inch delivers therapeutic pressure relief that cradles your body while maintaining perfect spinal alignment. The open-cell latex structure naturally dissipates heat, keeping you cool through the night, while the inherent elasticity of latex absorbs motion completely — so you sleep undisturbed even with a restless partner. Zero synthetic chemicals, fillers, or VOC emissions make it completely safe for infants, elders, and anyone with chemical sensitivities. Nirvana is the pinnacle of natural sleep engineering.',
+    keyBenefit: '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep & pressure relief',
+    description: 'Nirvana is our flagship pure latex mattress, crafted entirely from a single 8-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations. With an exceptional 96.6% purity and GOLS certification, every inch delivers therapeutic pressure relief that cradles your body while maintaining perfect spinal alignment. The open-cell latex structure naturally dissipates heat, keeping you cool through the night, while the inherent elasticity of latex absorbs motion completely — so you sleep undisturbed even with a restless partner. Zero synthetic chemicals, fillers, or VOC emissions make it completely safe for infants, elders, and anyone with chemical sensitivities. Nirvana is the pinnacle of natural sleep engineering.',
     badge: 'Premium Pure Latex Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 54000, queen: 45000, double: 34000, single: 27000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 49000, queen: 41000, double: 31000, single: 24500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 54000, queen: 45000, double: 36000, single: 27000 , diwan: 36000, custom: 0 },
+      withoutAccessories: { king: 49000, queen: 41000, double: 33000, single: 24500 , diwan: 33000 , custom: 0 }
     },
     image: '/images/products/nirvana.webp',
     images: Array.from({ length: 10 }, (_, i) => `/images/products/nirvana-gallery-${i + 1}.webp`),
     tier: 'luxury',
     features: [
-      '6" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep',
+      '8" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep',
       '100% natural biodegradable Dunlop latex sap harvested under strict GOLS organic standards',
       'Zero synthetic chemicals, fillers, or VOC emissions — completely safe for infants and elders',
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
       'Get video call while making and receive 1 edited making video for reference'
     ],
-    metaTitle: 'Nirvana 6" Pure Natural Latex Mattress | RelaxPro',
-    metaDescription: 'Buy RelaxPro Nirvana 6-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. Free shipping.'
-  },,
+    metaTitle: 'Nirvana 8" Pure Natural Latex Mattress | RelaxPro',
+    metaDescription: 'Buy RelaxPro Nirvana 8-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. Free shipping.'
+  },
 
 {
     slug: 'bhumi',
@@ -335,7 +335,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Bhumi 8" Triple-Core Hybrid Latex Mattress | RelaxPro',
     metaDescription: 'Unlock restorative sleep with Bhumi 8-inch mattress. Advanced triple core combining GOLS organic latex, latex-rebonded and PU-rebond base.'
-  },,
+  },
 
 {
     slug: 'ananda',
@@ -371,7 +371,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Ananda 6" Pure Natural Latex Mattress | RelaxPro',
     metaDescription: 'Order the Ananda 6-inch solid natural latex mattress by RelaxPro. Dynamic orthopedic elasticity, eco-conscious materials, and durable build.'
-  },,
+  },
 
 {
     slug: 'ojas',
@@ -408,7 +408,7 @@ export const PRODUCTS: Product[] = [
     ],
     metaTitle: 'Ojas Ortho Value Mattress - Standard & Quilted Covers | RelaxPro',
     metaDescription: 'Buy Ojas 6" Orthopedic mattress. Tailored with density transitions for spine safety. Choose 300 GSM standard or upgrade to 450 GSM deluxe quilting.'
-  },,
+  },
 
 {
     slug: 'ayushrest',
@@ -469,7 +469,7 @@ export const PRODUCTS: Product[] = [
     badge: 'Great Value Sleep Solution',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 24000, queen: 20000, double: 18000, single: 12000 , diwan: 18000, custom: 0 },
+      withAccessories: { king: 24000, queen: 20000, double: 16000, single: 12000 , diwan: 16000, custom: 0 },
       withoutAccessories: { king: 19000, queen: 16000, double: 13000, single: 9500 , diwan: 13000 , custom: 0 }
     },
     image: '/images/products/vishram.webp',
