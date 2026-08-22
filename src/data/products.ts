@@ -20,8 +20,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Premium Pure Latex Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 54000, queen: 45000, double: 32000, single: 27000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 49000, queen: 41000, double: 33000, single: 24500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 54000, queen: 45000, double: 34000, single: 27000 , diwan: 34000, custom: 0 },
+      withoutAccessories: { king: 49000, queen: 41000, double: 31000, single: 24500 , diwan: 31000 , custom: 0 }
     },
     image: '/images/products/nirvana.webp',
     images: Array.from({ length: 10 }, (_, i) => `/images/products/nirvana-gallery-${i + 1}.webp`),
@@ -56,8 +56,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Premium 10" Reversible Rebonded + Latex Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 48000, queen: 40000, double: 32000, single: 24000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 43000, queen: 36000, double: 29000, single: 21500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 48000, queen: 40000, double: 32000, single: 24000 , diwan: 32000, custom: 0 },
+      withoutAccessories: { king: 43000, queen: 36000, double: 29000, single: 21500 , diwan: 29000 , custom: 0 }
     },
     image: '/images/products/amrita.webp',
     images: Array.from({ length: 9 }, (_, i) => `/images/products/amrita-gallery-${i + 1}.webp`),
@@ -86,13 +86,13 @@ export const PRODUCTS: Product[] = [
     fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
-    keyBenefit: 'Pure seamless solid organic latex master block yielding a buoyant response that cradle curves while securing independent motion isolation',
+    keyBenefit: 'Pure seamless solid organic latex master block yielding a buoyant response that cradles curves while securing independent motion isolation',
     description: 'Ananda is a pure 6-inch solid natural latex mattress that strips away all foam and fillers to deliver the purest sleep experience possible. Made entirely from a single seamless block of Dunlop-processed organic latex, Ananda offers a buoyant, responsive feel that gently pushes back against your body — providing natural spinal alignment without the sinking sensation of memory foam. The dense latex structure provides exceptional motion isolation, meaning partner movements generate zero seismic disturbance across the bed. Each slab is GOLS and Oeko-Tex certified, ensuring zero off-gassing and a hypoallergenic sleep environment. The open-cell construction naturally wicks away moisture and heat, making it an excellent choice for hot sleepers and those with allergies.',
     badge: '100% Pure Classic Latex Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 42000, queen: 35000, double: 28000, single: 21000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 37000, queen: 31000, double: 25000, single: 18500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 42000, queen: 35000, double: 28000, single: 21000 , diwan: 28000, custom: 0 },
+      withoutAccessories: { king: 37000, queen: 31000, double: 25000, single: 18500 , diwan: 25000 , custom: 0 }
     },
     image: '/images/products/ananda.webp',
     images: Array.from({ length: 7 }, (_, i) => `/images/products/ananda-gallery-${i + 1}.webp`),
@@ -127,8 +127,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Eco-Friendly Twin Latex Engineering',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 44000, queen: 36500, double: 29000, single: 22000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 39000, queen: 32500, double: 26000, single: 19500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 44000, queen: 36500, double: 29000, single: 22000 , diwan: 29000, custom: 0 },
+      withoutAccessories: { king: 39000, queen: 32500, double: 26000, single: 19500 , diwan: 26000 , custom: 0 }
     },
     image: '/images/products/prakriti.webp',
     images: Array.from({ length: 10 }, (_, i) => `/images/products/prakriti-gallery-${i + 1}.webp`),
@@ -164,8 +164,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Soft Contouring Orthopedic Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 41000, queen: 34000, double: 27000, single: 20500 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 36000, queen: 30000, double: 24000, single: 18000 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 41000, queen: 34000, double: 27000, single: 20500 , diwan: 27000, custom: 0 },
+      withoutAccessories: { king: 36000, queen: 30000, double: 24000, single: 18000 , diwan: 24000 , custom: 0 }
     },
     image: '/images/products/somya.webp',
     images: Array.from({ length: 8 }, (_, i) => `/images/products/somya-gallery-${i + 1}.webp`),
@@ -201,8 +201,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Doctor Recommended Ortho Core',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 38000, queen: 31500, double: 26000, single: 19000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 33000, queen: 27500, double: 23000, single: 16500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 38000, queen: 31500, double: 26000, single: 19000 , diwan: 26000, custom: 0 },
+      withoutAccessories: { king: 33000, queen: 27500, double: 23000, single: 16500 , diwan: 23000 , custom: 0 }
     },
     image: '/images/products/arogya.webp',
     images: Array.from({ length: 7 }, (_, i) => `/images/products/arogya-gallery-${i + 1}.webp`),
@@ -237,8 +237,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Optimal Height Natural Comfort',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 33000, queen: 27500, double: 22000, single: 16500 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 28000, queen: 23500, double: 19000, single: 14500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 33000, queen: 27500, double: 22000, single: 16500 , diwan: 22000, custom: 0 },
+      withoutAccessories: { king: 28000, queen: 23500, double: 19000, single: 14500 , diwan: 19000 , custom: 0 }
     },
     image: '/images/products/shuddha.webp',
     images: Array.from({ length: 9 }, (_, i) => `/images/products/shuddha-gallery-${i + 1}.webp`),
@@ -273,8 +273,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Perfect Firm Extra-Support Ortho',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 27000, queen: 22500, double: 18000, single: 13500 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 22000, queen: 18500, double: 15000, single: 11000 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 27000, queen: 22500, double: 18000, single: 13500 , diwan: 18000, custom: 0 },
+      withoutAccessories: { king: 22000, queen: 18500, double: 15000, single: 11000 , diwan: 15000 , custom: 0 }
     },
     image: '/images/products/sthira.webp',
     images: Array.from({ length: 9 }, (_, i) => `/images/products/sthira-gallery-${i + 1}.webp`),
@@ -310,8 +310,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Multi-Adaptive Posture Layering',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 33000, queen: 27500, double: 22000, single: 16500 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 28000, queen: 23500, double: 19000, single: 14500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 33000, queen: 27500, double: 22000, single: 16500 , diwan: 22000, custom: 0 },
+      withoutAccessories: { king: 28000, queen: 23500, double: 19000, single: 14500 , diwan: 19000 , custom: 0 }
     },
     image: '/images/products/bhumi.webp',
     images: Array.from({ length: 10 }, (_, i) => `/images/products/bhumi-gallery-${i + 1}.webp`),
@@ -319,7 +319,7 @@ export const PRODUCTS: Product[] = [
     features: [
       'Layered progressive firmness: gets firmer as more compression force is applied',
       'Combination of raw polyurethane rebond, eco latex rebond, and classic virgin latex sap sheets',
-      'Helps back-sleepers keep their pelvis neutral and chest chest-aligned',
+      'Helps back-sleepers keep their pelvis neutral and chest-aligned',
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability',
       'Get video call while making and receive 1 edited making video for reference'
     ],
@@ -347,8 +347,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Universal Medium All-Rounder',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 30000, queen: 25000, double: 20000, single: 15000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 25000, queen: 21000, double: 17000, single: 12500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 30000, queen: 25000, double: 20000, single: 15000 , diwan: 20000, custom: 0 },
+      withoutAccessories: { king: 25000, queen: 21000, double: 17000, single: 12500 , diwan: 17000 , custom: 0 }
     },
     image: '/images/products/sunidra.webp',
     images: Array.from({ length: 8 }, (_, i) => `/images/products/sunidra-gallery-${i + 1}.webp`),
@@ -384,8 +384,8 @@ export const PRODUCTS: Product[] = [
     badge: 'Great Value Sleep Solution',
     pricingModel: 'with_without_accessories',
     pricing: {
-      withAccessories: { king: 24000, queen: 20000, double: 18000, single: 12000 , diwan: 34000, custom: 0 },
-      withoutAccessories: { king: 19000, queen: 16000, double: 13000, single: 9500 , diwan: 31000 , custom: 0 }
+      withAccessories: { king: 24000, queen: 20000, double: 18000, single: 12000 , diwan: 18000, custom: 0 },
+      withoutAccessories: { king: 19000, queen: 16000, double: 13000, single: 9500 , diwan: 13000 , custom: 0 }
     },
     image: '/images/products/vishram.webp',
     images: Array.from({ length: 10 }, (_, i) => `/images/products/vishram-gallery-${i + 1}.webp`),
