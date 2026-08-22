@@ -7,7 +7,7 @@
       "current": "nirvana"
     },
     "tagline": "Experience ultimate relaxation",
-    "shortDescription": "6 inch 100% pure Kerala Latex 90 density 96.6% purity GOLS certified plush therapeutic mattress for deep sleep and pressure relief",
+    "shortDescription": "8 inch 100% pure Kerala Latex 90 density 96.6% purity GOLS certified plush therapeutic mattress for deep sleep and pressure relief — one side 7-zone, one side monozone",
     "pricing": {
       "startingPrice": 54000,
       "currency": "₹"
@@ -31,7 +31,7 @@
         "_key": "sz2",
         "name": "Double",
         "dimensions": "78x48 inches",
-        "price": 32000,
+        "price": 36000,
         "inStock": true
       },
       {
@@ -45,12 +45,12 @@
         "_key": "sz4",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 36000,
         "inStock": true
       }
     ],
     "specifications": {
-      "thickness": "6 inches",
+      "thickness": "8 inches",
       "density": "90 density",
       "purity": "96.6% Pure",
       "certification": "GOLS, Oeko-Tex",
@@ -58,7 +58,7 @@
       "material": "100% Pure Kerala Latex"
     },
     "benefits": [
-      "6\" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep",
+      "8\" Kerala Latex 90 density pure 96.6% Purity GOLS certified for therapeutic deep sleep — one side 7-zone, one side monozone",
       "100% natural biodegradable Dunlop latex sap harvested under strict GOLS organic standards",
       "Zero synthetic chemicals, fillers, or VOC emissions — completely safe for infants and elders",
       "400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability",
@@ -81,12 +81,12 @@
       "trialPeriod": "100 nights"
     },
     "seo": {
-      "metaTitle": "Nirvana 6\" Pure Natural Latex Mattress | RelaxPro",
-      "metaDescription": "Buy RelaxPro Nirvana 6-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. 10-year warranty, free shipping."
+      "metaTitle": "Nirvana 8\" Pure Natural Latex Mattress | RelaxPro",
+      "metaDescription": "Buy RelaxPro Nirvana 8-inch 100% natural latex mattress. 90 density pure 96.6% GOLS certified Kerala latex. One side 7-zone, one side monozone. 10-year warranty, free shipping."
     },
     "subtitle": "Luxury sleep begins with Nirvana latex mattress",
-    "keyBenefit": "6 inch Kerala Latex 90 density pure 96.6 percent GOLS certified for therapeutic deep sleep and pressure relief",
-    "description": "Nirvana is our flagship pure latex mattress, crafted entirely from a single 6-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations.",
+    "keyBenefit": "8 inch Kerala Latex 90 density pure 96.6 percent GOLS certified for therapeutic deep sleep and pressure relief — one side 7-zone, one side monozone",
+    "description": "Nirvana is our flagship pure latex mattress, crafted entirely from a single 8-inch block of 100% natural Dunlop latex sourced from certified organic Kerala plantations — India's first one side 7-zone and one side monozone full latex mattress.",
     "badge": "Premium Pure Latex Comfort",
     "warranty": 10
   },
@@ -136,7 +136,7 @@
         "_key": "sz9",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 32000,
         "inStock": true
       }
     ],
@@ -227,7 +227,7 @@
         "_key": "sz14",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 28000,
         "inStock": true
       }
     ],
@@ -318,7 +318,7 @@
         "_key": "sz19",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 29000,
         "inStock": true
       }
     ],
@@ -409,7 +409,7 @@
         "_key": "sz24",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 27000,
         "inStock": true
       }
     ],
@@ -500,7 +500,7 @@
         "_key": "sz29",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 26000,
         "inStock": true
       }
     ],
@@ -591,7 +591,7 @@
         "_key": "sz34",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 22000,
         "inStock": true
       }
     ],
@@ -682,7 +682,7 @@
         "_key": "sz39",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 18000,
         "inStock": true
       }
     ],
@@ -773,7 +773,7 @@
         "_key": "sz44",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 22000,
         "inStock": true
       }
     ],
@@ -864,7 +864,7 @@
         "_key": "sz49",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 20000,
         "inStock": true
       }
     ],
@@ -941,7 +941,7 @@
         "_key": "sz52",
         "name": "Double",
         "dimensions": "78x48 inches",
-        "price": 18000,
+        "price": 16000,
         "inStock": true
       },
       {
@@ -955,7 +955,7 @@
         "_key": "sz54",
         "name": "Diwan",
         "dimensions": "75x48 inches",
-        "price": 34000,
+        "price": 16000,
         "inStock": true
       }
     ],
