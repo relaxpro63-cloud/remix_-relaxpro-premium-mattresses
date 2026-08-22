@@ -156,20 +156,36 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
     return variant.legacyKey as MattressSize;
   }, [sizeCategory, selectedVariantIdx, isCustom]);
 
+  // Map sizeCategory to pricing key (single, double, queen, king, diwan)
+  const pricingKey: MattressSize = useMemo(() => {
+    if (isCustom) return 'custom';
+    if (sizeCategory === 'single') return 'single';
+    if (sizeCategory === 'diwan') return 'diwan';
+    if (sizeCategory === 'queen') return 'queen';
+    if (sizeCategory === 'king') return 'king';
+    return 'king';
+  }, [sizeCategory, isCustom]);
+
   // ─── Price ─────────────────────────────────────────────────────────────────
   const activePrice = useMemo(() => {
     if (!product) return 0;
     if (isCustom) return 0;
     if (product.pricingModel === 'with_without_accessories') {
       const pricingObj = product.pricing;
-      if (includeAccessories) return pricingObj.withAccessories?.[legacyKey] || 0;
-      return pricingObj.withoutAccessories?.[legacyKey] || 0;
+      // Try specific variant key first (e.g. 72x36), fall back to category key (e.g. single)
+      const specificPrice = includeAccessories
+        ? pricingObj.withAccessories?.[legacyKey]
+        : pricingObj.withoutAccessories?.[legacyKey];
+      if (specificPrice) return specificPrice;
+      // Fall back to size category key
+      if (includeAccessories) return pricingObj.withAccessories?.[pricingKey] || 0;
+      return pricingObj.withoutAccessories?.[pricingKey] || 0;
     }
     const pricingObj = product.pricing;
     return selectedFabric === '450GSM'
-      ? pricingObj.fabric450Gsm?.[legacyKey] || 0
-      : pricingObj.fabric300Gsm?.[legacyKey] || 0;
-  }, [product, legacyKey, isCustom, includeAccessories, selectedFabric]);
+      ? pricingObj.fabric450Gsm?.[pricingKey] || 0
+      : pricingObj.fabric300Gsm?.[pricingKey] || 0;
+  }, [product, legacyKey, pricingKey, isCustom, includeAccessories, selectedFabric]);
 
   // ─── Error page ────────────────────────────────────────────────────────────
   if (!product) {
@@ -546,6 +562,64 @@ export default function ProductDetailRoute({ onAddToCartDirect, onNavigateBack }
                 )}
               </div>
               {/* ─── END SIZE SELECTION BLOCK ─────────────────────────────── */}
+
+              {/* ─── SIZE & PRICE TABLE ─────────────────────────────────────── */}
+              {product.pricingModel === 'with_without_accessories' && product.pricing && (
+                <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] border border-brand-200/40 shadow-sm space-y-4">
+                  <h3 className="font-heading font-bold text-ink-900 text-base sm:text-lg flex items-center gap-2">
+                    <Ruler className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600" />
+                    Sizes & Prices
+                  </h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                      <thead>
+                        <tr className="border-b border-brand-200/60">
+                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500">Size</th>
+                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500 text-right">With Pillows + Protector</th>
+                          <th className="py-2.5 px-3 text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-graphite-500 text-right">Mattress Only</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {([
+                          { key: 'single', label: 'Single', dims: '36″ × 75″' },
+                          { key: 'double', label: 'Diwan / Double', dims: '48″ × 75″' },
+                          { key: 'queen', label: 'Queen', dims: '60″ × 78″' },
+                          { key: 'king', label: 'King', dims: '72″ × 72″' },
+                        ] as const).map(({ key, label, dims }) => {
+                          const wPrice = product.pricing.withAccessories?.[key] || 0;
+                          const woPrice = product.pricing.withoutAccessories?.[key] || 0;
+                          if (!wPrice && !woPrice) return null;
+                          return (
+                            <tr
+                              key={key}
+                              className={`border-b border-brand-100/60 last:border-0 transition-colors ${
+                                (sizeCategory === key)
+                                  ? 'bg-brand-50/80'
+                                  : 'hover:bg-sky-50/50'
+                              } cursor-pointer`
+                              }
+                              onClick={() => handleCategorySelect(key as SizeCategory)}
+                            >
+                              <td className="py-3 px-3">
+                                <span className="font-accent font-bold text-xs sm:text-sm text-ink-900 block">{label}</span>
+                                <span className="text-[9px] sm:text-[10px] text-graphite-400 font-mono">{dims}</span>
+                              </td>
+                              <td className="py-3 px-3 text-right">
+                                <span className="font-heading font-bold text-sm sm:text-base text-ink-900">₹{wPrice.toLocaleString('en-IN')}</span>
+                              </td>
+                              <td className="py-3 px-3 text-right">
+                                <span className="font-heading font-semibold text-xs sm:text-sm text-graphite-500">₹{woPrice.toLocaleString('en-IN')}</span>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-[9px] sm:text-[10px] text-graphite-400 font-body leading-relaxed">Click any row to select that size. Prices include taxes & free shipping across India.</p>
+                </div>
+              )}
+              {/* ─── END SIZE & PRICE TABLE ──────────────────────────────── */}
 
               {/* Accessory Bundle */}
               {product.pricingModel === 'with_without_accessories' && (
