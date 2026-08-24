@@ -31,7 +31,7 @@ const patches = [
     id: 'product-somya',
     name: 'Somya',
     description:
-      "Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of 90-density pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees. This layered construction is ideal for side sleepers and those with sensitive joints who need deep cushioning without sinking into poor spinal alignment. The HR softy middle layer is the secret ingredient — it prevents the \"bottoming out\" feeling common in softer mattresses.",
+      "Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of 90-95 density pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees.",
   },
 ]
 
