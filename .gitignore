@@ -12,3 +12,12 @@ out/
 .next/
 relaxpro/studio/dist/
 relaxpro/studio/.sanity/
+
+# Untracked screenshots/artifacts
+--full-page
+h00.png
+h120.png
+h400.png
+h640.png
+h880.png
+relaxpro-studio/studio/seed/tmp-live-test.mjs
