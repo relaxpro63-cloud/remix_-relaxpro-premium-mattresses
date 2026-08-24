@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Highly requested firm orthopedic model packing a dense base with a high-tensile latex layer, designed specifically to address chronic posture issues',
-    description: 'Sthira is our firmest orthopedic mattress, designed for those who need maximum structural support to correct chronic posture issues. It combines a dense 4-inch Century 95-density rebonded base with a 2-inch layer of pure GOLS-certified organic Kerala latex. The ultra-high-density foam block prevents any structural deflection, keeping your spine in perfect neutral alignment throughout the night. The thin latex top layer adds just enough gentle cushioning to prevent aching on hips and shoulders — a common complaint with ultra-firm mattresses. This configuration is ideal for stomach sleepers, heavier individuals, and anyone with lower back pain who needs a surface that won\'t yield under pressure. Sthira is our most frequently recommended model by orthopedic specialists.',
+    description: 'Sthira is our firmest orthopedic mattress, designed for those who need maximum structural support to correct chronic posture issues. It combines a dense 4-inch Century 90 to 95 density rebonded base with a 2-inch layer of pure GOLS-certified organic Kerala latex. The ultra-high-density foam block prevents any structural deflection, keeping your spine in perfect neutral alignment throughout the night. The thin latex top layer adds just enough gentle cushioning to prevent aching on hips and shoulders — a common complaint with ultra-firm mattresses. This configuration is ideal for stomach sleepers, heavier individuals, and anyone with lower back pain who needs a surface that won\'t yield under pressure. Sthira is our most frequently recommended model by orthopedic specialists.',
     badge: 'Perfect Firm Extra-Support Ortho',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -34,7 +34,7 @@ export const PRODUCTS: Product[] = [
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Sthira 6" Firm Orthopedic Latex Mattress | RelaxPro',
-    metaDescription: 'Shop Sthira 6-inch extra supportive firm mattress. Features 4" heavy rebonded base and 2" organic latex luxury topper. Highly durable.'
+    metaDescription: 'Shop Sthira 6-inch extra supportive firm mattress. Features 4" Century 90 to 95 density rebonded base and 2" organic latex luxury topper. Highly durable.'
   },
 
 {
@@ -156,14 +156,14 @@ export const PRODUCTS: Product[] = [
     layers: [
       { thickness: 4, material: 'rebonded_foam', brand: 'Century Extra-Firm', description: '4" Rebonded Foam with 90 to 95 Density (Century brand)' },
       { thickness: 2, material: 'hr_softy_foam', brand: 'Century AirFlow', description: '2" Premium Highly Resilient Softy Cushioning Foam' },
-      { thickness: 4, material: 'latex', brand: 'RelaxPro Pure Organic', certification: ['GOLS'], description: '4" Pure Certified Organic Kerala Latex' }
+      { thickness: 4, material: 'latex', brand: 'RelaxPro Pure Organic', certification: ['GOLS'], description: '4" Kerala Latex 90 density Pure Certified Organic GOLS certified' }
     ],
     fabricGsm: 400,
     fabricType: '400 to 450 GSM Quilted Fabric with OEKO TEX Certified Fabric',
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Triple-layer design featuring ultra-plush resilient softy foam nested under premium pure latex to cradle heavy pressure points with heavy-duty rebonded support below',
-    description: 'Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees. This layered construction is ideal for side sleepers and those with sensitive joints who need deep cushioning without sinking into poor spinal alignment. The HR softy middle layer is the secret ingredient — it prevents the "bottoming out" feeling common in softer mattresses.',
+    description: 'Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of 90-density pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees. This layered construction is ideal for side sleepers and those with sensitive joints who need deep cushioning without sinking into poor spinal alignment. The HR softy middle layer is the secret ingredient — it prevents the "bottoming out" feeling common in softer mattresses.',
     badge: 'Soft Contouring Orthopedic Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
@@ -181,7 +181,7 @@ export const PRODUCTS: Product[] = [
       '400 to 450 GSM Quilted Fabric with OEKO TEX CERTIFIED for premium durability'
     ],
     metaTitle: 'Somya 10" Natural Latex Comfort Mattress | RelaxPro',
-    metaDescription: 'Shop Somya 10-inch mattress combining natural Kerala organic latex, plush HR soft foam, and sturdy rebonded base. Pure comfort and pain-free joints.'
+    metaDescription: 'Shop Somya 10-inch mattress combining 4" 90-density Kerala organic latex, plush HR soft foam, and sturdy rebonded base. Pure comfort and pain-free joints.'
   },
 
 {
