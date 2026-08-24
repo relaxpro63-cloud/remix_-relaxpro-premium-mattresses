@@ -201,7 +201,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
     products: [
       { slug: 'amrita', name: 'Amrita 10" Rebonded + Latex', note: '4" Century rebonded base under 6" GOLS latex' },
       { slug: 'arogya', name: 'Arogya 8" Ortho Hybrid', note: 'High-firm Century rebonded + certified latex core' },
-      { slug: 'sthira', name: 'Sthira 6" Firm Ortho', note: '95-density ortho rebonded base + GOLS latex' },
+      { slug: 'sthira', name: 'Sthira 6" Firm Ortho', note: '90-95 density ortho rebonded base + GOLS latex' },
       { slug: 'bhumi', name: 'Bhumi 8" Supportive Hybrid', note: 'PU rebonded base + eco latex-rebonded transition' },
       { slug: 'prakriti', name: 'Prakriti 8" Eco Latex', note: 'Eco latex-rebonded core' },
     ],
@@ -252,7 +252,7 @@ export const MATTRESS_CATEGORIES: MattressCategory[] = [
       { slug: 'ojas', name: 'Ojas 6" Ultra-Firm', note: 'Ultra-firm Century ortho rebonded + responsive HR softy' },
       { slug: 'ayushrest', name: 'Ayushrest 8" Heavy Ortho', note: 'Extra-density rebonded + firm HR ortho foam' },
       { slug: 'arogya', name: 'Arogya 8" Ortho Hybrid', note: 'High-firm rebonded support + certified organic latex' },
-      { slug: 'sthira', name: 'Sthira 6" Firm Ortho', note: '95-density ortho rebonded + GOLS-certified latex' },
+      { slug: 'sthira', name: 'Sthira 6" Firm Ortho', note: '90-95 density ortho rebonded + GOLS-certified latex' },
     ],
     related: [
       { label: 'Rebonded Mattress', path: '/rebonded-mattress' },

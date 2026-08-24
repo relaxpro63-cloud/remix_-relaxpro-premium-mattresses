@@ -865,7 +865,7 @@ async function seedProducts() {
       keyBenefit:
         'Highly requested firm orthopedic model packing a dense base with a high-tensile latex layer, designed specifically to address chronic posture issues',
       description:
-        'Sthira is our firmest orthopedic mattress, designed for those who need maximum structural support to correct chronic posture issues. It combines a dense 4-inch Century 95-density rebonded base with a 2-inch layer of pure GOLS-certified organic Kerala latex.',
+        'Sthira is our firmest orthopedic mattress, designed for those who need maximum structural support to correct chronic posture issues. It combines a dense 4-inch Century 90 to 95 density rebonded base with a 2-inch layer of pure GOLS-certified organic Kerala latex.',
       shortDescription:
         '6 inch firm orthopedic mattress with 4 inch Century rebonded support and 2 inch GOLS certified pure organic Kerala latex — perfect firm extra-support ortho',
       badge: 'Perfect Firm Extra-Support Ortho',
@@ -878,7 +878,7 @@ async function seedProducts() {
           _key: 'l0',
           thickness: 4,
           material: 'rebonded_foam',
-          brand: 'Century 95 Density Ortho',
+          brand: 'Century 90 to 95 Density Ortho',
           description:
             '4" Rebonded Support Foam with 90 to 95 Density (Century brand)',
         },
