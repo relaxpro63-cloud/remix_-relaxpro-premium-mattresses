@@ -31,7 +31,7 @@ const ProductList = lazy(() => import('./components/product/ProductList'));
 const CompareTable = lazy(() => import('./components/product/CompareTable'));
 const CartPage = lazy(() => import('./components/cart/CartPage'));
 const ProductDetailRoute = lazy(() => import('./routes/product/product-detail'));
-const VoiceAssistant = React.lazy(() => import('./features/voice-ai/VoiceAssistant'));
+import WhatsAppFAB from './components/layout/WhatsAppFAB';
 import { ToastProvider } from './components/ui/Toast';
 
 function AppContent() {
@@ -209,9 +209,7 @@ function AppContent() {
       </main>
       <Footer />
       <ScrollToTop />
-      <Suspense fallback={null}>
-        <VoiceAssistant />
-      </Suspense>
+      <WhatsAppFAB />
       <LeadPopup
         isOpen={popup.isOpen}
         onClose={popup.close}
