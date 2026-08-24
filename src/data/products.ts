@@ -163,7 +163,7 @@ export const PRODUCTS: Product[] = [
     certifications: ['GOLS', 'Oeko-Tex'],
     accessories: ['2 Latex Pillows', '1 Protector'],
     keyBenefit: 'Triple-layer design featuring ultra-plush resilient softy foam nested under premium pure latex to cradle heavy pressure points with heavy-duty rebonded support below',
-    description: 'Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century extra-firm rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of 90-95 density pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees.',
+    description: 'Somya is a thoughtfully engineered 10-inch triple-layer mattress that delivers an exceptionally soft surface feel without compromising on deep support. Starting with a 4-inch Century 90-95 density rebonded base for rigid spinal alignment, it adds a 2-inch layer of premium highly resilient softy cushioning foam that acts as a gentle transition zone, absorbing joint pressure spikes. The top layer is 4 inches of 90-95 density pure GOLS-certified organic Kerala latex, providing that signature buoyant comfort that relieves pressure on shoulders, hips, and knees.',
     badge: 'Soft Contouring Orthopedic Hybrid',
     pricingModel: 'with_without_accessories',
     pricing: {
