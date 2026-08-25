@@ -11,10 +11,12 @@ import { CartProvider, useCart } from './features/cart/CartContext';
 import { useGlobalScrollAnimations } from './hooks/useIntersectionObserver';
 import { getSiteSettings } from './lib/queries';
 import { OrderReceipt, Tier } from './types';
-import HomePage from './routes/home/index';
 import PageShell from './components/layout/PageShell';
 import LeadPopup from './components/home/LeadPopup';
 import { usePopup } from './hooks/usePopup';
+// Lazy like every other route — keeps the home page's 15+ components out of
+// the entry bundle.
+const HomePage = lazy(() => import('./routes/home/index'));
 const MattressBuilder = lazy(() => import('./components/builder/MattressBuilder'));
 const SleepSciencePage = lazy(() => import('./routes/pages/sleep-science'));
 const AboutPage = lazy(() => import('./routes/pages/about'));
