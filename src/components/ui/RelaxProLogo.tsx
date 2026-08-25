@@ -5,11 +5,11 @@ interface RelaxProLogoProps {
   className?: string;
 }
 
-const FALLBACK = '/images/relaxpro-logo.png';
+const FALLBACK = '/images/relaxpro-logo.svg';
 
 export default function RelaxProLogo({ variant = 'full', className = '' }: RelaxProLogoProps) {
   const [imgError, setImgError] = useState(false);
-  const logoFile = '/images/relaxpro-logo.png';
+  const logoFile = '/images/relaxpro-logo.svg';
   const src = imgError ? FALLBACK : logoFile;
   const isNav = variant === 'compact';
 

@@ -180,7 +180,7 @@ export default function Footer() {
             <div className="flex flex-col items-start w-full">
               {/* Navbar logo — sits directly on the light-blue footer */}
               <img
-                src="/images/relaxpro-logo.png"
+                src="/images/relaxpro-logo.svg"
                 alt="RelaxPro Premium Mattresses"
                 className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain block"
                 width={500}

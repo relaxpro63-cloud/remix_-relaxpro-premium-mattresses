@@ -1,4 +1,4 @@
-ï»¿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, useMotionValue, animate } from 'motion/react';
 import { PRODUCTS } from '../../data/products';
@@ -58,8 +58,8 @@ const homeSchema = {
   '@id': `${SITE_URL}/#localbusiness`,
   name: BUSINESS_NAME,
   alternateName: 'RelaxPro Premium Mattresses',
-  image: toAbsoluteUrl('/images/relaxpro-logo.png'),
-  logo: toAbsoluteUrl('/images/relaxpro-logo.png'),
+  image: toAbsoluteUrl('/images/relaxpro-logo.svg'),
+  logo: toAbsoluteUrl('/images/relaxpro-logo.svg'),
   telephone: '+919281424494',
   email: 'relaxpro2022@gmail.com',
   foundingDate: '2015',
@@ -73,7 +73,7 @@ const homeSchema = {
     addressCountry: 'IN',
   },
   url: SITE_URL,
-  priceRange: 'â‚¹6,500 - â‚¹54,000',
+  priceRange: '?6,500 - ?54,000',
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: [
@@ -195,10 +195,10 @@ export default function HomePage({
         onNavigate={handlePageNavigation}
       />
 
-      {/* Trust badges strip below hero â€” clean horizontal bar */}
+      {/* Trust badges strip below hero — clean horizontal bar */}
       <TrustStrip />
 
-      {/* Certified & Trusted badges â€” moved from footer area to just after hero */}
+      {/* Certified & Trusted badges — moved from footer area to just after hero */}
       <FadeUp><TrustBadges /></FadeUp>
 
       <FadeUp>      <TwoWaysToOwn
@@ -209,7 +209,7 @@ export default function HomePage({
 <FadeUp><CertificationMarquee /></FadeUp>
 <FadeUp><ShopByBrands /></FadeUp>
 
-      {/* Shuddha Banner â€” Clickable to Catalog */}
+      {/* Shuddha Banner — Clickable to Catalog */}
       <FadeUp>
         <section className="section-light-lux py-8 md:py-12 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
@@ -221,7 +221,7 @@ export default function HomePage({
             >
               <img
                 src="/images/shuddha-banner.webp"
-                alt="Shuddha Premium Collection â€” Click to explore"
+                alt="Shuddha Premium Collection — Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"
               />
@@ -323,7 +323,7 @@ export default function HomePage({
                           <span className="text-[6px] xs:text-[7px] md:text-[9px] font-accent tracking-wider uppercase text-linen-200/50">Starting Price</span>
                           <span className="text-[10px] xs:text-xs sm:text-sm md:text-xl lg:text-2xl font-bold font-body mt-0 md:mt-0.5 text-linen-100">
                             <PriceText>
-                              â‚¹
+                              ?
                               {(() => {
                                 const price = item.pricing?.withAccessories?.king ?? item.pricing?.fabric300Gsm?.king ?? item.pricing?.withoutAccessories?.king ?? 0;
                                 return price ? price.toLocaleString('en-IN') : '';
@@ -396,11 +396,11 @@ export default function HomePage({
               title="RelaxPro Hyderabad Factory Showroom"
             />
           </div>
-          <p className="text-center text-graphite-500 text-xs mt-4 font-body">Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad â€” Open 10 AM to 9 PM Daily</p>
+          <p className="text-center text-graphite-500 text-xs mt-4 font-body">Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad — Open 10 AM to 9 PM Daily</p>
         </div>
       </section></FadeUp>
 
-  {/* â”€â”€ Accessories Section â”€â”€ */}
+  {/* -- Accessories Section -- */}
       <FadeUp><section className="bg-sky-100/20 py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 border-t border-brand-200/30 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 80%, rgba(21,104,163,0.06) 0%, transparent 60%)' }} />
         <DecorativeBotanicals density="light" />
@@ -419,7 +419,7 @@ export default function HomePage({
                 )}
               </h2>
               <p className="text-graphite-600 text-sm md:text-base mt-4 font-body leading-relaxed">
-                {homeSections?.accessoriesSection?.sectionSubtitle || 'Crafted from the same premium materials as our mattresses â€” naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.'}
+                {homeSections?.accessoriesSection?.sectionSubtitle || 'Crafted from the same premium materials as our mattresses — naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.'}
               </p>
               <button
                 onClick={() => handlePageNavigation('accessories')}
@@ -431,14 +431,14 @@ export default function HomePage({
               </button>
             </div>
 
-            {/* Right: Cover image â€” decorative accessory collage */}
+            {/* Right: Cover image — decorative accessory collage */}
             <div className="hidden md:block shrink-0 relative w-[280px] lg:w-[320px] xl:w-[380px]">
               <div className="relative">
                 {/* Main cover image */}
                 <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl shadow-brand-500/10 border border-brand-200/30">
                   <img
                     src="/images/accessories/latex-pillow.jpg"
-                    alt="RelaxPro Premium Latex Pillow â€” Complete Your Sleep Setup"
+                    alt="RelaxPro Premium Latex Pillow — Complete Your Sleep Setup"
                     className="w-full h-[220px] lg:h-[260px] xl:h-[300px] object-cover"
                     loading="lazy"
                   />
@@ -452,7 +452,7 @@ export default function HomePage({
                     </span>
                   </div>
                 </div>
-                {/* Floating secondary image â€” shredded pillow (offset bottom-right) */}
+                {/* Floating secondary image — shredded pillow (offset bottom-right) */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 lg:w-28 lg:h-28 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg border-2 border-white rotate-6 hidden xl:block">
                   <img
                     src="/images/accessories/shredded-pillow.jpg"
@@ -461,7 +461,7 @@ export default function HomePage({
                     loading="lazy"
                   />
                 </div>
-                {/* Floating tertiary image â€” protector (offset top-right) */}
+                {/* Floating tertiary image — protector (offset top-right) */}
                 <div className="absolute -top-3 -right-3 w-20 h-20 lg:w-24 lg:h-24 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg border-2 border-white -rotate-3 hidden xl:block">
                   <img
                     src="/images/accessories/mattress-protector.jpg"
@@ -539,7 +539,7 @@ export default function HomePage({
           <h2 className="text-3xl md:text-5xl font-heading font-bold mt-4 text-ink-900 leading-tight">{homeSections?.testimonialsSection?.sectionTitle || 'What Our Customers Say'}</h2>
           <div className="flex items-center justify-center gap-2 mt-4">
             <span className="text-2xl font-bold font-heading text-ink-900">{testimonialMeta?.overallRating || '4.9'}</span>
-            <span className="text-brand-600 text-lg">/ 5 â˜…</span>
+            <span className="text-brand-600 text-lg">/ 5 ?</span>
             <span className="text-graphite-400 text-sm font-body ml-1">from {testimonialMeta?.totalReviews || '220+'} reviews</span>
           </div>
         </FadeUp>
@@ -568,7 +568,7 @@ export default function HomePage({
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 className="w-[300px] md:w-[380px] shrink-0 bg-secondary p-8 rounded-2xl border border-brand-200/40 shadow-sm flex flex-col justify-between relative overflow-hidden"
               >
-                <div className="absolute -top-6 -left-2 text-9xl font-heading text-brand-100 opacity-50 select-none pointer-events-none">â€œ</div>
+                <div className="absolute -top-6 -left-2 text-9xl font-heading text-brand-100 opacity-50 select-none pointer-events-none">“</div>
                 
                 <div className="relative z-10">
                   <div className="flex items-center gap-1 stars mb-6">
@@ -692,14 +692,14 @@ export default function HomePage({
         <SleepFAQs />
       </section></FadeUp>
 
-      {/* Brand entity â€” The Manufacturer Behind the Sleep */}
+      {/* Brand entity — The Manufacturer Behind the Sleep */}
       <FadeUp>
         <section className="section-light-lux py-16 md:py-24 px-4 md:px-8 border-t border-brand-200/30">
           <div className="max-w-4xl mx-auto text-center">
             <span className="eyebrow">The Manufacturer Behind the Sleep</span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 mt-3">RelaxPro Mattress</h2>
             <p className="text-graphite-600 text-sm sm:text-base md:text-lg font-body leading-relaxed mt-4 max-w-3xl mx-auto">
-              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep â€” handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
+              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep — handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
             </p>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
               <Link to="/about-relaxpro-mattress" className="btn btn-primary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">About RelaxPro Mattress</Link>

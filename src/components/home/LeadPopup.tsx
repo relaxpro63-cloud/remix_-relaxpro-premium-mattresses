@@ -293,7 +293,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                     <div className="flex justify-center mb-4">
                       <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shadow-sm">
                         <img
-                          src="/images/relaxpro-logo.png"
+                          src="/images/relaxpro-logo.svg"
                           alt="RelaxPro"
                           className="w-8 h-8 object-contain"
                         />
