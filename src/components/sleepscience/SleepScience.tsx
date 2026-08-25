@@ -4,6 +4,21 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Award, Shield, Check, Info, Heart, Airplay, Sparkles, Activity, FileText } from 'lucide-react';
 import { getSleepScience } from '../../lib/queries';
 
+/**
+ * CMS strings may carry a handful of formatting tags (<strong>, <em>, <br>).
+ * Escape EVERYTHING, then re-enable only those tags — no raw HTML from the
+ * CMS ever reaches the DOM.
+ */
+function sanitizeInlineHtml(raw: string): string {
+  const escaped = raw.replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string
+  ));
+  return escaped.replace(
+    /&lt;(\/)?(strong|b|em|i|br)\s*\/?&gt;/gi,
+    (_m, slash: string, tag: string) => `<${slash}${tag.toLowerCase()}>`
+  );
+}
+
 export default function SleepScience() {
   const [activeTab, setActiveTab] = useState<'kerala' | 'postures' | 'certifications'>('kerala');
   const [data, setData] = useState<any>(null);
@@ -157,7 +172,7 @@ export default function SleepScience() {
                     <div className="w-8 h-8 rounded-full bg-ink-900 text-white font-accent flex items-center justify-center font-bold text-sm shrink-0 shadow-md group-hover:bg-brand-600 transition-colors">{i + 1}</div>
                     <div>
                       <h4 className="font-heading font-bold text-lg text-ink-900">{item.title}</h4>
-                      <p className="text-graphite-600 text-sm md:text-base mt-1.5 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc || item.description || '' }} />
+                      <p className="text-graphite-600 text-sm md:text-base mt-1.5 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeInlineHtml(item.desc || item.description || '') }} />
                     </div>
                   </div>
                 ))}
@@ -180,7 +195,7 @@ export default function SleepScience() {
                 ]).map((item: string | any, i: number) => (
                   <li key={i} className="flex items-start gap-3 p-3 bg-white/60 rounded-xl border border-brand-200/40">
                     <Check className="w-5 h-5 text-eco-500 mt-0.5 shrink-0" />
-                    <span dangerouslySetInnerHTML={{ __html: typeof item === 'string' ? item : (item.text || item) }} />
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeInlineHtml(typeof item === 'string' ? item : (item.text || item)) }} />
                   </li>
                 ))}
               </ul>

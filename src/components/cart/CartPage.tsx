@@ -104,8 +104,8 @@ export default function CartPage({
         contactTime: contactTime || 'Not specified',
         product: productNames,
         size: productSizes,
-        price: `₹${grandTotal.toLocaleString('en-IN')}`,
-        notes: `Total: ₹${subtotal.toLocaleString('en-IN')}. Delivery Notes: ${notes || 'None'}. Accessories: ${accessoriesList}`,
+        price: grandTotal === 0 ? 'Price on request (custom build)' : `₹${grandTotal.toLocaleString('en-IN')}`,
+        notes: `${grandTotal === 0 ? 'Custom build — quote on call.' : `Total: ₹${subtotal.toLocaleString('en-IN')}.`} Delivery Notes: ${notes || 'None'}. Accessories: ${accessoriesList}`,
         source: 'Website Order Checkout',
         honeypot,
         elapsedMs,
@@ -368,9 +368,15 @@ export default function CartPage({
                     </div>
                     
                     <div className="text-right flex flex-col items-end">
-                      <span className="font-mono text-sm font-bold text-ink-900 block">
-                        <PriceText>₹{(item.price * item.quantity).toLocaleString('en-IN')}</PriceText>
-                      </span>
+                      {item.price === 0 ? (
+                        <span className="font-accent text-[11px] font-bold uppercase tracking-wider text-brand-600 block">
+                          Price on request
+                        </span>
+                      ) : (
+                        <span className="font-mono text-sm font-bold text-ink-900 block">
+                          <PriceText>₹{(item.price * item.quantity).toLocaleString('en-IN')}</PriceText>
+                        </span>
+                      )}
                       
                       {/* Responsive adjustment controls inline */}
                       <div className="flex items-center gap-2 bg-sky-100 border border-brand-200/50 rounded-lg p-1 mt-3">
@@ -415,9 +421,13 @@ export default function CartPage({
             {/* Total Balance */}
             <div className="pt-6 border-t border-brand-200/30 flex justify-between items-end">
               <span className="text-ink-900 font-heading font-bold text-lg">{settings?.checkout?.totalLabel || 'Total'}</span>
-              <span className="text-3xl font-bold font-heading text-ink-900">
-                <PriceText>₹{grandTotal.toLocaleString('en-IN')}</PriceText>
-              </span>
+              {grandTotal === 0 ? (
+                <span className="text-xl font-bold font-heading text-brand-600">Price on request</span>
+              ) : (
+                <span className="text-3xl font-bold font-heading text-ink-900">
+                  <PriceText>₹{grandTotal.toLocaleString('en-IN')}</PriceText>
+                </span>
+              )}
             </div>
 
             {/* Action buttons embedded in the order card */}

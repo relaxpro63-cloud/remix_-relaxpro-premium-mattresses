@@ -78,7 +78,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
               : pricingData.pricing.fabric300Gsm?.[size] || 0;
           }
         }
-      } catch {}
+      } catch (e) {
+        console.error(`Pricing fetch failed for ${product.slug}, using fallback data:`, e);
+      }
 
       if (basePrice === 0) {
         const fallback = PRODUCTS.find(p => p.slug === product.slug);
