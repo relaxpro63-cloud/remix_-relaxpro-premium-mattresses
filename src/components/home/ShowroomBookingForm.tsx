@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Calendar, Send, Sparkles, MapPin, UserCheck, AlertCircle, Clock } from 'lucide-react';
 import { submitLead } from '../../services/leadService';
 import { buildWhatsAppUrl } from '../../lib/site';
+import { HoneypotField, useSpamGuard } from './LeadPopup';
 import FloatingLabelField from '../ui/FloatingLabelField';
 
 export default function ShowroomBookingForm() {
@@ -15,6 +16,7 @@ export default function ShowroomBookingForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationError, setValidationError] = useState('');
+  const { honeypot, setHoneypot, elapsedMs } = useSpamGuard();
 
   const easeCurve = [0.22, 1, 0.36, 1];
 
@@ -39,7 +41,7 @@ export default function ShowroomBookingForm() {
     try {
       const detailedNotes = `Preferred Showroom: ${showroom}\nPreferred Date: ${visitDate}\nPreferred Time Slot: ${timeSlot}\nCustomer Notes: ${notes || 'None'}`;
       
-      await submitLead({
+      const result = await submitLead({
         name: name.trim(),
         phone: phone.replace(/\D/g, ''),
         city: showroom,
@@ -47,7 +49,14 @@ export default function ShowroomBookingForm() {
         product: 'Showroom Visit Booking',
         notes: detailedNotes,
         source: 'Showroom Booking Form',
+        honeypot,
+        elapsedMs,
       });
+
+      if (!result.success) {
+        setValidationError(result.error || 'Could not save your booking. Please try again.');
+        return;
+      }
 
       const waMsg = [
         '🏪 New Showroom Booking',
@@ -96,6 +105,7 @@ export default function ShowroomBookingForm() {
             onSubmit={handleSubmit} 
             className="space-y-10 relative z-10"
           >
+            <HoneypotField value={honeypot} onChange={setHoneypot} />
             <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-white/10 pb-8 gap-4">
               <div className="flex items-center gap-5">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border border-brand-700/25 bg-white/5 backdrop-blur-md shrink-0">

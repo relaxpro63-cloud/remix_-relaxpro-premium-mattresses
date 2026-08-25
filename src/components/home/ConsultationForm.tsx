@@ -4,6 +4,7 @@ import { MessageSquare, Check, Phone, Clipboard, Send, UserCheck, AlertCircle } 
 import BlurFade from '../ui/BlurFade';
 import FloatingLabelField from '../ui/FloatingLabelField';
 import { submitLead } from '../../services/leadService';
+import { HoneypotField, useSpamGuard } from './LeadPopup';
 import { buildWhatsAppUrl } from '../../lib/site';
 
 export default function ConsultationForm() {
@@ -14,6 +15,7 @@ export default function ConsultationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationError, setValidationError] = useState('');
+  const { honeypot, setHoneypot, elapsedMs } = useSpamGuard();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,8 +32,8 @@ export default function ConsultationForm() {
 
     setIsSubmitting(true);
     try {
-      // Call Google Sheets integration
-      await submitLead({
+      // Call Google Sheets integration (via /api/lead)
+      const result = await submitLead({
         name: name.trim(),
         phone: phone.replace(/\D/g, ''),
         city: 'Hyderabad / Online',
@@ -39,7 +41,14 @@ export default function ConsultationForm() {
         product: `Orthopedic Consultation (${painLevel})`,
         notes: customNotes || `Back concerns flagged level: ${painLevel}`,
         source: 'Consultation Form',
+        honeypot,
+        elapsedMs,
       });
+
+      if (!result.success) {
+        setValidationError(result.error || 'Could not save your details. Please try again.');
+        return;
+      }
 
       const painLabels: Record<string, string> = { none: 'Healthy/None', mild: 'Mild Neck pain', lumbar: 'Lower Back Soreness', spine: 'Spine/Cervical Spine' };
       const waMsg = [
@@ -77,6 +86,7 @@ export default function ConsultationForm() {
       {!submitted ? (
         <BlurFade duration={0.65}>
           <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+          <HoneypotField value={honeypot} onChange={setHoneypot} />
           <div className="flex items-center gap-4 border-b border-brand-200/40 pb-6">
             <div className="w-12 h-12 rounded-2xl bg-sky-50 flex items-center justify-center shadow-sm border border-brand-200/60">
               <Clipboard className="w-6 h-6 text-ink-900" />

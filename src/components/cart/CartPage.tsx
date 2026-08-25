@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import PriceText from '../ui/PriceText';
 import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CartItem, OrderReceipt } from '../../types';
 import { submitLead } from '../../services/leadService';
+import { HoneypotField, useSpamGuard } from '../home/LeadPopup';
 import { buildWhatsAppUrl } from '../../lib/site';
 import { getSiteSettings } from '../../lib/queries';
 
@@ -43,6 +44,8 @@ export default function CartPage({
   // Form errors
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { honeypot, setHoneypot, elapsedMs } = useSpamGuard();
+  const submitErrorRef = useRef<HTMLDivElement>(null);
 
   // Calculations
   const subtotal = useMemo(() => {
@@ -89,8 +92,8 @@ export default function CartPage({
       const productSizes = cart.map((item) => item.size).join(', ');
       const accessoriesList = cart.map((item) => item.includeAccessories ? 'Yes' : 'No').join(', ');
 
-      // Submit to Google Sheets via lead service
-      await submitLead({
+      // Submit to Google Sheets via /api/lead
+      const leadResult = await submitLead({
         orderId: mockOrderId,
         name: name.trim(),
         phone: phone.replace(/\D/g, ''),
@@ -104,7 +107,15 @@ export default function CartPage({
         price: `₹${grandTotal.toLocaleString('en-IN')}`,
         notes: `Total: ₹${subtotal.toLocaleString('en-IN')}. Delivery Notes: ${notes || 'None'}. Accessories: ${accessoriesList}`,
         source: 'Website Order Checkout',
+        honeypot,
+        elapsedMs,
       });
+
+      if (!leadResult.success) {
+        setErrors({ submit: leadResult.error || 'Could not place your order. Please try again.' });
+        submitErrorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
 
       const itemLines = cart.map(i => `  • ${i.name} — ${i.size} × ${i.quantity} = ₹${(i.price * i.quantity).toLocaleString('en-IN')}`).join('\n');
       const waMsg = [
@@ -130,6 +141,7 @@ export default function CartPage({
       onCheckoutSuccess(mockOrderId, summary);
     } catch (err) {
       console.error(err);
+      setErrors({ submit: 'Something went wrong. Please try again or reach us on WhatsApp.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -180,6 +192,7 @@ export default function CartPage({
       </div>
 
       <form onSubmit={handleSubmitBooking} className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <HoneypotField value={honeypot} onChange={setHoneypot} />
         {/* Left Column: Your details */}
         <div className="lg:col-span-7 space-y-8">
           <div className="bg-white p-6 md:p-10 rounded-[2rem] border border-brand-200/40 shadow-sm space-y-8">
@@ -409,6 +422,15 @@ export default function CartPage({
 
             {/* Action buttons embedded in the order card */}
             <div className="pt-4">
+              {errors.submit && (
+                <div
+                  ref={submitErrorRef}
+                  role="alert"
+                  className="mb-4 bg-red-50 text-red-700 text-sm font-body p-4 rounded-xl border border-red-200"
+                >
+                  {errors.submit}
+                </div>
+              )}
               <button
                 id="btn-place-order"
                 type="submit"

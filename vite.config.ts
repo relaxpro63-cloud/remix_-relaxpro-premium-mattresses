@@ -28,6 +28,13 @@ export default defineConfig(() => {
           rewrite: (path: string) => path.replace(/^\/api\/sanity-write/, ''),
           secure: true,
         },
+        // Dev only: the /api/lead function exists on Vercel, proxy there so
+        // local form submissions still reach the lead Sheet.
+        '/api/lead': {
+          target: 'https://www.relaxpromattress.com',
+          changeOrigin: true,
+          secure: true,
+        },
       },
     },
     define: {

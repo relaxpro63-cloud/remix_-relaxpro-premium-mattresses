@@ -4,6 +4,33 @@ import { X, Mail, Phone, User, Loader2, CheckCircle, ChevronRight } from 'lucide
 import { submitLead } from '../../services/leadService';
 import { validateName, validatePhone } from '../../utils/validation';
 
+/** Shared anti-spam: hidden honeypot field + submit-timing check. */
+export function useSpamGuard() {
+  const mountedAt = useRef(Date.now());
+  const [honeypot, setHoneypot] = useState('');
+  const spamFields = {
+    honeypot,
+    setHoneypot,
+    elapsedMs: Date.now() - mountedAt.current,
+  };
+  return spamFields;
+}
+
+export function HoneypotField({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  return (
+    <input
+      type="text"
+      name="website"
+      tabIndex={-1}
+      autoComplete="off"
+      aria-hidden="true"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+    />
+  );
+}
+
 interface PopupContent {
   heading?: string;
   description?: string;
@@ -50,6 +77,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
   const [imgError, setImgError] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const { honeypot, setHoneypot, elapsedMs } = useSpamGuard();
 
   const handleClose = useCallback(() => {
     // If user checked "Don't show again", persist it before closing
@@ -155,13 +183,20 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
     setIsSubmitting(true);
 
     try {
-      await submitLead({
+      const result = await submitLead({
         name: name.trim(),
         phone: phone.replace(/\D/g, ''),
         email: email.trim(),
         source: 'Popup',
+        honeypot,
+        elapsedMs,
         notes: `Page: ${window.location.href} | Device: ${navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop'}`,
       });
+
+      if (!result.success) {
+        setErrors({ submit: result.error || 'Something went wrong. Please try again.' });
+        return;
+      }
 
       setSubmitted(true);
 
@@ -276,6 +311,8 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
 
                   {/* ===== Form ===== */}
                   <form onSubmit={handleSubmit} noValidate className="mt-5 space-y-3.5">
+                    {/* Honeypot — invisible to humans, bait for bots */}
+                    <HoneypotField value={honeypot} onChange={setHoneypot} />
                     {/* Full Name */}
                     <div>
                       <div className="relative">
