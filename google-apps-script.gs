@@ -182,7 +182,7 @@ function doPost(e) {
 
 // ─── TEST ENDPOINT (GET) ───────────────────────────────────
 // Visit the Web App URL in your browser to verify it's live.
-// It will show the last row in the sheet for quick verification.
+// SECURITY: returns counts only — never lead PII. This URL is public.
 function doGet(e) {
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -192,23 +192,12 @@ function doGet(e) {
       return respond({ status: 'active', message: 'Sheet not yet created. Waiting for first submission.' });
     }
 
-    const lastRow = sheet.getLastRow();
-    const lastData = lastRow > 1 ? sheet.getRange(lastRow, 1, 1, COLUMN_HEADERS.length).getValues()[0] : null;
-
     return respond({
       status: 'active',
-      sheetName: SHEET_NAME,
-      totalLeads: lastRow - 1,  // Subtract header row
-      lastEntry: lastData ? {
-        timestamp: lastData[0],
-        name: lastData[2],
-        phone: lastData[3],
-        source: lastData[13],
-      } : null,
-      columns: COLUMN_HEADERS,
+      totalLeads: Math.max(0, sheet.getLastRow() - 1),  // Subtract header row
     });
   } catch (err) {
-    return respond({ status: 'error', error: err.toString() });
+    return respond({ status: 'error' });
   }
 }
 
