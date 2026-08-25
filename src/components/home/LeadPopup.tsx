@@ -280,7 +280,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
               <button
                 type="button"
                 onClick={handleClose}
-                className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all cursor-pointer active:scale-95"
+                className="absolute top-3 right-3 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all cursor-pointer active:scale-95"
                 aria-label="Close popup"
               >
                 <X className="w-[18px] h-[18px]" />

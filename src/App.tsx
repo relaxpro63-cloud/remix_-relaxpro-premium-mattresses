@@ -44,7 +44,6 @@ function AppContent() {
   const popup = usePopup(popupSettings?.leadPopup ? {
     enabled: popupSettings.leadPopup.enabled,
     initialDelay: popupSettings.leadPopup.initialDelay,
-    cooldownSeconds: popupSettings.leadPopup.cooldownSeconds,
     scrollPercent: popupSettings.leadPopup.scrollPercent,
   } : undefined);
   useGlobalScrollAnimations();

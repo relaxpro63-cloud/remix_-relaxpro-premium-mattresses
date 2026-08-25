@@ -1,12 +1,18 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const POPUP_SUBMITTED_KEY = 'relaxpro_popup_submitted';
 const POPUP_DISMISSED_KEY = 'relaxpro_popup_dismissed';
+const POPUP_SESSION_KEY = 'relaxpro_popup_shown_session';
+
+/** Plain dismissal keeps the popup away for 7 days; submission is forever. */
+const DISMISS_MS = 7 * 24 * 60 * 60 * 1000;
 
 export interface PopupConfig {
   enabled?: boolean;
+  /** Seconds on page before showing. Default 15. */
   initialDelay?: number;
-  cooldownSeconds?: number;
+  /** Scroll depth (0-100) that triggers the popup. Default 50. */
   scrollPercent?: number;
 }
 
@@ -18,100 +24,120 @@ interface UsePopupReturn {
   onDontShowAgain: () => void;
 }
 
-export function usePopup(config?: PopupConfig): UsePopupReturn {
-  const [isOpen, setIsOpen] = useState(false);
-  const [dismissed, setDismissed] = useState(() => {
-    try { return localStorage.getItem(POPUP_DISMISSED_KEY) === 'true'; }
-    catch { return false; }
-  });
-  const [submitted, setSubmitted] = useState(() => {
-    try { return localStorage.getItem(POPUP_SUBMITTED_KEY) === 'true'; }
-    catch { return false; }
-  });
+function readStore(key: string): string | null {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+function writeStore(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+    // Cookie fallback for browsers that block localStorage.
+    document.cookie = `${key}=${encodeURIComponent(value)};max-age=${Math.floor(DISMISS_MS / 1000)};path=/;samesite=lax`;
+  } catch { /* storage unavailable — session-only behaviour */ }
+}
+function dismissedRecently(): boolean {
+  const raw = readStore(POPUP_DISMISSED_KEY);
+  if (!raw) return false;
+  const ts = Number(raw);
+  return Number.isFinite(ts) && Date.now() - ts < DISMISS_MS;
+}
+function shownThisSession(): boolean {
+  try { return sessionStorage.getItem(POPUP_SESSION_KEY) === 'true'; } catch { return false; }
+}
+function markShownThisSession(): void {
+  try { sessionStorage.setItem(POPUP_SESSION_KEY, 'true'); } catch { /* noop */ }
+}
 
-  const cooldownMs = (config?.cooldownSeconds ?? 12) * 1000;
-  const initialDelayMs = (config?.initialDelay ?? 2) * 1000;
-  const scrollPercent = (config?.scrollPercent ?? 40) / 100;
+/** Routes where an interrupting popup must never appear (mid-task flows). */
+const EXEMPT_ROUTES = ['/cart', '/success', '/builder'];
+
+export function usePopup(config?: PopupConfig): UsePopupReturn {
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const delayMs = Math.max((config?.initialDelay ?? 15) * 1000, 5000); // floor: never fire near first paint
+  const scrollThreshold = Math.min(Math.max((config?.scrollPercent ?? 50) / 100, 0.1), 1);
   const popupEnabled = config?.enabled !== false;
 
-  // Track when popup was last closed to enforce cooldown
-  const lastClosedRef = useRef<number>(0);
-  // Track if scroll trigger has already fired this session
   const scrollFiredRef = useRef(false);
+  const exitFiredRef = useRef(false);
+  const suppressRef = useRef(
+    !popupEnabled || dismissedRecently() || readStore(POPUP_SUBMITTED_KEY) === 'true'
+  );
+  useEffect(() => {
+    suppressRef.current = !popupEnabled || dismissedRecently() || readStore(POPUP_SUBMITTED_KEY) === 'true';
+  }, [popupEnabled]);
 
-  const permanentlySuppressed = dismissed || submitted || !popupEnabled;
+  const canShow = useCallback(
+    () => !suppressRef.current && !shownThisSession() && !EXEMPT_ROUTES.some((r) => location.pathname.startsWith(r)),
+    [location.pathname]
+  );
 
-  // Helper: check cooldown before showing
-  const canShow = useCallback(() => {
-    if (permanentlySuppressed) return false;
-    const elapsed = Date.now() - lastClosedRef.current;
-    return elapsed >= cooldownMs;
-  }, [permanentlySuppressed, cooldownMs]);
+  const show = useCallback(() => {
+    if (!canShow()) return;
+    markShownThisSession();
+    setIsOpen(true);
+  }, [canShow]);
 
-  // Initial trigger: show popup after configured delay
+  // Trigger 1: dwell time
   useEffect(() => {
     if (!canShow()) return;
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, initialDelayMs);
+    const timer = setTimeout(show, delayMs);
     return () => clearTimeout(timer);
-  }, [permanentlySuppressed]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [canShow, show, delayMs]);
 
-  // Repeating interval: every cooldown period, try to show the popup (respects cooldown)
+  // Trigger 2: scroll depth (fires once per page)
   useEffect(() => {
-    if (permanentlySuppressed) return;
-    const interval = setInterval(() => {
-      if (canShow()) {
-        setIsOpen(true);
-      }
-    }, cooldownMs);
-    return () => clearInterval(interval);
-  }, [permanentlySuppressed, canShow, cooldownMs]);
-
-  // Scroll trigger: show popup when user scrolls past threshold (fires only once per session)
-  useEffect(() => {
-    if (permanentlySuppressed) return;
+    if (!canShow()) return;
     const onScroll = () => {
       if (scrollFiredRef.current) return;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollHeight <= 0) return;
-      const scrollPercentReached = window.scrollY / scrollHeight;
-      if (scrollPercentReached >= scrollPercent && canShow()) {
+      if (window.scrollY / scrollHeight >= scrollThreshold) {
         scrollFiredRef.current = true;
-        setIsOpen(true);
+        show();
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [permanentlySuppressed, canShow, scrollPercent]);
+  }, [canShow, show, scrollThreshold]);
+
+  // Trigger 3: exit intent — desktop pointers only (no mouse exit on touch)
+  useEffect(() => {
+    if (!canShow()) return;
+    const isDesktopPointer =
+      typeof window.matchMedia === 'function' && window.matchMedia('(pointer: fine)').matches;
+    if (!isDesktopPointer) return;
+
+    const onMouseOut = (e: MouseEvent) => {
+      if (exitFiredRef.current) return;
+      if (e.relatedTarget === null && e.clientY <= 0) {
+        exitFiredRef.current = true;
+        show();
+      }
+    };
+    document.addEventListener('mouseout', onMouseOut);
+    return () => document.removeEventListener('mouseout', onMouseOut);
+  }, [canShow, show]);
 
   const close = useCallback(() => {
     setIsOpen(false);
-    lastClosedRef.current = Date.now();
-    scrollFiredRef.current = false;
+    writeStore(POPUP_DISMISSED_KEY, String(Date.now()));
+    suppressRef.current = true;
   }, []);
 
   const onSubmitted = useCallback(() => {
     setIsOpen(false);
-    scrollFiredRef.current = false;
-    try { localStorage.setItem(POPUP_SUBMITTED_KEY, 'true'); }
-    catch { /* noop */ }
-    setSubmitted(true);
+    writeStore(POPUP_SUBMITTED_KEY, 'true');
+    suppressRef.current = true;
   }, []);
 
   const onDontShowAgain = useCallback(() => {
-    setIsOpen(false);
-    scrollFiredRef.current = false;
-    try { localStorage.setItem(POPUP_DISMISSED_KEY, 'true'); }
-    catch { /* noop */ }
-    setDismissed(true);
-  }, []);
+    close();
+  }, [close]);
 
   const open = useCallback(() => {
-    if (canShow()) {
-      setIsOpen(true);
-    }
-  }, [canShow]);
+    show();
+  }, [show]);
 
   return { isOpen, open, close, onSubmitted, onDontShowAgain };
 }
