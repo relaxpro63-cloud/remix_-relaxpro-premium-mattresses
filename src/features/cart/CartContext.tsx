@@ -36,16 +36,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const saveCart = (next: CartItem[]) => {
-    setCart(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    } catch (e) {
-      console.error('Failed to save cart to local storage:', e);
-    }
+  // Single write path. next is computed from the latest state (functional
+  // update) so rapid double-clicks can't overwrite each other via a stale
+  // render-scope cart snapshot.
+  const saveCart = (next: CartItem[] | ((prev: CartItem[]) => CartItem[])) => {
+    setCart((prev) => {
+      const value = typeof next === 'function' ? next(prev) : next;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+      } catch (e) {
+        console.error('Failed to save cart to local storage:', e);
+      }
+      return value;
+    });
   };
 
-  const addToCart = (item: CartItem) => saveCart([...cart, item]);
+  const addToCart = (item: CartItem) => saveCart((prev) => [...prev, item]);
 
   const addToCartDirect = async (
     product: Product,
@@ -104,13 +110,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       ? `${product.slug}-custom-${customSizeData?.length}x${customSizeData?.width}-${customSizeData?.thickness || 'n/a'}`
       : `${product.slug}-${sizeCategory || size}-${size}-${includeAcc ? 'acc' : 'no_acc'}-${fabricOption || 'std'}`;
 
-    const existingIdx = cart.findIndex((item) => item.id === compositeKey);
+    saveCart((prev) => {
+      const existingIdx = prev.findIndex((item) => item.id === compositeKey);
 
-    if (existingIdx > -1) {
-      const updated = [...cart];
-      updated[existingIdx].quantity += 1;
-      saveCart(updated);
-    } else {
+      if (existingIdx > -1) {
+        const updated = [...prev];
+        updated[existingIdx] = { ...updated[existingIdx], quantity: updated[existingIdx].quantity + 1 };
+        return updated;
+      }
+
       const newItem: CartItem = {
         id: compositeKey,
         slug: product.slug,
@@ -125,8 +133,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         customSize: isCustom ? customSizeData : undefined,
         sizeCategory: isCustom ? undefined : sizeCategory,
       };
-      saveCart([...cart, newItem]);
-    }
+      return [...prev, newItem];
+    });
   };
 
   const updateQty = (id: string, qty: number) => {
@@ -134,10 +142,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeItem(id);
       return;
     }
-    saveCart(cart.map((item) => (item.id === id ? { ...item, quantity: qty } : item)));
+    saveCart((prev) => prev.map((item) => (item.id === id ? { ...item, quantity: qty } : item)));
   };
 
-  const removeItem = (id: string) => saveCart(cart.filter((item) => item.id !== id));
+  const removeItem = (id: string) => saveCart((prev) => prev.filter((item) => item.id !== id));
   const clearCart = () => saveCart([]);
 
   return (
