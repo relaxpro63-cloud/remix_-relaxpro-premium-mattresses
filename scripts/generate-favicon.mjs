@@ -23,7 +23,7 @@ const PUBLIC = path.resolve(__dirname, '..', 'public');
 
 const SOURCE = path.join(PUBLIC, 'favicon-128x128.png');
 
-const SIZES = [16, 32, 48, 64, 128];
+const SIZES = [16, 32, 48, 128];
 
 /**
  * Create a valid ICO file from an array of { size, buffer } PNG entries.

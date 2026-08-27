@@ -18,16 +18,12 @@ const IMAGES = path.resolve(__dirname, '../public/images');
 const THRESHOLD_BYTES = 300 * 1024;
 
 const ALWAYS = [
-  'hero-banner.png',
   'box-customize.png',
   'box-models.png',
-  'section-bg.png',
-  'shuddha-banner.png',
   'hero-section.png',
   'technical-specifications.png',
   'natural-latex.png',
   'about-process.png',
-  'mattress-hand.png',
   'hero-bedroom.png',
   'foam-compare.png',
   'about-story.png',

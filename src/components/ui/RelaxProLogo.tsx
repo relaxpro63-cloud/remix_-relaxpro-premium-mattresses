@@ -1,72 +1,26 @@
-import React, { useState } from 'react';
-
 interface RelaxProLogoProps {
   variant?: 'compact' | 'full' | 'footer';
   className?: string;
 }
 
-const FALLBACK = '/images/relaxpro-logo.svg';
+// Real brand mark: "REL[hut+bed]X PRO" — the A is the house/bed glyph, not a letter.
+// Height-only sizing + intrinsic 1074x350 keeps the aspect ratio and avoids CLS.
+const SIZES = {
+  compact: 'h-12 md:h-14 lg:h-16',
+  footer: 'h-14 md:h-16 lg:h-20',
+  full: 'h-16 md:h-20 lg:h-24',
+} as const;
 
 export default function RelaxProLogo({ variant = 'full', className = '' }: RelaxProLogoProps) {
-  const [imgError, setImgError] = useState(false);
-  const logoFile = '/images/relaxpro-logo.svg';
-  const src = imgError ? FALLBACK : logoFile;
-  const isNav = variant === 'compact';
-
-  /**
-   * All variants use height-only sizing with width:auto.
-   * This prevents aspect-ratio distortion common with fixed w+h.
-   * object-fit: contain ensures no cropping on edge cases.
-   */
-
-  if (variant === 'compact') {
-    return (
-      <div className={`flex items-center select-none ${className}`}>
-        <img
-          src={src}
-          alt="RelaxPro Premium Mattresses"
-          className="h-16 md:h-20 lg:h-24 w-auto object-contain block"
-          width={400}
-          height={96}
-          loading="eager"
-          fetchPriority={isNav ? 'high' : undefined}
-          onError={() => setImgError(true)}
-          style={{ imageRendering: 'auto' }}
-        />
-      </div>
-    );
-  }
-
-  if (variant === 'footer') {
-    return (
-      <div className={`flex flex-col items-start select-none ${className}`}>
-        <img
-          src="/images/relaxpro-logo-footer.jpeg"
-          alt="RelaxPro Premium Mattresses"
-          className="h-14 md:h-16 lg:h-20 w-auto object-contain block"
-          width={300}
-          height={80}
-          loading="eager"
-          onError={() => setImgError(true)}
-          style={{ imageRendering: 'auto' }}
-        />
-      </div>
-    );
-  }
-
-  // Full variant (used on about/modals etc.)
   return (
-    <div className={`flex flex-col items-center select-none ${className}`}>
-      <img
-        src={src}
-        alt="RelaxPro Premium Mattresses"
-        className="h-24 md:h-28 lg:h-32 w-auto object-contain block"
-        width={500}
-        height={128}
-        loading="eager"
-        onError={() => setImgError(true)}
-        style={{ imageRendering: 'auto' }}
-      />
-    </div>
+    <img
+      src="/images/relaxpro-logo.png"
+      alt="RelaxPro Premium Mattresses — Sleep Better Wake Better"
+      className={`${SIZES[variant]} w-auto object-contain block select-none ${className}`}
+      width={1074}
+      height={350}
+      loading="eager"
+      fetchPriority={variant === 'compact' ? 'high' : undefined}
+    />
   );
 }

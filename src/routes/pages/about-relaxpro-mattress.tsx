@@ -41,7 +41,7 @@ const aboutSchema = {
         name: BUSINESS_NAME,
         url: SITE_URL,
         foundingDate: '2015',
-        logo: toAbsoluteUrl('/images/relaxpro-logo.svg'),
+        logo: toAbsoluteUrl('/images/relaxpro-logo.png'),
         email: 'relaxpro2022@gmail.com',
         telephone: '+919281424494',
         address: {
