@@ -37,7 +37,6 @@ import {
 import PriceText from '../../components/ui/PriceText';
 import ShineBorder from '../../components/ui/ShineBorder';
 import SEO from '../../components/seo/SEO';
-import WhatsAppWidget from '../../components/home/WhatsAppWidget';
 import { getHomePage, getAllProducts, getTestimonials, getAllShowrooms, imageUrl } from '../../lib/queries';
 import { buildWhatsAppUrl, buildMapsUrl, SITE_URL, toAbsoluteUrl, BUSINESS_NAME, SAME_AS } from '../../lib/site';
 
@@ -195,10 +194,10 @@ export default function HomePage({
         onNavigate={handlePageNavigation}
       />
 
-      {/* Trust badges strip below hero — clean horizontal bar */}
+      {/* Trust badges strip below hero ï¿½ clean horizontal bar */}
       <TrustStrip />
 
-      {/* Certified & Trusted badges — moved from footer area to just after hero */}
+      {/* Certified & Trusted badges ï¿½ moved from footer area to just after hero */}
       <FadeUp><TrustBadges /></FadeUp>
 
       <FadeUp>      <TwoWaysToOwn
@@ -209,7 +208,7 @@ export default function HomePage({
 <FadeUp><CertificationMarquee /></FadeUp>
 <FadeUp><ShopByBrands /></FadeUp>
 
-      {/* Shuddha Banner — Clickable to Catalog */}
+      {/* Shuddha Banner ï¿½ Clickable to Catalog */}
       <FadeUp>
         <section className="section-light-lux py-8 md:py-12 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
@@ -221,7 +220,7 @@ export default function HomePage({
             >
               <img
                 src="/images/shuddha-banner.webp"
-                alt="Shuddha Premium Collection — Click to explore"
+                alt="Shuddha Premium Collection ï¿½ Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"
               />
@@ -396,7 +395,7 @@ export default function HomePage({
               title="RelaxPro Hyderabad Factory Showroom"
             />
           </div>
-          <p className="text-center text-graphite-500 text-xs mt-4 font-body">Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad — Open 10 AM to 9 PM Daily</p>
+          <p className="text-center text-graphite-500 text-xs mt-4 font-body">Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad ï¿½ Open 10 AM to 9 PM Daily</p>
         </div>
       </section></FadeUp>
 
@@ -419,7 +418,7 @@ export default function HomePage({
                 )}
               </h2>
               <p className="text-graphite-600 text-sm md:text-base mt-4 font-body leading-relaxed">
-                {homeSections?.accessoriesSection?.sectionSubtitle || 'Crafted from the same premium materials as our mattresses — naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.'}
+                {homeSections?.accessoriesSection?.sectionSubtitle || 'Crafted from the same premium materials as our mattresses ï¿½ naturally. From ergonomic latex pillows to waterproof protectors, every accessory is designed to enhance your sleep experience.'}
               </p>
               <button
                 onClick={() => handlePageNavigation('accessories')}
@@ -431,14 +430,14 @@ export default function HomePage({
               </button>
             </div>
 
-            {/* Right: Cover image — decorative accessory collage */}
+            {/* Right: Cover image ï¿½ decorative accessory collage */}
             <div className="hidden md:block shrink-0 relative w-[280px] lg:w-[320px] xl:w-[380px]">
               <div className="relative">
                 {/* Main cover image */}
                 <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl shadow-brand-500/10 border border-brand-200/30">
                   <img
                     src="/images/accessories/latex-pillow.jpg"
-                    alt="RelaxPro Premium Latex Pillow — Complete Your Sleep Setup"
+                    alt="RelaxPro Premium Latex Pillow ï¿½ Complete Your Sleep Setup"
                     className="w-full h-[220px] lg:h-[260px] xl:h-[300px] object-cover"
                     loading="lazy"
                   />
@@ -452,7 +451,7 @@ export default function HomePage({
                     </span>
                   </div>
                 </div>
-                {/* Floating secondary image — shredded pillow (offset bottom-right) */}
+                {/* Floating secondary image ï¿½ shredded pillow (offset bottom-right) */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 lg:w-28 lg:h-28 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg border-2 border-white rotate-6 hidden xl:block">
                   <img
                     src="/images/accessories/shredded-pillow.jpg"
@@ -461,7 +460,7 @@ export default function HomePage({
                     loading="lazy"
                   />
                 </div>
-                {/* Floating tertiary image — protector (offset top-right) */}
+                {/* Floating tertiary image ï¿½ protector (offset top-right) */}
                 <div className="absolute -top-3 -right-3 w-20 h-20 lg:w-24 lg:h-24 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg border-2 border-white -rotate-3 hidden xl:block">
                   <img
                     src="/images/accessories/mattress-protector.jpg"
@@ -568,7 +567,7 @@ export default function HomePage({
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 className="w-[300px] md:w-[380px] shrink-0 bg-secondary p-8 rounded-2xl border border-brand-200/40 shadow-sm flex flex-col justify-between relative overflow-hidden"
               >
-                <div className="absolute -top-6 -left-2 text-9xl font-heading text-brand-100 opacity-50 select-none pointer-events-none">“</div>
+                <div className="absolute -top-6 -left-2 text-9xl font-heading text-brand-100 opacity-50 select-none pointer-events-none">ï¿½</div>
                 
                 <div className="relative z-10">
                   <div className="flex items-center gap-1 stars mb-6">
@@ -692,14 +691,14 @@ export default function HomePage({
         <SleepFAQs />
       </section></FadeUp>
 
-      {/* Brand entity — The Manufacturer Behind the Sleep */}
+      {/* Brand entity ï¿½ The Manufacturer Behind the Sleep */}
       <FadeUp>
         <section className="section-light-lux py-16 md:py-24 px-4 md:px-8 border-t border-brand-200/30">
           <div className="max-w-4xl mx-auto text-center">
             <span className="eyebrow">The Manufacturer Behind the Sleep</span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-ink-900 mt-3">RelaxPro Mattress</h2>
             <p className="text-graphite-600 text-sm sm:text-base md:text-lg font-body leading-relaxed mt-4 max-w-3xl mx-auto">
-              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep — handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
+              RelaxPro Mattress is a mattress manufacturer and sleep-products brand based in Hyderabad, offering premium natural latex, HR foam, rebonded and customized mattresses in India. Our mattresses are designed to provide a balance of comfort, support, breathability and durability for everyday sleep ï¿½ handcrafted in our Jeedimetla factory and shipped direct to your doorstep.
             </p>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
               <Link to="/about-relaxpro-mattress" className="btn btn-primary text-[10px] xs:text-xs font-bold font-accent uppercase tracking-widest py-3 px-6 rounded-full cursor-pointer">About RelaxPro Mattress</Link>
@@ -709,7 +708,6 @@ export default function HomePage({
         </section>
       </FadeUp>
 
-      <WhatsAppWidget />
     </PageShell>
   );
 }
