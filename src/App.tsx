@@ -83,7 +83,7 @@ function AppContent() {
             <RouteTransition key={location.pathname}>
           <Suspense
             fallback={
-              <div className="min-h-[60vh] flex items-center justify-center bg-secondary">
+              <div className="min-h-[100svh] flex items-center justify-center bg-secondary">
                 <div className="flex flex-col items-center gap-4">
                   <div className="w-10 h-10 border-2 border-brand-600/30 border-t-accent rounded-full animate-spin" />
                   <span className="text-graphite-400 text-[10px] font-accent uppercase tracking-[0.3em]">Loading</span>
