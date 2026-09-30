@@ -78,7 +78,7 @@
         { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
         {
           "key": "Content-Security-Policy-Report-Only",
-          "value": "default-src 'self'; img-src 'self' data: blob: https://cdn.sanity.io; script-src 'self' 'unsafe-inline' https://embed.tawk.to; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.sanity.io https://embed.tawk.to https://wa.me; frame-src https://embed.tawk.to; media-src 'self' https://cdn.sanity.io; worker-src 'self' blob:"
+          "value": "default-src 'self'; img-src 'self' data: blob: https://cdn.sanity.io https://*.google-analytics.com https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' https://embed.tawk.to https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.sanity.io https://embed.tawk.to https://wa.me; frame-src https://embed.tawk.to; media-src 'self' https://cdn.sanity.io; worker-src 'self' blob:"
         }
       ]
     },
