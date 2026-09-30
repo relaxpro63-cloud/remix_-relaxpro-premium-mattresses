@@ -19,6 +19,9 @@ if (
   });
 }
 
+// Prerendered SEO tags (scripts/prerender-seo.mjs) are for crawlers; hand head ownership to Helmet.
+document.querySelectorAll('[data-rh="true"]').forEach((el) => el.remove());
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
