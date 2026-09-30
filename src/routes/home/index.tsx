@@ -219,7 +219,7 @@ export default function HomePage({
               className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30 cursor-pointer group text-left"
             >
               <img
-                src="/images/shuddha-banner.webp"
+                src="/images/shuddha-banner-sm.webp"
                 alt="Shuddha Premium Collection � Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"
@@ -436,7 +436,7 @@ export default function HomePage({
                 {/* Main cover image */}
                 <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl shadow-brand-500/10 border border-brand-200/30">
                   <img
-                    src="/images/accessories/latex-pillow.jpg"
+                    src="/images/accessories/latex-pillow.webp"
                     alt="RelaxPro Premium Latex Pillow � Complete Your Sleep Setup"
                     className="w-full h-[220px] lg:h-[260px] xl:h-[300px] object-cover"
                     loading="lazy"
@@ -476,7 +476,7 @@ export default function HomePage({
           <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6" stagger={0.12}>
             {[
               {
-                image: '/images/accessories/latex-pillow.jpg',
+                image: '/images/accessories/latex-pillow.webp',
                 title: 'Latex Pillows',
                 desc: 'Ergonomic cervical support in natural Dunlop latex',
                 bg: 'from-brand-50 to-sky-50',

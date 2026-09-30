@@ -143,7 +143,7 @@ export default function ShopByBrands() {
             >
               {activeProducts.map((item: any) => {
                 const isBestSeller = item.isBestseller || item.slug === 'nirvana';
-                const imgUrl = imageUrl(item.image);
+                const imgUrl = imageUrl(item.image, 640);
 
                 const cardContent = (
                   <>

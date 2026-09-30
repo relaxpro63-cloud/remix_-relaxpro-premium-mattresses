@@ -88,7 +88,7 @@ export default function CostComparison() {
               className="flex justify-center"
             >
               <img 
-                src="/images/latex-compare.webp" 
+                src="/images/latex-compare-sm.webp" 
                 alt="Natural Latex Mattress" 
                 className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-brand-200/50 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300"
               />
@@ -101,7 +101,7 @@ export default function CostComparison() {
               className="flex justify-center"
             >
               <img 
-                src="/images/foam-compare.webp" 
+                src="/images/foam-compare-sm.webp" 
                 alt="Ordinary Foam Mattress" 
                 className="w-28 sm:w-56 h-20 sm:h-36 object-cover rounded-xl shadow-md border border-graphite-200 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300"
               />

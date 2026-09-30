@@ -176,7 +176,7 @@ export default function AboutPage() {
               className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg shadow-brand-500/5 border border-brand-200/30 cursor-pointer group text-left"
             >
               <img
-                src="/images/shuddha-banner.webp"
+                src="/images/shuddha-banner-sm.webp"
                 alt="Shuddha Premium Collection — Click to explore"
                 className="w-full h-auto object-contain"
                 loading="lazy"
