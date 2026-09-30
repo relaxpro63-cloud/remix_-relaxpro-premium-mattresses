@@ -126,6 +126,7 @@ export default function FoundersPodcast() {
                 ) : (
                   <iframe
                     src={YOUTUBE_URL}
+                    loading="lazy"
                     className="absolute inset-0 w-full h-full"
                     title="Zero నుండి RelaxPro వరకు – How We Built a Premium Natural Latex Mattress Brand | VOM Podcast"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

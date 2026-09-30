@@ -112,7 +112,7 @@ export default function ProductCompareInline({ currentProduct, allProducts }: Pr
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-sky-100 border border-brand-200/30">
                       <img
-                        src={imageUrl(p?.image) || `/images/products/${p?.slug}.webp`}
+                        src={imageUrl(p?.image, 480) || `/images/products/${p?.slug}.webp`}
                         alt={p?.name}
                         className="w-full h-full object-cover"
                         sizes="40px"

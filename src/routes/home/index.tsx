@@ -134,7 +134,7 @@ export default function HomePage({
       if (best.length > 0) {
         setBestsellers(best.map((p: any) => ({
           ...p,
-          image: imageUrl(p.image) || '/images/products/' + p.slug + '.webp'
+          image: imageUrl(p.image, 640) || '/images/products/' + p.slug + '.webp'
         })));
         bestsellersLoaded = true;
       }
@@ -148,7 +148,7 @@ export default function HomePage({
         if (prods.length > 0) {
           setBestsellers(prods.map((p: any) => {
             const hc = PRODUCTS.find((h: any) => h.slug === p.slug);
-            return { ...p, image: typeof p.image === 'string' ? p.image : imageUrl(p.image) || hc?.image || '/images/products/' + p.slug + '.webp' };
+            return { ...p, image: typeof p.image === 'string' ? p.image : imageUrl(p.image, 640) || hc?.image || '/images/products/' + p.slug + '.webp' };
           }));
         }
       }

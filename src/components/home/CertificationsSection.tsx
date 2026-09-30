@@ -126,6 +126,7 @@ function PdfModal({ cert, onClose }: { cert: Certificate; onClose: () => void })
         <div className="flex-1 bg-graphite-100 relative min-h-[50vh]">
           <iframe
             src={cert.pdfEmbedUrl}
+            loading="lazy"
             className="absolute inset-0 w-full h-full"
             title={`${cert.title} Certificate PDF`}
             allow="autoplay"

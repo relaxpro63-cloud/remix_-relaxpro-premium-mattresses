@@ -292,7 +292,7 @@ export default function LeadPopup({ isOpen, onClose, onSubmitted, onDontShowAgai
                   {c.showLogo && (
                     <div className="flex justify-center mb-4">
                       <img
-                        src="/images/relaxpro-logo.png"
+                        src="/images/relaxpro-logo-sm.webp"
                         alt="RelaxPro"
                         className="h-10 w-auto object-contain"
                         width={1074}

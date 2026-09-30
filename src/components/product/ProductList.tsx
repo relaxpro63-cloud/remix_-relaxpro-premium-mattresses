@@ -286,7 +286,7 @@ export default function ProductList({
                       </span>
                     )}
                     <img
-                      src={imageUrl(p.image) || '/images/products/' + p.slug + '.webp'}
+                      src={imageUrl(p.image, 640) || '/images/products/' + p.slug + '.webp'}
                       alt={p.name}
                       className="w-full h-full object-cover transition-transform duration-700"
                       sizes="(max-width: 1024px) 50vw, 33vw"

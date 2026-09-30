@@ -14,7 +14,7 @@ const SIZES = {
 export default function RelaxProLogo({ variant = 'full', className = '' }: RelaxProLogoProps) {
   return (
     <img
-      src="/images/relaxpro-logo.png"
+      src="/images/relaxpro-logo-sm.webp"
       alt="RelaxPro Premium Mattresses — Sleep Better Wake Better"
       className={`${SIZES[variant]} w-auto object-contain block select-none ${className}`}
       width={1074}

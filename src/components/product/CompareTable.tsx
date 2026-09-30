@@ -184,7 +184,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               {comparedProducts.map((p) => (
                   <td key={p.slug} className="p-4 border-l border-zinc-200">
                   <img
-                    src={imageUrl(p.image) || '/images/products/' + p.slug + '.webp'}
+                    src={imageUrl(p.image, 480) || '/images/products/' + p.slug + '.webp'}
                     alt={p.name}
                     className="w-full h-28 object-cover rounded-xl border border-zinc-100 shadow-xs"
                     sizes="(max-width: 768px) 50vw, 180px"
